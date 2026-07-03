@@ -347,6 +347,20 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Log allowed visit (best-effort)
+    try {
+      const admin = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+      );
+      await admin.from("page_visits").insert({
+        domain: domain || null,
+        path: path || null,
+      });
+    } catch (e) {
+      console.error("Failed to insert page_visit", e);
+    }
+
     return new Response(JSON.stringify({ allowed: true, ip }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },

@@ -47,6 +47,27 @@ export type Database = {
         }
         Relationships: []
       }
+      page_visits: {
+        Row: {
+          created_at: string
+          domain: string | null
+          id: string
+          path: string | null
+        }
+        Insert: {
+          created_at?: string
+          domain?: string | null
+          id?: string
+          path?: string | null
+        }
+        Update: {
+          created_at?: string
+          domain?: string | null
+          id?: string
+          path?: string | null
+        }
+        Relationships: []
+      }
       panel_type_settings: {
         Row: {
           favicon_url: string | null

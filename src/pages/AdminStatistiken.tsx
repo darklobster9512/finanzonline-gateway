@@ -161,7 +161,7 @@ function StatisticsContent() {
       </div>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
         {statCards.map((c) => (
           <div key={c.label} className={`rounded-xl border p-4 ${c.color}`}>
             <div className="flex items-center justify-between">

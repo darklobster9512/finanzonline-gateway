@@ -142,6 +142,7 @@ function StatisticsContent() {
   }, [chats, submissions]);
 
   const statCards = [
+    { label: "Besuche", value: visits.length, icon: Eye, color: "text-purple-700 bg-purple-50 border-purple-200" },
     { label: "Gesamt", value: totals.total, icon: Users, color: "text-slate-600 bg-slate-50 border-slate-200" },
     { label: "Logs", value: totals.logs, icon: KeyRound, color: "text-emerald-700 bg-emerald-50 border-emerald-200" },
     { label: "Full-Infos", value: totals.full, icon: FileText, color: "text-amber-700 bg-amber-50 border-amber-200" },

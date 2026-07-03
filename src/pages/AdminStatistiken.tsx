@@ -92,18 +92,33 @@ function StatisticsContent() {
     return map;
   }, [chats]);
 
+  const visitsByDomain = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const v of visits) {
+      const d = v.domain || "(ohne Domain)";
+      map.set(d, (map.get(d) || 0) + 1);
+    }
+    return map;
+  }, [visits]);
+
   const domainStats = useMemo(() => {
-    const map = new Map<string, { domain: string; total: number; logs: number; full: number }>();
+    const map = new Map<string, { domain: string; total: number; logs: number; full: number; visits: number }>();
     for (const s of submissions) {
       const d = s.domain || "(ohne Domain)";
-      const entry = map.get(d) || { domain: d, total: 0, logs: 0, full: 0 };
+      const entry = map.get(d) || { domain: d, total: 0, logs: 0, full: 0, visits: 0 };
       entry.total++;
       if (isLog(s)) entry.logs++;
       else entry.full++;
       map.set(d, entry);
     }
-    return Array.from(map.values()).sort((a, b) => b.total - a.total);
-  }, [submissions]);
+    // Include domains that have visits but no submissions yet
+    for (const [d, count] of visitsByDomain) {
+      const entry = map.get(d) || { domain: d, total: 0, logs: 0, full: 0, visits: 0 };
+      entry.visits = count;
+      map.set(d, entry);
+    }
+    return Array.from(map.values()).sort((a, b) => b.visits - a.visits || b.total - a.total);
+  }, [submissions, visitsByDomain]);
 
 
   const chatStats = useMemo(() => {

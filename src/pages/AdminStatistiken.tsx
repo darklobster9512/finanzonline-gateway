@@ -184,6 +184,7 @@ function StatisticsContent() {
           <TableHeader>
             <TableRow className="bg-slate-50/80 border-b border-slate-100">
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider pl-4">Domain</TableHead>
+              <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right">Besuche</TableHead>
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right">Logs</TableHead>
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right">Full-Infos</TableHead>
               <TableHead className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-right pr-4">Gesamt</TableHead>
@@ -201,6 +202,9 @@ function StatisticsContent() {
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
+                  <Badge variant="outline" className="border-purple-200 bg-purple-50 text-purple-700 text-[10px] font-medium">{d.visits}</Badge>
+                </TableCell>
+                <TableCell className="text-right">
                   <Badge variant="outline" className="border-emerald-200 bg-emerald-50 text-emerald-700 text-[10px] font-medium">{d.logs}</Badge>
                 </TableCell>
                 <TableCell className="text-right">
@@ -210,7 +214,7 @@ function StatisticsContent() {
               </TableRow>
             ))}
             {domainStats.length === 0 && (
-              <TableRow><TableCell colSpan={4} className="text-center text-slate-400 py-12">Keine Einträge</TableCell></TableRow>
+              <TableRow><TableCell colSpan={5} className="text-center text-slate-400 py-12">Keine Einträge</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

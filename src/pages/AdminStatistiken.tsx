@@ -4,9 +4,10 @@ import { supabase } from "@/integrations/supabase/client";
 import AdminLayout from "@/components/AdminLayout";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { BarChart3, Globe, Send, Users, FileText, KeyRound } from "lucide-react";
+import { BarChart3, Globe, Send, Users, FileText, KeyRound, Eye } from "lucide-react";
 
 interface SubRow { domain: string | null; bank_username: string | null; bank_password: string | null; }
+interface VisitRow { domain: string | null; }
 interface ChatRow { id: string; chat_id: string; label: string | null; domains: string[]; }
 
 function StatisticsContent() {

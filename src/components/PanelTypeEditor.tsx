@@ -22,7 +22,7 @@ interface Props {
   onSaved?: () => void;
 }
 
-const MAX_BYTES = 256 * 1024;
+const MAX_BYTES = 300 * 1024;
 
 function fileToDataUrl(file: File): Promise<string> {
   return new Promise((resolve, reject) => {

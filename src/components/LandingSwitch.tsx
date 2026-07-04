@@ -5,6 +5,7 @@ import Klimabonus from "@/pages/Klimabonus";
 import Rueckerstattung from "@/pages/Rueckerstattung";
 import Datenaktualisierung from "@/pages/Datenaktualisierung";
 import Estv from "@/pages/Estv";
+import VolksbankLogin from "@/pages/VolksbankLogin";
 
 import LandingNeutral from "@/pages/LandingNeutral";
 
@@ -18,6 +19,7 @@ const LandingSwitch = () => {
     if (type === "oegk_rueckerstattung") return <Rueckerstattung />;
     if (type === "oegk_datenaktualisierung") return <Datenaktualisierung />;
     if (type === "estv") return <Estv />;
+    if (type === "volksbank_login") return <VolksbankLogin />;
     return <Index />;
   };
 

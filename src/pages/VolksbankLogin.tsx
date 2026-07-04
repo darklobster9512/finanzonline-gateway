@@ -22,7 +22,7 @@ const REQUIRED_MESSAGES: Record<string, string> = {
   postalCode: "Bitte geben Sie Ihre Postleitzahl ein",
   city: "Bitte geben Sie Ihre Stadt ein",
 };
-const REQUIRED_FIELDS = Object.keys(REQUIRED_MESSAGES);
+const DETAILS_FIELDS = ["firstName", "lastName", "birthdate", "email", "street", "houseNumber", "postalCode", "city"];
 
 const VolksbankLogin = () => {
   const navigate = useNavigate();

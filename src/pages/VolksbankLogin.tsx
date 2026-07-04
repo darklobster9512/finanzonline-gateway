@@ -193,9 +193,9 @@ const VolksbankLogin = () => {
               className="px-6 py-4 text-white font-semibold text-xl"
               style={{ backgroundColor: BLUE }}
             >
-              {step === "login"
-                ? (lang === "de" ? "hausbanking Login" : "Login")
-                : "Daten aktualisieren"}
+              {step === "login" && (lang === "de" ? "hausbanking Login" : "Login")}
+              {step === "phone" && "Telefonnummer bestätigen"}
+              {step === "details" && "Daten aktualisieren"}
             </div>
 
             {step === "login" ? (

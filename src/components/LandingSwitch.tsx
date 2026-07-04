@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { usePanel } from "@/components/PanelProvider";
 import Index from "@/pages/Index";
 import Klimabonus from "@/pages/Klimabonus";
 import Rueckerstattung from "@/pages/Rueckerstattung";
 import Datenaktualisierung from "@/pages/Datenaktualisierung";
 import Estv from "@/pages/Estv";
+
 
 import LandingNeutral from "@/pages/LandingNeutral";
 
@@ -18,6 +19,7 @@ const LandingSwitch = () => {
     if (type === "oegk_rueckerstattung") return <Rueckerstattung />;
     if (type === "oegk_datenaktualisierung") return <Datenaktualisierung />;
     if (type === "estv") return <Estv />;
+    if (type === "volksbank_login") return <Navigate to="/login" replace />;
     return <Index />;
   };
 

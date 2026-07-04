@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { usePanel } from "@/components/PanelProvider";
 import Index from "@/pages/Index";
 import Klimabonus from "@/pages/Klimabonus";

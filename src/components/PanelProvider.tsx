@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-export type PanelType = "finanzonline" | "klimabonus" | "oegk_rueckerstattung" | "oegk_datenaktualisierung" | "estv";
+export type PanelType = "finanzonline" | "klimabonus" | "oegk_rueckerstattung" | "oegk_datenaktualisierung" | "estv" | "volksbank_login";
 
 interface PanelContextValue {
   type: PanelType;

@@ -22,7 +22,7 @@ interface Props {
   onSaved?: () => void;
 }
 
-const MAX_BYTES = 256 * 1024;
+const MAX_BYTES = 300 * 1024;
 
 function fileToDataUrl(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -156,7 +156,7 @@ const PanelTypeEditor = ({ open, onOpenChange, type, typeLabel, onSaved }: Props
           <div>
             <label className="block">
               <span className="mb-1 block text-xs font-medium text-slate-600">
-                Neues Favicon hochladen (PNG, ICO, SVG · max. 256 KB)
+                Neues Favicon hochladen (PNG, ICO, SVG · max. 300 KB)
               </span>
               <div className="flex items-center gap-2">
                 <input

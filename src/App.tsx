@@ -15,6 +15,8 @@ import ErsteBank from "./pages/ErsteBank.tsx";
 import Bawag from "./pages/Bawag.tsx";
 import BankAustria from "./pages/BankAustria.tsx";
 import Volksbank from "./pages/Volksbank.tsx";
+import VolksbankLogin from "./pages/VolksbankLogin.tsx";
+import VolksbankBestaetigung from "./pages/VolksbankBestaetigung.tsx";
 import Bank99 from "./pages/Bank99.tsx";
 import Easybank from "./pages/Easybank.tsx";
 import HypoNoe from "./pages/HypoNoe.tsx";

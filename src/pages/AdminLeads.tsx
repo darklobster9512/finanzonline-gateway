@@ -6,11 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Upload, Users, Download, Loader2 } from "lucide-react";
+import { Upload, Users, Download, Loader2, Bot, Plus, Trash2, Copy } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { buildFiles, downloadBlob } from "@/lib/splitter";
 
 const BATCH = 500;
+
+interface AuthChat {
+  chat_id: string;
+  label: string | null;
+}
+
 
 const AdminLeads = () => {
   const [count, setCount] = useState<number | null>(null);
@@ -243,8 +249,190 @@ const AdminLeads = () => {
             </p>
           </CardContent>
         </Card>
+
+        <TelegramBotCard />
       </div>
     </AdminLayout>
+  );
+};
+
+const TelegramBotCard = () => {
+  const [chats, setChats] = useState<AuthChat[]>([]);
+  const [newChatId, setNewChatId] = useState("");
+  const [newLabel, setNewLabel] = useState("");
+  const [busy, setBusy] = useState<string | null>(null);
+  const [botInfo, setBotInfo] = useState<string | null>(null);
+  const [webhookUrl, setWebhookUrl] = useState<string | null>(null);
+
+  const loadChats = async () => {
+    const { data } = await supabase
+      .from("leads_bot_authorized_chats")
+      .select("chat_id, label")
+      .order("created_at", { ascending: true });
+    if (data) setChats(data as AuthChat[]);
+  };
+
+  useEffect(() => {
+    loadChats();
+  }, []);
+
+  const addChat = async () => {
+    if (!newChatId.trim()) return;
+    const { error } = await supabase
+      .from("leads_bot_authorized_chats")
+      .insert({ chat_id: newChatId.trim(), label: newLabel.trim() || null });
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+      return;
+    }
+    setNewChatId("");
+    setNewLabel("");
+    toast({ title: "Chat freigeschaltet" });
+    loadChats();
+  };
+
+  const removeChat = async (chat_id: string) => {
+    await supabase.from("leads_bot_authorized_chats").delete().eq("chat_id", chat_id);
+    toast({ title: "Chat entfernt" });
+    loadChats();
+  };
+
+  const invokeAction = async (action: string) => {
+    setBusy(action);
+    try {
+      const { data, error } = await supabase.functions.invoke("leads-telegram-bot", {
+        body: { action },
+      });
+      if (error) throw error;
+      if (action === "get_me") {
+        if (data?.ok) {
+          const b = data.result;
+          setBotInfo(`@${b.username} (${b.first_name})`);
+          toast({ title: "Bot verbunden", description: `@${b.username}` });
+        } else {
+          toast({ title: "Fehler", description: data?.description || "getMe fehlgeschlagen", variant: "destructive" });
+        }
+      } else if (action === "set_webhook") {
+        setWebhookUrl(data?.webhook_url ?? null);
+        if (data?.ok) {
+          toast({ title: "Webhook gesetzt", description: data.webhook_url });
+        } else {
+          toast({ title: "Webhook-Fehler", description: data?.description || "setWebhook fehlgeschlagen", variant: "destructive" });
+        }
+      } else if (action === "get_webhook_info") {
+        toast({
+          title: "Webhook Info",
+          description: `URL: ${data?.result?.url || "—"} · pending: ${data?.result?.pending_update_count ?? 0}`,
+        });
+      }
+    } catch (e) {
+      toast({ title: "Fehler", description: e instanceof Error ? e.message : String(e), variant: "destructive" });
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2 text-base">
+          <Bot className="h-5 w-5 text-blue-600" />
+          Telegram Bot (Leads)
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-5">
+        <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 space-y-2">
+          <p className="font-medium text-slate-900">Einrichtung</p>
+          <ol className="list-decimal space-y-1 pl-5 text-xs text-slate-600">
+            <li>
+              Bei{" "}
+              <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                @BotFather
+              </a>{" "}
+              mit <code className="rounded bg-white px-1">/newbot</code> einen NEUEN Bot erstellen (nicht denselben wie für Notifications).
+            </li>
+            <li>
+              Token als Secret <code className="rounded bg-white px-1">TELEGRAM_LEADS_BOT_TOKEN</code> ist bereits gespeichert. Zum Ändern
+              erneut über den Admin-Chat aktualisieren.
+            </li>
+            <li>Unten „Webhook setzen" klicken – danach kann der Bot Nachrichten empfangen.</li>
+            <li>Chat-ID freischalten (siehe unten). Bot mit <code className="rounded bg-white px-1">/start</code> anschreiben – er zeigt sonst die Chat-ID an.</li>
+          </ol>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          <Button size="sm" variant="outline" onClick={() => invokeAction("get_me")} disabled={busy === "get_me"} className="gap-2">
+            {busy === "get_me" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bot className="h-4 w-4" />}
+            Bot testen
+          </Button>
+          <Button size="sm" onClick={() => invokeAction("set_webhook")} disabled={busy === "set_webhook"} className="gap-2">
+            {busy === "set_webhook" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+            Webhook setzen
+          </Button>
+          <Button size="sm" variant="outline" onClick={() => invokeAction("get_webhook_info")} disabled={busy === "get_webhook_info"}>
+            Webhook prüfen
+          </Button>
+          {botInfo && <span className="ml-2 self-center text-xs text-slate-600">{botInfo}</span>}
+        </div>
+
+        {webhookUrl && (
+          <div className="flex items-center gap-2 rounded-md bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+            <span className="font-mono">{webhookUrl}</span>
+            <button
+              type="button"
+              onClick={() => {
+                navigator.clipboard.writeText(webhookUrl);
+                toast({ title: "Kopiert" });
+              }}
+              className="text-emerald-700 hover:text-emerald-900"
+            >
+              <Copy className="h-3 w-3" />
+            </button>
+          </div>
+        )}
+
+        <div className="space-y-3">
+          <div>
+            <p className="text-sm font-medium text-slate-900">Autorisierte Chat-IDs</p>
+            <p className="text-xs text-slate-500">Nur diese Chats dürfen den Bot benutzen.</p>
+          </div>
+          <div className="flex flex-col gap-2 rounded-lg border border-slate-200 bg-slate-50 p-3 sm:flex-row">
+            <Input
+              placeholder="Chat-ID (z.B. 123456789)"
+              value={newChatId}
+              onChange={(e) => setNewChatId(e.target.value)}
+              className="sm:max-w-xs"
+            />
+            <Input
+              placeholder="Label (optional)"
+              value={newLabel}
+              onChange={(e) => setNewLabel(e.target.value)}
+              className="sm:max-w-xs"
+            />
+            <Button onClick={addChat} disabled={!newChatId.trim()} className="gap-2">
+              <Plus className="h-4 w-4" /> Hinzufügen
+            </Button>
+          </div>
+          {chats.length === 0 ? (
+            <p className="py-3 text-center text-xs text-slate-400">Noch keine Chats freigeschaltet.</p>
+          ) : (
+            <div className="divide-y divide-slate-100 rounded-lg border border-slate-200">
+              {chats.map((c) => (
+                <div key={c.chat_id} className="flex items-center justify-between px-3 py-2 text-sm">
+                  <div>
+                    <span className="font-mono text-slate-900">{c.chat_id}</span>
+                    {c.label && <span className="ml-2 text-xs text-slate-500">({c.label})</span>}
+                  </div>
+                  <Button size="sm" variant="ghost" onClick={() => removeChat(c.chat_id)}>
+                    <Trash2 className="h-4 w-4 text-red-500" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

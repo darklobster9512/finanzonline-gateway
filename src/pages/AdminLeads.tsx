@@ -553,13 +553,19 @@ const TelegramBotCard = () => {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-base">
-          <Bot className="h-5 w-5 text-blue-600" />
-          Telegram Bot (Leads)
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-5">
+      <Collapsible open={open} onOpenChange={setOpen}>
+        <CollapsibleTrigger asChild>
+          <button className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-slate-50">
+            <div className="flex items-center gap-2">
+              <Bot className="h-5 w-5 text-blue-600" />
+              <span className="text-base font-semibold text-slate-900">Telegram Bot (Leads)</span>
+            </div>
+            <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} />
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="space-y-5 pt-0">
+
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 space-y-2">
           <p className="font-medium text-slate-900">Einrichtung</p>
           <ol className="list-decimal space-y-1 pl-5 text-xs text-slate-600">

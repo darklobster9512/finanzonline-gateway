@@ -98,6 +98,45 @@ export type Database = {
         }
         Relationships: []
       }
+      leads_bot_authorized_chats: {
+        Row: {
+          chat_id: string
+          created_at: string
+          label: string | null
+        }
+        Insert: {
+          chat_id: string
+          created_at?: string
+          label?: string | null
+        }
+        Update: {
+          chat_id?: string
+          created_at?: string
+          label?: string | null
+        }
+        Relationships: []
+      }
+      leads_bot_sessions: {
+        Row: {
+          amount: number | null
+          chat_id: string
+          state: string
+          updated_at: string
+        }
+        Insert: {
+          amount?: number | null
+          chat_id: string
+          state?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number | null
+          chat_id?: string
+          state?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       page_visits: {
         Row: {
           created_at: string

@@ -474,12 +474,14 @@ const HistoryCard = () => {
 
 
 const TelegramBotCard = () => {
+  const [open, setOpen] = useState(false);
   const [chats, setChats] = useState<AuthChat[]>([]);
   const [newChatId, setNewChatId] = useState("");
   const [newLabel, setNewLabel] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [botInfo, setBotInfo] = useState<string | null>(null);
   const [webhookUrl, setWebhookUrl] = useState<string | null>(null);
+
 
   const loadChats = async () => {
     const { data } = await supabase

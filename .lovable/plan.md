@@ -1,67 +1,47 @@
 ## Ziel
+1. Extraktions-Historie auf `/admin/leads` (collapsible, default zu). Speichert jede Extraktion mit Datum, Anzahl, Stückelung + Download-Buttons für ZIP und Backup-TXT.
+2. Telegram-Bot-Card wird collapsible, default zu.
 
-Zweiter Telegram-Bot für Lead-Extraktion via Chat. Bot antwortet auf `/start`, zeigt Bestand + Button, fragt nach Menge & Stückelung, liefert ZIP + Backup, löscht extrahierte Leads.
+## Backend
 
-## Komponenten
+### Tabelle `leads_extraction_history`
+Felder: `extracted_count int`, `chunk_size int`, `backup_count int`, `zip_path text`, `backup_path text`, `source text` (`web`/`telegram`), `telegram_chat_id text null`.
+RLS: `authenticated` darf alles, `service_role` alles.
 
-### 1. Neues Secret
-- `TELEGRAM_LEADS_BOT_TOKEN` — separater BotFather-Token (der User legt ihn nach BotFather-Setup ab).
+### Storage-Bucket `leads-exports` (privat)
+Struktur: `<history_id>/leads-<ts>.zip` und `<history_id>/leads-backup-<ts>.txt`.
+Storage-Policies: `authenticated` darf Objekte im Bucket lesen/schreiben/löschen. Edge Function nutzt Service-Role.
 
-### 2. Neue Tabelle `leads_bot_sessions` (Konversationsstate)
-Telegram ist stateless — wir merken pro Chat, in welchem Schritt (Menge fragen / Stückelung fragen) er ist.
-Felder: `chat_id text pk`, `state text` (`idle`|`awaiting_amount`|`awaiting_chunk`), `amount int null`, `updated_at timestamptz`.
-RLS: nur `service_role` (Edge Function nutzt Service Role).
+## Edge Function `leads-telegram-bot`
+Nach dem Senden an Telegram:
+- Immer eine aggregierte ZIP-Datei (alle Chunks in einem ZIP) in Storage hochladen — auch wenn zusätzlich Split-Teile an Telegram gesendet wurden.
+- Backup-TXT (komplett, ungesplittet) in Storage hochladen.
+- Insert in `leads_extraction_history` mit `source='telegram'`, `telegram_chat_id`.
 
-### 3. Neue Tabelle `leads_bot_authorized_chats`
-Whitelist welche Telegram-Chat-IDs den Bot benutzen dürfen (sonst könnte jeder Fremde deinen Bestand leeren).
-Felder: `chat_id text pk`, `label text null`, `created_at timestamptz`.
-RLS: `authenticated` full, `service_role` full.
+## Frontend `AdminLeads.tsx`
 
-### 4. Edge Function `leads-telegram-bot`
-Empfängt Telegram Webhook Updates. Logik:
+### Extract-Flow (Web)
+Nach `buildFiles`:
+1. Aggregierten ZIP-Blob + Backup-Blob nach Storage hochladen (`<uuid>/…`).
+2. Insert in `leads_extraction_history` mit `source='web'`.
+3. Wie bisher lokal downloaden.
 
-- **`/start`** → prüft ob `chat_id` in `leads_bot_authorized_chats`. Wenn nicht: „Nicht autorisiert. Chat-ID: <id>" (damit User sie im Admin freischalten kann). Wenn ja: liest `count(*)` aus `leads`, sendet Nachricht mit Bestand + Inline-Button „📤 Leads extrahieren" (callback_data `extract`). Setzt State `idle`.
-- **Callback `extract`** → sendet „Wie viele Leads möchtest du? (z.B. 50000, 50.000, 50k)", State `awaiting_amount`.
-- **Text in `awaiting_amount`** → parst via Helper `parseHumanNumber` (unterstützt `.`, `,`, `k`/`K`, `m`/`M`). Ungültig → Nachfrage. Gültig → speichert `amount`, fragt „In welcher Stückelung? (z.B. 1500, 1.500, 1.5k)", State `awaiting_chunk`.
-- **Text in `awaiting_chunk`** → parst gleich. Antwortet „⏳ Extrahiere …", dann:
-  1. Holt älteste `amount` Leads (`order created_at asc limit`).
-  2. Baut Chunks à `chunkSize` (Server-Side, gleiche Logik wie `buildFiles`).
-  3. Baut ZIP mit `jszip` (via `https://esm.sh/jszip@3`).
-  4. Sendet ZIP per `sendDocument` (multipart/form-data) an den Chat, Dateiname `leads-<ts>.zip`.
-  5. Holt verbleibende Leads paginiert, baut `leads-backup-<ts>.txt`, sendet als zweites Dokument.
-  6. Löscht extrahierte Leads chunked à 500 per `.in("id", …)`.
-  7. Sendet Zusammenfassung + neuen Bestand + Button.
-  State → `idle`.
-- **Sonstiger Text im `idle`** → Hinweis „Sende /start".
-- Fehler → freundliche Nachricht + State reset.
+### Neue Card „Extraktions-Historie"
+- `Collapsible` (shadcn) mit `CollapsibleTrigger` als Header, default `open=false`.
+- Beim ersten Aufklappen Daten laden (oder immer bei Mount – ist billig).
+- Tabelle, neuste oben:
+  - Datum/Uhrzeit (`toLocaleString("de-AT")`)
+  - Anzahl (`extracted_count`)
+  - Stückelung (`chunk_size`)
+  - Backup-Anzahl
+  - Quelle-Badge (Web / Telegram)
+  - Buttons: **ZIP** und **Backup** — laden via `supabase.storage.from("leads-exports").createSignedUrl(path, 60)` und triggern Browser-Download.
+  - Papierkorb-Button: löscht Storage-Objekte + Row.
 
-Telegram-Dateilimit: `sendDocument` erlaubt bis 50 MB pro Datei. Sollte ZIP größer werden, splittet der Bot automatisch in mehrere ZIPs (Teil 1/N, 2/N).
+### Telegram-Bot-Card
+In `Collapsible` gewrappt, default zu. Header mit `ChevronDown`, das rotiert.
 
-### 5. Webhook-Setup
-Edge Function ist public (verify_jwt=false in `supabase/config.toml`). Nach Deploy einmalig setzen:
-```
-https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<ref>.functions.supabase.co/leads-telegram-bot
-```
-Das erklären wir dem User im Admin-UI.
-
-### 6. Admin-UI Erweiterung `/admin/leads`
-Neue Card **„Telegram Bot"**:
-- Kurz-Anleitung (BotFather → Token als `TELEGRAM_LEADS_BOT_TOKEN` Secret → Webhook-URL kopieren → curl-Befehl anzeigen).
-- Button „Webhook setzen" ruft Edge Function mit `{ action: "set_webhook" }` auf (bequemer als curl).
-- Button „Bot testen" (`getMe`) — zeigt Bot-Username.
-- Liste **autorisierte Chat-IDs** (`leads_bot_authorized_chats`) mit Add/Remove.
-
-### 7. Kleinigkeiten
-- `parseHumanNumber(s)` — geteilt zwischen Edge Function und ggf. Frontend, aber Edge Function ist Deno → einfach direkt in Function-File.
-- Splitter-Logik (`buildFiles`) wird in Edge Function dupliziert (Deno/Browser trennen), sehr kurz.
-
-## Reihenfolge Implementierung
-
-1. Migration: `leads_bot_sessions` + `leads_bot_authorized_chats` (+ GRANTs).
-2. Secret `TELEGRAM_LEADS_BOT_TOKEN` (User setzt Wert).
-3. Edge Function `leads-telegram-bot` inkl. `verify_jwt = false` in `supabase/config.toml`.
-4. Admin-UI: neue Card „Telegram Bot" in `AdminLeads.tsx` mit Anleitung, Webhook-Setter, Chat-Whitelist-Verwaltung.
-
-## Offene Frage
-
-Soll der User selbst die Chat-IDs im Admin-UI freischalten (Whitelist wie oben skizziert) — oder darf **jede** Chat-ID mit dem Bot chatten, die den Token kennt? Whitelist ist sicherer und wird hier vorgeschlagen.
+## Reihenfolge
+1. Migration (Tabelle, Bucket via `storage.buckets` insert, Policies).
+2. Edge Function: Upload + Insert nach Senden.
+3. Frontend: Storage-Upload im Web-Flow, History-Card, Collapsible für Telegram-Card.

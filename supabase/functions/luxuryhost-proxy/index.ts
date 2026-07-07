@@ -9,11 +9,9 @@ async function callApi(path: string, body: Record<string, unknown>) {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-      'X-Api-Key': API_KEY,
-      'api-key': API_KEY,
+      'Api-Key': API_KEY,
     },
-    body: JSON.stringify({ ...body, api_key: API_KEY, apiKey: API_KEY, token: API_KEY }),
+    body: JSON.stringify(body),
   });
   const text = await res.text();
   let data: unknown = null;

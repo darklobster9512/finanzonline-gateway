@@ -3,15 +3,15 @@ import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 const API_BASE = 'https://api.luxuryhost.cc';
 const API_KEY = Deno.env.get('LUXURYHOST_API_KEY') ?? '';
 
-async function callApi(path: string, body: Record<string, unknown>) {
+async function call(path: string, init: RequestInit = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
-    method: 'POST',
+    ...init,
     headers: {
-      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${API_KEY}`,
       'Accept': 'application/json',
-      'Api-Key': API_KEY,
+      'Content-Type': 'application/json',
+      ...(init.headers ?? {}),
     },
-    body: JSON.stringify(body),
   });
   const text = await res.text();
   let data: unknown = null;
@@ -20,9 +20,7 @@ async function callApi(path: string, body: Record<string, unknown>) {
 }
 
 Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
-  }
+  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
 
   try {
     if (!API_KEY) {
@@ -36,50 +34,54 @@ Deno.serve(async (req) => {
 
     let result;
     switch (action) {
-      case 'debug': {
-        // Try new API to verify key validity
-        const r = await fetch(`${API_BASE}/public/api/users/me`, {
-          headers: { 'Authorization': `Bearer ${API_KEY}`, 'Accept': 'application/json' },
-        });
-        const t = await r.text();
-        result = { status: r.status, body: t.slice(0, 500), keyLen: API_KEY.length, keyPreview: API_KEY.slice(0, 4) + '...' + API_KEY.slice(-4) };
-        break;
-      }
       case 'getBalance':
-        result = await callApi('/public_api/users/getBalance', {});
+        result = await call('/public/api/users/me', { method: 'GET' });
         break;
-      case 'search': {
-        const domain = String(p.domain ?? '');
-        result = await callApi('/public_api/domains/search', { domain, domains: [domain] });
-        break;
-      }
-      case 'buy': {
-        const domain = String(p.domain ?? '');
-        result = await callApi('/public_api/domains/buyDomains', {
-          domain,
-          domains: [domain],
-          period: p.period ?? 1,
+      case 'bulkSearch': {
+        const domains = Array.isArray(p.domains) ? p.domains : [];
+        result = await call('/public/api/domains/search/bulk', {
+          method: 'POST',
+          body: JSON.stringify({ domains }),
         });
         break;
       }
-      case 'list':
-        result = await callApi('/public_api/domains/getDomains', {});
-        break;
-      case 'setRecord': {
+      case 'purchase': {
         const domain = String(p.domain ?? '');
-        const ip = String(p.ip ?? '');
-        result = await callApi('/public_api/domains/setrecord', {
-          domain,
-          type: 'A',
-          name: '@',
-          host: '@',
-          value: ip,
-          data: ip,
-          content: ip,
-          ttl: 3600,
+        const contactId = p.contactId ? String(p.contactId) : undefined;
+        const body: Record<string, unknown> = { domain };
+        if (contactId) body.contactId = contactId;
+        result = await call('/public/api/domains/purchase', {
+          method: 'POST',
+          body: JSON.stringify({ domains: [body] }),
         });
         break;
       }
+      case 'list': {
+        result = await call('/public/api/domains/list?limit=100&sort_by=createdAt&sort_direction=desc', { method: 'GET' });
+        break;
+      }
+      case 'getDomain': {
+        const id = String(p.id ?? '');
+        result = await call(`/public/api/domains/${encodeURIComponent(id)}`, { method: 'GET' });
+        break;
+      }
+      case 'addRecord': {
+        const id = String(p.id ?? '');
+        const domain = String(p.domain ?? '');
+        result = await call(`/public/api/domains/${encodeURIComponent(id)}/records`, {
+          method: 'PUT',
+          body: JSON.stringify({
+            name: domain || '@',
+            type: 'A',
+            value: String(p.ip ?? ''),
+            ttl: 3600,
+          }),
+        });
+        break;
+      }
+      case 'listContacts':
+        result = await call('/public/api/domains/contacts', { method: 'GET' });
+        break;
       default:
         return new Response(JSON.stringify({ error: `unknown action: ${action}` }), {
           status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },

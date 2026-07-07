@@ -656,7 +656,9 @@ const TelegramBotCard = () => {
             </div>
           )}
         </div>
-      </CardContent>
+          </CardContent>
+        </CollapsibleContent>
+      </Collapsible>
     </Card>
   );
 };

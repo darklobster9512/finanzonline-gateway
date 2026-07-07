@@ -47,6 +47,39 @@ export type Database = {
         }
         Relationships: []
       }
+      domain_connections: {
+        Row: {
+          connected_at: string | null
+          created_at: string
+          domain: string
+          id: string
+          last_message: string | null
+          luxuryhost_id: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          connected_at?: string | null
+          created_at?: string
+          domain: string
+          id?: string
+          last_message?: string | null
+          luxuryhost_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          connected_at?: string | null
+          created_at?: string
+          domain?: string
+          id?: string
+          last_message?: string | null
+          luxuryhost_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       page_visits: {
         Row: {
           created_at: string

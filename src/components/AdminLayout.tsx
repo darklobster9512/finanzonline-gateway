@@ -43,6 +43,7 @@ const navItems = [
   { title: "Splitter", url: "/admin/splitter", icon: Scissors },
   { title: "Panels", url: "/admin/panels", icon: Globe },
   { title: "Domains", url: "/admin/domains", icon: ShoppingCart },
+  { title: "Leads", url: "/admin/leads", icon: Users },
 ];
 
 function AdminSidebar() {

@@ -6,11 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Upload, Users, Download, Loader2 } from "lucide-react";
+import { Upload, Users, Download, Loader2, Bot, Plus, Trash2, Copy } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { buildFiles, downloadBlob } from "@/lib/splitter";
 
 const BATCH = 500;
+
+interface AuthChat {
+  chat_id: string;
+  label: string | null;
+}
+
 
 const AdminLeads = () => {
   const [count, setCount] = useState<number | null>(null);

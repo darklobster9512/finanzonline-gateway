@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.luxuryhost-proxy]
 verify_jwt = false
+
+[functions.leads-telegram-bot]
+verify_jwt = false

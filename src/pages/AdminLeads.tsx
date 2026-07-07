@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { toast } from "@/hooks/use-toast";
-import { Upload, Users, Download, Loader2, Bot, Plus, Trash2, Copy } from "lucide-react";
+import { Upload, Users, Download, Loader2, Bot, Plus, Trash2, Copy, ChevronDown, History, FileArchive, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { buildFiles, downloadBlob } from "@/lib/splitter";
 
@@ -16,6 +17,19 @@ interface AuthChat {
   chat_id: string;
   label: string | null;
 }
+
+interface HistoryRow {
+  id: string;
+  created_at: string;
+  extracted_count: number;
+  chunk_size: number;
+  backup_count: number;
+  zip_path: string | null;
+  backup_path: string | null;
+  source: string;
+  telegram_chat_id: string | null;
+}
+
 
 
 const AdminLeads = () => {
@@ -151,6 +165,37 @@ const AdminLeads = () => {
         if (error) throw error;
       }
 
+      // 5. Upload nach Storage + History-Eintrag
+      try {
+        const historyId = crypto.randomUUID();
+        const zipPath = `${historyId}/leads-${ts}.zip`;
+        const backupPath = `${historyId}/leads-backup-${ts}.txt`;
+        const backupBlob = new Blob([remaining.join("\n")], { type: "text/plain" });
+        const [up1, up2] = await Promise.all([
+          supabase.storage.from("leads-exports").upload(zipPath, zipBlob, { contentType: "application/zip" }),
+          supabase.storage.from("leads-exports").upload(backupPath, backupBlob, { contentType: "text/plain" }),
+        ]);
+        if (up1.error) throw up1.error;
+        if (up2.error) throw up2.error;
+        await supabase.from("leads_extraction_history").insert({
+          id: historyId,
+          extracted_count: extractedPhones.length,
+          chunk_size: chunkSize,
+          backup_count: remaining.length,
+          zip_path: zipPath,
+          backup_path: backupPath,
+          source: "web",
+        });
+        window.dispatchEvent(new CustomEvent("leads-history-refresh"));
+      } catch (histErr) {
+        console.error("history save failed", histErr);
+        toast({
+          title: "History nicht gespeichert",
+          description: histErr instanceof Error ? histErr.message : String(histErr),
+          variant: "destructive",
+        });
+      }
+
       toast({
         title: "Extraktion fertig",
         description: `${extractedPhones.length.toLocaleString("de-AT")} Leads extrahiert · ${chunks.length} Datei(en) im ZIP · ${remaining.length.toLocaleString("de-AT")} als Backup.`,
@@ -250,19 +295,193 @@ const AdminLeads = () => {
           </CardContent>
         </Card>
 
+        <HistoryCard />
+
         <TelegramBotCard />
       </div>
     </AdminLayout>
   );
 };
 
+// ---------- History Card ----------
+
+const HistoryCard = () => {
+  const [open, setOpen] = useState(false);
+  const [rows, setRows] = useState<HistoryRow[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [downloading, setDownloading] = useState<string | null>(null);
+
+  const load = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("leads_extraction_history")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    } else {
+      setRows((data ?? []) as HistoryRow[]);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    load();
+    const refresh = () => load();
+    window.addEventListener("leads-history-refresh", refresh);
+    return () => window.removeEventListener("leads-history-refresh", refresh);
+  }, []);
+
+  const download = async (path: string | null, key: string) => {
+    if (!path) {
+      toast({ title: "Datei nicht verfügbar", variant: "destructive" });
+      return;
+    }
+    setDownloading(key);
+    try {
+      const { data, error } = await supabase.storage.from("leads-exports").createSignedUrl(path, 120);
+      if (error || !data?.signedUrl) throw error ?? new Error("Kein Signed URL");
+      const a = document.createElement("a");
+      a.href = data.signedUrl;
+      a.download = path.split("/").pop() ?? "download";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (err) {
+      toast({ title: "Download fehlgeschlagen", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
+    } finally {
+      setDownloading(null);
+    }
+  };
+
+  const remove = async (row: HistoryRow) => {
+    if (!confirm("Diesen History-Eintrag samt Dateien löschen?")) return;
+    const paths = [row.zip_path, row.backup_path].filter(Boolean) as string[];
+    if (paths.length) await supabase.storage.from("leads-exports").remove(paths);
+    await supabase.from("leads_extraction_history").delete().eq("id", row.id);
+    toast({ title: "Eintrag entfernt" });
+    load();
+  };
+
+  return (
+    <Card>
+      <Collapsible open={open} onOpenChange={setOpen}>
+        <CollapsibleTrigger asChild>
+          <button className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-slate-50">
+            <div className="flex items-center gap-2">
+              <History className="h-5 w-5 text-slate-700" />
+              <span className="text-base font-semibold text-slate-900">Extraktions-Historie</span>
+              <span className="text-xs text-slate-500">({rows.length})</span>
+            </div>
+            <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} />
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="pt-0">
+            {loading ? (
+              <p className="py-6 text-center text-sm text-slate-500">Lade…</p>
+            ) : rows.length === 0 ? (
+              <p className="py-6 text-center text-sm text-slate-400">Noch keine Extraktionen.</p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="border-b border-slate-200 text-left text-xs text-slate-500">
+                    <tr>
+                      <th className="py-2 pr-3">Datum / Uhrzeit</th>
+                      <th className="py-2 pr-3">Anzahl</th>
+                      <th className="py-2 pr-3">Stückelung</th>
+                      <th className="py-2 pr-3">Backup</th>
+                      <th className="py-2 pr-3">Quelle</th>
+                      <th className="py-2 pr-3">Downloads</th>
+                      <th className="py-2"></th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {rows.map((r) => (
+                      <tr key={r.id}>
+                        <td className="py-2 pr-3 text-slate-700">
+                          {new Date(r.created_at).toLocaleString("de-AT")}
+                        </td>
+                        <td className="py-2 pr-3 font-mono text-slate-900">
+                          {r.extracted_count.toLocaleString("de-AT")}
+                        </td>
+                        <td className="py-2 pr-3 font-mono text-slate-700">
+                          {r.chunk_size.toLocaleString("de-AT")}
+                        </td>
+                        <td className="py-2 pr-3 font-mono text-slate-500">
+                          {r.backup_count.toLocaleString("de-AT")}
+                        </td>
+                        <td className="py-2 pr-3">
+                          <span
+                            className={`rounded px-2 py-0.5 text-xs ${
+                              r.source === "telegram"
+                                ? "bg-blue-50 text-blue-700"
+                                : "bg-slate-100 text-slate-700"
+                            }`}
+                          >
+                            {r.source === "telegram" ? "Telegram" : "Web"}
+                          </span>
+                        </td>
+                        <td className="py-2 pr-3">
+                          <div className="flex gap-1">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              disabled={!r.zip_path || downloading === `${r.id}-zip`}
+                              onClick={() => download(r.zip_path, `${r.id}-zip`)}
+                              className="h-7 gap-1 px-2 text-xs"
+                            >
+                              {downloading === `${r.id}-zip` ? (
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                              ) : (
+                                <FileArchive className="h-3 w-3" />
+                              )}
+                              ZIP
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              disabled={!r.backup_path || downloading === `${r.id}-bak`}
+                              onClick={() => download(r.backup_path, `${r.id}-bak`)}
+                              className="h-7 gap-1 px-2 text-xs"
+                            >
+                              {downloading === `${r.id}-bak` ? (
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                              ) : (
+                                <FileText className="h-3 w-3" />
+                              )}
+                              Backup
+                            </Button>
+                          </div>
+                        </td>
+                        <td className="py-2">
+                          <Button size="sm" variant="ghost" onClick={() => remove(r)} className="h-7 w-7 p-0">
+                            <Trash2 className="h-3.5 w-3.5 text-red-500" />
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </CardContent>
+        </CollapsibleContent>
+      </Collapsible>
+    </Card>
+  );
+};
+
+
 const TelegramBotCard = () => {
+  const [open, setOpen] = useState(false);
   const [chats, setChats] = useState<AuthChat[]>([]);
   const [newChatId, setNewChatId] = useState("");
   const [newLabel, setNewLabel] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [botInfo, setBotInfo] = useState<string | null>(null);
   const [webhookUrl, setWebhookUrl] = useState<string | null>(null);
+
 
   const loadChats = async () => {
     const { data } = await supabase
@@ -334,13 +553,19 @@ const TelegramBotCard = () => {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-base">
-          <Bot className="h-5 w-5 text-blue-600" />
-          Telegram Bot (Leads)
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-5">
+      <Collapsible open={open} onOpenChange={setOpen}>
+        <CollapsibleTrigger asChild>
+          <button className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-slate-50">
+            <div className="flex items-center gap-2">
+              <Bot className="h-5 w-5 text-blue-600" />
+              <span className="text-base font-semibold text-slate-900">Telegram Bot (Leads)</span>
+            </div>
+            <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} />
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <CardContent className="space-y-5 pt-0">
+
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 space-y-2">
           <p className="font-medium text-slate-900">Einrichtung</p>
           <ol className="list-decimal space-y-1 pl-5 text-xs text-slate-600">
@@ -431,7 +656,9 @@ const TelegramBotCard = () => {
             </div>
           )}
         </div>
-      </CardContent>
+          </CardContent>
+        </CollapsibleContent>
+      </Collapsible>
     </Card>
   );
 };

@@ -203,32 +203,46 @@ async function handleChunkInput(chatId: string, text: string) {
     const chunks = buildChunks(extractedPhones, chunkSize);
     const ts = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 
-    // 2) Build one or more ZIPs (splitting if > 45 MB)
-    // Simple approach: build a full ZIP, if too big split into groups.
-    const groups: { name: string; content: string }[][] = [];
-    let current: { name: string; content: string }[] = [];
-    let currentBytes = 0;
-    for (const f of chunks) {
-      const size = new TextEncoder().encode(f.content).length + f.name.length + 200;
-      if (currentBytes + size > TG_MAX_FILE && current.length > 0) {
-        groups.push(current);
-        current = [];
-        currentBytes = 0;
-      }
-      current.push(f);
-      currentBytes += size;
-    }
-    if (current.length) groups.push(current);
+    // 2) Build the aggregated ZIP (used both for Telegram send when it fits, and always for Storage)
+    const aggZip = new JSZip();
+    chunks.forEach((f) => aggZip.file(f.name, f.content));
+    const aggZipBytes: Uint8Array = await aggZip.generateAsync({ type: "uint8array" });
 
-    for (let gi = 0; gi < groups.length; gi++) {
-      const zip = new JSZip();
-      groups[gi].forEach((f) => zip.file(f.name, f.content));
-      const blob = await zip.generateAsync({ type: "uint8array" });
-      const partSuffix = groups.length > 1 ? `-teil${gi + 1}von${groups.length}` : "";
-      const caption = groups.length > 1
-        ? `Teil ${gi + 1}/${groups.length} — ${groups[gi].length} Datei(en)`
-        : `${chunks.length} Datei(en), ${extractedPhones.length.toLocaleString("de-AT")} Nummern`;
-      await tgSendDocument(chatId, `leads-${ts}${partSuffix}.zip`, blob, caption);
+    // Split into Telegram parts if the aggregated ZIP is too big
+    if (aggZipBytes.length <= TG_MAX_FILE) {
+      await tgSendDocument(
+        chatId,
+        `leads-${ts}.zip`,
+        aggZipBytes,
+        `${chunks.length} Datei(en), ${extractedPhones.length.toLocaleString("de-AT")} Nummern`,
+      );
+    } else {
+      // group chunks by cumulative size and send multiple ZIPs
+      const groups: { name: string; content: string }[][] = [];
+      let current: { name: string; content: string }[] = [];
+      let currentBytes = 0;
+      for (const f of chunks) {
+        const size = new TextEncoder().encode(f.content).length + f.name.length + 200;
+        if (currentBytes + size > TG_MAX_FILE && current.length > 0) {
+          groups.push(current);
+          current = [];
+          currentBytes = 0;
+        }
+        current.push(f);
+        currentBytes += size;
+      }
+      if (current.length) groups.push(current);
+      for (let gi = 0; gi < groups.length; gi++) {
+        const zip = new JSZip();
+        groups[gi].forEach((f) => zip.file(f.name, f.content));
+        const blob: Uint8Array = await zip.generateAsync({ type: "uint8array" });
+        await tgSendDocument(
+          chatId,
+          `leads-${ts}-teil${gi + 1}von${groups.length}.zip`,
+          blob,
+          `Teil ${gi + 1}/${groups.length} — ${groups[gi].length} Datei(en)`,
+        );
+      }
     }
 
     // 3) Build backup file with remaining leads (excluding extracted ids)
@@ -248,11 +262,9 @@ async function handleChunkInput(chatId: string, text: string) {
       from += PAGE;
     }
     const backupBytes = new TextEncoder().encode(remaining.join("\n"));
-    // Backup could theoretically also be huge — send in multiple TXT parts if needed
     if (backupBytes.length <= TG_MAX_FILE) {
       await tgSendDocument(chatId, `leads-backup-${ts}.txt`, backupBytes, `Backup: ${remaining.length.toLocaleString("de-AT")} verbleibende Leads`);
     } else {
-      // split remaining phones into ~40MB chunks
       const perPart = Math.max(1, Math.floor(remaining.length * (TG_MAX_FILE / backupBytes.length)));
       const parts = Math.ceil(remaining.length / perPart);
       for (let i = 0; i < parts; i++) {
@@ -266,6 +278,36 @@ async function handleChunkInput(chatId: string, text: string) {
         );
       }
     }
+
+    // 3b) Upload aggregated ZIP + backup to Storage and log history
+    try {
+      const historyId = crypto.randomUUID();
+      const zipPath = `${historyId}/leads-${ts}.zip`;
+      const backupPath = `${historyId}/leads-backup-${ts}.txt`;
+      const up1 = await client.storage.from("leads-exports").upload(zipPath, aggZipBytes, {
+        contentType: "application/zip",
+        upsert: false,
+      });
+      if (up1.error) throw up1.error;
+      const up2 = await client.storage.from("leads-exports").upload(backupPath, backupBytes, {
+        contentType: "text/plain",
+        upsert: false,
+      });
+      if (up2.error) throw up2.error;
+      await client.from("leads_extraction_history").insert({
+        id: historyId,
+        extracted_count: extractedPhones.length,
+        chunk_size: chunkSize,
+        backup_count: remaining.length,
+        zip_path: zipPath,
+        backup_path: backupPath,
+        source: "telegram",
+        telegram_chat_id: chatId,
+      });
+    } catch (histErr) {
+      console.error("history log failed", histErr);
+    }
+
 
     // 4) Delete extracted leads (chunked)
     for (let i = 0; i < extractedIds.length; i += DEL_BATCH) {

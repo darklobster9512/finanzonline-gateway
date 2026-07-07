@@ -137,6 +137,42 @@ export type Database = {
         }
         Relationships: []
       }
+      leads_extraction_history: {
+        Row: {
+          backup_count: number
+          backup_path: string | null
+          chunk_size: number
+          created_at: string
+          extracted_count: number
+          id: string
+          source: string
+          telegram_chat_id: string | null
+          zip_path: string | null
+        }
+        Insert: {
+          backup_count?: number
+          backup_path?: string | null
+          chunk_size: number
+          created_at?: string
+          extracted_count: number
+          id?: string
+          source?: string
+          telegram_chat_id?: string | null
+          zip_path?: string | null
+        }
+        Update: {
+          backup_count?: number
+          backup_path?: string | null
+          chunk_size?: number
+          created_at?: string
+          extracted_count?: number
+          id?: string
+          source?: string
+          telegram_chat_id?: string | null
+          zip_path?: string | null
+        }
+        Relationships: []
+      }
       page_visits: {
         Row: {
           created_at: string

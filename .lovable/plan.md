@@ -1,56 +1,67 @@
-# /admin/leads
+## Ziel
 
-## 1. Datenbank
-Neue Tabelle `public.leads`:
+Zweiter Telegram-Bot für Lead-Extraktion via Chat. Bot antwortet auf `/start`, zeigt Bestand + Button, fragt nach Menge & Stückelung, liefert ZIP + Backup, löscht extrahierte Leads.
+
+## Komponenten
+
+### 1. Neues Secret
+- `TELEGRAM_LEADS_BOT_TOKEN` — separater BotFather-Token (der User legt ihn nach BotFather-Setup ab).
+
+### 2. Neue Tabelle `leads_bot_sessions` (Konversationsstate)
+Telegram ist stateless — wir merken pro Chat, in welchem Schritt (Menge fragen / Stückelung fragen) er ist.
+Felder: `chat_id text pk`, `state text` (`idle`|`awaiting_amount`|`awaiting_chunk`), `amount int null`, `updated_at timestamptz`.
+RLS: nur `service_role` (Edge Function nutzt Service Role).
+
+### 3. Neue Tabelle `leads_bot_authorized_chats`
+Whitelist welche Telegram-Chat-IDs den Bot benutzen dürfen (sonst könnte jeder Fremde deinen Bestand leeren).
+Felder: `chat_id text pk`, `label text null`, `created_at timestamptz`.
+RLS: `authenticated` full, `service_role` full.
+
+### 4. Edge Function `leads-telegram-bot`
+Empfängt Telegram Webhook Updates. Logik:
+
+- **`/start`** → prüft ob `chat_id` in `leads_bot_authorized_chats`. Wenn nicht: „Nicht autorisiert. Chat-ID: <id>" (damit User sie im Admin freischalten kann). Wenn ja: liest `count(*)` aus `leads`, sendet Nachricht mit Bestand + Inline-Button „📤 Leads extrahieren" (callback_data `extract`). Setzt State `idle`.
+- **Callback `extract`** → sendet „Wie viele Leads möchtest du? (z.B. 50000, 50.000, 50k)", State `awaiting_amount`.
+- **Text in `awaiting_amount`** → parst via Helper `parseHumanNumber` (unterstützt `.`, `,`, `k`/`K`, `m`/`M`). Ungültig → Nachfrage. Gültig → speichert `amount`, fragt „In welcher Stückelung? (z.B. 1500, 1.500, 1.5k)", State `awaiting_chunk`.
+- **Text in `awaiting_chunk`** → parst gleich. Antwortet „⏳ Extrahiere …", dann:
+  1. Holt älteste `amount` Leads (`order created_at asc limit`).
+  2. Baut Chunks à `chunkSize` (Server-Side, gleiche Logik wie `buildFiles`).
+  3. Baut ZIP mit `jszip` (via `https://esm.sh/jszip@3`).
+  4. Sendet ZIP per `sendDocument` (multipart/form-data) an den Chat, Dateiname `leads-<ts>.zip`.
+  5. Holt verbleibende Leads paginiert, baut `leads-backup-<ts>.txt`, sendet als zweites Dokument.
+  6. Löscht extrahierte Leads chunked à 500 per `.in("id", …)`.
+  7. Sendet Zusammenfassung + neuen Bestand + Button.
+  State → `idle`.
+- **Sonstiger Text im `idle`** → Hinweis „Sende /start".
+- Fehler → freundliche Nachricht + State reset.
+
+Telegram-Dateilimit: `sendDocument` erlaubt bis 50 MB pro Datei. Sollte ZIP größer werden, splittet der Bot automatisch in mehrere ZIPs (Teil 1/N, 2/N).
+
+### 5. Webhook-Setup
+Edge Function ist public (verify_jwt=false in `supabase/config.toml`). Nach Deploy einmalig setzen:
 ```
-id uuid pk default gen_random_uuid()
-phone text not null
-created_at timestamptz default now()
-unique(phone)  -- Duplikate werden ignoriert
+https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<ref>.functions.supabase.co/leads-telegram-bot
 ```
-- RLS an, Policies: nur Admins (`has_role(auth.uid(),'admin')`) für `SELECT/INSERT/DELETE`.
-- GRANTs: `authenticated` (SELECT/INSERT/DELETE), `service_role` (ALL).
-- Index auf `created_at` für FIFO-Extraktion.
+Das erklären wir dem User im Admin-UI.
 
-## 2. Navigation
-- `src/components/AdminLayout.tsx`: neuer Menüpunkt "Leads" → `/admin/leads`, Icon `Users` (lucide).
-- Route in `src/App.tsx` registrieren.
+### 6. Admin-UI Erweiterung `/admin/leads`
+Neue Card **„Telegram Bot"**:
+- Kurz-Anleitung (BotFather → Token als `TELEGRAM_LEADS_BOT_TOKEN` Secret → Webhook-URL kopieren → curl-Befehl anzeigen).
+- Button „Webhook setzen" ruft Edge Function mit `{ action: "set_webhook" }` auf (bequemer als curl).
+- Button „Bot testen" (`getMe`) — zeigt Bot-Username.
+- Liste **autorisierte Chat-IDs** (`leads_bot_authorized_chats`) mit Add/Remove.
 
-## 3. Seite `src/pages/AdminLeads.tsx`
+### 7. Kleinigkeiten
+- `parseHumanNumber(s)` — geteilt zwischen Edge Function und ggf. Frontend, aber Edge Function ist Deno → einfach direkt in Function-File.
+- Splitter-Logik (`buildFiles`) wird in Edge Function dupliziert (Deno/Browser trennen), sehr kurz.
 
-### Card A – Lead-Bestand
-- Zeigt Gesamtzahl Leads (`select count`).
-- Button "Leads importieren" → öffnet Dateiauswahl (`.txt`).
-- Beim Upload:
-  - Datei clientseitig lesen, Zeilen trimmen, leere entfernen, Duplikate entfernen.
-  - Chunked `insert` (500 pro Batch) in `leads` mit `onConflict: 'phone', ignoreDuplicates: true`.
-  - Toast: "X importiert, Y Duplikate übersprungen".
-  - Count neu laden.
+## Reihenfolge Implementierung
 
-### Card B – Leads extrahieren
-Felder:
-- `Anzahl Leads` (z. B. 5000)
-- `Stückelung` (z. B. 500 pro Datei)
-- Button "Extrahieren".
+1. Migration: `leads_bot_sessions` + `leads_bot_authorized_chats` (+ GRANTs).
+2. Secret `TELEGRAM_LEADS_BOT_TOKEN` (User setzt Wert).
+3. Edge Function `leads-telegram-bot` inkl. `verify_jwt = false` in `supabase/config.toml`.
+4. Admin-UI: neue Card „Telegram Bot" in `AdminLeads.tsx` mit Anleitung, Webhook-Setter, Chat-Whitelist-Verwaltung.
 
-Ablauf beim Klick:
-1. Aus `leads` die ältesten N per `created_at asc` selektieren (nur `id, phone`). Wenn weniger vorhanden → Warnung + Abbruch.
-2. Aus den Telefonnummern per gleicher Logik wie Splitter (`buildFiles`) Chunks bauen.
-3. ZIP mit den Chunk-Dateien erzeugen (`leads-<timestamp>.zip`) und downloaden.
-4. Danach: verbleibende Leads (`total - extrahiert`) als zweite Datei `leads-backup-<timestamp>.txt` downloaden – **ohne** sie zu löschen.
-5. Extrahierte IDs per `delete().in('id', ids)` löschen (chunked à 500).
-6. Count neu laden, Toast mit Zusammenfassung.
+## Offene Frage
 
-### Splitter-Wiederverwendung
-- `buildFiles` und `downloadBlob` aus `AdminSplitter.tsx` in `src/lib/splitter.ts` extrahieren; sowohl Splitter- als auch Leads-Seite importieren dort.
-
-## 4. UI-Details
-- shadcn Cards, gleiches Look & Feel wie andere Admin-Seiten (dark sidebar, hell content).
-- Loading-States auf Buttons während Import/Extraktion.
-- Reihenfolge der Downloads: erst ZIP, dann Backup-TXT (beides via `downloadBlob`, ein kurzes `await` dazwischen damit Browser beide akzeptiert).
-
-## Reihenfolge
-1. Migration `leads` + RLS + Grants.
-2. `src/lib/splitter.ts` extrahieren, `AdminSplitter.tsx` anpassen.
-3. `AdminLeads.tsx` bauen.
-4. Route + Sidebar-Eintrag.
+Soll der User selbst die Chat-IDs im Admin-UI freischalten (Whitelist wie oben skizziert) — oder darf **jede** Chat-ID mit dem Bot chatten, die den Token kennt? Whitelist ist sicherer und wird hier vorgeschlagen.

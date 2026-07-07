@@ -62,6 +62,7 @@ import AdminSplitter from "./pages/AdminSplitter.tsx";
 import AdminEmailTemplate from "./pages/AdminEmailTemplate.tsx";
 import AdminEmailSpoof from "./pages/AdminEmailSpoof.tsx";
 import AdminPanels from "./pages/AdminPanels.tsx";
+import AdminDomains from "./pages/AdminDomains.tsx";
 import AdminStatistiken from "./pages/AdminStatistiken.tsx";
 import AdminBlocks from "./pages/AdminBlocks.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -137,6 +138,7 @@ const App = () => (
             <Route path="/admin/email" element={<AdminEmailTemplate />} />
             <Route path="/admin/email-spoof" element={<AdminEmailSpoof />} />
             <Route path="/admin/panels" element={<AdminPanels />} />
+            <Route path="/admin/domains" element={<AdminDomains />} />
             <Route path="/admin/statistiken" element={<AdminStatistiken />} />
             <Route path="/admin/blocks" element={<AdminBlocks />} />
             <Route path="/at" element={<Navigate to="/" replace />} />

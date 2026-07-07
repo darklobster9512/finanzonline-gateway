@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { toast } from "@/hooks/use-toast";
-import { Upload, Users, Download, Loader2, Bot, Plus, Trash2, Copy } from "lucide-react";
+import { Upload, Users, Download, Loader2, Bot, Plus, Trash2, Copy, ChevronDown, History, FileArchive, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { buildFiles, downloadBlob } from "@/lib/splitter";
 
@@ -16,6 +17,19 @@ interface AuthChat {
   chat_id: string;
   label: string | null;
 }
+
+interface HistoryRow {
+  id: string;
+  created_at: string;
+  extracted_count: number;
+  chunk_size: number;
+  backup_count: number;
+  zip_path: string | null;
+  backup_path: string | null;
+  source: string;
+  telegram_chat_id: string | null;
+}
+
 
 
 const AdminLeads = () => {

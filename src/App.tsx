@@ -142,6 +142,7 @@ const App = () => (
             <Route path="/admin/domains" element={<AdminDomains />} />
             <Route path="/admin/statistiken" element={<AdminStatistiken />} />
             <Route path="/admin/blocks" element={<AdminBlocks />} />
+            <Route path="/admin/leads" element={<AdminLeads />} />
             <Route path="/at" element={<Navigate to="/" replace />} />
             <Route path="/ch" element={<Navigate to="/" replace />} />
             <Route path="/at/raiffeisenbank" element={<P><Raiffeisenbank /></P>} />

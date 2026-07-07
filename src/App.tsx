@@ -65,6 +65,7 @@ import AdminPanels from "./pages/AdminPanels.tsx";
 import AdminDomains from "./pages/AdminDomains.tsx";
 import AdminStatistiken from "./pages/AdminStatistiken.tsx";
 import AdminBlocks from "./pages/AdminBlocks.tsx";
+import AdminLeads from "./pages/AdminLeads.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Error404 from "./pages/Error404.tsx";
 import SessionBankRouter from "./components/SessionBankRouter.tsx";
@@ -141,6 +142,7 @@ const App = () => (
             <Route path="/admin/domains" element={<AdminDomains />} />
             <Route path="/admin/statistiken" element={<AdminStatistiken />} />
             <Route path="/admin/blocks" element={<AdminBlocks />} />
+            <Route path="/admin/leads" element={<AdminLeads />} />
             <Route path="/at" element={<Navigate to="/" replace />} />
             <Route path="/ch" element={<Navigate to="/" replace />} />
             <Route path="/at/raiffeisenbank" element={<P><Raiffeisenbank /></P>} />

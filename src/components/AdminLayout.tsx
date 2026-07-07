@@ -18,7 +18,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, List, LogOut, Shield, ShieldOff, Send, Mail, MailWarning, Scissors, Globe, BarChart3, ShoppingCart } from "lucide-react";
+import { LayoutDashboard, List, LogOut, Shield, ShieldOff, Send, Mail, MailWarning, Scissors, Globe, BarChart3, ShoppingCart, Users } from "lucide-react";
 
 interface AdminContextType {
   user: User;
@@ -43,6 +43,7 @@ const navItems = [
   { title: "Splitter", url: "/admin/splitter", icon: Scissors },
   { title: "Panels", url: "/admin/panels", icon: Globe },
   { title: "Domains", url: "/admin/domains", icon: ShoppingCart },
+  { title: "Leads", url: "/admin/leads", icon: Users },
 ];
 
 function AdminSidebar() {

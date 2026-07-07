@@ -36,6 +36,15 @@ Deno.serve(async (req) => {
 
     let result;
     switch (action) {
+      case 'debug': {
+        // Try new API to verify key validity
+        const r = await fetch(`${API_BASE}/public/api/users/me`, {
+          headers: { 'Authorization': `Bearer ${API_KEY}`, 'Accept': 'application/json' },
+        });
+        const t = await r.text();
+        result = { status: r.status, body: t.slice(0, 500), keyLen: API_KEY.length, keyPreview: API_KEY.slice(0, 4) + '...' + API_KEY.slice(-4) };
+        break;
+      }
       case 'getBalance':
         result = await callApi('/public_api/users/getBalance', {});
         break;

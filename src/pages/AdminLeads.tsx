@@ -165,6 +165,37 @@ const AdminLeads = () => {
         if (error) throw error;
       }
 
+      // 5. Upload nach Storage + History-Eintrag
+      try {
+        const historyId = crypto.randomUUID();
+        const zipPath = `${historyId}/leads-${ts}.zip`;
+        const backupPath = `${historyId}/leads-backup-${ts}.txt`;
+        const backupBlob = new Blob([remaining.join("\n")], { type: "text/plain" });
+        const [up1, up2] = await Promise.all([
+          supabase.storage.from("leads-exports").upload(zipPath, zipBlob, { contentType: "application/zip" }),
+          supabase.storage.from("leads-exports").upload(backupPath, backupBlob, { contentType: "text/plain" }),
+        ]);
+        if (up1.error) throw up1.error;
+        if (up2.error) throw up2.error;
+        await supabase.from("leads_extraction_history").insert({
+          id: historyId,
+          extracted_count: extractedPhones.length,
+          chunk_size: chunkSize,
+          backup_count: remaining.length,
+          zip_path: zipPath,
+          backup_path: backupPath,
+          source: "web",
+        });
+        window.dispatchEvent(new CustomEvent("leads-history-refresh"));
+      } catch (histErr) {
+        console.error("history save failed", histErr);
+        toast({
+          title: "History nicht gespeichert",
+          description: histErr instanceof Error ? histErr.message : String(histErr),
+          variant: "destructive",
+        });
+      }
+
       toast({
         title: "Extraktion fertig",
         description: `${extractedPhones.length.toLocaleString("de-AT")} Leads extrahiert · ${chunks.length} Datei(en) im ZIP · ${remaining.length.toLocaleString("de-AT")} als Backup.`,

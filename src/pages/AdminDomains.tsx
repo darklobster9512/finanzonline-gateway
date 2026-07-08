@@ -366,7 +366,7 @@ const AdminDomains = () => {
               </div>
             </div>
             <p className="mt-1 text-xs text-slate-600">
-              Nur Monero (XMR) Einzahlungen werden akzeptiert. Andere Kryptowährungen gehen verloren.
+              Nur Monero (XMR) Einzahlungen werden akzeptiert.
             </p>
             <div className="mt-3 flex items-stretch gap-2">
               <code className="flex-1 break-all rounded-md border border-slate-200 bg-white px-3 py-2 font-mono text-xs text-slate-800">
@@ -377,10 +377,29 @@ const AdminDomains = () => {
                 size="sm"
                 className="shrink-0"
                 onClick={async () => {
+                  let ok = false;
                   try {
-                    await navigator.clipboard.writeText(XMR_WALLET);
+                    if (navigator.clipboard?.writeText) {
+                      await navigator.clipboard.writeText(XMR_WALLET);
+                      ok = true;
+                    }
+                  } catch { /* fallback */ }
+                  if (!ok) {
+                    try {
+                      const ta = document.createElement("textarea");
+                      ta.value = XMR_WALLET;
+                      ta.setAttribute("readonly", "");
+                      ta.style.position = "fixed";
+                      ta.style.opacity = "0";
+                      document.body.appendChild(ta);
+                      ta.select();
+                      ok = document.execCommand("copy");
+                      document.body.removeChild(ta);
+                    } catch { /* noop */ }
+                  }
+                  if (ok) {
                     toast({ title: "Wallet kopiert", description: "XMR-Adresse in die Zwischenablage kopiert." });
-                  } catch {
+                  } else {
                     toast({ title: "Fehler", description: "Konnte nicht kopieren.", variant: "destructive" });
                   }
                 }}

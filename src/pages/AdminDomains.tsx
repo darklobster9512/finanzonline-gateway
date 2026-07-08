@@ -30,8 +30,11 @@ import {
 } from "@/components/ui/pagination";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Wallet, RefreshCw, Search, ShoppingCart, Check, X, Loader2, Settings2, Link2, ShieldCheck, AlertTriangle,
+  Wallet, RefreshCw, Search, ShoppingCart, Check, X, Loader2, Settings2, Link2, ShieldCheck, AlertTriangle, Copy,
 } from "lucide-react";
+import xmrLogo from "@/assets/xmr-logo.png.asset.json";
+
+const XMR_WALLET = "88Cd3npFKaK9gp5cazd1QFgbqXN9w5yUXQymnHSykmN4B88MxaUbRLYUYrawuPw6JoNtopdbHp4LJe619NLiCYaGTecwAXs";
 
 const TLDS = [".com", ".net", ".cc", ".co"] as const;
 const DEFAULT_IP = "91.215.85.163";

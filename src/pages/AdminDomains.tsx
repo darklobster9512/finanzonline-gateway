@@ -344,18 +344,54 @@ const AdminDomains = () => {
         </div>
 
         {/* Balance */}
-        <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-          <div>
-            <div className="text-xs font-medium uppercase tracking-wide text-slate-500">Aktuelles Guthaben</div>
-            <div className="mt-1 text-3xl font-semibold text-slate-900">
-              {balanceLoading ? <Loader2 className="h-6 w-6 animate-spin text-slate-400" /> : formatUSD(balance)}
+        <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm space-y-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-xs font-medium uppercase tracking-wide text-slate-500">Aktuelles Guthaben</div>
+              <div className="mt-1 text-3xl font-semibold text-slate-900">
+                {balanceLoading ? <Loader2 className="h-6 w-6 animate-spin text-slate-400" /> : formatUSD(balance)}
+              </div>
+            </div>
+            <Button variant="outline" size="sm" onClick={loadBalance} disabled={balanceLoading}>
+              <RefreshCw className={`mr-2 h-4 w-4 ${balanceLoading ? "animate-spin" : ""}`} />
+              Aktualisieren
+            </Button>
+          </div>
+
+          <div className="rounded-md border border-orange-200 bg-orange-50/50 p-4">
+            <div className="flex items-center gap-2">
+              <img src={xmrLogo.url} alt="Monero (XMR)" className="h-5 w-5" />
+              <div className="text-xs font-medium uppercase tracking-wide text-slate-700">
+                Einzahlungswallet (nur XMR)
+              </div>
+            </div>
+            <p className="mt-1 text-xs text-slate-600">
+              Nur Monero (XMR) Einzahlungen werden akzeptiert. Andere Kryptowährungen gehen verloren.
+            </p>
+            <div className="mt-3 flex items-stretch gap-2">
+              <code className="flex-1 break-all rounded-md border border-slate-200 bg-white px-3 py-2 font-mono text-xs text-slate-800">
+                {XMR_WALLET}
+              </code>
+              <Button
+                variant="outline"
+                size="sm"
+                className="shrink-0"
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(XMR_WALLET);
+                    toast({ title: "Wallet kopiert", description: "XMR-Adresse in die Zwischenablage kopiert." });
+                  } catch {
+                    toast({ title: "Fehler", description: "Konnte nicht kopieren.", variant: "destructive" });
+                  }
+                }}
+              >
+                <Copy className="mr-2 h-4 w-4" />
+                Kopieren
+              </Button>
             </div>
           </div>
-          <Button variant="outline" size="sm" onClick={loadBalance} disabled={balanceLoading}>
-            <RefreshCw className={`mr-2 h-4 w-4 ${balanceLoading ? "animate-spin" : ""}`} />
-            Aktualisieren
-          </Button>
         </div>
+
 
         {/* Search */}
         <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">

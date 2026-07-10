@@ -34,6 +34,7 @@ interface HistoryRow {
 
 const AdminLeads = () => {
   const [count, setCount] = useState<number | null>(null);
+  const [countError, setCountError] = useState(false);
   const [loadingCount, setLoadingCount] = useState(false);
   const [importing, setImporting] = useState(false);
   const [extracting, setExtracting] = useState(false);
@@ -43,13 +44,14 @@ const AdminLeads = () => {
 
   const loadCount = async () => {
     setLoadingCount(true);
-    const { count: c, error } = await supabase
-      .from("leads")
-      .select("*", { count: "exact", head: true });
+    setCountError(false);
+    const { data, error } = await supabase.rpc("get_leads_count");
     if (error) {
+      setCountError(true);
       toast({ title: "Fehler", description: error.message, variant: "destructive" });
     } else {
-      setCount(c ?? 0);
+      const nextCount = typeof data === "string" ? Number.parseInt(data, 10) : Number(data ?? 0);
+      setCount(Number.isFinite(nextCount) ? nextCount : 0);
     }
     setLoadingCount(false);
   };
@@ -227,7 +229,7 @@ const AdminLeads = () => {
           <CardContent className="space-y-4">
             <div>
               <div className="text-4xl font-semibold text-slate-900">
-                {loadingCount ? "…" : (count ?? 0).toLocaleString("de-AT")}
+                {loadingCount ? "…" : countError ? "Fehler" : (count ?? 0).toLocaleString("de-AT")}
               </div>
               <p className="text-sm text-slate-500">Leads in der Datenbank</p>
             </div>

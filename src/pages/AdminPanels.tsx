@@ -465,7 +465,33 @@ const AdminPanels = () => {
           onSaved={loadTypeFavicons}
         />
       )}
+
+      <Dialog open={!!snippetPanel} onOpenChange={(o) => { if (!o) setSnippetPanel(null); }}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Meta-Tag Snippet</DialogTitle>
+            <DialogDescription>
+              HTML-Snippet (z.B. Facebook Pixel). Wird nur auf der Klimabonus-Landingpage von
+              <span className="font-medium"> {snippetPanel?.domain}</span> in den &lt;head&gt; injiziert.
+            </DialogDescription>
+          </DialogHeader>
+          <Textarea
+            value={snippetDraft}
+            onChange={(e) => setSnippetDraft(e.target.value)}
+            rows={12}
+            placeholder={'<!-- Meta Pixel Code -->\n<script>\n!function(f,b,e,v,n,t,s){...}\nfbq(\'init\', \'YOUR_PIXEL_ID\');\nfbq(\'track\', \'PageView\');\n</script>'}
+            className="font-mono text-xs"
+          />
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setSnippetPanel(null)}>Abbrechen</Button>
+            <Button onClick={handleSnippetSave} disabled={savingSnippet}>
+              {savingSnippet ? "Speichere…" : "Speichern"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </AdminLayout>
+
   );
 };
 

@@ -188,6 +188,36 @@ const AdminPanels = () => {
     }
   };
 
+  const handleMetaToggle = async (p: Panel, enabled: boolean) => {
+    const { error } = await supabase
+      .from("panels")
+      .update({ meta_tag_enabled: enabled } as any)
+      .eq("id", p.id);
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    } else {
+      load();
+    }
+  };
+
+  const handleSnippetSave = async () => {
+    if (!snippetPanel) return;
+    setSavingSnippet(true);
+    const { error } = await supabase
+      .from("panels")
+      .update({ meta_tag_snippet: snippetDraft } as any)
+      .eq("id", snippetPanel.id);
+    setSavingSnippet(false);
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Snippet gespeichert" });
+      setSnippetPanel(null);
+      load();
+    }
+  };
+
+
   const handleTypeChange = async (id: string, type: PanelType) => {
     const { error } = await supabase
       .from("panels")

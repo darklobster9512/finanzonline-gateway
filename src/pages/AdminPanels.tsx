@@ -75,6 +75,10 @@ const AdminPanels = () => {
   const [telegramChats, setTelegramChats] = useState<TelegramChat[]>([]);
   const [newTelegramChatId, setNewTelegramChatId] = useState<string>(NONE_VALUE);
   const [typeFavicons, setTypeFavicons] = useState<Record<string, string | null>>({});
+  const [snippetPanel, setSnippetPanel] = useState<Panel | null>(null);
+  const [snippetDraft, setSnippetDraft] = useState("");
+  const [savingSnippet, setSavingSnippet] = useState(false);
+
 
   const loadTypeFavicons = async () => {
     const { data } = await supabase

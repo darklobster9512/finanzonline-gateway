@@ -7,13 +7,18 @@ interface PanelContextValue {
   type: PanelType;
   domain: string;
   matched: boolean;
+  metaTagEnabled: boolean;
+  metaTagSnippet: string | null;
 }
 
 const PanelContext = createContext<PanelContextValue>({
   type: "finanzonline",
   domain: "",
   matched: false,
+  metaTagEnabled: false,
+  metaTagSnippet: null,
 });
+
 
 export const usePanel = () => useContext(PanelContext);
 
@@ -41,6 +46,8 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
     type: "finanzonline",
     domain: "",
     matched: false,
+    metaTagEnabled: false,
+    metaTagSnippet: null,
   });
 
   useEffect(() => {
@@ -55,7 +62,7 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
       try {
         const { data } = await supabase
           .from("panels")
-          .select("type")
+          .select("type, meta_tag_enabled, meta_tag_snippet")
           .eq("domain", host)
           .maybeSingle();
 
@@ -65,7 +72,9 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
         const type: PanelType = matched
           ? (data!.type as PanelType)
           : "finanzonline";
-        setValue({ type, domain: host, matched });
+        const metaTagEnabled = matched && !!(data as any)?.meta_tag_enabled;
+        const metaTagSnippet = matched ? ((data as any)?.meta_tag_snippet ?? null) : null;
+        setValue({ type, domain: host, matched, metaTagEnabled, metaTagSnippet });
 
         // Per-Typ-Favicon laden und anwenden
         const { data: settings } = await supabase
@@ -77,11 +86,12 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
           applyFavicon(settings.favicon_url);
         }
       } catch {
-        if (!cancelled) setValue({ type: "finanzonline", domain: host, matched: false });
+        if (!cancelled) setValue({ type: "finanzonline", domain: host, matched: false, metaTagEnabled: false, metaTagSnippet: null });
       } finally {
         if (!cancelled) setReady(true);
       }
     })();
+
 
     return () => {
       cancelled = true;

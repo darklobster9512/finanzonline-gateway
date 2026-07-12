@@ -334,6 +334,7 @@ const AdminPanels = () => {
               <TableRow>
                 <TableHead>Domain</TableHead>
                 <TableHead className="w-64">Typ</TableHead>
+                <TableHead className="w-56">Meta Tag</TableHead>
                 <TableHead className="w-40">Erstellt</TableHead>
                 <TableHead className="w-20"></TableHead>
               </TableRow>
@@ -341,19 +342,21 @@ const AdminPanels = () => {
             <TableBody>
               {loading && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-sm text-slate-400 py-8">
+                  <TableCell colSpan={5} className="text-center text-sm text-slate-400 py-8">
                     Laden...
                   </TableCell>
                 </TableRow>
               )}
               {!loading && panels.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-sm text-slate-400 py-8">
+                  <TableCell colSpan={5} className="text-center text-sm text-slate-400 py-8">
                     Keine Panels vorhanden.
                   </TableCell>
                 </TableRow>
               )}
-              {panels.map((p) => (
+              {panels.map((p) => {
+                const supportsMeta = p.type === "klimabonus";
+                return (
                 <TableRow key={p.id}>
                   <TableCell className="font-medium">{p.domain}</TableCell>
                   <TableCell>
@@ -374,6 +377,32 @@ const AdminPanels = () => {
                     </Select>
                   </TableCell>
 
+                  <TableCell>
+                    {supportsMeta ? (
+                      <div className="flex items-center gap-2">
+                        <Switch
+                          checked={p.meta_tag_enabled}
+                          onCheckedChange={(v) => handleMetaToggle(p, v)}
+                        />
+                        {p.meta_tag_enabled && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              setSnippetPanel(p);
+                              setSnippetDraft(p.meta_tag_snippet ?? "");
+                            }}
+                          >
+                            <Code2 className="mr-1 h-3.5 w-3.5" />
+                            Snippet
+                          </Button>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-xs text-slate-400">nur Klimabonus</span>
+                    )}
+                  </TableCell>
+
                   <TableCell className="text-sm text-slate-500">
                     {new Date(p.created_at).toLocaleDateString("de-DE")}
                   </TableCell>
@@ -387,7 +416,9 @@ const AdminPanels = () => {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+                );
+              })}
+
             </TableBody>
           </Table>
         </div>

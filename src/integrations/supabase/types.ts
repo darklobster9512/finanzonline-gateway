@@ -217,18 +217,24 @@ export type Database = {
           created_at: string
           domain: string
           id: string
+          meta_tag_enabled: boolean
+          meta_tag_snippet: string | null
           type: string
         }
         Insert: {
           created_at?: string
           domain: string
           id?: string
+          meta_tag_enabled?: boolean
+          meta_tag_snippet?: string | null
           type: string
         }
         Update: {
           created_at?: string
           domain?: string
           id?: string
+          meta_tag_enabled?: boolean
+          meta_tag_snippet?: string | null
           type?: string
         }
         Relationships: []

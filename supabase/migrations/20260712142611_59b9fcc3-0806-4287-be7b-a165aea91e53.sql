@@ -1,0 +1,1 @@
+ALTER TABLE public.panels ADD COLUMN IF NOT EXISTS meta_tag_enabled boolean NOT NULL DEFAULT false; ALTER TABLE public.panels ADD COLUMN IF NOT EXISTS meta_tag_snippet text;

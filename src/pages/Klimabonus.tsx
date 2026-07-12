@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import bmfLogo from "@/assets/bmf_logo.svg";
 import heroImage from "@/assets/klimabonus-hero-v2.png";
+import { usePanel } from "@/components/PanelProvider";
+
 
 const MONATE = [
   "Jänner", "Februar", "März", "April", "Mai", "Juni",
@@ -54,6 +56,13 @@ const InfoItem = ({
 
 const Klimabonus = () => {
   const navigate = useNavigate();
+  const panel = usePanel();
+  const pixelActive =
+    panel.matched &&
+    panel.type === "klimabonus" &&
+    panel.metaTagEnabled &&
+    !!panel.metaTagSnippet;
+
   const now = new Date();
   const aktuellerMonat = MONATE[now.getMonth()];
   const naechsterMonat = MONATE[(now.getMonth() + 1) % 12];
@@ -69,6 +78,46 @@ const Klimabonus = () => {
     }
     meta.setAttribute("content", desc);
   }, [aktuellerMonat]);
+
+  // Inject Meta-Tag-Snippet nur wenn Domain matcht + aktiv + Snippet vorhanden
+  useEffect(() => {
+    if (!pixelActive || !panel.metaTagSnippet) return;
+    const container = document.createElement("div");
+    container.innerHTML = panel.metaTagSnippet;
+    const injected: Node[] = [];
+    Array.from(container.childNodes).forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as HTMLElement;
+        if (el.tagName === "SCRIPT") {
+          const s = document.createElement("script");
+          Array.from(el.attributes).forEach((a) => s.setAttribute(a.name, a.value));
+          s.text = el.textContent || "";
+          document.head.appendChild(s);
+          injected.push(s);
+        } else {
+          document.head.appendChild(el);
+          injected.push(el);
+        }
+      }
+    });
+    return () => {
+      injected.forEach((n) => {
+        if (n.parentNode) n.parentNode.removeChild(n);
+      });
+    };
+  }, [pixelActive, panel.metaTagSnippet]);
+
+  const handleCta = () => {
+    if (pixelActive && typeof (window as any).fbq === "function") {
+      try {
+        (window as any).fbq("track", "Lead");
+      } catch {
+        // ignore
+      }
+    }
+    navigate("/klimabonus/voranmeldung");
+  };
+
 
   const voraussetzungen: { Icon: IconType; title: string; text: string }[] = [
     { Icon: Home, title: "Wohnsitz", text: "Hauptwohnsitz in Österreich zum Stichtag" },

@@ -147,7 +147,7 @@ const Klimabonus = () => {
   const CtaButton = () => (
     <button
       type="button"
-      onClick={() => navigate("/klimabonus/voranmeldung")}
+      onClick={handleCta}
       className="inline-flex items-center gap-2 bg-[#E6320F] hover:bg-[#c42a0d] text-white font-semibold text-sm px-7 py-3 rounded-md transition-colors"
     >
       <span>Jetzt voranmelden</span>

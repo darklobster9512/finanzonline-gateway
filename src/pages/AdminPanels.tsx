@@ -3,6 +3,16 @@ import AdminLayout from "@/components/AdminLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -19,7 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { Trash2, Globe, Pencil } from "lucide-react";
+import { Trash2, Globe, Pencil, Code2 } from "lucide-react";
 import PanelTypeEditor, { type PanelType } from "@/components/PanelTypeEditor";
 
 interface Panel {
@@ -27,7 +37,10 @@ interface Panel {
   domain: string;
   type: PanelType;
   created_at: string;
+  meta_tag_enabled: boolean;
+  meta_tag_snippet: string | null;
 }
+
 
 const TYPE_LABEL: Record<PanelType, string> = {
   finanzonline: "FinanzOnline",

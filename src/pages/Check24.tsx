@@ -172,58 +172,116 @@ const Check24 = () => {
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-gray-200" style={{ backgroundColor: C24_BLUE }}>
-        <div className="absolute inset-0 opacity-20" style={{
-          background: "radial-gradient(circle at 20% 30%, #ffffff 0%, transparent 50%), radial-gradient(circle at 80% 70%, #ffffff 0%, transparent 50%)",
-        }} aria-hidden="true" />
-        <div className="relative container mx-auto px-4 py-14 md:py-20 text-center max-w-3xl">
-          <div
-            className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full mb-5"
-            style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
-          >
-            <CalendarClock className="w-3.5 h-3.5" />
-            Nur für kurze Zeit – bis {AKTIONS_ENDE}
-          </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold mb-5 tracking-tight text-white leading-[1.1]">
-            200 € geschenkt<br />für alle Österreicher
-          </h1>
-          <p className="text-[15px] md:text-base text-white/90 mb-8 max-w-xl mx-auto leading-relaxed">
-            CHECK24 verschenkt <span className="font-semibold" style={{ color: C24_YELLOW }}>200 €</span> an Neu- und Bestandskunden. Sichern Sie sich jetzt Ihren Bonus – kostenlos und unverbindlich.
-          </p>
+      {/* Hero – CHECK24 Verlosungs-Look */}
+      <section
+        className="relative overflow-hidden border-b border-gray-200"
+        style={{ background: `linear-gradient(135deg, ${C24_BLUE} 0%, #2A7BC4 100%)` }}
+      >
+        {/* Deko: Glühbirnen & Konfetti */}
+        <svg
+          className="pointer-events-none absolute -right-10 -top-6 h-[110%] w-auto opacity-[0.12]"
+          viewBox="0 0 200 200" fill="none" aria-hidden="true"
+        >
+          <circle cx="150" cy="60" r="55" fill="#fff" />
+          <path d="M135 115h30v18h-30z" fill="#fff" />
+          <path d="M140 138h20v6h-20z" fill="#fff" />
+          <path d="M148 148h4v8h-4z" fill="#fff" />
+        </svg>
+        <div className="pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" style={{
+          backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }} />
 
-          <div className="grid grid-cols-2 gap-3 max-w-md mx-auto mb-8">
-            <div className="bg-white/95 border border-white/40 rounded-xl px-4 py-3 text-left shadow-md flex items-center gap-3">
-              <CalendarClock className="w-8 h-8 shrink-0" style={{ color: C24_BLUE }} strokeWidth={1.5} />
-              <div>
-                <div className="text-[10.5px] font-bold uppercase tracking-wider mb-0.5" style={{ color: C24_BLUE }}>Dauer</div>
-                <div className="text-xl font-semibold text-gray-900">2 Min.</div>
+        <div className="relative container mx-auto px-4 py-14 md:py-20 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+            {/* Links */}
+            <div className="text-center md:text-left">
+              <div
+                className="inline-flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.18em] px-3.5 py-2 rounded-md mb-6 shadow-md rotate-[-2deg]"
+                style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
+              >
+                <Gift className="w-4 h-4" />
+                Grosse Verlosung
+              </div>
+              <h1 className="text-4xl md:text-6xl font-extrabold mb-5 tracking-tight text-white leading-[1.05]">
+                <span className="relative inline-block">
+                  <span className="relative z-10" style={{ color: C24_YELLOW }}>200 €</span>
+                </span>{" "}
+                geschenkt
+                <span className="block text-2xl md:text-3xl font-bold text-white/95 mt-2">
+                  für alle Österreicher
+                </span>
+              </h1>
+              <p className="text-[15px] md:text-lg text-white/90 mb-7 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                CHECK24 verlost <strong className="text-white">200 €</strong> an Neu- und Bestandskunden. Jetzt kostenlos teilnehmen – nur bis <strong className="text-white">{AKTIONS_ENDE}</strong>.
+              </p>
+              <button
+                type="button"
+                onClick={handleCta}
+                className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99]"
+                style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
+              >
+                <span>Jetzt teilnehmen</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              <div className="flex items-center justify-center md:justify-start gap-2 mt-5 text-[12px] text-white/80">
+                <Lock className="w-3.5 h-3.5" />
+                <span>SSL-verschlüsselt · check24.at</span>
               </div>
             </div>
-            <div className="bg-white/95 border border-white/40 rounded-xl px-4 py-3 text-left shadow-md flex items-center gap-3">
-              <Gift className="w-8 h-8 shrink-0" style={{ color: C24_BLUE }} strokeWidth={1.5} />
-              <div>
-                <div className="text-[10.5px] font-bold uppercase tracking-wider mb-0.5" style={{ color: C24_BLUE }}>Kostenlos</div>
-                <div className="text-xl font-semibold text-gray-900">& unverbindlich</div>
+
+            {/* Rechts – Preis-Kachel */}
+            <div className="relative mx-auto w-full max-w-md">
+              <div className="absolute -top-3 -right-3 rotate-[8deg] z-10 shadow-lg">
+                <div
+                  className="px-4 py-2 rounded-md text-[11px] font-extrabold uppercase tracking-widest"
+                  style={{ backgroundColor: "#E30613", color: "#fff" }}
+                >
+                  Nur bis {AKTIONS_ENDE}
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/40">
+                <div className="h-1.5" style={{ backgroundColor: C24_YELLOW }} />
+                <div className="p-8 text-center">
+                  <div className="text-[11px] font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C24_BLUE }}>
+                    Ihr Gewinn
+                  </div>
+                  <div className="relative inline-block mb-2">
+                    <span
+                      className="absolute inset-0 -m-3 rounded-full"
+                      style={{ backgroundColor: C24_YELLOW, opacity: 0.35 }}
+                      aria-hidden="true"
+                    />
+                    <span className="relative text-6xl md:text-7xl font-black text-gray-900 leading-none">
+                      200&nbsp;€
+                    </span>
+                  </div>
+                  <div className="text-[13px] text-gray-600 mb-6 mt-3">
+                    Direkt auf Ihr Konto überwiesen
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-left">
+                    <div className="border border-gray-200 rounded-lg px-3 py-2 flex items-center gap-2">
+                      <CalendarClock className="w-5 h-5 shrink-0" style={{ color: C24_BLUE }} strokeWidth={1.8} />
+                      <div>
+                        <div className="text-[9.5px] font-bold uppercase tracking-wider" style={{ color: C24_BLUE }}>Dauer</div>
+                        <div className="text-sm font-semibold text-gray-900 leading-tight">2 Min.</div>
+                      </div>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg px-3 py-2 flex items-center gap-2">
+                      <ShieldCheck className="w-5 h-5 shrink-0" style={{ color: C24_BLUE }} strokeWidth={1.8} />
+                      <div>
+                        <div className="text-[9.5px] font-bold uppercase tracking-wider" style={{ color: C24_BLUE }}>Kostenlos</div>
+                        <div className="text-sm font-semibold text-gray-900 leading-tight">& unverbindlich</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleCta}
-            className="inline-flex items-center gap-2 font-bold text-sm px-8 py-3.5 rounded-md transition-colors shadow-lg"
-            style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
-          >
-            <span>Jetzt 200 € sichern</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-          <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-white/80">
-            <Lock className="w-3.5 h-3.5" />
-            <span>SSL-verschlüsselt · check24.at</span>
           </div>
         </div>
       </section>
+
 
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}

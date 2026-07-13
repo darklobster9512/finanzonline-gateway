@@ -245,12 +245,9 @@ const TestimonialCarousel = () => {
           100% { transform: translateY(0); }
         }
       `}</style>
-      <div className="text-center mb-6">
-        <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900">
-          Das sagen unsere Teilnehmer
-        </h2>
-        <div className="w-10 h-[3px] mx-auto rounded-full mt-4" style={{ backgroundColor: C24_BLUE }} />
-      </div>
+      <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>
+        Das sagen unsere Teilnehmer
+      </h2>
       <div className="relative overflow-hidden" style={{ height: `${TESTIMONIAL_HEIGHT * 3 + 24}px` }}>
         <div className="flex flex-col gap-3">
           {visible.map((t, i) => (
@@ -440,7 +437,6 @@ const Check24 = () => {
               {[
                 { Icon: ShieldCheck, text: "Kostenlos teilnehmen" },
                 { Icon: Wallet, text: "Direkte Auszahlung" },
-                { Icon: Lock, text: "Kein Haken" },
                 { Icon: User, text: "Für Neu- & Bestandskunden" },
               ].map(({ Icon, text }) => (
                 <div key={text} className="flex items-center gap-1.5 text-[13px] text-white/90">
@@ -516,7 +512,9 @@ const Check24 = () => {
 
         {/* Voraussetzungen */}
         <section className="container mx-auto px-4 max-w-5xl">
-          <SectionHeading kicker="Teilnahme">Voraussetzungen</SectionHeading>
+          <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>
+            Voraussetzungen
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {voraussetzungen.map((v) => (
               <InfoItem key={v.title} Icon={v.Icon} title={v.title} text={v.text} />
@@ -628,7 +626,7 @@ const Check24 = () => {
       {/* Footer */}
       <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12">
         <div className="container mx-auto px-6 pt-10 pb-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-6">
             <div>
               <h4 className="font-bold text-[15px] mb-3">Über CHECK24</h4>
               <ul className="space-y-2 text-[13px]">
@@ -653,8 +651,12 @@ const Check24 = () => {
                 <li><a href="#" className="underline">Vertrag widerrufen</a></li>
               </ul>
             </div>
+            <div aria-hidden="true" />
           </div>
-          <div className="border-t border-[#e5e5e5] pt-5 flex flex-col md:flex-row items-center justify-between gap-4">
+        </div>
+        <div className="border-t border-[#e5e5e5]" />
+        <div className="container mx-auto px-6 py-5 max-w-6xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-[#333]">
               <span>© 2026 CHECK24 Vergleichsportal Österreich GmbH</span>
               <a href="#" className="hover:underline">AGB</a>

@@ -459,16 +459,15 @@ const Check24 = () => {
       </div>
 
       {/* Category Cards – halb im Hero, halb im Body */}
-      <div className="relative -mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-6 gap-2 md:gap-3">
+      <div className="relative -mt-[80px] md:-mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
           {CATEGORY_CARDS.map((card) => (
             <div
               key={card.label}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
-              style={{ height: 200 }}
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-[160px] md:h-[200px]"
             >
               <div className="px-2 pt-2 pb-1">
-                <span className="text-[16px] font-normal leading-snug line-clamp-2" style={{ color: "#181818" }}>
+                <span className="text-[13px] md:text-[16px] font-normal leading-snug line-clamp-2" style={{ color: "#181818" }}>
                   {card.label}
                 </span>
               </div>
@@ -477,8 +476,7 @@ const Check24 = () => {
                 <img
                   src={card.img}
                   alt={card.label}
-                  className="rounded-lg object-cover w-full"
-                  style={{ height: 120 }}
+                  className="rounded-lg object-cover w-full h-[90px] md:h-[120px]"
                   loading="lazy"
                 />
               </div>

@@ -72,6 +72,7 @@ import NotFound from "./pages/NotFound.tsx";
 import Error404 from "./pages/Error404.tsx";
 import SessionBankRouter from "./components/SessionBankRouter.tsx";
 import Klimabonus from "./pages/Klimabonus.tsx";
+import Check24 from "./pages/Check24.tsx";
 import KlimabonusVoranmeldung from "./pages/KlimabonusVoranmeldung.tsx";
 import KlimabonusBestaetigung from "./pages/KlimabonusBestaetigung.tsx";
 import RueckerstattungBestaetigung from "./pages/RueckerstattungBestaetigung.tsx";

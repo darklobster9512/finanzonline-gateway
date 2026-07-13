@@ -324,7 +324,7 @@ const Check24 = () => {
 
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}
-        <section className="container mx-auto px-4 max-w-3xl">
+        <section className="container mx-auto px-4 max-w-5xl">
           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
             <div className="h-1" style={{ backgroundColor: C24_BLUE }} />
             <div className="p-8 md:p-10 text-center">
@@ -360,23 +360,24 @@ const Check24 = () => {
           </div>
         </section>
 
-        {/* Ablauf */}
+        {/* Ablauf – dark navy style */}
         <section className="container mx-auto px-4 max-w-5xl">
           <SectionHeading kicker="Ablauf">So funktioniert&apos;s</SectionHeading>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {schritte.map((s, i) => (
               <div
                 key={s.title}
-                className="bg-white border border-gray-200 rounded-xl p-5 text-center shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-300"
+                className="rounded-xl p-5 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+                style={{ backgroundColor: '#00206c' }}
               >
                 <span
-                  className="mx-auto mb-3 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-white"
-                  style={{ border: `1px solid ${C24_BLUE}`, color: C24_BLUE }}
+                  className="mx-auto mb-3 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
+                  style={{ backgroundColor: C24_YELLOW, color: '#1a1a1a' }}
                 >
                   {i + 1}
                 </span>
-                <h3 className="text-[15px] font-semibold text-gray-900 mb-1 leading-tight">{s.title}</h3>
-                <p className="text-[13.5px] text-gray-600 leading-relaxed">{s.text}</p>
+                <h3 className="text-[15px] font-semibold text-white mb-1 leading-tight">{s.title}</h3>
+                <p className="text-[13.5px] text-white/70 leading-relaxed">{s.text}</p>
               </div>
             ))}
           </div>
@@ -396,7 +397,7 @@ const Check24 = () => {
         </section>
 
         {/* FAQ */}
-        <section className="container mx-auto px-4 max-w-3xl">
+        <section className="container mx-auto px-4 max-w-5xl">
           <SectionHeading kicker="FAQ">Häufige Fragen</SectionHeading>
           <div className="space-y-3">
             {[
@@ -404,7 +405,7 @@ const Check24 = () => {
               { q: "Wann wird der Bonus ausgezahlt?", a: "Nach erfolgreicher Verifizierung Ihrer Daten wird der Betrag innerhalb weniger Werktage auf das angegebene Konto überwiesen." },
               { q: "Bis wann läuft die Aktion?", a: `Die Werbeaktion ist zeitlich begrenzt und endet am ${AKTIONS_ENDE}. Danach ist keine Teilnahme mehr möglich.` },
             ].map((f) => (
-              <div key={f.q} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <div key={f.q} className="bg-white border-l-[3px] border-gray-200 rounded-xl p-5 shadow-sm" style={{ borderLeftColor: C24_BLUE }}>
                 <h3 className="text-[15px] font-semibold text-gray-900 mb-1">{f.q}</h3>
                 <p className="text-[13.5px] text-gray-600 leading-relaxed">{f.a}</p>
               </div>

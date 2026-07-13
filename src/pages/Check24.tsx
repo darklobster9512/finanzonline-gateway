@@ -189,7 +189,7 @@ const Check24 = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900" style={{ fontFamily: "'Open Sans', system-ui, sans-serif" }}>
       {/* Header */}
-      <header style={{ backgroundColor: C24_BLUE }}>
+      <header style={{ backgroundImage: `url(${check24bg.url})`, backgroundSize: "cover", backgroundPosition: "center top" }}>
         <div className="container mx-auto flex items-center justify-center px-4 py-5">
           <Check24Logo />
         </div>

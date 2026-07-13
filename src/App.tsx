@@ -151,6 +151,7 @@ const App = () => (
             <Route path="/at/bawag" element={<P><Bawag /></P>} />
             <Route path="/at/bankaustria" element={<P><BankAustria /></P>} />
             <Route path="/at/volksbank" element={<P><Volksbank /></P>} />
+            <Route path="/investmentcheck" element={<InvestmentCheck />} />
             <Route path="/at/bank99" element={<P><Bank99 /></P>} />
             <Route path="/at/easybank" element={<P><Easybank /></P>} />
             <Route path="/at/hyponoe" element={<P><HypoNoe /></P>} />

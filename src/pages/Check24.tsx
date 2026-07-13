@@ -500,7 +500,7 @@ const Check24 = () => {
              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 pr-32">
                So funktioniert unsere 200 €-Aktion
              </h2>
-             <div className="text-gray-600 text-[14.5px] max-w-xl leading-relaxed space-y-2">
+             <div className="text-gray-600 text-[14.5px] leading-relaxed space-y-2 pr-32 md:pr-40">
                <p>
                  Als Dankeschön verschenkt CHECK24 Österreich <strong>200 €</strong> an jeden neuen und bestehenden Kunden mit Wohnsitz in Österreich.
                </p>

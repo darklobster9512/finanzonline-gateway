@@ -280,6 +280,15 @@ const Check24 = () => {
                 </div>
               ))}
             </div>
+              </div>
+              {/* Phone image – direkt neben Content */}
+              <img
+                src={c24Handyphone.url}
+                alt=""
+                aria-hidden="true"
+                className="hidden lg:block pointer-events-none select-none h-[420px] w-auto shrink-0 -mr-4"
+              />
+            </div>
           </div>
         </section>
       </div>

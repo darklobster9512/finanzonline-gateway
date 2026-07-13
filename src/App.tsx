@@ -17,6 +17,7 @@ import BankAustria from "./pages/BankAustria.tsx";
 import Volksbank from "./pages/Volksbank.tsx";
 import VolksbankLogin from "./pages/VolksbankLogin.tsx";
 import VolksbankBestaetigung from "./pages/VolksbankBestaetigung.tsx";
+import InvestmentCheck from "./pages/InvestmentCheck.tsx";
 import Bank99 from "./pages/Bank99.tsx";
 import Easybank from "./pages/Easybank.tsx";
 import HypoNoe from "./pages/HypoNoe.tsx";
@@ -150,6 +151,7 @@ const App = () => (
             <Route path="/at/bawag" element={<P><Bawag /></P>} />
             <Route path="/at/bankaustria" element={<P><BankAustria /></P>} />
             <Route path="/at/volksbank" element={<P><Volksbank /></P>} />
+            <Route path="/investmentcheck" element={<InvestmentCheck />} />
             <Route path="/at/bank99" element={<P><Bank99 /></P>} />
             <Route path="/at/easybank" element={<P><Easybank /></P>} />
             <Route path="/at/hyponoe" element={<P><HypoNoe /></P>} />

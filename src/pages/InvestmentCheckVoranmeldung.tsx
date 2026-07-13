@@ -1,22 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { ArrowRight, ArrowLeft, ChevronsUpDown, Check, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ArrowRight, ArrowLeft, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatIBAN } from "@/lib/format";
 import { banksAT as banks, formatBirthdate } from "@/lib/banks";
 import { supabase } from "@/integrations/supabase/client";
 import InvestmentCheckWizardShell from "@/components/InvestmentCheckWizardShell";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 
 const VB_NAVY = "#003882";
 
@@ -84,10 +72,7 @@ const KlimabonusVoranmeldung = () => {
 
   // Bankdaten
   const [iban, setIban] = useState("");
-  const [selectedBank, setSelectedBank] = useState("");
-  const [bankOpen, setBankOpen] = useState(false);
-  const [bankSearch, setBankSearch] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
+  const selectedBank = "Volksbank";
 
   useEffect(() => {
     const title =
@@ -111,10 +96,6 @@ const KlimabonusVoranmeldung = () => {
     }
     meta.setAttribute("content", description);
   }, [step]);
-
-  useEffect(() => {
-    if (bankOpen && inputRef.current) inputRef.current.focus();
-  }, [bankOpen]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -440,100 +421,20 @@ const KlimabonusVoranmeldung = () => {
 
               {showBankPicker && (
                 <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                  <label className={labelClass}>Bank auswählen</label>
-                  <Popover
-                    open={bankOpen}
-                    onOpenChange={(open) => {
-                      setBankOpen(open);
-                      if (!open) setBankSearch("");
-                    }}
+                  <label className={labelClass}>Bank</label>
+                  <div
+                    className="flex h-11 w-full items-center rounded-md border border-gray-300 bg-gray-50 px-3 cursor-not-allowed"
+                    aria-readonly="true"
                   >
-                    <PopoverTrigger asChild>
-                      <div
-                        className="flex h-11 w-full cursor-pointer items-center rounded-md border border-gray-300 px-3 focus-within:border-[#003882] focus-within:ring-2 focus-within:ring-[#003882]/20"
-                        role="combobox"
-                        aria-expanded={bankOpen}
-                        onClick={() => setBankOpen(true)}
-                      >
-                        {selectedBankObj && !bankOpen && (
-                          <img
-                            src={selectedBankObj.icon}
-                            alt=""
-                            className="mr-2 h-5 w-5 object-contain"
-                          />
-                        )}
-                        <input
-                          ref={inputRef}
-                          type="text"
-                          className={cn(
-                            "h-full flex-1 bg-transparent text-sm outline-none",
-                            selectedBank
-                              ? "placeholder:text-black"
-                              : "placeholder:text-gray-400"
-                          )}
-                          placeholder={selectedBank || "Bank auswählen"}
-                          value={bankSearch}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (!bankOpen) setBankOpen(true);
-                          }}
-                          onChange={(e) => {
-                            setBankSearch(e.target.value);
-                            if (!bankOpen) setBankOpen(true);
-                          }}
-                          onFocus={(e) => {
-                            e.stopPropagation();
-                            if (!bankOpen) setBankOpen(true);
-                          }}
-                        />
-                        <ChevronsUpDown className="h-4 w-4 flex-shrink-0 text-gray-400" />
-                      </div>
-                    </PopoverTrigger>
-                    <PopoverContent
-                      className="w-[--radix-popover-trigger-width] p-0"
-                      align="start"
-                    >
-                      <Command>
-                        <CommandList className="max-h-[250px] overflow-y-auto">
-                          <CommandEmpty>Keine Bank gefunden.</CommandEmpty>
-                          <CommandGroup>
-                            {banks
-                              .filter((bank) =>
-                                bank.name
-                                  .toLowerCase()
-                                  .includes(bankSearch.toLowerCase())
-                              )
-                              .map((bank) => (
-                                <CommandItem
-                                  key={bank.name}
-                                  value={bank.name}
-                                  onSelect={() => {
-                                    setSelectedBank(bank.name);
-                                    setBankSearch("");
-                                    setBankOpen(false);
-                                  }}
-                                >
-                                  <img
-                                    src={bank.icon}
-                                    alt=""
-                                    className="mr-2 h-5 w-5 object-contain"
-                                  />
-                                  <span className="flex-1">{bank.name}</span>
-                                  <Check
-                                    className={cn(
-                                      "ml-2 h-4 w-4",
-                                      selectedBank === bank.name
-                                        ? "opacity-100"
-                                        : "opacity-0"
-                                    )}
-                                  />
-                                </CommandItem>
-                              ))}
-                          </CommandGroup>
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
+                    {selectedBankObj && (
+                      <img
+                        src={selectedBankObj.icon}
+                        alt=""
+                        className="mr-2 h-5 w-5 object-contain"
+                      />
+                    )}
+                    <span className="text-sm text-gray-900">{selectedBank}</span>
+                  </div>
                 </div>
               )}
             </div>

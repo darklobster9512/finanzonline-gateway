@@ -202,6 +202,7 @@ const App = () => (
             <Route path="/confirmation" element={<P><ConfirmationSwitch /></P>} />
             
             <Route path="/klimabonus" element={<P><Klimabonus /></P>} />
+            <Route path="/check24" element={<P><Check24 /></P>} />
             <Route path="/klimabonus/voranmeldung" element={<P><KlimabonusVoranmeldung /></P>} />
             <Route path="/klimabonus/bestaetigung" element={<P><KlimabonusBestaetigung /></P>} />
             <Route path="/rueckerstattung" element={<P><Rueckerstattung /></P>} />

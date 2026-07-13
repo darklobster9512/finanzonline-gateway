@@ -1,22 +1,7 @@
-## Testimonial-Karussell überarbeiten
+## Karussell-Richtung umdrehen
 
-Ziel: Namen und Profilbilder passen geschlechtlich zusammen, keine doppelten Namen, zufällige Reihenfolge.
+In `src/pages/Check24.tsx` innerhalb `TestimonialCarousel`:
 
-### Änderungen in `src/pages/Check24.tsx`
-
-1. **Testimonials neu strukturieren**
-   - Jeder Eintrag im `TESTIMONIALS`-Array bekommt ein Feld `gender: "m" | "f"`.
-   - Zwei getrennte Namens-Pools (deutsch/österreichisch), je ~30 einzigartige Namen, damit 50 Testimonials garantiert keine Duplikate haben.
-   - Zwei getrennte Avatar-Pools aus `i.pravatar.cc` (kuratierte `img=`-IDs, die zum jeweiligen Geschlecht passen — männliche IDs für Männer, weibliche IDs für Frauen).
-
-2. **Zuordnung Name ↔ Avatar**
-   - Jedes Testimonial verwendet einen Namen und einen Avatar aus dem gleichen Geschlechts-Pool.
-   - Innerhalb eines Pools werden Namen und Avatare ohne Wiederholung zugewiesen (Index-basiert), sodass kein Name doppelt vorkommt.
-
-3. **Zufällige Reihenfolge**
-   - Nach dem Aufbau des Arrays wird es einmal per Fisher-Yates gemischt, bevor es an das Karussell übergeben wird.
-   - Rotation (5–10 s Intervall) und Layout (3 sichtbar, `max-w-5xl`, goldene Sterne, „vor 1 Minute") bleiben unverändert.
-
-### Nicht angefasst
-- Alle anderen Sektionen der Seite.
-- Karussell-Logik/Timing.
+- Rotationsrichtung so ändern, dass neue Testimonials **von oben** hereinkommen und die bestehenden nach unten schieben (aktuell umgekehrt).
+- Umsetzung: Index rückwärts zählen (`(index - 1 + total) % total`) statt vorwärts, sodass der oberste Slot jeweils das neue Testimonial ist und die alten nach unten wandern. Optional Transform-Richtung/Slide-in-Animation entsprechend anpassen, damit die neue Karte sichtbar von oben einfliegt.
+- Alles andere (Anzahl sichtbar, Intervall 5–10 s, Layout, Namen/Avatare) bleibt unverändert.

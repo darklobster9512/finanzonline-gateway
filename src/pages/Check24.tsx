@@ -228,18 +228,28 @@ const TestimonialCarousel = () => {
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
     const tick = () => {
-      setIndex((prev) => (prev + 1) % total);
+      setIndex((prev) => (prev - 1 + total) % total);
       timeout = setTimeout(tick, 5000 + Math.random() * 5000);
     };
     timeout = setTimeout(tick, 5000 + Math.random() * 5000);
     return () => clearTimeout(timeout);
   }, [total]);
 
-  // Show 3 testimonials starting from index
+  // Show 3 testimonials starting from index (newest at top)
   const visible = [0, 1, 2].map((offset) => TESTIMONIALS[(index + offset) % total]);
 
   return (
     <section className="container mx-auto px-4 max-w-5xl">
+      <style>{`
+        @keyframes testimonial-slide-down {
+          0% { transform: translateY(-110%); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes testimonial-shift-down {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(0); }
+        }
+      `}</style>
       <div className="text-center mb-6">
         <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900">
           Das sagen unsere Teilnehmer
@@ -247,14 +257,17 @@ const TestimonialCarousel = () => {
         <div className="w-10 h-[3px] mx-auto rounded-full mt-4" style={{ backgroundColor: C24_BLUE }} />
       </div>
       <div className="relative overflow-hidden" style={{ height: `${TESTIMONIAL_HEIGHT * 3 + 24}px` }}>
-        <div
-          className="flex flex-col gap-3 transition-transform duration-700 ease-in-out"
-        >
+        <div className="flex flex-col gap-3">
           {visible.map((t, i) => (
             <div
               key={`${index}-${i}`}
-              className="bg-white border border-gray-200 rounded-xl p-5 flex items-start gap-4 shadow-sm animate-fade-in"
-              style={{ minHeight: `${TESTIMONIAL_HEIGHT}px` }}
+              className="bg-white border border-gray-200 rounded-xl p-5 flex items-start gap-4 shadow-sm"
+              style={{
+                minHeight: `${TESTIMONIAL_HEIGHT}px`,
+                animation: i === 0
+                  ? "testimonial-slide-down 700ms ease-out both"
+                  : "testimonial-shift-down 700ms ease-out both",
+              }}
             >
               <img
                 src={t.avatar}

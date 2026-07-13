@@ -198,15 +198,11 @@ const Check24 = () => {
       {/* Hero – zentriert, einspaltig */}
       <section
         className="relative overflow-hidden border-b border-gray-200"
-        style={{ background: `linear-gradient(135deg, ${C24_BLUE} 0%, #2A7BC4 100%)` }}
+        style={{ backgroundImage: `url(${check24bg.url})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
-        <div className="pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" style={{
-          backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
-        }} />
 
-        <div className="relative container mx-auto px-4 py-14 md:py-20 max-w-3xl text-center">
-          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight text-white leading-[1.1]">
+        <div className="relative container mx-auto px-4 py-14 md:py-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
             <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
             <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
               für alle Österreicher – Neu- und Bestandskunden

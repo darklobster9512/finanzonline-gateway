@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatIBAN } from "@/lib/format";

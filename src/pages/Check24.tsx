@@ -16,6 +16,7 @@ import c24Steuer from "@/assets/c24-cat-5.jpeg.asset.json";
 import c24Finanz from "@/assets/c24-cat-6.webp.asset.json";
 import c24Handyphone from "@/assets/c24-handy.png.asset.json";
 import bonusbigAsset from "@/assets/bonusbig.png.asset.json";
+import sterneAsset from "@/assets/sterne.png.asset.json";
 
 const CATEGORY_CARDS = [
   { label: "Hotels entdecken", img: c24Hotels.url },
@@ -251,7 +252,7 @@ const TestimonialCarousel = () => {
         }
       `}</style>
       <div className="text-center mb-6">
-        <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900">
+        <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>
           Das sagen unsere Teilnehmer
         </h2>
         <div className="w-10 h-[3px] mx-auto rounded-full mt-4" style={{ backgroundColor: C24_BLUE }} />
@@ -280,7 +281,7 @@ const TestimonialCarousel = () => {
                   <span className="font-semibold text-[14px] text-gray-900">{t.name}</span>
                   <span className="text-[12px] text-gray-400">{t.time}</span>
                 </div>
-                <div className="text-[14px] mb-1" style={{ color: "#f5a623", letterSpacing: "1px" }}>{STARS}</div>
+                <img src={sterneAsset.url} alt="5 Sterne" className="h-4 w-auto mb-1" loading="lazy" />
                 <p className="text-[13.5px] text-gray-600 leading-relaxed">{t.text}</p>
               </div>
             </div>

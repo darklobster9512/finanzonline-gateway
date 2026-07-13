@@ -1,19 +1,10 @@
+## Check24 Anpassungen
 
-## Check24 Footer nachbauen
+**`src/pages/Check24.tsx`:**
 
-Footer in `src/pages/Check24.tsx` mit folgender Struktur:
-
-### Oberer Bereich (`#fafafa` Hintergrund)
-3-Spalten-Grid mit Links:
-
-1. **Über CHECK24** (bold) — Unternehmen, Neuigkeiten, Karriere
-2. **CHECK24** (bold) — Spanien, Deutschland
-3. **Unser Service für Sie** (bold) — Hilfe und Kontakt, CHECK24 App, CHECK24 Smily Punkte, Vertrag widerrufen
-
-Links als graue Textlinks, "Vertrag widerrufen" unterstrichen.
-
-### Unterer Bereich (Separator-Linie)
-- Links: `© 2026 CHECK24 Vergleichsportal Österreich GmbH · AGB · Datenschutz · Impressum`
-- Rechts: Social Icons (Facebook, YouTube, Instagram, TikTok) als SVG-Icons
-
-Alle Links zeigen auf `#` (dummy). Layout und Spacing exakt wie im Screenshot.
+1. **Hero:** "Kein Haken"-Zeile entfernen.
+2. **"Teilnahme"-Text** entfernen (Sektion/Heading, wo `Teilnahme` erscheint).
+3. **"Voraussetzungen"** und **"Das sagen unsere Teilnehmer"** visuell an das Layout von "So funktioniert der CHECK24 Bonus" angleichen (gleicher Card-Style, gleiche Container-Breite, gleiche Überschriften-Struktur, gleiches Spacing).
+4. **Footer:**
+   - Divider-Linie zwischen oberem Bereich und Bottom-Bar auf **volle Breite** (bis ganz links/rechts) ziehen — Padding vom Container nehmen, Divider als eigenes full-width Element.
+   - Grid oben von 3 auf **4 Spalten** erweitern, wobei die 4. Spalte leer bleibt, damit die 3 Link-Spalten enger zusammenrücken.

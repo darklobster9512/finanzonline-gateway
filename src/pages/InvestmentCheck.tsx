@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   User, Calendar, MapPin, Mail, Phone, Map, TrendingUp, Target,
   FileEdit, ShieldCheck, CalendarClock, MessageSquare,

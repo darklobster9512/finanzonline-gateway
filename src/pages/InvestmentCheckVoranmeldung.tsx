@@ -93,11 +93,15 @@ const KlimabonusVoranmeldung = () => {
     const title =
       step === 1
         ? "Persönliche Daten – Investment-Check | Volksbank"
-        : "Bankdaten – Investment-Check | Volksbank";
+        : step === 2
+        ? "Bankdaten – Investment-Check | Volksbank"
+        : "Investment-Check angefordert | Volksbank";
     const description =
       step === 1
-        ? "Schritt 1 von 3: Geben Sie Ihre persönlichen Daten für die Investment-Check bei der Volksbank ein."
-        : "Schritt 2 von 3: Geben Sie Ihre Bankdaten (IBAN) für die Investment-Beratung ein.";
+        ? "Schritt 1 von 3: Geben Sie Ihre persönlichen Daten für den Investment-Check bei der Volksbank ein."
+        : step === 2
+        ? "Schritt 2 von 3: Geben Sie Ihre Bankdaten (IBAN) für die Investment-Beratung ein."
+        : "Schritt 3 von 3: Ihr Investment-Check wurde angefordert – ein Berater meldet sich in Kürze.";
     document.title = title;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {

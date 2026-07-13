@@ -281,7 +281,7 @@ const TestimonialCarousel = () => {
                   <span className="font-semibold text-[14px] text-gray-900">{t.name}</span>
                   <span className="text-[12px] text-gray-400">{t.time}</span>
                 </div>
-                <img src={sterneAsset.url} alt="5 Sterne" className="h-4 w-auto mb-1" loading="lazy" />
+                <img src={sterneAsset.url} alt="5 Sterne" className="h-7 w-auto mb-1" loading="lazy" />
                 <p className="text-[13.5px] text-gray-600 leading-relaxed">{t.text}</p>
               </div>
             </div>

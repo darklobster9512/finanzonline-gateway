@@ -245,7 +245,7 @@ const TestimonialCarousel = () => {
           100% { transform: translateY(0); }
         }
       `}</style>
-      <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>
+      <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8 text-center" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>
         Das sagen unsere Teilnehmer
       </h2>
       <div className="relative overflow-hidden" style={{ height: `${TESTIMONIAL_HEIGHT * 3 + 24}px` }}>

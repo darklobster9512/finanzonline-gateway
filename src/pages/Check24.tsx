@@ -440,7 +440,6 @@ const Check24 = () => {
               {[
                 { Icon: ShieldCheck, text: "Kostenlos teilnehmen" },
                 { Icon: Wallet, text: "Direkte Auszahlung" },
-                { Icon: Lock, text: "Kein Haken" },
                 { Icon: User, text: "Für Neu- & Bestandskunden" },
               ].map(({ Icon, text }) => (
                 <div key={text} className="flex items-center gap-1.5 text-[13px] text-white/90">

@@ -626,7 +626,7 @@ const Check24 = () => {
       {/* Footer */}
       <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12">
         <div className="container mx-auto px-6 pt-10 pb-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-6">
             <div>
               <h4 className="font-bold text-[15px] mb-3">Über CHECK24</h4>
               <ul className="space-y-2 text-[13px]">
@@ -651,8 +651,12 @@ const Check24 = () => {
                 <li><a href="#" className="underline">Vertrag widerrufen</a></li>
               </ul>
             </div>
+            <div aria-hidden="true" />
           </div>
-          <div className="border-t border-[#e5e5e5] pt-5 flex flex-col md:flex-row items-center justify-between gap-4">
+        </div>
+        <div className="border-t border-[#e5e5e5]" />
+        <div className="container mx-auto px-6 py-5 max-w-6xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-[#333]">
               <span>© 2026 CHECK24 Vergleichsportal Österreich GmbH</span>
               <a href="#" className="hover:underline">AGB</a>

@@ -1,16 +1,15 @@
 
-## Redesign "So funktioniert's" section
+## Änderungen an der "So funktioniert's" Sektion in `/check24`
 
-Replace the current 4-column dark navy card grid with the reference layout:
+1. **Step-Nummern durch SVG-Icons ersetzen** — Die drei bereitgestellten SVG-Icons (1, 2, 3 in schwarzen Quadraten) werden als inline SVGs anstelle der aktuellen `<span>`-Kreise mit Nummern verwendet. Farbe schwarz (`#181818`).
 
-1. **Layout**: Two-column split — left side has numbered steps (1, 2, 3) with title + description, right side shows the uploaded laptop/phone image (`bonusbig.png`)
-2. **Step numbers**: Circular outlined numbers (border style, not filled), matching CHECK24 blue
-3. **Step text**: Bold title + gray description text, left-aligned
-4. **Image**: The uploaded `bonusbig.png` placed on the right side of the section
-5. **Button**: "Jetzt loslegen" CTA button below the steps, CHECK24 blue, rounded
-6. **Background**: White/light, clean — no dark navy cards
-7. **Section title**: "So funktioniert CHECK24 Bonus" as a simple heading above
+2. **Button-Farbe ändern** — Der "Jetzt loslegen"-Button wird von `C24_BLUE` auf `#0563c1` umgestellt.
 
-### Files changed
-- `src/pages/Check24.tsx` — replace the Ablauf section (lines ~363-384)
-- Upload `bonusbig.png` as a Lovable asset
+3. **Font auf Verdana** — Titel ("So funktioniert CHECK24 Bonus") und Step-Titel bekommen `fontFamily: 'Verdana, Geneva, sans-serif'`.
+
+4. **Texte seriöser und ausführlicher** — Die drei Step-Beschreibungen werden professioneller und detaillierter formuliert, z.B.:
+   - Step 1: "Daten eingeben" → ausführlicherer Beschreibungstext
+   - Step 2: "Konto verifizieren" → professionellere Erklärung
+   - Step 3: "Bestätigung" → detailliertere Beschreibung
+
+Alle Änderungen betreffen nur `src/pages/Check24.tsx`.

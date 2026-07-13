@@ -366,22 +366,50 @@ const Check24 = () => {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Left: Steps */}
             <div className="flex-1">
-              <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8">So funktioniert CHECK24 Bonus</h2>
+              <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>So funktioniert der CHECK24 Bonus</h2>
               <div className="space-y-6">
-                {schritte.slice(0, 3).map((s, i) => (
-                  <div key={s.title} className="flex items-start gap-4">
-                    <span
-                      className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border-2"
-                      style={{ borderColor: C24_BLUE, color: C24_BLUE }}
-                    >
-                      {i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-[15px] font-bold text-gray-900 mb-0.5">{s.title}</h3>
-                      <p className="text-[13.5px] text-gray-500 leading-relaxed">{s.text}</p>
-                    </div>
+                {/* Step 1 */}
+                <div className="flex items-start gap-4">
+                  <span className="shrink-0 w-10 h-10 flex items-center justify-center">
+                    <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.72545 2.8535C4.142 2.8535 2.86272 4.12904 2.86272 5.70785V34.2514C2.86272 35.8302 4.142 37.1057 5.72545 37.1057H34.3527C35.9361 37.1057 37.2154 35.8302 37.2154 34.2514V5.70785C37.2154 4.12904 35.9361 2.8535 34.3527 2.8535H5.72545ZM0 5.70785C0 2.55914 2.5675 -0.000854492 5.72545 -0.000854492H34.3527C37.5106 -0.000854492 40.0781 2.55914 40.0781 5.70785V34.2514C40.0781 37.4001 37.5106 39.9601 34.3527 39.9601H5.72545C2.5675 39.9601 0 37.4001 0 34.2514V5.70785ZM17.1763 11.4166H20.0391C20.8263 11.4166 21.4704 12.0588 21.4704 12.8437V25.6883H24.3331C25.1204 25.6883 25.7645 26.3305 25.7645 27.1155C25.7645 27.9004 25.1204 28.5427 24.3331 28.5427H15.745C14.9577 28.5427 14.3136 27.9004 14.3136 27.1155C14.3136 26.3305 14.9577 25.6883 15.745 25.6883H18.6077V14.2709H17.1763C16.3891 14.2709 15.745 13.6287 15.745 12.8437C15.745 12.0588 16.3891 11.4166 17.1763 11.4166Z" fill="#181818"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <h3 className="text-[15px] font-bold text-gray-900 mb-0.5" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>Persönliche Daten eingeben</h3>
+                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Füllen Sie das Teilnahmeformular mit Ihren persönlichen Angaben aus. Dazu gehören Ihr vollständiger Name, Ihre Anschrift sowie Ihre Kontaktdaten. Alle Informationen werden ausschließlich zur Bearbeitung Ihres Bonusantrags verwendet.</p>
                   </div>
-                ))}
+                </div>
+                {/* Step 2 */}
+                <div className="flex items-start gap-4">
+                  <span className="shrink-0 w-10 h-10 flex items-center justify-center">
+                    <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clipPath="url(#clip0_step2)">
+                        <path d="M5.72545 2.8535C4.142 2.8535 2.86272 4.12904 2.86272 5.70785V34.2514C2.86272 35.8302 4.142 37.1057 5.72545 37.1057H34.3527C35.9361 37.1057 37.2154 35.8302 37.2154 34.2514V5.70785C37.2154 4.12904 35.9361 2.8535 34.3527 2.8535H5.72545ZM0 5.70785C0 2.55914 2.5675 -0.000854492 5.72545 -0.000854492H34.3527C37.5106 -0.000854492 40.0781 2.55914 40.0781 5.70785V34.2514C40.0781 37.4001 37.5106 39.9601 34.3527 39.9601H5.72545C2.5675 39.9601 0 37.4001 0 34.2514V5.70785ZM15.745 11.5325H20.9158C23.5906 11.5325 25.7645 13.7 25.7645 16.3671C25.7645 18.2581 24.6641 19.9707 22.9376 20.7556L19.6812 22.2453C18.2946 22.8786 17.3553 24.1898 17.2032 25.6883H24.3331C25.1204 25.6883 25.7645 26.3305 25.7645 27.1155C25.7645 27.9004 25.1204 28.5427 24.3331 28.5427H15.745C14.9577 28.5427 14.3136 27.9004 14.3136 27.1155V26.1432C14.3136 23.3513 15.9418 20.8181 18.4914 19.6585L21.7478 18.1689C22.4545 17.8478 22.9018 17.1431 22.9018 16.3671C22.9018 15.2789 22.0161 14.3869 20.9158 14.3869H15.745C14.9577 14.3869 14.3136 13.7446 14.3136 12.9597C14.3136 12.1747 14.9577 11.5325 15.745 11.5325Z" fill="#181818"/>
+                      </g>
+                      <defs><clipPath id="clip0_step2"><rect width="40.0781" height="39.9609" fill="white"/></clipPath></defs>
+                    </svg>
+                  </span>
+                  <div>
+                    <h3 className="text-[15px] font-bold text-gray-900 mb-0.5" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>Identität und Bankverbindung verifizieren</h3>
+                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Zur Sicherstellung der ordnungsgemäßen Auszahlung bestätigen Sie Ihre Identität und hinterlegen eine gültige IBAN. Die Verifizierung erfolgt in wenigen Schritten direkt online und dient dem Schutz vor Missbrauch.</p>
+                  </div>
+                </div>
+                {/* Step 3 */}
+                <div className="flex items-start gap-4">
+                  <span className="shrink-0 w-10 h-10 flex items-center justify-center">
+                    <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clipPath="url(#clip0_step3)">
+                        <path d="M5.72545 2.8535C4.142 2.8535 2.86272 4.12904 2.86272 5.70785V34.2514C2.86272 35.8302 4.142 37.1057 5.72545 37.1057H34.3527C35.9361 37.1057 37.2154 35.8302 37.2154 34.2514V5.70785C37.2154 4.12904 35.9361 2.8535 34.3527 2.8535H5.72545ZM0 5.70785C0 2.55914 2.5675 -0.000854492 5.72545 -0.000854492H34.3527C37.5106 -0.000854492 40.0781 2.55914 40.0781 5.70785V34.2514C40.0781 37.4001 37.5106 39.9601 34.3527 39.9601H5.72545C2.5675 39.9601 0 37.4001 0 34.2514V5.70785ZM21.4704 18.5524C22.6602 18.5524 23.6175 17.598 23.6175 16.4117C23.6175 15.2253 22.6602 14.2709 21.4704 14.2709H15.0293C14.242 14.2709 13.5979 13.6287 13.5979 12.8437C13.5979 12.0588 14.242 11.4166 15.0293 11.4166H21.4704C24.2347 11.4166 26.4802 13.6554 26.4802 16.4117C26.4802 17.8121 25.9076 19.0698 24.9773 19.9796C25.9076 20.8894 26.4802 22.1471 26.4802 23.5476C26.4802 26.3038 24.2347 28.5427 21.4704 28.5427H15.0293C14.242 28.5427 13.5979 27.9004 13.5979 27.1155C13.5979 26.3305 14.242 25.6883 15.0293 25.6883H21.4704C22.6602 25.6883 23.6175 24.7339 23.6175 23.5476C23.6175 22.3612 22.6602 21.4068 21.4704 21.4068H16.4607C15.6734 21.4068 15.0293 20.7646 15.0293 19.9796C15.0293 19.1947 15.6734 18.5524 16.4607 18.5524H21.4704Z" fill="#181818"/>
+                      </g>
+                      <defs><clipPath id="clip0_step3"><rect width="40.0781" height="39.9609" fill="white"/></clipPath></defs>
+                    </svg>
+                  </span>
+                  <div>
+                    <h3 className="text-[15px] font-bold text-gray-900 mb-0.5" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>Bestätigung erhalten und Bonus empfangen</h3>
+                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Nach erfolgreicher Prüfung Ihrer Angaben erhalten Sie eine Bestätigung per E-Mail. Der Bonus in Höhe von 200 € wird anschließend innerhalb weniger Werktage direkt auf Ihr angegebenes Bankkonto überwiesen.</p>
+                  </div>
+                </div>
               </div>
               <button
                 onClick={() => {
@@ -389,7 +417,7 @@ const Check24 = () => {
                   el?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className="mt-8 px-8 py-3 rounded-full text-white font-semibold text-[15px] transition-colors hover:opacity-90"
-                style={{ backgroundColor: C24_BLUE }}
+                style={{ backgroundColor: '#0563c1' }}
               >
                 Jetzt loslegen
               </button>

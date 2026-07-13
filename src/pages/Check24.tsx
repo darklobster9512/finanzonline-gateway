@@ -361,26 +361,43 @@ const Check24 = () => {
           </div>
         </section>
 
-        {/* Ablauf – dark navy style */}
+        {/* Ablauf – So funktioniert's */}
         <section className="container mx-auto px-4 max-w-5xl">
-          <SectionHeading kicker="Ablauf">So funktioniert&apos;s</SectionHeading>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {schritte.map((s, i) => (
-              <div
-                key={s.title}
-                className="rounded-xl p-5 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
-                style={{ backgroundColor: '#00206c' }}
-              >
-                <span
-                  className="mx-auto mb-3 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
-                  style={{ backgroundColor: C24_YELLOW, color: '#1a1a1a' }}
-                >
-                  {i + 1}
-                </span>
-                <h3 className="text-[15px] font-semibold text-white mb-1 leading-tight">{s.title}</h3>
-                <p className="text-[13.5px] text-white/70 leading-relaxed">{s.text}</p>
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            {/* Left: Steps */}
+            <div className="flex-1">
+              <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8">So funktioniert CHECK24 Bonus</h2>
+              <div className="space-y-6">
+                {schritte.slice(0, 3).map((s, i) => (
+                  <div key={s.title} className="flex items-start gap-4">
+                    <span
+                      className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border-2"
+                      style={{ borderColor: C24_BLUE, color: C24_BLUE }}
+                    >
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-[15px] font-bold text-gray-900 mb-0.5">{s.title}</h3>
+                      <p className="text-[13.5px] text-gray-500 leading-relaxed">{s.text}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+              <button
+                onClick={() => {
+                  const el = document.getElementById("cta-section");
+                  el?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="mt-8 px-8 py-3 rounded-full text-white font-semibold text-[15px] transition-colors hover:opacity-90"
+                style={{ backgroundColor: C24_BLUE }}
+              >
+                Jetzt loslegen
+              </button>
+            </div>
+            {/* Right: Device image */}
+            <div className="flex-1 flex justify-center">
+              <img src={bonusbigAsset.url} alt="CHECK24 Bonus auf Desktop und Handy" className="max-w-full h-auto max-h-[400px] object-contain" />
+            </div>
           </div>
         </section>
 

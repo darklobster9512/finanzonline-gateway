@@ -364,8 +364,8 @@ const Check24 = () => {
         {/* Ablauf – So funktioniert's */}
         <section className="container mx-auto px-4 max-w-5xl">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            {/* Left: Steps – 70% */}
-            <div className="w-full md:w-[70%]">
+            {/* Left: Steps – 50% */}
+            <div className="w-full md:w-1/2">
               <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>So funktioniert der CHECK24 Bonus</h2>
               <div className="space-y-6">
                 {/* Step 1 */}
@@ -377,7 +377,7 @@ const Check24 = () => {
                   </span>
                   <div>
                     <h3 className="text-[15px] font-bold text-gray-900 mb-0.5" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>Persönliche Daten eingeben</h3>
-                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Füllen Sie das Teilnahmeformular mit Ihren persönlichen Angaben aus. Dazu gehören Ihr vollständiger Name, Ihre Anschrift sowie Ihre Kontaktdaten. Alle Informationen werden ausschließlich zur Bearbeitung Ihres Bonusantrags verwendet.</p>
+                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Füllen Sie das Formular mit Ihrem Namen, Ihrer Anschrift und Kontaktdaten aus. Ihre Angaben werden ausschließlich zur Bonusbearbeitung verwendet.</p>
                   </div>
                 </div>
                 {/* Step 2 */}
@@ -392,7 +392,7 @@ const Check24 = () => {
                   </span>
                   <div>
                     <h3 className="text-[15px] font-bold text-gray-900 mb-0.5" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>Identität und Bankverbindung verifizieren</h3>
-                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Zur Sicherstellung der ordnungsgemäßen Auszahlung bestätigen Sie Ihre Identität und hinterlegen eine gültige IBAN. Die Verifizierung erfolgt in wenigen Schritten direkt online und dient dem Schutz vor Missbrauch.</p>
+                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Bestätigen Sie Ihre Identität und hinterlegen Sie eine gültige IBAN. Die Verifizierung erfolgt online und schützt vor Missbrauch.</p>
                   </div>
                 </div>
                 {/* Step 3 */}
@@ -407,7 +407,7 @@ const Check24 = () => {
                   </span>
                   <div>
                     <h3 className="text-[15px] font-bold text-gray-900 mb-0.5" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>Bestätigung erhalten und Bonus empfangen</h3>
-                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Nach erfolgreicher Prüfung Ihrer Angaben erhalten Sie eine Bestätigung per E-Mail. Der Bonus in Höhe von 200 € wird anschließend innerhalb weniger Werktage direkt auf Ihr angegebenes Bankkonto überwiesen.</p>
+                    <p className="text-[13.5px] text-gray-500 leading-relaxed">Nach Prüfung Ihrer Angaben erhalten Sie eine E-Mail-Bestätigung. Die 200 € werden innerhalb weniger Werktage auf Ihr Konto überwiesen.</p>
                   </div>
                 </div>
               </div>
@@ -422,9 +422,9 @@ const Check24 = () => {
                 Jetzt loslegen
               </button>
             </div>
-            {/* Right: Device image – 30% */}
-            <div className="w-full md:w-[30%] flex justify-center">
-              <img src={bonusbigAsset.url} alt="CHECK24 Bonus auf Desktop und Handy" className="max-w-full h-auto max-h-[400px] object-contain" />
+            {/* Right: Device image – 50% */}
+            <div className="w-full md:w-1/2 flex justify-center">
+              <img src={bonusbigAsset.url} alt="CHECK24 Bonus auf Desktop und Handy" className="max-w-full h-auto max-h-[450px] object-contain" />
             </div>
           </div>
         </section>

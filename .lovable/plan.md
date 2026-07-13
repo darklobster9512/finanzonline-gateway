@@ -1,7 +1,11 @@
-## Karussell-Richtung umdrehen
+## Sterne-Bild + Testimonials-Titel angleichen
 
-In `src/pages/Check24.tsx` innerhalb `TestimonialCarousel`:
+In `src/pages/Check24.tsx`:
 
-- Rotationsrichtung so ändern, dass neue Testimonials **von oben** hereinkommen und die bestehenden nach unten schieben (aktuell umgekehrt).
-- Umsetzung: Index rückwärts zählen (`(index - 1 + total) % total`) statt vorwärts, sodass der oberste Slot jeweils das neue Testimonial ist und die alten nach unten wandern. Optional Transform-Richtung/Slide-in-Animation entsprechend anpassen, damit die neue Karte sichtbar von oben einfliegt.
-- Alles andere (Anzahl sichtbar, Intervall 5–10 s, Layout, Namen/Avatare) bleibt unverändert.
+1. **Sterne ersetzen**
+   - `sterne.png` als Lovable-Asset hochladen (`src/assets/sterne.png.asset.json`).
+   - Das `STARS`-String-Rendering im Testimonial-Karussell durch ein `<img src={sterneAsset.url}>` ersetzen (Höhe ca. 14–16 px, damit es visuell dem bisherigen Text entspricht).
+
+2. **Titel angleichen**
+   - Die H2 „Das sagen unsere Teilnehmer" bekommt dieselben Klassen/Styles wie „So funktioniert der CHECK24 Bonus": `text-2xl md:text-[28px] font-semibold text-gray-900` + `fontFamily: "'Verdana', Geneva, sans-serif"`.
+   - Kein anderer Text/Layout wird geändert.

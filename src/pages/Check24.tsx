@@ -8,6 +8,21 @@ import {
 import { usePanel } from "@/components/PanelProvider";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import check24bg from "@/assets/check24bg.png.asset.json";
+import c24Hotels from "@/assets/c24-hotels.jpg.asset.json";
+import c24Strom from "@/assets/c24-strom.jpg.asset.json";
+import c24Ferienwohnung from "@/assets/c24-ferienwohnung.jpg.asset.json";
+import c24Handy from "@/assets/c24-handy.jpg.asset.json";
+import c24Steuer from "@/assets/c24-steuer.jpg.asset.json";
+import c24Finanz from "@/assets/c24-finanz.jpg.asset.json";
+
+const CATEGORY_CARDS = [
+  { label: "Hotels entdecken", img: c24Hotels.url },
+  { label: "Stromtarife vergleichen", img: c24Strom.url },
+  { label: "Ferienwohnung buchen", img: c24Ferienwohnung.url },
+  { label: "Handytarife vergleichen", img: c24Handy.url },
+  { label: "Steuer gratis erledigen", img: c24Steuer.url },
+  { label: "Finanzprodukte vergleichen", img: c24Finanz.url },
+];
 
 const C24_BLUE = "#005EA8";
 const C24_BLUE_DARK = "#004A87";

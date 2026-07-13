@@ -1,15 +1,8 @@
-## Change
+## Changes in `src/pages/Check24.tsx`
 
-Move the phone image from `absolute right-0` (edge of viewport) to sit directly next to the centered hero content block.
+The phone image (line 285-290) will be updated:
 
-### Implementation
+1. **Larger**: Change `h-[420px]` so it spans from the "Exklusive Sonderaktion" kicker down to the trust badges. Increase to approximately `h-[520px]` or use `self-stretch` to fill the content height.
+2. **Shift right**: Change `-mr-4` to a larger negative margin like `-mr-12` or `-mr-16` to push it further toward the right edge.
 
-In `src/pages/Check24.tsx`:
-
-1. Remove the phone image from its current absolute position outside the content container (line ~229-235).
-2. Change the hero layout: wrap the text content and phone image in a `flex` row inside the existing `max-w-3xl` container.
-   - Left/center: existing text content (keeps `text-center`).
-   - Right: phone image, relatively positioned, vertically centered.
-3. On smaller screens (`< lg`), the phone stays hidden as before.
-
-This places the phone directly adjacent to the countdown/text instead of pinned to the viewport edge.
+Single file change, ~2 lines modified.

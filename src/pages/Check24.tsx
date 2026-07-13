@@ -286,7 +286,7 @@ const Check24 = () => {
                 src={c24Handyphone.url}
                 alt=""
                 aria-hidden="true"
-                className="hidden lg:block pointer-events-none select-none h-[420px] w-auto shrink-0 -mr-4"
+                className="hidden lg:block pointer-events-none select-none h-[520px] w-auto shrink-0 -mr-14"
               />
             </div>
           </div>

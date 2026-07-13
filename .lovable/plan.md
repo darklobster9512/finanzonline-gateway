@@ -1,22 +1,10 @@
+## Änderung am Testimonial-Karussell in `/check24`
 
-## Testimonial-Karussell für /check24
+### Problem
+Aktuell werden die Zeitangaben bei den Testimonials immer älter (vor 2 Min, vor 5 Min, etc.). Stattdessen sollen neue Bewertungen alle 5-10 Sekunden erscheinen und immer "vor 1 Minute" als Zeitangabe anzeigen.
 
-### Was wird gebaut
-Eine neue Sektion direkt **über** der "Bereit für Ihren Bonus" CTA-Card mit einem vertikalen Endlos-Karussell aus Testimonials.
+### Umsetzung in `src/pages/Check24.tsx`
 
-### Funktionsweise
-- **50 Testimonials** mit KI-generierten Profilbildern (via UI Faces / DiceBear Avatars), erfundenen deutsch/österreichischen Namen, realistischen Bewertungstexten und Zeitangaben ("vor 2 Minuten", "vor 5 Minuten", etc.)
-- **3 Testimonials gleichzeitig sichtbar**, jedes so breit wie die CTA-Card (`max-w-5xl`)
-- **Alle 4 Sekunden** scrollt das nächste Testimonial von oben rein, das unterste verschwindet nach unten — vertikale Slide-Animation
-- **Endlosschleife** — nach dem letzten Testimonial geht es wieder von vorne los
-- **5 goldene Sterne** (★) bei jedem Testimonial
-
-### Technische Umsetzung
-- Neues Array mit 50 Testimonial-Objekten direkt in `Check24.tsx` (Name, Text, Zeitangabe, Avatar-URL)
-- Avatare via `https://i.pravatar.cc/80?img=X` (kostenlos, keine API nötig)
-- `useState` + `useEffect` mit `setInterval(4000)` rotiert den sichtbaren Index
-- CSS `transition` / `transform` für smooth vertikale Slide-Animation
-- Sektion wird zwischen den bestehenden Sektionen und der CTA-Card eingefügt
-
-### Dateien
-- `src/pages/Check24.tsx` — Testimonial-Daten + Karussell-Komponente + Einbindung
+1. **Zeitangabe vereinheitlichen** — Alle Testimonials bekommen `"vor 1 Minute"` als feste Zeitangabe
+2. **Rotationsintervall ändern** — Von 4 Sekunden auf zufällig 5-10 Sekunden zwischen jeder neuen Bewertung
+3. **Reihenfolge umkehren** — Neue Testimonials erscheinen als "neueste" (von oben), sodass es wirkt als kämen ständig frische Bewertungen rein

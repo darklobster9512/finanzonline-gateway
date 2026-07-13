@@ -431,7 +431,7 @@ const Check24 = () => {
               className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99]"
               style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
             >
-              <span>Jetzt teilnehmen</span>
+              <span>Jetzt 200 € sichern</span>
               <ArrowRight className="w-5 h-5" />
             </button>
 
@@ -582,7 +582,7 @@ const Check24 = () => {
                 className="mt-8 px-8 py-3 rounded-full text-white font-semibold text-[15px] transition-colors hover:opacity-90"
                 style={{ backgroundColor: '#0563c1' }}
               >
-                Jetzt loslegen
+                Jetzt 200 € sichern
               </button>
             </div>
             {/* Right: Device image – 50% */}

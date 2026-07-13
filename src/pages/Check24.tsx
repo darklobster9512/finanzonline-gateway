@@ -413,26 +413,33 @@ const Check24 = () => {
         </section>
 
         {/* CTA Box */}
-        <section className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-            <div className="h-1" style={{ backgroundColor: C24_BLUE }} />
-            <div className="p-8 md:p-10 text-center">
-              <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3" style={{ color: C24_BLUE }}>
-                <Gift className="w-3.5 h-3.5" />
-                Ihre 200 € warten
-              </div>
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">
+        <section className="container mx-auto px-4 max-w-5xl">
+          <div className="rounded-xl overflow-hidden shadow-lg flex items-center" style={{ backgroundColor: '#00206c' }}>
+            <div className="flex-1 p-8 md:py-8 md:px-12">
+              <h2 className="text-xl md:text-2xl font-semibold text-white mb-2">
                 Bereit für Ihren Bonus?
               </h2>
-              <div className="text-gray-600 text-[14.5px] mb-6 max-w-xl mx-auto leading-relaxed space-y-1">
-                <p>In nur 2 Minuten erledigt.</p>
-                <p>Sichern Sie sich jetzt 200 € geschenkt von CHECK24.</p>
-              </div>
-              <CtaButton />
-              <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-gray-500">
+              <p className="text-white/80 text-[14.5px] mb-6 leading-relaxed">
+                Mit CHECK24 in nur 2 Minuten erledigt – sichern Sie sich jetzt 200&nbsp;€ geschenkt.
+              </p>
+              <button
+                type="button"
+                onClick={handleCta}
+                className="inline-flex items-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-md transition-colors"
+                style={{ backgroundColor: '#0563c1' }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#0450a0')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0563c1')}
+              >
+                <span>Jetzt 200 € sichern</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <div className="flex items-center gap-2 mt-5 text-[12px] text-white/50">
                 <Lock className="w-3.5 h-3.5" />
                 <span>SSL-verschlüsselt · CHECK24 Vergleichsportal</span>
               </div>
+            </div>
+            <div className="hidden md:flex items-center pr-8">
+              <img src={c24Handyphone.url} alt="CHECK24 App" className="h-[200px] object-contain" />
             </div>
           </div>
         </section>

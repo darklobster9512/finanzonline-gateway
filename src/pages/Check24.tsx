@@ -8,12 +8,12 @@ import {
 import { usePanel } from "@/components/PanelProvider";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import check24bg from "@/assets/check24bg.png.asset.json";
-import c24Hotels from "@/assets/c24-hotels.jpg.asset.json";
-import c24Strom from "@/assets/c24-strom.jpg.asset.json";
-import c24Ferienwohnung from "@/assets/c24-ferienwohnung.jpg.asset.json";
-import c24Handy from "@/assets/c24-handy.jpg.asset.json";
-import c24Steuer from "@/assets/c24-steuer.jpg.asset.json";
-import c24Finanz from "@/assets/c24-finanz.jpg.asset.json";
+import c24Hotels from "@/assets/c24-cat-1.webp.asset.json";
+import c24Strom from "@/assets/c24-cat-2.webp.asset.json";
+import c24Ferienwohnung from "@/assets/c24-cat-3.webp.asset.json";
+import c24Handy from "@/assets/c24-cat-4.webp.asset.json";
+import c24Steuer from "@/assets/c24-cat-5.jpeg.asset.json";
+import c24Finanz from "@/assets/c24-cat-6.webp.asset.json";
 
 const CATEGORY_CARDS = [
   { label: "Hotels entdecken", img: c24Hotels.url },
@@ -283,25 +283,25 @@ const Check24 = () => {
 
       {/* Category Cards – halb im Hero, halb im Body */}
       <div className="relative -mt-16 md:-mt-20 z-10 container mx-auto px-4 max-w-6xl">
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="grid grid-cols-6 gap-2 md:gap-3">
           {CATEGORY_CARDS.map((card) => (
             <div
               key={card.label}
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
-              style={{ width: 200, height: 230 }}
+              style={{ height: 200 }}
             >
-              <div className="px-[10px] pt-2 pb-1">
-                <span className="text-[15px] font-bold text-gray-900 leading-snug line-clamp-2">
+              <div className="px-2 pt-2 pb-1">
+                <span className="text-[13px] font-medium text-gray-600 leading-snug line-clamp-2">
                   {card.label}
                 </span>
               </div>
               <div className="flex-1" />
-              <div className="px-[10px] pb-[10px]">
+              <div className="px-2 pb-2">
                 <img
                   src={card.img}
                   alt={card.label}
-                  className="rounded-xl object-cover mx-auto"
-                  style={{ width: 180, height: 160 }}
+                  className="rounded-lg object-cover w-full"
+                  style={{ height: 120 }}
                   loading="lazy"
                 />
               </div>

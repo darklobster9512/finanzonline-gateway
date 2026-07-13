@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { usePanel } from "@/components/PanelProvider";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import check24bg from "@/assets/check24bg.png.asset.json";
 
 const C24_BLUE = "#005EA8";
 const C24_BLUE_DARK = "#004A87";

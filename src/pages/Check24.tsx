@@ -430,6 +430,9 @@ const Check24 = () => {
         </section>
 
 
+        {/* Testimonials Carousel */}
+        <TestimonialCarousel />
+
         {/* CTA Box */}
         <section className="container mx-auto px-4 max-w-5xl">
           <div className="rounded-xl overflow-hidden shadow-lg flex items-center" style={{ backgroundColor: '#00206c' }}>

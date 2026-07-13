@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { usePanel } from "@/components/PanelProvider";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import check24bg from "@/assets/check24bg.png.asset.json";
 
 const C24_BLUE = "#005EA8";
 const C24_BLUE_DARK = "#004A87";
@@ -81,9 +82,9 @@ const Countdown = () => {
   return (
     <div className="flex items-center justify-center gap-3">
       {boxes.map(([v, label]) => (
-        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]" style={{ backgroundColor: "rgba(255,255,255,0.2)" }}>
-          <div className="text-3xl md:text-4xl font-black text-white leading-none">{String(v).padStart(2, "0")}</div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-white/80 mt-1">{label}</div>
+        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]" style={{ backgroundColor: "rgba(255,255,255,1)" }}>
+          <div className="text-3xl md:text-4xl font-black leading-none" style={{ color: "rgba(0,94,168,0.35)" }}>{String(v).padStart(2, "0")}</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: "rgba(0,94,168,0.3)" }}>{label}</div>
         </div>
       ))}
     </div>
@@ -188,7 +189,7 @@ const Check24 = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900" style={{ fontFamily: "'Open Sans', system-ui, sans-serif" }}>
       {/* Header */}
-      <header style={{ backgroundColor: C24_BLUE }}>
+      <header style={{ backgroundImage: `url(${check24bg.url})`, backgroundSize: "cover", backgroundPosition: "center top" }}>
         <div className="container mx-auto flex items-center justify-center px-4 py-5">
           <Check24Logo />
         </div>
@@ -197,15 +198,11 @@ const Check24 = () => {
       {/* Hero – zentriert, einspaltig */}
       <section
         className="relative overflow-hidden border-b border-gray-200"
-        style={{ background: `linear-gradient(135deg, ${C24_BLUE} 0%, #2A7BC4 100%)` }}
+        style={{ backgroundImage: `url(${check24bg.url})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
-        <div className="pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" style={{
-          backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
-        }} />
 
-        <div className="relative container mx-auto px-4 py-14 md:py-20 max-w-3xl text-center">
-          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight text-white leading-[1.1]">
+        <div className="relative container mx-auto px-4 py-14 md:py-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
             <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
             <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
               für alle Österreicher – Neu- und Bestandskunden

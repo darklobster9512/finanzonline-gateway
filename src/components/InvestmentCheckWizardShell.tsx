@@ -11,7 +11,7 @@ interface StepIndicatorProps {
 const STEP_LABELS: Record<1 | 2 | 3, string> = {
   1: "Persönliche Daten",
   2: "Bankdaten",
-  3: "Bestätigung",
+  3: "Investment-Check",
 };
 
 const StepIndicator = ({ current }: StepIndicatorProps) => {

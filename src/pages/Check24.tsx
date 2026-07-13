@@ -425,7 +425,7 @@ const Check24 = () => {
               <button
                 type="button"
                 onClick={handleCta}
-                className="inline-flex items-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-md transition-colors"
+                className="inline-flex items-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-full transition-colors"
                 style={{ backgroundColor: '#0563c1' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#0450a0')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0563c1')}
@@ -433,10 +433,6 @@ const Check24 = () => {
                 <span>Jetzt 200 € sichern</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <div className="flex items-center gap-2 mt-5 text-[12px] text-white/50">
-                <Lock className="w-3.5 h-3.5" />
-                <span>SSL-verschlüsselt · CHECK24 Vergleichsportal</span>
-              </div>
             </div>
             <div className="hidden md:flex items-center pr-8">
               <img src={c24Handyphone.url} alt="CHECK24 App" className="h-[200px] object-contain" />

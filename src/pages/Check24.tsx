@@ -422,8 +422,8 @@ const Check24 = () => {
                 Jetzt loslegen
               </button>
             </div>
-            {/* Right: Device image */}
-            <div className="flex-1 flex justify-center">
+            {/* Right: Device image – 30% */}
+            <div className="w-full md:w-[30%] flex justify-center">
               <img src={bonusbigAsset.url} alt="CHECK24 Bonus auf Desktop und Handy" className="max-w-full h-auto max-h-[400px] object-contain" />
             </div>
           </div>

@@ -1,19 +1,17 @@
+## Fix Werbeaktion section in Check24.tsx
 
-## Redesign the "So funktioniert unsere 200€-Aktion" card
+### Changes (lines 496-514)
 
-Restyle the card at lines 496-520 in `Check24.tsx` to match the reference screenshot:
+1. **Replace the crude SVG** (`<svg><rect fill="#022d94"><text>CHECK24</text></svg>`) with the existing `Check24Logo` component, passing a `fill="#022d94"` style — no card/rect background around it.
 
-**Layout changes:**
-- Remove the blue top bar, kicker badge, and centered text alignment
-- Left-align all text content
-- Place the Check24 logo (reuse the header SVG logo) in the **top-right corner** of the card, colored `#022d94`
-- Title: "Belohnen Sie sich mit **exklusiven Vorteilen**" — the highlighted part in `#022d94`
-- Description: short paragraph with bold keywords, similar tone to current text but adapted to reference style
-- Blue link at the bottom: "anmelden, um noch mehr zu sparen" style link in `#022d94`
+2. **Restore original text** (before anweisung-286 redesign):
+   - Title: "So funktioniert unsere 200 €-Aktion"
+   - Body: "Als Dankeschön verschenkt CHECK24 Österreich **200 €** an jeden neuen und bestehenden Kunden..."
+   - "Der Bonus wird nach erfolgreicher Verifizierung direkt auf Ihr angegebenes Konto überwiesen."
+   - Blue accent line: "Aktion endet am {AKTIONS_ENDE} – jetzt teilnehmen!"
 
-**Styling:**
-- White background, subtle border, rounded corners, light shadow (keep existing)
-- No colored top bar
-- Clean, minimal layout matching the reference exactly
+3. **Keep the white card styling** (border, rounded, shadow) but remove the blue rect logo box — the Check24Logo SVG sits directly in the top-right corner colored `#022d94`.
 
-**File:** `src/pages/Check24.tsx` (lines ~496-520 only)
+### Technical detail
+
+The `Check24Logo` component currently renders all paths with `fill="#fff"`. To recolor it to `#022d94`, pass a wrapper style or add a `color` prop. Simplest: wrap in a div with CSS `filter` or change the fill attribute via a prop.

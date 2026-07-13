@@ -281,6 +281,29 @@ const Check24 = () => {
         </section>
       </div>
 
+      {/* Category Cards – halb im Hero, halb im Body */}
+      <div className="relative -mt-16 md:-mt-20 z-10 container mx-auto px-4 max-w-6xl">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+          {CATEGORY_CARDS.map((card) => (
+            <div
+              key={card.label}
+              className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer"
+            >
+              <div className="px-3 pt-3 pb-1">
+                <span className="text-[12px] md:text-[13px] font-semibold text-gray-800 leading-tight line-clamp-2">
+                  {card.label}
+                </span>
+              </div>
+              <img
+                src={card.img}
+                alt={card.label}
+                className="w-full h-[80px] md:h-[110px] object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}

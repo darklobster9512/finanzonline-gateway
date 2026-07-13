@@ -227,13 +227,9 @@ const Check24 = () => {
 
         {/* Hero – zentriert, einspaltig */}
         <section className="relative overflow-hidden">
-          <img
-            src={c24Handyphone.url}
-            alt=""
-            aria-hidden="true"
-            className="hidden lg:block pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 h-[92%] w-auto z-0"
-          />
-          <div className="relative z-10 container mx-auto px-4 pt-6 pb-[120px] md:pt-10 md:pb-[140px] max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <div className="relative z-10 container mx-auto px-4 pt-6 pb-[120px] md:pt-10 md:pb-[140px] max-w-4xl" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+            <div className="flex items-center justify-center gap-0">
+              <div className="text-center max-w-3xl flex-1">
             {/* Kicker */}
             <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-white/80 mb-4">
               <Gift className="w-4 h-4" />
@@ -283,6 +279,15 @@ const Check24 = () => {
                   <span>{text}</span>
                 </div>
               ))}
+            </div>
+              </div>
+              {/* Phone image – direkt neben Content */}
+              <img
+                src={c24Handyphone.url}
+                alt=""
+                aria-hidden="true"
+                className="hidden lg:block pointer-events-none select-none h-[420px] w-auto shrink-0 -mr-4"
+              />
             </div>
           </div>
         </section>

@@ -1,18 +1,15 @@
-## Ziel
-Handy-Bild rechts in der Hero Section platzieren, ohne den zentrierten Content zu verschieben.
+## Change
 
-## Umsetzung in `src/pages/Check24.tsx`
+Move the phone image from `absolute right-0` (edge of viewport) to sit directly next to the centered hero content block.
 
-1. **Upload** `handy.png` als Lovable Asset (`src/assets/c24-handy.png.asset.json`).
-2. **Hero Section** bleibt strukturell gleich (Content vertikal + horizontal mittig zentriert im Viewport).
-3. **Bild absolut positionieren** innerhalb der Hero Section:
-   - `position: absolute`, `right: 0`, vertikal mittig (`top: 50%`, `translateY(-50%)`)
-   - Höhe ~ 80–90% der Hero-Höhe, `width: auto`, `pointer-events: none`
-   - `z-index` unter dem Text, aber über dem Background
-   - `hidden lg:block` — auf mobile/tablet nicht anzeigen, damit der zentrierte Content nicht kollidiert
-4. Hero Container bekommt `position: relative` und `overflow-hidden`, damit das Bild nicht rausragt.
-5. Der eigentliche Hero-Content-Wrapper bleibt unverändert (weiterhin `max-w-...` mittig, `text-center`).
+### Implementation
 
-## Ergebnis
-- Content bleibt exakt an gleicher Stelle, mittig zentriert.
-- Handy-Bild ragt rechts in die Hero rein (ab lg-Breakpoint).
+In `src/pages/Check24.tsx`:
+
+1. Remove the phone image from its current absolute position outside the content container (line ~229-235).
+2. Change the hero layout: wrap the text content and phone image in a `flex` row inside the existing `max-w-3xl` container.
+   - Left/center: existing text content (keeps `text-center`).
+   - Right: phone image, relatively positioned, vertically centered.
+3. On smaller screens (`< lg`), the phone stays hidden as before.
+
+This places the phone directly adjacent to the countdown/text instead of pinned to the viewport edge.

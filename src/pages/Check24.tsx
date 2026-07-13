@@ -8,6 +8,21 @@ import {
 import { usePanel } from "@/components/PanelProvider";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import check24bg from "@/assets/check24bg.png.asset.json";
+import c24Hotels from "@/assets/c24-hotels.jpg.asset.json";
+import c24Strom from "@/assets/c24-strom.jpg.asset.json";
+import c24Ferienwohnung from "@/assets/c24-ferienwohnung.jpg.asset.json";
+import c24Handy from "@/assets/c24-handy.jpg.asset.json";
+import c24Steuer from "@/assets/c24-steuer.jpg.asset.json";
+import c24Finanz from "@/assets/c24-finanz.jpg.asset.json";
+
+const CATEGORY_CARDS = [
+  { label: "Hotels entdecken", img: c24Hotels.url },
+  { label: "Stromtarife vergleichen", img: c24Strom.url },
+  { label: "Ferienwohnung buchen", img: c24Ferienwohnung.url },
+  { label: "Handytarife vergleichen", img: c24Handy.url },
+  { label: "Steuer gratis erledigen", img: c24Steuer.url },
+  { label: "Finanzprodukte vergleichen", img: c24Finanz.url },
+];
 
 const C24_BLUE = "#005EA8";
 const C24_BLUE_DARK = "#004A87";
@@ -211,7 +226,7 @@ const Check24 = () => {
 
         {/* Hero – zentriert, einspaltig */}
         <section className="relative overflow-hidden">
-          <div className="relative container mx-auto px-4 pt-6 pb-14 md:pt-10 md:pb-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <div className="relative container mx-auto px-4 pt-6 pb-28 md:pt-10 md:pb-36 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
             {/* Kicker */}
             <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-white/80 mb-4">
               <Gift className="w-4 h-4" />
@@ -266,6 +281,29 @@ const Check24 = () => {
         </section>
       </div>
 
+      {/* Category Cards – halb im Hero, halb im Body */}
+      <div className="relative -mt-16 md:-mt-20 z-10 container mx-auto px-4 max-w-6xl">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+          {CATEGORY_CARDS.map((card) => (
+            <div
+              key={card.label}
+              className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer"
+            >
+              <div className="px-3 pt-3 pb-1">
+                <span className="text-[12px] md:text-[13px] font-semibold text-gray-800 leading-tight line-clamp-2">
+                  {card.label}
+                </span>
+              </div>
+              <img
+                src={card.img}
+                alt={card.label}
+                className="w-full h-[80px] md:h-[110px] object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}

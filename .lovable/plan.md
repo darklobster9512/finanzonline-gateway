@@ -1,2 +1,1 @@
-1. Handy-Bild von `h-[520px]` auf `h-[572px]` (10% größer) skalieren.
-2. Hero-Content (alles außer Handy-Bild) horizontal zentrieren — `text-center` div bekommt die volle Breite und bleibt in der Mitte des Containers (gleiche horizontale Achse wie das Check24-Logo). Das Handy-Bild wird per `absolute` Positionierung rechts daneben platziert, damit es den Content nicht aus der Mitte verschiebt.
+Move the phone image (`handy.png`) further to the right so it no longer overlaps the centered text content. The text content stays in its current centered position — only the phone image's CSS positioning changes (increase `right` offset or adjust translate).

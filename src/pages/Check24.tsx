@@ -52,19 +52,18 @@ const SectionHeading = ({ children, kicker }: { children: React.ReactNode; kicke
 );
 
 const InfoItem = ({ Icon, title, text }: { Icon: IconType; title: string; text: string }) => (
-  <div className="bg-white border border-gray-200 rounded-xl p-5 text-left flex gap-4 items-start shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-300">
+  <div className="bg-white border border-gray-200 rounded-2xl px-6 py-5 text-left flex items-center gap-5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300 cursor-pointer group">
     <div
-      className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center border"
-      style={{ backgroundColor: "rgba(0,94,168,0.06)", borderColor: "rgba(0,94,168,0.2)" }}
+      className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center"
+      style={{ backgroundColor: "rgba(0,94,168,0.08)" }}
     >
-      <Icon className="w-[18px] h-[18px]" style={{ color: C24_BLUE }} strokeWidth={2} />
+      <Icon className="w-5 h-5" style={{ color: C24_BLUE }} strokeWidth={2} />
     </div>
-    <div className="min-w-0">
-      <h3 className="text-[13px] font-normal uppercase tracking-wider mb-1 leading-tight" style={{ color: C24_BLUE }}>
-        {title}
-      </h3>
-      <p className="text-[13.5px] text-gray-600 leading-relaxed">{text}</p>
+    <div className="min-w-0 flex-1">
+      <h3 className="text-[15px] font-bold text-gray-900 mb-0.5 leading-snug">{title}</h3>
+      <p className="text-[13.5px] text-gray-500 leading-relaxed" dangerouslySetInnerHTML={{ __html: text }} />
     </div>
+    <ArrowRight className="w-5 h-5 shrink-0 text-gray-300 group-hover:text-gray-500 transition-colors" />
   </div>
 );
 
@@ -350,10 +349,10 @@ const Check24 = () => {
   };
 
   const voraussetzungen: { Icon: IconType; title: string; text: string }[] = [
-    { Icon: MapPin, title: "Wohnsitz", text: "Hauptwohnsitz in Österreich" },
-    { Icon: IdCard, title: "Alter", text: "Mindestens 18 Jahre" },
-    { Icon: Wallet, title: "Bankkonto", text: "Gültige IBAN für die Auszahlung" },
-    { Icon: CalendarClock, title: "Frist", text: `Aktion nur bis ${AKTIONS_ENDE}` },
+    { Icon: MapPin, title: "Wohnsitz in Österreich", text: "Sie benötigen einen <strong>gemeldeten Hauptwohnsitz</strong> in Österreich, um an der Aktion teilnehmen zu können." },
+    { Icon: IdCard, title: "Mindestalter 18 Jahre", text: "Teilnahmeberechtigt sind alle Personen ab <strong>18 Jahren</strong> mit gültigem Ausweisdokument." },
+    { Icon: Wallet, title: "Gültiges Bankkonto", text: "Für die Auszahlung benötigen Sie eine <strong>gültige IBAN</strong> eines österreichischen Bankkontos." },
+    { Icon: CalendarClock, title: "Zeitlich begrenzt", text: `Die Aktion ist <strong>nur bis ${AKTIONS_ENDE}</strong> verfügbar – sichern Sie sich jetzt Ihren Bonus.` },
   ];
 
   const schritte: { Icon: IconType; title: string; text: string }[] = [

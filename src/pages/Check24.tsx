@@ -525,7 +525,7 @@ const Check24 = () => {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Left: Steps – 50% */}
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>So funktioniert der CHECK24 Bonus</h2>
+              <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8 text-center md:text-left" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>So funktioniert der CHECK24 Bonus</h2>
               <div className="space-y-6">
                 {/* Step 1 */}
                 <div className="flex items-start gap-4">

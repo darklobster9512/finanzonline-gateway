@@ -512,7 +512,7 @@ const Check24 = () => {
 
         {/* Voraussetzungen */}
         <section className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>
+          <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8 text-center" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>
             Voraussetzungen
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

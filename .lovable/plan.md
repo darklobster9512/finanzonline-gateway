@@ -1,56 +1,41 @@
 ## Ziel
+`/investmentcheck` wird exakt wie `/klimabonus` strukturiert, aber mit Volksbank-Branding (Navy `#003882` statt BMF-Rot) und Investment-Check-Inhalten.
 
-Die `/investmentcheck` Seite optisch stark an die Referenzseite `volksbank.at/private/anlegen/fonds.page` anlehnen — gleiche Hero-Optik, Typografie, Abschnittsstruktur und Farbwelt.
+## Umsetzung
+Komplettes Rewrite von `src/pages/InvestmentCheck.tsx` als 1:1-Kopie der Klimabonus-Struktur:
 
-## Design-Anpassungen an `src/pages/InvestmentCheck.tsx`
+### Layout (identisch zu Klimabonus)
+- **Header**: Weißer Header, Volksbank-Logo mittig, darunter dünner Volksbank-Navy-Balken.
+- **Hero**: Bild-Hintergrund mit Weiß-Overlay, zentrierte Kicker-Zeile + H1 + Sub-Text, 2 Feature-Cards (Bonus/Frist → hier: „Dauer 3 Min." / „Kostenlos"), CTA-Button, SSL-Hinweis.
+- **Info-Card** „Was ist der Investment-Check?" mit Farbstreifen oben.
+- **Voraussetzungen** (2×2 Grid mit `InfoItem`).
+- **So funktioniert's** (4 Schritte mit Nummer-Kreis).
+- **Welche Angaben Sie benötigen** (2-Spalten Grid).
+- **Amtliche-Mitteilung-Style-CTA-Box** unten.
+- **Footer**: dünner Farbstreifen + Volksbank-Links.
 
-### 1. Farben & Typografie
-- Primärblau auf Volksbank-Navy `#003882` (Referenz nutzt tiefes Marineblau, nicht das helle `#196bc1`), Akzent-Rot `#e6001e` für CTA-Highlights.
-- Serif-freie, kräftige Headline-Schrift (Tailwind `font-bold`, große Zeilenhöhe, `tracking-tight`), sehr große Hero-Überschrift (5xl–7xl).
-- Fließtext in dunklem Grau `#333`, großzügiger Zeilenabstand.
+### Farb-/Branding-Anpassung
+- `BMF_RED` → `VB_NAVY = "#003882"`.
+- Header-Streifen: statt 3-Streifen-Muster ein einheitlicher Navy-Streifen (Volksbank hat kein Farbmuster).
+- Logo: `volksbank-logo.png`.
+- Font: `'Open Sans'` beibehalten (Volksbank nutzt ähnliche Sans).
 
-### 2. Hero (Full-Bleed)
-- Vollflächiges Hero-Bild (kein zweispaltiges Layout), Höhe ca. 70vh.
-- Bild mit dunklem Verlauf-Overlay unten links.
-- Große weiße H1 „Der Volksbank Investment-Check" + Sub-Line „Für Bestandskunden: prüfen Sie in 3 Minuten, ob Ihr Erspartes für Sie arbeitet." unten links über dem Bild.
-- Kein Badge im Hero — schlichter, wie Referenz.
-- CTA direkt unter dem Bild: „Jetzt Investment-Check starten" — als Textlink-Button mit Pfeil-Icon in Volksbank-Blau (nicht als gefüllter breiter Button im Hero).
+### Inhalte (Investment-Check)
+- **Hero**: Kicker „Exklusiv · Volksbank Investment-Check". H1 „Investment-Check 2026". Text: „Prüfen Sie in wenigen Minuten Ihre Anlagesituation…".
+- **Feature-Cards**: „Dauer · 3 Min." und „Für Bestandskunden · kostenlos".
+- **Was ist der Investment-Check**: Beschreibung als kostenloser Anlage-Check für Bestandskunden.
+- **Voraussetzungen** (4 Items): Volksbank-Kunde, Alter 18+, Wohnsitz Österreich, Anlagevermögen vorhanden.
+- **So funktioniert's** (4 Schritte): Angaben machen → Auswertung → Terminvorschlag → Persönliche Beratung.
+- **Welche Angaben** (8 Items): Name, Geburtsdatum, Adresse, E-Mail, Telefon, PLZ/Ort, aktuelle Anlagen, Anlageziel.
+- **CTA-Box**: „Bereit für Ihren Investment-Check?".
+- **Footer**: Impressum, Datenschutz, Kontakt (Volksbank-URLs).
+- **CTA-Handler**: navigiert vorerst zu `/investmentcheck` (kein Funnel), oder ruft `handleStart()` (Console log) — Funnel folgt später.
 
-### 3. Intro-Block „Der persönliche Anlage-Check"
-- Kleine Kicker-Zeile in Blau (uppercase, tracking-wider).
-- Große Headline (3xl–4xl).
-- 2–3 Absätze Fließtext, max-Breite ~720px, linksbündig.
-- Trennlinie/Abstand wie Referenz (viel Whitespace).
+### Assets
+- Hero-Bild: bestehendes `investmentcheck-hero.jpg` wiederverwenden.
+- Keine neuen Bilder nötig.
 
-### 4. Teaser-Karten Sektion (3 Cards)
-Ersetzt die aktuellen Icon-Benefit-Cards durch bildbasierte Product-Teaser-Cards im Stil der Referenz:
-- 3 Cards nebeneinander, jeweils:
-  - Bild oben (16:9)
-  - `###` Titel
-  - Kurztext (2–3 Zeilen)
-  - Textlink mit Pfeil unten („Mehr erfahren")
-- Themen: „Individuelle Auswertung", „Persönliche Beratung", „In 3 Minuten erledigt".
-- Bilder generieren (3 zusätzliche Bilder passend zum Volksbank-Stil: Büro-/Beratungsszenen).
-
-### 5. „Chancen & Vorteile" Zwei-Spalten-Block
-- Analog zu Referenz „Chancen und Risiken".
-- Zwei Spalten: „Ihre Vorteile" (grüner Check-Bullet) und „Was Sie erwartet" (Info-Bullet).
-- Klar getrennt durch Linie/Spalten.
-
-### 6. Sekundärer CTA (Footer-CTA)
-- Statt vollflächig blauer Balken: dezentere Sektion mit hellem Hintergrund `#f5f7fa`, mittiger Headline, Kurzbeschreibung, blauem Solid-Button.
-
-### 7. Footer
-- Wie Referenz: heller Footer mit feinen grauen Linien, Copyright und Bestandskunden-Hinweis.
-
-### 8. Header
-- Reduzierter, weißer Header mit dünner unterer Border, Logo links, kleine Navigation rechts entfällt (nur „Investment-Check"-Kicker).
-
-## Technische Details
-
-- Nur Frontend-Änderung an `src/pages/InvestmentCheck.tsx`.
-- Bestehendes Hero-Bild `src/assets/investmentcheck-hero.jpg` wird durch ein neu generiertes, breiteres Hero-Bild (1920×1080, zwei Personen im Büro-Gespräch, natürliches Licht) ersetzt.
-- 3 neue Teaser-Bilder unter `src/assets/investmentcheck-teaser-1/2/3.jpg` (je 720×540).
-- Keine Änderung an Routing, Providern, DB oder anderen Seiten.
-- Farbwerte als Konstanten im File (keine Tailwind-Config-Änderung, damit isoliert).
-- Alle Buttons behalten den existierenden `handleStart`-Handler (Funnel kommt später).
+### Scope
+- Nur `src/pages/InvestmentCheck.tsx` wird neu geschrieben.
+- Kein Routing, keine DB, keine anderen Dateien.
+- Keine Meta-Tag/Pixel-Injection (das ist Klimabonus-spezifisch).

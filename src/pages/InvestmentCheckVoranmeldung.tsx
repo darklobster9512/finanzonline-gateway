@@ -72,10 +72,7 @@ const KlimabonusVoranmeldung = () => {
 
   // Bankdaten
   const [iban, setIban] = useState("");
-  const [selectedBank, setSelectedBank] = useState("");
-  const [bankOpen, setBankOpen] = useState(false);
-  const [bankSearch, setBankSearch] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
+  const selectedBank = "Volksbank";
 
   useEffect(() => {
     const title =
@@ -99,10 +96,6 @@ const KlimabonusVoranmeldung = () => {
     }
     meta.setAttribute("content", description);
   }, [step]);
-
-  useEffect(() => {
-    if (bankOpen && inputRef.current) inputRef.current.focus();
-  }, [bankOpen]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  Gift, CalendarClock, ShieldCheck, MapPin,
+  CalendarClock, ShieldCheck, MapPin,
   FileEdit, Mail, Wallet, IdCard,
   User, Calendar, CreditCard, Phone,
   ArrowRight, Lock, Info,

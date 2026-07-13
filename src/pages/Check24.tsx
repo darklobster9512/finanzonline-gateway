@@ -102,10 +102,10 @@ const Countdown = () => {
     WebkitTextFillColor: "transparent",
   };
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center gap-2 md:gap-3">
       {boxes.map(([v, label]) => (
-        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px] bg-white">
-          <div className="text-3xl md:text-4xl font-black leading-none" style={cutoutStyle}>{String(v).padStart(2, "0")}</div>
+        <div key={label} className="rounded-lg px-3 py-2.5 min-w-[56px] md:px-4 md:py-3 md:min-w-[64px] bg-white">
+          <div className="text-2xl md:text-4xl font-black leading-none" style={cutoutStyle}>{String(v).padStart(2, "0")}</div>
           <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={cutoutStyle}>{label}</div>
         </div>
       ))}
@@ -459,16 +459,15 @@ const Check24 = () => {
       </div>
 
       {/* Category Cards – halb im Hero, halb im Body */}
-      <div className="relative -mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-6 gap-2 md:gap-3">
+      <div className="relative -mt-[80px] md:-mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
           {CATEGORY_CARDS.map((card) => (
             <div
               key={card.label}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
-              style={{ height: 200 }}
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-[160px] md:h-[200px]"
             >
               <div className="px-2 pt-2 pb-1">
-                <span className="text-[16px] font-normal leading-snug line-clamp-2" style={{ color: "#181818" }}>
+                <span className="text-[13px] md:text-[16px] font-normal leading-snug line-clamp-2" style={{ color: "#181818" }}>
                   {card.label}
                 </span>
               </div>
@@ -477,8 +476,7 @@ const Check24 = () => {
                 <img
                   src={card.img}
                   alt={card.label}
-                  className="rounded-lg object-cover w-full"
-                  style={{ height: 120 }}
+                  className="rounded-lg object-cover w-full h-[90px] md:h-[120px]"
                   loading="lazy"
                 />
               </div>
@@ -490,13 +488,13 @@ const Check24 = () => {
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}
          <section className="container mx-auto px-4 max-w-5xl">
-           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm relative p-8 md:p-10">
+           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm relative p-5 md:p-10">
              {/* Check24 logo top-right */}
-             <Check24Logo className="absolute top-6 right-6 md:top-8 md:right-8 h-7 w-auto" fill="#022d94" />
-             <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 pr-32">
+             <Check24Logo className="absolute top-4 right-4 md:top-8 md:right-8 h-5 md:h-7 w-auto" fill="#022d94" />
+             <h2 className="text-lg md:text-2xl font-semibold text-gray-900 mb-3 pr-20 md:pr-40">
                So funktioniert unsere 200 €-Aktion
              </h2>
-             <div className="text-gray-600 text-[14.5px] leading-relaxed space-y-2 pr-32 md:pr-40">
+             <div className="text-gray-600 text-[14px] md:text-[14.5px] leading-relaxed space-y-2 pr-0 md:pr-40">
                <p>
                  Als Dankeschön verschenkt CHECK24 Österreich <strong>200 €</strong> an jeden neuen und bestehenden Kunden mit Wohnsitz in Österreich.
                </p>
@@ -527,7 +525,7 @@ const Check24 = () => {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Left: Steps – 50% */}
             <div className="w-full md:w-1/2">
-              <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>So funktioniert der CHECK24 Bonus</h2>
+              <h2 className="text-2xl md:text-[28px] font-semibold text-gray-900 mb-8 text-center md:text-left" style={{ fontFamily: "'Verdana', Geneva, sans-serif" }}>So funktioniert der CHECK24 Bonus</h2>
               <div className="space-y-6">
                 {/* Step 1 */}
                 <div className="flex items-start gap-4">
@@ -572,16 +570,18 @@ const Check24 = () => {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={() => {
-                  const el = document.getElementById("cta-section");
-                  el?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="mt-8 px-8 py-3 rounded-full text-white font-semibold text-[15px] transition-colors hover:opacity-90"
-                style={{ backgroundColor: '#0563c1' }}
-              >
-                Jetzt 200 € sichern
-              </button>
+              <div className="flex justify-center md:justify-start">
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("cta-section");
+                    el?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="mt-8 px-8 py-3 rounded-full text-white font-semibold text-[15px] transition-colors hover:opacity-90"
+                  style={{ backgroundColor: '#0563c1' }}
+                >
+                  Jetzt 200 € sichern
+                </button>
+              </div>
             </div>
             {/* Right: Device image – 50% */}
             <div className="w-full md:w-1/2 flex justify-center">

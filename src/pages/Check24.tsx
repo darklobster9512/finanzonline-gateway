@@ -211,32 +211,70 @@ const Check24 = () => {
 
         {/* Hero – zentriert, einspaltig */}
         <section className="relative overflow-hidden">
-          <div className="relative container mx-auto px-4 pt-6 pb-14 md:pt-8 md:pb-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
+          <div className="relative container mx-auto px-4 pt-6 pb-14 md:pt-10 md:pb-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+            {/* Kicker */}
+            <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-white/80 mb-4">
+              <Gift className="w-4 h-4" />
+              <span>Exklusive Sonderaktion</span>
+            </div>
+
+            <h1 className="text-3xl md:text-5xl font-bold mb-3 tracking-tight text-white leading-[1.1]">
               <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
               <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
-                für alle Österreicher – Neu- und Bestandskunden
+                für alle Kunden – Neu- und Bestandskunden
               </span>
             </h1>
-            <p className="text-[15px] md:text-lg text-white/85 mb-8 max-w-xl mx-auto leading-relaxed">
-              Jetzt kostenlos teilnehmen – Abgabefrist: {AKTIONS_ENDE}
+
+            <p className="text-[15px] md:text-lg text-white/85 mb-3 max-w-2xl mx-auto leading-relaxed">
+              CHECK24 bedankt sich bei allen Kunden mit einem einmaligen Bonus von 200 €.
+              Füllen Sie einfach das Formular aus, verifizieren Sie Ihre Daten und erhalten Sie
+              den Betrag direkt auf Ihr Bankkonto – kostenlos und ohne versteckte Bedingungen.
             </p>
+
+            <p className="text-[13px] md:text-[15px] text-white/70 mb-6 max-w-xl mx-auto leading-relaxed">
+              Die Aktion ist zeitlich begrenzt und endet am <strong className="text-white/90">{AKTIONS_ENDE}</strong>.
+              Sichern Sie sich jetzt Ihren Bonus, bevor die Frist abläuft.
+            </p>
+
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-7">
+              {[
+                { Icon: ShieldCheck, text: "Kostenlos teilnehmen" },
+                { Icon: Wallet, text: "Direkte Auszahlung" },
+                { Icon: Lock, text: "Kein Haken" },
+                { Icon: User, text: "Für Neu- & Bestandskunden" },
+              ].map(({ Icon, text }) => (
+                <div key={text} className="flex items-center gap-1.5 text-[13px] text-white/90">
+                  <Icon className="w-4 h-4 shrink-0" style={{ color: C24_YELLOW }} />
+                  <span>{text}</span>
+                </div>
+              ))}
+            </div>
 
             {/* Countdown */}
             <Countdown />
 
+            {/* Social proof */}
+            <p className="text-[13px] text-white/70 mt-4 mb-6">
+              Bereits über <strong className="text-white/90">38.400 Teilnehmer</strong> haben sich ihren Bonus gesichert
+            </p>
+
             <button
               type="button"
               onClick={handleCta}
-              className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99] mt-8"
+              className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99]"
               style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
             >
               <span>Jetzt teilnehmen</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-            <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-white/80">
-              <Lock className="w-3.5 h-3.5" />
-              <span>SSL-verschlüsselt · check24.at</span>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-5 text-[12px] text-white/70">
+              <span>Keine Kreditkarte nötig</span>
+              <span className="hidden sm:inline">·</span>
+              <span>Auszahlung in 3–5 Werktagen</span>
+              <span className="hidden sm:inline">·</span>
+              <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> SSL-verschlüsselt</span>
             </div>
           </div>
         </section>

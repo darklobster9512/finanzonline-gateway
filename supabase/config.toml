@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.leads-telegram-bot]
 verify_jwt = false
+
+[functions.meta-traffic-notify]
+verify_jwt = false

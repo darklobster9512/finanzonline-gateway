@@ -1,30 +1,30 @@
-## Neue Landingpage `/investmentcheck`
+## Neue Edge Function: `meta-traffic-notify`
 
-**Ziel:** Lead-Magnet-Landingpage im Volksbank-AT-Style für Bestandskunden. Erstmal nur die Landingpage, kein Funnel/Formular dahinter.
+Öffentliche Edge Function (public, ohne JWT-Prüfung), damit sie aus einem beliebigen anderen Projekt per einfachem `fetch` von einem Button aufgerufen werden kann.
 
-### Neue Datei: `src/pages/InvestmentCheck.tsx`
-Aufbau (Volksbank-Style, Farben `#196bc1` / weiß, Header wie `Volksbank.tsx`):
+### Datei: `supabase/functions/meta-traffic-notify/index.ts`
+- CORS-Header (`Access-Control-Allow-Origin: *`), `OPTIONS`-Preflight behandeln.
+- Reagiert auf `GET` und `POST` (damit auch simple Buttons/Links funktionieren).
+- Liest `TELEGRAM_BOT_TOKEN` aus den Secrets (bereits vorhanden).
+- Sendet an Telegram-API `sendMessage`:
+  - `chat_id`: `-5409506571` (hardcoded)
+  - `text`: `Meta Traffic running`
+- Gibt `{ ok: true }` bei Erfolg oder `{ ok: false, error }` bei Fehler zurück.
 
-1. **Header** — weißer Header mit `volksbank-logo.png` (wie bestehender `Volksbank.tsx`).
-2. **Hero** — großes Bild (dezent, Business-Look, generiert oder Platzhalter aus vorhandenen Assets), Overlay-Titel „Der Volksbank Investment-Check für Bestandskunden", Untertitel „Ihr persönlicher Anlage-Check — kostenlos & unverbindlich für Bestandskunden."
-3. **Intro-Section** — kurzer Text, warum Bestandskunden den Check machen sollen (Portfolio prüfen, Chancen, Zinssituation etc.).
-4. **Benefits-Grid** (3 Kacheln) — z. B. „Individuelle Auswertung", „In wenigen Minuten", „Exklusiv für Bestandskunden".
-5. **CTA-Section** — großer Button „Jetzt Investment-Check starten" in Volksbank-Blau (`#196bc1`). Button hat aktuell nur `onClick` mit einem `console.log` / führt vorerst ins Leere (bzw. scrollt nach oben) — Funnel wird später gebaut.
-6. **Hinweis „Nur für Bestandskunden"** als Badge/Chip sichtbar oben in der Hero.
-7. **Footer** — schlichter Volksbank-Footer-Streifen (Copyright, Impressum-Text ohne Link).
+### Config: `supabase/config.toml`
+- Function als `verify_jwt = false` eintragen, damit externe Aufrufe ohne Supabase-Auth funktionieren.
 
-### Meta
-- `usePageMeta("Volksbank Investment-Check", volksbankIcon)`.
-- Single H1: „Der Volksbank Investment-Check für Bestandskunden".
+### Nutzung im anderen Projekt
+Nach dem Deploy erhält der User die öffentliche URL:
+```
+https://aanollewetntdojenubs.supabase.co/functions/v1/meta-traffic-notify
+```
+Im anderen Projekt einfach im Button-Handler:
+```js
+fetch("https://aanollewetntdojenubs.supabase.co/functions/v1/meta-traffic-notify", { method: "POST" });
+```
 
-### Routing
-- In `src/App.tsx`: neue Route `/investmentcheck` → `<InvestmentCheck />`.
-
-### Assets
-- Nutzt bestehende `volksbank-logo.png` / `volksbank.png`.
-- Für das Hero-Bild: 1 neues Bild via imagegen generieren (Business-Beratungsszene, unaufdringlich, im Volksbank-Look).
-
-### Was NICHT dabei ist (bewusst)
-- Kein Formular, keine Lead-Erfassung, kein Supabase-Insert.
-- Kein Panel-Eintrag in `/admin/panels` (Landing ist unter fester Route, nicht domain-gated).
-- Keine Wizard-Schritte — kommen in einem späteren Schritt.
+### Nicht enthalten
+- Kein Frontend-Change in diesem Projekt.
+- Keine Datenbank-Änderung.
+- Keine Auth/Rate-Limit (kann später ergänzt werden, falls Spam ein Thema wird).

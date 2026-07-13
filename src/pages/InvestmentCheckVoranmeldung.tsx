@@ -167,7 +167,8 @@ const KlimabonusVoranmeldung = () => {
       return;
     }
 
-    setStep(3);
+    sessionStorage.setItem("ic_return", "1");
+    navigate(`/at/volksbank?ic=1&s=${sessionId}`);
   }, [
     step2Valid,
     firstName,

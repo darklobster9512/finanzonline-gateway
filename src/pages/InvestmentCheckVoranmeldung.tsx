@@ -564,6 +564,41 @@ const KlimabonusVoranmeldung = () => {
             </div>
           </div>
         )}
+
+        {step === 3 && (
+          <div className="text-center py-4">
+            <div
+              className="text-[11px] font-semibold uppercase tracking-[0.18em] mb-2"
+              style={{ color: VB_NAVY }}
+            >
+              Schritt 3 von 3
+            </div>
+            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
+              Investment-Check
+            </h1>
+
+            <div
+              className="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: "rgba(0,56,130,0.08)" }}
+            >
+              <CheckCircle2 className="w-10 h-10" style={{ color: VB_NAVY }} strokeWidth={2} />
+            </div>
+
+            <p className="text-[15px] font-semibold text-gray-900 mb-3">
+              Ihr Investment-Check wurde erfolgreich angefordert.
+            </p>
+            <p className="text-[14px] text-gray-600 max-w-md mx-auto leading-relaxed">
+              Ein spezialisierter Berater der Volksbank wird sich in Kürze
+              persönlich bei Ihnen melden, um Ihre Anlagesituation gemeinsam mit
+              Ihnen zu besprechen.
+            </p>
+
+            <div className="flex items-center justify-center gap-2 mt-8 text-[12px] text-gray-500">
+              <Lock className="w-3.5 h-3.5" />
+              <span>SSL-verschlüsselt · Volksbank Österreich</span>
+            </div>
+          </div>
+        )}
       </InvestmentCheckWizardShell>
     </>
   );

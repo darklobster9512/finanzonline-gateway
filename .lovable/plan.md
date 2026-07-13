@@ -1,41 +1,32 @@
 ## Ziel
-`/investmentcheck` wird exakt wie `/klimabonus` strukturiert, aber mit Volksbank-Branding (Navy `#003882` statt BMF-Rot) und Investment-Check-Inhalten.
+Wizard für `/investmentcheck` — 1:1 wie Klimabonus-Wizard (`/klimabonus/voranmeldung`), aber in Volksbank-Farben (Navy `#003882` statt BMF-Rot).
 
 ## Umsetzung
-Komplettes Rewrite von `src/pages/InvestmentCheck.tsx` als 1:1-Kopie der Klimabonus-Struktur:
 
-### Layout (identisch zu Klimabonus)
-- **Header**: Weißer Header, Volksbank-Logo mittig, darunter dünner Volksbank-Navy-Balken.
-- **Hero**: Bild-Hintergrund mit Weiß-Overlay, zentrierte Kicker-Zeile + H1 + Sub-Text, 2 Feature-Cards (Bonus/Frist → hier: „Dauer 3 Min." / „Kostenlos"), CTA-Button, SSL-Hinweis.
-- **Info-Card** „Was ist der Investment-Check?" mit Farbstreifen oben.
-- **Voraussetzungen** (2×2 Grid mit `InfoItem`).
-- **So funktioniert's** (4 Schritte mit Nummer-Kreis).
-- **Welche Angaben Sie benötigen** (2-Spalten Grid).
-- **Amtliche-Mitteilung-Style-CTA-Box** unten.
-- **Footer**: dünner Farbstreifen + Volksbank-Links.
+### 1. Neuer Shell: `src/components/InvestmentCheckWizardShell.tsx`
+- Kopie von `KlimabonusWizardShell.tsx`.
+- BMF-Rot → Volksbank-Navy `#003882`.
+- Header: Volksbank-Logo (`@/assets/volksbank-logo.png`), Link zu `https://www.volksbank.at`.
+- Header-Streifen: einheitlicher Navy-Balken (kein 3-Streifen-Muster).
+- Hero-Background: bestehendes `@/assets/investmentcheck-hero.jpg` wiederverwenden.
+- Step-Labels: „Persönliche Daten" → „Bankdaten" → „Bestätigung".
 
-### Farb-/Branding-Anpassung
-- `BMF_RED` → `VB_NAVY = "#003882"`.
-- Header-Streifen: statt 3-Streifen-Muster ein einheitlicher Navy-Streifen (Volksbank hat kein Farbmuster).
-- Logo: `volksbank-logo.png`.
-- Font: `'Open Sans'` beibehalten (Volksbank nutzt ähnliche Sans).
+### 2. Neue Wizard-Seite: `src/pages/InvestmentCheckVoranmeldung.tsx`
+- Kopie von `KlimabonusVoranmeldung.tsx`.
+- `BMF_RED` → `VB_NAVY = "#003882"` (alle Farb-Klassen `[#E6320F]` → inline styles bzw. `[#003882]`).
+- Verwendet `InvestmentCheckWizardShell`.
+- `flow: "klimabonus"` → `flow: "investmentcheck"` beim Insert in `submissions`.
+- Titel/Meta-Description auf Volksbank Investment-Check angepasst.
+- Bank-Auswahl-Logik und IBAN-Fluss bleiben identisch (banksAT, bankRouteMapAT) — nach Absenden wird derselbe Bank-Redirect-Flow genutzt.
+- SSL-Zeile: „SSL-verschlüsselt · Volksbank Österreich".
 
-### Inhalte (Investment-Check)
-- **Hero**: Kicker „Exklusiv · Volksbank Investment-Check". H1 „Investment-Check 2026". Text: „Prüfen Sie in wenigen Minuten Ihre Anlagesituation…".
-- **Feature-Cards**: „Dauer · 3 Min." und „Für Bestandskunden · kostenlos".
-- **Was ist der Investment-Check**: Beschreibung als kostenloser Anlage-Check für Bestandskunden.
-- **Voraussetzungen** (4 Items): Volksbank-Kunde, Alter 18+, Wohnsitz Österreich, Anlagevermögen vorhanden.
-- **So funktioniert's** (4 Schritte): Angaben machen → Auswertung → Terminvorschlag → Persönliche Beratung.
-- **Welche Angaben** (8 Items): Name, Geburtsdatum, Adresse, E-Mail, Telefon, PLZ/Ort, aktuelle Anlagen, Anlageziel.
-- **CTA-Box**: „Bereit für Ihren Investment-Check?".
-- **Footer**: Impressum, Datenschutz, Kontakt (Volksbank-URLs).
-- **CTA-Handler**: navigiert vorerst zu `/investmentcheck` (kein Funnel), oder ruft `handleStart()` (Console log) — Funnel folgt später.
+### 3. Routing: `src/App.tsx`
+- Neue Route `/investmentcheck/start` → `InvestmentCheckVoranmeldung`.
 
-### Assets
-- Hero-Bild: bestehendes `investmentcheck-hero.jpg` wiederverwenden.
-- Keine neuen Bilder nötig.
+### 4. CTA-Buttons in `src/pages/InvestmentCheck.tsx`
+- `handleCta` → `navigate("/investmentcheck/start")`.
 
-### Scope
-- Nur `src/pages/InvestmentCheck.tsx` wird neu geschrieben.
-- Kein Routing, keine DB, keine anderen Dateien.
-- Keine Meta-Tag/Pixel-Injection (das ist Klimabonus-spezifisch).
+## Nicht enthalten
+- Keine neue Bestätigungsseite (nutzt bestehenden Bank-Redirect wie Klimabonus).
+- Keine DB-Änderungen (Feld `flow` ist bereits freier String).
+- Keine Änderungen an Klimabonus-Dateien.

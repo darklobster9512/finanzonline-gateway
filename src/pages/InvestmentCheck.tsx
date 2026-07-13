@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   User, Calendar, MapPin, Mail, Phone, Map, TrendingUp, Target,
   FileEdit, ShieldCheck, CalendarClock, MessageSquare,
@@ -50,11 +51,12 @@ const InfoItem = ({
 );
 
 const InvestmentCheck = () => {
+  const navigate = useNavigate();
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Volksbank Investment-Check für Bestandskunden", volksbankIcon);
 
   const handleCta = () => {
-    console.log("Investment-Check gestartet");
+    navigate("/investmentcheck/start");
   };
 
   const voraussetzungen: { Icon: IconType; title: string; text: string }[] = [

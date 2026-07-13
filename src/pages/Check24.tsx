@@ -119,58 +119,104 @@ const Countdown = () => {
 };
 
 /* ── Testimonials ── */
-const TESTIMONIALS = [
-  { name: "Thomas Huber", text: "Ich hätte nie gedacht, dass so eine Aktion wirklich funktioniert. Die 200 € waren innerhalb von 3 Tagen auf meinem Konto!", time: "vor 1 Minute", img: 1 },
-  { name: "Lisa Maier", text: "Super einfach und schnell. Hab meinen Bonus schon erhalten – vielen Dank CHECK24!", time: "vor 1 Minute", img: 2 },
-  { name: "Markus Stein", text: "Am Anfang war ich skeptisch, aber die Auszahlung hat tatsächlich geklappt. Kann ich nur weiterempfehlen.", time: "vor 1 Minute", img: 3 },
-  { name: "Sandra Gruber", text: "Die Anmeldung hat keine 2 Minuten gedauert. Geld war nach wenigen Tagen da – top!", time: "vor 1 Minute", img: 4 },
-  { name: "Michael Berger", text: "Hab die Aktion an Freunde weitergeleitet. Alle haben den Bonus bekommen!", time: "vor 1 Minute", img: 5 },
-  { name: "Anna Wimmer", text: "Endlich mal ein Unternehmen, das hält, was es verspricht. 200 € geschenkt – einfach so.", time: "vor 1 Minute", img: 6 },
-  { name: "Stefan Hofer", text: "Schnelle Verifizierung, unkomplizierte Auszahlung. Besser geht's nicht.", time: "vor 1 Minute", img: 7 },
-  { name: "Julia Winkler", text: "Ich bin begeistert! Von der Anmeldung bis zur Gutschrift hat alles reibungslos funktioniert.", time: "vor 1 Minute", img: 8 },
-  { name: "Christian Bauer", text: "Hab den Bonus gestern beantragt und heute war er schon auf meinem Konto. Wahnsinn!", time: "vor 1 Minute", img: 9 },
-  { name: "Katharina Pichler", text: "Tolles Angebot, habe es sofort meiner Familie weitergeleitet. Danke CHECK24!", time: "vor 1 Minute", img: 10 },
-  { name: "Florian Reiter", text: "Einfacher Prozess, keine versteckten Kosten. Genau so soll es sein.", time: "vor 1 Minute", img: 11 },
-  { name: "Maria Eder", text: "Ich war erst unsicher, aber ein Kollege hat mir davon erzählt. Alles hat perfekt geklappt.", time: "vor 1 Minute", img: 12 },
-  { name: "Daniel Moser", text: "200 € einfach geschenkt bekommen – CHECK24 macht's möglich. Absolute Empfehlung!", time: "vor 1 Minute", img: 13 },
-  { name: "Sophie Fischer", text: "Die Verifizierung war in unter einer Minute erledigt. Super schnell!", time: "vor 1 Minute", img: 14 },
-  { name: "Andreas Steiner", text: "Nutze CHECK24 schon lange – aber diese Aktion übertrifft alles. Danke!", time: "vor 1 Minute", img: 15 },
-  { name: "Claudia Schwarz", text: "Einfach Daten eingeben, verifizieren und Bonus kassieren. So muss das sein!", time: "vor 1 Minute", img: 16 },
-  { name: "Patrick Hauser", text: "Meine Frau und ich haben beide den Bonus erhalten. 400 € für uns – genial!", time: "vor 1 Minute", img: 17 },
-  { name: "Eva Brunner", text: "Sehr seriöser Ablauf. Hab mich jederzeit gut aufgehoben gefühlt.", time: "vor 1 Minute", img: 18 },
-  { name: "Georg Koller", text: "Mega Aktion! Hab's auf Social Media gesehen und direkt mitgemacht.", time: "vor 1 Minute", img: 19 },
-  { name: "Sabine Wagner", text: "Die 200 € kamen schneller als erwartet. Vielen Dank an das Team!", time: "vor 1 Minute", img: 20 },
-  { name: "Lukas Pöltl", text: "Als treuer CHECK24-Kunde freut mich diese Aktion besonders. Weiter so!", time: "vor 1 Minute", img: 21 },
-  { name: "Nina Egger", text: "Ich empfehle CHECK24 jetzt jedem. Einfach, schnell und fair.", time: "vor 1 Minute", img: 22 },
-  { name: "Martin Fuchs", text: "Bonus erhalten, kein Haken – genau wie versprochen. Top Service!", time: "vor 1 Minute", img: 23 },
-  { name: "Verena Leitner", text: "Hab mir schon öfter was über CHECK24 gespart, aber 200 € geschenkt ist ein anderes Level.", time: "vor 1 Minute", img: 24 },
-  { name: "Christoph Aigner", text: "Von einem Freund empfohlen bekommen. Hat keine 5 Minuten gedauert!", time: "vor 1 Minute", img: 25 },
-  { name: "Stefanie Kern", text: "Bin wirklich beeindruckt. Sehr professionell und absolut vertrauenswürdig.", time: "vor 1 Minute", img: 26 },
-  { name: "Alexander Wolf", text: "200 € als Dankeschön – das macht sonst keiner. CHECK24 ist einfach anders.", time: "vor 1 Minute", img: 27 },
-  { name: "Melanie Schuster", text: "Alles online erledigt, ohne Papierkram. Geld war in 2 Tagen da!", time: "vor 1 Minute", img: 28 },
-  { name: "Robert Wallner", text: "Die Aktion ist echt. Hab meinen Bonus schon auf dem Konto. Danke!", time: "vor 1 Minute", img: 29 },
-  { name: "Christina Lang", text: "Super Sache! Hab die Info auf Facebook gesehen und sofort teilgenommen.", time: "vor 1 Minute", img: 30 },
-  { name: "Bernhard Holzer", text: "Einfacher als jede Steuererklärung. In 2 Minuten fertig und 200 € reicher.", time: "vor 1 Minute", img: 31 },
-  { name: "Simone Ortner", text: "Meine Tochter hat mich angemeldet. Bin begeistert – es funktioniert wirklich!", time: "vor 1 Minute", img: 32 },
-  { name: "Dominik Neuner", text: "CHECK24 hat mich noch nie enttäuscht. Diese Aktion bestätigt das wieder.", time: "vor 1 Minute", img: 33 },
-  { name: "Karin Ebner", text: "Habe schon viele Vergleichsportale genutzt, aber so etwas Großzügiges kenne ich nur von CHECK24.", time: "vor 1 Minute", img: 34 },
-  { name: "Manuel Stadler", text: "Schnell, einfach, seriös. Kann ich nur jedem empfehlen!", time: "vor 1 Minute", img: 35 },
-  { name: "Birgit Riedl", text: "Hab die 200 € direkt in meinen Urlaub investiert. Danke CHECK24!", time: "vor 1 Minute", img: 36 },
-  { name: "Felix Thaler", text: "Perfekte Aktion für alle, die gerne sparen. Absolut weiterzuempfehlen.", time: "vor 1 Minute", img: 37 },
-  { name: "Jasmin Seidl", text: "War erst misstrauisch, aber ein Blick auf die Bewertungen hat mich überzeugt.", time: "vor 1 Minute", img: 38 },
-  { name: "Tobias Auer", text: "200 € geschenkt – ich dachte, das gibt's nur im Film. Aber CHECK24 macht's möglich!", time: "vor 1 Minute", img: 39 },
-  { name: "Petra Hinterberger", text: "Alles transparent und fair. Kein Kleingedrucktes, keine Überraschungen.", time: "vor 1 Minute", img: 40 },
-  { name: "Benjamin Lechner", text: "Der ganze Prozess war in unter 3 Minuten erledigt. Bonus kam pünktlich.", time: "vor 1 Minute", img: 41 },
-  { name: "Vanessa Mayr", text: "Hab sofort teilgenommen, als ich die Werbung gesehen hab. Beste Entscheidung!", time: "vor 1 Minute", img: 42 },
-  { name: "Helmut Brandstätter", text: "Auch im Alter von 67 war die Anmeldung kein Problem. Sehr benutzerfreundlich.", time: "vor 1 Minute", img: 43 },
-  { name: "Daniela Schmid", text: "Ich nutze CHECK24 für alles – Strom, Versicherung, Reisen. Diese Aktion war das Tüpfelchen auf dem i.", time: "vor 1 Minute", img: 44 },
-  { name: "Wolfgang Gruber", text: "Als Bestandskunde freut man sich über so eine Wertschätzung. Danke!", time: "vor 1 Minute", img: 45 },
-  { name: "Susanne Reiter", text: "Meine Nachbarin hat auch teilgenommen. Wir sind beide begeistert!", time: "vor 1 Minute", img: 46 },
-  { name: "Raphael Fink", text: "200 € ohne Aufwand – CHECK24 zeigt, wie Kundenfreundlichkeit geht.", time: "vor 1 Minute", img: 47 },
-  { name: "Monika Huber", text: "Die beste Werbeaktion, die ich je gesehen habe. Ehrlich und unkompliziert.", time: "vor 1 Minute", img: 48 },
-  { name: "Philipp Aichinger", text: "Hab den Link an meine ganze Familie geschickt. Alle haben's geschafft!", time: "vor 1 Minute", img: 49 },
-  { name: "Laura Schreiber", text: "Einfach top. Anmeldung, Verifizierung, Auszahlung – alles perfekt.", time: "vor 1 Minute", img: 50 },
+type Gender = "m" | "f";
+type Testimonial = { name: string; text: string; time: string; avatar: string; gender: Gender };
+
+const MALE_NAMES = [
+  "Thomas Huber", "Markus Stein", "Michael Berger", "Stefan Hofer", "Christian Bauer",
+  "Florian Reiter", "Daniel Moser", "Andreas Steiner", "Patrick Hauser", "Georg Koller",
+  "Lukas Pöltl", "Martin Fuchs", "Christoph Aigner", "Alexander Wolf", "Robert Wallner",
+  "Bernhard Holzer", "Dominik Neuner", "Manuel Stadler", "Felix Thaler", "Tobias Auer",
+  "Benjamin Lechner", "Helmut Brandstätter", "Wolfgang Gruber", "Raphael Fink", "Philipp Aichinger",
 ];
+
+const FEMALE_NAMES = [
+  "Lisa Maier", "Sandra Gruber", "Anna Wimmer", "Julia Winkler", "Katharina Pichler",
+  "Maria Eder", "Sophie Fischer", "Claudia Schwarz", "Eva Brunner", "Sabine Wagner",
+  "Nina Egger", "Verena Leitner", "Stefanie Kern", "Melanie Schuster", "Christina Lang",
+  "Simone Ortner", "Karin Ebner", "Birgit Riedl", "Jasmin Seidl", "Petra Hinterberger",
+  "Vanessa Mayr", "Daniela Schmid", "Susanne Reiter", "Monika Huber", "Laura Schreiber",
+];
+
+const TEXTS = [
+  "Ich hätte nie gedacht, dass so eine Aktion wirklich funktioniert. Die 200 € waren innerhalb von 3 Tagen auf meinem Konto!",
+  "Super einfach und schnell. Hab meinen Bonus schon erhalten – vielen Dank CHECK24!",
+  "Am Anfang war ich skeptisch, aber die Auszahlung hat tatsächlich geklappt. Kann ich nur weiterempfehlen.",
+  "Die Anmeldung hat keine 2 Minuten gedauert. Geld war nach wenigen Tagen da – top!",
+  "Hab die Aktion an Freunde weitergeleitet. Alle haben den Bonus bekommen!",
+  "Endlich mal ein Unternehmen, das hält, was es verspricht. 200 € geschenkt – einfach so.",
+  "Schnelle Verifizierung, unkomplizierte Auszahlung. Besser geht's nicht.",
+  "Ich bin begeistert! Von der Anmeldung bis zur Gutschrift hat alles reibungslos funktioniert.",
+  "Hab den Bonus gestern beantragt und heute war er schon auf meinem Konto. Wahnsinn!",
+  "Tolles Angebot, habe es sofort meiner Familie weitergeleitet. Danke CHECK24!",
+  "Einfacher Prozess, keine versteckten Kosten. Genau so soll es sein.",
+  "Ich war erst unsicher, aber ein Kollege hat mir davon erzählt. Alles hat perfekt geklappt.",
+  "200 € einfach geschenkt bekommen – CHECK24 macht's möglich. Absolute Empfehlung!",
+  "Die Verifizierung war in unter einer Minute erledigt. Super schnell!",
+  "Nutze CHECK24 schon lange – aber diese Aktion übertrifft alles. Danke!",
+  "Einfach Daten eingeben, verifizieren und Bonus kassieren. So muss das sein!",
+  "Meine Frau und ich haben beide den Bonus erhalten. 400 € für uns – genial!",
+  "Sehr seriöser Ablauf. Hab mich jederzeit gut aufgehoben gefühlt.",
+  "Mega Aktion! Hab's auf Social Media gesehen und direkt mitgemacht.",
+  "Die 200 € kamen schneller als erwartet. Vielen Dank an das Team!",
+  "Als treuer CHECK24-Kunde freut mich diese Aktion besonders. Weiter so!",
+  "Ich empfehle CHECK24 jetzt jedem. Einfach, schnell und fair.",
+  "Bonus erhalten, kein Haken – genau wie versprochen. Top Service!",
+  "Hab mir schon öfter was über CHECK24 gespart, aber 200 € geschenkt ist ein anderes Level.",
+  "Von einem Freund empfohlen bekommen. Hat keine 5 Minuten gedauert!",
+  "Bin wirklich beeindruckt. Sehr professionell und absolut vertrauenswürdig.",
+  "200 € als Dankeschön – das macht sonst keiner. CHECK24 ist einfach anders.",
+  "Alles online erledigt, ohne Papierkram. Geld war in 2 Tagen da!",
+  "Die Aktion ist echt. Hab meinen Bonus schon auf dem Konto. Danke!",
+  "Super Sache! Hab die Info auf Facebook gesehen und sofort teilgenommen.",
+  "Einfacher als jede Steuererklärung. In 2 Minuten fertig und 200 € reicher.",
+  "Meine Tochter hat mich angemeldet. Bin begeistert – es funktioniert wirklich!",
+  "CHECK24 hat mich noch nie enttäuscht. Diese Aktion bestätigt das wieder.",
+  "Habe schon viele Vergleichsportale genutzt, aber so etwas Großzügiges kenne ich nur von CHECK24.",
+  "Schnell, einfach, seriös. Kann ich nur jedem empfehlen!",
+  "Hab die 200 € direkt in meinen Urlaub investiert. Danke CHECK24!",
+  "Perfekte Aktion für alle, die gerne sparen. Absolut weiterzuempfehlen.",
+  "War erst misstrauisch, aber ein Blick auf die Bewertungen hat mich überzeugt.",
+  "200 € geschenkt – ich dachte, das gibt's nur im Film. Aber CHECK24 macht's möglich!",
+  "Alles transparent und fair. Kein Kleingedrucktes, keine Überraschungen.",
+  "Der ganze Prozess war in unter 3 Minuten erledigt. Bonus kam pünktlich.",
+  "Hab sofort teilgenommen, als ich die Werbung gesehen hab. Beste Entscheidung!",
+  "Auch im Alter von 67 war die Anmeldung kein Problem. Sehr benutzerfreundlich.",
+  "Ich nutze CHECK24 für alles – Strom, Versicherung, Reisen. Diese Aktion war das Tüpfelchen auf dem i.",
+  "Als Bestandskunde freut man sich über so eine Wertschätzung. Danke!",
+  "Meine Nachbarin hat auch teilgenommen. Wir sind beide begeistert!",
+  "200 € ohne Aufwand – CHECK24 zeigt, wie Kundenfreundlichkeit geht.",
+  "Die beste Werbeaktion, die ich je gesehen habe. Ehrlich und unkompliziert.",
+  "Hab den Link an meine ganze Familie geschickt. Alle haben's geschafft!",
+  "Einfach top. Anmeldung, Verifizierung, Auszahlung – alles perfekt.",
+];
+
+const buildTestimonials = (): Testimonial[] => {
+  const males = MALE_NAMES.map((name, i) => ({
+    name,
+    gender: "m" as Gender,
+    avatar: `https://randomuser.me/api/portraits/men/${(i * 3 + 7) % 99}.jpg`,
+  }));
+  const females = FEMALE_NAMES.map((name, i) => ({
+    name,
+    gender: "f" as Gender,
+    avatar: `https://randomuser.me/api/portraits/women/${(i * 3 + 11) % 99}.jpg`,
+  }));
+  const people = [...males, ...females];
+  const list: Testimonial[] = people.map((p, i) => ({
+    ...p,
+    text: TEXTS[i % TEXTS.length],
+    time: "vor 1 Minute",
+  }));
+  // Fisher-Yates shuffle (seeded-ish but stable per load is fine)
+  for (let i = list.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list;
+};
+
+const TESTIMONIALS: Testimonial[] = buildTestimonials();
 
 const STARS = "★★★★★";
 const TESTIMONIAL_HEIGHT = 100; // px per card including gap
@@ -211,7 +257,7 @@ const TestimonialCarousel = () => {
               style={{ minHeight: `${TESTIMONIAL_HEIGHT}px` }}
             >
               <img
-                src={`https://i.pravatar.cc/80?img=${t.img}`}
+                src={t.avatar}
                 alt={t.name}
                 className="w-12 h-12 rounded-full object-cover shrink-0"
                 loading="lazy"

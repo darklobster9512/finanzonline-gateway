@@ -20,6 +20,7 @@ const LandingSwitch = () => {
     if (type === "oegk_datenaktualisierung") return <Datenaktualisierung />;
     if (type === "estv") return <Estv />;
     if (type === "volksbank_login") return <Navigate to="/login" replace />;
+    if (type === "vb_investmentcheck") return <Navigate to="/investmentcheck" replace />;
     return <Index />;
   };
 

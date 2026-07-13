@@ -429,35 +429,6 @@ const Check24 = () => {
           </div>
         </section>
 
-        {/* Angaben */}
-        <section className="container mx-auto px-4 max-w-5xl">
-          <SectionHeading kicker="Vorbereitung">Welche Angaben Sie benötigen</SectionHeading>
-          <p className="text-gray-600 text-[14.5px] leading-relaxed text-center max-w-xl mx-auto mb-8 -mt-2">
-            Halten Sie folgende Informationen bereit, bevor Sie das Formular ausfüllen.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {angaben.map((a) => (
-              <InfoItem key={a.title} Icon={a.Icon} title={a.title} text={a.text} />
-            ))}
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="container mx-auto px-4 max-w-5xl">
-          <SectionHeading kicker="FAQ">Häufige Fragen</SectionHeading>
-          <div className="space-y-3">
-            {[
-              { q: "Wer bekommt den 200 €-Bonus?", a: "Alle volljährigen Personen mit Hauptwohnsitz in Österreich – sowohl Neukunden als auch bestehende CHECK24-Kunden." },
-              { q: "Wann wird der Bonus ausgezahlt?", a: "Nach erfolgreicher Verifizierung Ihrer Daten wird der Betrag innerhalb weniger Werktage auf das angegebene Konto überwiesen." },
-              { q: "Bis wann läuft die Aktion?", a: `Die Werbeaktion ist zeitlich begrenzt und endet am ${AKTIONS_ENDE}. Danach ist keine Teilnahme mehr möglich.` },
-            ].map((f) => (
-              <div key={f.q} className="bg-white border-l-[3px] border-gray-200 rounded-xl p-5 shadow-sm" style={{ borderLeftColor: C24_BLUE }}>
-                <h3 className="text-[15px] font-semibold text-gray-900 mb-1">{f.q}</h3>
-                <p className="text-[13.5px] text-gray-600 leading-relaxed">{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* CTA Box */}
         <section className="container mx-auto px-4 max-w-5xl">

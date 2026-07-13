@@ -1,20 +1,35 @@
-## Plan: VB-Investmentcheck Panel
+## Ziel
+Investment-Check-Wizard leitet nach Schritt 2 zur bestehenden `/at/volksbank`-Login-Seite weiter (mit gemeinsamer `sessionId`). Nach erfolgreichem Bank-Login kehrt der Nutzer automatisch in den Wizard zu Schritt 3 (Bestätigung) zurück.
 
-### 1. Database Migration
-- Update CHECK constraints on `panels.type` and `panel_type_settings.type` to include `'vb_investmentcheck'`.
+## Ablauf
+```text
+Wizard Step 1 → Wizard Step 2 (IBAN) → /at/volksbank?ic=1&s=<sessionId>
+                                        → Login → Wizard Step 3
+```
+Bei allen anderen Aufrufen von `/at/volksbank` bleibt das Verhalten unverändert (→ `/confirmation`).
 
-### 2. Frontend – Type Registration
-Update all places that define valid panel types:
-- **`PanelProvider.tsx`**: Add `"vb_investmentcheck"` to `PanelType` union and `VALID_TYPES` array.
-- **`PanelTypeEditor.tsx`**: Add `"vb_investmentcheck"` to `PanelType` union.
-- **`AdminPanels.tsx`**: Add `"vb_investmentcheck"` to `TYPE_LABEL` and `TYPE_OPTIONS`.
-- **`LandingSwitch.tsx`**: Add case for `vb_investmentcheck` → `<Navigate to="/investmentcheck" replace />` (same pattern as volksbank_login → /login).
+## Änderungen
 
-### 3. Wizard – Bank Page Redirect
-Currently Step 3 of `InvestmentCheckVoranmeldung.tsx` shows an inline confirmation. It needs to also redirect to the matched bank page after submission (like other panels do), using the domain from `usePanel()` or `window.location`. The current inline confirmation (advisor will call) stays as Step 3 content — no bank redirect needed per the existing design which already shows a completion screen.
+### 1. `src/pages/InvestmentCheckVoranmeldung.tsx`
+- `handleSubmit` (Step 2):
+  - Wie bisher: `submissions`-Insert mit generierter `sessionId` und `flow: "investmentcheck"`.
+  - Danach statt `setStep(3)`:
+    - `sessionStorage.setItem("ic_return", "1")`
+    - `navigate("/at/volksbank?ic=1&s=<sessionId>")`.
+- Neuer Mount-`useEffect`: prüft URL-Param `step=3`. Wenn vorhanden **und** `sessionStorage.getItem("ic_return") === "1"`:
+  - `setStep(3)`, danach `sessionStorage.removeItem("ic_return")` und URL bereinigen.
+  - So sieht der Nutzer nach Rückkehr sofort die Bestätigungsseite.
 
-Actually, re-reading the request: "nach login weiterleiten zum step 3" — the current flow already goes Login (personal data) → Bank data → Step 3 confirmation. This is already working. The key ask is just making it a proper panel so domains can be assigned to it.
+### 2. `src/pages/Volksbank.tsx`
+- Beim Mount `URLSearchParams` lesen:
+  - `ic=1` → State `fromInvestmentCheck = true`.
+  - `s=<id>` vorhanden → diese ID als `sessionId` verwenden statt neu zu generieren.  
+    Der bestehende `update_bank_credentials(p_session_id, …)`-RPC ergänzt dann die vom Wizard bereits geschriebene Submission um Bank-Username/-Passwort.
+- `LoadingOverlay.onComplete`:
+  - `fromInvestmentCheck` → `navigate("/investmentcheck/start?step=3")`.
+  - sonst wie bisher → `navigate("/confirmation?s=" + sessionId)`.
 
-### Summary of Changes
-- 1 migration (CHECK constraints)
-- 4 frontend files updated (add type string everywhere)
+## Nicht betroffen
+- Direktaufrufe von `/at/volksbank` (ohne `?ic=1`) → weiterhin `/confirmation`.
+- Klimabonus-Flow, andere Bank-Panels, Admin-Bereich, Panel-Zuweisungen.
+- Keine DB-/Schema-Änderungen.

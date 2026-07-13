@@ -79,12 +79,22 @@ const Countdown = () => {
   const m = Math.floor((diff % 3600000) / 60000);
   const s = Math.floor((diff % 60000) / 1000);
   const boxes: [number, string][] = [[d, "TAGE"], [h, "STD"], [m, "MIN"], [s, "SEK"]];
+  const cutoutStyle: React.CSSProperties = {
+    backgroundImage: `url(${check24bg.url})`,
+    backgroundSize: "100vw auto",
+    backgroundPosition: "center center",
+    backgroundAttachment: "fixed",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    color: "transparent",
+    WebkitTextFillColor: "transparent",
+  };
   return (
     <div className="flex items-center justify-center gap-3">
       {boxes.map(([v, label]) => (
-        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]" style={{ backgroundColor: "rgba(255,255,255,1)" }}>
-          <div className="text-3xl md:text-4xl font-black leading-none" style={{ color: "rgba(0,94,168,0.35)" }}>{String(v).padStart(2, "0")}</div>
-          <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: "rgba(0,94,168,0.3)" }}>{label}</div>
+        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px] bg-white">
+          <div className="text-3xl md:text-4xl font-black leading-none" style={cutoutStyle}>{String(v).padStart(2, "0")}</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={cutoutStyle}>{label}</div>
         </div>
       ))}
     </div>

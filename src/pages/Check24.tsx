@@ -15,6 +15,7 @@ import c24Handy from "@/assets/c24-cat-4.webp.asset.json";
 import c24Steuer from "@/assets/c24-cat-5.jpeg.asset.json";
 import c24Finanz from "@/assets/c24-cat-6.webp.asset.json";
 import c24Handyphone from "@/assets/c24-handy.png.asset.json";
+import bonusbigAsset from "@/assets/bonusbig.png.asset.json";
 
 const CATEGORY_CARDS = [
   { label: "Hotels entdecken", img: c24Hotels.url },

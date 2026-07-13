@@ -180,10 +180,13 @@ const TestimonialCarousel = () => {
   const total = TESTIMONIALS.length;
 
   useEffect(() => {
-    const id = setInterval(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    const tick = () => {
       setIndex((prev) => (prev + 1) % total);
-    }, 4000);
-    return () => clearInterval(id);
+      timeout = setTimeout(tick, 5000 + Math.random() * 5000);
+    };
+    timeout = setTimeout(tick, 5000 + Math.random() * 5000);
+    return () => clearTimeout(timeout);
   }, [total]);
 
   // Show 3 testimonials starting from index

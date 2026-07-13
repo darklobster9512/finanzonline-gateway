@@ -43,9 +43,7 @@ const REQUIRED_MESSAGES: Record<string, string> = {
 const REQUIRED_FIELDS = Object.keys(REQUIRED_MESSAGES);
 
 const KlimabonusVoranmeldung = () => {
-  const navigate = useNavigate();
-  const [step, setStep] = useState<1 | 2>(1);
-  const [showLoading, setShowLoading] = useState(false);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
 
   // Persönliche Daten
   const [firstName, setFirstName] = useState("");

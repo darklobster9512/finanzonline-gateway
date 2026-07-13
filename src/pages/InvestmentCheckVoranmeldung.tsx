@@ -32,7 +32,19 @@ const REQUIRED_MESSAGES: Record<string, string> = {
 const REQUIRED_FIELDS = Object.keys(REQUIRED_MESSAGES);
 
 const KlimabonusVoranmeldung = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState<1 | 2 | 3>(1);
+
+  // Rückkehr aus /at/volksbank Login: direkt Step 3 zeigen
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("step") === "3" && sessionStorage.getItem("ic_return") === "1") {
+      setStep(3);
+      sessionStorage.removeItem("ic_return");
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+
 
   // Persönliche Daten
   const [firstName, setFirstName] = useState("");

@@ -435,7 +435,7 @@ const Check24 = () => {
               </button>
             </div>
             <div className="hidden md:flex items-center pr-8">
-              <img src={c24Handyphone.url} alt="CHECK24 App" className="h-[200px] object-contain" style={{ filter: 'drop-shadow(0 0 18px #00c5f2) drop-shadow(0 0 40px #00c5f2)' }} />
+              <img src={c24Handyphone.url} alt="CHECK24 App" className="h-[200px] object-contain" style={{ filter: 'drop-shadow(0 0 8px rgba(0,197,242,0.4)) drop-shadow(0 0 20px rgba(0,197,242,0.15))' }} />
             </div>
           </div>
         </section>

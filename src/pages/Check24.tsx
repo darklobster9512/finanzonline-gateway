@@ -82,9 +82,9 @@ const Countdown = () => {
   return (
     <div className="flex items-center justify-center gap-3">
       {boxes.map(([v, label]) => (
-        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]">
-          <div className="text-3xl md:text-4xl font-black leading-none" style={{ color: "rgba(255,255,255,0.25)" }}>{String(v).padStart(2, "0")}</div>
-          <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>{label}</div>
+        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]" style={{ backgroundColor: "rgba(255,255,255,1)" }}>
+          <div className="text-3xl md:text-4xl font-black leading-none" style={{ color: "rgba(0,94,168,0.35)" }}>{String(v).padStart(2, "0")}</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: "rgba(0,94,168,0.3)" }}>{label}</div>
         </div>
       ))}
     </div>
@@ -188,47 +188,48 @@ const Check24 = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900" style={{ fontFamily: "'Open Sans', system-ui, sans-serif" }}>
-      {/* Header + Hero – single shared background */}
-      <div
-        className="border-b border-gray-200"
+      {/* Header */}
+      <header style={{ backgroundImage: `url(${check24bg.url})`, backgroundSize: "cover", backgroundPosition: "center top" }}>
+        <div className="container mx-auto flex items-center justify-center px-4 py-5">
+          <Check24Logo />
+        </div>
+      </header>
+
+      {/* Hero – zentriert, einspaltig */}
+      <section
+        className="relative overflow-hidden border-b border-gray-200"
         style={{ backgroundImage: `url(${check24bg.url})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
-        <header>
-          <div className="container mx-auto flex items-center justify-center px-4 py-5">
-            <Check24Logo />
+
+        <div className="relative container mx-auto px-4 py-14 md:py-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
+            <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
+            <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
+              für alle Österreicher – Neu- und Bestandskunden
+            </span>
+          </h1>
+          <p className="text-[15px] md:text-lg text-white/85 mb-8 max-w-xl mx-auto leading-relaxed">
+            Jetzt kostenlos teilnehmen – Abgabefrist: {AKTIONS_ENDE}
+          </p>
+
+          {/* Countdown */}
+          <Countdown />
+
+          <button
+            type="button"
+            onClick={handleCta}
+            className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99] mt-8"
+            style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
+          >
+            <span>Jetzt teilnehmen</span>
+            <ArrowRight className="w-5 h-5" />
+          </button>
+          <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-white/80">
+            <Lock className="w-3.5 h-3.5" />
+            <span>SSL-verschlüsselt · check24.at</span>
           </div>
-        </header>
-
-        <section className="relative overflow-hidden">
-          <div className="relative container mx-auto px-4 py-14 md:py-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
-              <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
-              <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
-                für alle Österreicher – Neu- und Bestandskunden
-              </span>
-            </h1>
-            <p className="text-[15px] md:text-lg text-white/85 mb-8 max-w-xl mx-auto leading-relaxed">
-              Jetzt kostenlos teilnehmen – Abgabefrist: {AKTIONS_ENDE}
-            </p>
-
-            <Countdown />
-
-            <button
-              type="button"
-              onClick={handleCta}
-              className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99] mt-8"
-              style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
-            >
-              <span>Jetzt teilnehmen</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-white/80">
-              <Lock className="w-3.5 h-3.5" />
-              <span>SSL-verschlüsselt · check24.at</span>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
 
       <main className="py-12 md:py-14 space-y-14">

@@ -1,13 +1,21 @@
-## Voraussetzungen Cards im Referenz-Style
 
-Die 4 Voraussetzungen-Cards (Wohnsitz, Alter, Bankkonto, Frist) werden im Style des Screenshots umgestaltet:
+## Voraussetzungen-Cards 1:1 an Referenz anpassen
 
-- **Layout**: Weiterhin 2×2 Grid (`sm:grid-cols-2`), aber Cards breiter/flacher
-- **Card-Design**: Weißer Hintergrund, dezenter Schatten, abgerundete Ecken, horizontales Layout
-- **Inhalt pro Card**: Rundes Icon (blauer Hintergrund) links, Titel **fett** oben, Beschreibungstext darunter mit **bold keywords**, Chevron-Pfeil `>` rechts
-- **Hover**: Leichter Schatten-Effekt
+Der Referenz-Screenshot zeigt zwei Cards nebeneinander mit:
+
+1. **Icon**: Einfaches Outline-Icon (kein farbiger Kreis-Hintergrund) — direkt links neben dem Titel auf derselben Zeile
+2. **Titel**: Fett, direkt rechts neben dem Icon, gleiche Zeile
+3. **Beschreibungstext**: Darunter, normaler Text mit **bold keywords**
+4. **Chevron `>`**: Rechts in der Card, vertikal zentriert
+5. **Card-Style**: Weiße Card mit feinem Border, leichtem Schatten, keine runde Icon-Badge
 
 ### Änderungen
 
-1. **`InfoItem` Komponente** (Zeilen 54-69): Umbauen auf den Referenz-Style — rundes Icon-Badge, fetterer Titel, Beschreibung mit hervorgehobenen Schlüsselwörtern, Chevron rechts
-2. **`voraussetzungen` Array** (Zeilen 352-357): Texte anpassen mit hervorgehobenen Schlüsselwörtern (ähnlich wie im Screenshot: "**garantiert**", "**über 60 Anbietern**" etc.)
+**`InfoItem` Komponente (Zeilen 54-68)**:
+- Runden blauen Icon-Hintergrund (`w-11 h-11 rounded-full`) entfernen
+- Icon direkt neben Titel setzen (Icon + Titel in einer Zeile, Beschreibung darunter)
+- Icon-Farbe: Grau/dunkelgrau statt blau (wie im Screenshot)
+- Chevron bleibt rechts
+
+**Texte anpassen** (Zeilen 351-356):
+- Texte so umschreiben, dass sie dem Reference-Style entsprechen (z.B. "Nirgendwo günstiger Garantie", "CHECK24 Wechselservice"-Stil mit bold keywords)

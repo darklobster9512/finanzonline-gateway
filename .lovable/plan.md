@@ -1,36 +1,24 @@
-## Hero-Section im echten CHECK24-Stil neu bauen
+## Fixes für /check24 Hero + Header
 
-CHECK24 (AT/DE) verwendet für Aktions-/Gutschein-Landingpages einen sehr klaren, sachlichen Look: weißer/heller Hintergrund, kräftiges CHECK24-Blau als Akzent, gelbes Preis-Badge, klare Typo, kein „Marketing-Poster"-Feeling. Aktuell wirkt unser Hero eher wie eine Gewinnspiel-Grafik.
+**1. Header verwendet exakt denselben Background wie Hero (nahtlos)**
+- Aktuell: Header + Hero haben beide separat `backgroundImage: url(check24bg)` mit `backgroundSize: cover` → Header wirkt dunkler, weil eigener Bildausschnitt gerendert wird.
+- Fix: Header und Hero in **einen gemeinsamen Wrapper** packen, der den Background *einmal* setzt (`backgroundSize: cover`, `backgroundPosition: center`). Header und Hero bekommen intern `background: transparent`. So teilen sie sich **ein** Bild → keine Farbdifferenz.
 
-### Änderungen an `src/pages/Check24.tsx`
+**2. Countdown-Zahlen und Labels wirklich durchsichtig**
+- Aktuell: Zahlen sind `rgba(0,94,168,0.35)` — das ist nur eine halbtransparente blaue Farbe auf weißem Kasten, nicht durchsichtig zum Hintergrund.
+- Referenz (prnt.sc-Screenshot): Die weißen Kästen zeigen den dunkelblauen Background durch die Zahlen hindurch — Text ist ein „Ausschnitt", die Zahlen nehmen die Farbe des Backgrounds an.
+- Fix: `background-clip: text` + `color: transparent` mit dem Background-Image als Text-Fill:
+  ```
+  backgroundImage: url(check24bg)
+  backgroundClip: text
+  WebkitBackgroundClip: text
+  color: transparent
+  backgroundSize: cover (mit fixiertem Offset, damit alle 4 Boxen aus demselben Bild „ausschneiden")
+  ```
+- Gleiche Technik für die Labels (TAGE/STD/MIN/SEK).
+- Weiße Kästen bleiben solid weiß wie jetzt.
 
-**1. „Österreicher" raus** – im H1-Subtitle das Wort entfernen, Text wird neutraler:
-- vorher: „für alle Österreicher – Neu- und Bestandskunden"
-- nachher: „Für Neu- und Bestandskunden"
+**3. Keine weiteren Änderungen** an Struktur, Info-Cards, FAQ, Footer usw.
 
-**2. Hero komplett neu strukturieren** (Layout wie echte CHECK24-Promo-Pages):
-- Zweispaltiges Layout (md+): links Text, rechts eine **Preis-Karte** wie bei CHECK24-Gutscheinaktionen.
-- Hintergrund bleibt das gemeinsame Blau (Header+Hero teilen weiterhin einen Background), aber:
-  - Text linksbündig, klare Hierarchie
-  - Eyebrow-Label „CHECK24 Aktion" oben (klein, gelb)
-  - H1 nüchtern: **„200 € Bonus"** groß, darunter Subline „Für Neu- und Bestandskunden"
-  - Kurzer Trust-Text: „Deutschlands & Österreichs größtes Vergleichsportal"
-  - Primary CTA (gelb) + Sekundär-Trust-Zeile mit Sternen (4,8/5) und SSL
-
-**3. Preis-Karte rechts** (weiße Card, wie echte CHECK24-Gutschein-Boxen):
-- Weißer Hintergrund, dezenter Schatten, abgerundet
-- Oben Badge „AKTION" in Rot
-- Riesige `200 €` Zahl in CHECK24-Blau
-- Untertitel „Willkommens-Bonus"
-- Trennlinie
-- Countdown darunter (kleiner, kompakter, im aktuellen weißen Kasten-Stil, aber Zahlen in solid CHECK24-Blau – die durchsichtige `background-clip`-Variante fliegt raus, weil sie auf weißer Karte nicht funktioniert und untypisch für CHECK24 ist)
-- Kleiner Text: „Aktion endet am 01.08.2026"
-
-**4. Kleinere Realismus-Details:**
-- Mobile: Karte stacked unter dem Text
-- „SSL-verschlüsselt · check24.at" bleibt, aber als eine Zeile mit Sterne-Rating davor
-- Padding etwas reduziert, Hero wirkt kompakter (echte CHECK24-Heros sind nicht überdimensioniert)
-
-### Nicht angefasst
-- Header, Info-Blöcke, Voraussetzungen, Ablauf, Angaben, FAQ, CTA-Box, Footer.
-- Gemeinsamer Header+Hero-Background bleibt bestehen.
+### Betroffene Datei
+- `src/pages/Check24.tsx` — Header + Hero-Section zu einem gemeinsamen Background-Wrapper zusammenführen; `Countdown`-Komponente auf `background-clip: text`-Technik umstellen.

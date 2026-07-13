@@ -78,13 +78,23 @@ const Countdown = () => {
   const h = Math.floor((diff % 86400000) / 3600000);
   const m = Math.floor((diff % 3600000) / 60000);
   const s = Math.floor((diff % 60000) / 1000);
-  const boxes: [number, string][] = [[d, "Tage"], [h, "Std"], [m, "Min"], [s, "Sek"]];
+  const boxes: [number, string][] = [[d, "TAGE"], [h, "STD"], [m, "MIN"], [s, "SEK"]];
+  const cutoutStyle: React.CSSProperties = {
+    backgroundImage: `url(${check24bg.url})`,
+    backgroundSize: "100vw auto",
+    backgroundPosition: "center center",
+    backgroundAttachment: "fixed",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    color: "transparent",
+    WebkitTextFillColor: "transparent",
+  };
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center justify-center gap-3">
       {boxes.map(([v, label]) => (
-        <div key={label} className="flex-1 text-center">
-          <div className="text-2xl font-bold leading-none tabular-nums" style={{ color: C24_BLUE }}>{String(v).padStart(2, "0")}</div>
-          <div className="text-[10px] font-semibold uppercase tracking-wider mt-1 text-gray-500">{label}</div>
+        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px] bg-white">
+          <div className="text-3xl md:text-4xl font-black leading-none" style={cutoutStyle}>{String(v).padStart(2, "0")}</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={cutoutStyle}>{label}</div>
         </div>
       ))}
     </div>
@@ -199,76 +209,34 @@ const Check24 = () => {
           </div>
         </header>
 
-        {/* Hero – 2 Spalten, CHECK24-Style */}
-        <section className="relative">
-          <div className="container mx-auto px-4 pt-4 pb-10 md:pt-8 md:pb-16 max-w-6xl" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-            <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
-              {/* Linke Spalte – Text */}
-              <div className="text-center md:text-left">
-                <div className="inline-block text-[11px] font-bold uppercase tracking-[0.18em] mb-3 px-2.5 py-1 rounded" style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}>
-                  CHECK24 Aktion
-                </div>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.05] mb-3">
-                  200 € Bonus
-                </h1>
-                <p className="text-lg md:text-xl font-semibold text-white/95 mb-2">
-                  Für Neu- und Bestandskunden
-                </p>
-                <p className="text-[14px] md:text-[15px] text-white/80 max-w-md mx-auto md:mx-0 leading-relaxed">
-                  Österreichs größtes Vergleichsportal schenkt Ihnen 200 € – jetzt kostenlos sichern.
-                </p>
+        {/* Hero – zentriert, einspaltig */}
+        <section className="relative overflow-hidden">
+          <div className="relative container mx-auto px-4 pt-6 pb-14 md:pt-8 md:pb-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
+              <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
+              <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
+                für alle Österreicher – Neu- und Bestandskunden
+              </span>
+            </h1>
+            <p className="text-[15px] md:text-lg text-white/85 mb-8 max-w-xl mx-auto leading-relaxed">
+              Jetzt kostenlos teilnehmen – Abgabefrist: {AKTIONS_ENDE}
+            </p>
 
-                <button
-                  type="button"
-                  onClick={handleCta}
-                  className="inline-flex items-center gap-2 font-bold text-base px-7 py-3.5 rounded-md transition-transform shadow-lg hover:scale-[1.02] active:scale-[0.99] mt-6"
-                  style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
-                >
-                  <span>Jetzt Bonus sichern</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+            {/* Countdown */}
+            <Countdown />
 
-                <div className="flex items-center justify-center md:justify-start gap-3 mt-4 text-[12px] text-white/85">
-                  <span className="flex items-center gap-1">
-                    <span style={{ color: C24_YELLOW }}>★★★★★</span>
-                    <span className="font-semibold">4,8 / 5</span>
-                  </span>
-                  <span className="text-white/40">·</span>
-                  <span className="flex items-center gap-1">
-                    <Lock className="w-3 h-3" />
-                    SSL-verschlüsselt
-                  </span>
-                </div>
-              </div>
-
-              {/* Rechte Spalte – Preis-Karte */}
-              <div className="w-full max-w-sm mx-auto md:ml-auto md:mr-0">
-                <div className="bg-white rounded-lg shadow-2xl overflow-hidden">
-                  <div className="relative px-6 pt-6 pb-5 text-center">
-                    <div className="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded text-white" style={{ backgroundColor: "#E30613" }}>
-                      Aktion
-                    </div>
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500 mb-2">
-                      Willkommens-Bonus
-                    </div>
-                    <div className="text-6xl md:text-7xl font-bold leading-none tracking-tight" style={{ color: C24_BLUE }}>
-                      200 €
-                    </div>
-                    <div className="text-[13px] text-gray-600 mt-2">
-                      geschenkt auf Ihr Konto
-                    </div>
-                  </div>
-                  <div className="border-t border-gray-100 px-6 py-4">
-                    <div className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 text-center mb-3">
-                      Aktion endet in
-                    </div>
-                    <Countdown />
-                    <div className="text-[11px] text-gray-500 text-center mt-3">
-                      Gültig bis {AKTIONS_ENDE}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <button
+              type="button"
+              onClick={handleCta}
+              className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99] mt-8"
+              style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
+            >
+              <span>Jetzt teilnehmen</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+            <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-white/80">
+              <Lock className="w-3.5 h-3.5" />
+              <span>SSL-verschlüsselt · check24.at</span>
             </div>
           </div>
         </section>

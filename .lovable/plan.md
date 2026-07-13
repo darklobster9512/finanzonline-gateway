@@ -1,21 +1,17 @@
-## Kategorie-Cards zwischen Hero und Body
 
-6 Cards mit KI-generierten Bildern, exakt wie im Screenshot: Die obere Hälfte der Cards ragt in den blauen Hero-Bereich, die untere Hälfte in den weißen Body-Bereich.
+## Änderungen an den 6 Kategorie-Cards (Zeilen 285-306 in `Check24.tsx`)
 
-### Umsetzung
+Exakte Umsetzung der Vorgaben:
 
-1. **6 Bilder per KI generieren** (je ~400x300):
-   - Hotels entdecken (Hotelpool/Resort)
-   - Stromtarife vergleichen (Windräder/Energie)
-   - Ferienwohnung buchen (Ferienhaus am See)
-   - Handytarife vergleichen (Smartphone)
-   - Steuer gratis erledigen (Steuerformular/Laptop)
-   - Finanzprodukte vergleichen (Geldscheine/Charts)
+- **Card**: 200×230 px, keine Border/Outline, abgerundete Ecken, weißer Hintergrund, Shadow beibehalten
+- **Titel**: näher am oberen Rand (wenig Padding oben), größere Schrift (~15-16px), kräftigere Font (font-bold)
+- **Bild**: exakt 180×160 px, horizontal zentriert (10px Abstand links/rechts), 10px Abstand zum unteren Rand, abgerundete Ecken wie die Card
+- Grid bleibt 3×2 (mobile) / 6×1 (desktop), Cards werden zentriert
 
-2. **Layout-Anpassung in `Check24.tsx`**:
-   - Hero-Container bekommt extra `pb-[100px]` Padding unten
-   - Neuer Card-Container mit `relative -mt-[80px] z-10` → Cards ragen nach oben in den Hero
-   - 6 Cards in einer horizontalen Scroll-Row (mobile) / 6-Spalten-Grid (Desktop)
-   - Jede Card: weißer Hintergrund, Titel oben, Bild darunter, Border + leichter Schatten, rounded corners
+### Technisch
 
-3. **`<main>` Anpassung**: `space-y` bleibt, Cards-Section kommt vor dem bisherigen Content.
+Datei: `src/pages/Check24.tsx` (Zeilen 285-306)
+- Card-Container: feste `w-[200px] h-[230px]`, `border-0` statt `border border-gray-200`
+- Titel: `text-[15px] font-bold`, `px-[10px] pt-2`
+- Bild: `w-[180px] h-[160px] object-cover rounded-lg mx-auto mb-[10px]` (= 10px Abstand links/rechts/unten)
+- Grid: `flex flex-wrap justify-center gap-3` statt starres CSS-Grid, damit zentriert

@@ -64,6 +64,32 @@ const Check24Logo = ({ className = "h-8 md:h-9 w-auto" }: { className?: string }
   </svg>
 );
 
+const TARGET = new Date("2026-08-01T00:00:00").getTime();
+
+const Countdown = () => {
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const diff = Math.max(0, TARGET - now);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const boxes: [number, string][] = [[d, "TAGE"], [h, "STD"], [m, "MIN"], [s, "SEK"]];
+  return (
+    <div className="flex items-center justify-center gap-3">
+      {boxes.map(([v, label]) => (
+        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]" style={{ backgroundColor: "rgba(255,255,255,0.2)" }}>
+          <div className="text-3xl md:text-4xl font-black text-white leading-none">{String(v).padStart(2, "0")}</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider text-white/80 mt-1">{label}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Check24 = () => {
   usePageMeta("CHECK24 – 200 € geschenkt für alle Österreicher", FAVICON);
 

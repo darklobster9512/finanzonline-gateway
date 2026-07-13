@@ -257,7 +257,7 @@ const TestimonialCarousel = () => {
               style={{ minHeight: `${TESTIMONIAL_HEIGHT}px` }}
             >
               <img
-                src={`https://i.pravatar.cc/80?img=${t.img}`}
+                src={t.avatar}
                 alt={t.name}
                 className="w-12 h-12 rounded-full object-cover shrink-0"
                 loading="lazy"

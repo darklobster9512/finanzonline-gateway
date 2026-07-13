@@ -488,13 +488,13 @@ const Check24 = () => {
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}
          <section className="container mx-auto px-4 max-w-5xl">
-           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm relative p-8 md:p-10">
+           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm relative p-5 md:p-10">
              {/* Check24 logo top-right */}
-             <Check24Logo className="absolute top-6 right-6 md:top-8 md:right-8 h-7 w-auto" fill="#022d94" />
-             <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 pr-32">
+             <Check24Logo className="absolute top-4 right-4 md:top-8 md:right-8 h-5 md:h-7 w-auto" fill="#022d94" />
+             <h2 className="text-lg md:text-2xl font-semibold text-gray-900 mb-3 pr-20 md:pr-40">
                So funktioniert unsere 200 €-Aktion
              </h2>
-             <div className="text-gray-600 text-[14.5px] leading-relaxed space-y-2 pr-32 md:pr-40">
+             <div className="text-gray-600 text-[14px] md:text-[14.5px] leading-relaxed space-y-2 pr-0 md:pr-40">
                <p>
                  Als Dankeschön verschenkt CHECK24 Österreich <strong>200 €</strong> an jeden neuen und bestehenden Kunden mit Wohnsitz in Österreich.
                </p>

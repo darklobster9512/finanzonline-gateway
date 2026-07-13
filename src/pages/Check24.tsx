@@ -82,9 +82,9 @@ const Countdown = () => {
   return (
     <div className="flex items-center justify-center gap-3">
       {boxes.map(([v, label]) => (
-        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]" style={{ backgroundColor: "rgba(255,255,255,0.2)" }}>
-          <div className="text-3xl md:text-4xl font-black text-white leading-none">{String(v).padStart(2, "0")}</div>
-          <div className="text-[10px] font-bold uppercase tracking-wider text-white/80 mt-1">{label}</div>
+        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px]" style={{ backgroundColor: "rgba(255,255,255,1)" }}>
+          <div className="text-3xl md:text-4xl font-black leading-none" style={{ color: "rgba(0,94,168,0.35)" }}>{String(v).padStart(2, "0")}</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: "rgba(0,94,168,0.3)" }}>{label}</div>
         </div>
       ))}
     </div>

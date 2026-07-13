@@ -493,31 +493,25 @@ const Check24 = () => {
 
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}
-        <section className="container mx-auto px-4 max-w-5xl">
-          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-            <div className="h-1" style={{ backgroundColor: C24_BLUE }} />
-            <div className="p-8 md:p-10 text-center">
-              <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] mb-3" style={{ color: C24_BLUE }}>
-                <Info className="w-3.5 h-3.5" />
-                Werbeaktion
-              </div>
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3">
-                So funktioniert unsere 200 €-Aktion
-              </h2>
-              <div className="text-gray-600 text-[14.5px] max-w-xl mx-auto leading-relaxed space-y-2">
-                <p>
-                  Als Dankeschön verschenkt CHECK24 Österreich <strong>200 €</strong> an jeden neuen und bestehenden Kunden mit Wohnsitz in Österreich.
-                </p>
-                <p>
-                  Der Bonus wird nach erfolgreicher Verifizierung direkt auf Ihr angegebenes Konto überwiesen.
-                </p>
-                <p className="font-semibold" style={{ color: C24_BLUE }}>
-                  Aktion endet am {AKTIONS_ENDE} – jetzt teilnehmen!
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+         <section className="container mx-auto px-4 max-w-5xl">
+           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm relative p-8 md:p-10">
+             {/* Check24 logo top-right */}
+             <svg className="absolute top-6 right-6 md:top-8 md:right-8" width="120" height="32" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <rect width="180" height="48" rx="6" fill="#022d94"/>
+               <text x="90" y="32" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="800" fontSize="24" fill="#fff">CHECK24</text>
+             </svg>
+             <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 pr-32">
+               Belohnen Sie sich mit{" "}
+               <span style={{ color: "#022d94" }}>exklusiven Vorteilen</span>
+             </h2>
+             <p className="text-gray-600 text-[14.5px] leading-relaxed mb-3">
+               Profitieren Sie von <strong>Punkten und Cashbacks</strong>! Je höher Ihr CHECK24 Level, desto mehr Vorteile auf <strong>ausgewählte Angebote</strong>.
+             </p>
+             <a href="#" className="text-[14.5px] font-medium hover:underline" style={{ color: "#022d94" }}>
+               anmelden, um noch mehr zu sparen
+             </a>
+           </div>
+         </section>
 
         {/* Voraussetzungen */}
         <section className="container mx-auto px-4 max-w-5xl">

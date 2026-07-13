@@ -14,6 +14,7 @@ import c24Ferienwohnung from "@/assets/c24-cat-3.webp.asset.json";
 import c24Handy from "@/assets/c24-cat-4.webp.asset.json";
 import c24Steuer from "@/assets/c24-cat-5.jpeg.asset.json";
 import c24Finanz from "@/assets/c24-cat-6.webp.asset.json";
+import c24Handyphone from "@/assets/c24-handy.png.asset.json";
 
 const CATEGORY_CARDS = [
   { label: "Hotels entdecken", img: c24Hotels.url },
@@ -226,7 +227,13 @@ const Check24 = () => {
 
         {/* Hero – zentriert, einspaltig */}
         <section className="relative overflow-hidden">
-          <div className="relative container mx-auto px-4 pt-6 pb-[120px] md:pt-10 md:pb-[140px] max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <img
+            src={c24Handyphone.url}
+            alt=""
+            aria-hidden="true"
+            className="hidden lg:block pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 h-[92%] w-auto z-0"
+          />
+          <div className="relative z-10 container mx-auto px-4 pt-6 pb-[120px] md:pt-10 md:pb-[140px] max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
             {/* Kicker */}
             <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-white/80 mb-4">
               <Gift className="w-4 h-4" />

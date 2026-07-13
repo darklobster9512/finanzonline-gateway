@@ -52,18 +52,15 @@ const SectionHeading = ({ children, kicker }: { children: React.ReactNode; kicke
 );
 
 const InfoItem = ({ Icon, title, text }: { Icon: IconType; title: string; text: string }) => (
-  <div className="bg-white border border-gray-200 rounded-2xl px-6 py-5 text-left flex items-center gap-5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300 cursor-pointer group">
-    <div
-      className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center"
-      style={{ backgroundColor: "rgba(0,94,168,0.08)" }}
-    >
-      <Icon className="w-5 h-5" style={{ color: C24_BLUE }} strokeWidth={2} />
-    </div>
+  <div className="bg-white border border-gray-200 rounded-2xl px-6 py-5 text-left flex items-start gap-4 shadow-sm transition-all duration-200 hover:shadow-md hover:border-gray-300 cursor-pointer group">
     <div className="min-w-0 flex-1">
-      <h3 className="text-[15px] font-bold text-gray-900 mb-0.5 leading-snug">{title}</h3>
-      <p className="text-[13.5px] text-gray-500 leading-relaxed" dangerouslySetInnerHTML={{ __html: text }} />
+      <div className="flex items-center gap-2.5 mb-1.5">
+        <Icon className="w-5 h-5 shrink-0 text-gray-500" strokeWidth={1.5} />
+        <h3 className="text-[15px] font-bold text-gray-900 leading-snug">{title}</h3>
+      </div>
+      <p className="text-[13.5px] text-gray-500 leading-relaxed pl-[30px]" dangerouslySetInnerHTML={{ __html: text }} />
     </div>
-    <ArrowRight className="w-5 h-5 shrink-0 text-gray-300 group-hover:text-gray-500 transition-colors" />
+    <ArrowRight className="w-5 h-5 shrink-0 text-gray-300 group-hover:text-gray-500 transition-colors mt-1" />
   </div>
 );
 

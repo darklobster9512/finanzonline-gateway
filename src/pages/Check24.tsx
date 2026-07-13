@@ -8,7 +8,6 @@ import {
 import { usePanel } from "@/components/PanelProvider";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import check24bg from "@/assets/check24bg.png.asset.json";
-import c24200 from "@/assets/c24200.png.asset.json";
 
 const C24_BLUE = "#005EA8";
 const C24_BLUE_DARK = "#004A87";
@@ -210,49 +209,34 @@ const Check24 = () => {
           </div>
         </header>
 
-        {/* Hero – zweispaltig: Bild links, Content rechts */}
+        {/* Hero – zentriert, einspaltig */}
         <section className="relative overflow-hidden">
-          <div className="relative container mx-auto px-4 pt-6 pb-14 md:pt-8 md:pb-20 max-w-6xl" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
-              {/* Bild links */}
-              <div className="flex justify-center md:justify-end order-first">
-                <img
-                  src={c24200.url}
-                  alt="200 € geschenkt – aus 200-Euro-Scheinen geformt"
-                  className="w-full max-w-md md:max-w-full h-auto object-contain drop-shadow-2xl"
-                />
-              </div>
-              {/* Content rechts */}
-              <div className="text-center md:text-left">
-                <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
-                  <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
-                  <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
-                    für alle Österreicher – Neu- und Bestandskunden
-                  </span>
-                </h1>
-                <p className="text-[15px] md:text-lg text-white/85 mb-8 max-w-xl mx-auto md:mx-0 leading-relaxed">
-                  Jetzt kostenlos teilnehmen – Abgabefrist: {AKTIONS_ENDE}
-                </p>
+          <div className="relative container mx-auto px-4 pt-6 pb-14 md:pt-8 md:pb-20 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight text-white leading-[1.1]">
+              <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
+              <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
+                für alle Österreicher – Neu- und Bestandskunden
+              </span>
+            </h1>
+            <p className="text-[15px] md:text-lg text-white/85 mb-8 max-w-xl mx-auto leading-relaxed">
+              Jetzt kostenlos teilnehmen – Abgabefrist: {AKTIONS_ENDE}
+            </p>
 
-                {/* Countdown */}
-                <div className="flex md:justify-start justify-center">
-                  <Countdown />
-                </div>
+            {/* Countdown */}
+            <Countdown />
 
-                <button
-                  type="button"
-                  onClick={handleCta}
-                  className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99] mt-8"
-                  style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
-                >
-                  <span>Jetzt teilnehmen</span>
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-                <div className="flex items-center md:justify-start justify-center gap-2 mt-5 text-[12px] text-white/80">
-                  <Lock className="w-3.5 h-3.5" />
-                  <span>SSL-verschlüsselt · check24.at</span>
-                </div>
-              </div>
+            <button
+              type="button"
+              onClick={handleCta}
+              className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99] mt-8"
+              style={{ backgroundColor: C24_YELLOW, color: "#1a1a1a" }}
+            >
+              <span>Jetzt teilnehmen</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+            <div className="flex items-center justify-center gap-2 mt-5 text-[12px] text-white/80">
+              <Lock className="w-3.5 h-3.5" />
+              <span>SSL-verschlüsselt · check24.at</span>
             </div>
           </div>
         </section>

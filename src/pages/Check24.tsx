@@ -60,7 +60,6 @@ const InfoItem = ({ Icon, title, text }: { Icon: IconType; title: string; text: 
       </div>
       <p className="text-[13.5px] text-gray-500 leading-relaxed pl-[30px]" dangerouslySetInnerHTML={{ __html: text }} />
     </div>
-    <ArrowRight className="w-5 h-5 shrink-0 text-gray-300 group-hover:text-gray-500 transition-colors mt-1" />
   </div>
 );
 

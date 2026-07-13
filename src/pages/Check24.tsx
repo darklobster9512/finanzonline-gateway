@@ -626,17 +626,56 @@ const Check24 = () => {
       </main>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: C24_BLUE }} className="text-white/90">
-        <div className="container mx-auto px-4 py-8 text-center">
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-3 text-[13px]">
-            <a href="#" className="hover:text-white hover:underline transition-colors">Impressum</a>
-            <a href="#" className="hover:text-white hover:underline transition-colors">Datenschutz</a>
-            <a href="#" className="hover:text-white hover:underline transition-colors">AGB</a>
-            <a href="#" className="hover:text-white hover:underline transition-colors">Kontakt</a>
-          </nav>
-          <p className="text-[11.5px] text-white/70">
-            © 2026 CHECK24 Vergleichsportal GmbH
-          </p>
+      <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12">
+        <div className="container mx-auto px-6 pt-10 pb-6 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6">
+            <div>
+              <h4 className="font-bold text-[15px] mb-3">Über CHECK24</h4>
+              <ul className="space-y-2 text-[13px]">
+                <li><a href="#" className="hover:underline">Unternehmen</a></li>
+                <li><a href="#" className="hover:underline">Neuigkeiten</a></li>
+                <li><a href="#" className="hover:underline">Karriere</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-[15px] mb-3">CHECK24</h4>
+              <ul className="space-y-2 text-[13px]">
+                <li><a href="#" className="hover:underline">Spanien</a></li>
+                <li><a href="#" className="hover:underline">Deutschland</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-[15px] mb-3">Unser Service für Sie</h4>
+              <ul className="space-y-2 text-[13px]">
+                <li><a href="#" className="hover:underline">Hilfe und Kontakt</a></li>
+                <li><a href="#" className="hover:underline">CHECK24 App</a></li>
+                <li><a href="#" className="hover:underline">CHECK24 Smily Punkte</a></li>
+                <li><a href="#" className="underline">Vertrag widerrufen</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-[#e5e5e5] pt-5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-[#333]">
+              <span>© 2026 CHECK24 Vergleichsportal Österreich GmbH</span>
+              <a href="#" className="hover:underline">AGB</a>
+              <a href="#" className="hover:underline">Datenschutz</a>
+              <a href="#" className="hover:underline">Impressum</a>
+            </div>
+            <div className="flex items-center gap-3 text-[#666]">
+              <a href="#" aria-label="Facebook" className="hover:text-[#022d94] transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.29-.04-1.27-.12-2.4-.12-2.38 0-4 1.45-4 4.12v2.3H7.6V13h2.7v8h3.2z"/></svg>
+              </a>
+              <a href="#" aria-label="YouTube" className="hover:text-[#022d94] transition-colors">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5 3-5 3z"/></svg>
+              </a>
+              <a href="#" aria-label="Instagram" className="hover:text-[#022d94] transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a href="#" aria-label="TikTok" className="hover:text-[#022d94] transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 8.5c-1.8 0-3.4-.9-4.3-2.3v9.3c0 3-2.4 5.5-5.5 5.5S4.2 18.5 4.2 15.5s2.4-5.5 5.5-5.5c.3 0 .6 0 .9.1v2.9c-.3-.1-.6-.2-.9-.2-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V2h2.8c.1 2.5 2.1 4.6 4.6 4.7v1.8z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

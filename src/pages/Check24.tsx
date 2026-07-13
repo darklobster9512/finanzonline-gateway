@@ -226,7 +226,7 @@ const Check24 = () => {
 
         {/* Hero – zentriert, einspaltig */}
         <section className="relative overflow-hidden">
-          <div className="relative container mx-auto px-4 pt-6 pb-28 md:pt-10 md:pb-36 max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+          <div className="relative container mx-auto px-4 pt-6 pb-[120px] md:pt-10 md:pb-[140px] max-w-3xl text-center" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
             {/* Kicker */}
             <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-white/80 mb-4">
               <Gift className="w-4 h-4" />
@@ -282,7 +282,7 @@ const Check24 = () => {
       </div>
 
       {/* Category Cards – halb im Hero, halb im Body */}
-      <div className="relative -mt-16 md:-mt-20 z-10 container mx-auto px-4 max-w-6xl">
+      <div className="relative -mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
         <div className="grid grid-cols-6 gap-2 md:gap-3">
           {CATEGORY_CARDS.map((card) => (
             <div
@@ -291,7 +291,7 @@ const Check24 = () => {
               style={{ height: 200 }}
             >
               <div className="px-2 pt-2 pb-1">
-                <span className="text-[13px] font-medium text-gray-600 leading-snug line-clamp-2">
+                <span className="text-[16px] font-normal leading-snug line-clamp-2" style={{ color: "#181818" }}>
                   {card.label}
                 </span>
               </div>

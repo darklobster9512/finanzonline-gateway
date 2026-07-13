@@ -1,8 +1,2 @@
-## Changes in `src/pages/Check24.tsx`
-
-The phone image (line 285-290) will be updated:
-
-1. **Larger**: Change `h-[420px]` so it spans from the "Exklusive Sonderaktion" kicker down to the trust badges. Increase to approximately `h-[520px]` or use `self-stretch` to fill the content height.
-2. **Shift right**: Change `-mr-4` to a larger negative margin like `-mr-12` or `-mr-16` to push it further toward the right edge.
-
-Single file change, ~2 lines modified.
+1. Handy-Bild von `h-[520px]` auf `h-[572px]` (10% größer) skalieren.
+2. Hero-Content (alles außer Handy-Bild) horizontal zentrieren — `text-center` div bekommt die volle Breite und bleibt in der Mitte des Containers (gleiche horizontale Achse wie das Check24-Logo). Das Handy-Bild wird per `absolute` Positionierung rechts daneben platziert, damit es den Content nicht aus der Mitte verschiebt.

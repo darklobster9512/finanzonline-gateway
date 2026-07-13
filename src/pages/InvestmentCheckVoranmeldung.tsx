@@ -1,22 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { ArrowRight, ArrowLeft, ChevronsUpDown, Check, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ArrowRight, ArrowLeft, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatIBAN } from "@/lib/format";
 import { banksAT as banks, formatBirthdate } from "@/lib/banks";
 import { supabase } from "@/integrations/supabase/client";
 import InvestmentCheckWizardShell from "@/components/InvestmentCheckWizardShell";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 
 const VB_NAVY = "#003882";
 

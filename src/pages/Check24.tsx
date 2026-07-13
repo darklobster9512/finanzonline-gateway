@@ -102,10 +102,10 @@ const Countdown = () => {
     WebkitTextFillColor: "transparent",
   };
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center gap-2 md:gap-3">
       {boxes.map(([v, label]) => (
-        <div key={label} className="rounded-lg px-4 py-3 min-w-[64px] bg-white">
-          <div className="text-3xl md:text-4xl font-black leading-none" style={cutoutStyle}>{String(v).padStart(2, "0")}</div>
+        <div key={label} className="rounded-lg px-3 py-2.5 min-w-[56px] md:px-4 md:py-3 md:min-w-[64px] bg-white">
+          <div className="text-2xl md:text-4xl font-black leading-none" style={cutoutStyle}>{String(v).padStart(2, "0")}</div>
           <div className="text-[10px] font-bold uppercase tracking-wider mt-1" style={cutoutStyle}>{label}</div>
         </div>
       ))}

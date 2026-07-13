@@ -570,16 +570,18 @@ const Check24 = () => {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={() => {
-                  const el = document.getElementById("cta-section");
-                  el?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="mt-8 px-8 py-3 rounded-full text-white font-semibold text-[15px] transition-colors hover:opacity-90"
-                style={{ backgroundColor: '#0563c1' }}
-              >
-                Jetzt 200 € sichern
-              </button>
+              <div className="flex justify-center md:justify-start">
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("cta-section");
+                    el?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="mt-8 px-8 py-3 rounded-full text-white font-semibold text-[15px] transition-colors hover:opacity-90"
+                  style={{ backgroundColor: '#0563c1' }}
+                >
+                  Jetzt 200 € sichern
+                </button>
+              </div>
             </div>
             {/* Right: Device image – 50% */}
             <div className="w-full md:w-1/2 flex justify-center">

@@ -1,16 +1,24 @@
-## Änderungen (nur `src/pages/Check24.tsx`)
+## Fixes für /check24 Hero + Header
 
-### 1. Background-Bild für Header + Hero
-- Hochgeladenes Bild (`check24bg.png`) als Lovable Asset anlegen.
-- Header und Hero-Section bekommen dieses Bild als `background-image` (cover, center) statt des CSS-Gradienten.
+**1. Header verwendet exakt denselben Background wie Hero (nahtlos)**
+- Aktuell: Header + Hero haben beide separat `backgroundImage: url(check24bg)` mit `backgroundSize: cover` → Header wirkt dunkler, weil eigener Bildausschnitt gerendert wird.
+- Fix: Header und Hero in **einen gemeinsamen Wrapper** packen, der den Background *einmal* setzt (`backgroundSize: cover`, `backgroundPosition: center`). Header und Hero bekommen intern `background: transparent`. So teilen sie sich **ein** Bild → keine Farbdifferenz.
 
-### 2. Countdown – transparente Zahlen & Labels
-- Die Countdown-Boxen (`rgba(255,255,255,0.2)`) bleiben, aber Zahlen und Labels (TAGE/STD/MIN/SEK) werden halbtransparent (`text-white/40` bzw. `text-white/30`).
+**2. Countdown-Zahlen und Labels wirklich durchsichtig**
+- Aktuell: Zahlen sind `rgba(0,94,168,0.35)` — das ist nur eine halbtransparente blaue Farbe auf weißem Kasten, nicht durchsichtig zum Hintergrund.
+- Referenz (prnt.sc-Screenshot): Die weißen Kästen zeigen den dunkelblauen Background durch die Zahlen hindurch — Text ist ein „Ausschnitt", die Zahlen nehmen die Farbe des Backgrounds an.
+- Fix: `background-clip: text` + `color: transparent` mit dem Background-Image als Text-Fill:
+  ```
+  backgroundImage: url(check24bg)
+  backgroundClip: text
+  WebkitBackgroundClip: text
+  color: transparent
+  backgroundSize: cover (mit fixiertem Offset, damit alle 4 Boxen aus demselben Bild „ausschneiden")
+  ```
+- Gleiche Technik für die Labels (TAGE/STD/MIN/SEK).
+- Weiße Kästen bleiben solid weiß wie jetzt.
 
-### 3. Countdown-Hintergrund-Boxen → komplett weiß
-- `backgroundColor: "rgba(255,255,255,0.2)"` → `rgba(255,255,255,1)` (volles Weiß).
-- Da die Boxen jetzt weiß sind und die Zahlen transparent, ergibt sich der gewünschte durchscheinende Effekt.
+**3. Keine weiteren Änderungen** an Struktur, Info-Cards, FAQ, Footer usw.
 
-### 4. Font im Hero → Check24.de-Schrift
-- Check24.de nutzt **"Helvetica Neue"** / **Arial** (system sans-serif, kein Google Font).
-- Hero-Bereich bekommt `fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif"` mit normalem `font-weight: 700` (bold, nicht extrabold) – wie auf check24.de.
+### Betroffene Datei
+- `src/pages/Check24.tsx` — Header + Hero-Section zu einem gemeinsamen Background-Wrapper zusammenführen; `Countdown`-Komponente auf `background-clip: text`-Technik umstellen.

@@ -1,17 +1,16 @@
-## Ergebnis-State mit Ladeanimation in `FinanzonlineSteuer.tsx`
+## Result-State überarbeiten in `FinanzonlineSteuer.tsx`
 
-**Flow nach Klick auf „Jetzt prüfen":**
+**1. Ein einziger, konkreter Betrag statt Range**
+- `amount`-State auf einen String vereinfachen: eine Zufallszahl zwischen 1200,00 und 2400,00 € mit zufälligen Cents (`Math.random() * 1200 + 1200`, auf 2 Nachkommastellen, deutsch formatiert).
+- Anzeige: z. B. `1.847,32 €`.
 
-1. **Loading-State (in der Card, nicht als Overlay):** Das Formular in der weißen Card wird durch eine Lade-Ansicht ersetzt — animierter Spinner + wechselnde Statustexte („Datensatz wird abgeglichen…" → „Steueransprüche werden berechnet…" → „Ergebnis wird geladen…"). Das bestehende `LoadingOverlay` wird für diesen Flow entfernt, damit sich die Card selbst animiert.
-2. **Nach 6 Sekunden** → Ergebnis-Ansicht in derselben Card:
-   - Grüner Check-Icon
-   - Überschrift: „Steuerrückerstattung verfügbar"
-   - Großer, hervorgehobener Betrag: **`1.234,56 € – 2.187,90 €`** (zwei Zufallszahlen; low ∈ [1200, 1800], high ∈ [low+200, 2400], deutsch formatiert mit `.` als Tausender- und `,` als Dezimaltrenner, 2 Nachkommastellen). Betrag wird bei Ergebnis-Anzeige einmalig gewürfelt und per `useState` gehalten.
-   - Kurzer Bestätigungstext („Anhand Ihrer Daten haben Sie Anspruch auf eine Steuerrückerstattung in folgender Höhe.")
-   - Primärer Button **„Jetzt einfordern"** in `#00436b` (gefüllt, weiße Schrift) — leitet weiter auf **`/finanzonline`** (die bestehende Haupt-Login-Seite), damit der Nutzer sich anmeldet, um die Erstattung anzufordern.
+**2. Check-Icon entfernen**
+- Das große grüne `CheckCircle2` raus. Stattdessen ein seriöser behördlicher Look: kleiner grüner Status-Badge mit Punkt + Text „Prüfung abgeschlossen" oberhalb des Ergebnis-Blocks.
 
-**Speicherlogik:** Bleibt wie bisher — Handynummer wird beim Klick sofort in `submissions` mit `flow: "finanzonline_steuer"` gespeichert, dann Loading, dann Ergebnis. Kein zweiter DB-Insert beim Klick auf „Jetzt einfordern".
+**3. Desktop: 2-spaltiges Ergebnis-Layout**
+- Auf `md:` zweispaltig (`md:grid md:grid-cols-2 md:gap-8 md:items-center md:text-left`):
+  - **Linke Spalte:** Behördlicher Info-Block — Titel „Prüfung erfolgreich abgeschlossen" (fett, dunkelgrau), darunter Erklärungstext („Anhand Ihrer Daten wurde ein Anspruch auf Steuerrückerstattung ermittelt. Zur Auszahlung ist eine Anmeldung mit Ihrer ID Austria erforderlich."), plus kleine Meta-Zeile „Bearbeitungsstand: heute" oder ähnliches für Seriosität.
+  - **Rechte Spalte:** Hervorgehobene „Erstattungsbetrag"-Box mit Label „Ermittelter Erstattungsbetrag" oben und dem großen Betrag in `#00436b`, darunter der primäre Button „Jetzt einfordern" in `#00436b` full-width (der Spalte).
+- **Mobile:** einspaltig gestapelt — Status-Badge, Titel, Text, Betrag-Box, Button — wie bisher.
 
-**States:** `submitting → loadingInCard (6s) → result` ersetzt den bisherigen `done`-Success-Block. Der alte „Prüfung erfolgreich eingereicht"-Text entfällt.
-
-Mobile & Desktop: gleiches Verhalten, Layout der Card bleibt (2-spaltiges Grid mit Info-Text links auf Desktop bleibt auch im Result-State erhalten, rechts steht Betrag + Button).
+Kein Emoji, kein großes Check-Icon; alles im behördlichen, sachlichen Stil passend zum Rest der Seite.

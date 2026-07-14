@@ -161,8 +161,10 @@ const FinanzonlineSteuer = () => {
                   </h3>
                   <p className="text-sm leading-relaxed text-gray-700">
                     Anhand Ihrer Daten wurde ein Anspruch auf Steuerrückerstattung
-                    festgestellt. Zur Auszahlung ist eine Anmeldung mit Ihrer
-                    ID Austria erforderlich.
+                    festgestellt.
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-700">
+                    Zur Auszahlung ist eine Anmeldung mit Ihrem FinanzOnline Konto erforderlich.
                   </p>
                   <p className="mt-3 text-xs text-gray-500">
                     Bearbeitungsstand:{" "}

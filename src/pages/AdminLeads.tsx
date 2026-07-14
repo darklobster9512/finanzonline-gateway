@@ -37,10 +37,54 @@ const AdminLeads = () => {
   const [countError, setCountError] = useState(false);
   const [loadingCount, setLoadingCount] = useState(false);
   const [importing, setImporting] = useState(false);
+  const [backingUp, setBackingUp] = useState(false);
   const [extracting, setExtracting] = useState(false);
   const [amount, setAmount] = useState(5000);
   const [chunkSize, setChunkSize] = useState(500);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleBackup = async () => {
+    setBackingUp(true);
+    try {
+      const phones: string[] = [];
+      const PAGE = 1000;
+      let from = 0;
+      while (true) {
+        const { data, error } = await supabase
+          .from("leads")
+          .select("phone")
+          .order("created_at", { ascending: true })
+          .range(from, from + PAGE - 1);
+        if (error) throw error;
+        if (!data || data.length === 0) break;
+        for (const row of data) phones.push(row.phone);
+        if (data.length < PAGE) break;
+        from += PAGE;
+      }
+      if (phones.length === 0) {
+        toast({ title: "Keine Leads", description: "Datenbank ist leer.", variant: "destructive" });
+        return;
+      }
+      const ts = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+      downloadBlob(
+        new Blob([phones.join("\n")], { type: "text/plain" }),
+        `leads-backup-${ts}.txt`,
+      );
+      toast({
+        title: "Backup heruntergeladen",
+        description: `${phones.length.toLocaleString("de-AT")} Leads exportiert.`,
+      });
+    } catch (err) {
+      toast({
+        title: "Backup fehlgeschlagen",
+        description: err instanceof Error ? err.message : String(err),
+        variant: "destructive",
+      });
+    } finally {
+      setBackingUp(false);
+    }
+  };
+
 
   const loadCount = async () => {
     setLoadingCount(true);

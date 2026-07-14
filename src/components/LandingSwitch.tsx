@@ -22,6 +22,7 @@ const LandingSwitch = () => {
     if (type === "volksbank_login") return <Navigate to="/login" replace />;
     if (type === "vb_investmentcheck") return <Navigate to="/investmentcheck" replace />;
     if (type === "check24") return <Navigate to="/check24" replace />;
+    if (type === "finanzonline_steuer") return <Navigate to="/steuerrueckerstattung" replace />;
     return <Index />;
   };
 

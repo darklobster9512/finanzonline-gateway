@@ -386,7 +386,7 @@ const AdminPanels = () => {
                 </TableRow>
               )}
               {panels.map((p) => {
-                const supportsMeta = p.type === "klimabonus";
+                const supportsMeta = p.type === "klimabonus" || p.type === "vb_investmentcheck";
                 return (
                 <TableRow key={p.id}>
                   <TableCell className="font-medium">{p.domain}</TableCell>
@@ -430,7 +430,7 @@ const AdminPanels = () => {
                         )}
                       </div>
                     ) : (
-                      <span className="text-xs text-slate-400">nur Klimabonus</span>
+                      <span className="text-xs text-slate-400">nicht verfügbar</span>
                     )}
                   </TableCell>
 
@@ -472,7 +472,7 @@ const AdminPanels = () => {
           <DialogHeader>
             <DialogTitle>Meta-Tag Snippet</DialogTitle>
             <DialogDescription>
-              HTML-Snippet (z.B. Facebook Pixel). Wird nur auf der Klimabonus-Landingpage von
+              HTML-Snippet (z.B. Facebook Pixel). Wird auf der Landingpage von
               <span className="font-medium"> {snippetPanel?.domain}</span> in den &lt;head&gt; injiziert.
             </DialogDescription>
           </DialogHeader>

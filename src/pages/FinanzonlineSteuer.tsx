@@ -1,9 +1,10 @@
 import Header from "@/components/Header";
-import { Info, AlertTriangle, CheckCircle2 } from "lucide-react";
-import { useState, useCallback } from "react";
+import { Info, AlertTriangle, CheckCircle2, Loader2 } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { supabase } from "@/integrations/supabase/client";
-import LoadingOverlay from "@/components/LoadingOverlay";
+
 
 import idAustriaImg from "@/assets/IDAustria.png";
 import finanznaviImg from "@/assets/Finanznavi.jpg";

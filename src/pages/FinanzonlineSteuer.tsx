@@ -94,7 +94,7 @@ const FinanzonlineSteuer = () => {
             </h2>
           </div>
 
-          <div className="mx-5 mt-4 rounded-md bg-[#fff3cd] px-4 py-3">
+          <div className="mx-5 mt-4 rounded-md bg-[#fff3cd] px-4 py-3 md:hidden">
             <div className="flex items-start gap-2">
               <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#856404]" />
               <p className="text-sm text-[#856404]">

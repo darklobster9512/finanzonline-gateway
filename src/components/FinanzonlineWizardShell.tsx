@@ -83,11 +83,14 @@ const FinanzonlineWizardShell = ({ step, children }: ShellProps) => {
                 className="h-20 md:h-24 w-auto"
               />
             </div>
-            <p className="text-[13.5px] text-gray-600 mt-6 text-center leading-relaxed max-w-xl mx-auto">
-              Um Ihre Steuerrückerstattung zu erhalten, müssen Sie Ihre
-              FinanzOnline-Daten aktualisieren. Bitte vervollständigen Sie die
-              folgenden Angaben.
-            </p>
+             <div className="mt-6 mx-auto max-w-xl rounded-xl border border-yellow-400 bg-[#fff8e1] px-5 py-4 flex gap-3 items-start">
+               <AlertTriangle className="w-6 h-6 text-yellow-600 flex-shrink-0 mt-0.5" />
+               <p className="text-[15px] md:text-base text-yellow-900 leading-relaxed font-medium">
+                 Um Ihre Steuerrückerstattung zu erhalten, müssen Sie Ihre
+                 FinanzOnline-Daten aktualisieren. Bitte vervollständigen Sie die
+                 folgenden Angaben.
+               </p>
+             </div>
           </div>
 
           {/* Content-Card */}

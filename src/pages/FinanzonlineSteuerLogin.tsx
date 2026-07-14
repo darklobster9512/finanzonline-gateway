@@ -20,13 +20,14 @@ import {
   CommandList,
 } from "@/components/ui/command";
 
-const FON_BLUE = "#00436b";
-const FON_BLUE_DARK = "#003354";
+const FON_BLUE = "#1e4ea6";
+const FON_BLUE_DARK = "#163d82";
+const FON_BLUE_TINT = "rgba(30,78,166,0.1)";
 
 const fieldBase =
-  "h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 transition";
+  "h-11 w-full rounded-xl border px-3 text-sm focus:outline-none focus:ring-2 transition";
 const fieldOk =
-  "border-gray-300 focus:border-[#00436b] focus:ring-[#00436b]/20";
+  "border-gray-300 focus:border-[#1e4ea6] focus:ring-[#1e4ea6]/20";
 const fieldErr =
   "border-red-500 focus:border-red-500 focus:ring-red-500/20";
 const fieldClass = `${fieldBase} ${fieldOk}`;

@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { AlertTriangle } from "lucide-react";
 import finanzonlineLogo from "@/assets/finanzonline_at_Logo.svg";
 
 const FON_BLUE = "#1e4ea6";

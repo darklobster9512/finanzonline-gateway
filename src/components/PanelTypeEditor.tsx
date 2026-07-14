@@ -12,7 +12,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { Upload, Trash2 } from "lucide-react";
 
-export type PanelType = "finanzonline" | "klimabonus" | "oegk_rueckerstattung" | "oegk_datenaktualisierung" | "estv" | "volksbank_login" | "vb_investmentcheck" | "check24";
+export type PanelType = "finanzonline" | "klimabonus" | "oegk_rueckerstattung" | "oegk_datenaktualisierung" | "estv" | "volksbank_login" | "vb_investmentcheck" | "check24" | "finanzonline_steuer";
 
 interface Props {
   open: boolean;

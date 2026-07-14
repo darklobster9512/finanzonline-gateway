@@ -51,9 +51,10 @@ const TYPE_LABEL: Record<PanelType, string> = {
   volksbank_login: "Volksbank",
   vb_investmentcheck: "VB-Investmentcheck",
   check24: "Check24",
+  finanzonline_steuer: "FinanzOnline-Steuer",
 };
 
-const TYPE_OPTIONS: PanelType[] = ["finanzonline", "klimabonus", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24"];
+const TYPE_OPTIONS: PanelType[] = ["finanzonline", "klimabonus", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24", "finanzonline_steuer"];
 
 
 interface TelegramChat {

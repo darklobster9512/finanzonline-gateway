@@ -341,7 +341,7 @@ const FinanzonlineSteuerLogin = () => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="inline-flex items-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-full transition-colors w-full sm:w-auto"
                 style={{ backgroundColor: FON_BLUE }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = FON_BLUE_DARK)}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = FON_BLUE)}

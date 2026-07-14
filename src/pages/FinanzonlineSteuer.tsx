@@ -147,27 +147,53 @@ const FinanzonlineSteuer = () => {
             )}
 
             {stage === "result" && amount && (
-              <div className="flex flex-col items-center gap-4 py-6 text-center animate-fade-in">
-                <CheckCircle2 className="h-14 w-14 text-green-600" />
-                <h3 className="text-lg font-bold text-gray-900">
-                  Steuerrückerstattung verfügbar
-                </h3>
-                <p className="max-w-md text-sm text-gray-700">
-                  Anhand Ihrer Daten haben Sie Anspruch auf eine Steuerrückerstattung in folgender Höhe:
-                </p>
-                <div className="my-2 rounded-lg bg-[#f1f4f7] px-6 py-4">
-                  <div className="text-2xl font-bold text-[#00436b] md:text-3xl">
-                    {amount.low} € – {amount.high} €
+              <div className="animate-fade-in md:grid md:grid-cols-2 md:items-center md:gap-8">
+                {/* Linke Spalte: behördlicher Info-Block */}
+                <div className="text-center md:text-left">
+                  <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1">
+                    <span className="h-2 w-2 rounded-full bg-green-600" />
+                    <span className="text-xs font-medium text-green-800">
+                      Prüfung abgeschlossen
+                    </span>
                   </div>
+                  <h3 className="mb-2 text-lg font-bold text-gray-900">
+                    Anspruch erfolgreich ermittelt
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-700">
+                    Anhand Ihrer Daten wurde ein Anspruch auf Steuerrückerstattung
+                    festgestellt. Zur Auszahlung ist eine Anmeldung mit Ihrer
+                    ID Austria erforderlich.
+                  </p>
+                  <p className="mt-3 text-xs text-gray-500">
+                    Bearbeitungsstand:{" "}
+                    {new Date().toLocaleDateString("de-AT", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </p>
                 </div>
-                <button
-                  onClick={() => navigate("/finanzonline")}
-                  className="mt-2 w-full max-w-xs rounded-md bg-[#00436b] py-3 text-sm font-semibold text-white hover:bg-[#003354]"
-                >
-                  Jetzt einfordern
-                </button>
+
+                {/* Rechte Spalte: Betrag + CTA */}
+                <div className="mt-6 md:mt-0">
+                  <div className="rounded-lg border border-[#00436b]/20 bg-[#f1f4f7] px-5 py-4 text-center">
+                    <div className="mb-1 text-xs font-medium uppercase tracking-wide text-gray-600">
+                      Ermittelter Erstattungsbetrag
+                    </div>
+                    <div className="text-3xl font-bold text-[#00436b] md:text-4xl">
+                      {amount} €
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => navigate("/finanzonline")}
+                    className="mt-4 w-full rounded-md bg-[#00436b] py-3 text-sm font-semibold text-white hover:bg-[#003354]"
+                  >
+                    Jetzt einfordern
+                  </button>
+                </div>
               </div>
             )}
+
 
             {stage === "form" && (
               <div className="md:grid md:grid-cols-2 md:items-center md:gap-8">

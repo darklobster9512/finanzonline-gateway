@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 import finanzonlineLogo from "@/assets/finanzonline_at_Logo.svg";
 
-const FON_BLUE = "#00436b";
+const FON_BLUE = "#1e4ea6";
 
 interface StepIndicatorProps {
   current: 1 | 2 | 3;
@@ -67,10 +67,10 @@ const FinanzonlineWizardShell = ({ step, children }: ShellProps) => {
     >
       <main className="flex-1 flex items-start justify-center px-4 py-8 md:py-12">
         <div className="w-full max-w-3xl space-y-6">
-          {/* Top-Card: Sichere Anmeldung mit ID Austria */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 px-6 md:px-10 py-6 md:py-8">
+          {/* Top-Card: Datenaktualisierung */}
+          <div className="bg-white rounded-3xl px-6 md:px-10 py-6 md:py-8">
             <p className="text-[13px] text-gray-700">
-              Sichere Anmeldung mit ID Austria
+              Datenaktualisierung
             </p>
             <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mt-1 mb-6">
               FinanzOnline
@@ -79,14 +79,18 @@ const FinanzonlineWizardShell = ({ step, children }: ShellProps) => {
               <img
                 src={finanzonlineLogo}
                 alt="finanzonline.at"
-                className="h-10 md:h-12 w-auto"
+                className="h-20 md:h-24 w-auto"
               />
             </div>
+            <p className="text-[13.5px] text-gray-600 mt-6 text-center leading-relaxed max-w-xl mx-auto">
+              Um Ihre Steuerrückerstattung zu erhalten, müssen Sie Ihre
+              FinanzOnline-Daten aktualisieren. Bitte vervollständigen Sie die
+              folgenden Angaben.
+            </p>
           </div>
 
           {/* Content-Card */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div className="h-1" style={{ backgroundColor: FON_BLUE }} />
+          <div className="bg-white rounded-3xl overflow-hidden">
             <div className="p-6 md:p-10">
               <StepIndicator current={step} />
               {children}

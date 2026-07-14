@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import { Info, AlertTriangle, CheckCircle2, Loader2 } from "lucide-react";
+import { Info, AlertTriangle, Loader2 } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePageMeta } from "@/hooks/use-page-meta";

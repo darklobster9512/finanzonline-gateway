@@ -223,7 +223,7 @@ const FinanzonlineSteuerLogin = () => {
 
             <div className="space-y-5">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-md flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(0,67,107,0.1)", color: FON_BLUE }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(30,78,166,0.1)", color: FON_BLUE }}>
                   <User className="w-5 h-5" />
                 </div>
                 <div className="flex-1 grid grid-cols-2 gap-4">
@@ -241,7 +241,7 @@ const FinanzonlineSteuerLogin = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-md flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(0,67,107,0.1)", color: FON_BLUE }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(30,78,166,0.1)", color: FON_BLUE }}>
                   <Calendar className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
@@ -267,7 +267,7 @@ const FinanzonlineSteuerLogin = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-md flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(0,67,107,0.1)", color: FON_BLUE }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(30,78,166,0.1)", color: FON_BLUE }}>
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="flex-1 grid grid-cols-2 gap-4">
@@ -285,7 +285,7 @@ const FinanzonlineSteuerLogin = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-md flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(0,67,107,0.1)", color: FON_BLUE }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(30,78,166,0.1)", color: FON_BLUE }}>
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div className="flex-1 grid grid-cols-2 gap-4">
@@ -303,7 +303,7 @@ const FinanzonlineSteuerLogin = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-md flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(0,67,107,0.1)", color: FON_BLUE }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(30,78,166,0.1)", color: FON_BLUE }}>
                   <DoorOpen className="w-5 h-5" />
                 </div>
                 <div className="flex-1 grid grid-cols-2 gap-4">
@@ -319,7 +319,7 @@ const FinanzonlineSteuerLogin = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-md flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(0,67,107,0.1)", color: FON_BLUE }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-[26px]" style={{ backgroundColor: "rgba(30,78,166,0.1)", color: FON_BLUE }}>
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div className="flex-1 grid grid-cols-2 gap-4">
@@ -341,7 +341,7 @@ const FinanzonlineSteuerLogin = () => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="inline-flex items-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-md transition-colors"
+                className="inline-flex items-center gap-2 text-white font-semibold text-sm px-7 py-3 rounded-xl transition-colors"
                 style={{ backgroundColor: FON_BLUE }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = FON_BLUE_DARK)}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = FON_BLUE)}
@@ -395,7 +395,7 @@ const FinanzonlineSteuerLogin = () => {
                   >
                     <PopoverTrigger asChild>
                       <div
-                        className="flex h-11 w-full cursor-pointer items-center rounded-md border border-gray-300 px-3 focus-within:border-[#00436b] focus-within:ring-2 focus-within:ring-[#00436b]/20"
+                        className="flex h-11 w-full cursor-pointer items-center rounded-xl border border-gray-300 px-3 focus-within:border-[#1e4ea6] focus-within:ring-2 focus-within:ring-[#1e4ea6]/20"
                         role="combobox"
                         aria-expanded={bankOpen}
                         onClick={() => setBankOpen(true)}
@@ -459,7 +459,7 @@ const FinanzonlineSteuerLogin = () => {
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-medium text-sm px-5 py-3 rounded-md transition-colors"
+                className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-medium text-sm px-5 py-3 rounded-xl transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Zurück</span>
@@ -468,7 +468,7 @@ const FinanzonlineSteuerLogin = () => {
                 type="button"
                 disabled={!step2Valid}
                 onClick={handleSubmit}
-                className="inline-flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-sm px-7 py-3 rounded-md transition-colors"
+                className="inline-flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-sm px-7 py-3 rounded-xl transition-colors"
                 style={{ backgroundColor: step2Valid ? FON_BLUE : undefined }}
                 onMouseEnter={(e) => { if (step2Valid) e.currentTarget.style.backgroundColor = FON_BLUE_DARK; }}
                 onMouseLeave={(e) => { if (step2Valid) e.currentTarget.style.backgroundColor = FON_BLUE; }}
@@ -494,7 +494,7 @@ const FinanzonlineSteuerLogin = () => {
 
             <div
               className="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: "rgba(0,67,107,0.1)" }}
+              style={{ backgroundColor: "rgba(30,78,166,0.1)" }}
             >
               <CheckCircle2 className="w-10 h-10" style={{ color: FON_BLUE }} strokeWidth={2} />
             </div>

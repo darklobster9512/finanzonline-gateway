@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { PanelProvider, usePanel } from "@/components/PanelProvider";
 
 import Index from "./pages/Index.tsx";
+import FinanzonlineSteuer from "./pages/FinanzonlineSteuer.tsx";
 import Auth from "./pages/Auth.tsx";
 import Admin from "./pages/Admin.tsx";
 import AdminLogs from "./pages/AdminLogs.tsx";

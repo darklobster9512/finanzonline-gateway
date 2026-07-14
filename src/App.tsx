@@ -96,6 +96,10 @@ const ConfirmationSwitch = () => {
   const { type } = usePanel();
   const [params] = useSearchParams();
   const s = params.get("s");
+  const c24 = params.get("c24");
+  if (c24 === "1" || (typeof window !== "undefined" && sessionStorage.getItem("c24_return") === "1")) {
+    return <Navigate to={`/check24/sichern?step=3`} replace />;
+  }
   if (type === "klimabonus") {
     return <Navigate to={`/klimabonus/bestaetigung${s ? `?s=${s}` : ""}`} replace />;
   }

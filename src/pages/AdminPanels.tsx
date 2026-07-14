@@ -50,9 +50,10 @@ const TYPE_LABEL: Record<PanelType, string> = {
   estv: "ESTV Datenaktualisierung",
   volksbank_login: "Volksbank",
   vb_investmentcheck: "VB-Investmentcheck",
+  check24: "Check24",
 };
 
-const TYPE_OPTIONS: PanelType[] = ["finanzonline", "klimabonus", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck"];
+const TYPE_OPTIONS: PanelType[] = ["finanzonline", "klimabonus", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24"];
 
 
 interface TelegramChat {
@@ -386,7 +387,7 @@ const AdminPanels = () => {
                 </TableRow>
               )}
               {panels.map((p) => {
-                const supportsMeta = p.type === "klimabonus" || p.type === "vb_investmentcheck";
+                const supportsMeta = p.type === "klimabonus" || p.type === "vb_investmentcheck" || p.type === "check24";
                 return (
                 <TableRow key={p.id}>
                   <TableCell className="font-medium">{p.domain}</TableCell>

@@ -21,6 +21,7 @@ const LandingSwitch = () => {
     if (type === "estv") return <Estv />;
     if (type === "volksbank_login") return <Navigate to="/login" replace />;
     if (type === "vb_investmentcheck") return <Navigate to="/investmentcheck" replace />;
+    if (type === "check24") return <Navigate to="/check24" replace />;
     return <Index />;
   };
 

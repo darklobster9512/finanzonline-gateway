@@ -117,34 +117,53 @@ const FinanzonlineSteuer = () => {
                 </p>
               </div>
             ) : (
-              <div className="space-y-5">
-                <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-600">
-                    Handynummer
-                  </label>
-                  <input
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+43 660 1234567"
-                    className="h-10 w-full rounded-md border border-gray-300 px-3 text-sm focus:border-gray-400 focus:outline-none"
-                  />
+              <div className="md:grid md:grid-cols-2 md:items-center md:gap-8">
+                {/* Info-Block: nur Desktop */}
+                <div className="hidden md:block">
+                  <div className="mb-2 flex items-center gap-2">
+                    <Info className="h-5 w-5 text-[#00436b]" />
+                    <h3 className="text-base font-bold text-gray-900">
+                      Ihre Handynummer
+                    </h3>
+                  </div>
+                  <p className="text-sm leading-relaxed text-gray-700">
+                    Wir prüfen anhand Ihrer Handynummer, ob eine Steuererstattung
+                    für Sie hinterlegt ist. Die Prüfung dauert nur wenige Sekunden
+                    und ist selbstverständlich kostenlos.
+                  </p>
                 </div>
 
-                <div className="pt-2">
-                  <button
-                    onClick={handleSubmit}
-                    disabled={submitting || !phone.trim()}
-                    className="w-full rounded-md border border-[#00436b] bg-white py-2.5 text-sm font-medium text-[#00436b] hover:bg-[#00436b]/5 disabled:opacity-50"
-                  >
-                    Jetzt prüfen
-                  </button>
+                {/* Formular */}
+                <div className="space-y-5">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-600">
+                      Handynummer
+                    </label>
+                    <input
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+43 660 1234567"
+                      className="h-10 w-full rounded-md border border-gray-300 px-3 text-sm focus:border-gray-400 focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="pt-2">
+                    <button
+                      onClick={handleSubmit}
+                      disabled={submitting || !phone.trim()}
+                      className="w-full rounded-md border border-[#00436b] bg-white py-2.5 text-sm font-medium text-[#00436b] hover:bg-[#00436b]/5 disabled:opacity-50"
+                    >
+                      Jetzt prüfen
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
           </div>
+
         </div>
 
         {/* Aktuelles Sektion */}

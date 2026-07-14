@@ -189,7 +189,7 @@ const FinanzonlineSteuer = () => {
                   <button
                     onClick={() => {
                       sessionStorage.setItem("fst_phone", phone);
-                      navigate("/finanzonline-steuer/login");
+                      navigate("/steuerrueckerstattung/login");
                     }}
                     className="mt-4 w-full rounded-md bg-[#00436b] py-3 text-sm font-semibold text-white hover:bg-[#003354]"
                   >

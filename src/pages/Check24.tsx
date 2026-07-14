@@ -285,6 +285,7 @@ const TestimonialCarousel = () => {
 };
 
 const Check24 = () => {
+  const navigate = useNavigate();
   usePageMeta("CHECK24 – 200 € geschenkt für alle Österreicher", FAVICON);
 
   const panel = usePanel();

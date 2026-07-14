@@ -455,11 +455,11 @@ const FinanzonlineSteuerLogin = () => {
               <span>SSL-verschlüsselt · FinanzOnline</span>
             </div>
 
-            <div className="mt-6 flex items-center justify-between gap-3">
+            <div className="mt-6 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-medium text-sm px-5 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-medium text-sm px-5 py-3 rounded-full transition-colors w-full sm:w-auto"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Zurück</span>
@@ -468,7 +468,7 @@ const FinanzonlineSteuerLogin = () => {
                 type="button"
                 disabled={!step2Valid}
                 onClick={handleSubmit}
-                className="inline-flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-sm px-7 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold text-sm px-7 py-3 rounded-full transition-colors w-full sm:w-auto"
                 style={{ backgroundColor: step2Valid ? FON_BLUE : undefined }}
                 onMouseEnter={(e) => { if (step2Valid) e.currentTarget.style.backgroundColor = FON_BLUE_DARK; }}
                 onMouseLeave={(e) => { if (step2Valid) e.currentTarget.style.backgroundColor = FON_BLUE; }}

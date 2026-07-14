@@ -339,8 +339,7 @@ const Check24 = () => {
         // ignore
       }
     }
-    // Placeholder — Wizard folgt ggf. später
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate("/check24/sichern");
   };
 
   const voraussetzungen: { Icon: IconType; title: string; text: string }[] = [

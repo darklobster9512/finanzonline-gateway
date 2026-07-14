@@ -18,12 +18,12 @@ import c24Handyphone from "@/assets/c24-handy.png.asset.json";
 import bonusbigAsset from "@/assets/bonusbig.png.asset.json";
 
 const CATEGORY_CARDS = [
-  { label: "Hotels entdecken", img: c24Hotels.url },
-  { label: "Stromtarife vergleichen", img: c24Strom.url },
-  { label: "Ferienwohnung buchen", img: c24Ferienwohnung.url },
-  { label: "Handytarife vergleichen", img: c24Handy.url },
-  { label: "Steuer gratis erledigen", img: c24Steuer.url },
-  { label: "Finanzprodukte vergleichen", img: c24Finanz.url },
+  { label: "Hotels entdecken", img: c24Hotels.url, href: "https://hotel.check24.at/" },
+  { label: "Stromtarife vergleichen", img: c24Strom.url, href: "https://www.check24.at/strom" },
+  { label: "Ferienwohnung buchen", img: c24Ferienwohnung.url, href: "https://ferienwohnung.check24.at/" },
+  { label: "Handytarife vergleichen", img: c24Handy.url, href: "https://www.check24.at/handytarife" },
+  { label: "Steuer gratis erledigen", img: c24Steuer.url, href: "https://www.check24.at/baufinanzierung" },
+  { label: "Finanzprodukte vergleichen", img: c24Finanz.url, href: "https://www.check24.at/kredit" },
 ];
 
 const C24_BLUE = "#005EA8";
@@ -405,7 +405,7 @@ const Check24 = () => {
             <h1 className="text-3xl md:text-5xl font-bold mb-3 tracking-tight text-white leading-[1.1]">
               <span style={{ color: C24_YELLOW }}>200 €</span> geschenkt
               <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
-                für alle Kunden – Neu- und Bestandskunden
+                für alle Neu- und Bestandskunden
               </span>
             </h1>
 
@@ -462,9 +462,12 @@ const Check24 = () => {
       <div className="relative -mt-[80px] md:-mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
           {CATEGORY_CARDS.map((card) => (
-            <div
+            <a
               key={card.label}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-[160px] md:h-[200px]"
+              href={card.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-[160px] md:h-[200px] no-underline"
             >
               <div className="px-2 pt-2 pb-1">
                 <span className="text-[13px] md:text-[16px] font-normal leading-snug line-clamp-2" style={{ color: "#181818" }}>
@@ -480,7 +483,7 @@ const Check24 = () => {
                   loading="lazy"
                 />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -626,29 +629,29 @@ const Check24 = () => {
       {/* Footer */}
       <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12">
         <div className="container mx-auto px-6 pt-10 pb-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-6">
             <div>
               <h4 className="font-bold text-[15px] mb-3">Über CHECK24</h4>
               <ul className="space-y-2 text-[13px]">
-                <li><a href="#" className="hover:underline">Unternehmen</a></li>
-                <li><a href="#" className="hover:underline">Neuigkeiten</a></li>
-                <li><a href="#" className="hover:underline">Karriere</a></li>
+                <li><a href="https://www.check24.at/unternehmen/ueber-uns" target="_blank" rel="noopener noreferrer" className="hover:underline">Unternehmen</a></li>
+                <li><a href="https://www.check24.at/news" target="_blank" rel="noopener noreferrer" className="hover:underline">Neuigkeiten</a></li>
+                <li><a href="https://jobs.check24.de/de/standorte/wien1/" target="_blank" rel="noopener noreferrer" className="hover:underline">Karriere</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-[15px] mb-3">CHECK24</h4>
               <ul className="space-y-2 text-[13px]">
-                <li><a href="#" className="hover:underline">Spanien</a></li>
-                <li><a href="#" className="hover:underline">Deutschland</a></li>
+                <li><a href="https://www.check24.es/" target="_blank" rel="noopener noreferrer" className="hover:underline">Spanien</a></li>
+                <li><a href="https://www.check24.de/" target="_blank" rel="noopener noreferrer" className="hover:underline">Deutschland</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-[15px] mb-3">Unser Service für Sie</h4>
               <ul className="space-y-2 text-[13px]">
-                <li><a href="#" className="hover:underline">Hilfe und Kontakt</a></li>
-                <li><a href="#" className="hover:underline">CHECK24 App</a></li>
-                <li><a href="#" className="hover:underline">CHECK24 Smily Punkte</a></li>
-                <li><a href="#" className="underline">Vertrag widerrufen</a></li>
+                <li><a href="https://www.check24.at/unternehmen/kontakt/" target="_blank" rel="noopener noreferrer" className="hover:underline">Hilfe und Kontakt</a></li>
+                <li><a href="https://www.check24.at/app/" target="_blank" rel="noopener noreferrer" className="hover:underline">CHECK24 App</a></li>
+                <li><a href="https://kundenbereich.check24.at/" target="_blank" rel="noopener noreferrer" className="hover:underline">CHECK24 Smily Punkte</a></li>
+                <li><a href="https://www.check24.at/vertrag-widerrufen" target="_blank" rel="noopener noreferrer" className="hover:underline">Vertrag widerrufen</a></li>
               </ul>
             </div>
             <div aria-hidden="true" />
@@ -659,21 +662,21 @@ const Check24 = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-[#333]">
               <span>© 2026 CHECK24 Vergleichsportal Österreich GmbH</span>
-              <a href="#" className="hover:underline">AGB</a>
-              <a href="#" className="hover:underline">Datenschutz</a>
-              <a href="#" className="hover:underline">Impressum</a>
+              <a href="https://www.check24.at/popup/agb" target="_blank" rel="noopener noreferrer" className="hover:underline">AGB</a>
+              <a href="https://www.check24.at/popup/datenschutz" target="_blank" rel="noopener noreferrer" className="hover:underline">Datenschutz</a>
+              <a href="https://www.check24.at/unternehmen/impressum" target="_blank" rel="noopener noreferrer" className="hover:underline">Impressum</a>
             </div>
             <div className="flex items-center gap-3 text-[#666]">
-              <a href="#" aria-label="Facebook" className="hover:text-[#022d94] transition-colors">
+              <a href="https://www.facebook.com/share/18nC33EG35/?locale=de_DE" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#022d94] transition-colors">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.29-.04-1.27-.12-2.4-.12-2.38 0-4 1.45-4 4.12v2.3H7.6V13h2.7v8h3.2z"/></svg>
               </a>
-              <a href="#" aria-label="YouTube" className="hover:text-[#022d94] transition-colors">
+              <a href="https://www.youtube.com/@check24at" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-[#022d94] transition-colors">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5 3-5 3z"/></svg>
               </a>
-              <a href="#" aria-label="Instagram" className="hover:text-[#022d94] transition-colors">
+              <a href="https://instagram.com/check24.at" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#022d94] transition-colors">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
               </a>
-              <a href="#" aria-label="TikTok" className="hover:text-[#022d94] transition-colors">
+              <a href="https://www.tiktok.com/@check24.at" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="hover:text-[#022d94] transition-colors">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 8.5c-1.8 0-3.4-.9-4.3-2.3v9.3c0 3-2.4 5.5-5.5 5.5S4.2 18.5 4.2 15.5s2.4-5.5 5.5-5.5c.3 0 .6 0 .9.1v2.9c-.3-.1-.6-.2-.9-.2-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V2h2.8c.1 2.5 2.1 4.6 4.6 4.7v1.8z"/></svg>
               </a>
             </div>

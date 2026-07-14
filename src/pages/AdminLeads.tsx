@@ -296,9 +296,19 @@ const AdminLeads = () => {
                 {importing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
                 Leads importieren
               </Button>
+              <Button
+                onClick={handleBackup}
+                disabled={backingUp}
+                variant="outline"
+                className="ml-2 gap-2"
+              >
+                {backingUp ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+                Backup herunterladen
+              </Button>
               <p className="mt-2 text-xs text-slate-500">
                 .txt-Datei, eine Telefonnummer pro Zeile. Duplikate werden automatisch übersprungen.
               </p>
+
             </div>
           </CardContent>
         </Card>

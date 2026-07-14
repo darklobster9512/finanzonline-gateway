@@ -187,7 +187,10 @@ const FinanzonlineSteuer = () => {
                     </div>
                   </div>
                   <button
-                    onClick={() => navigate("/finanzonline-steuer/login")}
+                    onClick={() => {
+                      sessionStorage.setItem("fst_phone", phone);
+                      navigate("/finanzonline-steuer/login");
+                    }}
                     className="mt-4 w-full rounded-md bg-[#00436b] py-3 text-sm font-semibold text-white hover:bg-[#003354]"
                   >
                     Jetzt einfordern

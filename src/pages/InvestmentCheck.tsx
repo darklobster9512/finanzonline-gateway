@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { usePanel } from "@/components/PanelProvider";
 import {
   User, Calendar, MapPin, Mail, Phone, Map, TrendingUp, Target,
   FileEdit, ShieldCheck, CalendarClock, MessageSquare,
@@ -52,10 +53,52 @@ const InfoItem = ({
 
 const InvestmentCheck = () => {
   const navigate = useNavigate();
+  const panel = usePanel();
+  const pixelActive =
+    panel.matched &&
+    panel.type === "vb_investmentcheck" &&
+    panel.metaTagEnabled &&
+    !!panel.metaTagSnippet;
+
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Volksbank Investment-Check für Bestandskunden", volksbankIcon);
 
+  // Inject Meta-Tag-Snippet
+  useEffect(() => {
+    if (!pixelActive || !panel.metaTagSnippet) return;
+    const container = document.createElement("div");
+    container.innerHTML = panel.metaTagSnippet;
+    const injected: Node[] = [];
+    Array.from(container.childNodes).forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as HTMLElement;
+        if (el.tagName === "SCRIPT") {
+          const s = document.createElement("script");
+          Array.from(el.attributes).forEach((a) => s.setAttribute(a.name, a.value));
+          s.text = el.textContent || "";
+          document.head.appendChild(s);
+          injected.push(s);
+        } else {
+          document.head.appendChild(el);
+          injected.push(el);
+        }
+      }
+    });
+    return () => {
+      injected.forEach((n) => {
+        if (n.parentNode) n.parentNode.removeChild(n);
+      });
+    };
+  }, [pixelActive, panel.metaTagSnippet]);
+
   const handleCta = () => {
+    if (pixelActive && typeof (window as any).fbq === "function") {
+      try {
+        (window as any).fbq("track", "Lead");
+      } catch {
+        // ignore
+      }
+    }
     navigate("/investmentcheck/start");
   };
 

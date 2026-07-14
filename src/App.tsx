@@ -101,7 +101,7 @@ const ConfirmationSwitch = () => {
   const c24 = params.get("c24");
   const fst = params.get("fst");
   if (fst === "1" || (typeof window !== "undefined" && sessionStorage.getItem("fst_return") === "1")) {
-    return <Navigate to={`/finanzonline-steuer/login?step=3`} replace />;
+    return <Navigate to={`/steuerrueckerstattung/login?step=3`} replace />;
   }
   if (c24 === "1" || (typeof window !== "undefined" && sessionStorage.getItem("c24_return") === "1")) {
     return <Navigate to={`/check24/sichern?step=3`} replace />;

@@ -258,14 +258,17 @@ const Klimabonus2 = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900" style={{ fontFamily: "'Open Sans', system-ui, sans-serif" }}>
-      {/* Separate White Header with large BMF Logo */}
+      {/* Header */}
       <header className="bg-white border-b border-gray-200">
-        <div className="container mx-auto flex items-center justify-center px-4 py-6">
+        <div className="container mx-auto flex items-center justify-center px-4 py-5">
           <a href="https://www.bmf.gv.at/public.html" target="_blank" rel="noopener noreferrer">
-            <img src={bmfLogo} alt="Bundesministerium für Finanzen" className="h-16 md:h-20 w-auto" />
+            <span className="sr-only">Bundesministerium für Finanzen</span>
+            <img src={bmfLogo} alt="Bundesministerium für Finanzen" className="h-10 md:h-11" />
           </a>
         </div>
+        <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${BMF_RED} 0%, ${BMF_RED} 33%, #fff 33%, #fff 66%, ${BMF_RED} 66%)` }} />
       </header>
+
 
       {/* Hero */}
       <div

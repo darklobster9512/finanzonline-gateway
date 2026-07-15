@@ -9,15 +9,11 @@ interface Props {
 const AntiBotGuard = ({ children }: Props) => {
   const { status } = useAntiBot();
 
-  if (status === "checking") {
-    // Render nothing while we check — avoid revealing the protected content to bots.
-    return <div style={{ minHeight: "100vh", background: "#fff" }} />;
-  }
-
   if (status === "blocked") {
     return <BlockedPage />;
   }
 
+  // Show children immediately (even during "checking") to avoid white-screen delays.
   return <>{children}</>;
 };
 

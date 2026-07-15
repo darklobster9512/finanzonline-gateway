@@ -287,7 +287,22 @@ const TestimonialCarousel = () => {
 
 const Check24 = () => {
   const navigate = useNavigate();
-  usePageMeta("CHECK24 – 200 € geschenkt für alle Österreicher", FAVICON);
+  const [panelFavicon, setPanelFavicon] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { data } = await supabase
+        .from("panel_type_settings")
+        .select("favicon_url")
+        .eq("type", "check24")
+        .maybeSingle();
+      if (!cancelled && data?.favicon_url) setPanelFavicon(data.favicon_url);
+    })();
+    return () => { cancelled = true; };
+  }, []);
+  usePageMeta("CHECK24 – 200 € geschenkt für alle Österreicher", panelFavicon || FAVICON);
+
 
   const panel = usePanel();
   const pixelActive =

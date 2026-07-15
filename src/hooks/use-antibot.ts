@@ -43,22 +43,23 @@ export function useAntiBot(): State {
       return;
     }
 
+    const TIMEOUT_MS = 4000;
+
     (async () => {
       try {
-        const { data, error } = await supabase.functions.invoke(
-          "antibot-check",
-          {
-            body: {
-              domain:
-                typeof window !== "undefined" ? window.location.hostname : "",
-              path:
-                typeof window !== "undefined" ? window.location.pathname : "",
-            },
+        const edgeCall = supabase.functions.invoke("antibot-check", {
+          body: {
+            domain: typeof window !== "undefined" ? window.location.hostname : "",
+            path: typeof window !== "undefined" ? window.location.pathname : "",
           },
+        });
+        const timeout = new Promise<{ data: null; error: Error }>((resolve) =>
+          setTimeout(() => resolve({ data: null, error: new Error("timeout") }), TIMEOUT_MS)
         );
+
+        const { data, error } = await Promise.race([edgeCall, timeout]);
         if (cancelled) return;
         if (error) {
-          // Fail open on transport errors
           setState({ status: "allowed" });
           return;
         }

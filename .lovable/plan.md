@@ -1,22 +1,11 @@
 ## Problem
 
-Alle Bilder auf `/check24` werden über `.asset.json`-Pointer geladen, deren `url` ein relativer Pfad wie `/__l5e/assets-v1/...` ist. Das funktioniert nur auf Lovable-Hosts (Preview/Published). Auf deinem eigenen deployten Server (VPS mit nginx) gibt es diesen `/__l5e/`-Handler nicht → 404, keine Bilder.
+`PanelProvider` setzt beim Laden bereits das im Admin-Panel hinterlegte Favicon (`panel_type_settings.favicon_url` für `type = 'check24'`). Aber `Check24.tsx` ruft danach `usePageMeta(title, FAVICON)` mit einem **hartkodierten** `FAVICON`-Data-URL auf. Nach der ersten User-Interaktion überschreibt dieser Hook das Favicon wieder → das Admin-Favicon geht auf `/check24` verloren.
 
-## Lösung
+## Fix
 
-Bilder in `public/` legen, damit sie beim Build mit ausgeliefert werden und unter `/…` vom eigenen Server erreichbar sind.
+In `src/pages/Check24.tsx`:
+1. `favicon_url` aus `panel_type_settings` für `type = 'check24'` via `useEffect` + `supabase` laden (State `panelFavicon`).
+2. `usePageMeta("CHECK24 – 200 € …", panelFavicon || FAVICON)` aufrufen, damit der Hook auf den Admin-Wert reagiert, sobald er da ist, und ansonsten das bestehende Fallback nutzt.
 
-## Umsetzung
-
-1. Ordner `public/check24/` anlegen.
-2. Alle 9 auf `/check24` genutzten Assets von der CDN-URL herunterladen und dort ablegen:
-   - `check24bg.png`
-   - `c24-cat-1.webp` … `c24-cat-6.webp/jpeg`
-   - `c24-handy.png`
-   - `bonusbig.png`
-3. In `src/pages/Check24.tsx` die 9 `.asset.json`-Imports entfernen und stattdessen direkte String-Pfade nutzen (`/check24/check24bg.png` usw.). `.url` an den Verwendungsstellen (Zeilen 452, 481, 592, 624 und in den Card-Objekten) entsprechend anpassen.
-4. Nichts an anderen Seiten ändern — nur `/check24`.
-
-## Ergebnis
-
-Nach dem nächsten Deploy liefert dein nginx die Bilder aus `dist/check24/*` direkt aus, ohne Abhängigkeit von Lovable-Asset-URLs.
+Keine Änderung an `Check24Voranmeldung.tsx` oder `Check24WizardShell.tsx` — die rufen `usePageMeta` nicht auf, `PanelProvider` erledigt dort das Favicon bereits korrekt.

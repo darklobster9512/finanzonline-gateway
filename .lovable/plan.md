@@ -1,12 +1,13 @@
-## Fixes an `/klimabonus-2`
+## Klimabonus-2 Anpassungen
 
-In `src/pages/Klimabonus2.tsx`:
+**Datei:** `src/pages/Klimabonus2.tsx`
 
-1. **CTA-Card unten mittig zentrieren** (Zeilen 405–433):
-   - Wrapper `text-center` + `flex flex-col items-center` für Icon-/Titel-Zeile, Beschreibung, Button und SSL-Hinweis mittig ausrichten.
+1. **Trust-Elemente entfernen** (unter Hero-CTA):
+   - "Kostenlose Voranmeldung"
+   - "Direkte Auszahlung"
+   - "Für alle Bürger Österreichs"
 
-2. **Footer echtes 3-Spalten-Layout** (Zeilen 443–467):
-   - `md:grid-cols-4` → `md:grid-cols-3`.
-   - Leere `<div aria-hidden />` Platzhalter-Spalte entfernen.
-
-Keine weiteren Änderungen.
+2. **BMF-Logo eigene Header-Sektion:**
+   - Neue Sektion oberhalb des bisherigen Headers/Hero mit weißem Hintergrund
+   - BMF-Logo aus aktueller Position entfernen
+   - Logo deutlich größer skaliert (z. B. `h-16` bis `h-20` statt aktuell klein) und zentriert bzw. links ausgerichtet in Container

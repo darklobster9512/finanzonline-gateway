@@ -396,29 +396,37 @@ const Klimabonus2 = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <TestimonialCarousel />
-
         {/* CTA Box */}
         <section className="container mx-auto px-4 max-w-5xl">
-          <div className="rounded-xl overflow-hidden shadow-lg flex items-center" style={{ backgroundColor: BMF_RED_DARK }}>
-            <div className="flex-1 p-8 md:py-10 md:px-12">
-              <h2 className="text-xl md:text-2xl font-semibold text-white mb-2">
-                Bereit für Ihre Voranmeldung?
-              </h2>
-              <p className="text-white/85 text-[14.5px] mb-6 leading-relaxed">
-                In nur 2 Minuten erledigt – sichern Sie sich jetzt 400&nbsp;€ Klimabonus.
+          <div
+            className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200"
+            style={{ borderTop: `4px solid ${BMF_RED}` }}
+          >
+            <div className="p-8 md:py-10 md:px-12">
+              <div className="flex items-center gap-3 mb-3">
+                <span
+                  className="w-10 h-10 rounded-full inline-flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: "rgba(230,50,15,0.1)" }}
+                >
+                  <Gift className="w-5 h-5" style={{ color: BMF_RED }} />
+                </span>
+                <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
+                  Bereit für Ihre Voranmeldung?
+                </h2>
+              </div>
+              <p className="text-gray-600 text-[14.5px] mb-6 leading-relaxed">
+                In nur 2 Minuten erledigt – sichern Sie sich jetzt <strong className="text-gray-900">400&nbsp;€ Klimabonus</strong>.
               </p>
               <button
                 type="button"
                 onClick={handleCta}
-                className="inline-flex items-center gap-2 font-semibold text-sm px-7 py-3 rounded-full transition-colors"
-                style={{ backgroundColor: BMF_YELLOW, color: "#1a1a1a" }}
+                className="inline-flex items-center gap-2 font-semibold text-sm px-7 py-3 rounded-full transition-colors text-white hover:opacity-95"
+                style={{ backgroundColor: BMF_RED }}
               >
                 <span>Jetzt voranmelden</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <div className="flex items-center gap-2 mt-4 text-[12px] text-white/70">
+              <div className="flex items-center gap-2 mt-4 text-[12px] text-gray-500">
                 <Lock className="w-3.5 h-3.5" />
                 <span>SSL-verschlüsselt · bmf.gv.at</span>
               </div>
@@ -426,6 +434,7 @@ const Klimabonus2 = () => {
           </div>
         </section>
       </main>
+
 
       {/* Footer */}
       <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12 border-t border-gray-200">

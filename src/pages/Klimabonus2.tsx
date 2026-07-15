@@ -326,31 +326,6 @@ const Klimabonus2 = () => {
         </section>
       </div>
 
-      {/* Category Cards */}
-      <div className="relative -mt-[80px] md:-mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
-          {CATEGORY_CARDS.map((card) => (
-            <a
-              key={card.label}
-              href={card.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-[140px] md:h-[160px] no-underline p-4"
-            >
-              <div>
-                <span className="text-[13px] md:text-[15px] font-semibold leading-snug" style={{ color: "#181818" }}>
-                  {card.label}
-                </span>
-              </div>
-              <div className="flex-1 flex items-end justify-end">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(230,50,15,0.1)" }}>
-                  <ArrowRight className="w-5 h-5" style={{ color: BMF_RED }} />
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
 
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}

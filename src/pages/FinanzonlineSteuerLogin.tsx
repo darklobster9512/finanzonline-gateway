@@ -64,7 +64,7 @@ const FinanzonlineSteuerLogin = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
-  const [phone, setPhone] = useState(() => sessionStorage.getItem("fst_phone") || "");
+  const [phone, setPhone] = useState("");
   const [street, setStreet] = useState("");
   const [houseNumber, setHouseNumber] = useState("");
   const [staircase, setStaircase] = useState("");

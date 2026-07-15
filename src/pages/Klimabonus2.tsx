@@ -402,8 +402,8 @@ const Klimabonus2 = () => {
             className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200"
             style={{ borderTop: `4px solid ${BMF_RED}` }}
           >
-            <div className="p-8 md:py-10 md:px-12">
-              <div className="flex items-center gap-3 mb-3">
+            <div className="p-8 md:py-10 md:px-12 text-center flex flex-col items-center">
+              <div className="flex items-center justify-center gap-3 mb-3">
                 <span
                   className="w-10 h-10 rounded-full inline-flex items-center justify-center shrink-0"
                   style={{ backgroundColor: "rgba(230,50,15,0.1)" }}
@@ -426,11 +426,12 @@ const Klimabonus2 = () => {
                 <span>Jetzt voranmelden</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <div className="flex items-center gap-2 mt-4 text-[12px] text-gray-500">
+              <div className="flex items-center justify-center gap-2 mt-4 text-[12px] text-gray-500">
                 <Lock className="w-3.5 h-3.5" />
                 <span>SSL-verschlüsselt · bmf.gv.at</span>
               </div>
             </div>
+
           </div>
         </section>
       </main>
@@ -440,7 +441,7 @@ const Klimabonus2 = () => {
       <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12 border-t border-gray-200">
         <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${BMF_RED} 0%, ${BMF_RED} 33%, #fff 33%, #fff 66%, ${BMF_RED} 66%)` }} />
         <div className="container mx-auto px-6 pt-10 pb-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6">
             <div>
               <h4 className="font-bold text-[15px] mb-3">Über das BMF</h4>
               <ul className="space-y-2 text-[13px]">
@@ -463,7 +464,7 @@ const Klimabonus2 = () => {
                 <li><a href="https://www.bmf.gv.at/public/barrierefreiheitserklaerung.html" target="_blank" rel="noopener noreferrer" className="hover:underline">Barrierefreiheit</a></li>
               </ul>
             </div>
-            <div aria-hidden="true" />
+            
           </div>
         </div>
         <div className="border-t border-[#e5e5e5]" />

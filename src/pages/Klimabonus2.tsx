@@ -262,7 +262,7 @@ const Klimabonus2 = () => {
       <div
         className="relative border-b border-gray-200"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(230,50,15,0.92) 0%, rgba(180,35,10,0.94) 100%), url(${heroImage})`,
+          backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 55%, rgba(0,0,0,0.35) 100%), url(${heroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

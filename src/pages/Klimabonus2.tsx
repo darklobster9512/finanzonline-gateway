@@ -258,7 +258,16 @@ const Klimabonus2 = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900" style={{ fontFamily: "'Open Sans', system-ui, sans-serif" }}>
-      {/* Header + Hero – gemeinsamer Background */}
+      {/* Separate White Header with large BMF Logo */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="container mx-auto flex items-center justify-center px-4 py-6">
+          <a href="https://www.bmf.gv.at/public.html" target="_blank" rel="noopener noreferrer">
+            <img src={bmfLogo} alt="Bundesministerium für Finanzen" className="h-16 md:h-20 w-auto" />
+          </a>
+        </div>
+      </header>
+
+      {/* Hero */}
       <div
         className="relative border-b border-gray-200"
         style={{
@@ -267,16 +276,8 @@ const Klimabonus2 = () => {
           backgroundPosition: "center",
         }}
       >
-        <header>
-          <div className="container mx-auto flex items-center justify-center px-4 py-5">
-            <a href="https://www.bmf.gv.at/public.html" target="_blank" rel="noopener noreferrer" className="bg-white rounded-md px-4 py-2">
-              <img src={bmfLogo} alt="Bundesministerium für Finanzen" className="h-8 md:h-10" />
-            </a>
-          </div>
-        </header>
-
         <section className="relative overflow-hidden">
-          <div className="relative z-10 container mx-auto px-4 pt-6 pb-[120px] md:pt-10 md:pb-[140px] max-w-4xl">
+          <div className="relative z-10 container mx-auto px-4 pt-10 pb-[120px] md:pt-14 md:pb-[140px] max-w-4xl">
             <div className="text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] mb-4 bg-white/85 backdrop-blur px-3 py-1.5 rounded-full text-gray-800 shadow-sm">
                 <Gift className="w-4 h-4" style={{ color: BMF_RED }} />
@@ -308,23 +309,11 @@ const Klimabonus2 = () => {
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
-
-              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-5">
-                {[
-                  { Icon: ShieldCheck, text: "Kostenlose Voranmeldung" },
-                  { Icon: Wallet, text: "Direkte Auszahlung" },
-                  { Icon: User, text: "Für alle Bürger Österreichs" },
-                ].map(({ Icon, text }) => (
-                  <div key={text} className="flex items-center gap-1.5 text-[13px] text-gray-800 bg-white/70 backdrop-blur-sm px-2.5 py-1 rounded">
-                    <Icon className="w-4 h-4 shrink-0" style={{ color: BMF_RED }} />
-                    <span>{text}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
       </div>
+
 
 
       <main className="py-12 md:py-14 space-y-14">

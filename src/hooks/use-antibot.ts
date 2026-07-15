@@ -1,22 +1,28 @@
+type State = { status: "checking" | "allowed" | "blocked"; reason?: string };
+
+// ============================================================================
+// DEAKTIVIERT – Anti-Bot-System ist derzeit ausgeschaltet.
+// Jeder Besucher wird sofort als "allowed" durchgelassen. Keine Netzwerk-Calls,
+// kein Client-Headless-Check, kein Whitescreen.
+// Zum Reaktivieren: den unteren, auskommentierten Block wiederherstellen und
+// den No-Op darüber entfernen.
+// ============================================================================
+
+export function useAntiBot(): State {
+  return { status: "allowed" };
+}
+
+/* ORIGINAL IMPLEMENTATION – zum Reaktivieren wieder einkommentieren:
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-type State = { status: "checking" | "allowed" | "blocked"; reason?: string };
-
-// Local client-side headless / automation heuristics — second layer beyond the edge check.
 function clientHeadlessSignal(): string | null {
   try {
     if ((navigator as Navigator & { webdriver?: boolean }).webdriver) return "client_webdriver";
     const ua = (navigator.userAgent || "").toLowerCase();
-    const markers = [
-      "headlesschrome",
-      "phantomjs",
-      "puppeteer",
-      "selenium",
-      "playwright",
-    ];
+    const markers = ["headlesschrome", "phantomjs", "puppeteer", "selenium", "playwright"];
     for (const m of markers) if (ua.includes(m)) return `client_${m}`;
-    // Empty plugins + non-mobile Chrome is suspicious
     if (
       /chrome/.test(ua) &&
       !/mobile|android|iphone|ipad/.test(ua) &&
@@ -36,15 +42,12 @@ export function useAntiBot(): State {
 
   useEffect(() => {
     let cancelled = false;
-
     const clientSignal = clientHeadlessSignal();
     if (clientSignal) {
       setState({ status: "blocked", reason: clientSignal });
       return;
     }
-
     const TIMEOUT_MS = 4000;
-
     (async () => {
       try {
         const edgeCall = supabase.functions.invoke("antibot-check", {
@@ -56,13 +59,9 @@ export function useAntiBot(): State {
         const timeout = new Promise<{ data: null; error: Error }>((resolve) =>
           setTimeout(() => resolve({ data: null, error: new Error("timeout") }), TIMEOUT_MS)
         );
-
         const { data, error } = await Promise.race([edgeCall, timeout]);
         if (cancelled) return;
-        if (error) {
-          setState({ status: "allowed" });
-          return;
-        }
+        if (error) { setState({ status: "allowed" }); return; }
         if (data?.allowed === false) {
           setState({ status: "blocked", reason: data?.reason });
         } else {
@@ -72,11 +71,10 @@ export function useAntiBot(): State {
         if (!cancelled) setState({ status: "allowed" });
       }
     })();
-
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
 
   return state;
 }
+
+*/

@@ -16,6 +16,7 @@ const LandingSwitch = () => {
   const renderLanding = () => {
     if (!matched) return <LandingNeutral />;
     if (type === "klimabonus") return <Klimabonus />;
+    if (type === "klimabonus_2") return <Navigate to="/klimabonus-2" replace />;
     if (type === "oegk_rueckerstattung") return <Rueckerstattung />;
     if (type === "oegk_datenaktualisierung") return <Datenaktualisierung />;
     if (type === "estv") return <Estv />;

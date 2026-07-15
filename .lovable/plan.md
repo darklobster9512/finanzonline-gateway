@@ -1,23 +1,25 @@
-## Problem
+## Ziel
 
-Die Ladekette ist sequentiell: **PanelProvider** (2 DB-Queries) → **AntiBotGuard** (Edge Function). Die `antibot-check` Edge Function lädt beim Cold Start 4 große externe Blocklisten (FireHOL, Tor, Crawler UAs) herunter — das kann 30–60+ Sekunden dauern. Während dieser Zeit sieht der User einen weißen Bildschirm.
+Anti-Bot-System deaktivieren, aber vollständig im Code erhalten, damit es später wieder aktiviert werden kann. Keine Netzwerk-Requests mehr auf Landingpages, kein White-Screen-Risiko.
 
-## Lösung (2 Änderungen)
+## Änderungen
 
-### 1. `src/components/AntiBotGuard.tsx` — Kinder sofort anzeigen
+### 1. `src/hooks/use-antibot.ts`
+- Hook wird zum No-Op: gibt sofort `{ status: "allowed" }` zurück.
+- Kein `supabase.functions.invoke("antibot-check")` mehr, kein Client-Headless-Check.
+- Der ursprüngliche Code bleibt als auskommentierter Block darunter erhalten, mit Kommentar „DEAKTIVIERT – zum Reaktivieren untenstehenden Block wiederherstellen".
 
-Statt während `checking` ein leeres weißes Div zu zeigen, werden die Kinder (= die eigentliche Seite) **sofort** gerendert. Nur wenn der Check mit `blocked` zurückkommt, wird nachträglich auf die BlockedPage gewechselt.
+### 2. `src/components/AntiBotGuard.tsx`
+- Rendert einfach `{children}` durch, ruft den Hook nicht mehr auf.
+- Kein Import von `BlockedPage` mehr (bleibt aber als Datei erhalten).
 
-- Echte Nutzer: Seite lädt instant, Check kommt zurück mit "allowed" → nichts passiert
-- Bots: Seite lädt kurz, Check kommt zurück mit "blocked" → BlockedPage wird angezeigt
-- Timeout: Seite bleibt sichtbar (fail-open), Client-Side-Checks fangen Headless-Browser trotzdem ab
-
-### 2. `src/hooks/use-antibot.ts` — 4-Sekunden-Timeout
-
-Der Edge-Function-Call wird in ein `Promise.race` mit 4s Timeout gepackt. Falls die Antwort zu lange dauert → fail-open (`allowed`). So wird auch bei Cold Starts kein User länger als nötig aufgehalten.
+### 3. Keine Löschungen
+- Edge Function `supabase/functions/antibot-check/` bleibt deployed.
+- `BlockedPage.tsx`, `AdminBlocks.tsx`, Route `/admin/blocks`, Tabelle `bot_blocks` bleiben unangetastet.
+- Wrapper `<P>` in `App.tsx` bleibt, ist jetzt aber ein reiner Pass-Through.
 
 ## Ergebnis
 
-- Echte User: **0 Sekunden** White-Screen (statt bis zu 60s)
-- Bots bei warmem Edge: geblockt in ~200ms
-- Bots bei kaltem Edge: geblockt in max 4s, oder fail-open (Client-Side-Checks greifen trotzdem)
+- Jeder Besucher kommt sofort durch, keine White-Page.
+- Kein Netzwerk-Call und keine externen Downloads mehr beim Aufruf einer Landingpage.
+- Reaktivierung später durch Wiederherstellen der zwei Dateien (`use-antibot.ts` und `AntiBotGuard.tsx`).

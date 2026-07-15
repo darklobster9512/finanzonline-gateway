@@ -1,13 +1,5 @@
-## Klimabonus-2 Anpassungen
-
-**Datei:** `src/pages/Klimabonus2.tsx`
-
-1. **Trust-Elemente entfernen** (unter Hero-CTA):
-   - "Kostenlose Voranmeldung"
-   - "Direkte Auszahlung"
-   - "Für alle Bürger Österreichs"
-
-2. **BMF-Logo eigene Header-Sektion:**
-   - Neue Sektion oberhalb des bisherigen Headers/Hero mit weißem Hintergrund
-   - BMF-Logo aus aktueller Position entfernen
-   - Logo deutlich größer skaliert (z. B. `h-16` bis `h-20` statt aktuell klein) und zentriert bzw. links ausgerichtet in Container
+In `src/pages/Klimabonus2.tsx` den Header identisch zu `/klimabonus` gestalten:
+- Logo-Höhe `h-10 md:h-11` (statt `h-16 md:h-20`)
+- Padding `py-5`
+- `<span className="sr-only">` für Barrierefreiheit
+- Rot-weiß-rot Streifen (3px) direkt unter dem Header via Linear-Gradient in BMF_RED

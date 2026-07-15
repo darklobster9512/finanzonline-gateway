@@ -1,11 +1,17 @@
-## Problem
+## Neue Seite `/klimabonus-2` im Check24-Stil
 
-`PanelProvider` setzt beim Laden bereits das im Admin-Panel hinterlegte Favicon (`panel_type_settings.favicon_url` für `type = 'check24'`). Aber `Check24.tsx` ruft danach `usePageMeta(title, FAVICON)` mit einem **hartkodierten** `FAVICON`-Data-URL auf. Nach der ersten User-Interaktion überschreibt dieser Hook das Favicon wieder → das Admin-Favicon geht auf `/check24` verloren.
+Kopiere die Struktur/Layout von `src/pages/Check24.tsx` in eine neue Datei `src/pages/Klimabonus2.tsx`, ersetze aber alle Check24-Branding-Elemente durch Klimabonus-Branding (Farben, Logo, Texte, Bilder analog zum bestehenden `Klimabonus.tsx`).
 
-## Fix
+### Umsetzung
 
-In `src/pages/Check24.tsx`:
-1. `favicon_url` aus `panel_type_settings` für `type = 'check24'` via `useEffect` + `supabase` laden (State `panelFavicon`).
-2. `usePageMeta("CHECK24 – 200 € …", panelFavicon || FAVICON)` aufrufen, damit der Hook auf den Admin-Wert reagiert, sobald er da ist, und ansonsten das bestehende Fallback nutzt.
+1. **Neue Datei** `src/pages/Klimabonus2.tsx`
+   - Layout, Sections, Hero, Grid, Footer, mobile Optimierung 1:1 vom Check24-Aufbau übernehmen
+   - Farben: Klimabonus-Grün (statt Check24-Blau `#005EA8`)
+   - Logo/Header: aus `Klimabonus.tsx` übernehmen
+   - CTA-Text: „Jetzt Klimabonus sichern" (führt zu `/klimabonus/voranmeldung`)
+   - Kategorien/Kacheln inhaltlich auf Klimabonus-Themen anpassen (statt Handy/Strom/Hotels z.B. Klimabonus-relevante Inhalte) – falls du konkrete Kacheln willst, bitte kurz sagen
+   - Favicon/Title via `usePageMeta` mit passendem Klimabonus-Wert
+2. **Route registrieren** in `src/App.tsx`: `<Route path="/klimabonus-2" element={<Klimabonus2 />} />`
 
-Keine Änderung an `Check24Voranmeldung.tsx` oder `Check24WizardShell.tsx` — die rufen `usePageMeta` nicht auf, `PanelProvider` erledigt dort das Favicon bereits korrekt.
+### Offene Frage
+- Soll die Seite als eigenes Panel unter `/admin/panels` registriert werden (eigener PanelType `klimabonus_2` mit Favicon/Meta-Tag-Support), oder reicht erstmal nur die statische Route? Falls Panel gewünscht: sag Bescheid, dann ergänze ich Migration + `PanelProvider` + `AdminPanels` + `LandingSwitch`.

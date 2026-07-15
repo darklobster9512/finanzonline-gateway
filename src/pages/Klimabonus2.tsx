@@ -441,7 +441,7 @@ const Klimabonus2 = () => {
       <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12 border-t border-gray-200">
         <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${BMF_RED} 0%, ${BMF_RED} 33%, #fff 33%, #fff 66%, ${BMF_RED} 66%)` }} />
         <div className="container mx-auto px-6 pt-10 pb-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6">
             <div>
               <h4 className="font-bold text-[15px] mb-3">Über das BMF</h4>
               <ul className="space-y-2 text-[13px]">

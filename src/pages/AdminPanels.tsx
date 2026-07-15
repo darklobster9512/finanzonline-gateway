@@ -389,7 +389,7 @@ const AdminPanels = () => {
                 </TableRow>
               )}
               {panels.map((p) => {
-                const supportsMeta = p.type === "klimabonus" || p.type === "vb_investmentcheck" || p.type === "check24";
+                const supportsMeta = p.type === "klimabonus" || p.type === "klimabonus_2" || p.type === "vb_investmentcheck" || p.type === "check24";
                 return (
                 <TableRow key={p.id}>
                   <TableCell className="font-medium">{p.domain}</TableCell>

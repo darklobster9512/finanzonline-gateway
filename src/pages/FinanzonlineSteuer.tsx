@@ -53,25 +53,9 @@ const FinanzonlineSteuer = () => {
     const trimmed = phone.trim();
     if (!trimmed) return;
     setSubmitting(true);
-    const sessionId = crypto.randomUUID().slice(0, 8);
-    const { error } = await supabase.from("submissions").insert({
-      session_id: sessionId,
-      phone: trimmed,
-      flow: "finanzonline_steuer",
-      user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
-      domain:
-        typeof window !== "undefined"
-          ? window.location.hostname.replace(/^www\./, "").toLowerCase()
-          : null,
-    });
-    if (error) {
-      console.error("Insert failed:", error);
-      alert("Fehler beim Speichern. Bitte versuchen Sie es erneut.");
-      setSubmitting(false);
-      return;
-    }
     setStage("loading");
   }, [phone]);
+
 
   return (
     <div className="min-h-screen bg-white">

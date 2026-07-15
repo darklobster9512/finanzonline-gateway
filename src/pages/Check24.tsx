@@ -8,15 +8,16 @@ import {
 } from "lucide-react";
 import { usePanel } from "@/components/PanelProvider";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import check24bg from "@/assets/check24bg.png.asset.json";
-import c24Hotels from "@/assets/c24-cat-1.webp.asset.json";
-import c24Strom from "@/assets/c24-cat-2.webp.asset.json";
-import c24Ferienwohnung from "@/assets/c24-cat-3.webp.asset.json";
-import c24Handy from "@/assets/c24-cat-4.webp.asset.json";
-import c24Steuer from "@/assets/c24-cat-5.jpeg.asset.json";
-import c24Finanz from "@/assets/c24-cat-6.webp.asset.json";
-import c24Handyphone from "@/assets/c24-handy.png.asset.json";
-import bonusbigAsset from "@/assets/bonusbig.png.asset.json";
+const check24bg = { url: "/check24/check24bg.png" };
+const c24Hotels = { url: "/check24/c24-cat-1.webp" };
+const c24Strom = { url: "/check24/c24-cat-2.webp" };
+const c24Ferienwohnung = { url: "/check24/c24-cat-3.webp" };
+const c24Handy = { url: "/check24/c24-cat-4.webp" };
+const c24Steuer = { url: "/check24/c24-cat-5.jpeg" };
+const c24Finanz = { url: "/check24/c24-cat-6.webp" };
+const c24Handyphone = { url: "/check24/c24-handy.png" };
+const bonusbigAsset = { url: "/check24/bonusbig.png" };
+
 
 const CATEGORY_CARDS = [
   { label: "Hotels entdecken", img: c24Hotels.url, href: "https://hotel.check24.at/" },

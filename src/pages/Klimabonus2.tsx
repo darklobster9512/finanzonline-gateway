@@ -464,7 +464,7 @@ const Klimabonus2 = () => {
                 <li><a href="https://www.bmf.gv.at/public/barrierefreiheitserklaerung.html" target="_blank" rel="noopener noreferrer" className="hover:underline">Barrierefreiheit</a></li>
               </ul>
             </div>
-            <div aria-hidden="true" />
+            
           </div>
         </div>
         <div className="border-t border-[#e5e5e5]" />

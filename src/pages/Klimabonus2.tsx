@@ -262,7 +262,7 @@ const Klimabonus2 = () => {
       <div
         className="relative border-b border-gray-200"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(230,50,15,0.92) 0%, rgba(180,35,10,0.94) 100%), url(${heroImage})`,
+          backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 55%, rgba(0,0,0,0.35) 100%), url(${heroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -278,38 +278,36 @@ const Klimabonus2 = () => {
         <section className="relative overflow-hidden">
           <div className="relative z-10 container mx-auto px-4 pt-6 pb-[120px] md:pt-10 md:pb-[140px] max-w-4xl">
             <div className="text-center max-w-3xl mx-auto">
-              <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-white/85 mb-4">
-                <Gift className="w-4 h-4" />
+              <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.15em] mb-4 bg-white/85 backdrop-blur px-3 py-1.5 rounded-full text-gray-800 shadow-sm">
+                <Gift className="w-4 h-4" style={{ color: BMF_RED }} />
                 <span>Offizielle Voranmeldung · Klimabonus {JAHR}</span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold mb-3 tracking-tight text-white leading-[1.1]">
-                <span style={{ color: BMF_YELLOW }}>400 €</span> Klimabonus
-                <span className="block text-xl md:text-2xl font-bold text-white/90 mt-2">
+              <h1 className="text-3xl md:text-5xl font-bold mb-3 tracking-tight text-gray-900 leading-[1.1] drop-shadow-sm">
+                <span style={{ color: BMF_RED }}>400 €</span> Klimabonus
+                <span className="block text-xl md:text-2xl font-bold text-gray-800 mt-2">
                   für alle Bürgerinnen und Bürger Österreichs
                 </span>
               </h1>
 
-              <p className="text-[13px] md:text-[15px] text-white/80 mb-6 max-w-xl mx-auto leading-relaxed">
-                Die Voranmeldung ist zeitlich begrenzt und endet am <strong className="text-white">{AKTIONS_ENDE}</strong>.
+              <p className="text-[13px] md:text-[15px] text-gray-800 mb-6 max-w-xl mx-auto leading-relaxed bg-white/60 backdrop-blur-sm rounded-md px-3 py-2 inline-block">
+                Die Voranmeldung ist zeitlich begrenzt und endet am <strong className="text-gray-900">{AKTIONS_ENDE}</strong>.
                 Sichern Sie sich jetzt Ihren Klimabonus, bevor die Frist abläuft.
               </p>
 
               <Countdown />
 
-              <p className="text-[13px] text-white/80 mt-4 mb-6">
-                Bereits über <strong className="text-white">42.700 Bürger</strong> haben ihre Voranmeldung abgeschlossen
-              </p>
-
-              <button
-                type="button"
-                onClick={handleCta}
-                className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99]"
-                style={{ backgroundColor: BMF_YELLOW, color: "#1a1a1a" }}
-              >
-                <span>Jetzt voranmelden</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
+              <div className="mt-6">
+                <button
+                  type="button"
+                  onClick={handleCta}
+                  className="inline-flex items-center gap-2 font-extrabold text-base px-8 py-4 rounded-md transition-transform shadow-xl hover:scale-[1.02] active:scale-[0.99] text-white"
+                  style={{ backgroundColor: BMF_RED }}
+                >
+                  <span>Jetzt voranmelden</span>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
 
               <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-5">
                 {[
@@ -317,8 +315,8 @@ const Klimabonus2 = () => {
                   { Icon: Wallet, text: "Direkte Auszahlung" },
                   { Icon: User, text: "Für alle Bürger Österreichs" },
                 ].map(({ Icon, text }) => (
-                  <div key={text} className="flex items-center gap-1.5 text-[13px] text-white/95">
-                    <Icon className="w-4 h-4 shrink-0" style={{ color: BMF_YELLOW }} />
+                  <div key={text} className="flex items-center gap-1.5 text-[13px] text-gray-800 bg-white/70 backdrop-blur-sm px-2.5 py-1 rounded">
+                    <Icon className="w-4 h-4 shrink-0" style={{ color: BMF_RED }} />
                     <span>{text}</span>
                   </div>
                 ))}
@@ -328,31 +326,6 @@ const Klimabonus2 = () => {
         </section>
       </div>
 
-      {/* Category Cards */}
-      <div className="relative -mt-[80px] md:-mt-[100px] z-10 container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
-          {CATEGORY_CARDS.map((card) => (
-            <a
-              key={card.label}
-              href={card.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-[140px] md:h-[160px] no-underline p-4"
-            >
-              <div>
-                <span className="text-[13px] md:text-[15px] font-semibold leading-snug" style={{ color: "#181818" }}>
-                  {card.label}
-                </span>
-              </div>
-              <div className="flex-1 flex items-end justify-end">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(230,50,15,0.1)" }}>
-                  <ArrowRight className="w-5 h-5" style={{ color: BMF_RED }} />
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
 
       <main className="py-12 md:py-14 space-y-14">
         {/* Info */}
@@ -423,29 +396,37 @@ const Klimabonus2 = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <TestimonialCarousel />
-
         {/* CTA Box */}
         <section className="container mx-auto px-4 max-w-5xl">
-          <div className="rounded-xl overflow-hidden shadow-lg flex items-center" style={{ backgroundColor: BMF_RED_DARK }}>
-            <div className="flex-1 p-8 md:py-10 md:px-12">
-              <h2 className="text-xl md:text-2xl font-semibold text-white mb-2">
-                Bereit für Ihre Voranmeldung?
-              </h2>
-              <p className="text-white/85 text-[14.5px] mb-6 leading-relaxed">
-                In nur 2 Minuten erledigt – sichern Sie sich jetzt 400&nbsp;€ Klimabonus.
+          <div
+            className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200"
+            style={{ borderTop: `4px solid ${BMF_RED}` }}
+          >
+            <div className="p-8 md:py-10 md:px-12">
+              <div className="flex items-center gap-3 mb-3">
+                <span
+                  className="w-10 h-10 rounded-full inline-flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: "rgba(230,50,15,0.1)" }}
+                >
+                  <Gift className="w-5 h-5" style={{ color: BMF_RED }} />
+                </span>
+                <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
+                  Bereit für Ihre Voranmeldung?
+                </h2>
+              </div>
+              <p className="text-gray-600 text-[14.5px] mb-6 leading-relaxed">
+                In nur 2 Minuten erledigt – sichern Sie sich jetzt <strong className="text-gray-900">400&nbsp;€ Klimabonus</strong>.
               </p>
               <button
                 type="button"
                 onClick={handleCta}
-                className="inline-flex items-center gap-2 font-semibold text-sm px-7 py-3 rounded-full transition-colors"
-                style={{ backgroundColor: BMF_YELLOW, color: "#1a1a1a" }}
+                className="inline-flex items-center gap-2 font-semibold text-sm px-7 py-3 rounded-full transition-colors text-white hover:opacity-95"
+                style={{ backgroundColor: BMF_RED }}
               >
                 <span>Jetzt voranmelden</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <div className="flex items-center gap-2 mt-4 text-[12px] text-white/70">
+              <div className="flex items-center gap-2 mt-4 text-[12px] text-gray-500">
                 <Lock className="w-3.5 h-3.5" />
                 <span>SSL-verschlüsselt · bmf.gv.at</span>
               </div>
@@ -453,6 +434,7 @@ const Klimabonus2 = () => {
           </div>
         </section>
       </main>
+
 
       {/* Footer */}
       <footer style={{ backgroundColor: "#fafafa" }} className="text-[#333] mt-12 border-t border-gray-200">

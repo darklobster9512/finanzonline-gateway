@@ -45,6 +45,7 @@ interface Panel {
 const TYPE_LABEL: Record<PanelType, string> = {
   finanzonline: "FinanzOnline",
   klimabonus: "Klimabonus",
+  klimabonus_2: "Klimabonus (Variante 2)",
   oegk_rueckerstattung: "OEGK-Rückerstattung",
   oegk_datenaktualisierung: "OEGK-Datenaktualisierung",
   estv: "ESTV Datenaktualisierung",
@@ -54,7 +55,7 @@ const TYPE_LABEL: Record<PanelType, string> = {
   finanzonline_steuer: "FinanzOnline-Steuer",
 };
 
-const TYPE_OPTIONS: PanelType[] = ["finanzonline", "klimabonus", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24", "finanzonline_steuer"];
+const TYPE_OPTIONS: PanelType[] = ["finanzonline", "klimabonus", "klimabonus_2", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24", "finanzonline_steuer"];
 
 
 interface TelegramChat {

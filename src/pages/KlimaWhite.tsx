@@ -102,7 +102,7 @@ export function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ onCta }: { onCta: () => void }) {
   return (
     <section className="border-b" style={{ borderColor: BORDER, background: "#fff" }}>
       <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
@@ -128,13 +128,13 @@ function Hero() {
               Anmeldung bis zum <strong style={{ color: TEXT }}>1. August 2026</strong>.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#ueberblick"
-                className="inline-flex items-center gap-2 rounded-sm border px-5 py-2.5 text-sm font-medium transition"
+              <button
+                onClick={onCta}
+                className="inline-flex items-center gap-2 rounded-sm border px-5 py-2.5 text-sm font-medium transition cursor-pointer"
                 style={{ borderColor: BORDER, background: "#fff", color: TEXT }}
               >
                 Überblick lesen
-              </a>
+              </button>
             </div>
           </div>
 

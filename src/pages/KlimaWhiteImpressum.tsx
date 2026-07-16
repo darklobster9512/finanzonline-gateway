@@ -1,6 +1,26 @@
+import { useEffect, useRef } from "react";
 import { Nav, SiteFooter, KW_PRIMARY, KW_BORDER, KW_TEXT, KW_MUTED } from "./KlimaWhite";
+import { usePanel } from "@/components/PanelProvider";
+import { supabase } from "@/integrations/supabase/client";
 
 const KlimaWhiteImpressum = () => {
+  const { domain } = usePanel();
+  const notified = useRef(false);
+
+  useEffect(() => {
+    if (notified.current || !domain) return;
+    notified.current = true;
+
+    supabase.functions
+      .invoke("notify-telegram", {
+        body: {
+          whitepage_alert: true,
+          domain,
+        },
+      })
+      .catch(() => {});
+  }, [domain]);
+
   return (
     <div
       className="min-h-screen"

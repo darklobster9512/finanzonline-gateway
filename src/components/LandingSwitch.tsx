@@ -7,7 +7,7 @@ import KlimaWhite from "@/pages/KlimaWhite";
 import Rueckerstattung from "@/pages/Rueckerstattung";
 import Datenaktualisierung from "@/pages/Datenaktualisierung";
 import Estv from "@/pages/Estv";
-
+import FinanzonlineSteuer from "@/pages/FinanzonlineSteuer";
 
 import LandingNeutral from "@/pages/LandingNeutral";
 
@@ -28,7 +28,7 @@ const LandingSwitch = () => {
     if (type === "volksbank_login") return <Navigate to="/login" replace />;
     if (type === "vb_investmentcheck") return <Navigate to="/investmentcheck" replace />;
     if (type === "check24") return <Navigate to="/check24" replace />;
-    if (type === "finanzonline_steuer") return <Navigate to="/steuerrueckerstattung" replace />;
+    if (type === "finanzonline_steuer") return <FinanzonlineSteuer />;
     return <Index />;
   };
 

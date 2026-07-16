@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { CalendarDays, Info } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { usePanel } from "@/components/PanelProvider";
 import {
   Accordion,
   AccordionContent,
@@ -100,7 +102,7 @@ export function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ onCta }: { onCta: () => void }) {
   return (
     <section className="border-b" style={{ borderColor: BORDER, background: "#fff" }}>
       <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
@@ -126,13 +128,13 @@ function Hero() {
               Anmeldung bis zum <strong style={{ color: TEXT }}>1. August 2026</strong>.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#ueberblick"
-                className="inline-flex items-center gap-2 rounded-sm border px-5 py-2.5 text-sm font-medium transition"
+              <button
+                onClick={onCta}
+                className="inline-flex items-center gap-2 rounded-sm border px-5 py-2.5 text-sm font-medium transition cursor-pointer"
                 style={{ borderColor: BORDER, background: "#fff", color: TEXT }}
               >
                 Überblick lesen
-              </a>
+              </button>
             </div>
           </div>
 
@@ -423,6 +425,54 @@ export function SiteFooter() {
 }
 
 const KlimaWhite = () => {
+  const panel = usePanel();
+  const navigate = useNavigate();
+
+  const pixelActive =
+    panel.matched &&
+    (panel.type === "klimabonus" || panel.type === "klimabonus_2") &&
+    panel.metaTagEnabled &&
+    !!panel.metaTagSnippet;
+
+  // Inject Meta-Tag-Snippet (pixel)
+  useEffect(() => {
+    if (!pixelActive || !panel.metaTagSnippet) return;
+    const container = document.createElement("div");
+    container.innerHTML = panel.metaTagSnippet;
+    const injected: Node[] = [];
+    Array.from(container.childNodes).forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as HTMLElement;
+        if (el.tagName === "SCRIPT") {
+          const s = document.createElement("script");
+          Array.from(el.attributes).forEach((a) => s.setAttribute(a.name, a.value));
+          s.text = el.textContent || "";
+          document.head.appendChild(s);
+          injected.push(s);
+        } else {
+          document.head.appendChild(el);
+          injected.push(el);
+        }
+      }
+    });
+    return () => {
+      injected.forEach((n) => {
+        if (n.parentNode) n.parentNode.removeChild(n);
+      });
+    };
+  }, [pixelActive, panel.metaTagSnippet]);
+
+  const handleCta = () => {
+    if (pixelActive && typeof (window as any).fbq === "function") {
+      try {
+        (window as any).fbq("track", "Lead");
+      } catch {
+        // ignore
+      }
+    }
+    navigate("/klima-white/impressum");
+  };
+
   return (
     <div
       className="min-h-screen"
@@ -434,7 +484,7 @@ const KlimaWhite = () => {
     >
       <Nav />
       <main>
-        <Hero />
+        <Hero onCta={handleCta} />
         <About />
         <Eligibility />
         <Steps />

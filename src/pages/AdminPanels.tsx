@@ -39,6 +39,7 @@ interface Panel {
   created_at: string;
   meta_tag_enabled: boolean;
   meta_tag_snippet: string | null;
+  whitepage_enabled: boolean;
 }
 
 
@@ -196,6 +197,18 @@ const AdminPanels = () => {
     const { error } = await supabase
       .from("panels")
       .update({ meta_tag_enabled: enabled } as any)
+      .eq("id", p.id);
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    } else {
+      load();
+    }
+  };
+
+  const handleWhitepageToggle = async (p: Panel, enabled: boolean) => {
+    const { error } = await supabase
+      .from("panels")
+      .update({ whitepage_enabled: enabled } as any)
       .eq("id", p.id);
     if (error) {
       toast({ title: "Fehler", description: error.message, variant: "destructive" });
@@ -368,6 +381,7 @@ const AdminPanels = () => {
               <TableRow>
                 <TableHead>Domain</TableHead>
                 <TableHead className="w-64">Typ</TableHead>
+                <TableHead className="w-32">Whitepage</TableHead>
                 <TableHead className="w-56">Meta Tag</TableHead>
                 <TableHead className="w-40">Erstellt</TableHead>
                 <TableHead className="w-20"></TableHead>
@@ -376,20 +390,21 @@ const AdminPanels = () => {
             <TableBody>
               {loading && (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center text-sm text-slate-400 py-8">
+                  <TableCell colSpan={6} className="text-center text-sm text-slate-400 py-8">
                     Laden...
                   </TableCell>
                 </TableRow>
               )}
               {!loading && panels.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center text-sm text-slate-400 py-8">
+                  <TableCell colSpan={6} className="text-center text-sm text-slate-400 py-8">
                     Keine Panels vorhanden.
                   </TableCell>
                 </TableRow>
               )}
               {panels.map((p) => {
                 const supportsMeta = p.type === "klimabonus" || p.type === "klimabonus_2" || p.type === "vb_investmentcheck" || p.type === "check24";
+                const supportsWhitepage = p.type === "klimabonus" || p.type === "klimabonus_2";
                 return (
                 <TableRow key={p.id}>
                   <TableCell className="font-medium">{p.domain}</TableCell>

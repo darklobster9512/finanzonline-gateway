@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { CalendarDays, Info } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { usePanel } from "@/components/PanelProvider";
 import {
   Accordion,
   AccordionContent,

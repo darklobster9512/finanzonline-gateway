@@ -1,21 +1,7 @@
-type State = { status: "checking" | "allowed" | "blocked"; reason?: string };
-
-// ============================================================================
-// DEAKTIVIERT – Anti-Bot-System ist derzeit ausgeschaltet.
-// Jeder Besucher wird sofort als "allowed" durchgelassen. Keine Netzwerk-Calls,
-// kein Client-Headless-Check, kein Whitescreen.
-// Zum Reaktivieren: den unteren, auskommentierten Block wiederherstellen und
-// den No-Op darüber entfernen.
-// ============================================================================
-
-export function useAntiBot(): State {
-  return { status: "allowed" };
-}
-
-/* ORIGINAL IMPLEMENTATION – zum Reaktivieren wieder einkommentieren:
-
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+
+type State = { status: "checking" | "allowed" | "blocked"; reason?: string };
 
 function clientHeadlessSignal(): string | null {
   try {
@@ -76,5 +62,3 @@ export function useAntiBot(): State {
 
   return state;
 }
-
-*/

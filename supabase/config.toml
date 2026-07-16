@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.meta-traffic-notify]
 verify_jwt = false
+
+[functions.sync-ip-blocklist]
+verify_jwt = false

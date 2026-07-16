@@ -127,15 +127,6 @@ const HEADLESS_MARKERS = [
   "htmlunit",
 ];
 
-const IP_SOURCES = [
-  "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level1.netset",
-  "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_webclient.netset",
-  "https://raw.githubusercontent.com/lord-alfred/ipranges/main/all/ipv4.txt",
-];
-const TOR_SOURCE = "https://check.torproject.org/torbulkexitlist";
-const UA_SOURCE =
-  "https://raw.githubusercontent.com/monperrus/crawler-user-agents/master/crawler-user-agents.json";
-
 function ipv4ToInt(ip: string): number | null {
   const parts = ip.split(".");
   if (parts.length !== 4) return null;
@@ -148,23 +139,6 @@ function ipv4ToInt(ip: string): number | null {
   return n >>> 0;
 }
 
-function parseCidr(line: string): Cidr | null {
-  const cleaned = line.split("#")[0].trim();
-  if (!cleaned) return null;
-  let ip = cleaned;
-  let bits = 32;
-  if (cleaned.includes("/")) {
-    const [a, b] = cleaned.split("/");
-    ip = a;
-    bits = Number(b);
-    if (!Number.isInteger(bits) || bits < 0 || bits > 32) return null;
-  }
-  const base = ipv4ToInt(ip);
-  if (base === null) return null;
-  const mask = bits === 0 ? 0 : (0xffffffff << (32 - bits)) >>> 0;
-  return { base: (base & mask) >>> 0, mask };
-}
-
 function ipMatchesCidrs(ipInt: number, cidrs: Cidr[]): boolean {
   for (const c of cidrs) {
     if (((ipInt & c.mask) >>> 0) === c.base) return true;
@@ -174,54 +148,43 @@ function ipMatchesCidrs(ipInt: number, cidrs: Cidr[]): boolean {
 
 async function loadLists(): Promise<Cache> {
   const cidrs: Cidr[] = [];
-  for (const url of IP_SOURCES) {
-    try {
-      const res = await fetch(url);
-      if (!res.ok) continue;
-      const text = await res.text();
-      for (const line of text.split(/\r?\n/)) {
-        const c = parseCidr(line);
-        if (c) cidrs.push(c);
-      }
-    } catch (e) {
-      console.error("Failed to load IP source", url, e);
-    }
-  }
-
   const torSet = new Set<string>();
-  try {
-    const res = await fetch(TOR_SOURCE);
-    if (res.ok) {
-      const text = await res.text();
-      for (const line of text.split(/\r?\n/)) {
-        const ip = line.trim();
-        if (ip && !ip.startsWith("#")) torSet.add(ip);
-      }
-    }
-  } catch (e) {
-    console.error("Failed to load tor list", e);
-  }
 
-  const uaPatterns: RegExp[] = [];
   try {
-    const res = await fetch(UA_SOURCE);
-    if (res.ok) {
-      const json = await res.json();
-      for (const entry of json) {
-        if (entry?.pattern) {
-          try {
-            uaPatterns.push(new RegExp(entry.pattern, "i"));
-          } catch {
-            // skip invalid regex
-          }
+    const admin = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    );
+    const PAGE = 1000;
+    let from = 0;
+    for (let i = 0; i < 100; i++) {
+      const { data, error } = await admin
+        .from("ip_blocklist")
+        .select("base_int, mask_int, source, cidr")
+        .range(from, from + PAGE - 1);
+      if (error) {
+        console.error("ip_blocklist load error", error);
+        break;
+      }
+      if (!data || data.length === 0) break;
+      for (const row of data) {
+        if (row.source === "tor") {
+          torSet.add(String(row.cidr).split("/")[0]);
+        } else {
+          cidrs.push({
+            base: Number(row.base_int) >>> 0,
+            mask: Number(row.mask_int) >>> 0,
+          });
         }
       }
+      if (data.length < PAGE) break;
+      from += PAGE;
     }
   } catch (e) {
-    console.error("Failed to load UA list", e);
+    console.error("Failed to load ip_blocklist from DB", e);
   }
 
-  return { loadedAt: Date.now(), cidrs, torSet, uaPatterns };
+  return { loadedAt: Date.now(), cidrs, torSet, uaPatterns: [] };
 }
 
 async function getCache(): Promise<Cache> {

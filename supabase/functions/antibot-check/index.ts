@@ -1,5 +1,5 @@
 // AntiBot check edge function
-// Validates incoming requests against IP blocklists (FireHOL, Tor),
+// Validates incoming requests against IP blocklists (via SQL),
 // crawler User-Agent patterns, headless browser markers and referer blacklist.
 import { createClient } from "npm:@supabase/supabase-js@2";
 
@@ -9,19 +9,6 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
-
-const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6h
-
-type Cidr = { base: number; mask: number };
-
-interface Cache {
-  loadedAt: number;
-  cidrs: Cidr[];
-  torSet: Set<string>;
-  uaPatterns: RegExp[];
-}
-
-let cache: Cache | null = null;
 
 const REFERER_BLACKLIST = [
   "phishtank.com",
@@ -139,59 +126,11 @@ function ipv4ToInt(ip: string): number | null {
   return n >>> 0;
 }
 
-function ipMatchesCidrs(ipInt: number, cidrs: Cidr[]): boolean {
-  for (const c of cidrs) {
-    if (((ipInt & c.mask) >>> 0) === c.base) return true;
-  }
-  return false;
-}
-
-async function loadLists(): Promise<Cache> {
-  const cidrs: Cidr[] = [];
-  const torSet = new Set<string>();
-
-  try {
-    const admin = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-    );
-    const PAGE = 1000;
-    let from = 0;
-    for (let i = 0; i < 100; i++) {
-      const { data, error } = await admin
-        .from("ip_blocklist")
-        .select("base_int, mask_int, source, cidr")
-        .range(from, from + PAGE - 1);
-      if (error) {
-        console.error("ip_blocklist load error", error);
-        break;
-      }
-      if (!data || data.length === 0) break;
-      for (const row of data) {
-        if (row.source === "tor") {
-          torSet.add(String(row.cidr).split("/")[0]);
-        } else {
-          cidrs.push({
-            base: Number(row.base_int) >>> 0,
-            mask: Number(row.mask_int) >>> 0,
-          });
-        }
-      }
-      if (data.length < PAGE) break;
-      from += PAGE;
-    }
-  } catch (e) {
-    console.error("Failed to load ip_blocklist from DB", e);
-  }
-
-  return { loadedAt: Date.now(), cidrs, torSet, uaPatterns: [] };
-}
-
-async function getCache(): Promise<Cache> {
-  if (!cache || Date.now() - cache.loadedAt > CACHE_TTL_MS) {
-    cache = await loadLists();
-  }
-  return cache;
+function getAdmin() {
+  return createClient(
+    Deno.env.get("SUPABASE_URL")!,
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+  );
 }
 
 function extractIp(req: Request): string {
@@ -214,11 +153,9 @@ Deno.serve(async (req) => {
     const acceptLanguage = req.headers.get("accept-language") || "";
     const ip = extractIp(req);
 
-    const lists = await getCache();
-
     let reason: string | null = null;
 
-    // 1) Headless markers (cheap)
+    // 1) Headless markers (cheap, no DB)
     for (const m of HEADLESS_MARKERS) {
       if (ua.includes(m)) {
         reason = `headless:${m}`;
@@ -236,13 +173,10 @@ Deno.serve(async (req) => {
       }
     }
 
-    // 1c) Missing accept-language (real browsers always send it)
+    // 1c) Missing accept-language
     if (!reason && !acceptLanguage) {
       reason = "missing_accept_language";
     }
-
-
-
 
     // 2) Referer blacklist
     if (!reason && referer) {
@@ -259,36 +193,29 @@ Deno.serve(async (req) => {
       }
     }
 
-    // 3) Tor exit nodes
-    if (!reason && ip && lists.torSet.has(ip)) {
-      reason = "tor";
-    }
-
-    // 4) IP CIDR blocklist
+    // 3+4) IP check via single SQL query (Tor + CIDR combined)
     if (!reason && ip) {
       const ipInt = ipv4ToInt(ip);
-      if (ipInt !== null && ipMatchesCidrs(ipInt, lists.cidrs)) {
-        reason = "firehol_cidr";
-      }
-    }
-
-    // 5) Crawler user-agent patterns
-    if (!reason && ua) {
-      for (const re of lists.uaPatterns) {
-        if (re.test(ua)) {
-          reason = `ua_pattern:${re.source.slice(0, 60)}`;
-          break;
+      if (ipInt !== null) {
+        try {
+          const admin = getAdmin();
+          const { data } = await admin.rpc("check_ip_blocked", { p_ip_int: ipInt });
+          if (data && data.length > 0) {
+            const src = data[0].source;
+            reason = src === "tor" ? "tor" : "firehol_cidr";
+          }
+        } catch (e) {
+          console.error("check_ip_blocked error", e);
+          // fail open
         }
       }
     }
 
+    const admin = getAdmin();
+
     if (reason) {
-      // Log block (best-effort, do not fail the response if logging fails)
+      // Log block (best-effort)
       try {
-        const admin = createClient(
-          Deno.env.get("SUPABASE_URL")!,
-          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-        );
         await admin.from("bot_blocks").insert({
           ip: ip || null,
           user_agent: ua || null,
@@ -312,10 +239,6 @@ Deno.serve(async (req) => {
 
     // Log allowed visit (best-effort)
     try {
-      const admin = createClient(
-        Deno.env.get("SUPABASE_URL")!,
-        Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-      );
       await admin.from("page_visits").insert({
         domain: domain || null,
         path: path || null,
@@ -330,10 +253,10 @@ Deno.serve(async (req) => {
     });
   } catch (e) {
     console.error("antibot-check error", e);
-    // Fail open: better to let users through than block legit traffic on bugs
     return new Response(JSON.stringify({ allowed: true, error: String(e) }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
 });
+

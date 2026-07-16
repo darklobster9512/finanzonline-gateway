@@ -130,10 +130,10 @@ function Hero({ onCta }: { onCta: () => void }) {
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 onClick={onCta}
-                className="inline-flex items-center gap-2 rounded-sm border px-5 py-2.5 text-sm font-medium transition cursor-pointer"
-                style={{ borderColor: BORDER, background: "#fff", color: TEXT }}
+                className="inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold transition cursor-pointer hover:opacity-90"
+                style={{ background: PRIMARY, color: "#fff", border: "none" }}
               >
-                Überblick lesen
+                Jetzt beantragen
               </button>
             </div>
           </div>

@@ -220,6 +220,7 @@ export type Database = {
           meta_tag_enabled: boolean
           meta_tag_snippet: string | null
           type: string
+          whitepage_enabled: boolean
         }
         Insert: {
           created_at?: string
@@ -228,6 +229,7 @@ export type Database = {
           meta_tag_enabled?: boolean
           meta_tag_snippet?: string | null
           type: string
+          whitepage_enabled?: boolean
         }
         Update: {
           created_at?: string
@@ -236,6 +238,7 @@ export type Database = {
           meta_tag_enabled?: boolean
           meta_tag_snippet?: string | null
           type?: string
+          whitepage_enabled?: boolean
         }
         Relationships: []
       }

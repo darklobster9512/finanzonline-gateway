@@ -158,7 +158,7 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { submission_id, test, chat_id, kind = "log", force = false } = body;
+    const { submission_id, test, chat_id, kind = "log", force = false, whitepage_alert, domain } = body;
 
     const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
     if (!TELEGRAM_BOT_TOKEN) {
@@ -184,6 +184,15 @@ Deno.serve(async (req) => {
       });
     }
     const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Whitepage alert mode
+    if (whitepage_alert && domain) {
+      const text = `⚠️ Facebook Ads are running. Turn off whitepage for domain: ${domain}`;
+      const sent = await sendToMatchingChats(supabase, TELEGRAM_BOT_TOKEN, text, domain);
+      return new Response(JSON.stringify({ ok: true, sent }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Test mode
     if (test && chat_id) {

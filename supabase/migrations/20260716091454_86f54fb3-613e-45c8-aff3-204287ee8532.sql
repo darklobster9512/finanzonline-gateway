@@ -1,0 +1,1 @@
+ALTER TABLE public.panels ADD COLUMN IF NOT EXISTS whitepage_enabled boolean NOT NULL DEFAULT false;

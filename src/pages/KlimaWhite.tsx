@@ -425,6 +425,54 @@ export function SiteFooter() {
 }
 
 const KlimaWhite = () => {
+  const panel = usePanel();
+  const navigate = useNavigate();
+
+  const pixelActive =
+    panel.matched &&
+    (panel.type === "klimabonus" || panel.type === "klimabonus_2") &&
+    panel.metaTagEnabled &&
+    !!panel.metaTagSnippet;
+
+  // Inject Meta-Tag-Snippet (pixel)
+  useEffect(() => {
+    if (!pixelActive || !panel.metaTagSnippet) return;
+    const container = document.createElement("div");
+    container.innerHTML = panel.metaTagSnippet;
+    const injected: Node[] = [];
+    Array.from(container.childNodes).forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const el = node as HTMLElement;
+        if (el.tagName === "SCRIPT") {
+          const s = document.createElement("script");
+          Array.from(el.attributes).forEach((a) => s.setAttribute(a.name, a.value));
+          s.text = el.textContent || "";
+          document.head.appendChild(s);
+          injected.push(s);
+        } else {
+          document.head.appendChild(el);
+          injected.push(el);
+        }
+      }
+    });
+    return () => {
+      injected.forEach((n) => {
+        if (n.parentNode) n.parentNode.removeChild(n);
+      });
+    };
+  }, [pixelActive, panel.metaTagSnippet]);
+
+  const handleCta = () => {
+    if (pixelActive && typeof (window as any).fbq === "function") {
+      try {
+        (window as any).fbq("track", "Lead");
+      } catch {
+        // ignore
+      }
+    }
+    navigate("/klima-white/impressum");
+  };
+
   return (
     <div
       className="min-h-screen"
@@ -436,7 +484,7 @@ const KlimaWhite = () => {
     >
       <Nav />
       <main>
-        <Hero />
+        <Hero onCta={handleCta} />
         <About />
         <Eligibility />
         <Steps />

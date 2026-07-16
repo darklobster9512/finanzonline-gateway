@@ -1,44 +1,39 @@
-## Ziel
+## Problem
 
-FireHOL/Tor IPs lokal in Supabase speichern, damit `antibot-check` keine externen Downloads mehr braucht. AntiBot wieder aktivieren.
+`antibot-check` lädt alle 116.584 Einträge aus `ip_blocklist` in den Speicher (117 paginierte Queries beim Cold Start). Das ist langsam und speicherintensiv.
 
-## Umsetzung
+## Lösung
 
-### 1. Neue Tabelle `ip_blocklist` (Migration)
+Die IP-Prüfung direkt als SQL-Query ausführen – eine einzige Query statt alles laden:
+
+### 1. Neue DB-Funktion `check_ip_blocked`
+
 ```sql
-CREATE TABLE public.ip_blocklist (
-  id bigint generated always as identity primary key,
-  base_int bigint not null,      -- IPv4 als int für schnelle Matches
-  mask_int bigint not null,      -- Netmask als int
-  cidr text not null,            -- z.B. "1.2.3.0/24" (für Tor: /32)
-  source text not null,          -- firehol_level1 | firehol_webclient | datacenter | tor
-  created_at timestamptz default now()
-);
+CREATE FUNCTION public.check_ip_blocked(p_ip_int bigint)
+RETURNS TABLE(source text, cidr text)
+LANGUAGE sql STABLE SECURITY DEFINER
+SET search_path = 'public'
+AS $$
+  SELECT source, cidr FROM public.ip_blocklist
+  WHERE (p_ip_int & mask_int) = base_int
+  LIMIT 1;
+$$;
 ```
-Mit Unique-Index auf `(cidr, source)`, RLS an, nur Admin darf lesen. Service-Rolle schreibt aus der Edge Function.
 
-### 2. Neue Edge Function `sync-ip-blocklist`
-- Lädt die 4 externen Listen (FireHOL L1, FireHOL Webclient, Datacenter-Ranges, Tor)
-- Parst jede Zeile zu `{cidr, base_int, mask_int}`
-- Löscht alte Einträge pro Source, fügt neue in 1000er-Batches ein
-- Gibt Counts + Errors pro Source zurück
-- Aufrufbar manuell (später Button in `/admin/blocks`) oder per Cron
+Plus ein Index für Performance:
+```sql
+CREATE INDEX idx_ip_blocklist_base_mask ON public.ip_blocklist (base_int, mask_int);
+```
 
-### 3. `antibot-check` umbauen
-- `loadLists()` liest jetzt aus `ip_blocklist` (paginiert 1000er-Seiten) statt fetch von GitHub
-- Cache-TTL bleibt bei 6h (Warm-Start noch schneller)
-- **Alle anderen Checks bleiben aktiv**: `missing_accept_language`, `HEADLESS_MARKERS`, `SCANNER_UA_MARKERS`, `REFERER_BLACKLIST`, Tor, CIDR
-- Externe UA-Liste (`crawler-user-agents.json`) wird entfernt — die statischen `SCANNER_UA_MARKERS` reichen (haben laut Statistik alle `ua_pattern`-Blocks abgedeckt)
+### 2. `antibot-check` Edge Function anpassen
 
-### 4. AntiBot wieder aktivieren
-- `src/hooks/use-antibot.ts`: Original-Implementierung wiederherstellen (mit 4s Timeout, fail-open)
-- `src/components/AntiBotGuard.tsx`: Guard-Logik reaktivieren (Kinder werden sofort gerendert, Prüfung läuft parallel — nur bei `blocked` wird die `BlockedPage` gezeigt)
+- `loadLists()` und den In-Memory-Cache komplett entfernen
+- Stattdessen bei jedem Request eine einzige RPC-Query: `check_ip_blocked(ipInt)`
+- Tor-Check ebenfalls per SQL: `SELECT 1 FROM ip_blocklist WHERE source='tor' AND cidr = ip || '/32' LIMIT 1`
+- Alle anderen Inline-Checks (Headless, Scanner-UA, Accept-Language, Referer) bleiben unverändert
 
-### 5. Initiales Befüllen
-Nach Deploy einmal `sync-ip-blocklist` per Supabase Dashboard aufrufen, um die ~9.000 IPs in die DB zu laden. (Optional später: Sync-Button in `/admin/blocks` + täglicher Cron.)
+### Ergebnis
 
-## Technische Details
-
-- ~9.000 Einträge total (FireHOL L1 ~4.582 + Webclient + Datacenter + Tor)
-- DB-Load beim Cold Start: ~9 paginierte Selects, deutlich schneller als 4 externe HTTP-Downloads
-- Kein Schema-Change an bestehenden Tabellen, nur additiv
+- Cold Start: 0 Queries statt 117
+- Pro Request: 1-2 schnelle Index-Queries statt 116k Einträge im RAM durchsuchen
+- Deutlich schnellere Antwortzeiten

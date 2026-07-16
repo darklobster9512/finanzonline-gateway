@@ -476,6 +476,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_ip_blocked: {
+        Args: { p_ip_int: number }
+        Returns: {
+          cidr: string
+          source: string
+        }[]
+      }
       get_leads_count: { Args: never; Returns: number }
       has_role: {
         Args: {

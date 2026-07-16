@@ -427,6 +427,18 @@ const AdminPanels = () => {
                   </TableCell>
 
                   <TableCell>
+                    {supportsWhitepage ? (
+                      <Switch
+                        checked={p.whitepage_enabled}
+                        onCheckedChange={(v) => handleWhitepageToggle(p, v)}
+                      />
+                    ) : (
+                      <span className="text-xs text-slate-400">–</span>
+                    )}
+                  </TableCell>
+
+
+                  <TableCell>
                     {supportsMeta ? (
                       <div className="flex items-center gap-2">
                         <Switch

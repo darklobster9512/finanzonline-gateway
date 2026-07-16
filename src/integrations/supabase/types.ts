@@ -80,6 +80,33 @@ export type Database = {
         }
         Relationships: []
       }
+      ip_blocklist: {
+        Row: {
+          base_int: number
+          cidr: string
+          created_at: string
+          id: number
+          mask_int: number
+          source: string
+        }
+        Insert: {
+          base_int: number
+          cidr: string
+          created_at?: string
+          id?: never
+          mask_int: number
+          source: string
+        }
+        Update: {
+          base_int?: number
+          cidr?: string
+          created_at?: string
+          id?: never
+          mask_int?: number
+          source?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string

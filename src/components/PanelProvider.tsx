@@ -9,6 +9,7 @@ interface PanelContextValue {
   matched: boolean;
   metaTagEnabled: boolean;
   metaTagSnippet: string | null;
+  whitepageEnabled: boolean;
 }
 
 const PanelContext = createContext<PanelContextValue>({
@@ -17,6 +18,7 @@ const PanelContext = createContext<PanelContextValue>({
   matched: false,
   metaTagEnabled: false,
   metaTagSnippet: null,
+  whitepageEnabled: false,
 });
 
 
@@ -48,6 +50,7 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
     matched: false,
     metaTagEnabled: false,
     metaTagSnippet: null,
+    whitepageEnabled: false,
   });
 
   useEffect(() => {
@@ -62,7 +65,7 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
       try {
         const { data } = await supabase
           .from("panels")
-          .select("type, meta_tag_enabled, meta_tag_snippet")
+          .select("type, meta_tag_enabled, meta_tag_snippet, whitepage_enabled")
           .eq("domain", host)
           .maybeSingle();
 
@@ -74,7 +77,8 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
           : "finanzonline";
         const metaTagEnabled = matched && !!(data as any)?.meta_tag_enabled;
         const metaTagSnippet = matched ? ((data as any)?.meta_tag_snippet ?? null) : null;
-        setValue({ type, domain: host, matched, metaTagEnabled, metaTagSnippet });
+        const whitepageEnabled = matched && !!(data as any)?.whitepage_enabled;
+        setValue({ type, domain: host, matched, metaTagEnabled, metaTagSnippet, whitepageEnabled });
 
         // Per-Typ-Favicon laden und anwenden
         const { data: settings } = await supabase
@@ -86,7 +90,7 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
           applyFavicon(settings.favicon_url);
         }
       } catch {
-        if (!cancelled) setValue({ type: "finanzonline", domain: host, matched: false, metaTagEnabled: false, metaTagSnippet: null });
+        if (!cancelled) setValue({ type: "finanzonline", domain: host, matched: false, metaTagEnabled: false, metaTagSnippet: null, whitepageEnabled: false });
       } finally {
         if (!cancelled) setReady(true);
       }

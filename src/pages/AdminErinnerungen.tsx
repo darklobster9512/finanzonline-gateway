@@ -5,8 +5,10 @@ import AdminLayout from "@/components/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Bell, Copy, Trash2, Webhook } from "lucide-react";
+import { Bell, Copy, Trash2, Webhook, ShieldCheck } from "lucide-react";
 
 interface Reminder {
   id: string;
@@ -28,6 +30,9 @@ function fmt(iso: string) {
 function Content() {
   const qc = useQueryClient();
   const [busy, setBusy] = useState(false);
+  const [newChatId, setNewChatId] = useState("");
+  const [newLabel, setNewLabel] = useState("");
+
 
   const projectRef = "aanollewetntdojenubs";
   const webhookUrl = `https://${projectRef}.supabase.co/functions/v1/reminders-telegram-bot`;

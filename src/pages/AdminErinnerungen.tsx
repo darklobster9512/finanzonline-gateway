@@ -64,6 +64,40 @@ function Content() {
     },
   });
 
+  const { data: authChats = [] } = useQuery({
+    queryKey: ["reminders-auth-chats"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("reminders_bot_authorized_chats")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return (data || []) as Array<{ id: string; chat_id: string; label: string | null; created_at: string }>;
+    },
+  });
+
+  async function addAuthChat() {
+    const cid = newChatId.trim();
+    if (!cid) return;
+    const { error } = await supabase
+      .from("reminders_bot_authorized_chats")
+      .insert({ chat_id: cid, label: newLabel.trim() || null });
+    if (error) {
+      toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    } else {
+      setNewChatId(""); setNewLabel("");
+      qc.invalidateQueries({ queryKey: ["reminders-auth-chats"] });
+      toast({ title: "Chat autorisiert" });
+    }
+  }
+
+  async function delAuthChat(id: string) {
+    const { error } = await supabase.from("reminders_bot_authorized_chats").delete().eq("id", id);
+    if (error) toast({ title: "Fehler", description: error.message, variant: "destructive" });
+    else qc.invalidateQueries({ queryKey: ["reminders-auth-chats"] });
+  }
+
+
   async function copy(text: string) {
     await navigator.clipboard.writeText(text);
     toast({ title: "Kopiert" });

@@ -176,6 +176,60 @@ function Content() {
 
       <Card>
         <CardHeader>
+          <CardTitle className="text-base flex items-center gap-2">
+            <ShieldCheck className="h-4 w-4" /> Autorisierte Chats ({authChats.length})
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="rounded-md border bg-amber-50 border-amber-200 p-3 text-xs text-amber-900">
+            Nur autorisierte Chat-IDs dürfen Erinnerungen anlegen. Sende dem Bot zuerst <code>/start</code> –
+            er zeigt dir deine Chat-ID an. Diese hier eintragen.
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-2 items-end">
+            <div>
+              <Label htmlFor="cid" className="text-xs">Chat ID</Label>
+              <Input id="cid" value={newChatId} onChange={(e) => setNewChatId(e.target.value)} placeholder="123456789" />
+            </div>
+            <div>
+              <Label htmlFor="lbl" className="text-xs">Label (optional)</Label>
+              <Input id="lbl" value={newLabel} onChange={(e) => setNewLabel(e.target.value)} placeholder="z.B. Stefan" />
+            </div>
+            <Button onClick={addAuthChat}>Hinzufügen</Button>
+          </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Chat ID</TableHead>
+                <TableHead>Label</TableHead>
+                <TableHead>Hinzugefügt</TableHead>
+                <TableHead className="w-16"></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {authChats.map((c) => (
+                <TableRow key={c.id}>
+                  <TableCell className="font-mono text-xs">{c.chat_id}</TableCell>
+                  <TableCell>{c.label || <span className="text-slate-400">—</span>}</TableCell>
+                  <TableCell className="text-xs text-slate-500">{new Date(c.created_at).toLocaleString("de-AT")}</TableCell>
+                  <TableCell>
+                    <Button variant="ghost" size="sm" onClick={() => delAuthChat(c.id)}>
+                      <Trash2 className="h-4 w-4 text-red-600" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+              {authChats.length === 0 && (
+                <TableRow><TableCell colSpan={4} className="text-center text-slate-400 py-6">Noch keine autorisierten Chats</TableCell></TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+
+
+
+      <Card>
+        <CardHeader>
           <CardTitle className="text-base">Aktive Erinnerungen ({active.length})</CardTitle>
         </CardHeader>
         <CardContent className="p-0">

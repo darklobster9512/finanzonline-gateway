@@ -269,6 +269,36 @@ export type Database = {
         }
         Relationships: []
       }
+      reminders: {
+        Row: {
+          chat_id: string
+          created_at: string
+          id: string
+          notified: boolean
+          notify_at: string
+          remind_at: string
+          title: string
+        }
+        Insert: {
+          chat_id: string
+          created_at?: string
+          id?: string
+          notified?: boolean
+          notify_at: string
+          remind_at: string
+          title: string
+        }
+        Update: {
+          chat_id?: string
+          created_at?: string
+          id?: string
+          notified?: boolean
+          notify_at?: string
+          remind_at?: string
+          title?: string
+        }
+        Relationships: []
+      }
       submission_calls: {
         Row: {
           call_type: string

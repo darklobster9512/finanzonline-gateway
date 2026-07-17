@@ -144,10 +144,27 @@ Deno.serve(async (req) => {
   const cmd = cmdMatch?.[1]?.toLowerCase();
   const args = cmdMatch?.[2] ?? "";
 
+  // Authorization check (except /start & /help which show the chat id)
+  const { data: authRow } = await admin
+    .from("reminders_bot_authorized_chats")
+    .select("chat_id")
+    .eq("chat_id", String(chatId))
+    .maybeSingle();
+  const authorized = !!authRow;
+
   try {
     if (cmd === "start" || cmd === "help") {
-      await sendMessage(chatId, HELP);
+      const authNote = authorized
+        ? "✅ Dieser Chat ist <b>autorisiert</b>."
+        : `🔒 Dieser Chat ist <b>nicht autorisiert</b>.\nDeine Chat-ID: <code>${chatId}</code>\nBitte im Admin-Panel unter <i>Erinnerungen → Autorisierte Chats</i> hinzufügen.`;
+      await sendMessage(chatId, `${HELP}\n\n${authNote}`);
+    } else if (!authorized) {
+      await sendMessage(
+        chatId,
+        `🔒 Dieser Chat ist nicht autorisiert.\n\nDeine Chat-ID: <code>${chatId}</code>\n\nBitte im Admin-Panel hinzufügen.`,
+      );
     } else if (cmd === "erinnerung") {
+
       const parsed = parseReminder(args);
       if ("error" in parsed) {
         await sendMessage(chatId, "❌ " + parsed.error);

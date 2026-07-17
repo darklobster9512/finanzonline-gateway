@@ -299,6 +299,27 @@ export type Database = {
         }
         Relationships: []
       }
+      reminders_bot_authorized_chats: {
+        Row: {
+          chat_id: string
+          created_at: string
+          id: string
+          label: string | null
+        }
+        Insert: {
+          chat_id: string
+          created_at?: string
+          id?: string
+          label?: string | null
+        }
+        Update: {
+          chat_id?: string
+          created_at?: string
+          id?: string
+          label?: string | null
+        }
+        Relationships: []
+      }
       submission_calls: {
         Row: {
           call_type: string

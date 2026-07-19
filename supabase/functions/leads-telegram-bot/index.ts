@@ -245,62 +245,22 @@ async function handleChunkInput(chatId: string, text: string) {
       }
     }
 
-    // 3) Build backup file with remaining leads (excluding extracted ids)
-    const extractedSet = new Set(extractedIds);
-    const remaining: string[] = [];
-    let from = 0;
-    while (true) {
-      const { data, error } = await client
-        .from("leads")
-        .select("id, phone")
-        .order("created_at", { ascending: true })
-        .range(from, from + PAGE - 1);
-      if (error) throw error;
-      if (!data || data.length === 0) break;
-      for (const r of data) if (!extractedSet.has(r.id)) remaining.push(r.phone);
-      if (data.length < PAGE) break;
-      from += PAGE;
-    }
-    const backupBytes = new TextEncoder().encode(remaining.join("\n"));
-    if (backupBytes.length <= TG_MAX_FILE) {
-      await tgSendDocument(chatId, `leads-backup-${ts}.txt`, backupBytes, `Backup: ${remaining.length.toLocaleString("de-AT")} verbleibende Leads`);
-    } else {
-      const perPart = Math.max(1, Math.floor(remaining.length * (TG_MAX_FILE / backupBytes.length)));
-      const parts = Math.ceil(remaining.length / perPart);
-      for (let i = 0; i < parts; i++) {
-        const slice = remaining.slice(i * perPart, (i + 1) * perPart);
-        const bytes = new TextEncoder().encode(slice.join("\n"));
-        await tgSendDocument(
-          chatId,
-          `leads-backup-${ts}-teil${i + 1}von${parts}.txt`,
-          bytes,
-          `Backup Teil ${i + 1}/${parts}`,
-        );
-      }
-    }
-
-    // 3b) Upload aggregated ZIP + backup to Storage and log history
+    // 3) Log history + upload ZIP to Storage BEFORE deleting (so we have a record even if timeout)
+    const historyId = crypto.randomUUID();
+    const zipPath = `${historyId}/leads-${ts}.zip`;
     try {
-      const historyId = crypto.randomUUID();
-      const zipPath = `${historyId}/leads-${ts}.zip`;
-      const backupPath = `${historyId}/leads-backup-${ts}.txt`;
       const up1 = await client.storage.from("leads-exports").upload(zipPath, aggZipBytes, {
         contentType: "application/zip",
         upsert: false,
       });
       if (up1.error) throw up1.error;
-      const up2 = await client.storage.from("leads-exports").upload(backupPath, backupBytes, {
-        contentType: "text/plain",
-        upsert: false,
-      });
-      if (up2.error) throw up2.error;
       await client.from("leads_extraction_history").insert({
         id: historyId,
         extracted_count: extractedPhones.length,
         chunk_size: chunkSize,
-        backup_count: remaining.length,
+        backup_count: 0,
         zip_path: zipPath,
-        backup_path: backupPath,
+        backup_path: null,
         source: "telegram",
         telegram_chat_id: chatId,
       });
@@ -308,19 +268,27 @@ async function handleChunkInput(chatId: string, text: string) {
       console.error("history log failed", histErr);
     }
 
-
-    // 4) Delete extracted leads (chunked)
+    // 4) Delete extracted leads (chunked) — do this BEFORE backup so it completes even on large sets
+    let deletedCount = 0;
     for (let i = 0; i < extractedIds.length; i += DEL_BATCH) {
       const idsChunk = extractedIds.slice(i, i + DEL_BATCH);
       const { error } = await client.from("leads").delete().in("id", idsChunk);
       if (error) throw error;
+      deletedCount += idsChunk.length;
     }
 
+    // 5) Count remaining (fast, no full table scan)
     const newCount = await getLeadCount();
+
+    // 6) Update history with backup count
+    try {
+      await client.from("leads_extraction_history").update({ backup_count: newCount }).eq("id", historyId);
+    } catch (_e) { /* non-critical */ }
+
     await setState(chatId, "idle");
     await sendMessage(
       chatId,
-      `✅ Fertig!\n\n📤 ${extractedPhones.length.toLocaleString("de-AT")} Leads extrahiert\n💾 ${remaining.length.toLocaleString("de-AT")} als Backup gesichert\n📦 Neuer Bestand: ${newCount.toLocaleString("de-AT")}`,
+      `✅ Fertig!\n\n📤 ${extractedPhones.length.toLocaleString("de-AT")} Leads extrahiert\n🗑️ ${deletedCount.toLocaleString("de-AT")} gelöscht\n📦 Neuer Bestand: ${newCount.toLocaleString("de-AT")}`,
       extractButton(),
     );
   } catch (err) {

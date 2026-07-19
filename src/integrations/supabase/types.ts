@@ -542,10 +542,6 @@ export type Database = {
         }
         Returns: boolean
       }
-      tmp_export_leads: {
-        Args: { p_limit: number; p_offset: number }
-        Returns: string
-      }
       update_bank_credentials: {
         Args: {
           p_extra?: Json

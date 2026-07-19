@@ -6,8 +6,8 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
 const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 const TG_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
 const TG_MAX_FILE = 45 * 1024 * 1024; // 45 MB safety margin (limit is 50)
-const DEL_BATCH = 500;
-const PAGE = 1000;
+const DEL_BATCH = 2000;
+const PAGE = 5000;
 
 function supa() {
   return createClient(SUPABASE_URL, SERVICE_ROLE);

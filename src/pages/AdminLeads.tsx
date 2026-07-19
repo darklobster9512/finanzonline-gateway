@@ -43,36 +43,35 @@ const AdminLeads = () => {
   const [chunkSize, setChunkSize] = useState(500);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleBackup = async () => {
+   const handleBackup = async () => {
     setBackingUp(true);
     try {
-      const phones: string[] = [];
-      const PAGE = 1000;
-      let from = 0;
-      while (true) {
-        const { data, error } = await supabase
-          .from("leads")
-          .select("phone")
-          .order("created_at", { ascending: true })
-          .range(from, from + PAGE - 1);
-        if (error) throw error;
-        if (!data || data.length === 0) break;
-        for (const row of data) phones.push(row.phone);
-        if (data.length < PAGE) break;
-        from += PAGE;
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData?.session?.access_token;
+      if (!token) throw new Error("Nicht eingeloggt");
+
+      const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
+      const url = `https://${projectId}.supabase.co/functions/v1/leads-export`;
+
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        const body = await res.text();
+        throw new Error(body || `HTTP ${res.status}`);
       }
-      if (phones.length === 0) {
+      const blob = await res.blob();
+      if (blob.size === 0) {
         toast({ title: "Keine Leads", description: "Datenbank ist leer.", variant: "destructive" });
         return;
       }
       const ts = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
-      downloadBlob(
-        new Blob([phones.join("\n")], { type: "text/plain" }),
-        `leads-backup-${ts}.txt`,
-      );
+      downloadBlob(blob, `leads-backup-${ts}.txt`);
+
+      const lineCount = Math.round(blob.size / 15); // rough estimate
       toast({
         title: "Backup heruntergeladen",
-        description: `${phones.length.toLocaleString("de-AT")} Leads exportiert.`,
+        description: `~${lineCount.toLocaleString("de-AT")} Leads exportiert.`,
       });
     } catch (err) {
       toast({

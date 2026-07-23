@@ -21,3 +21,7 @@ verify_jwt = false
 [functions.reminders-dispatch]
 verify_jwt = false
 
+[functions.email-telegram-bot]
+verify_jwt = false
+
+

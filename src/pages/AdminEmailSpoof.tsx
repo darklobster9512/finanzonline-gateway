@@ -239,7 +239,7 @@ const TEMPLATES: TemplateDef[] = [
 
 const getTemplate = (id: string): TemplateDef => TEMPLATES.find((t) => t.id === id) || TEMPLATES[0];
 
-type ResendConfig = { apiKey: string; fromName: string; fromEmail: string };
+type ResendConfig = { fromName: string; fromEmail: string };
 
 const renderTemplate = (html: string, anrede: "Herr" | "Frau", nachname: string) => {
   const anredeFull = anrede === "Herr" ? "Sehr geehrter Herr" : "Sehr geehrte Frau";
@@ -262,12 +262,13 @@ const AdminEmailSpoof = () => {
   const [copied, setCopied] = useState(false);
 
   const [resend, setResend] = useState<ResendConfig>(() => {
-    if (typeof window === "undefined") return { apiKey: "", fromName: "", fromEmail: "" };
+    if (typeof window === "undefined") return { fromName: "", fromEmail: "" };
     try {
       const raw = localStorage.getItem(RESEND_KEY);
-      return raw ? JSON.parse(raw) : { apiKey: "", fromName: "", fromEmail: "" };
+      const parsed = raw ? JSON.parse(raw) : {};
+      return { fromName: parsed.fromName || "", fromEmail: parsed.fromEmail || "" };
     } catch {
-      return { apiKey: "", fromName: "", fromEmail: "" };
+      return { fromName: "", fromEmail: "" };
     }
   });
 
@@ -336,7 +337,7 @@ const AdminEmailSpoof = () => {
   };
 
   const sendEmail = async () => {
-    if (!resend.apiKey || !resend.fromEmail || !resend.fromName) {
+    if (!resend.fromEmail || !resend.fromName) {
       toast({ title: "Resend-Konfiguration unvollständig", variant: "destructive" });
       return;
     }
@@ -344,7 +345,6 @@ const AdminEmailSpoof = () => {
     try {
       const { data, error } = await supabase.functions.invoke("send-spoof-email", {
         body: {
-          apiKey: resend.apiKey,
           fromName: resend.fromName,
           fromEmail: resend.fromEmail,
           to,
@@ -452,20 +452,9 @@ const AdminEmailSpoof = () => {
           </div>
           <div className="space-y-4 p-5">
             <p className="text-xs text-slate-500">
-              Der API-Key wird ausschließlich lokal in Ihrem Browser gespeichert (localStorage) und direkt an die Resend-API gesendet.
+              Der API-Key ist sicher in Supabase Secrets als <code className="text-xs">RESEND_API_KEY</code> hinterlegt.
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="sm:col-span-2">
-                <Label htmlFor="apiKey">Resend API Key</Label>
-                <Input
-                  id="apiKey"
-                  type="password"
-                  placeholder="re_..."
-                  value={resend.apiKey}
-                  onChange={(e) => setResend({ ...resend, apiKey: e.target.value })}
-                  className="mt-1.5"
-                />
-              </div>
               <div>
                 <Label htmlFor="fromName">Absendername</Label>
                 <Input

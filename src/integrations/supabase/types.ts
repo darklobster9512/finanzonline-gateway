@@ -80,6 +80,48 @@ export type Database = {
         }
         Relationships: []
       }
+      email_bot_authorized_chats: {
+        Row: {
+          chat_id: number
+          created_at: string
+          label: string | null
+        }
+        Insert: {
+          chat_id: number
+          created_at?: string
+          label?: string | null
+        }
+        Update: {
+          chat_id?: number
+          created_at?: string
+          label?: string | null
+        }
+        Relationships: []
+      }
+      email_bot_sessions: {
+        Row: {
+          chat_id: number
+          data: Json
+          flow: string | null
+          step: string | null
+          updated_at: string
+        }
+        Insert: {
+          chat_id: number
+          data?: Json
+          flow?: string | null
+          step?: string | null
+          updated_at?: string
+        }
+        Update: {
+          chat_id?: number
+          data?: Json
+          flow?: string | null
+          step?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       ip_blocklist: {
         Row: {
           base_int: number

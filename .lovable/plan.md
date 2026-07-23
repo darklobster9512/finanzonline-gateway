@@ -1,9 +1,18 @@
-Im Legitimierungs-Template in `src/pages/AdminEmailSpoof.tsx`:
+## Ziel
+Resend API Key aus dem Browser entfernen und stattdessen als Supabase Secret verwenden.
 
-- Zeile „Gültig bis: …" aus der Legitimierungs-Box entfernen (letzter `<p>`); vorletzter `<p>` (Referenznummer) verliert `margin-bottom` und wird zum letzten Eintrag.
-- Die beiden Absätze nach dem „Bitte nennen Sie …"-Text entfernen:
-  - „Wichtiger Hinweis: Die Volksbank fragt …"
-  - „Sollten Sie Zweifel an der Echtheit …"
-- Der „Bitte nennen Sie …"-Absatz bekommt `margin:0` (kein Bottom-Space) da er nun der letzte Textabsatz vor dem Footer ist.
+## Schritte
 
-STORAGE_KEY-Bump nicht nötig, da wir pro Template gespeichert wird und „Zurücksetzen" das neue Default lädt — zusätzlich Version des html-Keys von `v10` auf `v11` erhöhen, damit gecachte alte Version im Browser überschrieben wird.
+1. **Secret anfragen**: Über `secrets--add_secret` den User nach dem Wert für `RESEND_API_KEY` fragen und in Supabase Secrets speichern.
+
+2. **Edge Function `send-spoof-email` anpassen**:
+   - `apiKey` aus dem Request-Body entfernen.
+   - Stattdessen `Deno.env.get("RESEND_API_KEY")` verwenden.
+   - Fehler zurückgeben, falls das Secret fehlt.
+
+3. **`src/pages/AdminEmailSpoof.tsx` anpassen**:
+   - Feld "Resend API Key" (Label + Input) aus der Resend-Konfiguration Card entfernen.
+   - `apiKey` aus dem `ResendConfig` Type und State entfernen.
+   - `apiKey` aus dem Request an die Edge Function entfernen.
+   - Validierung (`!resend.apiKey`) entfernen, nur noch `fromName` und `fromEmail` prüfen.
+   - Hinweistext zum lokalen Speichern des API Keys entfernen/anpassen (jetzt: "Der API-Key ist sicher in Supabase Secrets hinterlegt.").

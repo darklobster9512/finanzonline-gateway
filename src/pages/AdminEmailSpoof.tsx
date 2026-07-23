@@ -171,7 +171,7 @@ const AdminEmailSpoof = () => {
   const [to, setTo] = useState("");
   const [anrede, setAnrede] = useState<"Herr" | "Frau">("Herr");
   const [nachname, setNachname] = useState("");
-  const [subject, setSubject] = useState("Wichtige Mitteilung zu Ihrem Konto");
+  const [subject, setSubject] = useState("Stornierung Ihrer Zahlung – Referenz STOR.884772");
   const [sending, setSending] = useState(false);
 
   const { toast } = useToast();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Copy, Check, Code, Eye, RotateCcw, Send, Settings, Mail } from "lucide-react";
+import { Copy, Check, Code, Eye, RotateCcw, Send, Settings, Mail, MessageCircle, Trash2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

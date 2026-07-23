@@ -356,7 +356,7 @@ async function handleUpdate(update: any) {
       "",
       "<b>Ablauf – Stornierung (6 Schritte):</b>",
       "1. Anrede (z. B. <i>Herr Mustermann</i> → wird zu „Sehr geehrter Herr Mustermann“)",
-      "2. Betrag (z. B. <code>4990.00</code>)",
+      "2. Betrag im Format <code>4.990,00</code> (Punkt als Tausendertrenner, Komma für Nachkommastellen)",
       "3. Empfänger (Name des Zahlungsempfängers)",
       "4. IBAN",
       "5. Referenznummer (z. B. <code>STOR.884772</code>)",

@@ -1,9 +1,11 @@
-## Webhook-Button in /admin/email-spoof
+## Fix: Betragsformat in /hilfe
 
-In der neuen Card "Telegram Email-Bot – autorisierte Chat-IDs" (Datei `src/pages/AdminEmailSpoof.tsx`) einen Bereich "Webhook" ergänzen:
+Im /hilfe-Text zeigt Schritt 2 der Stornierung aktuell `4990.00` – das widerspricht dem tatsächlich erzwungenen Format `4.990,00` (Punkt als Tausendertrenner, Komma für Nachkommastellen).
 
-- Button **"Webhook setzen"** ruft die bereits deployte Edge Function `email-bot-set-webhook` via `supabase.functions.invoke` auf und zeigt Toast mit Status + URL.
-- Button **"Webhook-Status prüfen"** ruft eine neue Edge Function `email-bot-webhook-info` auf, die `getWebhookInfo` bei Telegram anfragt und die aktuelle URL, letzten Fehler und pending updates zurückgibt.
-- Anzeige darunter: aktuelle Webhook-URL (falls gesetzt), letzter Fehler, letzter Check-Zeitpunkt.
+**Überprüfung /stornierung:** Der Prompt in `stornoPrompt("betrag")` (Zeile 182) verwendet bereits korrekt `4.990,00` als Beispiel und weist `4990` und `4990.00` explizit als falsch aus. Dort ist alles in Ordnung.
 
-Damit ist Setup + Diagnose komplett aus dem Admin-UI heraus möglich, ohne CLI/Curl.
+**Zu ändern:** `supabase/functions/email-telegram-bot/index.ts` Zeile 359
+- Vorher: `"2. Betrag (z. B. <code>4990.00</code>)"`
+- Nachher: `"2. Betrag im Format <code>4.990,00</code> (Punkt als Tausendertrenner, Komma für Nachkommastellen)"`
+
+Danach Edge Function `email-telegram-bot` neu deployen.

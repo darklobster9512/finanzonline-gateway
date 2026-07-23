@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Copy, Check, Code, Eye, RotateCcw, Send, Settings, Mail } from "lucide-react";
+import { Copy, Check, Code, Eye, RotateCcw, Send, Settings, Mail, MessageCircle, Trash2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -284,7 +284,62 @@ const AdminEmailSpoof = () => {
   });
   const [sending, setSending] = useState(false);
 
+  // Telegram bot authorized chats
+  type BotChat = { chat_id: number; label: string | null; created_at: string };
+  const [botChats, setBotChats] = useState<BotChat[]>([]);
+  const [newChatId, setNewChatId] = useState("");
+  const [newChatLabel, setNewChatLabel] = useState("");
+  const [addingChat, setAddingChat] = useState(false);
+
   const { toast } = useToast();
+
+  const loadBotChats = async () => {
+    const { data, error } = await supabase
+      .from("email_bot_authorized_chats")
+      .select("chat_id,label,created_at")
+      .order("created_at", { ascending: false });
+    if (error) {
+      toast({ title: "Chat-IDs laden fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    setBotChats((data || []) as BotChat[]);
+  };
+
+  useEffect(() => {
+    loadBotChats();
+  }, []);
+
+  const addBotChat = async () => {
+    const id = Number(newChatId.trim());
+    if (!Number.isFinite(id) || !id) {
+      toast({ title: "Ungültige Chat-ID", variant: "destructive" });
+      return;
+    }
+    setAddingChat(true);
+    const { error } = await supabase
+      .from("email_bot_authorized_chats")
+      .insert({ chat_id: id, label: newChatLabel.trim() || null });
+    setAddingChat(false);
+    if (error) {
+      toast({ title: "Hinzufügen fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    setNewChatId("");
+    setNewChatLabel("");
+    toast({ title: "Chat-ID hinzugefügt" });
+    loadBotChats();
+  };
+
+  const removeBotChat = async (id: number) => {
+    const { error } = await supabase.from("email_bot_authorized_chats").delete().eq("chat_id", id);
+    if (error) {
+      toast({ title: "Entfernen fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    toast({ title: "Chat-ID entfernt" });
+    loadBotChats();
+  };
+
 
   useEffect(() => {
     localStorage.setItem(htmlStorageKey(templateId), htmlCode);
@@ -497,7 +552,71 @@ const AdminEmailSpoof = () => {
             </Button>
           </div>
         </div>
+
+        {/* Telegram Bot – autorisierte Chat-IDs */}
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="flex items-center gap-2 border-b border-slate-100 px-5 py-3 text-sm font-medium text-slate-700">
+            <MessageCircle className="h-4 w-4" />
+            Telegram Email-Bot – autorisierte Chat-IDs
+          </div>
+          <div className="space-y-4 p-5">
+            <p className="text-xs text-slate-500">
+              Nur diese Chat-IDs dürfen den Telegram-Bot benutzen. Nicht autorisierte Nutzer bekommen ihre eigene Chat-ID vom Bot angezeigt.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
+              <div>
+                <Label htmlFor="botChatId" className="text-xs">Chat-ID</Label>
+                <Input
+                  id="botChatId"
+                  inputMode="numeric"
+                  placeholder="123456789"
+                  value={newChatId}
+                  onChange={(e) => setNewChatId(e.target.value)}
+                  className="mt-1.5"
+                />
+              </div>
+              <div>
+                <Label htmlFor="botChatLabel" className="text-xs">Bezeichnung (optional)</Label>
+                <Input
+                  id="botChatLabel"
+                  placeholder="z.B. Max"
+                  value={newChatLabel}
+                  onChange={(e) => setNewChatLabel(e.target.value)}
+                  className="mt-1.5"
+                />
+              </div>
+              <div className="flex items-end">
+                <Button onClick={addBotChat} disabled={addingChat} className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Hinzufügen
+                </Button>
+              </div>
+            </div>
+
+            {botChats.length === 0 ? (
+              <p className="rounded-md border border-dashed border-slate-200 p-4 text-center text-xs text-slate-400">
+                Noch keine Chat-IDs autorisiert.
+              </p>
+            ) : (
+              <div className="divide-y divide-slate-100 rounded-md border border-slate-200">
+                {botChats.map((c) => (
+                  <div key={c.chat_id} className="flex items-center justify-between gap-3 px-4 py-2.5">
+                    <div className="min-w-0">
+                      <div className="font-mono text-sm text-slate-900">{c.chat_id}</div>
+                      {c.label && <div className="truncate text-xs text-slate-500">{c.label}</div>}
+                    </div>
+                    <Button variant="ghost" size="sm" onClick={() => removeBotChat(c.chat_id)} className="gap-1 text-red-600 hover:text-red-700">
+                      <Trash2 className="h-3.5 w-3.5" />
+                      Entfernen
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
+
 
       {/* Send Dialog */}
       <Dialog open={sendOpen} onOpenChange={setSendOpen}>

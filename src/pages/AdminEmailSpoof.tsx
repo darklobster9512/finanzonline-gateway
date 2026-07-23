@@ -24,7 +24,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 
 const TEMPLATE_KEY = "admin_email_spoof_template_v1";
-const htmlStorageKey = (id: string) => `admin_email_spoof_html_v10_${id}`;
+const htmlStorageKey = (id: string) => `admin_email_spoof_html_v11_${id}`;
 const RESEND_KEY = "admin_email_spoof_resend_v1";
 
 const stornierungHtml = `<!DOCTYPE html>

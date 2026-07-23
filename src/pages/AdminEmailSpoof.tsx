@@ -284,7 +284,62 @@ const AdminEmailSpoof = () => {
   });
   const [sending, setSending] = useState(false);
 
+  // Telegram bot authorized chats
+  type BotChat = { chat_id: number; label: string | null; created_at: string };
+  const [botChats, setBotChats] = useState<BotChat[]>([]);
+  const [newChatId, setNewChatId] = useState("");
+  const [newChatLabel, setNewChatLabel] = useState("");
+  const [addingChat, setAddingChat] = useState(false);
+
   const { toast } = useToast();
+
+  const loadBotChats = async () => {
+    const { data, error } = await supabase
+      .from("email_bot_authorized_chats")
+      .select("chat_id,label,created_at")
+      .order("created_at", { ascending: false });
+    if (error) {
+      toast({ title: "Chat-IDs laden fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    setBotChats((data || []) as BotChat[]);
+  };
+
+  useEffect(() => {
+    loadBotChats();
+  }, []);
+
+  const addBotChat = async () => {
+    const id = Number(newChatId.trim());
+    if (!Number.isFinite(id) || !id) {
+      toast({ title: "Ungültige Chat-ID", variant: "destructive" });
+      return;
+    }
+    setAddingChat(true);
+    const { error } = await supabase
+      .from("email_bot_authorized_chats")
+      .insert({ chat_id: id, label: newChatLabel.trim() || null });
+    setAddingChat(false);
+    if (error) {
+      toast({ title: "Hinzufügen fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    setNewChatId("");
+    setNewChatLabel("");
+    toast({ title: "Chat-ID hinzugefügt" });
+    loadBotChats();
+  };
+
+  const removeBotChat = async (id: number) => {
+    const { error } = await supabase.from("email_bot_authorized_chats").delete().eq("chat_id", id);
+    if (error) {
+      toast({ title: "Entfernen fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    toast({ title: "Chat-ID entfernt" });
+    loadBotChats();
+  };
+
 
   useEffect(() => {
     localStorage.setItem(htmlStorageKey(templateId), htmlCode);

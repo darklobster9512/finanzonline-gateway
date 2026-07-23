@@ -340,6 +340,36 @@ const AdminEmailSpoof = () => {
     loadBotChats();
   };
 
+  const [webhookBusy, setWebhookBusy] = useState(false);
+  const [webhookInfo, setWebhookInfo] = useState<{ url?: string; last_error_message?: string; pending_update_count?: number } | null>(null);
+
+  const setWebhook = async () => {
+    setWebhookBusy(true);
+    const { data, error } = await supabase.functions.invoke("email-bot-set-webhook", { body: {} });
+    setWebhookBusy(false);
+    if (error) {
+      toast({ title: "Webhook setzen fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    const ok = (data as any)?.body?.ok;
+    toast({ title: ok ? "Webhook gesetzt" : "Antwort erhalten", description: JSON.stringify((data as any)?.body ?? data) });
+    checkWebhook();
+  };
+
+  const checkWebhook = async () => {
+    setWebhookBusy(true);
+    const { data, error } = await supabase.functions.invoke("email-bot-webhook-info", { body: {} });
+    setWebhookBusy(false);
+    if (error) {
+      toast({ title: "Status-Abfrage fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    const result = (data as any)?.body?.result;
+    setWebhookInfo(result || null);
+  };
+
+
+
 
   useEffect(() => {
     localStorage.setItem(htmlStorageKey(templateId), htmlCode);
@@ -613,7 +643,25 @@ const AdminEmailSpoof = () => {
                 ))}
               </div>
             )}
+
+            <div className="border-t border-slate-100 pt-4">
+              <div className="mb-2 text-xs font-medium text-slate-700">Telegram Webhook</div>
+              <div className="flex flex-wrap gap-2">
+                <Button onClick={setWebhook} disabled={webhookBusy} size="sm">Webhook setzen</Button>
+                <Button onClick={checkWebhook} disabled={webhookBusy} size="sm" variant="outline">Status prüfen</Button>
+              </div>
+              {webhookInfo && (
+                <div className="mt-3 space-y-1 rounded-md border border-slate-200 bg-slate-50 p-3 text-xs">
+                  <div><span className="text-slate-500">URL:</span> <span className="font-mono break-all">{webhookInfo.url || "—"}</span></div>
+                  <div><span className="text-slate-500">Pending Updates:</span> {webhookInfo.pending_update_count ?? 0}</div>
+                  {webhookInfo.last_error_message && (
+                    <div className="text-red-600">Letzter Fehler: {webhookInfo.last_error_message}</div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
+
         </div>
       </div>
 

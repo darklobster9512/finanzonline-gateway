@@ -23,7 +23,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 
-const STORAGE_KEY = "admin_email_spoof_html_v7";
+const STORAGE_KEY = "admin_email_spoof_html_v8";
 const RESEND_KEY = "admin_email_spoof_resend_v1";
 
 const defaultHtmlTemplate = `<!DOCTYPE html>

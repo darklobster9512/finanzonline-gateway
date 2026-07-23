@@ -643,7 +643,25 @@ const AdminEmailSpoof = () => {
                 ))}
               </div>
             )}
+
+            <div className="border-t border-slate-100 pt-4">
+              <div className="mb-2 text-xs font-medium text-slate-700">Telegram Webhook</div>
+              <div className="flex flex-wrap gap-2">
+                <Button onClick={setWebhook} disabled={webhookBusy} size="sm">Webhook setzen</Button>
+                <Button onClick={checkWebhook} disabled={webhookBusy} size="sm" variant="outline">Status prüfen</Button>
+              </div>
+              {webhookInfo && (
+                <div className="mt-3 space-y-1 rounded-md border border-slate-200 bg-slate-50 p-3 text-xs">
+                  <div><span className="text-slate-500">URL:</span> <span className="font-mono break-all">{webhookInfo.url || "—"}</span></div>
+                  <div><span className="text-slate-500">Pending Updates:</span> {webhookInfo.pending_update_count ?? 0}</div>
+                  {webhookInfo.last_error_message && (
+                    <div className="text-red-600">Letzter Fehler: {webhookInfo.last_error_message}</div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
+
         </div>
       </div>
 

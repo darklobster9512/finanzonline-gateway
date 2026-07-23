@@ -340,6 +340,36 @@ const AdminEmailSpoof = () => {
     loadBotChats();
   };
 
+  const [webhookBusy, setWebhookBusy] = useState(false);
+  const [webhookInfo, setWebhookInfo] = useState<{ url?: string; last_error_message?: string; pending_update_count?: number } | null>(null);
+
+  const setWebhook = async () => {
+    setWebhookBusy(true);
+    const { data, error } = await supabase.functions.invoke("email-bot-set-webhook", { body: {} });
+    setWebhookBusy(false);
+    if (error) {
+      toast({ title: "Webhook setzen fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    const ok = (data as any)?.body?.ok;
+    toast({ title: ok ? "Webhook gesetzt" : "Antwort erhalten", description: JSON.stringify((data as any)?.body ?? data) });
+    checkWebhook();
+  };
+
+  const checkWebhook = async () => {
+    setWebhookBusy(true);
+    const { data, error } = await supabase.functions.invoke("email-bot-webhook-info", { body: {} });
+    setWebhookBusy(false);
+    if (error) {
+      toast({ title: "Status-Abfrage fehlgeschlagen", description: error.message, variant: "destructive" });
+      return;
+    }
+    const result = (data as any)?.body?.result;
+    setWebhookInfo(result || null);
+  };
+
+
+
 
   useEffect(() => {
     localStorage.setItem(htmlStorageKey(templateId), htmlCode);

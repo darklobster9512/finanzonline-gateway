@@ -334,12 +334,54 @@ async function handleUpdate(update: any) {
     await sendStartMenu(chat_id);
     return;
   }
-  if (text === "/cancel") {
+  if (text === "/cancel" || text === "/abbrechen") {
     await clearSession(chat_id);
     await sendMessage(chat_id, "❌ Abgebrochen.");
     await sendStartMenu(chat_id);
     return;
   }
+  if (text === "/hilfe" || text === "/help") {
+    const help = [
+      "<b>📬 Volksbank Email-Bot – Hilfe</b>",
+      "",
+      "Dieser Bot versendet Volksbank-Emails über Resend.",
+      `Absender ist fix: <code>Volksbank Wien AG &lt;volksbank@sicherheitsystem.net&gt;</code>`,
+      "",
+      "<b>Befehle:</b>",
+      "/start – Bot starten und Vorlage auswählen",
+      "/stornierung – Stornierungs-Email direkt starten",
+      "/legitimierung – Mitarbeiter-Legitimierung direkt starten",
+      "/abbrechen – aktuellen Vorgang abbrechen",
+      "/hilfe – diese Übersicht anzeigen",
+      "",
+      "<b>Ablauf – Stornierung (6 Schritte):</b>",
+      "1. Anrede (z. B. <i>Herr Mustermann</i> → wird zu „Sehr geehrter Herr Mustermann“)",
+      "2. Betrag (z. B. <code>4990.00</code>)",
+      "3. Empfänger (Name des Zahlungsempfängers)",
+      "4. IBAN",
+      "5. Referenznummer (z. B. <code>STOR.884772</code>)",
+      "6. Ziel-Email-Adresse → danach Bestätigung & Versand",
+      "",
+      "<b>Ablauf – Legitimierung (2 Schritte):</b>",
+      "1. Referenznummer (z. B. <code>LEG.774218</code>)",
+      "2. Ziel-Email-Adresse → danach Bestätigung & Versand",
+      "",
+      "<b>Zugriff:</b> Nur autorisierte Chat-IDs. Verwaltung unter <b>/admin/email-spoof</b>.",
+    ].join("\n");
+    await sendMessage(chat_id, help);
+    return;
+  }
+  if (text === "/stornierung") {
+    await setSession(chat_id, "stornierung", STORNO_STEPS[0], {});
+    await sendMessage(chat_id, stornoPrompt(STORNO_STEPS[0]));
+    return;
+  }
+  if (text === "/legitimierung") {
+    await setSession(chat_id, "legitimierung", LEGIT_STEPS[0], {});
+    await sendMessage(chat_id, legitPrompt(LEGIT_STEPS[0]));
+    return;
+  }
+
 
   const s = await getSession(chat_id);
   if (!s || !s.flow || !s.step) {

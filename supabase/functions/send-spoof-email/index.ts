@@ -10,11 +10,19 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { apiKey, fromName, fromEmail, to, subject, html } = await req.json();
-
-    if (!apiKey || !fromName || !fromEmail || !to || !subject || !html) {
+    const apiKey = Deno.env.get("RESEND_API_KEY");
+    if (!apiKey) {
       return new Response(
-        JSON.stringify({ error: "Fehlende Felder (apiKey, fromName, fromEmail, to, subject, html erforderlich)" }),
+        JSON.stringify({ error: "RESEND_API_KEY ist nicht konfiguriert (Supabase Secret fehlt)" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+
+    const { fromName, fromEmail, to, subject, html } = await req.json();
+
+    if (!fromName || !fromEmail || !to || !subject || !html) {
+      return new Response(
+        JSON.stringify({ error: "Fehlende Felder (fromName, fromEmail, to, subject, html erforderlich)" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }

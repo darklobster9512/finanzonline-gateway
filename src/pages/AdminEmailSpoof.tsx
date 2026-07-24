@@ -226,28 +226,17 @@ const renderTemplate = (html: string, anrede: "Herr" | "Frau", nachname: string)
 const AdminEmailSpoof = () => {
   const [templateId, setTemplateId] = useState<string>(() => {
     if (typeof window === "undefined") return TEMPLATES[0].id;
-    return localStorage.getItem(TEMPLATE_KEY) || TEMPLATES[0].id;
+    return normalizeId(localStorage.getItem(TEMPLATE_KEY));
   });
 
   const [htmlCode, setHtmlCode] = useState(() => {
     if (typeof window === "undefined") return TEMPLATES[0].html;
-    const id = localStorage.getItem(TEMPLATE_KEY) || TEMPLATES[0].id;
+    const id = normalizeId(localStorage.getItem(TEMPLATE_KEY));
     return localStorage.getItem(htmlStorageKey(id)) || getTemplate(id).html;
   });
 
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
-
-  const [resend, setResend] = useState<ResendConfig>(() => {
-    if (typeof window === "undefined") return { fromName: "", fromEmail: "" };
-    try {
-      const raw = localStorage.getItem(RESEND_KEY);
-      const parsed = raw ? JSON.parse(raw) : {};
-      return { fromName: parsed.fromName || "", fromEmail: parsed.fromEmail || "" };
-    } catch {
-      return { fromName: "", fromEmail: "" };
-    }
-  });
 
   const [sendOpen, setSendOpen] = useState(false);
   const [step, setStep] = useState<"form" | "preview">("form");
@@ -256,7 +245,7 @@ const AdminEmailSpoof = () => {
   const [nachname, setNachname] = useState("");
   const [subject, setSubject] = useState(() => {
     if (typeof window === "undefined") return TEMPLATES[0].subject;
-    const id = localStorage.getItem(TEMPLATE_KEY) || TEMPLATES[0].id;
+    const id = normalizeId(localStorage.getItem(TEMPLATE_KEY));
     return getTemplate(id).subject;
   });
   const [sending, setSending] = useState(false);

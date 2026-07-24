@@ -417,7 +417,7 @@ const AdminEmailSpoof = () => {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">Email Spoof</h1>
-            <p className="mt-1 text-sm text-slate-500">Volksbank Email-Template bearbeiten und versenden</p>
+            <p className="mt-1 text-sm text-slate-500">Bank-Email-Templates bearbeiten und versenden</p>
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">

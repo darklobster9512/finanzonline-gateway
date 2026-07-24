@@ -1,42 +1,30 @@
-## 4 neue Email-Vorlagen: BAWAG & Raiffeisen
+## Telegram-Bot: Anrede-Frage auch bei Legitimierungs-Flow
 
-Erweitere das bestehende Stornierung/Legitimierung-System um BAWAG- und Raiffeisen-Varianten. Texte identisch zu Volksbank, nur Branding (Farbe, Absender, Footer) unterschiedlich.
+Im Telegram-Bot fragt der Legitimierungs-Flow aktuell nur nach Referenz und Email → die Mail beginnt mit „Sehr geehrte Damen und Herren". Die Stornierung fragt bereits nach `empfaenger_name` und baut daraus die persönliche Anrede. Diese Logik wird auf Legitimierung übertragen.
 
-### Branding-Mapping
+### Änderungen in `supabase/functions/email-telegram-bot/index.ts`
 
-| Bank | Primärfarbe | Absender-Name | Absender-Email | Footer-Adresse |
-|---|---|---|---|---|
-| Volksbank | `#004899` | Volksbank Wien AG | volksbank@sicherheitsystem.net | Dietrichgasse 25, 1030 Wien |
-| BAWAG | `#990000` | BAWAG PSK | bawag@sicherheitsystem.net | Wiedner Gürtel 11, 1100 Wien |
-| Raiffeisen | `#FFED00` Balken / `#000000` Akzent | Raiffeisen Bank International AG | raiffeisen@sicherheitsystem.net | Am Stadtpark 9, 1030 Wien |
+1. **`LEGIT_STEPS`** erweitern:
+   ```ts
+   const LEGIT_STEPS = ["empfaenger_name", "referenz", "email"] as const;
+   ```
 
-Raiffeisen: gelber Balken oben, Border-Left am Datenblock schwarz, Überschriften schwarz. Falls andere Farbwahl gewünscht → kurz Bescheid.
+2. **`legitPrompt(step)`** um Schritt 1/3 ergänzen (gleicher Text/Beispiel wie im Storno-Flow, Schrittzähler auf 1/3, 2/3, 3/3 anpassen).
 
-### Änderungen
+3. **`legitimierungTemplate`** (Zeile 141): Platzhalter statt hartkodierter Zeile:
+   ```
+   <p ...>{{ANREDE_SATZ}}</p>
+   ```
 
-**1. `supabase/functions/email-telegram-bot/index.ts`**
-- Templates parametrisieren: `buildTemplate(bank, variant, data)` mit Farbe/Footer/Absender pro Bank statt zwei hartkodierter HTML-Konstanten.
-- `FROM_NAME` / `FROM_EMAIL` werden pro Flow gesetzt.
-- Flow-IDs: `stornierung_vb`, `stornierung_bawag`, `stornierung_rbi`, `legitimierung_vb`, `legitimierung_bawag`, `legitimierung_rbi`.
-- `sendStartMenu` bekommt 6 Buttons (gruppiert nach Bank).
-- Slash-Shortcuts: `/stornierung_vb`, `/stornierung_bawag`, `/stornierung_rbi`, `/legitimierung_vb`, `/legitimierung_bawag`, `/legitimierung_rbi`. Alte `/stornierung` / `/legitimierung` bleiben als Alias auf Volksbank.
-- `/hilfe` auf 6 Vorlagen aktualisieren.
-- `summary()` zeigt Bank + passenden Absender.
+4. **`sendEmail`** im Legit-Zweig: `{{ANREDE_SATZ}}` genau wie im Storno-Zweig via `buildAnredeSatz(d.empfaenger_name)` ersetzen.
 
-**2. `src/pages/AdminEmailSpoof.tsx`**
-- Dropdown-Optionen (6 Einträge, neue Namen):
-  - Volksbank-Stornierung
-  - Volksbank-Legitimierung
-  - BAWAG-Stornierung
-  - BAWAG-Legitimierung
-  - Raiffeisen-Stornierung
-  - Raiffeisen-Legitimierung
-- Preview & Testversand nutzen dieselbe parametrisierte Template-Logik (client-seitig gespiegelt, konsistent mit heute).
-- „From"-Anzeige pro Auswahl dynamisch (fix, nicht editierbar).
+5. **`summary`** für Legitimierung: Zeile `<b>An:</b> ${d.empfaenger_name}` vor Referenz einfügen.
 
-**3. Deploy** `email-telegram-bot` nach den Änderungen.
+6. **`/hilfe`-Text**: Legitimierungs-Ablauf auf 3 Schritte inkl. Anrede aktualisieren.
 
 ### Nicht geändert
-- DB-Schema (Sessions/Whitelist).
-- Webhook-Setup.
-- Whitelist-Verwaltung im Admin-UI.
+- `src/pages/AdminEmailSpoof.tsx` – die UI-Vorlage nutzt bereits `{{ANREDE}} {{NACHNAME}}` und ist korrekt.
+- Storno-Flow, Bank-Config, Whitelist, Webhook.
+
+### Deploy
+Nach Änderung `email-telegram-bot` deployen.

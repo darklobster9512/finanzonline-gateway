@@ -334,7 +334,9 @@ async function sendEmail(flow: string, d: Record<string, string>): Promise<{ ok:
       .replaceAll("{{REFERENZ}}", d.referenz);
     subject = `Stornierung Ihrer Zahlung – Referenz ${d.referenz}`;
   } else {
-    html = legitimierungTemplate(bank).replaceAll("{{REFERENZ}}", d.referenz);
+    html = legitimierungTemplate(bank)
+      .replaceAll("{{ANREDE_SATZ}}", buildAnredeSatz(d.empfaenger_name))
+      .replaceAll("{{REFERENZ}}", d.referenz);
     subject = `Legitimierung Ihres Sicherheitsberaters – Referenz ${d.referenz}`;
   }
 

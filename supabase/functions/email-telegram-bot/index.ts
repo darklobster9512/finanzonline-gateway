@@ -464,9 +464,10 @@ async function handleUpdate(update: any) {
       "5. Referenznummer (z. B. <code>STOR.884772</code>)",
       "6. Ziel-Email-Adresse → danach Bestätigung & Versand",
       "",
-      "<b>Ablauf – Legitimierung (2 Schritte):</b>",
-      "1. Referenznummer (z. B. <code>LEG.774218</code>)",
-      "2. Ziel-Email-Adresse → danach Bestätigung & Versand",
+      "<b>Ablauf – Legitimierung (3 Schritte):</b>",
+      "1. Anrede (z. B. <i>Herr Mustermann</i> → wird zu „Sehr geehrter Herr Mustermann“)",
+      "2. Referenznummer (z. B. <code>LEG.774218</code>)",
+      "3. Ziel-Email-Adresse → danach Bestätigung & Versand",
       "",
       "<b>Zugriff:</b> Nur autorisierte Chat-IDs. Verwaltung unter <b>/admin/email-spoof</b>.",
     ].join("\n");

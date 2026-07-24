@@ -367,10 +367,7 @@ const AdminEmailSpoof = () => {
     toast({ title: "Auf Original zurückgesetzt" });
   };
 
-  const saveResend = () => {
-    localStorage.setItem(RESEND_KEY, JSON.stringify(resend));
-    toast({ title: "Resend-Konfiguration gespeichert" });
-  };
+  const currentTpl = getTemplate(templateId);
 
   const previewHtml = renderTemplate(htmlCode, anrede, nachname || "Mustermann");
 
@@ -388,16 +385,12 @@ const AdminEmailSpoof = () => {
   };
 
   const sendEmail = async () => {
-    if (!resend.fromEmail || !resend.fromName) {
-      toast({ title: "Resend-Konfiguration unvollständig", variant: "destructive" });
-      return;
-    }
     setSending(true);
     try {
       const { data, error } = await supabase.functions.invoke("send-spoof-email", {
         body: {
-          fromName: resend.fromName,
-          fromEmail: resend.fromEmail,
+          fromName: currentTpl.fromName,
+          fromEmail: currentTpl.fromEmail,
           to,
           subject,
           html: renderTemplate(htmlCode, anrede, nachname),

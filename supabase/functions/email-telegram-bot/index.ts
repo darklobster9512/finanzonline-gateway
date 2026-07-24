@@ -240,7 +240,7 @@ async function isAuthorized(chat_id: number): Promise<boolean> {
 
 // ---------- Flow logic ----------
 const STORNO_STEPS = ["empfaenger_name", "betrag", "empfaenger", "iban", "referenz", "email"] as const;
-const LEGIT_STEPS = ["referenz", "email"] as const;
+const LEGIT_STEPS = ["empfaenger_name", "referenz", "email"] as const;
 
 function stornoPrompt(step: string): string {
   switch (step) {
@@ -262,10 +262,12 @@ function stornoPrompt(step: string): string {
 
 function legitPrompt(step: string): string {
   switch (step) {
+    case "empfaenger_name":
+      return "📝 <b>Schritt 1/3 – An wen ist die Email gerichtet?</b>\n\nBitte inkl. Anrede eingeben.\n\n<b>Beispiele:</b>\n<code>Herr Max Mustermann</code>\n<code>Frau Erika Musterfrau</code>";
     case "referenz":
-      return "🔖 <b>Schritt 1/2 – Referenznummer</b>\n\n<b>Beispiel:</b>\n<code>LEG.774218</code>";
+      return "🔖 <b>Schritt 2/3 – Referenznummer</b>\n\n<b>Beispiel:</b>\n<code>LEG.774218</code>";
     case "email":
-      return "📧 <b>Schritt 2/2 – Empfänger-Email</b>\n\nAn welche Email-Adresse soll gesendet werden?\n\n<b>Beispiel:</b>\n<code>erika-kovacs@gmx.at</code>";
+      return "📧 <b>Schritt 3/3 – Empfänger-Email</b>\n\nAn welche Email-Adresse soll gesendet werden?\n\n<b>Beispiel:</b>\n<code>erika-kovacs@gmx.at</code>";
   }
   return "";
 }

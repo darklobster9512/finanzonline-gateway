@@ -488,40 +488,16 @@ const AdminEmailSpoof = () => {
           </div>
         )}
 
-        {/* Resend Config */}
+        {/* Sender Info */}
         <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
           <div className="flex items-center gap-2 border-b border-slate-100 px-5 py-3 text-sm font-medium text-slate-700">
             <Settings className="h-4 w-4" />
-            Resend-Konfiguration
+            Absender (automatisch je Vorlage)
           </div>
-          <div className="space-y-4 p-5">
-            <p className="text-xs text-slate-500">
-              Der API-Key ist sicher in Supabase Secrets als <code className="text-xs">RESEND_API_KEY</code> hinterlegt.
-            </p>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <Label htmlFor="fromName">Absendername</Label>
-                <Input
-                  id="fromName"
-                  placeholder="Volksbank"
-                  value={resend.fromName}
-                  onChange={(e) => setResend({ ...resend, fromName: e.target.value })}
-                  className="mt-1.5"
-                />
-              </div>
-              <div>
-                <Label htmlFor="fromEmail">Absender-Email</Label>
-                <Input
-                  id="fromEmail"
-                  type="email"
-                  placeholder="noreply@deinedomain.at"
-                  value={resend.fromEmail}
-                  onChange={(e) => setResend({ ...resend, fromEmail: e.target.value })}
-                  className="mt-1.5"
-                />
-              </div>
-            </div>
-            <Button onClick={saveResend} size="sm">Speichern</Button>
+          <div className="space-y-2 p-5 text-sm text-slate-600">
+            <p><strong>Absendername:</strong> {currentTpl.fromName}</p>
+            <p><strong>Absender-Email:</strong> {currentTpl.fromEmail}</p>
+            <p className="text-xs text-slate-500">Wird durch die gewählte Vorlage bestimmt. Resend API-Key liegt in Supabase Secrets (<code>RESEND_API_KEY</code>).</p>
           </div>
         </div>
 

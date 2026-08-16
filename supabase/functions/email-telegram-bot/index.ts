@@ -297,7 +297,7 @@ function parseFlow(flow: string): { bank: BankKey; variant: Variant } | null {
   if (parts.length !== 2) return null;
   const [variant, bank] = parts as [string, string];
   if (variant !== "stornierung" && variant !== "legitimierung") return null;
-  if (bank !== "vb" && bank !== "bawag" && bank !== "rbi") return null;
+  if (!(bank in BANKS)) return null;
   return { bank: bank as BankKey, variant: variant as Variant };
 }
 

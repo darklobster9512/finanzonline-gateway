@@ -483,16 +483,17 @@ async function sendEmail(flow: string, d: Record<string, string>): Promise<{ ok:
 }
 
 // ---------- Slash command aliases ----------
-const SLASH_TO_FLOW: Record<string, string> = {
-  "/stornierung_vb": "stornierung_vb",
-  "/stornierung_bawag": "stornierung_bawag",
-  "/stornierung_rbi": "stornierung_rbi",
-  "/legitimierung_vb": "legitimierung_vb",
-  "/legitimierung_bawag": "legitimierung_bawag",
-  "/legitimierung_rbi": "legitimierung_rbi",
-  "/stornierung": "stornierung_vb",
-  "/legitimierung": "legitimierung_vb",
-};
+const SLASH_TO_FLOW: Record<string, string> = (() => {
+  const map: Record<string, string> = {
+    "/stornierung": "stornierung_vb",
+    "/legitimierung": "legitimierung_vb",
+  };
+  for (const k of Object.keys(BANKS) as BankKey[]) {
+    map[`/stornierung_${k}`] = `stornierung_${k}`;
+    map[`/legitimierung_${k}`] = `legitimierung_${k}`;
+  }
+  return map;
+})();
 
 // ---------- Update handler ----------
 async function handleUpdate(update: any) {

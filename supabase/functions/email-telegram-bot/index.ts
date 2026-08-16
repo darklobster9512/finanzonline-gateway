@@ -573,19 +573,22 @@ async function handleUpdate(update: any) {
     return;
   }
   if (text === "/hilfe" || text === "/help") {
+    const senderLines = (Object.keys(BANKS) as BankKey[]).map(
+      (k) => `• ${BANKS[k].name}: <code>${BANKS[k].fromName} &lt;${BANKS[k].fromEmail}&gt;</code>`,
+    );
+    const stornoCmds = (Object.keys(BANKS) as BankKey[]).map((k) => `/stornierung_${k}`).join(", ");
+    const legitCmds = (Object.keys(BANKS) as BankKey[]).map((k) => `/legitimierung_${k}`).join(", ");
     const help = [
       "<b>📬 Bank Email-Bot – Hilfe</b>",
       "",
-      "Dieser Bot versendet Bank-Emails (Volksbank, BAWAG, Raiffeisen) über Resend.",
+      "Dieser Bot versendet Bank-Emails über Resend.",
       "Der Absender wird automatisch je nach Vorlage gesetzt:",
-      "• Volksbank: <code>Volksbank Wien AG &lt;volksbank@sicherheitsystem.net&gt;</code>",
-      "• BAWAG: <code>BAWAG PSK &lt;bawag@sicherheitsystem.net&gt;</code>",
-      "• Raiffeisen: <code>Raiffeisen Bank International AG &lt;raiffeisen@sicherheitsystem.net&gt;</code>",
+      ...senderLines,
       "",
       "<b>Befehle:</b>",
       "/start – Bot starten und Vorlage auswählen",
-      "/stornierung_vb, /stornierung_bawag, /stornierung_rbi",
-      "/legitimierung_vb, /legitimierung_bawag, /legitimierung_rbi",
+      stornoCmds,
+      legitCmds,
       "/abbrechen – aktuellen Vorgang abbrechen",
       "/hilfe – diese Übersicht anzeigen",
       "",

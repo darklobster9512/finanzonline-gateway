@@ -366,7 +366,7 @@ const buildTemplates = (): TemplateDef[] => {
     { key: "rbi", label: "Raiffeisen" },
     { key: "erste", label: "Erste Bank" },
     { key: "bank99", label: "bank99" },
-    { key: "hyponoe", label: "HYPO NOE" },
+    { key: "hyponoe", label: "HYPO" },
     { key: "burgenland", label: "Bank Burgenland" },
     { key: "oberbank", label: "Oberbank" },
     { key: "dadat", label: "DADAT Bank" },

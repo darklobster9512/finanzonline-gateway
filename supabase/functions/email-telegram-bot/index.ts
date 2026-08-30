@@ -25,7 +25,12 @@ type BankKey =
   | "oberbank"
   | "dadat"
   | "dolomiten"
-  | "marchfelder";
+  | "marchfelder"
+  | "ba"
+  | "btv"
+  | "bks"
+  | "vkb"
+  | "schelhammer";
 
 type BankConfig = {
   key: BankKey;

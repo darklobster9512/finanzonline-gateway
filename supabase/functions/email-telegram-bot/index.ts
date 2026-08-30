@@ -412,6 +412,11 @@ const MENU_ORDER: BankKey[] = [
   "dadat",
   "dolomiten",
   "marchfelder",
+  "ba",
+  "btv",
+  "bks",
+  "vkb",
+  "schelhammer",
 ];
 
 async function sendStartMenu(chat_id: number) {

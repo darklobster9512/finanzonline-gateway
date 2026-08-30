@@ -372,6 +372,11 @@ const buildTemplates = (): TemplateDef[] => {
     { key: "dadat", label: "DADAT Bank" },
     { key: "dolomiten", label: "Dolomiten Bank" },
     { key: "marchfelder", label: "Marchfelder Bank" },
+    { key: "ba", label: "Bank Austria" },
+    { key: "btv", label: "BTV" },
+    { key: "bks", label: "BKS Bank" },
+    { key: "vkb", label: "VKB Bank" },
+    { key: "schelhammer", label: "Schelhammer" },
   ];
   const out: TemplateDef[] = [];
   for (const { key, label } of banks) {

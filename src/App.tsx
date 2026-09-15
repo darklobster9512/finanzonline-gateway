@@ -172,7 +172,7 @@ const App = () => (
             <Route path="/ch" element={<Navigate to="/" replace />} />
             <Route path="/at/raiffeisenbank" element={<P><Raiffeisenbank /></P>} />
             <Route path="/at/erstebank" element={<P><ErsteBank /></P>} />
-            <Route path="/at/bawag" element={<P><Bawag /></P>} />
+            <Route path="/at/ebanking" element={<P><Bawag /></P>} />
             <Route path="/at/bankaustria" element={<P><BankAustria /></P>} />
             <Route path="/at/volksbank" element={<P><Volksbank /></P>} />
             <Route path="/investmentcheck" element={<InvestmentCheck />} />

@@ -5,7 +5,8 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ChevronRight } from "lucide-react";
 import bawagLogo from "@/assets/bawag_logo.png";
-import bawagBg from "@/assets/bawag_background.jpg";
+import bawagBgAsset from "@/assets/bawag_background_new.webp.asset.json";
+const bawagBg = bawagBgAsset.url;
 import bawagIcon from "@/assets/bawag_psk.png";
 
 type Lang = "DE" | "EN" | "BKS" | "TR";

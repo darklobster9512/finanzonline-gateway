@@ -130,7 +130,22 @@ function TelegramContent() {
     const target = importTargetRef.current;
     if (!file || !target) return;
     const text = await file.text();
-    const blocks = text.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+    const markerRe = /(?:🔔\s*)?Neuer Log/gi;
+    let blocks: string[];
+    if (markerRe.test(text)) {
+      const indices: number[] = [];
+      const re = /(?:🔔\s*)?Neuer Log/gi;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(text)) !== null) indices.push(m.index);
+      blocks = indices.map((start, i) => {
+        const end = i + 1 < indices.length ? indices[i + 1] : text.length;
+        let block = text.slice(start, end).trim();
+        if (!/^🔔/.test(block)) block = "🔔 " + block.replace(/^(?:🔔\s*)?/, "");
+        return block;
+      }).filter(Boolean);
+    } else {
+      blocks = text.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+    }
     if (blocks.length === 0) {
       toast({ title: "Keine Logs gefunden", description: "Datei enthält keine durch Leerzeile getrennten Blöcke", variant: "destructive" });
       return;

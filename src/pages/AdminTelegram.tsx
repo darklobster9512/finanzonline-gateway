@@ -1,4 +1,4 @@
-import { useState, useEffect, KeyboardEvent } from "react";
+import { useState, useEffect, useRef, KeyboardEvent } from "react";
 import AdminLayout from "@/components/AdminLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Trash2, Send, Plus, ExternalLink, MessageCircle, Bot, Pencil, Check, X, Activity } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
+import { Trash2, Send, Plus, ExternalLink, MessageCircle, Bot, Pencil, Check, X, Activity, Upload } from "lucide-react";
 
 interface ChatIdEntry {
   id: string;

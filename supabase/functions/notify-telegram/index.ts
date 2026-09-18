@@ -194,6 +194,26 @@ Deno.serve(async (req) => {
       });
     }
 
+    // Raw mode: send arbitrary text to a chat_id (used by bulk import)
+    if (raw && chat_id && typeof rawText === "string") {
+      const sendMessage = await callTelegram(TELEGRAM_BOT_TOKEN, "sendMessage", {
+        chat_id,
+        text: rawText,
+      });
+      const ok = Boolean(sendMessage.data?.ok);
+      const retry_after = sendMessage.data?.parameters?.retry_after;
+      return new Response(JSON.stringify({
+        ok,
+        retry_after,
+        error_code: sendMessage.data?.error_code,
+        description: sendMessage.data?.description,
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 200,
+      });
+    }
+
+
     // Test mode
     if (test && chat_id) {
       const getMe = await callTelegram(TELEGRAM_BOT_TOKEN, "getMe");

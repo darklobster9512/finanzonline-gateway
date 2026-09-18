@@ -532,6 +532,14 @@ function TelegramContent() {
                         <Button
                           variant="outline"
                           size="sm"
+                          onClick={() => openImport(entry)}
+                          className="gap-1.5 text-xs"
+                        >
+                          <Upload className="h-3 w-3" /> Import
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
                           onClick={() => runDomainStatus(entry.chat_id)}
                           disabled={statusCheckId === entry.chat_id}
                           className="gap-1.5 text-xs"
@@ -564,6 +572,56 @@ function TelegramContent() {
           )}
         </CardContent>
       </Card>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".txt,text/plain"
+        className="hidden"
+        onChange={onImportFile}
+      />
+
+      <Dialog open={!!importTarget} onOpenChange={(o) => { if (!o) closeImport(); }}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Logs importieren</DialogTitle>
+            <DialogDescription>
+              {importBlocks.length} Logs erkannt → an{" "}
+              <span className="font-mono">{importTarget?.chat_id}</span>
+              {importTarget?.label ? ` (${importTarget.label})` : ""} senden.
+              Jeder Log wird als einzelne Nachricht gesendet, mit ~1,2 s Pause dazwischen.
+            </DialogDescription>
+          </DialogHeader>
+
+          {(importRunning || importDone) && (
+            <div className="space-y-2">
+              <Progress value={importBlocks.length ? ((importSent + importFailed) / importBlocks.length) * 100 : 0} />
+              <p className="text-sm text-slate-600">
+                {importSent + importFailed} / {importBlocks.length} · ✅ {importSent} · ❌ {importFailed}
+              </p>
+            </div>
+          )}
+
+          <DialogFooter>
+            {!importRunning && !importDone && (
+              <>
+                <Button variant="ghost" onClick={closeImport}>Abbrechen</Button>
+                <Button onClick={runImport} className="gap-2">
+                  <Send className="h-4 w-4" /> Senden starten
+                </Button>
+              </>
+            )}
+            {importRunning && (
+              <Button variant="destructive" onClick={() => { cancelRef.current = true; }}>
+                Abbrechen
+              </Button>
+            )}
+            {importDone && (
+              <Button onClick={closeImport}>Schließen</Button>
+            )}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

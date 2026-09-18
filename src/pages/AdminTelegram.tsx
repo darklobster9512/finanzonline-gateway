@@ -108,6 +108,90 @@ function TelegramContent() {
   const [editingLabel, setEditingLabel] = useState<string>("");
   const { toast } = useToast();
 
+  // Import state
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const importTargetRef = useRef<ChatIdEntry | null>(null);
+  const cancelRef = useRef(false);
+  const [importTarget, setImportTarget] = useState<ChatIdEntry | null>(null);
+  const [importBlocks, setImportBlocks] = useState<string[]>([]);
+  const [importSent, setImportSent] = useState(0);
+  const [importFailed, setImportFailed] = useState(0);
+  const [importRunning, setImportRunning] = useState(false);
+  const [importDone, setImportDone] = useState(false);
+
+  const openImport = (entry: ChatIdEntry) => {
+    importTargetRef.current = entry;
+    fileInputRef.current?.click();
+  };
+
+  const onImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    const target = importTargetRef.current;
+    if (!file || !target) return;
+    const text = await file.text();
+    const blocks = text.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+    if (blocks.length === 0) {
+      toast({ title: "Keine Logs gefunden", description: "Datei enthält keine durch Leerzeile getrennten Blöcke", variant: "destructive" });
+      return;
+    }
+    setImportTarget(target);
+    setImportBlocks(blocks);
+    setImportSent(0);
+    setImportFailed(0);
+    setImportRunning(false);
+    setImportDone(false);
+  };
+
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+  const runImport = async () => {
+    if (!importTarget || importBlocks.length === 0) return;
+    setImportRunning(true);
+    cancelRef.current = false;
+    const chatId = importTarget.chat_id;
+    let sent = 0;
+    let failed = 0;
+
+    for (let i = 0; i < importBlocks.length; i++) {
+      if (cancelRef.current) break;
+      const text = importBlocks[i];
+      let attempt = 0;
+      let ok = false;
+      while (attempt < 4 && !cancelRef.current) {
+        attempt++;
+        try {
+          const { data, error } = await supabase.functions.invoke("bulk-send-telegram", {
+            body: { chat_id: chatId, text },
+          });
+          if (error) throw error;
+          if (data?.ok) { ok = true; break; }
+          if (data?.retry_after) {
+            await sleep((Number(data.retry_after) + 1) * 1000);
+            continue;
+          }
+          await sleep(2000);
+        } catch {
+          await sleep(2000);
+        }
+      }
+      if (ok) { sent++; setImportSent(sent); } else { failed++; setImportFailed(failed); }
+      if (i < importBlocks.length - 1 && !cancelRef.current) await sleep(1200);
+    }
+    setImportRunning(false);
+    setImportDone(true);
+    toast({ title: "Import fertig", description: `${sent} gesendet, ${failed} fehlgeschlagen` });
+  };
+
+  const closeImport = () => {
+    if (importRunning) return;
+    setImportTarget(null);
+    setImportBlocks([]);
+    setImportSent(0);
+    setImportFailed(0);
+    setImportDone(false);
+  };
+
   const fetchChatIds = async () => {
     const { data } = await supabase
       .from("telegram_chat_ids")

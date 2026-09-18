@@ -158,7 +158,7 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
-    const { submission_id, test, chat_id, kind = "log", force = false, whitepage_alert, domain } = body;
+    const { submission_id, test, chat_id, kind = "log", force = false, whitepage_alert, domain, raw, text: rawText } = body;
 
     const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
     if (!TELEGRAM_BOT_TOKEN) {

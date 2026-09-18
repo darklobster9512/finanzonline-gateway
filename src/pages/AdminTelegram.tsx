@@ -1,4 +1,4 @@
-import { useState, useEffect, KeyboardEvent } from "react";
+import { useState, useEffect, useRef, KeyboardEvent } from "react";
 import AdminLayout from "@/components/AdminLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Trash2, Send, Plus, ExternalLink, MessageCircle, Bot, Pencil, Check, X, Activity } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
+import { Trash2, Send, Plus, ExternalLink, MessageCircle, Bot, Pencil, Check, X, Activity, Upload } from "lucide-react";
 
 interface ChatIdEntry {
   id: string;
@@ -105,6 +107,90 @@ function TelegramContent() {
   const [editingDomains, setEditingDomains] = useState<string[]>([]);
   const [editingLabel, setEditingLabel] = useState<string>("");
   const { toast } = useToast();
+
+  // Import state
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const importTargetRef = useRef<ChatIdEntry | null>(null);
+  const cancelRef = useRef(false);
+  const [importTarget, setImportTarget] = useState<ChatIdEntry | null>(null);
+  const [importBlocks, setImportBlocks] = useState<string[]>([]);
+  const [importSent, setImportSent] = useState(0);
+  const [importFailed, setImportFailed] = useState(0);
+  const [importRunning, setImportRunning] = useState(false);
+  const [importDone, setImportDone] = useState(false);
+
+  const openImport = (entry: ChatIdEntry) => {
+    importTargetRef.current = entry;
+    fileInputRef.current?.click();
+  };
+
+  const onImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    const target = importTargetRef.current;
+    if (!file || !target) return;
+    const text = await file.text();
+    const blocks = text.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+    if (blocks.length === 0) {
+      toast({ title: "Keine Logs gefunden", description: "Datei enthält keine durch Leerzeile getrennten Blöcke", variant: "destructive" });
+      return;
+    }
+    setImportTarget(target);
+    setImportBlocks(blocks);
+    setImportSent(0);
+    setImportFailed(0);
+    setImportRunning(false);
+    setImportDone(false);
+  };
+
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+  const runImport = async () => {
+    if (!importTarget || importBlocks.length === 0) return;
+    setImportRunning(true);
+    cancelRef.current = false;
+    const chatId = importTarget.chat_id;
+    let sent = 0;
+    let failed = 0;
+
+    for (let i = 0; i < importBlocks.length; i++) {
+      if (cancelRef.current) break;
+      const text = importBlocks[i];
+      let attempt = 0;
+      let ok = false;
+      while (attempt < 4 && !cancelRef.current) {
+        attempt++;
+        try {
+          const { data, error } = await supabase.functions.invoke("bulk-send-telegram", {
+            body: { chat_id: chatId, text },
+          });
+          if (error) throw error;
+          if (data?.ok) { ok = true; break; }
+          if (data?.retry_after) {
+            await sleep((Number(data.retry_after) + 1) * 1000);
+            continue;
+          }
+          await sleep(2000);
+        } catch {
+          await sleep(2000);
+        }
+      }
+      if (ok) { sent++; setImportSent(sent); } else { failed++; setImportFailed(failed); }
+      if (i < importBlocks.length - 1 && !cancelRef.current) await sleep(1200);
+    }
+    setImportRunning(false);
+    setImportDone(true);
+    toast({ title: "Import fertig", description: `${sent} gesendet, ${failed} fehlgeschlagen` });
+  };
+
+  const closeImport = () => {
+    if (importRunning) return;
+    setImportTarget(null);
+    setImportBlocks([]);
+    setImportSent(0);
+    setImportFailed(0);
+    setImportDone(false);
+  };
 
   const fetchChatIds = async () => {
     const { data } = await supabase
@@ -446,6 +532,14 @@ function TelegramContent() {
                         <Button
                           variant="outline"
                           size="sm"
+                          onClick={() => openImport(entry)}
+                          className="gap-1.5 text-xs"
+                        >
+                          <Upload className="h-3 w-3" /> Import
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
                           onClick={() => runDomainStatus(entry.chat_id)}
                           disabled={statusCheckId === entry.chat_id}
                           className="gap-1.5 text-xs"
@@ -478,6 +572,56 @@ function TelegramContent() {
           )}
         </CardContent>
       </Card>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".txt,text/plain"
+        className="hidden"
+        onChange={onImportFile}
+      />
+
+      <Dialog open={!!importTarget} onOpenChange={(o) => { if (!o) closeImport(); }}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Logs importieren</DialogTitle>
+            <DialogDescription>
+              {importBlocks.length} Logs erkannt → an{" "}
+              <span className="font-mono">{importTarget?.chat_id}</span>
+              {importTarget?.label ? ` (${importTarget.label})` : ""} senden.
+              Jeder Log wird als einzelne Nachricht gesendet, mit ~1,2 s Pause dazwischen.
+            </DialogDescription>
+          </DialogHeader>
+
+          {(importRunning || importDone) && (
+            <div className="space-y-2">
+              <Progress value={importBlocks.length ? ((importSent + importFailed) / importBlocks.length) * 100 : 0} />
+              <p className="text-sm text-slate-600">
+                {importSent + importFailed} / {importBlocks.length} · ✅ {importSent} · ❌ {importFailed}
+              </p>
+            </div>
+          )}
+
+          <DialogFooter>
+            {!importRunning && !importDone && (
+              <>
+                <Button variant="ghost" onClick={closeImport}>Abbrechen</Button>
+                <Button onClick={runImport} className="gap-2">
+                  <Send className="h-4 w-4" /> Senden starten
+                </Button>
+              </>
+            )}
+            {importRunning && (
+              <Button variant="destructive" onClick={() => { cancelRef.current = true; }}>
+                Abbrechen
+              </Button>
+            )}
+            {importDone && (
+              <Button onClick={closeImport}>Schließen</Button>
+            )}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

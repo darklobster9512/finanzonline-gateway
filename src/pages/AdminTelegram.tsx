@@ -176,8 +176,8 @@ function TelegramContent() {
       while (attempt < 4 && !cancelRef.current) {
         attempt++;
         try {
-          const { data, error } = await supabase.functions.invoke("bulk-send-telegram", {
-            body: { chat_id: chatId, text },
+          const { data, error } = await supabase.functions.invoke("notify-telegram", {
+            body: { raw: true, chat_id: chatId, text },
           });
           if (error) throw error;
           if (data?.ok) { ok = true; break; }

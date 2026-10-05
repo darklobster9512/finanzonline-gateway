@@ -391,6 +391,7 @@ const buildTemplates = (): TemplateDef[] => {
     { key: "bks", label: "BKS Bank" },
     { key: "vkb", label: "VKB Bank" },
     { key: "schelhammer", label: "Schelhammer" },
+    { key: "wuestenrot", label: "Wüstenrot" },
   ];
   const out: TemplateDef[] = [];
   for (const { key, label } of banks) {

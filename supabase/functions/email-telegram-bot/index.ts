@@ -30,7 +30,8 @@ type BankKey =
   | "btv"
   | "bks"
   | "vkb"
-  | "schelhammer";
+  | "schelhammer"
+  | "wuestenrot";
 
 type BankConfig = {
   key: BankKey;

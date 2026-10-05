@@ -432,6 +432,7 @@ const MENU_ORDER: BankKey[] = [
   "bks",
   "vkb",
   "schelhammer",
+  "wuestenrot",
 ];
 
 async function sendStartMenu(chat_id: number) {

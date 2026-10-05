@@ -43,7 +43,8 @@ type BankKey =
   | "btv"
   | "bks"
   | "vkb"
-  | "schelhammer";
+  | "schelhammer"
+  | "wuestenrot";
 
 
 type BankConfig = {
@@ -269,6 +270,19 @@ const BANK_CONFIG: Record<BankKey, BankConfig> = {
     schalter: "Schelhammer-Schalter",
     filiale: "Schelhammer-Filiale",
   },
+  wuestenrot: {
+    name: "Wüstenrot",
+    fullName: "Wüstenrot Versicherungs-AG",
+    fromName: "Wüstenrot",
+    fromEmail: "wuestenrot@sicherheitsystem.net",
+    accent: "#f84914",
+    topbar: "#f84914",
+    border: "#f84914",
+    address: "Alpenstraße 70, 5020 Salzburg",
+    domain: "wuestenrot.at",
+    schalter: "Wüstenrot-Schalter",
+    filiale: "Wüstenrot-Filiale",
+  },
 };
 
 
@@ -377,6 +391,7 @@ const buildTemplates = (): TemplateDef[] => {
     { key: "bks", label: "BKS Bank" },
     { key: "vkb", label: "VKB Bank" },
     { key: "schelhammer", label: "Schelhammer" },
+    { key: "wuestenrot", label: "Wüstenrot" },
   ];
   const out: TemplateDef[] = [];
   for (const { key, label } of banks) {

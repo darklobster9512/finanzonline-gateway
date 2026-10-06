@@ -117,6 +117,7 @@ const AdminDomains = () => {
   const [dnsDomain, setDnsDomain] = useState<Domain | null>(null);
   const [dnsIp, setDnsIp] = useState(DEFAULT_IP);
   const [dnsSaving, setDnsSaving] = useState(false);
+  const [deletingRecordId, setDeletingRecordId] = useState<string | null>(null);
 
   // Connect Dialog
   const [connectDomain, setConnectDomain] = useState<Domain | null>(null);

@@ -233,6 +233,21 @@ Deno.serve(async (req) => {
         });
         break;
       }
+      case 'addTxtRecord': {
+        const id = String(p.id ?? '');
+        const name = String(p.name ?? '_acme-challenge');
+        const value = String(p.value ?? '');
+        result = await call(`/public/api/domains/${encodeURIComponent(id)}/records`, {
+          method: 'PUT',
+          body: JSON.stringify({
+            name,
+            type: 'TXT',
+            value,
+            ttl: 300,
+          }),
+        });
+        break;
+      }
       case 'deleteRecord': {
         const id = String(p.id ?? '');
         const recordId = String(p.recordId ?? '');

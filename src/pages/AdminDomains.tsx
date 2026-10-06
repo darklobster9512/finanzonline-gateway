@@ -239,6 +239,24 @@ const AdminDomains = () => {
     }
   };
 
+  const handleTxtSave = async () => {
+    if (!dnsDomain || !txtValue.trim()) return;
+    setTxtSaving(true);
+    try {
+      await invoke("addTxtRecord", { id: dnsDomain.id, name: txtName.trim(), value: txtValue.trim() });
+      toast({ title: "TXT-Record gesetzt", description: `${txtName.trim()} → ${txtValue.trim()}` });
+      setTxtValue("");
+      // refresh domain records
+      const fresh = await invoke<Domain>("getDomain", { id: dnsDomain.id });
+      setDnsDomain(fresh);
+      setDomains((prev) => prev.map((x) => (x.id === fresh.id ? fresh : x)));
+    } catch (err) {
+      toast({ title: "TXT-Fehler", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
+    } finally {
+      setTxtSaving(false);
+    }
+  };
+
   const handleDeleteRecord = async (recordId: string, label: string) => {
     if (!dnsDomain) return;
     if (!window.confirm(`DNS-Eintrag ${label} wirklich löschen?`)) return;

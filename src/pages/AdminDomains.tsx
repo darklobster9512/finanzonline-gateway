@@ -234,6 +234,23 @@ const AdminDomains = () => {
     }
   };
 
+  const handleDeleteRecord = async (recordId: string, label: string) => {
+    if (!dnsDomain) return;
+    if (!window.confirm(`DNS-Eintrag ${label} wirklich löschen?`)) return;
+    setDeletingRecordId(recordId);
+    try {
+      await invoke("deleteRecord", { id: dnsDomain.id, recordId });
+      toast({ title: "Eintrag gelöscht", description: label });
+      const fresh = await invoke<Domain>("getDomain", { id: dnsDomain.id });
+      setDnsDomain(fresh);
+      setDomains((prev) => prev.map((x) => (x.id === fresh.id ? fresh : x)));
+    } catch (err) {
+      toast({ title: "Löschen fehlgeschlagen", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
+    } finally {
+      setDeletingRecordId(null);
+    }
+  };
+
   // Connect flow
   const openConnect = async (d: Domain) => {
     setConnectDomain(d);

@@ -693,13 +693,24 @@ const AdminDomains = () => {
           <div className="space-y-2 pt-2">
             <label className="block text-xs font-medium text-slate-600">Neuen A-Record auf @ setzen</label>
             <Input value={dnsIp} onChange={(e) => setDnsIp(e.target.value)} placeholder={DEFAULT_IP} />
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setDnsDomain(null)} disabled={dnsSaving}>Schließen</Button>
-            <Button onClick={handleDnsSave} disabled={dnsSaving || !dnsIp.trim()}>
+            <Button onClick={handleDnsSave} disabled={dnsSaving || !dnsIp.trim()} className="w-full">
               {dnsSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               A-Record setzen
             </Button>
+          </div>
+
+          <div className="space-y-2 pt-2 border-t border-slate-200">
+            <label className="block text-xs font-medium text-slate-600">TXT-Record setzen (z.B. für SSL DNS-01 Challenge)</label>
+            <Input value={txtName} onChange={(e) => setTxtName(e.target.value)} placeholder="_acme-challenge" />
+            <Input value={txtValue} onChange={(e) => setTxtValue(e.target.value)} placeholder="TXT-Wert einfügen" />
+            <Button onClick={handleTxtSave} disabled={txtSaving || !txtValue.trim()} className="w-full">
+              {txtSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              TXT-Record setzen
+            </Button>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDnsDomain(null)}>Schließen</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

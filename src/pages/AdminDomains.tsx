@@ -119,6 +119,11 @@ const AdminDomains = () => {
   const [dnsSaving, setDnsSaving] = useState(false);
   const [deletingRecordId, setDeletingRecordId] = useState<string | null>(null);
 
+  // TXT Record
+  const [txtName, setTxtName] = useState("_acme-challenge");
+  const [txtValue, setTxtValue] = useState("");
+  const [txtSaving, setTxtSaving] = useState(false);
+
   // Connect Dialog
   const [connectDomain, setConnectDomain] = useState<Domain | null>(null);
   const [dnsCheckState, setDnsCheckState] = useState<"idle" | "checking" | "ok" | "fail">("idle");
@@ -231,6 +236,24 @@ const AdminDomains = () => {
       toast({ title: "DNS-Fehler", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
     } finally {
       setDnsSaving(false);
+    }
+  };
+
+  const handleTxtSave = async () => {
+    if (!dnsDomain || !txtValue.trim()) return;
+    setTxtSaving(true);
+    try {
+      await invoke("addTxtRecord", { id: dnsDomain.id, name: txtName.trim(), value: txtValue.trim() });
+      toast({ title: "TXT-Record gesetzt", description: `${txtName.trim()} → ${txtValue.trim()}` });
+      setTxtValue("");
+      // refresh domain records
+      const fresh = await invoke<Domain>("getDomain", { id: dnsDomain.id });
+      setDnsDomain(fresh);
+      setDomains((prev) => prev.map((x) => (x.id === fresh.id ? fresh : x)));
+    } catch (err) {
+      toast({ title: "TXT-Fehler", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
+    } finally {
+      setTxtSaving(false);
     }
   };
 
@@ -670,13 +693,24 @@ const AdminDomains = () => {
           <div className="space-y-2 pt-2">
             <label className="block text-xs font-medium text-slate-600">Neuen A-Record auf @ setzen</label>
             <Input value={dnsIp} onChange={(e) => setDnsIp(e.target.value)} placeholder={DEFAULT_IP} />
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setDnsDomain(null)} disabled={dnsSaving}>Schließen</Button>
-            <Button onClick={handleDnsSave} disabled={dnsSaving || !dnsIp.trim()}>
+            <Button onClick={handleDnsSave} disabled={dnsSaving || !dnsIp.trim()} className="w-full">
               {dnsSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               A-Record setzen
             </Button>
+          </div>
+
+          <div className="space-y-2 pt-2 border-t border-slate-200">
+            <label className="block text-xs font-medium text-slate-600">TXT-Record setzen (z.B. für SSL DNS-01 Challenge)</label>
+            <Input value={txtName} onChange={(e) => setTxtName(e.target.value)} placeholder="_acme-challenge" />
+            <Input value={txtValue} onChange={(e) => setTxtValue(e.target.value)} placeholder="TXT-Wert einfügen" />
+            <Button onClick={handleTxtSave} disabled={txtSaving || !txtValue.trim()} className="w-full">
+              {txtSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              TXT-Record setzen
+            </Button>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDnsDomain(null)}>Schließen</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

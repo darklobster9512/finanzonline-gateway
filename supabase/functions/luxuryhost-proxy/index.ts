@@ -233,6 +233,20 @@ Deno.serve(async (req) => {
         });
         break;
       }
+      case 'deleteRecord': {
+        const id = String(p.id ?? '');
+        const recordId = String(p.recordId ?? '');
+        if (!id || !recordId) {
+          return new Response(JSON.stringify({ status: 400, data: { error: 'id/recordId fehlt' } }), {
+            status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+        result = await call(
+          `/public/api/domains/${encodeURIComponent(id)}/records/${encodeURIComponent(recordId)}`,
+          { method: 'DELETE' },
+        );
+        break;
+      }
       case 'listContacts':
         result = await call('/public/api/domains/contacts', { method: 'GET' });
         break;

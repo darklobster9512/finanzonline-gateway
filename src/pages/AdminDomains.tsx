@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/pagination";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Wallet, RefreshCw, Search, ShoppingCart, Check, X, Loader2, Settings2, Link2, ShieldCheck, AlertTriangle, Copy,
+  Wallet, RefreshCw, Search, ShoppingCart, Check, X, Loader2, Settings2, Link2, ShieldCheck, AlertTriangle, Copy, Trash2,
 } from "lucide-react";
 import xmrLogo from "@/assets/xmr-logo.png.asset.json";
 
@@ -117,6 +117,7 @@ const AdminDomains = () => {
   const [dnsDomain, setDnsDomain] = useState<Domain | null>(null);
   const [dnsIp, setDnsIp] = useState(DEFAULT_IP);
   const [dnsSaving, setDnsSaving] = useState(false);
+  const [deletingRecordId, setDeletingRecordId] = useState<string | null>(null);
 
   // Connect Dialog
   const [connectDomain, setConnectDomain] = useState<Domain | null>(null);
@@ -230,6 +231,23 @@ const AdminDomains = () => {
       toast({ title: "DNS-Fehler", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
     } finally {
       setDnsSaving(false);
+    }
+  };
+
+  const handleDeleteRecord = async (recordId: string, label: string) => {
+    if (!dnsDomain) return;
+    if (!window.confirm(`DNS-Eintrag ${label} wirklich löschen?`)) return;
+    setDeletingRecordId(recordId);
+    try {
+      await invoke("deleteRecord", { id: dnsDomain.id, recordId });
+      toast({ title: "Eintrag gelöscht", description: label });
+      const fresh = await invoke<Domain>("getDomain", { id: dnsDomain.id });
+      setDnsDomain(fresh);
+      setDomains((prev) => prev.map((x) => (x.id === fresh.id ? fresh : x)));
+    } catch (err) {
+      toast({ title: "Löschen fehlgeschlagen", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
+    } finally {
+      setDeletingRecordId(null);
     }
   };
 
@@ -611,18 +629,53 @@ const AdminDomains = () => {
           <DialogHeader>
             <DialogTitle>DNS konfigurieren</DialogTitle>
             <DialogDescription>
-              {dnsDomain && (<>Setzt einen <strong>A-Record</strong> auf <strong>@</strong> für <strong>{dnsDomain.domain}</strong>.</>)}
+              {dnsDomain && (<>DNS-Einträge für <strong>{dnsDomain.domain}</strong> ansehen, löschen oder einen neuen A-Record setzen.</>)}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-2">
-            <label className="block text-xs font-medium text-slate-600">IP-Adresse</label>
+
+          {dnsDomain && (
+            <div className="space-y-2">
+              <div className="text-xs font-medium uppercase tracking-wide text-slate-500">Bestehende Einträge</div>
+              <div className="divide-y divide-slate-100 rounded-md border border-slate-200">
+                {(dnsDomain.records ?? []).length === 0 && (
+                  <div className="px-3 py-4 text-center text-xs text-slate-400">Keine Einträge vorhanden.</div>
+                )}
+                {(dnsDomain.records ?? []).map((r, i) => {
+                  const rid = r._id ?? "";
+                  const label = `${r.type} ${r.name} → ${r.value}`;
+                  return (
+                    <div key={rid || `${r.name}-${r.value}-${i}`} className="flex items-center justify-between gap-2 px-3 py-2">
+                      <div className="flex min-w-0 items-center gap-2 text-sm">
+                        <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-600">{r.type}</span>
+                        <span className="font-medium text-slate-700">{r.name}</span>
+                        <span className="text-slate-400">→</span>
+                        <span className="truncate font-mono text-slate-800">{r.value}</span>
+                      </div>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                        disabled={!rid || deletingRecordId === rid}
+                        onClick={() => rid && handleDeleteRecord(rid, label)}
+                      >
+                        {deletingRecordId === rid ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
+                      </Button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          <div className="space-y-2 pt-2">
+            <label className="block text-xs font-medium text-slate-600">Neuen A-Record auf @ setzen</label>
             <Input value={dnsIp} onChange={(e) => setDnsIp(e.target.value)} placeholder={DEFAULT_IP} />
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDnsDomain(null)} disabled={dnsSaving}>Abbrechen</Button>
+            <Button variant="outline" onClick={() => setDnsDomain(null)} disabled={dnsSaving}>Schließen</Button>
             <Button onClick={handleDnsSave} disabled={dnsSaving || !dnsIp.trim()}>
               {dnsSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Bestätigen
+              A-Record setzen
             </Button>
           </DialogFooter>
         </DialogContent>

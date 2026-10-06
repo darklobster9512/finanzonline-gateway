@@ -119,6 +119,11 @@ const AdminDomains = () => {
   const [dnsSaving, setDnsSaving] = useState(false);
   const [deletingRecordId, setDeletingRecordId] = useState<string | null>(null);
 
+  // TXT Record
+  const [txtName, setTxtName] = useState("_acme-challenge");
+  const [txtValue, setTxtValue] = useState("");
+  const [txtSaving, setTxtSaving] = useState(false);
+
   // Connect Dialog
   const [connectDomain, setConnectDomain] = useState<Domain | null>(null);
   const [dnsCheckState, setDnsCheckState] = useState<"idle" | "checking" | "ok" | "fail">("idle");

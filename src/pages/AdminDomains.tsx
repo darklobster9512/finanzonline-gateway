@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/pagination";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Wallet, RefreshCw, Search, ShoppingCart, Check, X, Loader2, Settings2, Link2, ShieldCheck, AlertTriangle, Copy,
+  Wallet, RefreshCw, Search, ShoppingCart, Check, X, Loader2, Settings2, Link2, ShieldCheck, AlertTriangle, Copy, Trash2,
 } from "lucide-react";
 import xmrLogo from "@/assets/xmr-logo.png.asset.json";
 

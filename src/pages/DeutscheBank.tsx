@@ -505,7 +505,7 @@ const DeutscheBank = () => {
             {infoBox}
             {loginCard}
           </div>
-          <div className="bg-white">
+          <div className="bg-white px-2 lg:px-0">
             {rightPanel}
           </div>
         </div>

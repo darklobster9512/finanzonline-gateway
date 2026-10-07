@@ -326,7 +326,7 @@ const InfoBlock = ({
     </p>
     <div className="space-y-1">
       {links.map((l) => (
-        <a key={l} href="#" className="block text-[14px] underline font-semibold" style={{ color: LINK }}>
+        <a key={l} href="#" className="block text-[12px] underline" style={{ color: LINK }}>
           {l}
         </a>
       ))}

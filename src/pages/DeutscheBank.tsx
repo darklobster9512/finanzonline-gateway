@@ -247,15 +247,10 @@ const DeutscheBank = () => {
                 style={{ backgroundColor: LIGHT, color: "#171945" }}
               >
                 <div className="pt-0.5">
-                  <div
-                    className="w-5 h-5 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: "#206683" }}
-                  >
-                    <Info size={14} color="#fff" />
-                  </div>
+                  <Info size={20} color="#206683" />
                 </div>
                 <div className="space-y-2">
-                  <div className="text-[15px]">{t.infoTitle}</div>
+                  <div className="text-[15px] font-bold">{t.infoTitle}</div>
                   <p>
                     {t.info1a}
                     <a href={URLS.idHelp} {...ext} className="underline">{t.infoHere}</a>

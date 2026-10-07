@@ -2,9 +2,7 @@
 
 Nur `src/pages/DeutscheBank.tsx`:
 
-- „Zugangsdaten vergessen?" (beide Vorkommen, Zeilen 163 und 207): explizit `font-normal` setzen, Schriftgröße auf `text-[6.8px]`.
-- „Mehr erfahren" (Zeile 244): Schriftgröße auf `text-[6.8px]`, bleibt fett.
-- Footer-Linkreihen (Zeilen 278, 283, 288): Schriftgröße auf `text-[6.8px]`, bleiben fett.
-- InfoCard-Links rechts (Zeile 329): Schriftgröße auf `text-[6.8px]`, bleiben fett.
+- Alle Links auf Schriftgröße `text-[6.8px]` setzen: „Zugangsdaten vergessen?" (beide Vorkommen, Zeilen 163 und 207), „Mehr erfahren" (Zeile 244), Footer-Linkreihen (Zeilen 278, 283, 288), InfoCard-Links rechts (Zeile 329).
+- Alle Links bleiben fett (`font-bold`), auch „Zugangsdaten vergessen?".
 
 Keine weiteren Änderungen.

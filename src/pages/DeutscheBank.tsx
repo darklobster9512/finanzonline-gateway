@@ -234,7 +234,7 @@ const DeutscheBank = () => {
               {/* FestzinsSparen teaser - inset within a white frame */}
               <a href="#" className="block px-5 pt-8 pb-4">
                 <div
-                  className="w-fit max-w-full px-5 py-5"
+                  className="w-full px-5 py-5"
                   style={{ backgroundColor: "#0a1a4a", color: "#e3ff00" }}
                 >
                   <div className="flex items-start justify-end leading-none">
@@ -285,8 +285,8 @@ const DeutscheBank = () => {
                 links={["Link zu den Sicherheitsverfahren"]}
               />
 
-              {/* Footer - white bg, dark navy links */}
-              <div className="px-5 py-5 text-[13px]" style={{ color: BLUE }}>
+              {/* Footer - dark navy background matching the reference */}
+              <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#0a1a4a", color: "#fff" }}>
                 <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-semibold">
                   <a href="#" className="hover:underline">English Version</a>
                   <a href="#" className="hover:underline">Hilfe</a>
@@ -302,12 +302,12 @@ const DeutscheBank = () => {
                 </div>
                 <button
                   type="button"
-                  className="text-white text-[13px] font-semibold px-4 py-2 mb-3"
-                  style={{ backgroundColor: "#1e3fd6" }}
+                  className="text-[13px] font-semibold px-4 py-2 mb-3"
+                  style={{ backgroundColor: "#fff", color: BLUE }}
                 >
                   Vertrag widerrufen
                 </button>
-                <div className="text-[12px]" style={{ color: "#555" }}>© 2026 Deutsche Bank AG</div>
+                <div className="text-[12px]">© 2026 Deutsche Bank AG</div>
               </div>
             </div>
           </div>

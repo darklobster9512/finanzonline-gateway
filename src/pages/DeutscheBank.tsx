@@ -241,7 +241,7 @@ const DeutscheBank = () => {
                   <div className="text-[14px] mt-2" style={{ color: "#333" }}>
                     Deutsche Bank FestzinsSparen
                   </div>
-                  <div className="mt-3 text-[14px] underline" style={{ color: BLUE }}>
+                  <div className="mt-3 text-[14px] underline font-bold" style={{ color: LINK }}>
                     Mehr erfahren
                   </div>
                 </div>

@@ -5,10 +5,9 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/commerzbank-logo.svg.asset.json";
 
-const GREEN = "#0a2e2b";
-const GREEN_DARK = "#071f1d";
+const GREEN = "#002e3c";
 const YELLOW = "#ffd700";
-const TEXT = "#0a2e2b";
+const TEXT = "#002e3c";
 
 const ArrowRight = ({ size = 18, color = GREEN }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true">

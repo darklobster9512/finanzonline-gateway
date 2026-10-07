@@ -204,7 +204,7 @@ const DeutscheBank = () => {
                     </div>
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[14px] underline" style={{ color: BLUE }}>
+                      <a href="#" className="text-[14px] underline font-bold" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -213,7 +213,7 @@ const DeutscheBank = () => {
                         disabled={password.length === 0}
                         className="px-8 py-2.5 text-white font-semibold text-[15px]"
                         style={{
-                          backgroundColor: password.length === 0 ? "#c6c6c6" : BLUE,
+                          backgroundColor: password.length === 0 ? "#c6c6c6" : LINK,
                           cursor: password.length === 0 ? "not-allowed" : "pointer",
                         }}
                       >

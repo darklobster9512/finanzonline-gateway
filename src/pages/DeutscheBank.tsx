@@ -180,10 +180,10 @@ const DeutscheBank = () => {
                     <button
                       type="button"
                       onClick={() => setStep(1)}
-                      className="flex items-center gap-1 text-[14px] underline"
-                      style={{ color: BLUE }}
+                      className="flex items-center gap-1 text-[13px] font-bold underline"
+                      style={{ color: LINK }}
                     >
-                      <ArrowLeft size={14} /> Zurück
+                      <ArrowLeft size={13} /> Zurück
                     </button>
                   </div>
                 )}

@@ -10,7 +10,8 @@ import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
 const RED = "#c1002b";
-const LIGHT = "#e5f0fa";
+const LIGHT = "#ceeaf8";
+const LINK = "#0550d1";
 
 const DeutscheBank = () => {
   const [searchParams] = useSearchParams();

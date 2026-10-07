@@ -212,8 +212,8 @@ const DeutscheBank = () => {
         @media (min-width: 1024px) {
           .db-right-panel {
             position: fixed; top: 0; bottom: 0;
-            left: max(608px, calc(50% + 8px));
-            width: 440px; overflow-y: auto;
+            left: max(788px, calc(50% + 188px));
+            width: 280px; overflow-y: auto;
             scrollbar-width: none; -ms-overflow-style: none;
           }
           .db-right-panel::-webkit-scrollbar { display: none; }
@@ -235,7 +235,7 @@ const DeutscheBank = () => {
             backgroundColor: BLUE,
           }}
         >
-          <div className="max-w-[1200px] mx-auto px-4 py-8 lg:py-16 grid lg:grid-cols-[minmax(0,560px)_minmax(0,360px)] gap-16">
+          <div className="max-w-[1200px] mx-auto px-4 py-8 lg:py-16 grid lg:grid-cols-[minmax(0,560px)_minmax(0,280px)] gap-[256px]">
             {/* LEFT COLUMN */}
             <div className="space-y-6">
               {/* Info box */}

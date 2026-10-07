@@ -160,7 +160,7 @@ const DeutscheBank = () => {
                     />
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[12px] underline" style={{ color: LINK }}>
+                      <a href="#" className="text-[6.8px] font-bold underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -204,7 +204,7 @@ const DeutscheBank = () => {
                     </div>
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[12px] underline" style={{ color: LINK }}>
+                      <a href="#" className="text-[6.8px] font-bold underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -241,7 +241,7 @@ const DeutscheBank = () => {
                   <div className="text-[14px] mt-2" style={{ color: "#333" }}>
                     Deutsche Bank FestzinsSparen
                   </div>
-                  <div className="mt-3 text-[12px] underline font-bold" style={{ color: LINK }}>
+                  <div className="mt-3 text-[6.8px] underline font-bold" style={{ color: LINK }}>
                     Mehr erfahren
                   </div>
                 </div>
@@ -275,17 +275,17 @@ const DeutscheBank = () => {
 
               {/* Footer - dark navy background matching the reference */}
               <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[6.8px]">
                   <a href="#" className="hover:underline">English Version</a>
                   <a href="#" className="hover:underline">Hilfe</a>
                   <a href="#" className="hover:underline">Demo-Konto</a>
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[6.8px]">
                   <a href="#" className="hover:underline">Impressum</a>
                   <a href="#" className="hover:underline">Rechtliche Hinweise</a>
                   <a href="#" className="hover:underline">Datenschutz</a>
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold text-[6.8px]">
                   <a href="#" className="hover:underline">Cookie-Einstellungen</a>
                 </div>
                 <button
@@ -326,7 +326,7 @@ const InfoBlock = ({
     </p>
     <div className="space-y-1">
       {links.map((l) => (
-        <a key={l} href="#" className="block text-[12px] underline font-bold" style={{ color: LINK }}>
+        <a key={l} href="#" className="block text-[6.8px] underline font-bold" style={{ color: LINK }}>
           {l}
         </a>
       ))}

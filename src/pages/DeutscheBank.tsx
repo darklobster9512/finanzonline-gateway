@@ -536,7 +536,7 @@ const InfoBlock = ({
   text: string;
   links: { label: string; href: string }[];
 }) => (
-  <div className="px-7 py-6">
+  <div className="px-3 lg:px-7 py-6">
     <div className="flex items-center gap-2 mb-2 font-semibold text-[15px]">
       {icon}
       {title}

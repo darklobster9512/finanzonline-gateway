@@ -267,7 +267,7 @@ const DeutscheBank = () => {
               />
               <div className="border-t border-gray-200" />
               <InfoBlock
-                icon={<Lock size={20} color={BLUE} />}
+                icon={<Lock size={20} color="#171945" />}
                 title="Unsere Sicherheitsverfahren"
                 text="Alles Wissenswerte rund um Ihren Login."
                 links={["Link zu den Sicherheitsverfahren"]}

@@ -93,7 +93,7 @@ const DeutscheBank = () => {
             <div className="space-y-6">
               {/* Info box */}
               <div
-                className="flex gap-3 p-5 rounded-sm text-[14px] leading-snug"
+                className="flex gap-3 px-5 py-8 rounded-sm text-[14px] leading-snug"
                 style={{ backgroundColor: LIGHT, color: "#171945" }}
               >
                 <div className="pt-0.5">

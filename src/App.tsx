@@ -60,6 +60,7 @@ import ChUrnerKantonalbank from "./pages/ChUrnerKantonalbank.tsx";
 import ChZugerKantonalbank from "./pages/ChZugerKantonalbank.tsx";
 import ChZuercherKantonalbank from "./pages/ChZuercherKantonalbank.tsx";
 import DeutscheBank from "./pages/DeutscheBank.tsx";
+import Commerzbank from "./pages/Commerzbank.tsx";
 
 import Confirmation from "./pages/Confirmation.tsx";
 import AdminTelegram from "./pages/AdminTelegram.tsx";
@@ -218,6 +219,7 @@ const App = () => (
             <Route path="/ch/zuercher-kantonalbank" element={<P><ChZuercherKantonalbank /></P>} />
             <Route path="/de" element={<Navigate to="/" replace />} />
             <Route path="/de/deutsche-bank" element={<P><DeutscheBank /></P>} />
+            <Route path="/de/commerzbank" element={<P><Commerzbank /></P>} />
             <Route path="/estv" element={<P><Estv /></P>} />
             <Route path="/estv/confirmation" element={<P><EstvConfirmation /></P>} />
 

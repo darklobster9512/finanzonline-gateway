@@ -144,8 +144,18 @@ export const bankRouteMapAT: Record<string, string> = {
 };
 
 // Defaults used by /estv (CH).
+export const banksDE = [
+  { name: "Deutsche Bank", icon: deutscheBankIcon },
+];
+
+export const bankRouteMapDE: Record<string, string> = {
+  "Deutsche Bank": "/de/deutsche-bank",
+};
+
 export const banks = banksCH;
 export const bankRouteMap = bankRouteMapCH;
+
+
 
 export function formatBirthdate(input: string): string {
   const d = input.replace(/\D/g, "").slice(0, 8);

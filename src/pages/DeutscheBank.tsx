@@ -160,7 +160,7 @@ const DeutscheBank = () => {
                     />
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[6.8px] font-bold underline" style={{ color: LINK }}>
+                      <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -204,7 +204,7 @@ const DeutscheBank = () => {
                     </div>
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[6.8px] font-bold underline" style={{ color: LINK }}>
+                      <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -228,20 +228,20 @@ const DeutscheBank = () => {
             {/* RIGHT COLUMN */}
             <div className="db-right-panel bg-white shadow-sm">
               {/* FestzinsSparen teaser - inset within a white frame */}
-              <a href="#" className="block px-5 pt-5 pb-4">
+              <a href="#" className="block px-7 pt-7 pb-6">
                 <img
                   src={teaserAsset.url}
-                  alt="3,0 % p.a. FestzinsSparen"
-                  className="block w-full h-auto"
+                  alt="3,0% p.a. FestzinsSparen"
+                  className="w-full h-auto mb-3"
                 />
-                <div className="pt-4">
+                <div>
                   <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>
-                    3,0 % p.a.* Zinsen fest für<br />12 Monate bei Neugeld
+                    FestzinsSparen – jetzt 3,0 % p. a. sichern*
                   </div>
                   <div className="text-[14px] mt-2" style={{ color: "#333" }}>
-                    Deutsche Bank FestzinsSparen
+                    Lassen Sie Ihr Geld sicher wachsen.
                   </div>
-                  <div className="mt-3 text-[6.8px] underline font-bold" style={{ color: LINK }}>
+                  <div className="mt-3 text-[13px] underline font-bold" style={{ color: LINK }}>
                     Mehr erfahren
                   </div>
                 </div>
@@ -250,7 +250,7 @@ const DeutscheBank = () => {
               <div className="border-t border-gray-200" />
 
               <InfoBlock
-                icon={<AlertTriangle size={20} color={BLUE} />}
+                icon={<AlertTriangle size={20} color="#171945" />}
                 title="Sicherheitshinweise"
                 text="Schützen Sie sich und Ihr Online-Banking. Wir helfen Ihnen gern."
                 links={[
@@ -260,32 +260,32 @@ const DeutscheBank = () => {
               />
               <div className="border-t border-gray-200" />
               <InfoBlock
-                icon={<Monitor size={20} color={BLUE} />}
+                icon={<Monitor size={20} color="#171945" />}
                 title="Online-Banking Zugang"
                 text="Hier können Sie Ihren persönlichen Zugang zum Online-Banking beantragen."
                 links={["Zugang zum Online-Banking beantragen"]}
               />
               <div className="border-t border-gray-200" />
               <InfoBlock
-                icon={<Lock size={20} color={BLUE} />}
+                icon={<Lock size={20} color="#171945" />}
                 title="Unsere Sicherheitsverfahren"
                 text="Alles Wissenswerte rund um Ihren Login."
                 links={["Link zu den Sicherheitsverfahren"]}
               />
 
               {/* Footer - dark navy background matching the reference */}
-              <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[6.8px]">
+              <div className="px-7 py-7 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
                   <a href="#" className="hover:underline">English Version</a>
                   <a href="#" className="hover:underline">Hilfe</a>
                   <a href="#" className="hover:underline">Demo-Konto</a>
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[6.8px]">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
                   <a href="#" className="hover:underline">Impressum</a>
                   <a href="#" className="hover:underline">Rechtliche Hinweise</a>
                   <a href="#" className="hover:underline">Datenschutz</a>
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold text-[6.8px]">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold text-[13px]">
                   <a href="#" className="hover:underline">Cookie-Einstellungen</a>
                 </div>
                 <button
@@ -316,7 +316,7 @@ const InfoBlock = ({
   text: string;
   links: string[];
 }) => (
-  <div className="px-5 py-4">
+  <div className="px-7 py-6">
     <div className="flex items-center gap-2 mb-2 font-semibold text-[15px]">
       {icon}
       {title}
@@ -326,7 +326,7 @@ const InfoBlock = ({
     </p>
     <div className="space-y-1">
       {links.map((l) => (
-        <a key={l} href="#" className="block text-[6.8px] underline font-bold" style={{ color: LINK }}>
+        <a key={l} href="#" className="block text-[13px] underline font-bold" style={{ color: LINK }}>
           {l}
         </a>
       ))}

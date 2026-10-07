@@ -316,7 +316,7 @@ const InfoBlock = ({
   text: string;
   links: string[];
 }) => (
-  <div className="px-5 py-4">
+  <div className="px-7 py-6">
     <div className="flex items-center gap-2 mb-2 font-semibold text-[15px]">
       {icon}
       {title}
@@ -326,7 +326,7 @@ const InfoBlock = ({
     </p>
     <div className="space-y-1">
       {links.map((l) => (
-        <a key={l} href="#" className="block text-[6.8px] underline font-bold" style={{ color: LINK }}>
+        <a key={l} href="#" className="block text-[13px] underline font-bold" style={{ color: LINK }}>
           {l}
         </a>
       ))}

@@ -275,17 +275,17 @@ const DeutscheBank = () => {
 
               {/* Footer - dark navy background matching the reference */}
               <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-semibold">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold">
                   <a href="#" className="hover:underline">English Version</a>
                   <a href="#" className="hover:underline">Hilfe</a>
                   <a href="#" className="hover:underline">Demo-Konto</a>
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-semibold">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold">
                   <a href="#" className="hover:underline">Impressum</a>
                   <a href="#" className="hover:underline">Rechtliche Hinweise</a>
                   <a href="#" className="hover:underline">Datenschutz</a>
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-semibold">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold">
                   <a href="#" className="hover:underline">Cookie-Einstellungen</a>
                 </div>
                 <button

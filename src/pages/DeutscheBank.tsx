@@ -166,7 +166,7 @@ const DeutscheBank = () => {
               </div>
 
               {/* Login card */}
-              <div className="bg-white p-6 lg:p-8 shadow-sm">
+              <div className="bg-white p-6 lg:p-8 shadow-sm" style={{ minHeight: 340 }}>
                 <div className="mb-6">
                   <img src={logoAsset.url} alt="Deutsche Bank" className="h-6 w-auto" />
                 </div>
@@ -195,7 +195,7 @@ const DeutscheBank = () => {
                       const fs = fieldStyle(idFocused, idTouched, dbId.length > 0);
                       return (
                         <>
-                          <label className="block text-[13px] mb-1" style={{ color: fs.labelColor }}>
+                          <label className="block text-[13px] mb-1 pl-[3px]" style={{ color: fs.labelColor }}>
                             Deutsche Bank ID
                           </label>
                           <div style={{ padding: "3px" }}>
@@ -254,7 +254,7 @@ const DeutscheBank = () => {
                       const fs = fieldStyle(pwFocused, pwTouched, password.length > 0);
                       return (
                         <>
-                          <label className="block text-[13px] mb-1" style={{ color: fs.labelColor }}>
+                          <label className="block text-[13px] mb-1 pl-[3px]" style={{ color: fs.labelColor }}>
                             Passwort
                           </label>
                           <div style={{ padding: "3px" }}>

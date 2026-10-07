@@ -182,10 +182,12 @@ const DeutscheBank = () => {
                   </button>
                 )}
 
-                {step === 1 && (
+                {step === 1 ? (
                   <h1 className="text-[28px] font-semibold mb-2" style={{ color: "#171945" }}>
                     Guten Tag
                   </h1>
+                ) : (
+                  <div aria-hidden className="text-[28px] mb-2" style={{ lineHeight: 1.2 }}>&nbsp;</div>
                 )}
                 <p className="text-[15px] mb-5" style={{ color: NAVY }}>Bitte geben Sie Ihre Zugangsdaten ein.</p>
 
@@ -297,8 +299,12 @@ const DeutscheBank = () => {
                       <button
                         type="button"
                         onClick={handleLogin}
-                        className="db-primary-btn px-8 py-3.5 text-white font-semibold text-[15px]"
-                        style={{ cursor: "pointer" }}
+                        disabled={password.length === 0}
+                        className={password.length === 0 ? "px-8 py-3.5 text-white font-semibold text-[15px]" : "db-primary-btn px-8 py-3.5 text-white font-semibold text-[15px]"}
+                        style={{
+                          cursor: password.length === 0 ? "not-allowed" : "pointer",
+                          backgroundColor: password.length === 0 ? "#b5b5b5" : undefined,
+                        }}
                       >
                         Einloggen
                       </button>

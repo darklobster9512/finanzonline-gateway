@@ -232,22 +232,25 @@ const Commerzbank = () => {
             </aside>
           </div>
         </div>
+      </main>
 
-        {/* Yellow banner */}
-        <div style={{ backgroundColor: YELLOW }}>
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 flex items-center justify-between flex-wrap gap-6">
+      {/* Footer area (dark green wraps inset yellow banner + footer rows) */}
+      <footer style={{ backgroundColor: GREEN }} className="text-white">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10">
+          {/* Inset yellow banner */}
+          <div style={{ backgroundColor: YELLOW }} className="px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
             <h3 className="text-[22px] lg:text-[26px] font-bold" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>
             <div className="flex items-center gap-10">
               <a href="#" className="flex flex-col items-center gap-2" style={{ color: TEXT }}>
-                <span className="w-14 h-14 rounded-full border-2 flex items-center justify-center" style={{ borderColor: TEXT }}>
+                <span className="w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <ServiceIcon />
                 </span>
                 <span className="text-[13px] font-semibold">Service</span>
               </a>
               <a href="#" className="flex flex-col items-center gap-2" style={{ color: TEXT }}>
-                <span className="w-14 h-14 rounded-full border-2 flex items-center justify-center" style={{ borderColor: TEXT }}>
+                <span className="w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <MailIcon />
                 </span>
                 <span className="text-[13px] font-semibold">Kontakt</span>
@@ -255,11 +258,8 @@ const Commerzbank = () => {
             </div>
           </div>
         </div>
-      </main>
 
-      {/* Footer */}
-      <footer style={{ backgroundColor: GREEN }} className="text-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-10">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 pb-10">
           <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
             <div className="flex items-center gap-3">
               <img src={logoAsset.url} alt="Commerzbank" className="h-9 w-auto" />

@@ -59,6 +59,11 @@ const DeutscheBank = () => {
             left: max(608px, calc(50% + 8px));
             width: 440px;
             overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .db-right-panel::-webkit-scrollbar {
+            display: none;
           }
         }
       `}</style>

@@ -65,7 +65,7 @@ const DeutscheBank = () => {
             backgroundColor: BLUE,
           }}
         >
-          <div className="max-w-[1200px] mx-auto px-4 py-8 lg:py-16 grid lg:grid-cols-[minmax(0,560px)_minmax(0,440px)] gap-8">
+          <div className="max-w-[1200px] mx-auto px-4 py-8 lg:py-16 grid lg:grid-cols-[minmax(0,560px)_minmax(0,440px)] gap-8 lg:pr-[460px]">
             {/* LEFT COLUMN */}
             <div className="space-y-6">
               {/* Info box */}
@@ -217,24 +217,24 @@ const DeutscheBank = () => {
               </div>
             </div>
 
-            {/* RIGHT COLUMN */}
-            <div className="bg-white shadow-sm">
-              {/* FestzinsSparen teaser - dark navy block with yellow text */}
-              <a href="#" className="block">
+            {/* RIGHT COLUMN - fixed full-height sidebar */}
+            <div className="hidden lg:block fixed top-0 right-0 bottom-0 w-[440px] bg-white shadow-sm overflow-y-auto z-10">
+              {/* FestzinsSparen teaser */}
+              <a href="#" className="block px-5 pt-6">
                 <div
-                  className="px-6 py-6"
+                  className="px-5 py-5 max-w-[280px]"
                   style={{ backgroundColor: "#0a1a4a", color: "#e3ff00" }}
                 >
                   <div className="flex items-start justify-end leading-none">
-                    <span className="text-[88px] font-bold tracking-tight">3,0</span>
-                    <span className="text-[64px] font-bold leading-none ml-1 mt-2">%</span>
-                    <span className="text-[12px] font-semibold mt-3 ml-0.5">p. a.*</span>
+                    <span className="text-[64px] font-bold tracking-tight">3,0</span>
+                    <span className="text-[44px] font-bold leading-none ml-1 mt-2">%</span>
+                    <span className="text-[11px] font-semibold mt-2 ml-0.5">p. a.*</span>
                   </div>
-                  <div className="text-[36px] font-bold leading-none mt-1 text-right">
+                  <div className="text-[26px] font-bold leading-none mt-1 text-right">
                     FestzinsSparen
                   </div>
                 </div>
-                <div className="px-5 py-4">
+                <div className="pt-4 pb-4">
                   <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>
                     3,0 % p.a.* Zinsen fest für<br />12 Monate bei Neugeld
                   </div>
@@ -246,6 +246,7 @@ const DeutscheBank = () => {
                   </div>
                 </div>
               </a>
+
 
               <div className="border-t border-gray-200" />
 

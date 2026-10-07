@@ -171,25 +171,21 @@ const DeutscheBank = () => {
                   <img src={logoAsset.url} alt="Deutsche Bank" className="h-6 w-auto" />
                 </div>
 
-                {step === 2 && (
-                  <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="flex items-center gap-1 text-[14px] mb-3 hover:underline"
-                    style={{ color: BLUE }}
-                  >
-                    <ArrowLeft size={16} /> Zurück
-                  </button>
-                )}
-
                 {step === 1 ? (
-                  <h1 className="text-[28px] font-semibold mb-2" style={{ color: "#171945" }}>
+                  <h1 className="text-[28px] font-semibold mb-2" style={{ color: "#171945", lineHeight: 1.2 }}>
                     Guten Tag
                   </h1>
                 ) : (
-                  <div aria-hidden className="text-[28px] mb-2" style={{ lineHeight: 1.2 }}>&nbsp;</div>
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="flex items-center gap-1 text-[28px] mb-2 hover:underline"
+                    style={{ color: BLUE, lineHeight: 1.2 }}
+                  >
+                    <ArrowLeft size={28} /> Zurück
+                  </button>
                 )}
-                <p className="text-[15px] mb-5" style={{ color: NAVY }}>Bitte geben Sie Ihre Zugangsdaten ein.</p>
+                <p className={`text-[15px] mb-5 ${step === 2 ? "mt-6" : ""}`} style={{ color: NAVY }}>Bitte geben Sie Ihre Zugangsdaten ein.</p>
 
                 {step === 1 ? (
                   <>

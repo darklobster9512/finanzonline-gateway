@@ -139,7 +139,7 @@ const DeutscheBank = () => {
                 )}
 
                 {step === 1 && (
-                  <h1 className="text-[32px] font-semibold mb-2" style={{ color: "#111" }}>
+                  <h1 className="text-[28px] font-semibold mb-2" style={{ color: "#171945" }}>
                     Guten Tag
                   </h1>
                 )}

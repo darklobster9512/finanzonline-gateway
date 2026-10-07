@@ -238,8 +238,8 @@ const Commerzbank = () => {
       <footer style={{ backgroundColor: GREEN }} className="text-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10">
           {/* Inset yellow banner */}
-          <div style={{ backgroundColor: YELLOW }} className="px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
-            <h3 className="text-[22px] lg:text-[26px] font-bold" style={{ color: TEXT }}>
+          <div style={{ backgroundColor: YELLOW }} className="rounded-lg px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
+            <h3 className="text-[22px] lg:text-[26px]" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>
             <div className="flex items-center gap-10">

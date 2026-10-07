@@ -246,8 +246,10 @@ const DeutscheBank = () => {
                 className="flex gap-3 px-5 py-8 rounded-sm text-[14px] leading-snug"
                 style={{ backgroundColor: LIGHT, color: "#171945" }}
               >
-                <div className="pt-0.5">
-                  <Info size={20} color="#206683" />
+                <div className="pt-0.5 flex-shrink-0">
+                  <div style={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: '#206683', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ color: '#fff', fontSize: 13, fontWeight: 700, fontFamily: 'serif', lineHeight: 1 }}>i</span>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <div className="text-[15px] font-bold">{t.infoTitle}</div>

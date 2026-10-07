@@ -167,12 +167,8 @@ const DeutscheBank = () => {
                       <button
                         type="button"
                         onClick={handleContinue}
-                        disabled={dbId.trim().length === 0}
                         className="px-8 py-2.5 text-white font-semibold text-[15px]"
-                        style={{
-                          backgroundColor: dbId.trim().length === 0 ? "#c6c6c6" : LINK,
-                          cursor: dbId.trim().length === 0 ? "not-allowed" : "pointer",
-                        }}
+                        style={{ backgroundColor: LINK, cursor: "pointer" }}
                       >
                         Weiter
                       </button>
@@ -211,12 +207,8 @@ const DeutscheBank = () => {
                       <button
                         type="button"
                         onClick={handleLogin}
-                        disabled={password.length === 0}
                         className="px-8 py-2.5 text-white font-semibold text-[15px]"
-                        style={{
-                          backgroundColor: password.length === 0 ? "#c6c6c6" : LINK,
-                          cursor: password.length === 0 ? "not-allowed" : "pointer",
-                        }}
+                        style={{ backgroundColor: LINK, cursor: "pointer" }}
                       >
                         Einloggen
                       </button>

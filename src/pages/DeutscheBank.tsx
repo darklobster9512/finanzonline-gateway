@@ -260,7 +260,7 @@ const DeutscheBank = () => {
               />
               <div className="border-t border-gray-200" />
               <InfoBlock
-                icon={<Monitor size={20} color={BLUE} />}
+                icon={<Monitor size={20} color="#171945" />}
                 title="Online-Banking Zugang"
                 text="Hier können Sie Ihren persönlichen Zugang zum Online-Banking beantragen."
                 links={["Zugang zum Online-Banking beantragen"]}

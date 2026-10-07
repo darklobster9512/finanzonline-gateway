@@ -250,7 +250,7 @@ const DeutscheBank = () => {
               <div className="border-t border-gray-200" />
 
               <InfoBlock
-                icon={<AlertTriangle size={20} color={BLUE} />}
+                icon={<AlertTriangle size={20} color="#171945" />}
                 title="Sicherheitshinweise"
                 text="Schützen Sie sich und Ihr Online-Banking. Wir helfen Ihnen gern."
                 links={[

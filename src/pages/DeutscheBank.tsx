@@ -222,13 +222,11 @@ const DeutscheBank = () => {
             {/* RIGHT COLUMN */}
             <div className="db-right-panel bg-white shadow-sm">
               {/* FestzinsSparen teaser - inset within a white frame */}
-              <a href="#" className="block px-8 pt-5 pb-4">
+              <a href="#" className="block px-5 pt-5 pb-4">
                 <img
                   src={teaserAsset.url}
                   alt="3,0 % p.a. FestzinsSparen"
-                  width={320}
-                  height={200}
-                  className="block mx-auto"
+                  className="block w-full h-auto"
                 />
                 <div className="pt-4">
                   <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>

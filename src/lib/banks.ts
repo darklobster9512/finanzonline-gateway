@@ -43,6 +43,8 @@ import vkbIcon from "@/assets/vkb_bank.png";
 import wuestenrotIcon from "@/assets/wuestenrot-icon.png";
 import deutscheBankIconAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
 const deutscheBankIcon = deutscheBankIconAsset.url;
+import commerzbankIconAsset from "@/assets/commerzbank-logo.svg.asset.json";
+const commerzbankIcon = commerzbankIconAsset.url;
 import denizbankIcon from "@/assets/denizbank-icon.png";
 
 export const banksCH = [
@@ -146,10 +148,12 @@ export const bankRouteMapAT: Record<string, string> = {
 // Defaults used by /estv (CH).
 export const banksDE = [
   { name: "Deutsche Bank", icon: deutscheBankIcon },
+  { name: "Commerzbank", icon: commerzbankIcon },
 ];
 
 export const bankRouteMapDE: Record<string, string> = {
   "Deutsche Bank": "/de/deutsche-bank",
+  "Commerzbank": "/de/commerzbank",
 };
 
 export const banks = banksCH;

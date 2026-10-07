@@ -160,7 +160,7 @@ const DeutscheBank = () => {
                     />
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[12px] underline" style={{ color: LINK }}>
+                      <a href="#" className="text-[6.8px] underline font-bold" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button

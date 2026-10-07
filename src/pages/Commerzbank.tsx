@@ -41,14 +41,15 @@ const SearchIcon = () => (
 );
 
 const ServiceIcon = () => (
-  <svg width="26" height="26" viewBox="0 0 42 42" fill={GREEN} aria-hidden="true">
-    <path d="M21 4 6 12v9c0 8 6 15 15 17 9-2 15-9 15-17v-9L21 4Zm0 2.2 13 7v7.8c0 6.9-5.1 13-13 14.8-7.9-1.8-13-7.9-13-14.8V13.2l13-7Z" />
+  <svg width="26" height="26" viewBox="0 0 24 24" fill={GREEN} aria-hidden="true">
+    <path d="M23.58 12.63 20 18.84a5.52 5.52 0 0 0-.18-.92c-.11-.41-.39-1.26-.48-1.49a10.51 10.51 0 0 0-.85-1.79L15.83 10s-1.76-3-2.66-4.62c-.11-.19-.26-.43-.44-.71l.78-.91a5.25 5.25 0 0 1 1.89-1.43A3.93 3.93 0 0 1 16.93 2h.52Zm-5.14 8.93-.25.43H5.91L2.32 15.8a6.47 6.47 0 0 0 .88.3c.42.11 1.3.29 1.54.33a11.54 11.54 0 0 0 2 .16H18.2c.16.45.38 1.07.4 1.14a5.27 5.27 0 0 1 .32 2.37 4.11 4.11 0 0 1-.48 1.46ZM12 3.78a12.68 12.68 0 0 0-1.13 1.63C10 7 8.25 10 8.25 10l-2.66 4.64c-.11.19-.25.44-.39.73L4 15.15a5.14 5.14 0 0 1-2.2-.9 4 4 0 0 1-1.05-1.17l-.25-.43.19-.33L6.64 2h7.16a7.7 7.7 0 0 0-.71.61c-.3.31-.89.98-1.09 1.17Z" />
   </svg>
 );
 
 const MailIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill={GREEN} aria-hidden="true">
-    <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6Zm-2 0-8 5-8-5h16Zm0 12H4V8l8 5 8-5v10Z" />
+    <path d="m12 12.78 11-7.61V4H1v1.17l11 7.61z" />
+    <path d="M13.14 14.43a2 2 0 0 1-2.28 0L1 7.6V20h22V7.6Z" />
   </svg>
 );
 
@@ -239,7 +240,7 @@ const Commerzbank = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10">
           {/* Inset yellow banner */}
           <div style={{ backgroundColor: YELLOW }} className="rounded-lg px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
-            <h3 className="text-[22px] lg:text-[26px]" style={{ color: TEXT }}>
+            <h3 className="text-[16px] lg:text-[18px] font-semibold" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>
             <div className="flex items-center gap-10">

@@ -162,15 +162,15 @@ const DeutscheBank = () => {
                       style={{ border: `1px solid ${RED}`, borderRadius: 2 }}
                     />
 
-                    <div className="flex items-center justify-between mt-10">
+                    <div className="flex items-center justify-between mt-16">
                       <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
                         type="button"
                         onClick={handleContinue}
-                        className="px-8 py-2.5 text-white font-semibold text-[15px]"
-                        style={{ backgroundColor: LINK, cursor: "pointer" }}
+                        className="db-primary-btn px-8 py-3.5 text-white font-semibold text-[15px]"
+                        style={{ cursor: "pointer" }}
                       >
                         Weiter
                       </button>

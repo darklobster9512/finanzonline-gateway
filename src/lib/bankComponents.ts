@@ -44,6 +44,7 @@ import ChGraubuendnerKantonalbank from "@/pages/ChGraubuendnerKantonalbank";
 import ChUrnerKantonalbank from "@/pages/ChUrnerKantonalbank";
 import ChZugerKantonalbank from "@/pages/ChZugerKantonalbank";
 import ChZuercherKantonalbank from "@/pages/ChZuercherKantonalbank";
+import DeutscheBank from "@/pages/DeutscheBank";
 
 export const bankComponentMap: Record<string, ComponentType> = {
   // AT
@@ -91,4 +92,6 @@ export const bankComponentMap: Record<string, ComponentType> = {
   "Valiant Bank": ChValiant,
   "Zuger Kantonalbank": ChZugerKantonalbank,
   "Zürcher Kantonalbank": ChZuercherKantonalbank,
+  // DE
+  "Deutsche Bank": DeutscheBank,
 };

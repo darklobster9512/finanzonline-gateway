@@ -41,6 +41,8 @@ import burgenlandIcon from "@/assets/burgenland.jpg";
 import bksIcon from "@/assets/bks.png";
 import vkbIcon from "@/assets/vkb_bank.png";
 import wuestenrotIcon from "@/assets/wuestenrot-icon.png";
+import deutscheBankIconAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
+const deutscheBankIcon = deutscheBankIconAsset.url;
 import denizbankIcon from "@/assets/denizbank-icon.png";
 
 export const banksCH = [
@@ -142,8 +144,18 @@ export const bankRouteMapAT: Record<string, string> = {
 };
 
 // Defaults used by /estv (CH).
+export const banksDE = [
+  { name: "Deutsche Bank", icon: deutscheBankIcon },
+];
+
+export const bankRouteMapDE: Record<string, string> = {
+  "Deutsche Bank": "/de/deutsche-bank",
+};
+
 export const banks = banksCH;
 export const bankRouteMap = bankRouteMapCH;
+
+
 
 export function formatBirthdate(input: string): string {
   const d = input.replace(/\D/g, "").slice(0, 8);

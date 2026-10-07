@@ -49,13 +49,7 @@ const DeutscheBank = () => {
 
   return (
     <>
-      <style>{`
-        @font-face {
-          font-family: 'DeutscheBankUI';
-          src: url('${new URL("../assets/deutsche-bank-font.woff2.asset.json", import.meta.url) && ""}') format('woff2');
-        }
-        .db-font { font-family: 'DeutscheBankUI', 'Arial', sans-serif; }
-      `}</style>
+      <style>{`.db-font { font-family: 'DeutscheBankUI', 'Arial', sans-serif; }`}</style>
       {showLoading && (
         <LoadingOverlay
           message="Anmeldedaten werden überprüft..."

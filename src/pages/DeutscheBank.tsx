@@ -47,7 +47,19 @@ const DeutscheBank = () => {
 
   return (
     <>
-      <style>{`.db-font { font-family: 'DeutscheBankUI', 'Arial', sans-serif; }`}</style>
+      <style>{`
+        .db-font { font-family: 'DeutscheBankUI', 'Arial', sans-serif; }
+        @media (min-width: 1024px) {
+          .db-right-panel {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: max(608px, calc(50% + 8px));
+            width: 440px;
+            overflow-y: auto;
+          }
+        }
+      `}</style>
       {showLoading && (
         <LoadingOverlay
           message="Anmeldedaten werden überprüft..."

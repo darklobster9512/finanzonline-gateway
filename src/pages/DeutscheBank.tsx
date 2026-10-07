@@ -160,7 +160,7 @@ const DeutscheBank = () => {
                     />
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[14px] underline font-semibold" style={{ color: LINK }}>
+                      <a href="#" className="text-[12px] underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -204,7 +204,7 @@ const DeutscheBank = () => {
                     </div>
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[14px] underline font-semibold" style={{ color: LINK }}>
+                      <a href="#" className="text-[12px] underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -326,7 +326,7 @@ const InfoBlock = ({
     </p>
     <div className="space-y-1">
       {links.map((l) => (
-        <a key={l} href="#" className="block text-[14px] underline font-semibold" style={{ color: LINK }}>
+        <a key={l} href="#" className="block text-[12px] underline" style={{ color: LINK }}>
           {l}
         </a>
       ))}

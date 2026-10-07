@@ -60,6 +60,10 @@ const DeutscheBank = () => {
   const [dbId, setDbId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [idFocused, setIdFocused] = useState(false);
+  const [idTouched, setIdTouched] = useState(false);
+  const [pwFocused, setPwFocused] = useState(false);
+  const [pwTouched, setPwTouched] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);

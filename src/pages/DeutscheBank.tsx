@@ -116,20 +116,8 @@ const DeutscheBank = () => {
 
               {/* Login card */}
               <div className="bg-white p-6 lg:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-6" style={{ color: "#111" }}>
-                  <span className="text-[18px] font-semibold">Deutsche Bank</span>
-                  <span
-                    className="inline-block"
-                    style={{
-                      width: 16,
-                      height: 16,
-                      border: `2px solid ${BLUE}`,
-                    }}
-                  >
-                    <span className="block w-full h-full" style={{
-                      background: `linear-gradient(to bottom right, transparent 45%, ${BLUE} 45%, ${BLUE} 55%, transparent 55%)`,
-                    }} />
-                  </span>
+                <div className="mb-6">
+                  <img src={logoAsset.url} alt="Deutsche Bank" className="h-7 w-auto" />
                 </div>
 
                 {step === 2 && (

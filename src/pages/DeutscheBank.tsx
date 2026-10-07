@@ -235,7 +235,7 @@ const DeutscheBank = () => {
             backgroundColor: BLUE,
           }}
         >
-          <div className="max-w-[1200px] mx-auto px-4 py-8 lg:py-16 grid lg:grid-cols-[minmax(0,560px)_minmax(0,360px)] gap-[256px]">
+          <div className="max-w-[1200px] mx-auto px-4 py-8 lg:py-16 grid lg:grid-cols-[minmax(0,560px)_minmax(0,396px)] gap-[256px]">
             {/* LEFT COLUMN */}
             <div className="space-y-6">
               {/* Info box */}

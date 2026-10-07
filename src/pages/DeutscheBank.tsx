@@ -166,7 +166,7 @@ const DeutscheBank = () => {
               </div>
 
               {/* Login card */}
-              <div className="bg-white p-6 lg:p-8 shadow-sm">
+              <div className="bg-white p-6 lg:p-8 shadow-sm" style={{ minHeight: 340 }}>
                 <div className="mb-6">
                   <img src={logoAsset.url} alt="Deutsche Bank" className="h-6 w-auto" />
                 </div>

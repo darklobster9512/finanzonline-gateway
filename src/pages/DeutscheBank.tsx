@@ -213,7 +213,7 @@ const DeutscheBank = () => {
           .db-right-panel {
             position: fixed; top: 0; bottom: 0;
             left: max(788px, calc(50% + 188px));
-            width: 360px; overflow-y: auto;
+            width: 396px; overflow-y: auto;
             scrollbar-width: none; -ms-overflow-style: none;
           }
           .db-right-panel::-webkit-scrollbar { display: none; }

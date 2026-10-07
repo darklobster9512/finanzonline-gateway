@@ -91,12 +91,12 @@ const DeutscheBank = () => {
               {/* Info box */}
               <div
                 className="flex gap-3 p-5 rounded-sm text-[14px] leading-snug"
-                style={{ backgroundColor: LIGHT, color: "#003366" }}
+                style={{ backgroundColor: LIGHT, color: "#171945" }}
               >
                 <div className="pt-0.5">
                   <div
                     className="w-5 h-5 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: "#1a3a4a" }}
+                    style={{ backgroundColor: "#206683" }}
                   >
                     <Info size={14} color="#fff" />
                   </div>

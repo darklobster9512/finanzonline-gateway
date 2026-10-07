@@ -451,8 +451,9 @@ const DeutscheBank = () => {
           <a href={URLS.imprint} {...ext} className="hover:underline">{t.imprint}</a>
           <a href={URLS.legal} {...ext} className="hover:underline">{t.legal}</a>
           <a href={URLS.privacy} {...ext} className="hover:underline">{t.privacy}</a>
+          <a href={URLS.cookies} className="hover:underline lg:hidden">{t.cookies}</a>
         </div>
-        <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold text-[13px]">
+        <div className="hidden lg:flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold text-[13px]">
           <a href={URLS.cookies} className="hover:underline">{t.cookies}</a>
         </div>
         <a

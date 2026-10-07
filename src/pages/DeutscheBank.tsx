@@ -124,7 +124,7 @@ const DeutscheBank = () => {
               {/* Login card */}
               <div className="bg-white p-6 lg:p-8 shadow-sm">
                 <div className="mb-6">
-                  <img src={logoAsset.url} alt="Deutsche Bank" className="h-7 w-auto" />
+                  <img src={logoAsset.url} alt="Deutsche Bank" className="h-6 w-auto" />
                 </div>
 
                 {step === 2 && (

@@ -391,7 +391,7 @@ const DeutscheBank = () => {
 
   const rightPanel = (
     <div className="db-right-panel bg-white shadow-sm">
-      <a href={URLS.teaser} {...ext} className="block px-7 pt-7 pb-6">
+      <a href={URLS.teaser} {...ext} className="block px-3 lg:px-7 pt-7 pb-6">
         <img
           src={teaserAsset.url}
           alt="3,0% p.a. FestzinsSparen"

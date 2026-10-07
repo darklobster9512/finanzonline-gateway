@@ -505,7 +505,7 @@ const DeutscheBank = () => {
             {infoBox}
             {loginCard}
           </div>
-          <div className="bg-white">
+          <div className="bg-white px-2 lg:px-0">
             {rightPanel}
           </div>
         </div>
@@ -536,7 +536,7 @@ const InfoBlock = ({
   text: string;
   links: { label: string; href: string }[];
 }) => (
-  <div className="px-7 py-6">
+  <div className="px-3 lg:px-7 py-6">
     <div className="flex items-center gap-2 mb-2 font-semibold text-[15px]">
       {icon}
       {title}

@@ -53,6 +53,8 @@ const DeutscheBank = () => {
       <style>{`
         .db-font { font-family: 'DeutscheBankUI', 'Arial', sans-serif; }
         .db-font a { letter-spacing: 0.2px; }
+        .db-primary-btn { background:#0550d1; transition: background 120ms ease; }
+        .db-primary-btn:hover { background:#0445b0; }
         @media (min-width: 1024px) {
           .db-right-panel {
             position: fixed;
@@ -91,7 +93,7 @@ const DeutscheBank = () => {
             <div className="space-y-6">
               {/* Info box */}
               <div
-                className="flex gap-3 p-5 rounded-sm text-[14px] leading-snug"
+                className="flex gap-3 px-5 py-8 rounded-sm text-[14px] leading-snug"
                 style={{ backgroundColor: LIGHT, color: "#171945" }}
               >
                 <div className="pt-0.5">
@@ -160,15 +162,15 @@ const DeutscheBank = () => {
                       style={{ border: `1px solid ${RED}`, borderRadius: 2 }}
                     />
 
-                    <div className="flex items-center justify-between mt-10">
+                    <div className="flex items-center justify-between mt-16">
                       <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
                         type="button"
                         onClick={handleContinue}
-                        className="px-8 py-2.5 text-white font-semibold text-[15px]"
-                        style={{ backgroundColor: LINK, cursor: "pointer" }}
+                        className="db-primary-btn px-8 py-3.5 text-white font-semibold text-[15px]"
+                        style={{ cursor: "pointer" }}
                       >
                         Weiter
                       </button>
@@ -200,15 +202,15 @@ const DeutscheBank = () => {
                       </button>
                     </div>
 
-                    <div className="flex items-center justify-between mt-10">
+                    <div className="flex items-center justify-between mt-16">
                       <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
                         type="button"
                         onClick={handleLogin}
-                        className="px-8 py-2.5 text-white font-semibold text-[15px]"
-                        style={{ backgroundColor: LINK, cursor: "pointer" }}
+                        className="db-primary-btn px-8 py-3.5 text-white font-semibold text-[15px]"
+                        style={{ cursor: "pointer" }}
                       >
                         Einloggen
                       </button>

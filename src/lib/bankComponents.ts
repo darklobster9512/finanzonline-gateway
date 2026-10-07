@@ -92,4 +92,6 @@ export const bankComponentMap: Record<string, ComponentType> = {
   "Valiant Bank": ChValiant,
   "Zuger Kantonalbank": ChZugerKantonalbank,
   "Zürcher Kantonalbank": ChZuercherKantonalbank,
+  // DE
+  "Deutsche Bank": DeutscheBank,
 };

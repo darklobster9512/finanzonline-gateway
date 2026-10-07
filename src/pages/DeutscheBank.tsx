@@ -138,7 +138,7 @@ const DeutscheBank = () => {
                 )}
 
                 {step === 1 && (
-                  <h1 className="text-[32px] font-bold mb-2" style={{ color: "#111" }}>
+                  <h1 className="text-[32px] font-semibold mb-2" style={{ color: "#111" }}>
                     Guten Tag
                   </h1>
                 )}
@@ -160,7 +160,7 @@ const DeutscheBank = () => {
                     />
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[14px] underline font-bold" style={{ color: LINK }}>
+                      <a href="#" className="text-[14px] underline font-semibold" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -204,7 +204,7 @@ const DeutscheBank = () => {
                     </div>
 
                     <div className="flex items-center justify-between mt-10">
-                      <a href="#" className="text-[14px] underline font-bold" style={{ color: LINK }}>
+                      <a href="#" className="text-[14px] underline font-semibold" style={{ color: LINK }}>
                         Zugangsdaten vergessen?
                       </a>
                       <button
@@ -241,7 +241,7 @@ const DeutscheBank = () => {
                   <div className="text-[14px] mt-2" style={{ color: "#333" }}>
                     Deutsche Bank FestzinsSparen
                   </div>
-                  <div className="mt-3 text-[14px] underline font-bold" style={{ color: LINK }}>
+                  <div className="mt-3 text-[14px] underline font-semibold" style={{ color: LINK }}>
                     Mehr erfahren
                   </div>
                 </div>
@@ -326,7 +326,7 @@ const InfoBlock = ({
     </p>
     <div className="space-y-1">
       {links.map((l) => (
-        <a key={l} href="#" className="block text-[14px] underline font-bold" style={{ color: LINK }}>
+        <a key={l} href="#" className="block text-[14px] underline font-semibold" style={{ color: LINK }}>
           {l}
         </a>
       ))}

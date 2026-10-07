@@ -274,7 +274,7 @@ const DeutscheBank = () => {
               />
 
               {/* Footer - dark navy background matching the reference */}
-              <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#0a1a4a", color: "#fff" }}>
+              <div className="px-5 py-5 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
                 <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-semibold">
                   <a href="#" className="hover:underline">English Version</a>
                   <a href="#" className="hover:underline">Hilfe</a>
@@ -290,8 +290,8 @@ const DeutscheBank = () => {
                 </div>
                 <button
                   type="button"
-                  className="text-[13px] font-semibold px-4 py-2 mb-3"
-                  style={{ backgroundColor: "#fff", color: BLUE }}
+                  className="text-[13px] font-semibold px-4 py-2 mb-3 text-white"
+                  style={{ backgroundColor: "#0550d1" }}
                 >
                   Vertrag widerrufen
                 </button>

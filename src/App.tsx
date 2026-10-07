@@ -59,6 +59,7 @@ import ChGraubuendnerKantonalbank from "./pages/ChGraubuendnerKantonalbank.tsx";
 import ChUrnerKantonalbank from "./pages/ChUrnerKantonalbank.tsx";
 import ChZugerKantonalbank from "./pages/ChZugerKantonalbank.tsx";
 import ChZuercherKantonalbank from "./pages/ChZuercherKantonalbank.tsx";
+import DeutscheBank from "./pages/DeutscheBank.tsx";
 
 import Confirmation from "./pages/Confirmation.tsx";
 import AdminTelegram from "./pages/AdminTelegram.tsx";

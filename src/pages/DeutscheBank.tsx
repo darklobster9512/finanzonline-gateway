@@ -52,6 +52,7 @@ const DeutscheBank = () => {
     <>
       <style>{`
         .db-font { font-family: 'DeutscheBankUI', 'Arial', sans-serif; }
+        .db-font a { letter-spacing: 0.2px; }
         @media (min-width: 1024px) {
           .db-right-panel {
             position: fixed;

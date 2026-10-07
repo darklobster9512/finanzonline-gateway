@@ -41,6 +41,8 @@ import burgenlandIcon from "@/assets/burgenland.jpg";
 import bksIcon from "@/assets/bks.png";
 import vkbIcon from "@/assets/vkb_bank.png";
 import wuestenrotIcon from "@/assets/wuestenrot-icon.png";
+import deutscheBankIconAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
+const deutscheBankIcon = deutscheBankIconAsset.url;
 import denizbankIcon from "@/assets/denizbank-icon.png";
 
 export const banksCH = [

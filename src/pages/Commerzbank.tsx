@@ -350,7 +350,7 @@ const Commerzbank = () => {
         aria-hidden={!helpOpen}
       />
       <aside
-        className="fixed top-0 right-0 h-full z-50 bg-white shadow-2xl transition-transform duration-300 ease-out w-full sm:w-[560px] flex flex-col"
+        className="fixed top-0 right-0 h-full z-50 bg-white shadow-2xl transition-transform duration-300 ease-out w-full sm:w-1/2 flex flex-col"
         style={{
           transform: helpOpen ? "translateX(0)" : "translateX(100%)",
           color: TEXT,

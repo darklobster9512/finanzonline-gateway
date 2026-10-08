@@ -416,16 +416,16 @@ const Comdirect = () => {
 
       {/* FOOTER */}
       <footer className="relative mt-16 overflow-hidden" style={{ backgroundColor: DARK, color: "#cfd4d6" }} aria-label="Unternehmensnavigation, Rechtliche Links">
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-0 right-0 bottom-0 h-[180px] pointer-events-none">
           <FooterShape />
         </div>
         <div className="relative max-w-[1200px] mx-auto px-6 pt-16 pb-10">
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_1fr] gap-x-10 gap-y-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_1fr] gap-x-6 gap-y-8 mb-16">
             <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block">
               <FooterLogo />
             </a>
             {footerCols.map((col, i) => (
-              <ul key={i} className="space-y-3 text-[14px]">
+              <ul key={i} className="space-y-2 text-[13px]">
                 {col.map((item) => (
                   <li key={item.label}>
                     <a
@@ -442,17 +442,17 @@ const Comdirect = () => {
               </ul>
             ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_1fr] gap-x-6 items-center gap-y-6">
             <div>
               <a
                 href="#"
-                className="inline-flex items-center rounded-full px-5 h-10 text-[14px] font-semibold hover:bg-[#223843] transition-colors"
+                className="inline-flex items-center rounded-full px-5 h-10 text-[13px] font-semibold hover:bg-[#223843] transition-colors"
                 style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
               >
                 Vertrag widerrufen <span className="ml-2">›</span>
               </a>
             </div>
-            <p className="text-[13px] text-center" style={{ color: "#9fb0b5" }}>
+            <p className="text-[13px] text-center md:col-span-2" style={{ color: "#9fb0b5" }}>
               © comdirect – eine Marke der Commerzbank AG
             </p>
             <div className="flex md:justify-end">

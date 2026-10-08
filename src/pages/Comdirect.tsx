@@ -390,15 +390,15 @@ const Comdirect = () => {
           <div className="space-y-6">
             <a href="#" className="block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[155px] object-cover" />
-              <div className="flex-1 px-6 py-1.5 flex flex-col justify-center">
+              <div className="flex-1 px-6 pt-2 pb-1 flex flex-col justify-start">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>
-                <p className="text-[15px] mt-1" style={{ color: TEXT_SECONDARY }}>
+                <p className="text-[15px] mt-0.5 leading-snug" style={{ color: TEXT_SECONDARY }}>
                   Auch kleine Schritte summieren sich zu etwas Großem.
                 </p>
               </div>
-              <div className="self-end p-3 text-[24px]" style={{ color: DARK }}>›</div>
+              <div className="self-end p-2 text-[40px] leading-none" style={{ color: DARK }}>›</div>
             </a>
 
             <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>

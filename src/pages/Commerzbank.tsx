@@ -143,12 +143,14 @@ const Commerzbank = () => {
                   <div
                     className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
                     style={{ borderColor: "#506c74" }}
+                    onMouseEnter={() => setUserHover(true)}
+                    onMouseLeave={() => setUserHover(false)}
                   >
                     <label
                       htmlFor="cb-user"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
-                        color: username || userFocus ? "#506c74" : "#7a8f96",
+                        color: username || userFocus ? "#506c74" : (userHover ? "#002530" : "#506c74"),
                         top: username || userFocus ? 0 : 32,
                         fontSize: username || userFocus ? 13 : 15,
                       }}

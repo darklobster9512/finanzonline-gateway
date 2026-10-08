@@ -315,13 +315,13 @@ const Commerzbank = () => {
               24 Stunden für Sie da.
             </h3>
             <div className="flex items-center gap-10">
-              <a href="#" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
+              <a href="https://www.commerzbank.de/service/" target="_blank" rel="noopener noreferrer" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
                 <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <ServiceIcon />
                 </span>
                 <span className="text-[13px] font-semibold">Service</span>
               </a>
-              <a href="#" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
+              <a href="https://www.commerzbank.de/kontakt/" target="_blank" rel="noopener noreferrer" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
                 <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <MailIcon />
                 </span>

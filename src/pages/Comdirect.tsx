@@ -257,15 +257,17 @@ const Comdirect = () => {
       {/* HEADER */}
       <header className="w-full" style={{ backgroundColor: DARK }}>
         <style>{`.cd-search::placeholder{color:${HEADER_MUTED};font-weight:600;}`}</style>
-        <div className="max-w-[1200px] mx-auto flex items-stretch">
-          {/* yellow logo block */}
-          <a href="#" className="flex items-center justify-center" style={{ backgroundColor: YELLOW, minWidth: 220 }}>
+        <div className="max-w-[1200px] mx-auto px-6 flex items-stretch relative">
+          {/* yellow logo block – left edge aligns with h1 (container px-6) */}
+          <a href="#" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
+            {/* leftward bleed: extend yellow past container to viewport edge */}
+            <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "50vw", backgroundColor: YELLOW }} />
             <WordmarkSVG color={DARK} height={22} />
           </a>
           {/* right side */}
-          <div className="flex-1 flex items-center justify-end gap-6 pl-6 pr-6 h-[72px]">
-            <a href="#" className="text-[13px] hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
-            <a href="#" className="text-[13px] hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
+          <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
+            <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
+            <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
             <div className="flex items-center rounded-full px-4 h-9 w-[230px] bg-transparent border" style={{ borderColor: HEADER_MUTED }}>
               <input className="cd-search flex-1 outline-none text-[13px] bg-transparent font-semibold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
               <SearchIcon color={HEADER_MUTED} />

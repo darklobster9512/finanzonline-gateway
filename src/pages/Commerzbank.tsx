@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/commerzbank-logo.svg.asset.json";
+import logoWhiteAsset from "@/assets/commerzbank-logo-white.svg.asset.json";
 
 const GREEN = "#002e3c";
 const YELLOW = "#ffd700";
@@ -220,12 +221,11 @@ const Commerzbank = () => {
               <h2 className="text-[22px] lg:text-[24px] font-bold mb-6" style={{ color: TEXT }}>
                 Wichtige Sicherheitshinweise
               </h2>
-              <ul className="space-y-5">
+              <ul className="space-y-4 text-[14px]">
                 {secLinks.map((l) => (
                   <li key={l}>
-                    <a href="#" className="flex items-center gap-4 hover:underline" style={{ color: TEXT }}>
-                      <ArrowRight size={18} color={TEXT} />
-                      <span className="text-[15px]">{l}</span>
+                    <a href="#" className="inline-flex items-center gap-2 font-semibold hover:underline" style={{ color: TEXT }}>
+                      {l} <ArrowRight size={16} color={TEXT} />
                     </a>
                   </li>
                 ))}
@@ -265,7 +265,7 @@ const Commerzbank = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pb-10">
           <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
             <div className="flex items-center gap-3">
-              <img src={logoAsset.url} alt="Commerzbank" className="h-9 w-auto" />
+              <img src={logoWhiteAsset.url} alt="Commerzbank" className="h-9 w-auto" />
             </div>
             <div className="text-[14px] font-semibold">Die Bank an Ihrer Seite</div>
           </div>

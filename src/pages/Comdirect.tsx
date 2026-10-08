@@ -181,8 +181,8 @@ const FooterLogo = () => (
   </svg>
 );
 
-const FooterShape = () => (
-  <svg aria-hidden="true" viewBox="0 0 1920 312" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+const FooterShapeLeft = () => (
+  <svg aria-hidden="true" width="180" height="240" viewBox="208 38 180 240" xmlns="http://www.w3.org/2000/svg">
     <path clipRule="evenodd" d="m328 158c33.1 0 60-26.9 60-60s-26.9-60-60-60-60 26.9-60 60 26.9 60 60 60zm0-30c16.6 0 30-13.4 30-30s-13.4-30-30-30-30 13.4-30 30 13.4 30 30 30z" fill="#27343a" fillRule="evenodd" />
     <g fill="#3f4b50">
       <circle cx="298" cy="188" r="30" />
@@ -190,6 +190,11 @@ const FooterShape = () => (
       <circle cx="238" cy="248" r="30" />
       <circle cx="238" cy="188" r="30" />
     </g>
+  </svg>
+);
+
+const FooterShapeRight = () => (
+  <svg aria-hidden="true" width="210" height="120" viewBox="1532 64 210 120" xmlns="http://www.w3.org/2000/svg">
     <path d="m1592 184v-30c-16.6 0-30-13.4-30-30s13.4-30 30-30v-30c-33.1 0-60 26.9-60 60s26.9 60 60 60z" fill="#27343a" />
     <path d="m1742 184h-120c33.1 0 60-26.9 60-60s-26.9-60-60-60h120z" fill="#27343a" />
     <path d="m1592 154c16.6 0 30-13.4 30-30s-13.4-30-30-30z" fill="#fff500" />
@@ -415,11 +420,14 @@ const Comdirect = () => {
       </main>
 
       {/* FOOTER */}
-      <footer className="relative mt-16 overflow-hidden" style={{ backgroundColor: DARK, color: "#cfd4d6" }} aria-label="Unternehmensnavigation, Rechtliche Links">
-        <div className="absolute left-0 right-0 bottom-0 h-[180px] pointer-events-none">
-          <FooterShape />
+      <footer className="relative mt-16 overflow-hidden min-h-[280px]" style={{ backgroundColor: DARK, color: "#cfd4d6" }} aria-label="Unternehmensnavigation, Rechtliche Links">
+        <div className="absolute left-0 bottom-0 pointer-events-none">
+          <FooterShapeLeft />
         </div>
-        <div className="relative max-w-[1200px] mx-auto px-6 pt-16 pb-10">
+        <div className="absolute right-0 bottom-0 pointer-events-none">
+          <FooterShapeRight />
+        </div>
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pt-16 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_1fr] gap-x-6 gap-y-8 mb-16">
             <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block">
               <FooterLogo />

@@ -172,8 +172,8 @@ const Commerzbank = () => {
                       onBlur={() => setUserFocus(false)}
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full bg-transparent border-0 py-2 outline-none text-[17px]"
-                      style={{ color: TEXT }}
+                       className="w-full bg-transparent border-0 py-2 outline-none text-[17px]"
+                      style={{ color: userFocus ? "#002530" : TEXT }}
                     />
                   </div>
                 </div>

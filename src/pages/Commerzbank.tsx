@@ -121,7 +121,7 @@ const Commerzbank = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-32 lg:pb-40">
           {/* Title row */}
           <div className="flex items-start justify-between mb-16 lg:mb-20">
-            <h1 className="text-[44px] lg:text-[52px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
+            <h1 className="text-[36px] lg:text-[42px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
             <button type="button" className="flex items-center gap-2 text-[14px] font-semibold hover:underline" style={{ color: TEXT }}>
               Hilfe <ChatIcon />
             </button>
@@ -218,7 +218,7 @@ const Commerzbank = () => {
 
             {/* Right column: security hints */}
             <aside>
-              <h2 className="text-[22px] lg:text-[24px] font-bold mb-6" style={{ color: TEXT }}>
+              <h2 className="text-[18px] lg:text-[20px] font-bold mb-6" style={{ color: TEXT }}>
                 Wichtige Sicherheitshinweise
               </h2>
               <ul className="space-y-4 text-[14px]">

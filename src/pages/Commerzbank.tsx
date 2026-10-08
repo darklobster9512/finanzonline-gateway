@@ -10,7 +10,7 @@ const GREEN = "#002e3c";
 const YELLOW = "#ffd700";
 const TEXT = "#002e3c";
 
-const ArrowRight = ({ size = 18, color = GREEN }: { size?: number; color?: string }) => (
+const ArrowRight = ({ size = 36, color = GREEN }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true">
     <path d="m16.81 4.42-1.62 1.16L19.06 11H2v2h17.06l-3.87 5.42 1.62 1.16L22.23 12l-5.42-7.58z" />
   </svg>

@@ -417,7 +417,7 @@ const Comdirect = () => {
 
       {/* FOOTER */}
       <footer className="relative mt-16 overflow-hidden" style={{ backgroundColor: DARK, color: "#cfd4d6" }} aria-label="Unternehmensnavigation, Rechtliche Links">
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute bottom-0 left-0 right-0 h-[312px] pointer-events-none">
           <FooterShape />
         </div>
         <div className="relative max-w-[1200px] mx-auto px-6 pt-16 pb-10">

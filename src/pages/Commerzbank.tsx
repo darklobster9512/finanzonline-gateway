@@ -83,6 +83,19 @@ const Commerzbank = () => {
   const [openPanel, setOpenPanel] = useState<string | null>(null);
   const [userError, setUserError] = useState(false);
   const [pwError, setPwError] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (!helpOpen) return;
@@ -145,21 +158,33 @@ const Commerzbank = () => {
     <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Gotham Sans', 'Montserrat', 'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
       {/* Header */}
       <header style={{ backgroundColor: GREEN }}>
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-start gap-8">
-          <a href="#" className="flex-shrink-0">
-            <img src={logoAsset.url} alt="Commerzbank Logo" className="h-14 w-auto" />
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-center lg:items-start gap-4 lg:gap-8">
+          <a href="#" className="flex-shrink-0 flex items-center">
+            <img src={logoAsset.url} alt="Commerzbank Logo" className="h-10 lg:h-14 w-auto" />
           </a>
-          <div className="flex-1 flex items-center justify-between pt-6">
-            <nav className="hidden md:flex items-center gap-7 text-[15px] font-semibold">
+          <div className="flex-1 flex items-center justify-between lg:pt-6">
+            <nav className="hidden lg:flex items-center gap-7 text-[15px] font-semibold">
               {navLinks.map((l) => (
                 <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="text-[#dbe2e5] hover:text-white">{l.label}</a>
               ))}
             </nav>
-            <div className="flex items-center gap-6 text-[14px] font-semibold">
+            <div className="hidden lg:flex items-center gap-6 text-[14px] font-semibold">
               <a href="#" className="cmz-lift text-[#dbe2e5] hover:text-white">EN</a>
               <a href="#" className="cmz-lift items-center gap-2 text-[#dbe2e5] hover:text-white">
                 <SearchIcon /> Suche
               </a>
+            </div>
+            <div className="flex lg:hidden items-center gap-5 ml-auto text-white">
+              <button type="button" aria-label="Suche" className="flex items-center justify-center">
+                <SearchIcon />
+              </button>
+              <button type="button" aria-label="Menü" onClick={() => setMenuOpen(true)} className="flex items-center justify-center">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" aria-hidden="true">
+                  <line x1="3" y1="7" x2="21" y2="7" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="17" x2="21" y2="17" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -170,8 +195,8 @@ const Commerzbank = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-32 lg:pb-40">
           {/* Title row */}
           <div className="flex items-start justify-between mb-16 lg:mb-20">
-            <h1 className="text-[36px] lg:text-[42px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
-            <button type="button" onClick={() => setHelpOpen(true)} className="cmz-lift items-center gap-2 text-[14px] font-semibold" style={{ color: TEXT }}>
+            <h1 className="text-[28px] lg:text-[42px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
+            <button type="button" onClick={() => setHelpOpen(true)} className="cmz-lift items-center gap-2 text-[12px] lg:text-[14px] font-semibold" style={{ color: TEXT }}>
               Hilfe <ChatIcon />
             </button>
           </div>
@@ -291,7 +316,7 @@ const Commerzbank = () => {
                 {/* Login button */}
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 rounded-full font-semibold text-[15px] px-8 py-4 transition-colors"
+                  className="w-full lg:w-auto justify-center lg:justify-start inline-flex items-center gap-3 rounded-full font-semibold text-[15px] px-8 py-4 transition-colors"
                   style={{ backgroundColor: YELLOW, color: TEXT }}
                   onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#ffc700"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = YELLOW; }}
@@ -300,17 +325,17 @@ const Commerzbank = () => {
                 </button>
 
                 {/* Secondary links */}
-                <div className="mt-10 space-y-4 text-[14px]">
+                <div className="mt-10 space-y-4 text-[12px] lg:text-[14px]">
                   <div className="flex flex-wrap gap-x-10 gap-y-3">
-                    <a href="https://kunden.commerzbank.de/service/online-banking-pin-vergessen-was-muss-ich-tun/" target="_blank" rel="noopener noreferrer" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Passwort vergessen?</a>
-                    <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST01_TNR_anfordern" target="_blank" rel="noopener noreferrer" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
+                    <a href="https://kunden.commerzbank.de/service/online-banking-pin-vergessen-was-muss-ich-tun/" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Passwort vergessen?</a>
+                    <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST01_TNR_anfordern" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
                   </div>
-                  <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST10_TNV_Anmeldung_DigitalBanking_AutoIdent_Int" target="_blank" rel="noopener noreferrer" className="cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
-                    Zugang beantragen <ArrowRight size={22} color={TEXT} />
+                  <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST10_TNV_Anmeldung_DigitalBanking_AutoIdent_Int" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
+                    Zugang beantragen <span className="lg:hidden"><ArrowRight size={18} color="#876c0e" /></span><span className="hidden lg:inline"><ArrowRight size={22} color={TEXT} /></span>
                   </a>
                   <div>
-                    <a href="#" className="cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
-                      Wichtige Informationen zum Digital Banking <ArrowRight size={22} color={TEXT} />
+                    <a href="#" className="lg:cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
+                      Wichtige Informationen zum Digital Banking <span className="lg:hidden"><ArrowRight size={18} color="#876c0e" /></span><span className="hidden lg:inline"><ArrowRight size={22} color={TEXT} /></span>
                     </a>
                   </div>
                 </div>
@@ -319,14 +344,14 @@ const Commerzbank = () => {
 
             {/* Right column: security hints */}
             <aside>
-              <h2 className="text-[18px] lg:text-[20px] font-bold mb-6" style={{ color: TEXT }}>
+              <h2 className="text-[15px] lg:text-[20px] font-bold mb-6" style={{ color: TEXT }}>
                 Wichtige Sicherheitshinweise
               </h2>
-              <ul className="space-y-4 text-[14px]">
+              <ul className="space-y-4 text-[12px] lg:text-[14px]">
                 {secLinks.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      <ArrowRight size={22} color={TEXT} /> {l.label}
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-semibold lg:transition-transform lg:duration-150 lg:hover:translate-x-1" style={{ color: TEXT }}>
+                      <span className="lg:hidden"><ArrowRight size={18} color="#876c0e" /></span><span className="hidden lg:inline"><ArrowRight size={22} color={TEXT} /></span> {l.label}
                     </a>
                   </li>
                 ))}
@@ -339,11 +364,11 @@ const Commerzbank = () => {
       {/* Yellow banner — only top ~25% ragt in den weißen Bereich, Rest sitzt auf Grün */}
       <section style={{ backgroundColor: GREEN }} className="relative z-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div style={{ backgroundColor: YELLOW, marginTop: '-56px' }} className="rounded-2xl px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
-            <h3 className="text-[18px] lg:text-[20px] font-semibold" style={{ color: TEXT }}>
+          <div style={{ backgroundColor: YELLOW, marginTop: '-56px' }} className="rounded-2xl px-6 lg:px-14 py-10 flex flex-col lg:flex-row items-center lg:justify-between gap-8 lg:gap-6 text-center lg:text-left">
+            <h3 className="text-[18px] lg:text-[20px] font-semibold w-full lg:w-auto" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>
-            <div className="flex items-center gap-10">
+            <div className="flex items-center justify-center gap-10 w-full lg:w-auto">
               <a href="https://www.commerzbank.de/service/" target="_blank" rel="noopener noreferrer" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
                 <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <ServiceIcon />
@@ -364,14 +389,14 @@ const Commerzbank = () => {
       {/* Footer */}
       <footer style={{ backgroundColor: GREEN }} className="pt-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pb-16">
-          <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
-            <div className="flex items-center gap-3">
-              <img src={logoWhiteAsset.url} alt="Commerzbank" className="h-9 w-auto" />
+          <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-4 lg:gap-6 pb-6 text-center lg:text-left">
+            <div className="flex items-center justify-center gap-3">
+              <img src={logoWhiteAsset.url} alt="Commerzbank" className="h-6 lg:h-9 w-auto" />
             </div>
-            <div className="text-[14px] font-semibold text-[#dbe2e5] hover:text-white transition-colors">Die Bank an Ihrer Seite</div>
+            <div className="text-[12px] lg:text-[14px] font-semibold text-[#dbe2e5] hover:text-white transition-colors">Die Bank an Ihrer Seite</div>
           </div>
           <div className="border-t border-white/20 pt-10">
-            <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[12px] font-semibold">
+            <ul className="flex flex-wrap justify-center lg:justify-start gap-x-6 lg:gap-x-8 gap-y-3 text-[10px] lg:text-[12px] font-semibold text-center">
               {footerLinks.map((l) => (
                 <li key={l.label}><a href={l.href} target="_blank" rel="noopener noreferrer" className="text-[#dbe2e5] hover:text-white">{l.label}</a></li>
               ))}
@@ -484,6 +509,43 @@ const Commerzbank = () => {
               </div>
             );
           })}
+        </div>
+      </aside>
+
+      {/* Mobile Hamburger Sidebar */}
+      <aside
+        className="fixed inset-0 z-[60] flex flex-col lg:hidden transition-transform duration-300 ease-out"
+        style={{
+          transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+          backgroundColor: "#002e3c",
+          color: "#ffffff",
+        }}
+        aria-hidden={!menuOpen}
+      >
+        <div className="flex items-center justify-end px-6 py-5" style={{ backgroundColor: "#103d4b" }}>
+          <button type="button" aria-label="Menü schließen" onClick={() => setMenuOpen(false)} className="text-white">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" aria-hidden="true">
+              <line x1="5" y1="5" x2="19" y2="19" />
+              <line x1="19" y1="5" x2="5" y2="19" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-10 pt-10">
+          <div className="border-b border-white/20 pb-6 space-y-5">
+            <a href="#" className="flex items-center gap-3 text-[16px] font-semibold text-white">
+              <SearchIcon /> Suche
+            </a>
+            <a href="#" className="flex items-center gap-4 text-[16px] font-semibold text-white">
+              <span>EN</span><span>English</span>
+            </a>
+          </div>
+          <nav className="pt-8 space-y-6 text-[18px] font-bold">
+            {navLinks.map((l) => (
+              <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="block text-white">
+                {l.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </aside>
 

@@ -429,13 +429,27 @@ const Comdirect = () => {
           <FooterShapeRight />
         </div>
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 pt-16 pb-10">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-10">
-            <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block shrink-0">
-              <FooterLogo />
-            </a>
-            <div className="flex flex-col md:flex-row gap-8 md:gap-10">
-              {footerCols.map((col, i) => (
-                <ul key={i} className="space-y-2 text-[13px] min-w-[150px]">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
+            {/* Spalte 1: Logo + Vertrag widerrufen + Copyright */}
+            <div className="flex flex-col">
+              <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block shrink-0 mb-6">
+                <FooterLogo />
+              </a>
+              <a
+                href="#"
+                className="inline-flex items-center justify-center rounded-full px-5 h-10 text-[13px] font-semibold hover:bg-[#223843] transition-colors w-fit mb-6"
+                style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
+              >
+                Vertrag widerrufen <span className="ml-2">›</span>
+              </a>
+              <p className="text-[13px]" style={{ color: "#9fb0b5" }}>
+                © comdirect – eine Marke der Commerzbank AG
+              </p>
+            </div>
+            {/* Spalten 2-4: Linklisten */}
+            {footerCols.map((col, i) => (
+              <div key={i} className="flex flex-col">
+                <ul className="space-y-2 text-[13px]">
                   {col.map((item) => (
                     <li key={item.label}>
                       <a
@@ -450,25 +464,13 @@ const Comdirect = () => {
                     </li>
                   ))}
                 </ul>
-              ))}
-            </div>
-          </div>
-          <div className="flex justify-end mb-6">
-            <SocialIcons />
-          </div>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <a
-                href="#"
-                className="inline-flex items-center rounded-full px-5 h-10 text-[13px] font-semibold hover:bg-[#223843] transition-colors"
-                style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
-              >
-                Vertrag widerrufen <span className="ml-2">›</span>
-              </a>
-            </div>
-            <p className="text-[13px]" style={{ color: "#9fb0b5" }}>
-              © comdirect – eine Marke der Commerzbank AG
-            </p>
+                {i === footerCols.length - 1 && (
+                  <div className="mt-6 flex justify-end">
+                    <SocialIcons />
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </footer>

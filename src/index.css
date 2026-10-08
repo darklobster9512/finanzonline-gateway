@@ -190,3 +190,10 @@ All colors MUST be HSL.
 .cmz-lift:hover {
   transform: translate3d(0, -2px, 0);
 }
+
+.cmz-circle-ring {
+  transition: box-shadow 150ms ease-out;
+}
+.cmz-circle:hover .cmz-circle-ring {
+  box-shadow: inset 0 0 0 1px currentColor;
+}

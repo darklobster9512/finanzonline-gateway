@@ -362,7 +362,7 @@ const Comdirect = () => {
                 className="cd-anmelden-btn rounded-full px-8 h-12 flex items-center text-[16px] font-semibold"
                 style={{ color: DARK }}
               >
-                Anmelden <span className="ml-2">›</span>
+                Anmelden <span className="ml-2 text-[26px] leading-none font-normal">›</span>
               </button>
               <div className="pt-2 text-[16px]" style={{ color: TEXT_SECONDARY }}>
                 <a href="#" className="underline hover:no-underline">Information zum Login</a>

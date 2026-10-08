@@ -114,8 +114,8 @@ const Commerzbank = () => {
               ))}
             </nav>
             <div className="flex items-center gap-6 text-[14px] font-semibold">
-              <a href="#" className="text-[#dbe2e5] hover:text-white">EN</a>
-              <a href="#" className="flex items-center gap-2 text-[#dbe2e5] hover:text-white">
+              <a href="#" className="cmz-lift text-[#dbe2e5] hover:text-white">EN</a>
+              <a href="#" className="cmz-lift items-center gap-2 text-[#dbe2e5] hover:text-white">
                 <SearchIcon /> Suche
               </a>
             </div>

@@ -295,9 +295,9 @@ const Commerzbank = () => {
               </h2>
               <ul className="space-y-4 text-[14px]">
                 {secLinks.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      <ArrowRight size={22} color={TEXT} /> {l}
+                  <li key={l.label}>
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
+                      <ArrowRight size={22} color={TEXT} /> {l.label}
                     </a>
                   </li>
                 ))}

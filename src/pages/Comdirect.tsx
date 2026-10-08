@@ -256,38 +256,38 @@ const Comdirect = () => {
     <div className="min-h-screen bg-white" style={{ color: DARK, fontFamily: "'Open Sans', Arial, sans-serif" }}>
       {/* HEADER */}
       <header className="w-full" style={{ backgroundColor: DARK }}>
-        <style>{`.cd-search::placeholder{color:${HEADER_MUTED};font-weight:600;}`}</style>
+        <style>{`.cd-search::placeholder{color:${HEADER_MUTED};font-weight:700;}`}</style>
         <div className="max-w-[1200px] mx-auto px-6 flex items-stretch relative">
           {/* yellow logo block – left edge aligns with h1 (container px-6) */}
           <a href="#" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
-            {/* leftward bleed: extend yellow past container to viewport edge */}
-            <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "50vw", backgroundColor: YELLOW }} />
+            {/* leftward bleed: only as wide as the logo block itself */}
+            <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "100%", backgroundColor: YELLOW }} />
             <WordmarkSVG color={DARK} height={22} />
           </a>
           {/* right side */}
           <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
             <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
             <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
-            <div className="flex items-center rounded-full px-4 h-9 w-[230px] bg-transparent border" style={{ borderColor: HEADER_MUTED }}>
-              <input className="cd-search flex-1 outline-none text-[13px] bg-transparent font-semibold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
+            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border" style={{ borderColor: HEADER_MUTED }}>
+              <input className="cd-search flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
               <SearchIcon color={HEADER_MUTED} />
             </div>
-            <div className="flex items-center rounded-full px-4 h-9 w-[230px] bg-transparent border" style={{ borderColor: HEADER_MUTED }}>
-              <input className="cd-search flex-1 outline-none text-[13px] bg-transparent font-semibold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
+            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border" style={{ borderColor: HEADER_MUTED }}>
+              <input className="cd-search flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
               <SearchIcon color={HEADER_MUTED} />
             </div>
             <a
               href="#"
-              className="rounded-full px-6 h-9 flex items-center text-[14px] font-bold transition-colors hover:brightness-95"
+              className="rounded-full px-6 h-9 flex items-center text-[14px] font-normal transition-colors hover:brightness-95"
               style={{ backgroundColor: YELLOW, color: DARK }}
             >
-              Login <span className="ml-2">›</span>
+              Login <span className="ml-2 text-[26px] leading-none">›</span>
             </a>
           </div>
         </div>
         {/* main nav */}
         <nav>
-          <div className="max-w-[1200px] mx-auto flex items-center justify-start gap-8 py-3">
+          <div className="max-w-[1200px] mx-auto flex items-center justify-start gap-5 py-3">
             {navItems.map((n) => (
               <a key={n} href="#" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
                 {n}

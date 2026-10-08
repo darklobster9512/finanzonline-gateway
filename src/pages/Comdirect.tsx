@@ -268,13 +268,13 @@ const Comdirect = () => {
           <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
             <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
             <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
-            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border" style={{ borderColor: HEADER_MUTED }}>
-              <input className="cd-search flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
-              <SearchIcon color={HEADER_MUTED} />
+            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border gap-2" style={{ borderColor: HEADER_MUTED }}>
+              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: "#ffffff" }} />
+              <span className="shrink-0"><SearchIcon color="#ffffff" /></span>
             </div>
-            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border" style={{ borderColor: HEADER_MUTED }}>
-              <input className="cd-search flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
-              <SearchIcon color={HEADER_MUTED} />
+            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border gap-2" style={{ borderColor: HEADER_MUTED }}>
+              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: "#ffffff" }} />
+              <span className="shrink-0"><SearchIcon color="#ffffff" /></span>
             </div>
             <a
               href="#"

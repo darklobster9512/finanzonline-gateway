@@ -143,7 +143,7 @@ const Commerzbank = () => {
           {/* Title row */}
           <div className="flex items-start justify-between mb-16 lg:mb-20">
             <h1 className="text-[36px] lg:text-[42px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
-            <button type="button" className="cmz-lift items-center gap-2 text-[14px] font-semibold" style={{ color: TEXT }}>
+            <button type="button" onClick={() => setHelpOpen(true)} className="cmz-lift items-center gap-2 text-[14px] font-semibold" style={{ color: TEXT }}>
               Hilfe <ChatIcon />
             </button>
           </div>

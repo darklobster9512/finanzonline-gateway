@@ -257,24 +257,24 @@ const Comdirect = () => {
       <header className="w-full" style={{ backgroundColor: DARK }}>
         <div className="max-w-[1200px] mx-auto flex items-stretch">
           {/* yellow logo block */}
-          <a href="#" className="flex items-center justify-center px-10 py-4" style={{ backgroundColor: YELLOW, minWidth: 220 }}>
-            <WordmarkSVG color={DARK} height={22} />
+          <a href="#" className="flex items-center justify-center" style={{ backgroundColor: YELLOW, minWidth: 300 }}>
+            <WordmarkSVG color={DARK} height={28} />
           </a>
           {/* right side */}
-          <div className="flex-1 flex items-center justify-end gap-6 px-6 py-3">
-            <a href="#" className="text-white text-[13px] hover:underline">Musterdepot</a>
-            <a href="#" className="text-white text-[13px] hover:underline">B2B</a>
-            <div className="flex items-center bg-white rounded-full px-4 h-9 w-[180px]">
-              <input className="flex-1 outline-none text-[13px] bg-transparent" placeholder="WKN, ISIN, Name" />
+          <div className="flex-1 flex items-center justify-end gap-7 pl-6 pr-6 h-[72px]">
+            <a href="#" className="text-white text-[14px] hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
+            <a href="#" className="text-white text-[14px] hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>B2B</a>
+            <div className="flex items-center bg-white rounded-full px-4 h-9 w-[230px]">
+              <input className="flex-1 outline-none text-[13px] bg-transparent" placeholder="WKN, ISIN, Name" style={{ color: DARK }} />
               <SearchIcon />
             </div>
-            <div className="flex items-center bg-white rounded-full px-4 h-9 w-[180px]">
-              <input className="flex-1 outline-none text-[13px] bg-transparent" placeholder="Volltextsuche" />
+            <div className="flex items-center bg-white rounded-full px-4 h-9 w-[230px]">
+              <input className="flex-1 outline-none text-[13px] bg-transparent" placeholder="Volltextsuche" style={{ color: DARK }} />
               <SearchIcon />
             </div>
             <a
               href="#"
-              className="rounded-full px-5 h-9 flex items-center text-[14px] font-semibold"
+              className="rounded-full px-6 h-9 flex items-center text-[14px] font-bold transition-colors hover:brightness-95"
               style={{ backgroundColor: YELLOW, color: DARK }}
             >
               Login <span className="ml-2">›</span>
@@ -282,10 +282,10 @@ const Comdirect = () => {
           </div>
         </div>
         {/* main nav */}
-        <nav className="border-t border-white/10">
-          <div className="max-w-[1200px] mx-auto flex items-center justify-end gap-7 px-6 py-3">
+        <nav>
+          <div className="max-w-[1200px] mx-auto flex items-center justify-end gap-8 px-6 py-3">
             {navItems.map((n) => (
-              <a key={n} href="#" className="text-white text-[14px] font-semibold hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
+              <a key={n} href="#" className="text-white text-[14px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
                 {n}
               </a>
             ))}

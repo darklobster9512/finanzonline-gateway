@@ -246,15 +246,15 @@ const Commerzbank = () => {
                 {/* Secondary links */}
                 <div className="mt-10 space-y-4 text-[14px]">
                   <div className="flex flex-wrap gap-x-10 gap-y-3">
-                    <a href="#" className="font-semibold inline-block transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>Passwort vergessen?</a>
-                    <a href="#" className="font-semibold inline-block transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
+                    <a href="#" className="font-semibold inline-block transition-transform duration-150 hover:-translate-y-0.5" style={{ color: TEXT }}>Passwort vergessen?</a>
+                    <a href="#" className="font-semibold inline-block transition-transform duration-150 hover:-translate-y-0.5" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
                   </div>
-                  <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                    Zugang beantragen <ArrowRight size={32} color={TEXT} />
+                  <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:-translate-y-0.5" style={{ color: TEXT }}>
+                    Zugang beantragen <ArrowRight size={22} color={TEXT} />
                   </a>
                   <div>
-                    <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      Wichtige Informationen zum Digital Banking <ArrowRight size={32} color={TEXT} />
+                    <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:-translate-y-0.5" style={{ color: TEXT }}>
+                      Wichtige Informationen zum Digital Banking <ArrowRight size={22} color={TEXT} />
                     </a>
                   </div>
                 </div>
@@ -270,7 +270,7 @@ const Commerzbank = () => {
                 {secLinks.map((l) => (
                   <li key={l}>
                     <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      <ArrowRight size={32} color={TEXT} /> {l}
+                      <ArrowRight size={22} color={TEXT} /> {l}
                     </a>
                   </li>
                 ))}

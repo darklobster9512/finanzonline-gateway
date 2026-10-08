@@ -89,7 +89,6 @@ const COPY = {
       "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten",
       "Anlagebetrug erkennen und vermeiden",
       "Warnung vor Phishing",
-      "Phishing-Briefe im Namen der Bank (Quishing)",
     ],
     bannerTitle: "24 Stunden für Sie da.",
     service: "Service",

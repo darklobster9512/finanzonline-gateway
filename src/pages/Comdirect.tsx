@@ -271,7 +271,7 @@ const Comdirect = () => {
           .cd-anmelden-btn{transition:background-color .15s;}
           .cd-anmelden-btn:hover{background-color:rgb(255,225,0);}
         `}</style>
-        <div className="max-w-[1200px] mx-auto px-6 flex items-stretch relative">
+        <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
           {/* yellow logo block – left edge aligns with h1 (container px-6) */}
           <a href="#" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
             {/* leftward bleed: only as wide as the logo block itself */}
@@ -301,7 +301,7 @@ const Comdirect = () => {
         </div>
         {/* main nav */}
         <nav>
-          <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
+          <div className="max-w-[1040px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
             {navItems.map((n) => (
               <a key={n} href="#" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
                 {n}
@@ -312,7 +312,7 @@ const Comdirect = () => {
       </header>
 
       {/* MAIN */}
-      <main className="max-w-[1200px] mx-auto px-6 py-10">
+      <main className="max-w-[1040px] mx-auto px-6 py-10">
         <h1 className="text-[40px] leading-tight font-light mb-8" style={{ color: DARK }}>
           comdirect Login
         </h1>
@@ -446,7 +446,7 @@ const Comdirect = () => {
         <div className="absolute right-0 top-[60px] pointer-events-none">
           <FooterShapeRight />
         </div>
-        <div className="relative z-10 max-w-[1200px] mx-auto px-6 pt-16 pb-10">
+        <div className="relative z-10 max-w-[1040px] mx-auto px-6 pt-16 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
             {/* Spalte 1: Logo + Vertrag widerrufen + Copyright */}
             <div className="flex flex-col">

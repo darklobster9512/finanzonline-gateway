@@ -264,7 +264,6 @@ const Commerzbank = () => {
     "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/falsche-commerzbank-mitarbeiter/",
     "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/anlagebetrug/",
     "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/phishing/",
-    "https://www.commerzbank.de/konten-zahlungsverkehr/wissen/sicherheit-onlinebanking/phishing-briefe/",
   ];
   const secLinks = t.sec.map((label, i) => ({ label, href: secHrefs[i] }));
 

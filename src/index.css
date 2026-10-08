@@ -33,6 +33,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'MarkPro';
+  src: url('/__l5e/assets-v1/c38bf960-c773-4b8d-8922-39826dd2db26/Mark_Pro.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Open Sans (400/600/700/800) is loaded via Google Fonts @import at the top of this file
    so bold weights actually render with the real bold face. */
 

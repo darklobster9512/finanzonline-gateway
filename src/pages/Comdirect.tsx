@@ -51,7 +51,7 @@ const SearchIcon = ({ color = DARK }: { color?: string }) => (
 );
 
 const WarningTriangle = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
+  <svg width="80" height="80" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M12 2 1 21h22L12 2Zm0 4.5L19.5 19h-15L12 6.5Z" fill="#DE0000" />
     <rect x="11" y="10" width="2" height="5" fill="#DE0000" />
     <circle cx="12" cy="17" r="1" fill="#DE0000" />
@@ -74,10 +74,10 @@ const FloatingInput = ({
   const [focus, setFocus] = useState(false);
   const active = focus || value.length > 0;
   return (
-    <div className="relative border border-[#d0d6d9] rounded-sm bg-white h-[58px] px-3 pt-5 pb-1">
+    <div className="relative border rounded-sm bg-white h-[58px] px-3 pt-5 pb-1" style={{ borderColor: "rgb(133, 142, 146)" }}>
       <label
         htmlFor={id}
-        className="absolute left-3 pointer-events-none transition-all duration-150"
+        className="absolute left-3 pointer-events-none transition-all duration-[400ms] ease-out"
         style={{
           top: active ? 6 : 18,
           fontSize: active ? 12 : 15,
@@ -117,37 +117,37 @@ const fraudItems = [
   {
     title: "Betrug beim mobilen Bezahlen",
     body:
-      "Betrüger versuchen zunehmend, Kundinnen und Kunden dazu zu bringen, ihre Kreditkartendaten in mobilen Bezahl-Apps wie Apple Pay oder Google Pay zu hinterlegen. Geben Sie Ihre Daten niemals an Dritte weiter.",
+      "Du wirst aufgefordert, einen Aktivierungscode oder eine TAN herauszugeben. Ziel der Kriminellen ist es, deine Debit- oder Kreditkarte auf ihrem Mobiltelefon zu hinterlegen und damit zu bezahlen.",
   },
   {
     title: "Anlagebetrug",
     body:
-      "Angebliche Anlageberater versprechen hohe Renditen auf dubiosen Plattformen. Investieren Sie ausschließlich bei regulierten Anbietern und misstrauen Sie unrealistischen Gewinnversprechen.",
+      "Dir wird ein hoher Gewinn mit einer angeblich sicheren Anlage versprochen. Dafür sollst du hohe Geldbeträge überweisen, die vermeintlich gewinnbringend angelegt werden.",
   },
   {
     title: "Phishing: gefälschte E-Mails und SMS",
     body:
-      "comdirect fordert Sie niemals per E-Mail oder SMS zur Eingabe Ihrer PIN oder TAN auf. Klicken Sie keine Links aus verdächtigen Nachrichten an.",
+      "Du wirst per E-Mail oder SMS aufgefordert, Links anzuklicken, Dateianhänge zu öffnen oder deine Aktivierungsgrafik für das photoTAN-Verfahren weiterzugeben – prüfe E-Mails und SMS mit Sorgfalt.",
   },
   {
     title: "Betrug per Brief: gefälschte QR-Codes",
     body:
-      "Aktuell versenden Betrüger gefälschte Briefe mit QR-Codes, die auf Phishing-Seiten führen. comdirect verschickt keine Briefe mit QR-Codes zum Login.",
+      "Du sollst einen QR-Code scannen, um deine Bankdaten oder dein TAN-Verfahren zu aktualisieren. Dieser QR-Code führt auf eine Phishing-Seite.",
   },
   {
     title: "Betrügerische Anrufe",
     body:
-      "Geben Sie am Telefon niemals PIN, TAN oder Zugangsdaten weiter. Legen Sie im Zweifel auf und rufen Sie comdirect über die offizielle Hotline zurück.",
+      "Angebliche Mitarbeitende von Banken, der BaFin oder von Ermittlungsbehörden wie Europol/Interpol drängen dich mit erfundenen Geschichten dazu, vermeintliche Transaktionen oder Stornierungen freizugeben. Lass dich nicht unter Druck setzen.",
   },
   {
     title: "Betrug in Anzeigenportalen",
     body:
-      "Bei Käufen und Verkäufen auf Kleinanzeigen-Plattformen werden häufig gefälschte Zahlungs- oder Bestätigungsseiten verschickt. Prüfen Sie Links sorgfältig.",
+      "Unbekannte Bezahlmethode? Das ist ein Trick, mit dem Kriminelle aktuell versuchen, an deine Kartendaten zu kommen.",
   },
   {
     title: "Betrug per WhatsApp: Enkeltrick",
     body:
-      "Betrüger geben sich als Kinder oder Enkel aus und bitten über WhatsApp um Geld. Überweisen Sie nichts, ohne vorher persönlich mit der Person gesprochen zu haben.",
+      "Das passiert sehr häufig: Kriminelle geben vor, dein Enkel oder Kind zu sein, und bitten dich um eine Überweisung. Die Aufforderung, per WhatsApp oder E-Mail Überweisungen vorzunehmen, sollte dich immer misstrauisch machen.",
   },
 ];
 
@@ -313,7 +313,7 @@ const Comdirect = () => {
 
       {/* MAIN */}
       <main className="max-w-[1040px] mx-auto px-6 py-10">
-        <h1 className="text-[40px] leading-tight font-light mb-8" style={{ color: DARK }}>
+        <h1 className="text-[28px] leading-tight font-light mb-8" style={{ color: DARK }}>
           comdirect Login
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -333,7 +333,7 @@ const Comdirect = () => {
                 value={password}
                 onChange={setPassword}
               />
-              <div className="relative border border-[#d0d6d9] rounded-sm bg-white h-[58px] px-3 pt-5 pb-1">
+              <div className="relative border rounded-sm bg-white h-[58px] px-3 pt-5 pb-1" style={{ borderColor: "rgb(133, 142, 146)" }}>
                 <label className="absolute left-3 top-[6px] text-[12px]" style={{ color: DARK }}>Direkt zu</label>
                 <select
                   value={direktZu}
@@ -364,22 +364,22 @@ const Comdirect = () => {
               >
                 Anmelden <span className="ml-2">›</span>
               </button>
-              <div className="pt-2 text-[14px]" style={{ color: TEXT_SECONDARY }}>
+              <div className="pt-2 text-[16px]" style={{ color: TEXT_SECONDARY }}>
                 <a href="#" className="underline hover:no-underline">Information zum Login</a>
                 <span className="mx-2 font-semibold">·</span>
                 <a href="#" className="underline hover:no-underline">Login vergessen / gesperrt?</a>
               </div>
               <div className="pt-6">
-                <h2 className="text-[20px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
+                <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-semibold border" style={{ borderColor: DARK, color: DARK, backgroundColor: "#eef1f2" }}>
+                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
                     Depot eröffnen <span className="ml-2">›</span>
                   </a>
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-semibold border" style={{ borderColor: DARK, color: DARK, backgroundColor: "#eef1f2" }}>
+                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
                     Girokonto eröffnen <span className="ml-2">›</span>
                   </a>
                 </div>
-                <a href="#" className="inline-block mt-4 text-[14px] underline hover:no-underline" style={{ color: TEXT_SECONDARY }}>
+                <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY }}>
                   Kostenfreie Registrierung als comdirect Member inkl.<br />Musterdepot und Community
                 </a>
               </div>
@@ -388,45 +388,53 @@ const Comdirect = () => {
 
           {/* RIGHT: teaser + fraud */}
           <div className="space-y-6">
-            <a href="#" className="block bg-[#f5f5f3] rounded-sm overflow-hidden flex items-stretch group">
-              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[220px] object-cover" />
-              <div className="flex-1 p-6 flex flex-col justify-center">
-                <h3 className="text-[22px] font-semibold leading-snug" style={{ color: DARK }}>
+            <a href="#" className="block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[155px] object-cover" />
+              <div className="flex-1 px-6 py-3 flex flex-col justify-center">
+                <h3 className="text-[20px] font-semibold leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>
-                <p className="text-[14px] mt-2" style={{ color: TEXT_SECONDARY }}>
+                <p className="text-[13px] mt-1" style={{ color: TEXT_SECONDARY }}>
                   Auch kleine Schritte summieren sich zu etwas Großem.
                 </p>
               </div>
-              <div className="self-end p-4 text-[28px]" style={{ color: DARK }}>›</div>
+              <div className="self-end p-3 text-[24px]" style={{ color: DARK }}>›</div>
             </a>
 
-            <div className="bg-[#f5f5f3] p-6 rounded-sm">
+            <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <div className="flex items-start justify-between gap-4 mb-3">
-                <h3 className="text-[22px] font-semibold leading-snug" style={{ color: DARK }}>
+                <h3 className="text-[22px] font-normal leading-snug" style={{ color: DARK }}>
                   Warnung:<br />aktuelle Betrugsfälle!
                 </h3>
                 <WarningTriangle />
               </div>
-              <p className="text-[14px] mb-4" style={{ color: DARK }}>
+              <p className="text-[16px] mb-4" style={{ color: DARK }}>
                 comdirect Kundinnen und Kunden sind aktuell von verschiedenen Betrugsfällen betroffen. Wir sagen dir, wie du dich davor schützen kannst.
               </p>
-              <div className="divide-y divide-[#d6d8d4] border-t border-b border-[#d6d8d4]">
+              <div className="-mx-6 border-t-2 border-white">
                 {fraudItems.map((f, i) => {
                   const open = openPanel === i;
                   return (
-                    <div key={f.title}>
+                    <div key={f.title} className={i > 0 ? "border-t-2 border-white" : ""}>
                       <button
                         onClick={() => setOpenPanel(open ? null : i)}
-                        className="w-full flex items-center justify-between py-3 text-left"
+                        className="w-full flex items-center justify-between py-3 px-6 text-left"
                         aria-expanded={open}
                       >
-                        <span className="text-[15px] font-semibold" style={{ color: DARK }}>{f.title}</span>
-                        <Chevron open={open} />
+                        <span className="text-[15px] font-bold" style={{ color: DARK }}>{f.title}</span>
+                        <span
+                          className="flex items-center justify-center rounded-full shrink-0"
+                          style={{ width: 28, height: 28, backgroundColor: "rgb(209, 212, 214)" }}
+                        >
+                          <Chevron open={open} />
+                        </span>
                       </button>
                       {open && (
-                        <div className="pb-4 text-[14px] leading-relaxed" style={{ color: DARK }}>
-                          {f.body}
+                        <div className="pb-4 px-6 text-[14px] leading-relaxed" style={{ color: DARK }}>
+                          <p>{f.body}</p>
+                          <a href="#" className="inline-block mt-3 underline hover:no-underline" style={{ color: DARK }}>
+                            So schützt du dich
+                          </a>
                         </div>
                       )}
                     </div>

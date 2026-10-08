@@ -137,7 +137,7 @@ const Commerzbank = () => {
           <div className="flex-1 flex items-center justify-between pt-6">
             <nav className="hidden md:flex items-center gap-7 text-[15px] font-semibold">
               {navLinks.map((l) => (
-                <a key={l} href="#" className="text-[#dbe2e5] hover:text-white">{l}</a>
+                <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="text-[#dbe2e5] hover:text-white">{l.label}</a>
               ))}
             </nav>
             <div className="flex items-center gap-6 text-[14px] font-semibold">

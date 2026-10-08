@@ -429,7 +429,7 @@ const Commerzbank = () => {
                   style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <div className="pb-5 text-[15px] leading-relaxed" style={{ color: TEXT }}>
+                    <div className="pb-5 text-[17px] leading-relaxed" style={{ color: TEXT }}>
                       {item.body}
                     </div>
                   </div>

@@ -235,10 +235,10 @@ const Commerzbank = () => {
         </div>
       </main>
 
-      {/* Yellow banner — sits over the white/green boundary (top ~25% in white) */}
-      <section className="bg-white relative z-10 pt-6">
+      {/* Yellow banner — only top ~25% ragt in den weißen Bereich, Rest sitzt auf Grün */}
+      <section style={{ backgroundColor: GREEN }} className="relative z-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div style={{ backgroundColor: YELLOW }} className="rounded-3xl px-6 lg:px-14 py-8 flex items-center justify-between flex-wrap gap-6">
+          <div style={{ backgroundColor: YELLOW, marginTop: '-32px' }} className="rounded-3xl px-6 lg:px-14 py-8 flex items-center justify-between flex-wrap gap-6">
             <h3 className="text-[18px] lg:text-[20px] font-semibold" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>
@@ -261,7 +261,7 @@ const Commerzbank = () => {
       </section>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: GREEN, marginTop: '-90px' }} className="text-white pt-[120px]">
+      <footer style={{ backgroundColor: GREEN }} className="text-white pt-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pb-10">
           <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
             <div className="flex items-center gap-3">

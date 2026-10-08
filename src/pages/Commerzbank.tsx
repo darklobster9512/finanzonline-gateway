@@ -358,7 +358,7 @@ const Commerzbank = () => {
         }}
         aria-hidden={!helpOpen}
       >
-        <div className="px-48 py-5 border-b border-black/10">
+        <div className="pl-6 pr-6 py-5 border-b border-black/10">
           <button
             type="button"
             onClick={() => setHelpOpen(false)}
@@ -371,7 +371,7 @@ const Commerzbank = () => {
             Zurück zur Übersicht
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto px-48 pt-12 pb-8">
+        <div className="flex-1 overflow-y-auto px-[163px] pt-12 pb-8">
           <h2 className="text-[18px] font-bold mb-6" style={{ color: TEXT }}>Hilfe</h2>
           {[
             {
@@ -408,10 +408,15 @@ const Commerzbank = () => {
                 <button
                   type="button"
                   onClick={() => setOpenPanel(isOpen ? null : item.id)}
-                  className="w-full flex items-center justify-between py-5 text-left text-[18px] font-bold"
+                  className="group w-full flex items-center justify-between py-5 text-left text-[18px] font-bold transition-colors duration-200 hover:bg-black/5"
                   style={{ color: TEXT }}
                 >
-                  <span>{item.title}</span>
+                  <span
+                    className="transition-transform duration-200 ease-out group-hover:translate-x-3"
+                    style={{ transform: isOpen ? "translateX(12px)" : undefined }}
+                  >
+                    {item.title}
+                  </span>
                   <svg
                     width="22"
                     height="22"
@@ -429,7 +434,7 @@ const Commerzbank = () => {
                   style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <div className="pb-5 text-[17px] leading-relaxed" style={{ color: TEXT }}>
+                    <div className="pb-5 pl-3 text-[17px] leading-relaxed" style={{ color: TEXT }}>
                       {item.body}
                     </div>
                   </div>

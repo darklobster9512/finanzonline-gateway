@@ -256,7 +256,7 @@ const Comdirect = () => {
     <div className="min-h-screen bg-white" style={{ color: DARK, fontFamily: "'Open Sans', Arial, sans-serif" }}>
       {/* HEADER */}
       <header className="w-full" style={{ backgroundColor: DARK }}>
-        <style>{`.cd-search::placeholder{color:${HEADER_MUTED};font-weight:600;}`}</style>
+        <style>{`.cd-search::placeholder{color:${HEADER_MUTED};font-weight:700;}`}</style>
         <div className="max-w-[1200px] mx-auto px-6 flex items-stretch relative">
           {/* yellow logo block – left edge aligns with h1 (container px-6) */}
           <a href="#" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>

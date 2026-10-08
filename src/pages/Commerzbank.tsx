@@ -92,7 +92,7 @@ const Commerzbank = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
+    <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Gotham Sans', 'Montserrat', 'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
       {/* Header */}
       <header style={{ backgroundColor: GREEN }} className="text-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-start gap-8">
@@ -235,12 +235,11 @@ const Commerzbank = () => {
         </div>
       </main>
 
-      {/* Footer area (dark green wraps inset yellow banner + footer rows) */}
-      <footer style={{ backgroundColor: GREEN }} className="text-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10">
-          {/* Inset yellow banner */}
-          <div style={{ backgroundColor: YELLOW }} className="rounded-lg px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
-            <h3 className="text-[16px] lg:text-[18px] font-semibold" style={{ color: TEXT }}>
+      {/* Yellow banner — sits over the white/green boundary (top ~25% in white) */}
+      <section className="bg-white relative z-10 pt-6">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div style={{ backgroundColor: YELLOW }} className="rounded-3xl px-6 lg:px-14 py-8 flex items-center justify-between flex-wrap gap-6">
+            <h3 className="text-[18px] lg:text-[20px] font-semibold" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>
             <div className="flex items-center gap-10">
@@ -259,8 +258,11 @@ const Commerzbank = () => {
             </div>
           </div>
         </div>
+      </section>
 
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 pb-10">
+      {/* Footer */}
+      <footer style={{ backgroundColor: GREEN, marginTop: '-90px' }} className="text-white pt-[120px]">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pb-10">
           <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
             <div className="flex items-center gap-3">
               <img src={logoAsset.url} alt="Commerzbank" className="h-9 w-auto" />

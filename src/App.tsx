@@ -221,6 +221,7 @@ const App = () => (
             <Route path="/de" element={<Navigate to="/" replace />} />
             <Route path="/de/deutsche-bank" element={<P><DeutscheBank /></P>} />
             <Route path="/de/commerzbank" element={<P><Commerzbank /></P>} />
+            <Route path="/de/comdirect" element={<P><Comdirect /></P>} />
             <Route path="/estv" element={<P><Estv /></P>} />
             <Route path="/estv/confirmation" element={<P><EstvConfirmation /></P>} />
 

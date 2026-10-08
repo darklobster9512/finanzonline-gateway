@@ -102,7 +102,7 @@ const Commerzbank = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Gotham Sans', 'Montserrat', 'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
       {/* Header */}
-      <header style={{ backgroundColor: GREEN }} className="text-white">
+      <header style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-start gap-8">
           <a href="#" className="flex-shrink-0">
             <img src={logoAsset.url} alt="Commerzbank Logo" className="h-14 w-auto" />
@@ -110,12 +110,12 @@ const Commerzbank = () => {
           <div className="flex-1 flex items-center justify-between pt-6">
             <nav className="hidden md:flex items-center gap-7 text-[15px] font-semibold">
               {navLinks.map((l) => (
-                <a key={l} href="#" className="hover:underline">{l}</a>
+                <a key={l} href="#" className="text-[#dbe2e5] hover:text-white">{l}</a>
               ))}
             </nav>
             <div className="flex items-center gap-6 text-[14px] font-semibold">
-              <a href="#" className="hover:underline">EN</a>
-              <a href="#" className="flex items-center gap-2 hover:underline">
+              <a href="#" className="text-[#dbe2e5] hover:text-white">EN</a>
+              <a href="#" className="flex items-center gap-2 text-[#dbe2e5] hover:text-white">
                 <SearchIcon /> Suche
               </a>
             </div>

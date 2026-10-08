@@ -74,10 +74,10 @@ const FloatingInput = ({
   const [focus, setFocus] = useState(false);
   const active = focus || value.length > 0;
   return (
-    <div className="relative border border-[#d0d6d9] rounded-sm bg-white h-[58px] px-3 pt-5 pb-1">
+    <div className="relative border rounded-sm bg-white h-[58px] px-3 pt-5 pb-1" style={{ borderColor: "rgb(133, 142, 146)" }}>
       <label
         htmlFor={id}
-        className="absolute left-3 pointer-events-none transition-all duration-150"
+        className="absolute left-3 pointer-events-none transition-all duration-[400ms] ease-out"
         style={{
           top: active ? 6 : 18,
           fontSize: active ? 12 : 15,

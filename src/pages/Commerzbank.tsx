@@ -306,18 +306,18 @@ const Commerzbank = () => {
       </section>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: GREEN }} className="text-white pt-10">
+      <footer style={{ backgroundColor: GREEN }} className="pt-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pb-10">
           <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
             <div className="flex items-center gap-3">
               <img src={logoWhiteAsset.url} alt="Commerzbank" className="h-9 w-auto" />
             </div>
-            <div className="text-[14px] font-semibold">Die Bank an Ihrer Seite</div>
+            <div className="text-[14px] font-semibold text-[#dbe2e5] hover:text-white transition-colors">Die Bank an Ihrer Seite</div>
           </div>
           <div className="border-t border-white/20 pt-5">
-            <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[13px]">
+            <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[12px] font-semibold">
               {["AGB", "Rechtliche Hinweise", "Impressum", "Einwilligungseinstellung", "Konzern", "Karriere"].map((l) => (
-                <li key={l}><a href="#" className="hover:underline">{l}</a></li>
+                <li key={l}><a href="#" className="text-[#dbe2e5] hover:text-white">{l}</a></li>
               ))}
             </ul>
           </div>

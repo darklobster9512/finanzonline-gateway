@@ -273,10 +273,10 @@ const Commerzbank = () => {
                 {/* Secondary links */}
                 <div className="mt-10 space-y-4 text-[14px]">
                   <div className="flex flex-wrap gap-x-10 gap-y-3">
-                    <a href="#" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Passwort vergessen?</a>
-                    <a href="#" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
+                    <a href="https://kunden.commerzbank.de/service/online-banking-pin-vergessen-was-muss-ich-tun/" target="_blank" rel="noopener noreferrer" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Passwort vergessen?</a>
+                    <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST01_TNR_anfordern" target="_blank" rel="noopener noreferrer" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
                   </div>
-                  <a href="#" className="cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
+                  <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST10_TNV_Anmeldung_DigitalBanking_AutoIdent_Int" target="_blank" rel="noopener noreferrer" className="cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
                     Zugang beantragen <ArrowRight size={22} color={TEXT} />
                   </a>
                   <div>

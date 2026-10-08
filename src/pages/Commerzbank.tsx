@@ -184,9 +184,9 @@ const Commerzbank = () => {
                       htmlFor="cb-pin"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
-                        color: TEXT,
-                        top: password || passFocus ? 0 : 22,
-                        fontSize: password || passFocus ? 13 : 17,
+                        color: password || passFocus ? TEXT : "#506c74",
+                        top: password || passFocus ? 0 : 26,
+                        fontSize: password || passFocus ? 13 : 15,
                       }}
                     >
                       Passwort/PIN

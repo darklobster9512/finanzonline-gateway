@@ -253,7 +253,7 @@ const Comdirect = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ color: DARK, fontFamily: "'Open Sans', Arial, sans-serif" }}>
+    <div className="min-h-screen bg-white" style={{ color: DARK, fontFamily: "'MarkPro', 'Open Sans', Arial, sans-serif" }}>
       {/* HEADER */}
       <header className="w-full" style={{ backgroundColor: DARK }}>
         <style>{`
@@ -390,11 +390,11 @@ const Comdirect = () => {
           <div className="space-y-6">
             <a href="#" className="block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[155px] object-cover" />
-              <div className="flex-1 px-6 py-3 flex flex-col justify-center">
-                <h3 className="text-[20px] font-semibold leading-snug" style={{ color: DARK }}>
+              <div className="flex-1 px-6 py-1.5 flex flex-col justify-center">
+                <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>
-                <p className="text-[13px] mt-1" style={{ color: TEXT_SECONDARY }}>
+                <p className="text-[15px] mt-1" style={{ color: TEXT_SECONDARY }}>
                   Auch kleine Schritte summieren sich zu etwas Großem.
                 </p>
               </div>

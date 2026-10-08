@@ -215,9 +215,10 @@ const Commerzbank = () => {
                        className="w-full bg-transparent border-0 py-2 pr-10 outline-none"
                       style={{
                         color: passFocus ? "#002530" : TEXT,
-                        fontSize: showPassword ? 17 : 24,
+                        fontSize: 17,
                         lineHeight: "1",
-                        letterSpacing: showPassword ? "normal" : "2px",
+                        height: 32,
+                        letterSpacing: showPassword ? "normal" : "1px",
                       }}
                     />
                     <button

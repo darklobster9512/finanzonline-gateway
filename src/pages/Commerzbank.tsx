@@ -183,12 +183,14 @@ const Commerzbank = () => {
                   <div
                     className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
                     style={{ borderColor: "#506c74" }}
+                    onMouseEnter={() => setPassHover(true)}
+                    onMouseLeave={() => setPassHover(false)}
                   >
                     <label
                       htmlFor="cb-pin"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
-                        color: password || passFocus ? "#506c74" : "#7a8f96",
+                        color: password || passFocus ? "#506c74" : (passHover ? "#002530" : "#506c74"),
                         top: password || passFocus ? 0 : 32,
                         fontSize: password || passFocus ? 13 : 15,
                       }}

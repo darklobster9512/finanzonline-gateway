@@ -6,8 +6,9 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import teaserAsset from "@/assets/comdirect-teaser.jpg.asset.json";
 
 const DARK = "#0B1E25";
-const YELLOW = "#FFED00";
+const YELLOW = "rgb(255, 245, 0)";
 const TEXT_SECONDARY = "#5a6b73";
+const HEADER_MUTED = "rgb(170, 176, 179)";
 
 const WordmarkSVG = ({ color = "#0B1E25", height = 21 }: { color?: string; height?: number }) => (
   <svg xmlns="http://www.w3.org/2000/svg" height={height} viewBox="48.478 103.112 152.304 24" aria-label="comdirect">

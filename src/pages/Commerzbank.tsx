@@ -70,6 +70,20 @@ const Commerzbank = () => {
   const [passFocus, setPassFocus] = useState(false);
   const [userHover, setUserHover] = useState(false);
   const [passHover, setPassHover] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [openPanel, setOpenPanel] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!helpOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setHelpOpen(false); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [helpOpen]);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Commerzbank – Online Banking Login", logoAsset.url);

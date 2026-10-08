@@ -39,7 +39,7 @@ const ChatIcon = () => (
 );
 
 const SearchIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M17.41 14h-2.17A8 8 0 1 0 14 15.24v2.17l6 6L23.41 20ZM9 15a6 6 0 1 1 6-6 6 6 0 0 1-6 6Zm7 1.59V16h.59l4 4-.59.59Z" />
   </svg>
 );

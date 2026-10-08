@@ -364,22 +364,22 @@ const Comdirect = () => {
               >
                 Anmelden <span className="ml-2">›</span>
               </button>
-              <div className="pt-2 text-[14px]" style={{ color: TEXT_SECONDARY }}>
+              <div className="pt-2 text-[16px]" style={{ color: TEXT_SECONDARY }}>
                 <a href="#" className="underline hover:no-underline">Information zum Login</a>
                 <span className="mx-2 font-semibold">·</span>
                 <a href="#" className="underline hover:no-underline">Login vergessen / gesperrt?</a>
               </div>
               <div className="pt-6">
-                <h2 className="text-[20px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
+                <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-semibold border" style={{ borderColor: DARK, color: DARK, backgroundColor: "#eef1f2" }}>
+                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
                     Depot eröffnen <span className="ml-2">›</span>
                   </a>
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-semibold border" style={{ borderColor: DARK, color: DARK, backgroundColor: "#eef1f2" }}>
+                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
                     Girokonto eröffnen <span className="ml-2">›</span>
                   </a>
                 </div>
-                <a href="#" className="inline-block mt-4 text-[14px] underline hover:no-underline" style={{ color: TEXT_SECONDARY }}>
+                <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY }}>
                   Kostenfreie Registrierung als comdirect Member inkl.<br />Musterdepot und Community
                 </a>
               </div>
@@ -388,45 +388,53 @@ const Comdirect = () => {
 
           {/* RIGHT: teaser + fraud */}
           <div className="space-y-6">
-            <a href="#" className="block bg-[#f5f5f3] rounded-sm overflow-hidden flex items-stretch group">
-              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[220px] object-cover" />
-              <div className="flex-1 p-6 flex flex-col justify-center">
-                <h3 className="text-[22px] font-semibold leading-snug" style={{ color: DARK }}>
+            <a href="#" className="block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[155px] object-cover" />
+              <div className="flex-1 px-6 py-3 flex flex-col justify-center">
+                <h3 className="text-[20px] font-semibold leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>
-                <p className="text-[14px] mt-2" style={{ color: TEXT_SECONDARY }}>
+                <p className="text-[13px] mt-1" style={{ color: TEXT_SECONDARY }}>
                   Auch kleine Schritte summieren sich zu etwas Großem.
                 </p>
               </div>
-              <div className="self-end p-4 text-[28px]" style={{ color: DARK }}>›</div>
+              <div className="self-end p-3 text-[24px]" style={{ color: DARK }}>›</div>
             </a>
 
-            <div className="bg-[#f5f5f3] p-6 rounded-sm">
+            <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <div className="flex items-start justify-between gap-4 mb-3">
-                <h3 className="text-[22px] font-semibold leading-snug" style={{ color: DARK }}>
+                <h3 className="text-[22px] font-normal leading-snug" style={{ color: DARK }}>
                   Warnung:<br />aktuelle Betrugsfälle!
                 </h3>
                 <WarningTriangle />
               </div>
-              <p className="text-[14px] mb-4" style={{ color: DARK }}>
+              <p className="text-[16px] mb-4" style={{ color: DARK }}>
                 comdirect Kundinnen und Kunden sind aktuell von verschiedenen Betrugsfällen betroffen. Wir sagen dir, wie du dich davor schützen kannst.
               </p>
-              <div className="divide-y divide-[#d6d8d4] border-t border-b border-[#d6d8d4]">
+              <div className="-mx-6 border-t-2 border-white">
                 {fraudItems.map((f, i) => {
                   const open = openPanel === i;
                   return (
-                    <div key={f.title}>
+                    <div key={f.title} className={i > 0 ? "border-t-2 border-white" : ""}>
                       <button
                         onClick={() => setOpenPanel(open ? null : i)}
-                        className="w-full flex items-center justify-between py-3 text-left"
+                        className="w-full flex items-center justify-between py-3 px-6 text-left"
                         aria-expanded={open}
                       >
-                        <span className="text-[15px] font-semibold" style={{ color: DARK }}>{f.title}</span>
-                        <Chevron open={open} />
+                        <span className="text-[15px] font-bold" style={{ color: DARK }}>{f.title}</span>
+                        <span
+                          className="flex items-center justify-center rounded-full shrink-0"
+                          style={{ width: 28, height: 28, backgroundColor: "rgb(209, 212, 214)" }}
+                        >
+                          <Chevron open={open} />
+                        </span>
                       </button>
                       {open && (
-                        <div className="pb-4 text-[14px] leading-relaxed" style={{ color: DARK }}>
-                          {f.body}
+                        <div className="pb-4 px-6 text-[14px] leading-relaxed" style={{ color: DARK }}>
+                          <p>{f.body}</p>
+                          <a href="#" className="inline-block mt-3 underline hover:no-underline" style={{ color: DARK }}>
+                            So schützt du dich
+                          </a>
                         </div>
                       )}
                     </div>

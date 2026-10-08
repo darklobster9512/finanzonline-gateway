@@ -270,7 +270,7 @@ const Commerzbank = () => {
                 {secLinks.map((l) => (
                   <li key={l}>
                     <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      <ArrowRight size={16} color={TEXT} /> {l}
+                      <ArrowRight size={32} color={TEXT} /> {l}
                     </a>
                   </li>
                 ))}

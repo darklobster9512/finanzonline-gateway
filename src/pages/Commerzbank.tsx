@@ -39,7 +39,7 @@ const ChatIcon = () => (
 );
 
 const SearchIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M17.41 14h-2.17A8 8 0 1 0 14 15.24v2.17l6 6L23.41 20ZM9 15a6 6 0 1 1 6-6 6 6 0 0 1-6 6Zm7 1.59V16h.59l4 4-.59.59Z" />
   </svg>
 );
@@ -102,7 +102,7 @@ const Commerzbank = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Gotham Sans', 'Montserrat', 'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
       {/* Header */}
-      <header style={{ backgroundColor: GREEN }} className="text-white">
+      <header style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-start gap-8">
           <a href="#" className="flex-shrink-0">
             <img src={logoAsset.url} alt="Commerzbank Logo" className="h-14 w-auto" />
@@ -110,12 +110,12 @@ const Commerzbank = () => {
           <div className="flex-1 flex items-center justify-between pt-6">
             <nav className="hidden md:flex items-center gap-7 text-[15px] font-semibold">
               {navLinks.map((l) => (
-                <a key={l} href="#" className="hover:underline">{l}</a>
+                <a key={l} href="#" className="text-[#dbe2e5] hover:text-white">{l}</a>
               ))}
             </nav>
             <div className="flex items-center gap-6 text-[14px] font-semibold">
-              <a href="#" className="hover:underline">EN</a>
-              <a href="#" className="flex items-center gap-2 hover:underline">
+              <a href="#" className="text-[#dbe2e5] hover:text-white">EN</a>
+              <a href="#" className="flex items-center gap-2 text-[#dbe2e5] hover:text-white">
                 <SearchIcon /> Suche
               </a>
             </div>
@@ -306,18 +306,18 @@ const Commerzbank = () => {
       </section>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: GREEN }} className="text-white pt-10">
+      <footer style={{ backgroundColor: GREEN }} className="pt-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pb-10">
           <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
             <div className="flex items-center gap-3">
               <img src={logoWhiteAsset.url} alt="Commerzbank" className="h-9 w-auto" />
             </div>
-            <div className="text-[14px] font-semibold">Die Bank an Ihrer Seite</div>
+            <div className="text-[14px] font-semibold text-[#dbe2e5] hover:text-white transition-colors">Die Bank an Ihrer Seite</div>
           </div>
           <div className="border-t border-white/20 pt-5">
-            <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[13px]">
+            <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[12px] font-semibold">
               {["AGB", "Rechtliche Hinweise", "Impressum", "Einwilligungseinstellung", "Konzern", "Karriere"].map((l) => (
-                <li key={l}><a href="#" className="hover:underline">{l}</a></li>
+                <li key={l}><a href="#" className="text-[#dbe2e5] hover:text-white">{l}</a></li>
               ))}
             </ul>
           </div>

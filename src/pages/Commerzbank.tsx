@@ -72,6 +72,8 @@ const Commerzbank = () => {
   const [passHover, setPassHover] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [openPanel, setOpenPanel] = useState<string | null>(null);
+  const [userError, setUserError] = useState(false);
+  const [pwError, setPwError] = useState(false);
 
   useEffect(() => {
     if (!helpOpen) return;

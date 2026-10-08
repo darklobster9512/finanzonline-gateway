@@ -1,26 +1,89 @@
-# SSL-Zuordnung für `bonus-erhalten.net` korrigieren
+# bonus-erhalten.net: eigenes SSL-Zertifikat (Certbot manuell per DNS-TXT)
 
-## Bestätigter Stand
+## Geprüfter Ausgangspunkt
 
-- `bonus-erhalten.net` zeigt öffentlich auf `91.215.85.163`.
-- `jetzt-klimabonus.com` zeigt öffentlich auf `91.215.85.131`.
-- Beide Domains liefern derzeit über HTTPS exakt dasselbe Let’s-Encrypt-Zertifikat aus, dessen einziger Name `jetzt-klimabonus.com` ist.
-- Die Zertifikate wurden nicht miteinander verbunden. Für `bonus-erhalten.net` wird auf Port 443 entweder der falsche nginx-Block ausgewählt oder dessen eigener HTTPS-Block fehlt, sodass nginx auf einen Standard-vHost mit dem Klimabonus-Zertifikat zurückfällt.
+- `jetzt-klimabonus.com` → 91.215.85.131, liefert sein eigenes Zertifikat (gültig bis 4. Jan 2027). In Ordnung.
+- `bonus-erhalten.net` → hat zwei A-Records (91.215.85.163 und 91.215.85.131) und liefert aktuell das Zertifikat von `jetzt-klimabonus.com`. Genau daher kommt die Browsermeldung „Sein Sicherheitszertifikat stammt von jetzt-klimabonus.com“.
+- `www.bonus-erhalten.net` existiert nicht im DNS → das Zertifikat braucht nur die nackte Domain, also genau **einen** TXT-Record.
+- Von früheren Manuelläufen liegen noch alte ACME-TXT-Records für beide Domains im DNS. Die sind harmlos, sollten aber am Ende weg.
 
-## Vorgehen auf dem VPS
+Kurz: Es fehlt kein Zertifikat-Eintrag bei Let's Encrypt, es fehlt ein Zertifikat für `bonus-erhalten.net` **und** ein eigener nginx-Abruf dafür.
 
-1. Mit `certbot certificates` prüfen, ob für `bonus-erhalten.net` bereits ein eigenes Zertifikat unter `/etc/letsencrypt/live/bonus-erhalten.net/` vorhanden ist.
-2. Die aktive nginx-Konfiguration mit `nginx -T` prüfen und dabei alle Port-443-Blöcke, `server_name`-Angaben und Zertifikatspfade für beide Domains vergleichen.
-3. Für `bonus-erhalten.net` einen eindeutigen HTTPS-Serverblock einrichten:
-   - `listen 443 ssl;`
-   - `server_name bonus-erhalten.net;`
-   - `ssl_certificate /etc/letsencrypt/live/bonus-erhalten.net/fullchain.pem;`
-   - `ssl_certificate_key /etc/letsencrypt/live/bonus-erhalten.net/privkey.pem;`
-   - Weiterleitung an das bisherige Backend dieser Domain.
-4. Falls noch kein eigenes Zertifikat vorhanden ist, die DNS-01-Ausstellung für `bonus-erhalten.net` zuerst vollständig abschließen und erst danach dessen HTTPS-Block aktivieren.
-5. Doppelte oder als `default_server` konfigurierte 443-Blöcke bereinigen, falls sie die Domain falsch abfangen.
-6. Mit `nginx -t` testen, nginx neu laden und anschließend extern mit SNI kontrollieren, dass jede Domain nur ihr eigenes Zertifikat ausliefert.
+## Schritt 1 — Certbot starten (auf dem VPS in PuTTY)
 
-## Sicherheitsnetz
+```bash
+sudo certbot certonly --manual --preferred-challenges dns \
+  -d bonus-erhalten.net \
+  --deploy-hook "systemctl reload nginx"
+```
 
-Vor jeder Änderung die betroffene nginx-Datei sichern. Der Klimabonus-vHost und dessen funktionierendes Zertifikat bleiben unverändert; geändert wird nur die Zuordnung für `bonus-erhalten.net`.
+Kommt wieder „Another instance of Certbot is already running“:
+
+```bash
+ps aux | grep [c]ertbot
+```
+
+Nur wenn dort nichts läuft, den verwaisten Lock löschen:
+
+```bash
+sudo rm -f /var/lib/letsencrypt/.certbot.lock /tmp/certbot-lock.lock
+```
+
+## Schritt 2 — TXT-Record setzen
+
+Certbot hält an und zeigt sinngemäß:
+
+```text
+Please deploy a DNS TXT record under the name:
+_acme-challenge.bonus-erhalten.net
+with the following value:
+<random-string>
+```
+
+Bei LuxuryHost unter DNS-Verwaltung anlegen:
+
+```text
+Host/Name:  _acme-challenge
+Typ:        TXT
+Wert:       <random-string> aus dem PuTTY-Fenster
+```
+
+Kopieren in PuTTY: Text nur mit der Maus markieren — er liegt dann schon in der Zwischenablage (STRG+C braucht es nicht und bricht nichts ab). Einfügen geht mit Rechtsklick.
+
+## Schritt 3 — Ausbreitung prüfen, dann Enter
+
+```bash
+dig +short TXT _acme-challenge.bonus-erhalten.net @1.1.1.1
+```
+
+Erscheint dort exakt der Wert von oben, zurück ins PuTTY-Fenster und **Enter** drücken. Bei Erfolg meldet Certbot den Pfad:
+
+```text
+/etc/letsencrypt/live/bonus-erhalten.net/
+```
+
+## Schritt 4 — Zertifikat in nginx einbinden
+
+`certonly` erzeugt nur die Dateien, es ändert nichts an der Auslieferung. Deshalb braucht `bonus-erhalten.net` einen eigenen 443-Serverblock, der sein eigenes Zertifikat verwendet (und nicht den Standardblock von `jetzt-klimabonus.com` erbt). Eingerahmt wird das mit:
+
+```bash
+sudo certbot install-cert --cert-path /etc/letsencrypt/live/bonus-erhalten.net/fullchain.pem \
+  --key-path /etc/letsencrypt/live/bonus-erhalten.net/privkey.pem \
+  --cert-name bonus-erhalten.net
+```
+
+Wichtig: Beide IPs stehen im DNS. Der 443-Block mit dem neuen Zertifikat muss auf jedem Rechner existieren, der TLS für diese Domain beendet — sonst zeigt wieder eine der beiden Adressen das falsche Zertifikat.
+
+## Schritt 5 — Prüfen und aufräumen
+
+```bash
+echo | openssl s_client -connect bonus-erhalten.net:443 -servername bonus-erhalten.net 2>/dev/null | openssl x509 -noout -subject
+```
+
+Erwartet: `subject=CN = bonus-erhalten.net`. Danach die drei überflüssigen TXT-Einträge im DNS löschen: `_acme-challenge.bonus-erhalten.net`, `_acme-challenge.jetzt-klimabonus.com` und den alten `_acme-challenge.www`-Rest, falls vorhanden.
+
+## Randbedingungen
+
+- Manuelle DNS-Prüfung bedeutet: alle 90 Tage beim Verlängern denselben Vorgang erneut (neuer TXT-Wert). Dauerhaft bequem wird es erst mit einer automatischen DNS-Anbindung; LuxuryHost hat dafür kein fertiges Certbot-Plugin, das müsste über deren API eigens gebaut werden.
+- Auf dem Server, der TLS beendet, muss Port 443 offen sein und der Block auf `127.0.0.1:8080` (bzw. die Backend-Adresse) zeigen.
+- Für `jetzt-klimabonus.com` ist nichts nötig — das läuft.

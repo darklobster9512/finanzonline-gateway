@@ -105,12 +105,25 @@ const Commerzbank = () => {
     setShowLoading(true);
   };
 
-  const navLinks = ["Privatkunden", "Unternehmerkunden", "Wealth Management", "Firmenkunden"];
-  const secLinks = [
-    "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten",
-    "Anlagebetrug erkennen und vermeiden",
-    "Warnung vor Phishing",
-    "Phishing-Briefe im Namen der Bank (Quishing)",
+  const navLinks: { label: string; href: string }[] = [
+    { label: "Privatkunden", href: "https://www.commerzbank.de/privatkunden/" },
+    { label: "Unternehmerkunden", href: "https://www.commerzbank.de/unternehmerkunden/" },
+    { label: "Wealth Management", href: "https://www.commerzbank.de/wealth-management/" },
+    { label: "Firmenkunden", href: "https://www.commerzbank.com/firmenkunden/" },
+  ];
+  const secLinks: { label: string; href: string }[] = [
+    { label: "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/falsche-commerzbank-mitarbeiter/" },
+    { label: "Anlagebetrug erkennen und vermeiden", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/anlagebetrug/" },
+    { label: "Warnung vor Phishing", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/phishing/" },
+    { label: "Phishing-Briefe im Namen der Bank (Quishing)", href: "https://www.commerzbank.de/konten-zahlungsverkehr/wissen/sicherheit-onlinebanking/phishing-briefe/" },
+  ];
+  const footerLinks: { label: string; href: string }[] = [
+    { label: "AGB", href: "https://www.commerzbank.de/hinweise/agb/" },
+    { label: "Rechtliche Hinweise", href: "https://www.commerzbank.de/hinweise/rechtliche-hinweise/" },
+    { label: "Impressum", href: "https://www.commerzbank.de/hinweise/impressum/" },
+    { label: "Einwilligungseinstellung", href: "https://kunden.commerzbank.de/#uc-corner-modal-show" },
+    { label: "Konzern", href: "https://www.commerzbank.de/konzern/" },
+    { label: "Karriere", href: "https://www.commerzbank.de/konzern/karriere/" },
   ];
 
   return (

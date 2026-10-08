@@ -89,7 +89,6 @@ const COPY = {
       "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten",
       "Anlagebetrug erkennen und vermeiden",
       "Warnung vor Phishing",
-      "Phishing-Briefe im Namen der Bank (Quishing)",
     ],
     bannerTitle: "24 Stunden für Sie da.",
     service: "Service",
@@ -144,7 +143,6 @@ const COPY = {
       "Alleged bank employees ask for credentials",
       "Identify and avoid investment fraud",
       "Phishing warning",
-      "Phishing letters in the name of the bank (Quishing)",
     ],
     bannerTitle: "How can we help?",
     service: "Service",
@@ -266,7 +264,6 @@ const Commerzbank = () => {
     "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/falsche-commerzbank-mitarbeiter/",
     "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/anlagebetrug/",
     "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/phishing/",
-    "https://www.commerzbank.de/konten-zahlungsverkehr/wissen/sicherheit-onlinebanking/phishing-briefe/",
   ];
   const secLinks = t.sec.map((label, i) => ({ label, href: secHrefs[i] }));
 

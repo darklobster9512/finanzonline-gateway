@@ -229,8 +229,8 @@ const Commerzbank = () => {
                 {/* Password */}
                 <div className="mb-10">
                   <div
-                    className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
-                    style={{ borderColor: "#506c74" }}
+                    className={pwError ? "relative pt-5 border-b-[3px]" : "relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"}
+                    style={{ borderColor: pwError ? "#c5000e" : "#506c74" }}
                     onMouseEnter={() => setPassHover(true)}
                     onMouseLeave={() => setPassHover(false)}
                   >
@@ -259,7 +259,7 @@ const Commerzbank = () => {
                       onFocus={(e) => { e.currentTarget.removeAttribute("readonly"); setPassFocus(true); }}
                       onBlur={() => setPassFocus(false)}
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => { setPassword(e.target.value); if (pwError) setPwError(false); }}
                        className="w-full bg-transparent border-0 pr-10 outline-none"
                       style={{
                         color: passFocus ? "#002530" : TEXT,
@@ -280,6 +280,12 @@ const Commerzbank = () => {
                       <EyeIcon open={showPassword} />
                     </button>
                   </div>
+                  {pwError && (
+                    <div className="mt-2 flex items-start gap-2 text-[14px]" style={{ color: "#c5000e" }}>
+                      <WarningIcon />
+                      <span>Geben Sie bitte min. 5 bis max. 45 Buchstaben, Ziffern bzw. Sonderzeichen ein.</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Login button */}

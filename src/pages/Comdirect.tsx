@@ -369,46 +369,49 @@ const Comdirect = () => {
       </main>
 
       {/* FOOTER */}
-      <footer className="relative mt-16 overflow-hidden" style={{ backgroundColor: DARK, color: "#cfd4d6" }}>
-        {/* decorative circles */}
-        <div className="absolute left-0 bottom-0 opacity-10 pointer-events-none">
-          <svg width="320" height="320" viewBox="0 0 320 320">
-            <circle cx="100" cy="220" r="100" fill="#fff" />
-            <circle cx="40" cy="140" r="40" fill="#fff" />
-            <circle cx="200" cy="280" r="40" fill="#fff" />
-          </svg>
+      <footer className="relative mt-16 overflow-hidden" style={{ backgroundColor: DARK, color: "#cfd4d6" }} aria-label="Unternehmensnavigation, Rechtliche Links">
+        <div className="absolute inset-0 pointer-events-none">
+          <FooterShape />
         </div>
-        <div className="absolute right-0 top-10 pointer-events-none">
-          <svg width="260" height="260" viewBox="0 0 260 260">
-            <circle cx="130" cy="130" r="120" fill="#1a2d34" />
-            <path d="M130 10a120 120 0 0 1 0 240V10Z" fill={YELLOW} />
-            <circle cx="130" cy="130" r="70" fill={DARK} />
-          </svg>
-        </div>
-
-        <div className="relative max-w-[1200px] mx-auto px-6 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
-            <div>
-              <WordmarkSVG color={YELLOW} height={28} />
-            </div>
+        <div className="relative max-w-[1200px] mx-auto px-6 pt-16 pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_1fr] gap-x-10 gap-y-8 mb-16">
+            <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block">
+              <FooterLogo />
+            </a>
             {footerCols.map((col, i) => (
-              <ul key={i} className="space-y-2 text-[14px]">
+              <ul key={i} className="space-y-3 text-[14px]">
                 {col.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="hover:underline" style={{ color: "#e5e7e8" }}>{item}</a>
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="hover:underline"
+                      style={{ color: "#e5e7e8" }}
+                    >
+                      {item.label}
+                    </a>
                   </li>
                 ))}
               </ul>
             ))}
           </div>
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
-            <a href="#" className="rounded-full px-5 h-9 flex items-center text-[13px] font-semibold" style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}>
-              Vertrag widerrufen <span className="ml-2">›</span>
-            </a>
-            <p className="text-[12px]" style={{ color: "#9fb0b5" }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
+            <div>
+              <a
+                href="#"
+                className="inline-flex items-center rounded-full px-5 h-10 text-[14px] font-semibold hover:bg-[#223843] transition-colors"
+                style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
+              >
+                Vertrag widerrufen <span className="ml-2">›</span>
+              </a>
+            </div>
+            <p className="text-[13px] text-center" style={{ color: "#9fb0b5" }}>
               © comdirect – eine Marke der Commerzbank AG
             </p>
-            <SocialIcons />
+            <div className="flex md:justify-end">
+              <SocialIcons />
+            </div>
           </div>
         </div>
       </footer>

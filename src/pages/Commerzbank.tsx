@@ -5,6 +5,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/commerzbank-logo.svg.asset.json";
 import logoWhiteAsset from "@/assets/commerzbank-logo-white.svg.asset.json";
+import logoRibbonAsset from "@/assets/commerzbank-ribbon.svg.asset.json";
 
 const GREEN = "#002e3c";
 const YELLOW = "#ffd700";
@@ -160,7 +161,8 @@ const Commerzbank = () => {
       <header style={{ backgroundColor: GREEN }}>
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-center lg:items-start gap-4 lg:gap-8">
           <a href="#" className="flex-shrink-0 flex items-center">
-            <img src={logoAsset.url} alt="Commerzbank Logo" className="h-10 lg:h-14 w-auto" />
+            <img src={logoRibbonAsset.url} alt="Commerzbank Logo" className="h-10 w-auto lg:hidden" />
+            <img src={logoAsset.url} alt="Commerzbank Logo" className="hidden lg:block h-14 w-auto" />
           </a>
           <div className="flex-1 flex items-center justify-between lg:pt-6">
             <nav className="hidden lg:flex items-center gap-7 text-[15px] font-semibold">

@@ -256,7 +256,21 @@ const Comdirect = () => {
     <div className="min-h-screen bg-white" style={{ color: DARK, fontFamily: "'Open Sans', Arial, sans-serif" }}>
       {/* HEADER */}
       <header className="w-full" style={{ backgroundColor: DARK }}>
-        <style>{`.cd-search::placeholder{color:${HEADER_MUTED};font-weight:700;}`}</style>
+        <style>{`
+          .cd-search::placeholder{color:${HEADER_MUTED};font-weight:700;}
+          .cd-sbox{border:1px solid ${HEADER_MUTED};transition:border-color .15s, box-shadow .15s;}
+          .cd-sbox .cd-icon svg{color:${HEADER_MUTED};transition:color .15s;}
+          .cd-sbox:hover{border-color:#ffffff;}
+          .cd-sbox:hover .cd-search::placeholder{color:#ffffff;}
+          .cd-sbox:hover .cd-icon svg{color:#ffffff;}
+          .cd-sbox:focus-within{border-color:#ffffff;box-shadow:0 0 0 2px ${DARK}, 0 0 0 4px #ffffff;}
+          .cd-sbox:focus-within .cd-search::placeholder{color:#ffffff;}
+          .cd-sbox:focus-within .cd-icon svg{color:#ffffff;}
+          .cd-login-btn{transition:background-color .15s;}
+          .cd-login-btn:hover{background-color:rgb(255,225,0);}
+          .cd-anmelden-btn{transition:background-color .15s;}
+          .cd-anmelden-btn:hover{background-color:rgb(255,225,0);}
+        `}</style>
         <div className="max-w-[1200px] mx-auto px-6 flex items-stretch relative">
           {/* yellow logo block – left edge aligns with h1 (container px-6) */}
           <a href="#" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
@@ -268,17 +282,17 @@ const Comdirect = () => {
           <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
             <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
             <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
-            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border gap-2" style={{ borderColor: HEADER_MUTED }}>
-              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: "#ffffff" }} />
-              <span className="shrink-0"><SearchIcon color="#ffffff" /></span>
+            <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
+              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
+              <span className="cd-icon shrink-0"><SearchIcon /></span>
             </div>
-            <div className="flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent border gap-2" style={{ borderColor: HEADER_MUTED }}>
-              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: "#ffffff" }} />
-              <span className="shrink-0"><SearchIcon color="#ffffff" /></span>
+            <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
+              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
+              <span className="cd-icon shrink-0"><SearchIcon /></span>
             </div>
             <a
               href="#"
-              className="rounded-full px-6 h-9 flex items-center text-[14px] font-normal transition-colors hover:brightness-95"
+              className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
               style={{ backgroundColor: YELLOW, color: DARK }}
             >
               Login <span className="ml-2 text-[26px] leading-none">›</span>

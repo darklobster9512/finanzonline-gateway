@@ -143,7 +143,6 @@ const COPY = {
       "Alleged bank employees ask for credentials",
       "Identify and avoid investment fraud",
       "Phishing warning",
-      "Phishing letters in the name of the bank (Quishing)",
     ],
     bannerTitle: "How can we help?",
     service: "Service",

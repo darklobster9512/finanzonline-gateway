@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/commerzbank-logo.svg.asset.json";
+import logoWhiteAsset from "@/assets/commerzbank-logo-white.svg.asset.json";
 
 const GREEN = "#002e3c";
 const YELLOW = "#ffd700";

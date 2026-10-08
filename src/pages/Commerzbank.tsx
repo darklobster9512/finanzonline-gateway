@@ -533,7 +533,7 @@ const Commerzbank = () => {
           </button>
         </div>
         <div className="flex-1 overflow-y-auto px-10 pt-10">
-          <div className="h-px w-[60%] bg-white/20" />
+          <div className="h-px w-56 bg-white/20" />
           <div className="py-6 space-y-5">
             <a href="#" className="flex items-center gap-3 text-[15px] font-semibold text-[#dbe2e5]">
               <SearchIcon /> Suche
@@ -542,7 +542,7 @@ const Commerzbank = () => {
               <span>EN</span><span>English</span>
             </a>
           </div>
-          <div className="h-px w-[60%] bg-white/20" />
+          <div className="h-px w-56 bg-white/20" />
           <nav className="pt-8 space-y-6 text-[15px] font-semibold">
             {navLinks.map((l) => (
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="block text-[#dbe2e5]">

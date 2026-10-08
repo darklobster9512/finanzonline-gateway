@@ -117,37 +117,37 @@ const fraudItems = [
   {
     title: "Betrug beim mobilen Bezahlen",
     body:
-      "Betrüger versuchen zunehmend, Kundinnen und Kunden dazu zu bringen, ihre Kreditkartendaten in mobilen Bezahl-Apps wie Apple Pay oder Google Pay zu hinterlegen. Geben Sie Ihre Daten niemals an Dritte weiter.",
+      "Du wirst aufgefordert, einen Aktivierungscode oder eine TAN herauszugeben. Ziel der Kriminellen ist es, deine Debit- oder Kreditkarte auf ihrem Mobiltelefon zu hinterlegen und damit zu bezahlen.",
   },
   {
     title: "Anlagebetrug",
     body:
-      "Angebliche Anlageberater versprechen hohe Renditen auf dubiosen Plattformen. Investieren Sie ausschließlich bei regulierten Anbietern und misstrauen Sie unrealistischen Gewinnversprechen.",
+      "Dir wird ein hoher Gewinn mit einer angeblich sicheren Anlage versprochen. Dafür sollst du hohe Geldbeträge überweisen, die vermeintlich gewinnbringend angelegt werden.",
   },
   {
     title: "Phishing: gefälschte E-Mails und SMS",
     body:
-      "comdirect fordert Sie niemals per E-Mail oder SMS zur Eingabe Ihrer PIN oder TAN auf. Klicken Sie keine Links aus verdächtigen Nachrichten an.",
+      "Du wirst per E-Mail oder SMS aufgefordert, Links anzuklicken, Dateianhänge zu öffnen oder deine Aktivierungsgrafik für das photoTAN-Verfahren weiterzugeben – prüfe E-Mails und SMS mit Sorgfalt.",
   },
   {
     title: "Betrug per Brief: gefälschte QR-Codes",
     body:
-      "Aktuell versenden Betrüger gefälschte Briefe mit QR-Codes, die auf Phishing-Seiten führen. comdirect verschickt keine Briefe mit QR-Codes zum Login.",
+      "Du sollst einen QR-Code scannen, um deine Bankdaten oder dein TAN-Verfahren zu aktualisieren. Dieser QR-Code führt auf eine Phishing-Seite.",
   },
   {
     title: "Betrügerische Anrufe",
     body:
-      "Geben Sie am Telefon niemals PIN, TAN oder Zugangsdaten weiter. Legen Sie im Zweifel auf und rufen Sie comdirect über die offizielle Hotline zurück.",
+      "Angebliche Mitarbeitende von Banken, der BaFin oder von Ermittlungsbehörden wie Europol/Interpol drängen dich mit erfundenen Geschichten dazu, vermeintliche Transaktionen oder Stornierungen freizugeben. Lass dich nicht unter Druck setzen.",
   },
   {
     title: "Betrug in Anzeigenportalen",
     body:
-      "Bei Käufen und Verkäufen auf Kleinanzeigen-Plattformen werden häufig gefälschte Zahlungs- oder Bestätigungsseiten verschickt. Prüfen Sie Links sorgfältig.",
+      "Unbekannte Bezahlmethode? Das ist ein Trick, mit dem Kriminelle aktuell versuchen, an deine Kartendaten zu kommen.",
   },
   {
     title: "Betrug per WhatsApp: Enkeltrick",
     body:
-      "Betrüger geben sich als Kinder oder Enkel aus und bitten über WhatsApp um Geld. Überweisen Sie nichts, ohne vorher persönlich mit der Person gesprochen zu haben.",
+      "Das passiert sehr häufig: Kriminelle geben vor, dein Enkel oder Kind zu sein, und bitten dich um eine Überweisung. Die Aufforderung, per WhatsApp oder E-Mail Überweisungen vorzunehmen, sollte dich immer misstrauisch machen.",
   },
 ];
 

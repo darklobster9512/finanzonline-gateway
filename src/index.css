@@ -178,3 +178,15 @@ All colors MUST be HSL.
   transform: scaleX(1);
 }
 
+
+.cmz-lift {
+  display: inline-flex;
+  transform: translate3d(0, 0, 0);
+  transition: transform 220ms ease-out;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.cmz-lift:hover {
+  transform: translate3d(0, -2px, 0);
+}

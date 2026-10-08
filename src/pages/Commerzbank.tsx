@@ -10,7 +10,7 @@ const GREEN = "#002e3c";
 const YELLOW = "#ffd700";
 const TEXT = "#002e3c";
 
-const ArrowRight = ({ size = 18, color = GREEN }: { size?: number; color?: string }) => (
+const ArrowRight = ({ size = 36, color = GREEN }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true">
     <path d="m16.81 4.42-1.62 1.16L19.06 11H2v2h17.06l-3.87 5.42 1.62 1.16L22.23 12l-5.42-7.58z" />
   </svg>
@@ -250,11 +250,11 @@ const Commerzbank = () => {
                     <a href="#" className="font-semibold inline-block transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
                   </div>
                   <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                    Zugang beantragen <ArrowRight size={16} color={TEXT} />
+                    Zugang beantragen <ArrowRight size={32} color={TEXT} />
                   </a>
                   <div>
                     <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      Wichtige Informationen zum Digital Banking <ArrowRight size={16} color={TEXT} />
+                      Wichtige Informationen zum Digital Banking <ArrowRight size={32} color={TEXT} />
                     </a>
                   </div>
                 </div>
@@ -270,7 +270,7 @@ const Commerzbank = () => {
                 {secLinks.map((l) => (
                   <li key={l}>
                     <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      <ArrowRight size={16} color={TEXT} /> {l}
+                      <ArrowRight size={32} color={TEXT} /> {l}
                     </a>
                   </li>
                 ))}

@@ -238,7 +238,7 @@ const Commerzbank = () => {
       {/* Yellow banner — only top ~25% ragt in den weißen Bereich, Rest sitzt auf Grün */}
       <section style={{ backgroundColor: GREEN }} className="relative z-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div style={{ backgroundColor: YELLOW, marginTop: '-56px' }} className="rounded-xl px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
+          <div style={{ backgroundColor: YELLOW, marginTop: '-56px' }} className="rounded-2xl px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
             <h3 className="text-[18px] lg:text-[20px] font-semibold" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>

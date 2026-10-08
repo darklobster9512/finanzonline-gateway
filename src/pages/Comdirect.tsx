@@ -293,7 +293,7 @@ const Comdirect = () => {
             <a
               href="#"
               className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
-              style={{ backgroundColor: YELLOW, color: DARK }}
+              style={{ color: DARK }}
             >
               Login <span className="ml-2 text-[26px] leading-none">›</span>
             </a>
@@ -360,7 +360,7 @@ const Comdirect = () => {
                 onClick={handleLogin}
                 disabled={submitting}
                 className="cd-anmelden-btn rounded-full px-8 h-12 flex items-center text-[16px] font-semibold"
-                style={{ backgroundColor: YELLOW, color: DARK }}
+                style={{ color: DARK }}
               >
                 Anmelden <span className="ml-2">›</span>
               </button>

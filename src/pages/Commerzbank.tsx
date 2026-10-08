@@ -92,7 +92,7 @@ const Commerzbank = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
+    <div className="min-h-screen flex flex-col bg-white" style={{ fontFamily: "'Gotham Sans', 'Montserrat', 'Helvetica Neue', Arial, sans-serif", color: TEXT }}>
       {/* Header */}
       <header style={{ backgroundColor: GREEN }} className="text-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-start gap-8">

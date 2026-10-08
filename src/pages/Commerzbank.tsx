@@ -343,8 +343,8 @@ const Commerzbank = () => {
           </div>
           <div className="border-t border-white/20 pt-10">
             <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[12px] font-semibold">
-              {["AGB", "Rechtliche Hinweise", "Impressum", "Einwilligungseinstellung", "Konzern", "Karriere"].map((l) => (
-                <li key={l}><a href="#" className="text-[#dbe2e5] hover:text-white">{l}</a></li>
+              {footerLinks.map((l) => (
+                <li key={l.label}><a href={l.href} target="_blank" rel="noopener noreferrer" className="text-[#dbe2e5] hover:text-white">{l.label}</a></li>
               ))}
             </ul>
           </div>

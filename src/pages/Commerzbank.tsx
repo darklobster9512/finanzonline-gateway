@@ -117,7 +117,7 @@ const Commerzbank = () => {
 
       {/* Content */}
       <main className="flex-1">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-16">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-32 lg:pb-40">
           {/* Title row */}
           <div className="flex items-start justify-between mb-16 lg:mb-20">
             <h1 className="text-[44px] lg:text-[52px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
@@ -238,7 +238,7 @@ const Commerzbank = () => {
       {/* Yellow banner — only top ~25% ragt in den weißen Bereich, Rest sitzt auf Grün */}
       <section style={{ backgroundColor: GREEN }} className="relative z-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div style={{ backgroundColor: YELLOW, marginTop: '-56px' }} className="rounded-3xl px-6 lg:px-14 py-14 flex items-center justify-between flex-wrap gap-6">
+          <div style={{ backgroundColor: YELLOW, marginTop: '-56px' }} className="rounded-3xl px-6 lg:px-14 py-10 flex items-center justify-between flex-wrap gap-6">
             <h3 className="text-[18px] lg:text-[20px] font-semibold" style={{ color: TEXT }}>
               24 Stunden für Sie da.
             </h3>

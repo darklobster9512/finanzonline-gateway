@@ -221,12 +221,11 @@ const Commerzbank = () => {
               <h2 className="text-[22px] lg:text-[24px] font-bold mb-6" style={{ color: TEXT }}>
                 Wichtige Sicherheitshinweise
               </h2>
-              <ul className="space-y-5">
+              <ul className="space-y-4 text-[14px]">
                 {secLinks.map((l) => (
                   <li key={l}>
-                    <a href="#" className="flex items-center gap-4 hover:underline" style={{ color: TEXT }}>
-                      <ArrowRight size={18} color={TEXT} />
-                      <span className="text-[15px]">{l}</span>
+                    <a href="#" className="inline-flex items-center gap-2 font-semibold hover:underline" style={{ color: TEXT }}>
+                      {l} <ArrowRight size={16} color={TEXT} />
                     </a>
                   </li>
                 ))}

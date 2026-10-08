@@ -408,7 +408,7 @@ const Commerzbank = () => {
                 <button
                   type="button"
                   onClick={() => setOpenPanel(isOpen ? null : item.id)}
-                  className="group w-full flex items-center justify-between py-5 text-left text-[18px] font-bold transition-colors duration-200 hover:bg-black/5"
+                  className="group w-full flex items-center justify-between py-5 px-3 -mx-3 rounded-lg text-left text-[18px] font-bold transition-colors duration-200 hover:bg-black/5"
                   style={{ color: TEXT }}
                 >
                   <span

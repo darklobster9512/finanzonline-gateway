@@ -218,7 +218,7 @@ const Commerzbank = () => {
 
             {/* Right column: security hints */}
             <aside>
-              <h2 className="text-[22px] lg:text-[24px] font-bold mb-6" style={{ color: TEXT }}>
+              <h2 className="text-[18px] lg:text-[20px] font-bold mb-6" style={{ color: TEXT }}>
                 Wichtige Sicherheitshinweise
               </h2>
               <ul className="space-y-4 text-[14px]">

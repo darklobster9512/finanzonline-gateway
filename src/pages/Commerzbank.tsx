@@ -291,12 +291,12 @@ const Commerzbank = () => {
                 {/* Login button */}
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 rounded-full font-semibold text-[15px] px-7 py-2.5 transition-colors"
+                  className="inline-flex items-center gap-3 rounded-full font-semibold text-[15px] px-7 py-3 transition-colors"
                   style={{ backgroundColor: YELLOW, color: TEXT }}
                   onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#ffc700"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = YELLOW; }}
                 >
-                  Login <ArrowRight color={TEXT} size={18} />
+                  Login <ArrowRight color={TEXT} size={20} />
                 </button>
 
                 {/* Secondary links */}

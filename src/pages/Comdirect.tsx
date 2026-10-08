@@ -81,7 +81,7 @@ const FloatingInput = ({
         style={{
           top: active ? 6 : 18,
           fontSize: active ? 12 : 15,
-          color: active ? DARK : TEXT_SECONDARY,
+          color: active ? DARK : "rgb(133, 142, 146)",
         }}
       >
         {label}

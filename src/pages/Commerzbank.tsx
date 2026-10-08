@@ -265,7 +265,7 @@ const Commerzbank = () => {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pb-10">
           <div className="flex items-center justify-between flex-wrap gap-6 pb-6">
             <div className="flex items-center gap-3">
-              <img src={logoAsset.url} alt="Commerzbank" className="h-9 w-auto" />
+              <img src={logoWhiteAsset.url} alt="Commerzbank" className="h-9 w-auto" />
             </div>
             <div className="text-[14px] font-semibold">Die Bank an Ihrer Seite</div>
           </div>

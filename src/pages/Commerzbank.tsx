@@ -114,8 +114,8 @@ const Commerzbank = () => {
               ))}
             </nav>
             <div className="flex items-center gap-6 text-[14px] font-semibold">
-              <a href="#" className="text-[#dbe2e5] hover:text-white">EN</a>
-              <a href="#" className="flex items-center gap-2 text-[#dbe2e5] hover:text-white">
+              <a href="#" className="cmz-lift text-[#dbe2e5] hover:text-white">EN</a>
+              <a href="#" className="cmz-lift items-center gap-2 text-[#dbe2e5] hover:text-white">
                 <SearchIcon /> Suche
               </a>
             </div>
@@ -129,7 +129,7 @@ const Commerzbank = () => {
           {/* Title row */}
           <div className="flex items-start justify-between mb-16 lg:mb-20">
             <h1 className="text-[36px] lg:text-[42px] font-bold leading-[1.05] tracking-tight" style={{ color: TEXT }}>Login</h1>
-            <button type="button" className="flex items-center gap-2 text-[14px] font-semibold hover:underline" style={{ color: TEXT }}>
+            <button type="button" className="cmz-lift items-center gap-2 text-[14px] font-semibold" style={{ color: TEXT }}>
               Hilfe <ChatIcon />
             </button>
           </div>
@@ -288,14 +288,14 @@ const Commerzbank = () => {
               24 Stunden für Sie da.
             </h3>
             <div className="flex items-center gap-10">
-              <a href="#" className="flex flex-col items-center gap-2" style={{ color: TEXT }}>
-                <span className="w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
+              <a href="#" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
+                <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <ServiceIcon />
                 </span>
                 <span className="text-[13px] font-semibold">Service</span>
               </a>
-              <a href="#" className="flex flex-col items-center gap-2" style={{ color: TEXT }}>
-                <span className="w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
+              <a href="#" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
+                <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <MailIcon />
                 </span>
                 <span className="text-[13px] font-semibold">Kontakt</span>

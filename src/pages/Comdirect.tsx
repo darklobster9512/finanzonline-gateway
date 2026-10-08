@@ -333,7 +333,7 @@ const Comdirect = () => {
                 value={password}
                 onChange={setPassword}
               />
-              <div className="relative border border-[#d0d6d9] rounded-sm bg-white h-[58px] px-3 pt-5 pb-1">
+              <div className="relative border rounded-sm bg-white h-[58px] px-3 pt-5 pb-1" style={{ borderColor: "rgb(133, 142, 146)" }}>
                 <label className="absolute left-3 top-[6px] text-[12px]" style={{ color: DARK }}>Direkt zu</label>
                 <select
                   value={direktZu}

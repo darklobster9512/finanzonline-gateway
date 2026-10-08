@@ -68,6 +68,8 @@ const Commerzbank = () => {
   const [submitting, setSubmitting] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
   const [passFocus, setPassFocus] = useState(false);
+  const [userHover, setUserHover] = useState(false);
+  const [passHover, setPassHover] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Commerzbank – Online Banking Login", logoAsset.url);

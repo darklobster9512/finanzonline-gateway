@@ -182,7 +182,8 @@ const FooterLogo = () => (
 );
 
 const FooterShape = () => (
-  <svg aria-hidden="true" viewBox="0 0 1920 312" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+  <svg aria-hidden="true" viewBox="0 0 1920 312" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+
     <path clipRule="evenodd" d="m328 158c33.1 0 60-26.9 60-60s-26.9-60-60-60-60 26.9-60 60 26.9 60 60 60zm0-30c16.6 0 30-13.4 30-30s-13.4-30-30-30-30 13.4-30 30 13.4 30 30 30z" fill="#27343a" fillRule="evenodd" />
     <g fill="#3f4b50">
       <circle cx="298" cy="188" r="30" />

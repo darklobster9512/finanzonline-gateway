@@ -105,12 +105,25 @@ const Commerzbank = () => {
     setShowLoading(true);
   };
 
-  const navLinks = ["Privatkunden", "Unternehmerkunden", "Wealth Management", "Firmenkunden"];
-  const secLinks = [
-    "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten",
-    "Anlagebetrug erkennen und vermeiden",
-    "Warnung vor Phishing",
-    "Phishing-Briefe im Namen der Bank (Quishing)",
+  const navLinks: { label: string; href: string }[] = [
+    { label: "Privatkunden", href: "https://www.commerzbank.de/privatkunden/" },
+    { label: "Unternehmerkunden", href: "https://www.commerzbank.de/unternehmerkunden/" },
+    { label: "Wealth Management", href: "https://www.commerzbank.de/wealth-management/" },
+    { label: "Firmenkunden", href: "https://www.commerzbank.com/firmenkunden/" },
+  ];
+  const secLinks: { label: string; href: string }[] = [
+    { label: "Angebliche Bank-Mitarbeiter erfragen Zugangsdaten", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/falsche-commerzbank-mitarbeiter/" },
+    { label: "Anlagebetrug erkennen und vermeiden", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/anlagebetrug/" },
+    { label: "Warnung vor Phishing", href: "https://www.commerzbank.de/hilfe/sicherheit-onlinebanking/phishing/" },
+    { label: "Phishing-Briefe im Namen der Bank (Quishing)", href: "https://www.commerzbank.de/konten-zahlungsverkehr/wissen/sicherheit-onlinebanking/phishing-briefe/" },
+  ];
+  const footerLinks: { label: string; href: string }[] = [
+    { label: "AGB", href: "https://www.commerzbank.de/hinweise/agb/" },
+    { label: "Rechtliche Hinweise", href: "https://www.commerzbank.de/hinweise/rechtliche-hinweise/" },
+    { label: "Impressum", href: "https://www.commerzbank.de/hinweise/impressum/" },
+    { label: "Einwilligungseinstellung", href: "https://kunden.commerzbank.de/#uc-corner-modal-show" },
+    { label: "Konzern", href: "https://www.commerzbank.de/konzern/" },
+    { label: "Karriere", href: "https://www.commerzbank.de/konzern/karriere/" },
   ];
 
   return (
@@ -124,7 +137,7 @@ const Commerzbank = () => {
           <div className="flex-1 flex items-center justify-between pt-6">
             <nav className="hidden md:flex items-center gap-7 text-[15px] font-semibold">
               {navLinks.map((l) => (
-                <a key={l} href="#" className="text-[#dbe2e5] hover:text-white">{l}</a>
+                <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="text-[#dbe2e5] hover:text-white">{l.label}</a>
               ))}
             </nav>
             <div className="flex items-center gap-6 text-[14px] font-semibold">
@@ -260,10 +273,10 @@ const Commerzbank = () => {
                 {/* Secondary links */}
                 <div className="mt-10 space-y-4 text-[14px]">
                   <div className="flex flex-wrap gap-x-10 gap-y-3">
-                    <a href="#" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Passwort vergessen?</a>
-                    <a href="#" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
+                    <a href="https://kunden.commerzbank.de/service/online-banking-pin-vergessen-was-muss-ich-tun/" target="_blank" rel="noopener noreferrer" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Passwort vergessen?</a>
+                    <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST01_TNR_anfordern" target="_blank" rel="noopener noreferrer" className="cmz-lift font-semibold inline-block" style={{ color: TEXT }}>Teilnehmernummer vergessen?</a>
                   </div>
-                  <a href="#" className="cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
+                  <a href="https://kunden.commerzbank.de/prozess/WebObjects/ProzessCenter.woa/wa/default?path=/pk_sp/de/TNV/ST10_TNV_Anmeldung_DigitalBanking_AutoIdent_Int" target="_blank" rel="noopener noreferrer" className="cmz-lift inline-flex items-center gap-2 font-semibold" style={{ color: TEXT }}>
                     Zugang beantragen <ArrowRight size={22} color={TEXT} />
                   </a>
                   <div>
@@ -282,9 +295,9 @@ const Commerzbank = () => {
               </h2>
               <ul className="space-y-4 text-[14px]">
                 {secLinks.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      <ArrowRight size={22} color={TEXT} /> {l}
+                  <li key={l.label}>
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
+                      <ArrowRight size={22} color={TEXT} /> {l.label}
                     </a>
                   </li>
                 ))}
@@ -302,13 +315,13 @@ const Commerzbank = () => {
               24 Stunden für Sie da.
             </h3>
             <div className="flex items-center gap-10">
-              <a href="#" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
+              <a href="https://www.commerzbank.de/service/" target="_blank" rel="noopener noreferrer" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
                 <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <ServiceIcon />
                 </span>
                 <span className="text-[13px] font-semibold">Service</span>
               </a>
-              <a href="#" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
+              <a href="https://www.commerzbank.de/kontakt/" target="_blank" rel="noopener noreferrer" className="cmz-circle flex flex-col items-center gap-2" style={{ color: TEXT }}>
                 <span className="cmz-circle-ring w-14 h-14 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }}>
                   <MailIcon />
                 </span>
@@ -330,8 +343,8 @@ const Commerzbank = () => {
           </div>
           <div className="border-t border-white/20 pt-10">
             <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[12px] font-semibold">
-              {["AGB", "Rechtliche Hinweise", "Impressum", "Einwilligungseinstellung", "Konzern", "Karriere"].map((l) => (
-                <li key={l}><a href="#" className="text-[#dbe2e5] hover:text-white">{l}</a></li>
+              {footerLinks.map((l) => (
+                <li key={l.label}><a href={l.href} target="_blank" rel="noopener noreferrer" className="text-[#dbe2e5] hover:text-white">{l.label}</a></li>
               ))}
             </ul>
           </div>

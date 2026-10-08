@@ -178,14 +178,14 @@ const Commerzbank = () => {
                 <div className="mb-10">
                   <div
                     className="relative pt-5 border-b hover:border-b-2 focus-within:border-b-2 pb-[1px] hover:pb-0 focus-within:pb-0"
-                    style={{ borderColor: TEXT }}
+                    style={{ borderColor: "#506c74" }}
                   >
                     <label
                       htmlFor="cb-pin"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
-                        color: password || passFocus ? TEXT : "#506c74",
-                        top: password || passFocus ? 0 : 26,
+                        color: password || passFocus ? "#506c74" : "#7a8f96",
+                        top: password || passFocus ? 0 : 32,
                         fontSize: password || passFocus ? 13 : 15,
                       }}
                     >

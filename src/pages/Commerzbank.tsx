@@ -150,7 +150,7 @@ const Commerzbank = () => {
                       htmlFor="cb-user"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
-                        color: username || userFocus ? "#506c74" : (userHover ? "#002530" : "#506c74"),
+                        color: username || userFocus ? "#002530" : (userHover ? "#002530" : "#506c74"),
                         top: username || userFocus ? 0 : 32,
                         fontSize: username || userFocus ? 13 : 15,
                       }}

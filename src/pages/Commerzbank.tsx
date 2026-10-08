@@ -146,9 +146,9 @@ const Commerzbank = () => {
                       htmlFor="cb-user"
                       className="absolute left-0 pointer-events-none transition-all duration-200 ease-out"
                       style={{
-                        color: TEXT,
-                        top: username || userFocus ? 0 : 22,
-                        fontSize: username || userFocus ? 13 : 17,
+                        color: username || userFocus ? TEXT : "#506c74",
+                        top: username || userFocus ? 0 : 26,
+                        fontSize: username || userFocus ? 13 : 15,
                       }}
                     >
                       Benutzername/Teilnehmernummer

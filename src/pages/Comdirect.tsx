@@ -293,7 +293,7 @@ const Comdirect = () => {
             <a
               href="#"
               className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
-              style={{ backgroundColor: YELLOW, color: DARK }}
+              style={{ color: DARK }}
             >
               Login <span className="ml-2 text-[26px] leading-none">›</span>
             </a>

@@ -202,7 +202,8 @@ const FooterShapeRight = () => (
 );
 
 const SocialIcons = () => (
-  <div className="flex gap-4 items-center" style={{ color: "#e5e7e8" }}>
+  <div className="flex gap-7 items-center" style={{ color: "#e5e7e8" }}>
+
     <a href="https://www.facebook.com/comdirect" target="_blank" rel="noopener noreferrer" aria-label="Social Link zu Facebook">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="m24 12.1c0-6.6-5.4-12-12-12s-12 5.3-12 12c0 6 4.4 11 10.1 11.9v-8.4h-3v-3.5h3v-2.7c0-3 1.8-4.7 4.5-4.7 1.4.1 2.7.3 2.7.3v3h-1.5c-1.5 0-2 .9-2 1.9v2.2h3.3l-.5 3.5h-2.8v8.4c5.8-1 10.2-5.9 10.2-11.9z" />

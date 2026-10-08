@@ -254,7 +254,7 @@ const Commerzbank = () => {
                   </a>
                   <div>
                     <a href="#" className="inline-flex items-center gap-2 font-semibold transition-transform duration-150 hover:translate-x-1" style={{ color: TEXT }}>
-                      Wichtige Informationen zum Digital Banking <ArrowRight size={16} color={TEXT} />
+                      Wichtige Informationen zum Digital Banking <ArrowRight size={32} color={TEXT} />
                     </a>
                   </div>
                 </div>

@@ -358,7 +358,7 @@ const Commerzbank = () => {
         }}
         aria-hidden={!helpOpen}
       >
-        <div className="px-8 py-5 border-b border-black/10">
+        <div className="px-12 py-5 border-b border-black/10">
           <button
             type="button"
             onClick={() => setHelpOpen(false)}
@@ -371,8 +371,8 @@ const Commerzbank = () => {
             Zurück zur Übersicht
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto px-8 py-8">
-          <h2 className="text-[28px] font-bold mb-6" style={{ color: TEXT }}>Hilfe</h2>
+        <div className="flex-1 overflow-y-auto px-12 pt-12 pb-8">
+          <h2 className="text-[18px] font-bold mb-6" style={{ color: TEXT }}>Hilfe</h2>
           {[
             {
               id: "alias",

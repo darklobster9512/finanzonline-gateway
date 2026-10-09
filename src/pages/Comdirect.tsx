@@ -67,14 +67,15 @@ const SearchIcon = ({ color }: { color?: string }) => (
 );
 
 const WarningTriangle = () => (
-  <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true">
+  <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true" fill="none">
     <path
-      d="M10.9 3.3 1.4 19.5a1.3 1.3 0 0 0 1.1 1.9h19a1.3 1.3 0 0 0 1.1-1.9L13.1 3.3a1.3 1.3 0 0 0-2.2 0Zm1.1 3.2L19.5 19h-15L12 6.5Z"
-      fill="rgb(205, 20, 35)"
+      d="M12 4.2 2.5 20.4h19L12 4.2Z"
+      stroke="rgb(205, 20, 35)"
+      strokeWidth="1.3"
       strokeLinejoin="round"
     />
-    <rect x="11" y="10" width="2" height="5" rx="0.5" fill="rgb(205, 20, 35)" />
-    <circle cx="12" cy="17" r="1" fill="rgb(205, 20, 35)" />
+    <rect x="11.3" y="10" width="1.4" height="5" rx="0.3" fill="rgb(205, 20, 35)" />
+    <circle cx="12" cy="17.2" r="0.8" fill="rgb(205, 20, 35)" />
   </svg>
 );
 

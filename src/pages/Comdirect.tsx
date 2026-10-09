@@ -406,6 +406,10 @@ const Comdirect = () => {
           .cd-sbox:focus-within{border-color:#ffffff;box-shadow:0 0 0 2px ${DARK}, 0 0 0 4px #ffffff;}
           .cd-sbox:focus-within .cd-search::placeholder{color:#ffffff;}
           .cd-sbox:focus-within .cd-icon svg{color:#ffffff;}
+          .cd-headerlink{color:var(--cd-base);}
+          .cd-headerlink:hover{color:var(--cd-yellow);}
+          .cd-greybtn{background-color:rgb(219,221,223);}
+          .cd-greybtn:hover{background-color:rgb(199,201,203);}
           .cd-login-btn{transition:background-color .15s;}
           .cd-login-btn:hover{background-color:rgb(255,225,0);}
           .cd-anmelden-btn{transition:background-color .15s;}
@@ -423,8 +427,8 @@ const Comdirect = () => {
           </a>
           {/* right side */}
           <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
-            <a href="#" className="text-[13px] font-bold transition-colors hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
-            <a href="#" className="text-[13px] font-bold transition-colors hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
+            <a href="#" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
+            <a href="#" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
             <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
               <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
               <span className="cd-icon shrink-0"><SearchIcon /></span>
@@ -493,10 +497,10 @@ const Comdirect = () => {
               <div className="pt-6">
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
+                  <a href="#" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Depot eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
+                  <a href="#" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Girokonto eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                 </div>
@@ -617,7 +621,7 @@ const Comdirect = () => {
             <div className="flex justify-start">
               <a
                 href="#"
-                className="inline-flex items-center justify-center rounded-full px-4 h-8 text-[12px] font-semibold hover:bg-[#223843] transition-colors"
+                className="inline-flex items-center justify-center rounded-full px-4 h-8 text-[12px] font-semibold hover:bg-[#2f444c] transition-colors"
                 style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
               >
                 Vertrag widerrufen <span className="ml-2 inline-flex"><ButtonChevron size={12} /></span>

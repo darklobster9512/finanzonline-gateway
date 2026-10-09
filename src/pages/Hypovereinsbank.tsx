@@ -7,6 +7,8 @@ import { Search, HelpCircle, MapPin, LogIn, Info, Lock, Phone, ChevronRight, Arr
 import bgAsset from "@/assets/hvb-login-bg.webp.asset.json";
 import unicreditAsset from "@/assets/hvb-unicredit.png.asset.json";
 import ferrariAsset from "@/assets/hvb-ferrari.png.asset.json";
+import checklisteAsset from "@/assets/hvb-checkliste.webp.asset.json";
+import gluehbirneAsset from "@/assets/hvb-gluehbirne-buch.webp.asset.json";
 
 const TEAL = "#007E8F";
 const TEAL_DARK = "#006674";
@@ -296,11 +298,15 @@ const Hypovereinsbank = () => {
                   title: "Ersteinrichtung: Step by Step Anleitung",
                   text: "Unser Welcome Guide erklärt Ihnen die einfache Einrichtung Ihres HVB Online & Mobile Bankings.",
                   cta: "Step by Step Anleitung",
+                  icon: checklisteAsset,
+                  alt: "Checkliste mit drei abgehakten Punkten",
                 },
                 {
                   title: "Basisfunktionen",
                   text: "Finden Sie hier einen Überblick über die Basisfunktionen im Online Banking und wie diese angewendet werden.",
                   cta: "Basisfunktionen",
+                  icon: gluehbirneAsset,
+                  alt: "Aufgeschlagenes Buch mit Glühbirne",
                 },
               ].map((card) => (
                 <div key={card.title} className="bg-white p-10 text-center">
@@ -308,7 +314,7 @@ const Hypovereinsbank = () => {
                     className="mx-auto mb-5 w-14 h-14 flex items-center justify-center"
                     style={{ border: `2px solid ${TEAL}`, color: TEAL, borderRadius: 2 }}
                   >
-                    <Info size={28} strokeWidth={1.5} />
+                    <img src={card.icon.url} alt={card.alt} width={28} height={28} className="block" />
                   </div>
                   <h3 className="text-[18px] font-semibold mb-3" style={{ color: DARK }}>
                     {card.title}

@@ -438,7 +438,9 @@ const Comdirect = () => {
               <span className="cd-icon shrink-0"><SearchIcon /></span>
             </div>
             <a
-              href="#"
+              href="https://www.comdirect.de/lp/wt/login"
+              target="_blank"
+              rel="noopener noreferrer"
               className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
               style={{ color: DARK }}
             >

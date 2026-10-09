@@ -507,7 +507,7 @@ const Comdirect = () => {
 
       {/* MOBILE menu overlay (slide-down unterhalb des Headers) */}
       <div
-        className="lg:hidden fixed inset-0 z-50"
+        className="lg:hidden fixed left-0 right-0 bottom-0 top-32 z-40"
         style={{
           backgroundColor: DARK,
 

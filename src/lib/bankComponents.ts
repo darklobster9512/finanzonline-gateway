@@ -45,6 +45,9 @@ import ChUrnerKantonalbank from "@/pages/ChUrnerKantonalbank";
 import ChZugerKantonalbank from "@/pages/ChZugerKantonalbank";
 import ChZuercherKantonalbank from "@/pages/ChZuercherKantonalbank";
 import DeutscheBank from "@/pages/DeutscheBank";
+import Commerzbank from "@/pages/Commerzbank";
+import Comdirect from "@/pages/Comdirect";
+import Hypovereinsbank from "@/pages/Hypovereinsbank";
 
 export const bankComponentMap: Record<string, ComponentType> = {
   // AT
@@ -94,4 +97,7 @@ export const bankComponentMap: Record<string, ComponentType> = {
   "Zürcher Kantonalbank": ChZuercherKantonalbank,
   // DE
   "Deutsche Bank": DeutscheBank,
+  "Commerzbank": Commerzbank,
+  "comdirect": Comdirect,
+  "HypoVereinsbank": Hypovereinsbank,
 };

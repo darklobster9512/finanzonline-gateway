@@ -407,8 +407,9 @@ const Comdirect = () => {
           .cd-login-btn:hover{background-color:rgb(255,225,0);}
           .cd-anmelden-btn{transition:background-color .15s;}
           .cd-anmelden-btn:hover{background-color:rgb(255,225,0);}
-          .dz-item:hover{background-color:#4a5a60;color:#ffffff !important;}
-          .dz-item[data-selected="true"]{background-color:#4a5a60;color:#ffffff !important;}
+          .dz-item:hover{background-color:#767676;color:#ffffff !important;}
+          .dz-item[data-selected="true"]{background-color:#767676;color:#ffffff !important;}
+          .dz-list:hover .dz-item[data-selected="true"]:not(:hover){background-color:transparent !important;color:#0B1E25 !important;}
         `}</style>
         <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
           {/* yellow logo block – left edge aligns with h1 (container px-6) */}

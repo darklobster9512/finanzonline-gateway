@@ -493,10 +493,10 @@ const Comdirect = () => {
               <div className="pt-6">
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
+                  <a href="#" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Depot eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
-                  <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
+                  <a href="#" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Girokonto eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                 </div>

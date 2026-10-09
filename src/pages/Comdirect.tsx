@@ -70,11 +70,11 @@ const WarningTriangle = () => (
   <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true">
     <path
       d="M10.9 3.3 1.4 19.5a1.3 1.3 0 0 0 1.1 1.9h19a1.3 1.3 0 0 0 1.1-1.9L13.1 3.3a1.3 1.3 0 0 0-2.2 0Zm1.1 3.2L19.5 19h-15L12 6.5Z"
-      fill="#DE0000"
+      fill="rgb(205, 20, 35)"
       strokeLinejoin="round"
     />
-    <rect x="11" y="10" width="2" height="5" rx="0.5" fill="#DE0000" />
-    <circle cx="12" cy="17" r="1" fill="#DE0000" />
+    <rect x="11" y="10" width="2" height="5" rx="0.5" fill="rgb(205, 20, 35)" />
+    <circle cx="12" cy="17" r="1" fill="rgb(205, 20, 35)" />
   </svg>
 );
 
@@ -448,11 +448,11 @@ const Comdirect = () => {
                           style={{
                             width: 28,
                             height: 28,
-                            backgroundColor: open ? "rgb(209, 212, 214)" : "rgb(11, 30, 37)",
-                            color: open ? DARK : "#ffffff",
+                            backgroundColor: open ? "rgb(11, 30, 37)" : "rgb(209, 212, 214)",
+                            color: open ? "#ffffff" : DARK,
                           }}
                         >
-                          <Chevron open={open} color={open ? DARK : "#ffffff"} />
+                          <Chevron open={open} color={open ? "#ffffff" : DARK} />
                         </span>
                       </button>
                       {open && (

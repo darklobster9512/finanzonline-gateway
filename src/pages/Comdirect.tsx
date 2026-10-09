@@ -381,6 +381,31 @@ const Comdirect = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const scrollY = window.scrollY;
+    const previousStyles = {
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+      overflow: document.body.style.overflow,
+    };
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.position = previousStyles.position;
+      document.body.style.top = previousStyles.top;
+      document.body.style.width = previousStyles.width;
+      document.body.style.overflow = previousStyles.overflow;
+      window.scrollTo(0, scrollY);
+    };
+  }, [menuOpen]);
+
   usePageMeta("comdirect Login", undefined);
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -514,7 +539,7 @@ const Comdirect = () => {
           transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
           transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
           pointerEvents: menuOpen ? "auto" : "none",
-          overflowY: "auto",
+          overflow: "hidden",
         }}
         aria-hidden={!menuOpen}
       >

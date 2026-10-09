@@ -372,6 +372,13 @@ const Comdirect = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [openPanel, setOpenPanel] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   usePageMeta("comdirect Login", undefined);
   useEffect(() => { window.scrollTo(0, 0); }, []);

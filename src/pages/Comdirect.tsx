@@ -381,28 +381,30 @@ const Comdirect = () => {
                 value={password}
                 onChange={setPassword}
               />
-              <div className="relative border rounded-sm bg-white h-[58px] px-3 pt-5 pb-1" style={{ borderColor: "rgb(133, 142, 146)" }}>
-                <label className="absolute left-3 top-[6px] text-[12px]" style={{ color: DARK }}>Direkt zu</label>
-                <select
-                  value={direktZu}
-                  onChange={(e) => setDirektZu(e.target.value)}
-                  className="w-full outline-none bg-transparent text-[15px] appearance-none pr-6"
-                  style={{ color: DARK }}
-                >
-                  <option value="PersoenlicherBereich">Persönlicher Bereich</option>
-                  <option value="DepotUebersicht">Depotübersicht</option>
-                  <option value="Abrechnungsdaten">Abrechnungsdaten</option>
-                  <option value="DepotUmsaetze">Depotumsätze</option>
-                  <option value="Order">Order</option>
-                  <option value="DepotOrderbuch">Orderbuch</option>
-                  <option value="KontoUmsaetze">Kontoumsätze</option>
-                  <option value="KontoUeberweisung">Überweisung</option>
-                  <option value="Musterdepot">Musterdepot</option>
-                  <option value="InformerStartseite">Meine Informer Startseite</option>
-                </select>
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <Chevron open={false} />
-                </span>
+              <div className="relative border rounded-sm bg-white h-[58px] px-3" style={{ borderColor: "rgb(133, 142, 146)" }}>
+                <label className="absolute left-3 top-[6px] text-[12px]" style={{ color: "rgb(96, 109, 113)" }}>Direkt zu</label>
+                <div className="absolute left-3 right-3 top-[22px] bottom-0 flex items-center">
+                  <select
+                    value={direktZu}
+                    onChange={(e) => setDirektZu(e.target.value)}
+                    className="w-full h-full outline-none bg-transparent text-[15px] appearance-none p-0 leading-none pr-6"
+                    style={{ color: DARK }}
+                  >
+                    <option value="PersoenlicherBereich">Persönlicher Bereich</option>
+                    <option value="DepotUebersicht">Depotübersicht</option>
+                    <option value="Abrechnungsdaten">Abrechnungsdaten</option>
+                    <option value="DepotUmsaetze">Depotumsätze</option>
+                    <option value="Order">Order</option>
+                    <option value="DepotOrderbuch">Orderbuch</option>
+                    <option value="KontoUmsaetze">Kontoumsätze</option>
+                    <option value="KontoUeberweisung">Überweisung</option>
+                    <option value="Musterdepot">Musterdepot</option>
+                    <option value="InformerStartseite">Meine Informer Startseite</option>
+                  </select>
+                  <span className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <Chevron open={false} />
+                  </span>
+                </div>
               </div>
               <button
                 onClick={handleLogin}

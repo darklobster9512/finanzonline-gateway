@@ -562,8 +562,8 @@ const Comdirect = () => {
       </div>
 
       {/* MAIN */}
-      <main className="max-w-[1040px] mx-auto px-6 py-10">
-        <h1 className="text-[28px] leading-tight font-light mb-8" style={{ color: DARK }}>
+      <main className="max-w-[1040px] mx-auto px-5 lg:px-6 pt-4 pb-10 lg:py-10">
+        <h1 className="text-[26px] lg:text-[28px] leading-tight font-light mb-5 lg:mb-8" style={{ color: DARK }}>
           comdirect Login
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">

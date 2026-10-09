@@ -204,7 +204,7 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
         className="relative w-full rounded-sm bg-white h-[58px] px-3 text-left"
         style={{
           border: `1px solid ${borderColor}`,
-          boxShadow: open ? "-2px 0 0 0 rgb(11, 30, 37), 2px 0 0 0 rgb(11, 30, 37), 0 -2px 0 0 rgb(11, 30, 37)" : "none",
+          boxShadow: open ? "-1px 0 0 0 rgb(11, 30, 37), 1px 0 0 0 rgb(11, 30, 37), 0 -1px 0 0 rgb(11, 30, 37)" : "none",
           transition: "box-shadow 150ms ease, border-color 150ms ease",
         }}
       >
@@ -222,13 +222,17 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
       {open && (
         <div
           className="dz-list absolute left-0 right-0 top-full bg-white z-20"
-          style={{ border: "2px solid rgb(11, 30, 37)", borderTop: "none", marginTop: 0 }}
+          style={{ border: "1px solid rgb(11, 30, 37)", borderTop: "none", marginTop: 0 }}
         >
           {DIREKT_ZU_ITEMS.map((item, idx) => {
             if ("separator" in item) {
               return (
                 <div key={`sep-${idx}`} style={{ padding: "4px 12px" }}>
-                  <div style={{ width: 70, borderTop: "2px dashed rgb(96, 109, 113)" }} />
+                  <div style={{
+                    width: 110,
+                    height: 1,
+                    backgroundImage: "repeating-linear-gradient(to right, rgb(96, 109, 113) 0 4px, transparent 4px 8px)",
+                  }} />
                 </div>
               );
             }

@@ -471,7 +471,7 @@ const Comdirect = () => {
           <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" className="flex items-center" style={{ color: YELLOW }}>
             <CMark size={54} color={YELLOW} />
           </a>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 self-start">
             <a
               href="https://www.comdirect.de/lp/wt/login"
               target="_blank"

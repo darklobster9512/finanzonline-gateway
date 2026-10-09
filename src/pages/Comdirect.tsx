@@ -413,14 +413,14 @@ const Comdirect = () => {
             </a>
 
 
-            <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+            <div className="pt-4 px-6 pb-4 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <div className="flex items-start justify-between gap-4 mb-3">
-                <h3 className="text-[22px] font-normal leading-snug" style={{ color: DARK }}>
+                <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Warnung:<br />aktuelle Betrugsfälle!
                 </h3>
                 <WarningTriangle />
               </div>
-              <p className="text-[16px] mb-4" style={{ color: DARK }}>
+              <p className="text-[15px] mb-4" style={{ color: DARK }}>
                 comdirect Kundinnen und Kunden sind aktuell von verschiedenen Betrugsfällen betroffen. Wir sagen dir, wie du dich davor schützen kannst.
               </p>
               <div className="-mx-6 border-t-2 border-white">
@@ -434,7 +434,7 @@ const Comdirect = () => {
                         style={{ transition: "background-color 450ms ease, color 450ms ease" }}
                         aria-expanded={open}
                       >
-                        <span className="text-[17px] font-bold" style={{ color: DARK }}>{f.title}</span>
+                        <span className="text-[16px] font-bold" style={{ color: DARK }}>{f.title}</span>
                         <span
                           className="flex items-center justify-center rounded-full shrink-0"
                           style={{

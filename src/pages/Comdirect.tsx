@@ -439,7 +439,8 @@ const Comdirect = () => {
                     <div key={f.title} className={i > 0 ? "border-t-2 border-white" : ""}>
                       <button
                         onClick={() => setOpenPanel(open ? null : i)}
-                        className="w-full flex items-center justify-between py-3 px-6 text-left transition-colors hover:bg-[rgb(232,234,234)]"
+                        className="w-full flex items-center justify-between py-3 px-6 text-left hover:bg-[rgb(232,234,234)]"
+                        style={{ transition: "background-color 450ms ease, color 450ms ease" }}
                         aria-expanded={open}
                       >
                         <span className="text-[17px] font-bold" style={{ color: DARK }}>{f.title}</span>
@@ -450,6 +451,7 @@ const Comdirect = () => {
                             height: 28,
                             backgroundColor: open ? "rgb(11, 30, 37)" : "rgb(209, 212, 214)",
                             color: open ? "#ffffff" : DARK,
+                            transition: "background-color 450ms ease, color 450ms ease",
                           }}
                         >
                           <Chevron open={open} color={open ? "#ffffff" : DARK} />

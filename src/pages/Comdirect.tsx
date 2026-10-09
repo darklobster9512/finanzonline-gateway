@@ -81,7 +81,7 @@ const FloatingInput = ({
         style={{
           top: active ? 6 : 18,
           fontSize: active ? 12 : 15,
-          color: active ? DARK : "rgb(133, 142, 146)",
+          color: active ? "rgba(11, 30, 37, 1)" : "rgb(11, 30, 37)",
         }}
       >
         {label}
@@ -359,15 +359,15 @@ const Comdirect = () => {
               <button
                 onClick={handleLogin}
                 disabled={submitting}
-                className="cd-anmelden-btn rounded-full px-8 h-12 flex items-center text-[16px] font-semibold"
-                style={{ color: DARK }}
+                className="cd-anmelden-btn rounded-full px-8 h-12 flex items-center text-[18px] font-semibold"
+                style={{ color: "#0B1E25" }}
               >
                 Anmelden <span className="ml-2 text-[26px] leading-none font-normal">›</span>
               </button>
               <div className="pt-2 text-[16px]" style={{ color: TEXT_SECONDARY }}>
-                <a href="#" className="underline hover:no-underline">Information zum Login</a>
+                <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
                 <span className="mx-2 font-semibold">·</span>
-                <a href="#" className="underline hover:no-underline">Login vergessen / gesperrt?</a>
+                <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
               </div>
               <div className="pt-6">
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
@@ -379,7 +379,7 @@ const Comdirect = () => {
                     Girokonto eröffnen <span className="ml-2 text-[22px] leading-none font-normal">›</span>
                   </a>
                 </div>
-                <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY }}>
+                <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
                   Kostenfreie Registrierung als comdirect Member inkl.<br />Musterdepot und Community
                 </a>
               </div>
@@ -389,8 +389,8 @@ const Comdirect = () => {
           {/* RIGHT: teaser + fraud */}
           <div className="space-y-6">
             <a href="#" className="block rounded-sm overflow-hidden flex items-center group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
-              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[130px] h-[110px] object-cover self-stretch" />
-              <div className="flex-1 px-6 pt-4 pb-3 flex flex-col justify-start">
+              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[162px] h-[138px] object-cover self-stretch" />
+              <div className="flex-1 px-6 pt-6 pb-5 flex flex-col justify-start">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>

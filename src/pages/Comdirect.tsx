@@ -439,19 +439,24 @@ const Comdirect = () => {
                     <div key={f.title} className={i > 0 ? "border-t-2 border-white" : ""}>
                       <button
                         onClick={() => setOpenPanel(open ? null : i)}
-                        className="w-full flex items-center justify-between py-3 px-6 text-left"
+                        className="w-full flex items-center justify-between py-3 px-6 text-left transition-colors hover:bg-[rgb(232,234,234)]"
                         aria-expanded={open}
                       >
-                        <span className="text-[15px] font-bold" style={{ color: DARK }}>{f.title}</span>
+                        <span className="text-[17px] font-bold" style={{ color: DARK }}>{f.title}</span>
                         <span
                           className="flex items-center justify-center rounded-full shrink-0"
-                          style={{ width: 28, height: 28, backgroundColor: "rgb(209, 212, 214)" }}
+                          style={{
+                            width: 28,
+                            height: 28,
+                            backgroundColor: open ? "rgb(209, 212, 214)" : "rgb(11, 30, 37)",
+                            color: open ? DARK : "#ffffff",
+                          }}
                         >
-                          <Chevron open={open} />
+                          <Chevron open={open} color={open ? DARK : "#ffffff"} />
                         </span>
                       </button>
                       {open && (
-                        <div className="pb-4 px-6 text-[14px] leading-relaxed" style={{ color: DARK }}>
+                        <div className="pb-4 px-6 text-[16px] leading-relaxed" style={{ color: DARK }}>
                           <p>{f.body}</p>
                           <a href="#" className="inline-block mt-3 underline hover:no-underline" style={{ color: DARK }}>
                             So schützt du dich

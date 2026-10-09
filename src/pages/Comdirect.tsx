@@ -28,13 +28,13 @@ const CMark = ({ size = 56, color = DARK }: { size?: number; color?: string }) =
   </svg>
 );
 
-const Chevron = ({ open }: { open: boolean }) => (
+const Chevron = ({ open, color = DARK }: { open: boolean; color?: string }) => (
   <svg
     width="20"
     height="20"
     viewBox="0 0 24 24"
     fill="none"
-    stroke={DARK}
+    stroke={color}
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"

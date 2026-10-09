@@ -389,8 +389,8 @@ const Comdirect = () => {
           {/* RIGHT: teaser + fraud */}
           <div className="space-y-6">
             <a href="#" className="block rounded-sm overflow-hidden flex items-center group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
-              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[130px] h-[110px] object-cover self-stretch" />
-              <div className="flex-1 px-6 pt-4 pb-3 flex flex-col justify-start">
+              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[162px] h-[138px] object-cover self-stretch" />
+              <div className="flex-1 px-6 pt-6 pb-5 flex flex-col justify-start">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>

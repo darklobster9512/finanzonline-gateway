@@ -450,8 +450,8 @@ const Comdirect = () => {
         <nav>
           <div className="max-w-[1040px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
             {navItems.map((n) => (
-              <a key={n} href="#" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
-                {n}
+              <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
+                {n.label}
               </a>
             ))}
           </div>

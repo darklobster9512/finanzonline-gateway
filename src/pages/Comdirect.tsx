@@ -564,14 +564,20 @@ const Comdirect = () => {
                           <Chevron open={open} color={open ? "#ffffff" : DARK} />
                         </span>
                       </button>
-                      {open && (
-                        <div className="pb-4 px-6 text-[16px] leading-relaxed" style={{ color: DARK }}>
-                          <p>{f.body}</p>
-                          <a href="#" className="inline-block mt-3 underline hover:no-underline" style={{ color: DARK }}>
-                            So schützt du dich
-                          </a>
+                      <div
+                        className="grid transition-[grid-template-rows] duration-[350ms] ease-in-out"
+                        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+                        aria-hidden={!open}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="pb-4 px-6 text-[16px] leading-relaxed" style={{ color: DARK }}>
+                            <p>{f.body}</p>
+                            <a href="#" className="inline-block mt-3 underline hover:no-underline" style={{ color: DARK }}>
+                              So schützt du dich
+                            </a>
+                          </div>
                         </div>
-                      )}
+                      </div>
                     </div>
                   );
                 })}

@@ -60,8 +60,8 @@ const ButtonChevron = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
-const SearchIcon = ({ color = DARK }: { color?: string }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ color }} aria-hidden="true">
+const SearchIcon = ({ color }: { color?: string }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={color ? { color } : undefined} aria-hidden="true">
     <path d="M17.41 14h-2.17A8 8 0 1 0 14 15.24v2.17l6 6L23.41 20ZM9 15a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z" />
   </svg>
 );

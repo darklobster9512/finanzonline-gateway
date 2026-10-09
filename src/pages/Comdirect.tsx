@@ -406,6 +406,10 @@ const Comdirect = () => {
           .cd-sbox:focus-within{border-color:#ffffff;box-shadow:0 0 0 2px ${DARK}, 0 0 0 4px #ffffff;}
           .cd-sbox:focus-within .cd-search::placeholder{color:#ffffff;}
           .cd-sbox:focus-within .cd-icon svg{color:#ffffff;}
+          .cd-headerlink{color:var(--cd-base);}
+          .cd-headerlink:hover{color:var(--cd-yellow);}
+          .cd-greybtn{background-color:rgb(219,221,223);}
+          .cd-greybtn:hover{background-color:rgb(199,201,203);}
           .cd-login-btn{transition:background-color .15s;}
           .cd-login-btn:hover{background-color:rgb(255,225,0);}
           .cd-anmelden-btn{transition:background-color .15s;}

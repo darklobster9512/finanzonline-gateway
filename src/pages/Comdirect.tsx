@@ -425,47 +425,141 @@ const Comdirect = () => {
           .dz-item[data-selected="true"]{background-color:#767676;color:#ffffff !important;}
           .dz-list:hover .dz-item[data-selected="true"]:not(:hover){background-color:transparent !important;color:#0B1E25 !important;}
         `}</style>
-        <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
-          {/* yellow logo block – left edge aligns with h1 (container px-6) */}
-          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
-            {/* leftward bleed: only as wide as the logo block itself */}
-            <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "100%", backgroundColor: YELLOW }} />
-            <WordmarkSVG color={DARK} height={22} />
+        {/* DESKTOP header */}
+        <div className="hidden lg:block">
+          <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
+            <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
+              <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "100%", backgroundColor: YELLOW }} />
+              <WordmarkSVG color={DARK} height={22} />
+            </a>
+            <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
+              <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
+              <a href="https://www.comdirect.de/business-partners/leistungsangebot.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
+              <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
+                <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
+                <span className="cd-icon shrink-0"><SearchIcon /></span>
+              </div>
+              <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
+                <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
+                <span className="cd-icon shrink-0"><SearchIcon /></span>
+              </div>
+              <a
+                href="https://www.comdirect.de/lp/wt/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
+                style={{ color: DARK }}
+              >
+                Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
+              </a>
+            </div>
+          </div>
+          <nav>
+            <div className="max-w-[1040px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
+              {navItems.map((n) => (
+                <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
+                  {n.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        </div>
+
+        {/* MOBILE header */}
+        <div className="lg:hidden flex items-center justify-between px-5 h-16" style={{ backgroundColor: DARK }}>
+          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" className="flex items-center" style={{ color: YELLOW }}>
+            <CMark size={44} color={YELLOW} />
           </a>
-          {/* right side */}
-          <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
-            <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
-            <a href="https://www.comdirect.de/business-partners/leistungsangebot.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
-            <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
-              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
-              <span className="cd-icon shrink-0"><SearchIcon /></span>
-            </div>
-            <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
-              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
-              <span className="cd-icon shrink-0"><SearchIcon /></span>
-            </div>
+          <div className="flex items-center gap-3">
             <a
               href="https://www.comdirect.de/lp/wt/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
-              style={{ color: DARK }}
+              className="cd-login-btn rounded-full px-5 h-9 flex items-center text-[14px] font-normal"
+              style={{ backgroundColor: YELLOW, color: DARK }}
             >
               Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
             </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Menü öffnen"
+              className="flex items-center justify-center w-10 h-10 text-white"
+            >
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="3" y1="7" x2="21" y2="7" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="17" x2="21" y2="17" />
+              </svg>
+            </button>
           </div>
         </div>
-        {/* main nav */}
-        <nav>
-          <div className="max-w-[1040px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
-            {navItems.map((n) => (
-              <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
-                {n.label}
-              </a>
+      </header>
+
+      {/* MOBILE full-screen menu overlay (slide-down) */}
+      <div
+        className="lg:hidden fixed inset-0 z-50"
+        style={{
+          backgroundColor: DARK,
+          transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
+          pointerEvents: menuOpen ? "auto" : "none",
+          overflowY: "auto",
+        }}
+        aria-hidden={!menuOpen}
+      >
+        <div className="flex items-center justify-between px-5 h-16">
+          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" style={{ color: YELLOW }}>
+            <CMark size={44} color={YELLOW} />
+          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.comdirect.de/lp/wt/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cd-login-btn rounded-full px-5 h-9 flex items-center text-[14px] font-normal"
+              style={{ backgroundColor: YELLOW, color: DARK }}
+            >
+              Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
+            </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Menü schließen"
+              className="flex items-center justify-center w-10 h-10 text-white"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="5" y1="5" x2="19" y2="19" />
+                <line x1="19" y1="5" x2="5" y2="19" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="px-5 pt-2 pb-10 space-y-3">
+          <div className="cd-sbox flex items-center rounded-full px-4 h-10 gap-2">
+            <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
+            <span className="cd-icon shrink-0"><SearchIcon /></span>
+          </div>
+          <div className="cd-sbox flex items-center rounded-full px-4 h-10 gap-2">
+            <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
+            <span className="cd-icon shrink-0"><SearchIcon /></span>
+          </div>
+          <div className="pt-4">
+            {navItems.map((n, idx) => (
+              <div key={n.label} className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+                <a href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[15px] font-normal">{n.label}</a>
+                {idx > 0 && (
+                  <button type="button" aria-label="Untermenü" className="text-white/80 text-[22px] leading-none px-2">+</button>
+                )}
+              </div>
             ))}
           </div>
-        </nav>
-      </header>
+          <div className="pt-6 space-y-3">
+            <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="block text-[14px] font-bold" style={{ color: HEADER_MUTED }}>Musterdepot</a>
+            <a href="https://www.comdirect.de/business-partners/leistungsangebot.html" target="_blank" rel="noopener noreferrer" className="block text-[14px] font-bold" style={{ color: HEADER_MUTED }}>B2B</a>
+          </div>
+        </div>
+      </div>
 
       {/* MAIN */}
       <main className="max-w-[1040px] mx-auto px-6 py-10">

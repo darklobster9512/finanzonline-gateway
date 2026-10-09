@@ -622,7 +622,9 @@ const Comdirect = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
             <div className="flex justify-start">
               <a
-                href="#"
+                href="https://kunde.comdirect.de/ngtx/online-widerruf-formular"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full px-4 h-8 text-[12px] font-semibold hover:bg-[#2f444c] transition-colors"
                 style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
               >

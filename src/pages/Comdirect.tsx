@@ -738,12 +738,12 @@ const Comdirect = () => {
                 Vertrag widerrufen <span className="ml-2 inline-flex"><ButtonChevron size={12} /></span>
               </a>
             </div>
-            <div className="md:col-span-2 flex justify-center">
+            <div className="md:col-span-2 flex justify-center order-3 lg:order-2">
               <p className="text-[13px] text-white text-center">
                 © comdirect – eine Marke der Commerzbank AG
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center order-4 lg:order-3">
               <SocialIcons />
             </div>
           </div>

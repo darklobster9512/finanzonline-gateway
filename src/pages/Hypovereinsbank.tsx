@@ -314,7 +314,7 @@ const Hypovereinsbank = () => {
                     className="mx-auto mb-5 w-14 h-14 flex items-center justify-center"
                     style={{ border: `2px solid ${TEAL}`, color: TEAL, borderRadius: 2 }}
                   >
-                    <img src={card.icon.url} alt={card.alt} width={28} height={28} className="block" />
+                    <img src={card.icon.url} alt={card.alt} style={{ width: 28, height: 28, objectFit: "contain" }} className="block" />
                   </div>
                   <h3 className="text-[18px] font-semibold mb-3" style={{ color: DARK }}>
                     {card.title}

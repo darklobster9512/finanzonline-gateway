@@ -406,7 +406,7 @@ const Comdirect = () => {
           <div className="space-y-6">
             <a href="#" className="block rounded-sm overflow-hidden flex items-center group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[162px] h-[173px] object-cover self-stretch" />
-              <div className="flex-1 px-6 pt-8 pb-7 flex flex-col justify-start">
+              <div className="flex-1 px-6 py-0 flex flex-col justify-center">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>
@@ -414,7 +414,7 @@ const Comdirect = () => {
                   Auch kleine Schritte summieren sich zu etwas Großem.
                 </p>
               </div>
-              <div className="self-end p-2 flex items-center" style={{ color: DARK }}><ButtonChevron size={24} /></div>
+              <div className="self-center pr-4 flex items-center" style={{ color: DARK }}><ButtonChevron size={24} /></div>
             </a>
 
             <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>

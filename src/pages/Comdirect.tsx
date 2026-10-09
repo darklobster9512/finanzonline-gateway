@@ -492,7 +492,7 @@ const Comdirect = () => {
         </div>
 
         {/* MOBILE header (nicht sticky) */}
-        <div className="lg:hidden sticky top-0 z-50 relative flex items-center justify-between px-5 py-3 h-[88px]" style={{ backgroundColor: DARK }}>
+        <div className={`lg:hidden ${menuOpen ? "sticky top-0 z-50" : "relative"} flex items-center justify-between px-5 py-3 h-[88px]`} style={{ backgroundColor: DARK }}>
           <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" className="flex items-center" style={{ color: YELLOW }}>
             <CMark size={54} color={YELLOW} />
           </a>

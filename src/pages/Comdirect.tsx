@@ -500,7 +500,7 @@ const Comdirect = () => {
         </div>
 
         {/* MOBILE header (nicht sticky) */}
-        <div className={`lg:hidden ${menuOpen ? "sticky top-0 z-50" : "relative"} flex items-center justify-between px-5 py-3 h-[88px]`} style={{ backgroundColor: DARK }}>
+        <div className={`lg:hidden ${menuOpen ? "sticky top-0 z-50" : "relative"} flex items-center justify-between px-[18px] py-3 h-[88px]`} style={{ backgroundColor: DARK }}>
           <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" className="flex items-center" style={{ color: YELLOW }}>
             <CMark size={54} color={YELLOW} />
           </a>
@@ -551,7 +551,7 @@ const Comdirect = () => {
         }}
         aria-hidden={!menuOpen}
       >
-        <div className="px-5 pt-4 pb-10 space-y-3">
+        <div className="px-[18px] pt-4 pb-10 space-y-3">
           <div className="cd-sbox flex items-center rounded-full px-4 h-10 gap-2">
             <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
             <span className="cd-icon shrink-0"><SearchIcon /></span>
@@ -583,7 +583,7 @@ const Comdirect = () => {
       </div>
 
       {/* MAIN */}
-      <main className="max-w-[1040px] mx-auto px-5 lg:px-6 pt-4 pb-10 lg:py-10">
+      <main className="max-w-[1040px] mx-auto px-[18px] lg:px-6 pt-4 pb-10 lg:py-10">
         <h1 className="text-[26px] lg:text-[28px] leading-tight font-light mb-5 lg:mb-8" style={{ color: DARK }}>
           comdirect Login
         </h1>
@@ -718,7 +718,7 @@ const Comdirect = () => {
         <div className="hidden lg:block absolute right-0 top-[60px] pointer-events-none">
           <FooterShapeRight />
         </div>
-        <div className="relative z-10 max-w-[1040px] mx-auto px-5 lg:px-6 pt-10 lg:pt-16 pb-10">
+        <div className="relative z-10 max-w-[1040px] mx-auto px-[18px] lg:px-6 pt-10 lg:pt-16 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3 lg:gap-8 mb-6">
             {/* Spalte 1: nur Logo */}
             <div className="flex flex-col">

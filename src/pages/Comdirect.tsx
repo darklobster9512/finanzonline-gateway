@@ -515,7 +515,7 @@ const Comdirect = () => {
 
           {/* RIGHT: teaser + fraud */}
           <div className="space-y-6">
-            <a href="#" className="relative block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+            <a href="https://kunde.comdirect.de/wtr/ad?rd=%2Fcms%2Fsparen-neu-gedacht.html%3Fsc_cid%3D7249%26cid%3Dcomdirect_web%3Ateaser%3Awsp-hub%3A_%3Apts_sigmalang_p2_t4-loslegen%3Abrokerage%23loslegen&ad=000072499900oh5TS0019900004020" target="_blank" rel="noopener noreferrer" className="relative block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[162px] h-[173px] object-cover" />
               <div className="flex-1 pl-6 pr-12 py-0 flex flex-col justify-center">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>

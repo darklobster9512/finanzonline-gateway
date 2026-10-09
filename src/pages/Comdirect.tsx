@@ -605,7 +605,7 @@ const Comdirect = () => {
                         href={item.href}
                         target={item.external ? "_blank" : undefined}
                         rel={item.external ? "noopener noreferrer" : undefined}
-                        className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-white/10"
+                        className="rounded-sm px-1 -mx-1 transition-colors hover:bg-white/10"
                         style={{ color: "#e5e7e8", textUnderlineOffset: "3px" }}
                       >
                         {item.label}

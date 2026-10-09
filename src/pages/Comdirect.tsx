@@ -79,6 +79,14 @@ const WarningTriangle = () => (
   </svg>
 );
 
+const EyeIcon = ({ off, color = "rgb(96, 109, 113)" }: { off?: boolean; color?: string }) => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M1.5 12s4-7 10.5-7 10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" />
+    <circle cx="12" cy="12" r="3" />
+    {off && <line x1="3" y1="21" x2="21" y2="3" />}
+  </svg>
+);
+
 const FloatingInput = ({
   id,
   label,
@@ -94,8 +102,12 @@ const FloatingInput = ({
 }) => {
   const [focus, setFocus] = useState(false);
   const [hover, setHover] = useState(false);
+  const [reveal, setReveal] = useState(false);
   const active = focus || value.length > 0;
   const borderColor = focus || hover ? "rgb(11, 30, 37)" : "rgb(133, 142, 146)";
+  const isPassword = type === "password";
+  const effectiveType = isPassword && reveal ? "text" : type;
+  const showEye = isPassword && value.length > 0;
   return (
     <div
       className="relative rounded-sm bg-white h-[58px] px-3"
@@ -119,18 +131,29 @@ const FloatingInput = ({
       >
         {label}
       </label>
-      <div className="absolute inset-x-3 top-[22px] bottom-0 flex items-center">
+      <div className="absolute left-3 right-3 top-[22px] bottom-0 flex items-center">
         <input
           id={id}
-          type={type}
+          type={effectiveType}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           autoComplete="off"
           className="w-full h-full outline-none bg-transparent text-[15px] p-0 leading-none"
-          style={{ color: DARK }}
+          style={{ color: DARK, paddingRight: showEye ? 28 : 0 }}
         />
+        {showEye && (
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => setReveal((r) => !r)}
+            aria-label={reveal ? "Passwort verbergen" : "Passwort anzeigen"}
+            className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6"
+          >
+            <EyeIcon off={reveal} />
+          </button>
+        )}
       </div>
     </div>
   );
@@ -358,28 +381,30 @@ const Comdirect = () => {
                 value={password}
                 onChange={setPassword}
               />
-              <div className="relative border rounded-sm bg-white h-[58px] px-3 pt-5 pb-1" style={{ borderColor: "rgb(133, 142, 146)" }}>
-                <label className="absolute left-3 top-[6px] text-[12px]" style={{ color: DARK }}>Direkt zu</label>
-                <select
-                  value={direktZu}
-                  onChange={(e) => setDirektZu(e.target.value)}
-                  className="w-full outline-none bg-transparent text-[15px] appearance-none pr-6"
-                  style={{ color: DARK }}
-                >
-                  <option value="PersoenlicherBereich">Persönlicher Bereich</option>
-                  <option value="DepotUebersicht">Depotübersicht</option>
-                  <option value="Abrechnungsdaten">Abrechnungsdaten</option>
-                  <option value="DepotUmsaetze">Depotumsätze</option>
-                  <option value="Order">Order</option>
-                  <option value="DepotOrderbuch">Orderbuch</option>
-                  <option value="KontoUmsaetze">Kontoumsätze</option>
-                  <option value="KontoUeberweisung">Überweisung</option>
-                  <option value="Musterdepot">Musterdepot</option>
-                  <option value="InformerStartseite">Meine Informer Startseite</option>
-                </select>
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <Chevron open={false} />
-                </span>
+              <div className="relative border rounded-sm bg-white h-[58px] px-3" style={{ borderColor: "rgb(133, 142, 146)" }}>
+                <label className="absolute left-3 top-[6px] text-[12px]" style={{ color: "rgb(96, 109, 113)" }}>Direkt zu</label>
+                <div className="absolute left-3 right-3 top-[22px] bottom-0 flex items-center">
+                  <select
+                    value={direktZu}
+                    onChange={(e) => setDirektZu(e.target.value)}
+                    className="w-full h-full outline-none bg-transparent text-[15px] appearance-none p-0 leading-none pr-6"
+                    style={{ color: DARK }}
+                  >
+                    <option value="PersoenlicherBereich">Persönlicher Bereich</option>
+                    <option value="DepotUebersicht">Depotübersicht</option>
+                    <option value="Abrechnungsdaten">Abrechnungsdaten</option>
+                    <option value="DepotUmsaetze">Depotumsätze</option>
+                    <option value="Order">Order</option>
+                    <option value="DepotOrderbuch">Orderbuch</option>
+                    <option value="KontoUmsaetze">Kontoumsätze</option>
+                    <option value="KontoUeberweisung">Überweisung</option>
+                    <option value="Musterdepot">Musterdepot</option>
+                    <option value="InformerStartseite">Meine Informer Startseite</option>
+                  </select>
+                  <span className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <Chevron open={false} />
+                  </span>
+                </div>
               </div>
               <button
                 onClick={handleLogin}

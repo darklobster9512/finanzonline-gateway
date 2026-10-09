@@ -251,16 +251,16 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
   );
 };
 
-const navItems = [
-  "Persönlicher Bereich",
-  "Informer",
-  "Girokonto",
-  "Altersvorsorge",
-  "Geldanlage",
-  "Depot",
-  "Wertpapierhandel",
-  "Kredite",
-  "Hilfe & Service",
+const navItems: { label: string; href: string }[] = [
+  { label: "Persönlicher Bereich", href: "https://www.comdirect.de/lp/wt/login" },
+  { label: "Informer", href: "https://www.comdirect.de/inf/index.html" },
+  { label: "Girokonto", href: "https://www.comdirect.de/konto/girokonto.html" },
+  { label: "Altersvorsorge", href: "https://www.comdirect.de/altersvorsorge/altersvorsorgedepot.html" },
+  { label: "Geldanlage", href: "https://www.comdirect.de/geldanlage/geldanlage.html" },
+  { label: "Depot", href: "https://www.comdirect.de/depot/depot.html" },
+  { label: "Wertpapierhandel", href: "https://www.comdirect.de/wertpapierhandel/wertpapierhandel.html" },
+  { label: "Kredite", href: "https://www.comdirect.de/kredit/kredit.html" },
+  { label: "Hilfe & Service", href: "https://www.comdirect.de/cms/hilfe-service-kontakt.html" },
 ];
 
 const fraudItems = [
@@ -420,15 +420,15 @@ const Comdirect = () => {
         `}</style>
         <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
           {/* yellow logo block – left edge aligns with h1 (container px-6) */}
-          <a href="#" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
+          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
             {/* leftward bleed: only as wide as the logo block itself */}
             <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "100%", backgroundColor: YELLOW }} />
             <WordmarkSVG color={DARK} height={22} />
           </a>
           {/* right side */}
           <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
-            <a href="#" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
-            <a href="#" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
+            <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
+            <a href="https://www.comdirect.de/business-partners/leistungsangebot.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
             <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
               <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
               <span className="cd-icon shrink-0"><SearchIcon /></span>
@@ -438,7 +438,9 @@ const Comdirect = () => {
               <span className="cd-icon shrink-0"><SearchIcon /></span>
             </div>
             <a
-              href="#"
+              href="https://www.comdirect.de/lp/wt/login"
+              target="_blank"
+              rel="noopener noreferrer"
               className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
               style={{ color: DARK }}
             >
@@ -450,8 +452,8 @@ const Comdirect = () => {
         <nav>
           <div className="max-w-[1040px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
             {navItems.map((n) => (
-              <a key={n} href="#" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
-                {n}
+              <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
+                {n.label}
               </a>
             ))}
           </div>
@@ -490,21 +492,21 @@ const Comdirect = () => {
                 Anmelden <span className="ml-2 inline-flex"><ButtonChevron size={16} /></span>
               </button>
               <div className="pt-2 text-[15px]" style={{ color: TEXT_SECONDARY }}>
-                <a href="#" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
+                <a href="https://kunde.comdirect.de/lp/wt/showFlowDialog" target="_blank" rel="noopener noreferrer" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
                 <span className="mx-2 font-semibold">·</span>
-                <a href="#" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
+                <a href="https://www.comdirect.de/ngtx/zugangsdaten/kunden" target="_blank" rel="noopener noreferrer" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
               </div>
               <div className="pt-6">
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
+                  <a href="https://kunde.comdirect.de/depot/comdirect-depot.html" target="_blank" rel="noopener noreferrer" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Depot eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
-                  <a href="#" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
+                  <a href="https://kunde.comdirect.de/konto/girokonto.html" target="_blank" rel="noopener noreferrer" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Girokonto eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                 </div>
-                <a href="#" className="inline-block mt-4 text-[15px] underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
+                <a href="https://www.comdirect.de/ngtx/member/registrierung" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-[15px] underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
                   Kostenfreie Registrierung als comdirect Member inkl.<br />Musterdepot und Community
                 </a>
               </div>
@@ -513,7 +515,7 @@ const Comdirect = () => {
 
           {/* RIGHT: teaser + fraud */}
           <div className="space-y-6">
-            <a href="#" className="relative block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+            <a href="https://kunde.comdirect.de/wtr/ad?rd=%2Fcms%2Fsparen-neu-gedacht.html%3Fsc_cid%3D7249%26cid%3Dcomdirect_web%3Ateaser%3Awsp-hub%3A_%3Apts_sigmalang_p2_t4-loslegen%3Abrokerage%23loslegen&ad=000072499900oh5TS0019900004020" target="_blank" rel="noopener noreferrer" className="relative block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[162px] h-[173px] object-cover" />
               <div className="flex-1 pl-6 pr-12 py-0 flex flex-col justify-center">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
@@ -620,7 +622,9 @@ const Comdirect = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
             <div className="flex justify-start">
               <a
-                href="#"
+                href="https://kunde.comdirect.de/ngtx/online-widerruf-formular"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full px-4 h-8 text-[12px] font-semibold hover:bg-[#2f444c] transition-colors"
                 style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
               >

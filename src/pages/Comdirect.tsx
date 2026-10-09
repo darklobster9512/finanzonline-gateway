@@ -311,7 +311,7 @@ const Comdirect = () => {
               className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
               style={{ color: DARK }}
             >
-              Login <span className="ml-2 text-[26px] leading-none">›</span>
+              Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
             </a>
           </div>
         </div>

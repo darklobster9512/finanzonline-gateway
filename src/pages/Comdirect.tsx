@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import teaserAsset from "@/assets/comdirect-teaser.jpg.asset.json";
+import teaserMobileAsset from "@/assets/comdirect-teaser-mobile.jpg.asset.json";
 
 const DARK = "#0B1E25";
 const YELLOW = "rgb(255, 245, 0)";

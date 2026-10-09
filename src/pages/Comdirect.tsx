@@ -67,14 +67,15 @@ const SearchIcon = ({ color }: { color?: string }) => (
 );
 
 const WarningTriangle = () => (
-  <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true">
+  <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true" fill="none">
     <path
-      d="M10.9 3.3 1.4 19.5a1.3 1.3 0 0 0 1.1 1.9h19a1.3 1.3 0 0 0 1.1-1.9L13.1 3.3a1.3 1.3 0 0 0-2.2 0Zm1.1 3.2L19.5 19h-15L12 6.5Z"
-      fill="rgb(205, 20, 35)"
+      d="M12 4.2 2.5 20.4h19L12 4.2Z"
+      stroke="rgb(205, 20, 35)"
+      strokeWidth="1.3"
       strokeLinejoin="round"
     />
-    <rect x="11" y="10" width="2" height="5" rx="0.5" fill="rgb(205, 20, 35)" />
-    <circle cx="12" cy="17" r="1" fill="rgb(205, 20, 35)" />
+    <rect x="11.3" y="10" width="1.4" height="5" rx="0.3" fill="rgb(205, 20, 35)" />
+    <circle cx="12" cy="17.2" r="0.8" fill="rgb(205, 20, 35)" />
   </svg>
 );
 
@@ -369,12 +370,12 @@ const Comdirect = () => {
               <button
                 onClick={handleLogin}
                 disabled={submitting}
-                className="cd-anmelden-btn rounded-full px-8 h-12 flex items-center text-[18px] font-semibold"
+                className="cd-anmelden-btn rounded-full px-8 h-12 flex items-center text-[17px] font-semibold"
                 style={{ color: "#0B1E25" }}
               >
                 Anmelden <span className="ml-2 inline-flex"><ButtonChevron size={16} /></span>
               </button>
-              <div className="pt-2 text-[16px]" style={{ color: TEXT_SECONDARY }}>
+              <div className="pt-2 text-[15px]" style={{ color: TEXT_SECONDARY }}>
                 <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
                 <span className="mx-2 font-semibold">·</span>
                 <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
@@ -389,7 +390,7 @@ const Comdirect = () => {
                     Girokonto eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                 </div>
-                <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
+                <a href="#" className="inline-block mt-4 text-[15px] underline hover:no-underline" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
                   Kostenfreie Registrierung als comdirect Member inkl.<br />Musterdepot und Community
                 </a>
               </div>
@@ -412,14 +413,14 @@ const Comdirect = () => {
             </a>
 
 
-            <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+            <div className="pt-4 px-6 pb-4 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <div className="flex items-start justify-between gap-4 mb-3">
-                <h3 className="text-[22px] font-normal leading-snug" style={{ color: DARK }}>
+                <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Warnung:<br />aktuelle Betrugsfälle!
                 </h3>
                 <WarningTriangle />
               </div>
-              <p className="text-[16px] mb-4" style={{ color: DARK }}>
+              <p className="text-[15px] mb-4" style={{ color: DARK }}>
                 comdirect Kundinnen und Kunden sind aktuell von verschiedenen Betrugsfällen betroffen. Wir sagen dir, wie du dich davor schützen kannst.
               </p>
               <div className="-mx-6 border-t-2 border-white">
@@ -433,7 +434,7 @@ const Comdirect = () => {
                         style={{ transition: "background-color 450ms ease, color 450ms ease" }}
                         aria-expanded={open}
                       >
-                        <span className="text-[17px] font-bold" style={{ color: DARK }}>{f.title}</span>
+                        <span className="text-[16px] font-bold" style={{ color: DARK }}>{f.title}</span>
                         <span
                           className="flex items-center justify-center rounded-full shrink-0"
                           style={{

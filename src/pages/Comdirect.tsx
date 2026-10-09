@@ -553,14 +553,19 @@ const Comdirect = () => {
             <span className="cd-icon shrink-0"><SearchIcon /></span>
           </div>
           <div className="pt-4">
-            {navItems.map((n, idx) => (
-              <div key={n.label} className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-                <a href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[15px] font-normal">{n.label}</a>
-                {idx > 0 && (
-                  <button type="button" aria-label="Untermenü" className="text-white/80 text-[22px] leading-none px-2">+</button>
-                )}
-              </div>
-            ))}
+            <div className="relative overflow-hidden">
+              <div aria-hidden className="absolute top-0 bottom-0 right-11 w-px" style={{ backgroundColor: "rgba(255,255,255,0.12)" }} />
+              {navItems.map((n, idx) => (
+                <div key={n.label} className="flex items-center">
+                  <a href={n.href} target="_blank" rel="noopener noreferrer" className="flex-1 min-w-0 py-3 text-white text-[15px] font-normal">{n.label}</a>
+                  <div className="w-11 shrink-0 h-11 flex items-center justify-center">
+                    {idx > 0 && (
+                      <button type="button" aria-label="Untermenü" className="w-full h-full flex items-center justify-center text-white text-[26px] leading-none">+</button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="pt-6 space-y-3">
             <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="block text-[14px] font-bold" style={{ color: HEADER_MUTED }}>Musterdepot</a>

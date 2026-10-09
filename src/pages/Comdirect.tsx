@@ -535,9 +535,9 @@ const Comdirect = () => {
         className="lg:hidden fixed left-0 right-0 bottom-0 top-[88px] z-40"
         style={{
           backgroundColor: DARK,
-
           transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
-          transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: `transform 320ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear ${menuOpen ? "0s" : "320ms"}`,
+          visibility: menuOpen ? "visible" : "hidden",
           pointerEvents: menuOpen ? "auto" : "none",
           overflow: "hidden",
         }}

@@ -221,13 +221,13 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
       {open && (
         <div
           className="dz-list absolute left-0 right-0 top-full bg-white z-20"
-          style={{ border: "1px solid rgb(96, 109, 113)" }}
+          style={{ border: "2px solid rgb(11, 30, 37)", borderTop: "none", marginTop: 0 }}
         >
           {DIREKT_ZU_ITEMS.map((item, idx) => {
             if ("separator" in item) {
               return (
-                <div key={`sep-${idx}`} style={{ padding: "6px 12px" }}>
-                  <div style={{ width: 120, borderTop: "1px dashed rgb(96, 109, 113)" }} />
+                <div key={`sep-${idx}`} style={{ padding: "4px 12px" }}>
+                  <div style={{ width: 70, borderTop: "2px dashed rgb(96, 109, 113)" }} />
                 </div>
               );
             }
@@ -237,7 +237,7 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
                 key={item.value}
                 type="button"
                 onClick={() => { onChange(item.value); setOpen(false); }}
-                className="dz-item w-full text-left px-3 py-2.5 text-[15px] block"
+                className="dz-item w-full text-left px-3 py-1.5 text-[15px] block"
                 data-selected={isSelected ? "true" : undefined}
                 style={{ color: DARK }}
               >

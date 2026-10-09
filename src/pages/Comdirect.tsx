@@ -150,16 +150,6 @@ const fraudItems = [
       "Du wirst per E-Mail oder SMS aufgefordert, Links anzuklicken, Dateianhänge zu öffnen oder deine Aktivierungsgrafik für das photoTAN-Verfahren weiterzugeben – prüfe E-Mails und SMS mit Sorgfalt.",
   },
   {
-    title: "Betrug per Brief: gefälschte QR-Codes",
-    body:
-      "Du sollst einen QR-Code scannen, um deine Bankdaten oder dein TAN-Verfahren zu aktualisieren. Dieser QR-Code führt auf eine Phishing-Seite.",
-  },
-  {
-    title: "Betrügerische Anrufe",
-    body:
-      "Angebliche Mitarbeitende von Banken, der BaFin oder von Ermittlungsbehörden wie Europol/Interpol drängen dich mit erfundenen Geschichten dazu, vermeintliche Transaktionen oder Stornierungen freizugeben. Lass dich nicht unter Druck setzen.",
-  },
-  {
     title: "Betrug in Anzeigenportalen",
     body:
       "Unbekannte Bezahlmethode? Das ist ein Trick, mit dem Kriminelle aktuell versuchen, an deine Kartendaten zu kommen.",

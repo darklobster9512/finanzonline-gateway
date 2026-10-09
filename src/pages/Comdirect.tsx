@@ -159,6 +159,91 @@ const FloatingInput = ({
   );
 };
 
+type DirektZuItem = { value: string; label: string } | { separator: true };
+const DIREKT_ZU_ITEMS: DirektZuItem[] = [
+  { value: "PersoenlicherBereich", label: "Persönlicher Bereich" },
+  { value: "DepotUebersicht", label: "Depotübersicht" },
+  { value: "Abrechnungsdaten", label: "Abrechnungsdaten" },
+  { value: "DepotUmsaetze", label: "Depotumsätze" },
+  { value: "Order", label: "Order" },
+  { value: "DepotOrderbuch", label: "Orderbuch" },
+  { value: "KontoUmsaetze", label: "Kontoumsätze" },
+  { value: "KontoUeberweisung", label: "Überweisung" },
+  { separator: true },
+  { value: "Musterdepot", label: "Musterdepot" },
+  { value: "InformerStartseite", label: "Meine Informer Startseite" },
+];
+
+const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: string) => void }) => {
+  const [open, setOpen] = useState(false);
+  const [hover, setHover] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const selected = DIREKT_ZU_ITEMS.find((i): i is { value: string; label: string } => "value" in i && i.value === value);
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+  const borderColor = open || hover ? "rgb(11, 30, 37)" : "rgb(133, 142, 146)";
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        className="relative w-full rounded-sm bg-white h-[58px] px-3 text-left"
+        style={{
+          border: `1px solid ${borderColor}`,
+          boxShadow: open ? "0 0 0 1px #fff, 0 0 0 2px rgb(11, 30, 37)" : "none",
+          transition: "box-shadow 150ms ease, border-color 150ms ease",
+        }}
+      >
+        <span className="absolute left-3 top-[6px] text-[12px]" style={{ color: "rgb(96, 109, 113)" }}>Direkt zu</span>
+        <span className="absolute left-3 right-10 top-[22px] bottom-0 flex items-center text-[15px] truncate" style={{ color: DARK }}>
+          {selected?.label ?? ""}
+        </span>
+        <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          <Chevron open={open} />
+        </span>
+      </button>
+      {open && (
+        <div
+          className="absolute left-0 right-0 top-full mt-1 bg-white z-20"
+          style={{ border: "1px solid rgb(133, 142, 146)" }}
+        >
+          {DIREKT_ZU_ITEMS.map((item, idx) => {
+            if ("separator" in item) {
+              return <div key={`sep-${idx}`} className="mx-3 border-t border-dashed" style={{ borderColor: "rgb(133, 142, 146)" }} />;
+            }
+            const isSelected = item.value === value;
+            return (
+              <button
+                key={item.value}
+                type="button"
+                onClick={() => { onChange(item.value); setOpen(false); }}
+                className="dz-item w-full text-left px-3 py-2 text-[15px] block"
+                data-selected={isSelected ? "true" : undefined}
+                style={{ color: DARK }}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const navItems = [
   "Persönlicher Bereich",
   "Informer",

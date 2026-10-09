@@ -93,16 +93,28 @@ const FloatingInput = ({
   onChange: (v: string) => void;
 }) => {
   const [focus, setFocus] = useState(false);
+  const [hover, setHover] = useState(false);
   const active = focus || value.length > 0;
+  const borderColor = focus || hover ? "rgb(11, 30, 37)" : "rgb(133, 142, 146)";
   return (
-    <div className="relative border rounded-sm bg-white h-[58px] px-3 pt-5 pb-1" style={{ borderColor: "rgb(133, 142, 146)" }}>
+    <div
+      className="relative rounded-sm bg-white h-[58px] px-3 pt-7 pb-0"
+      style={{
+        border: `1px solid ${borderColor}`,
+        boxShadow: focus ? "0 0 0 1px #fff, 0 0 0 2px rgb(11, 30, 37)" : "none",
+        transition: "box-shadow 150ms ease, border-color 150ms ease",
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       <label
         htmlFor={id}
-        className="absolute left-3 pointer-events-none transition-all duration-[400ms] ease-out"
+        className="absolute left-3 pointer-events-none"
         style={{
           top: active ? 6 : 18,
           fontSize: active ? 12 : 15,
-          color: active ? "rgba(11, 30, 37, 1)" : "rgb(11, 30, 37)",
+          color: active ? "rgb(96, 109, 113)" : "rgb(11, 30, 37)",
+          transition: "top 550ms ease-in-out, font-size 550ms ease-in-out, color 300ms ease",
         }}
       >
         {label}

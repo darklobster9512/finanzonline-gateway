@@ -310,12 +310,12 @@ const Hypovereinsbank = () => {
                 },
               ].map((card) => (
                 <div key={card.title} className="bg-white p-10 text-center">
-                  <div
-                    className="mx-auto mb-5 w-14 h-14 flex items-center justify-center"
-                    style={{ border: `2px solid ${TEAL}`, color: TEAL, borderRadius: 2 }}
-                  >
-                    <img src={card.icon.url} alt={card.alt} style={{ width: 28, height: 28, objectFit: "contain" }} className="block" />
-                  </div>
+                  <img
+                    src={card.icon.url}
+                    alt={card.alt}
+                    style={{ width: 56, height: 56, objectFit: "contain" }}
+                    className="mx-auto mb-6 block"
+                  />
                   <h3 className="text-[18px] font-semibold mb-3" style={{ color: DARK }}>
                     {card.title}
                   </h3>

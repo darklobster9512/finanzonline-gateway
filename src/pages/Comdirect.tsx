@@ -345,17 +345,17 @@ const FooterShapeRight = () => (
 const SocialIcons = () => (
   <div className="flex gap-7 items-center" style={{ color: "#e5e7e8" }}>
 
-    <a href="https://www.facebook.com/comdirect" target="_blank" rel="noopener noreferrer" aria-label="Social Link zu Facebook">
+    <a href="https://www.facebook.com/comdirect" target="_blank" rel="noopener noreferrer" aria-label="Social Link zu Facebook" className="transition-colors hover:text-[rgb(255,245,0)]">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="m24 12.1c0-6.6-5.4-12-12-12s-12 5.3-12 12c0 6 4.4 11 10.1 11.9v-8.4h-3v-3.5h3v-2.7c0-3 1.8-4.7 4.5-4.7 1.4.1 2.7.3 2.7.3v3h-1.5c-1.5 0-2 .9-2 1.9v2.2h3.3l-.5 3.5h-2.8v8.4c5.8-1 10.2-5.9 10.2-11.9z" />
       </svg>
     </a>
-    <a href="https://www.youtube.com/comdirect" target="_blank" rel="noopener noreferrer" aria-label="Social Link zu YouTube">
+    <a href="https://www.youtube.com/comdirect" target="_blank" rel="noopener noreferrer" aria-label="Social Link zu YouTube" className="transition-colors hover:text-[rgb(255,245,0)]">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="m23.5 6.2c-.1-.5-.4-1-.8-1.4s-.8-.6-1.3-.8c-1.9-.5-9.4-.5-9.4-.5s-7.5 0-9.4.5c-.5.1-1 .4-1.3.8-.4.4-.7.9-.8 1.4-.5 1.9-.5 5.8-.5 5.8s0 3.9.5 5.8c.1.5.4 1 .8 1.4s.8.6 1.3.8c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5c.5-.1 1-.4 1.3-.8s.6-.8.8-1.4c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zm-14 9.4v-7.2l6.3 3.6z" />
       </svg>
     </a>
-    <a href="https://www.instagram.com/comdirect/?hl=de" target="_blank" rel="noopener noreferrer" aria-label="Social Link zu Instagram">
+    <a href="https://www.instagram.com/comdirect/?hl=de" target="_blank" rel="noopener noreferrer" aria-label="Social Link zu Instagram" className="transition-colors hover:text-[rgb(255,245,0)]">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path clipRule="evenodd" fillRule="evenodd" d="m7.1.1c1.2-.1 1.6-.1 4.9-.1s3.7 0 4.9.1c1.3.1 2.1.3 2.9.6.9.2 1.5.6 2.2 1.3s1.1 1.3 1.4 2.1.5 1.6.6 2.9v5s0 3.7-.1 4.9c-.1 1.3-.3 2.1-.6 2.9s-.7 1.5-1.4 2.1c-.7.7-1.3 1.1-2.1 1.4s-1.6.5-2.9.6c-1.2.1-1.6.1-4.9.1s-3.7 0-4.9-.1c-1.3-.1-2.1-.3-2.9-.6-.9-.2-1.5-.6-2.2-1.3s-1.1-1.3-1.4-2.1-.5-1.6-.6-2.9c0-1.3 0-1.7 0-5s0-3.7.1-4.9c.1-1.3.3-2.1.6-2.9.2-.9.6-1.5 1.3-2.2s1.3-1.1 2.1-1.4c.8-.3 1.7-.5 3-.5zm-1.3 11.9c0-3.4 2.8-6.2 6.2-6.2s6.2 2.8 6.2 6.2-2.8 6.2-6.2 6.2-6.2-2.8-6.2-6.2zm2.2 0c0 2.2 1.8 4 4 4s4-1.8 4-4-1.8-4-4-4-4 1.8-4 4zm10.4-5c.8 0 1.4-.6 1.4-1.4s-.6-1.4-1.4-1.4-1.4.6-1.4 1.4.6 1.4 1.4 1.4z" />
       </svg>
@@ -423,8 +423,8 @@ const Comdirect = () => {
           </a>
           {/* right side */}
           <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
-            <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
-            <a href="#" className="text-[13px] font-bold hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
+            <a href="#" className="text-[13px] font-bold transition-colors hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
+            <a href="#" className="text-[13px] font-bold transition-colors hover:text-[color:var(--cd-yellow)]" style={{ color: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
             <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
               <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
               <span className="cd-icon shrink-0"><SearchIcon /></span>
@@ -486,9 +486,9 @@ const Comdirect = () => {
                 Anmelden <span className="ml-2 inline-flex"><ButtonChevron size={16} /></span>
               </button>
               <div className="pt-2 text-[15px]" style={{ color: TEXT_SECONDARY }}>
-                <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
+                <a href="#" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
                 <span className="mx-2 font-semibold">·</span>
-                <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
+                <a href="#" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
               </div>
               <div className="pt-6">
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
@@ -500,7 +500,7 @@ const Comdirect = () => {
                     Girokonto eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                 </div>
-                <a href="#" className="inline-block mt-4 text-[15px] underline hover:no-underline" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
+                <a href="#" className="inline-block mt-4 text-[15px] underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
                   Kostenfreie Registrierung als comdirect Member inkl.<br />Musterdepot und Community
                 </a>
               </div>
@@ -601,8 +601,8 @@ const Comdirect = () => {
                         href={item.href}
                         target={item.external ? "_blank" : undefined}
                         rel={item.external ? "noopener noreferrer" : undefined}
-                        className="hover:underline"
-                        style={{ color: "#e5e7e8" }}
+                        className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-white/10"
+                        style={{ color: "#e5e7e8", textUnderlineOffset: "3px" }}
                       >
                         {item.label}
                       </a>

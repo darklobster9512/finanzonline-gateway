@@ -28,13 +28,13 @@ const CMark = ({ size = 56, color = DARK }: { size?: number; color?: string }) =
   </svg>
 );
 
-const Chevron = ({ open }: { open: boolean }) => (
+const Chevron = ({ open, color = DARK }: { open: boolean; color?: string }) => (
   <svg
     width="20"
     height="20"
     viewBox="0 0 24 24"
     fill="none"
-    stroke={DARK}
+    stroke={color}
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -67,9 +67,13 @@ const SearchIcon = ({ color = DARK }: { color?: string }) => (
 );
 
 const WarningTriangle = () => (
-  <svg width="80" height="80" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M12 2 1 21h22L12 2Zm0 4.5L19.5 19h-15L12 6.5Z" fill="#DE0000" />
-    <rect x="11" y="10" width="2" height="5" fill="#DE0000" />
+  <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M10.9 3.3 1.4 19.5a1.3 1.3 0 0 0 1.1 1.9h19a1.3 1.3 0 0 0 1.1-1.9L13.1 3.3a1.3 1.3 0 0 0-2.2 0Zm1.1 3.2L19.5 19h-15L12 6.5Z"
+      fill="#DE0000"
+      strokeLinejoin="round"
+    />
+    <rect x="11" y="10" width="2" height="5" rx="0.5" fill="#DE0000" />
     <circle cx="12" cy="17" r="1" fill="#DE0000" />
   </svg>
 );
@@ -435,19 +439,24 @@ const Comdirect = () => {
                     <div key={f.title} className={i > 0 ? "border-t-2 border-white" : ""}>
                       <button
                         onClick={() => setOpenPanel(open ? null : i)}
-                        className="w-full flex items-center justify-between py-3 px-6 text-left"
+                        className="w-full flex items-center justify-between py-3 px-6 text-left transition-colors hover:bg-[rgb(232,234,234)]"
                         aria-expanded={open}
                       >
-                        <span className="text-[15px] font-bold" style={{ color: DARK }}>{f.title}</span>
+                        <span className="text-[17px] font-bold" style={{ color: DARK }}>{f.title}</span>
                         <span
                           className="flex items-center justify-center rounded-full shrink-0"
-                          style={{ width: 28, height: 28, backgroundColor: "rgb(209, 212, 214)" }}
+                          style={{
+                            width: 28,
+                            height: 28,
+                            backgroundColor: open ? "rgb(209, 212, 214)" : "rgb(11, 30, 37)",
+                            color: open ? DARK : "#ffffff",
+                          }}
                         >
-                          <Chevron open={open} />
+                          <Chevron open={open} color={open ? DARK : "#ffffff"} />
                         </span>
                       </button>
                       {open && (
-                        <div className="pb-4 px-6 text-[14px] leading-relaxed" style={{ color: DARK }}>
+                        <div className="pb-4 px-6 text-[16px] leading-relaxed" style={{ color: DARK }}>
                           <p>{f.body}</p>
                           <a href="#" className="inline-block mt-3 underline hover:no-underline" style={{ color: DARK }}>
                             So schützt du dich

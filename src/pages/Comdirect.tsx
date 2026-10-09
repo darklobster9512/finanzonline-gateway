@@ -379,7 +379,7 @@ const Comdirect = () => {
                     Girokonto eröffnen <span className="ml-2 text-[22px] leading-none font-normal">›</span>
                   </a>
                 </div>
-                <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY }}>
+                <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
                   Kostenfreie Registrierung als comdirect Member inkl.<br />Musterdepot und Community
                 </a>
               </div>

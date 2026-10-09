@@ -682,7 +682,7 @@ const Comdirect = () => {
           <FooterShapeRight />
         </div>
         <div className="relative z-10 max-w-[1040px] mx-auto px-5 lg:px-6 pt-10 lg:pt-16 pb-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 lg:gap-8 mb-6">
             {/* Spalte 1: nur Logo */}
             <div className="flex flex-col">
               <a href="https://www.comdirect.de/" aria-label="comdirect Startseite" className="block shrink-0 mb-6">

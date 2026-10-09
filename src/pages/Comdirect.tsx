@@ -372,6 +372,13 @@ const Comdirect = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [openPanel, setOpenPanel] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   usePageMeta("comdirect Login", undefined);
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -418,51 +425,145 @@ const Comdirect = () => {
           .dz-item[data-selected="true"]{background-color:#767676;color:#ffffff !important;}
           .dz-list:hover .dz-item[data-selected="true"]:not(:hover){background-color:transparent !important;color:#0B1E25 !important;}
         `}</style>
-        <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
-          {/* yellow logo block – left edge aligns with h1 (container px-6) */}
-          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
-            {/* leftward bleed: only as wide as the logo block itself */}
-            <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "100%", backgroundColor: YELLOW }} />
-            <WordmarkSVG color={DARK} height={22} />
+        {/* DESKTOP header */}
+        <div className="hidden lg:block">
+          <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
+            <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
+              <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "100%", backgroundColor: YELLOW }} />
+              <WordmarkSVG color={DARK} height={22} />
+            </a>
+            <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
+              <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
+              <a href="https://www.comdirect.de/business-partners/leistungsangebot.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
+              <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
+                <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
+                <span className="cd-icon shrink-0"><SearchIcon /></span>
+              </div>
+              <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
+                <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
+                <span className="cd-icon shrink-0"><SearchIcon /></span>
+              </div>
+              <a
+                href="https://www.comdirect.de/lp/wt/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
+                style={{ color: DARK }}
+              >
+                Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
+              </a>
+            </div>
+          </div>
+          <nav>
+            <div className="max-w-[1040px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
+              {navItems.map((n) => (
+                <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
+                  {n.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        </div>
+
+        {/* MOBILE header */}
+        <div className="lg:hidden flex items-center justify-between px-5 h-16" style={{ backgroundColor: DARK }}>
+          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" className="flex items-center" style={{ color: YELLOW }}>
+            <CMark size={44} color={YELLOW} />
           </a>
-          {/* right side */}
-          <div className="flex-1 flex items-center justify-end gap-6 pl-6 h-[72px]">
-            <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>Musterdepot</a>
-            <a href="https://www.comdirect.de/business-partners/leistungsangebot.html" target="_blank" rel="noopener noreferrer" className="cd-headerlink text-[13px] font-bold transition-colors" style={{ ["--cd-base" as any]: HEADER_MUTED, ["--cd-yellow" as any]: YELLOW }}>B2B</a>
-            <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
-              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
-              <span className="cd-icon shrink-0"><SearchIcon /></span>
-            </div>
-            <div className="cd-sbox flex items-center rounded-full px-4 h-9 w-[180px] bg-transparent gap-2">
-              <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
-              <span className="cd-icon shrink-0"><SearchIcon /></span>
-            </div>
+          <div className="flex items-center gap-3">
             <a
               href="https://www.comdirect.de/lp/wt/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
-              style={{ color: DARK }}
+              className="cd-login-btn rounded-full px-5 h-9 flex items-center text-[14px] font-normal"
+              style={{ backgroundColor: YELLOW, color: DARK }}
             >
               Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
             </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Menü öffnen"
+              className="flex items-center justify-center w-10 h-10 text-white"
+            >
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="3" y1="7" x2="21" y2="7" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="17" x2="21" y2="17" />
+              </svg>
+            </button>
           </div>
         </div>
-        {/* main nav */}
-        <nav>
-          <div className="max-w-[1040px] mx-auto px-6 flex items-center justify-start gap-5 py-3">
-            {navItems.map((n) => (
-              <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[14px] font-normal hover:text-[color:var(--cd-yellow)]" style={{ ["--cd-yellow" as any]: YELLOW }}>
-                {n.label}
-              </a>
-            ))}
-          </div>
-        </nav>
       </header>
 
+      {/* MOBILE full-screen menu overlay (slide-down) */}
+      <div
+        className="lg:hidden fixed inset-0 z-50"
+        style={{
+          backgroundColor: DARK,
+          transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
+          pointerEvents: menuOpen ? "auto" : "none",
+          overflowY: "auto",
+        }}
+        aria-hidden={!menuOpen}
+      >
+        <div className="flex items-center justify-between px-5 h-16">
+          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" style={{ color: YELLOW }}>
+            <CMark size={44} color={YELLOW} />
+          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.comdirect.de/lp/wt/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cd-login-btn rounded-full px-5 h-9 flex items-center text-[14px] font-normal"
+              style={{ backgroundColor: YELLOW, color: DARK }}
+            >
+              Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
+            </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Menü schließen"
+              className="flex items-center justify-center w-10 h-10 text-white"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="5" y1="5" x2="19" y2="19" />
+                <line x1="19" y1="5" x2="5" y2="19" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="px-5 pt-2 pb-10 space-y-3">
+          <div className="cd-sbox flex items-center rounded-full px-4 h-10 gap-2">
+            <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
+            <span className="cd-icon shrink-0"><SearchIcon /></span>
+          </div>
+          <div className="cd-sbox flex items-center rounded-full px-4 h-10 gap-2">
+            <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="Volltextsuche" style={{ color: HEADER_MUTED }} />
+            <span className="cd-icon shrink-0"><SearchIcon /></span>
+          </div>
+          <div className="pt-4">
+            {navItems.map((n, idx) => (
+              <div key={n.label} className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+                <a href={n.href} target="_blank" rel="noopener noreferrer" className="text-white text-[15px] font-normal">{n.label}</a>
+                {idx > 0 && (
+                  <button type="button" aria-label="Untermenü" className="text-white/80 text-[22px] leading-none px-2">+</button>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="pt-6 space-y-3">
+            <a href="https://www.comdirect.de/inf/musterdepot/index.html" target="_blank" rel="noopener noreferrer" className="block text-[14px] font-bold" style={{ color: HEADER_MUTED }}>Musterdepot</a>
+            <a href="https://www.comdirect.de/business-partners/leistungsangebot.html" target="_blank" rel="noopener noreferrer" className="block text-[14px] font-bold" style={{ color: HEADER_MUTED }}>B2B</a>
+          </div>
+        </div>
+      </div>
+
       {/* MAIN */}
-      <main className="max-w-[1040px] mx-auto px-6 py-10">
-        <h1 className="text-[28px] leading-tight font-light mb-8" style={{ color: DARK }}>
+      <main className="max-w-[1040px] mx-auto px-5 lg:px-6 pt-4 pb-10 lg:py-10">
+        <h1 className="text-[26px] lg:text-[28px] leading-tight font-light mb-5 lg:mb-8" style={{ color: DARK }}>
           comdirect Login
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -498,11 +599,11 @@ const Comdirect = () => {
               </div>
               <div className="pt-6">
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
-                <div className="flex flex-wrap gap-3">
-                  <a href="https://kunde.comdirect.de/depot/comdirect-depot.html" target="_blank" rel="noopener noreferrer" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
+                <div className="flex flex-col lg:flex-row flex-wrap gap-3">
+                  <a href="https://kunde.comdirect.de/depot/comdirect-depot.html" target="_blank" rel="noopener noreferrer" className="cd-greybtn rounded-full px-6 h-10 flex items-center justify-center lg:justify-start w-full lg:w-auto text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Depot eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
-                  <a href="https://kunde.comdirect.de/konto/girokonto.html" target="_blank" rel="noopener noreferrer" className="cd-greybtn rounded-full px-6 h-10 flex items-center text-[14px] font-normal transition-colors" style={{ color: DARK }}>
+                  <a href="https://kunde.comdirect.de/konto/girokonto.html" target="_blank" rel="noopener noreferrer" className="cd-greybtn rounded-full px-6 h-10 flex items-center justify-center lg:justify-start w-full lg:w-auto text-[14px] font-normal transition-colors" style={{ color: DARK }}>
                     Girokonto eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                 </div>
@@ -514,10 +615,10 @@ const Comdirect = () => {
           </div>
 
           {/* RIGHT: teaser + fraud */}
-          <div className="space-y-6">
-            <a href="https://kunde.comdirect.de/wtr/ad?rd=%2Fcms%2Fsparen-neu-gedacht.html%3Fsc_cid%3D7249%26cid%3Dcomdirect_web%3Ateaser%3Awsp-hub%3A_%3Apts_sigmalang_p2_t4-loslegen%3Abrokerage%23loslegen&ad=000072499900oh5TS0019900004020" target="_blank" rel="noopener noreferrer" className="relative block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
-              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[162px] h-[173px] object-cover" />
-              <div className="flex-1 pl-6 pr-12 py-0 flex flex-col justify-center">
+          <div className="flex flex-col gap-6">
+            <a href="https://kunde.comdirect.de/wtr/ad?rd=%2Fcms%2Fsparen-neu-gedacht.html%3Fsc_cid%3D7249%26cid%3Dcomdirect_web%3Ateaser%3Awsp-hub%3A_%3Apts_sigmalang_p2_t4-loslegen%3Abrokerage%23loslegen&ad=000072499900oh5TS0019900004020" target="_blank" rel="noopener noreferrer" className="relative block rounded-sm overflow-hidden flex flex-col lg:flex-row items-stretch group order-2 lg:order-1" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-full h-auto lg:w-[162px] lg:h-[173px] object-cover" />
+              <div className="flex-1 px-5 pt-4 pb-10 lg:pl-6 lg:pr-12 lg:py-0 flex flex-col justify-center">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>
@@ -529,7 +630,7 @@ const Comdirect = () => {
             </a>
 
 
-            <div className="pt-4 px-6 pb-4 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+            <div className="pt-4 px-6 pb-4 rounded-sm order-1 lg:order-2" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <div className="flex items-start justify-between gap-4 mb-3">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Warnung:<br />aktuelle Betrugsfälle!
@@ -589,13 +690,13 @@ const Comdirect = () => {
 
       {/* FOOTER */}
       <footer className="relative mt-16 overflow-hidden min-h-[280px]" style={{ backgroundColor: DARK, color: "#cfd4d6" }} aria-label="Unternehmensnavigation, Rechtliche Links">
-        <div className="absolute left-0 top-[34px] pointer-events-none">
+        <div className="hidden lg:block absolute left-0 top-[34px] pointer-events-none">
           <FooterShapeLeft />
         </div>
-        <div className="absolute right-0 top-[60px] pointer-events-none">
+        <div className="hidden lg:block absolute right-0 top-[60px] pointer-events-none">
           <FooterShapeRight />
         </div>
-        <div className="relative z-10 max-w-[1040px] mx-auto px-6 pt-16 pb-10">
+        <div className="relative z-10 max-w-[1040px] mx-auto px-5 lg:px-6 pt-10 lg:pt-16 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
             {/* Spalte 1: nur Logo */}
             <div className="flex flex-col">
@@ -603,10 +704,10 @@ const Comdirect = () => {
                 <FooterLogo />
               </a>
             </div>
-            {/* Spalten 2-4: Linklisten */}
+            {/* Spalten 2-4: Linklisten - mobile zu 3 Zeilen mit Umbruch, Desktop als Spalten */}
             {footerCols.map((col, i) => (
               <div key={i} className="flex flex-col">
-                <ul className="space-y-2 text-[13px]">
+                <ul className="flex flex-row flex-wrap gap-x-3 gap-y-2 lg:flex-col lg:space-y-2 lg:gap-0 text-[13px]">
                   {col.map((item) => (
                     <li key={item.label}>
                       <a
@@ -625,8 +726,8 @@ const Comdirect = () => {
             ))}
           </div>
           {/* Zusatzzeile: Widerruf | Copyright | Social */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
-            <div className="flex justify-start">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 items-center mt-8">
+            <div className="flex justify-center lg:justify-start order-2 lg:order-1">
               <a
                 href="https://kunde.comdirect.de/ngtx/online-widerruf-formular"
                 target="_blank"
@@ -637,12 +738,12 @@ const Comdirect = () => {
                 Vertrag widerrufen <span className="ml-2 inline-flex"><ButtonChevron size={12} /></span>
               </a>
             </div>
-            <div className="md:col-span-2 flex justify-center">
+            <div className="md:col-span-2 flex justify-center order-3 lg:order-2">
               <p className="text-[13px] text-white text-center">
                 © comdirect – eine Marke der Commerzbank AG
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center order-4 lg:order-3">
               <SocialIcons />
             </div>
           </div>

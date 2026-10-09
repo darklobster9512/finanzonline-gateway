@@ -617,7 +617,7 @@ const Comdirect = () => {
             <div className="flex justify-start">
               <a
                 href="#"
-                className="inline-flex items-center justify-center rounded-full px-4 h-8 text-[12px] font-semibold hover:bg-[#223843] transition-colors"
+                className="inline-flex items-center justify-center rounded-full px-4 h-8 text-[12px] font-semibold hover:bg-[#2f444c] transition-colors"
                 style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
               >
                 Vertrag widerrufen <span className="ml-2 inline-flex"><ButtonChevron size={12} /></span>

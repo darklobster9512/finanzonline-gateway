@@ -420,7 +420,7 @@ const Comdirect = () => {
         `}</style>
         <div className="max-w-[1040px] mx-auto px-6 flex items-stretch relative">
           {/* yellow logo block – left edge aligns with h1 (container px-6) */}
-          <a href="#" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
+          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" className="relative flex items-center" style={{ backgroundColor: YELLOW, paddingRight: 20, minHeight: 72 }}>
             {/* leftward bleed: only as wide as the logo block itself */}
             <span aria-hidden className="absolute top-0 bottom-0 right-full" style={{ width: "100%", backgroundColor: YELLOW }} />
             <WordmarkSVG color={DARK} height={22} />

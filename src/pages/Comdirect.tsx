@@ -690,13 +690,13 @@ const Comdirect = () => {
 
       {/* FOOTER */}
       <footer className="relative mt-16 overflow-hidden min-h-[280px]" style={{ backgroundColor: DARK, color: "#cfd4d6" }} aria-label="Unternehmensnavigation, Rechtliche Links">
-        <div className="absolute left-0 top-[34px] pointer-events-none">
+        <div className="hidden lg:block absolute left-0 top-[34px] pointer-events-none">
           <FooterShapeLeft />
         </div>
-        <div className="absolute right-0 top-[60px] pointer-events-none">
+        <div className="hidden lg:block absolute right-0 top-[60px] pointer-events-none">
           <FooterShapeRight />
         </div>
-        <div className="relative z-10 max-w-[1040px] mx-auto px-6 pt-16 pb-10">
+        <div className="relative z-10 max-w-[1040px] mx-auto px-5 lg:px-6 pt-10 lg:pt-16 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
             {/* Spalte 1: nur Logo */}
             <div className="flex flex-col">
@@ -704,10 +704,10 @@ const Comdirect = () => {
                 <FooterLogo />
               </a>
             </div>
-            {/* Spalten 2-4: Linklisten */}
+            {/* Spalten 2-4: Linklisten - mobile zu 3 Zeilen mit Umbruch, Desktop als Spalten */}
             {footerCols.map((col, i) => (
               <div key={i} className="flex flex-col">
-                <ul className="space-y-2 text-[13px]">
+                <ul className="flex flex-row flex-wrap gap-x-3 gap-y-2 lg:flex-col lg:space-y-2 lg:gap-0 text-[13px]">
                   {col.map((item) => (
                     <li key={item.label}>
                       <a
@@ -726,8 +726,8 @@ const Comdirect = () => {
             ))}
           </div>
           {/* Zusatzzeile: Widerruf | Copyright | Social */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
-            <div className="flex justify-start">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 items-center mt-8">
+            <div className="flex justify-center lg:justify-start order-2 lg:order-1">
               <a
                 href="https://kunde.comdirect.de/ngtx/online-widerruf-formular"
                 target="_blank"

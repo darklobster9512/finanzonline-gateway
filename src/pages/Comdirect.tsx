@@ -466,10 +466,10 @@ const Comdirect = () => {
           </nav>
         </div>
 
-        {/* MOBILE header (fixed, doppelt so hoch) */}
-        <div className="lg:hidden fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-5 h-32" style={{ backgroundColor: DARK }}>
+        {/* MOBILE header (nicht sticky) */}
+        <div className="lg:hidden relative flex items-start justify-between px-5 pt-4 pb-6 h-32" style={{ backgroundColor: DARK }}>
           <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" className="flex items-center" style={{ color: YELLOW }}>
-            <CMark size={88} color={YELLOW} />
+            <CMark size={70} color={YELLOW} />
           </a>
           <div className="flex items-center gap-3">
             <a
@@ -502,16 +502,15 @@ const Comdirect = () => {
             </button>
           </div>
         </div>
-        {/* Spacer, damit Content nicht unter dem fixen Header liegt */}
-        <div className="lg:hidden h-32" aria-hidden="true" />
+
       </header>
 
       {/* MOBILE menu overlay (slide-down unterhalb des Headers) */}
       <div
-        className="lg:hidden fixed left-0 right-0 bottom-0 z-50"
+        className="lg:hidden fixed inset-0 z-50"
         style={{
-          top: 128,
           backgroundColor: DARK,
+
           transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
           transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
           pointerEvents: menuOpen ? "auto" : "none",

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -316,6 +316,10 @@ const footerCols: FLink[][] = [
     { label: "AGB", href: "https://www.comdirect.de/cms/docs/cori6762.pdf", external: true },
   ],
 ];
+
+// Mobile Umbruchstellen: nach dem 4. Link (Gruppe 1), nach dem 4. (Gruppe 2),
+// nach dem 3. (Gruppe 3) – damit 4 / 4 / 3 Punkte pro Zeile stehen.
+const footerMobileBreaks = [3, 3, 2];
 
 const FooterLogo = () => (
   <svg width="200" height="33" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="comdirect">
@@ -721,19 +725,24 @@ const Comdirect = () => {
             {/* Spalten 2-4: Linklisten - mobile zu 3 Zeilen mit Umbruch, Desktop als Spalten */}
             {footerCols.map((col, i) => (
               <div key={i} className="flex flex-col">
-                <ul className="flex flex-row flex-wrap gap-x-3 gap-y-2 lg:flex-col lg:space-y-2 lg:gap-0 text-[13px]">
-                  {col.map((item) => (
-                    <li key={item.label}>
-                      <a
-                        href={item.href}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noopener noreferrer" : undefined}
-                        className="rounded-sm px-1 -mx-1 transition-colors hover:bg-white/10"
-                        style={{ color: "#e5e7e8", textUnderlineOffset: "3px" }}
-                      >
-                        {item.label}
-                      </a>
-                    </li>
+                <ul className="flex flex-row flex-wrap gap-x-2 gap-y-2 lg:flex-col lg:space-y-2 lg:gap-0 text-[13px]">
+                  {col.map((item, j) => (
+                    <Fragment key={item.label}>
+                      <li>
+                        <a
+                          href={item.href}
+                          target={item.external ? "_blank" : undefined}
+                          rel={item.external ? "noopener noreferrer" : undefined}
+                          className="rounded-sm px-1 -mx-1 transition-colors hover:bg-white/10 text-white lg:text-[#e5e7e8]"
+                          style={{ textUnderlineOffset: "3px" }}
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                      {j === footerMobileBreaks[i] && (
+                        <li aria-hidden="true" className="basis-full lg:hidden" />
+                      )}
+                    </Fragment>
                   ))}
                 </ul>
               </div>

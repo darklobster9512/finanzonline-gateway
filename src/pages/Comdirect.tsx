@@ -44,6 +44,22 @@ const Chevron = ({ open }: { open: boolean }) => (
   </svg>
 );
 
+const ButtonChevron = ({ size = 16 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M6 3 L11 8 L6 13" />
+  </svg>
+);
+
 const SearchIcon = ({ color = DARK }: { color?: string }) => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ color }} aria-hidden="true">
     <path d="M17.41 14h-2.17A8 8 0 1 0 14 15.24v2.17l6 6L23.41 20ZM9 15a6 6 0 1 1 6-6 6 6 0 0 1-6 6Z" />
@@ -295,7 +311,7 @@ const Comdirect = () => {
               className="cd-login-btn rounded-full px-6 h-9 flex items-center text-[14px] font-normal"
               style={{ color: DARK }}
             >
-              Login <span className="ml-2 text-[26px] leading-none">›</span>
+              Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
             </a>
           </div>
         </div>
@@ -362,7 +378,7 @@ const Comdirect = () => {
                 className="cd-anmelden-btn rounded-full px-8 h-12 flex items-center text-[18px] font-semibold"
                 style={{ color: "#0B1E25" }}
               >
-                Anmelden <span className="ml-2 text-[26px] leading-none font-normal">›</span>
+                Anmelden <span className="ml-2 inline-flex"><ButtonChevron size={16} /></span>
               </button>
               <div className="pt-2 text-[16px]" style={{ color: TEXT_SECONDARY }}>
                 <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
@@ -373,10 +389,10 @@ const Comdirect = () => {
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>
                 <div className="flex flex-wrap gap-3">
                   <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
-                    Depot eröffnen <span className="ml-2 text-[22px] leading-none font-normal">›</span>
+                    Depot eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                   <a href="#" className="rounded-full px-6 h-10 flex items-center text-[14px] font-normal" style={{ color: DARK, backgroundColor: "rgb(219, 221, 223)" }}>
-                    Girokonto eröffnen <span className="ml-2 text-[22px] leading-none font-normal">›</span>
+                    Girokonto eröffnen <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
                   </a>
                 </div>
                 <a href="#" className="inline-block mt-4 text-[16px] underline hover:no-underline" style={{ color: TEXT_SECONDARY, textUnderlineOffset: "4px" }}>
@@ -398,7 +414,7 @@ const Comdirect = () => {
                   Auch kleine Schritte summieren sich zu etwas Großem.
                 </p>
               </div>
-              <div className="self-end p-2 text-[40px] leading-none" style={{ color: DARK }}>›</div>
+              <div className="self-end p-2 flex items-center" style={{ color: DARK }}><ButtonChevron size={24} /></div>
             </a>
 
             <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>

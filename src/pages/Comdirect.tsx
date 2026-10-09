@@ -615,10 +615,10 @@ const Comdirect = () => {
           </div>
 
           {/* RIGHT: teaser + fraud */}
-          <div className="space-y-6">
-            <a href="https://kunde.comdirect.de/wtr/ad?rd=%2Fcms%2Fsparen-neu-gedacht.html%3Fsc_cid%3D7249%26cid%3Dcomdirect_web%3Ateaser%3Awsp-hub%3A_%3Apts_sigmalang_p2_t4-loslegen%3Abrokerage%23loslegen&ad=000072499900oh5TS0019900004020" target="_blank" rel="noopener noreferrer" className="relative block rounded-sm overflow-hidden flex items-stretch group" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
-              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-[162px] h-[173px] object-cover" />
-              <div className="flex-1 pl-6 pr-12 py-0 flex flex-col justify-center">
+          <div className="flex flex-col gap-6">
+            <a href="https://kunde.comdirect.de/wtr/ad?rd=%2Fcms%2Fsparen-neu-gedacht.html%3Fsc_cid%3D7249%26cid%3Dcomdirect_web%3Ateaser%3Awsp-hub%3A_%3Apts_sigmalang_p2_t4-loslegen%3Abrokerage%23loslegen&ad=000072499900oh5TS0019900004020" target="_blank" rel="noopener noreferrer" className="relative block rounded-sm overflow-hidden flex flex-col lg:flex-row items-stretch group order-2 lg:order-1" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+              <img src={teaserAsset.url} alt="Dein Zukunfts-Ich fragt, wann du startest" className="w-full h-auto lg:w-[162px] lg:h-[173px] object-cover" />
+              <div className="flex-1 px-5 pt-4 pb-10 lg:pl-6 lg:pr-12 lg:py-0 flex flex-col justify-center">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Dein Zukunfts-Ich fragt, wann du startest
                 </h3>
@@ -630,7 +630,7 @@ const Comdirect = () => {
             </a>
 
 
-            <div className="pt-4 px-6 pb-4 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
+            <div className="pt-4 px-6 pb-4 rounded-sm order-1 lg:order-2" style={{ backgroundColor: "rgb(243, 244, 244)" }}>
               <div className="flex items-start justify-between gap-4 mb-3">
                 <h3 className="text-[20px] font-normal leading-snug" style={{ color: DARK }}>
                   Warnung:<br />aktuelle Betrugsfälle!

@@ -466,10 +466,10 @@ const Comdirect = () => {
           </nav>
         </div>
 
-        {/* MOBILE header */}
-        <div className="lg:hidden flex items-center justify-between px-5 h-16" style={{ backgroundColor: DARK }}>
+        {/* MOBILE header (fixed, doppelt so hoch) */}
+        <div className="lg:hidden fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-5 h-32" style={{ backgroundColor: DARK }}>
           <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" className="flex items-center" style={{ color: YELLOW }}>
-            <CMark size={44} color={YELLOW} />
+            <CMark size={88} color={YELLOW} />
           </a>
           <div className="flex items-center gap-3">
             <a
@@ -483,24 +483,34 @@ const Comdirect = () => {
             </a>
             <button
               type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-label="Menü öffnen"
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
               className="flex items-center justify-center w-10 h-10 text-white"
             >
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <line x1="3" y1="7" x2="21" y2="7" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="17" x2="21" y2="17" />
-              </svg>
+              {menuOpen ? (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="5" y1="5" x2="19" y2="19" />
+                  <line x1="19" y1="5" x2="5" y2="19" />
+                </svg>
+              ) : (
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="3" y1="7" x2="21" y2="7" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="17" x2="21" y2="17" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
+        {/* Spacer, damit Content nicht unter dem fixen Header liegt */}
+        <div className="lg:hidden h-32" aria-hidden="true" />
       </header>
 
-      {/* MOBILE full-screen menu overlay (slide-down) */}
+      {/* MOBILE menu overlay (slide-down unterhalb des Headers) */}
       <div
-        className="lg:hidden fixed inset-0 z-50"
+        className="lg:hidden fixed left-0 right-0 bottom-0 z-50"
         style={{
+          top: 128,
           backgroundColor: DARK,
           transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
           transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
@@ -509,34 +519,7 @@ const Comdirect = () => {
         }}
         aria-hidden={!menuOpen}
       >
-        <div className="flex items-center justify-between px-5 h-16">
-          <a href="https://www.comdirect.de/" target="_blank" rel="noopener noreferrer" aria-label="comdirect" style={{ color: YELLOW }}>
-            <CMark size={44} color={YELLOW} />
-          </a>
-          <div className="flex items-center gap-3">
-            <a
-              href="https://www.comdirect.de/lp/wt/login"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cd-login-btn rounded-full px-5 h-9 flex items-center text-[14px] font-normal"
-              style={{ backgroundColor: YELLOW, color: DARK }}
-            >
-              Login <span className="ml-2 inline-flex"><ButtonChevron size={14} /></span>
-            </a>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(false)}
-              aria-label="Menü schließen"
-              className="flex items-center justify-center w-10 h-10 text-white"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <line x1="5" y1="5" x2="19" y2="19" />
-                <line x1="19" y1="5" x2="5" y2="19" />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div className="px-5 pt-2 pb-10 space-y-3">
+        <div className="px-5 pt-4 pb-10 space-y-3">
           <div className="cd-sbox flex items-center rounded-full px-4 h-10 gap-2">
             <input className="cd-search min-w-0 flex-1 outline-none text-[13px] bg-transparent font-bold" placeholder="WKN, ISIN, Name" style={{ color: HEADER_MUTED }} />
             <span className="cd-icon shrink-0"><SearchIcon /></span>

@@ -98,7 +98,7 @@ const FloatingInput = ({
   const borderColor = focus || hover ? "rgb(11, 30, 37)" : "rgb(133, 142, 146)";
   return (
     <div
-      className="relative rounded-sm bg-white h-[58px] px-3 pt-7 pb-0"
+      className="relative rounded-sm bg-white h-[58px] px-3"
       style={{
         border: `1px solid ${borderColor}`,
         boxShadow: focus ? "0 0 0 1px #fff, 0 0 0 2px rgb(11, 30, 37)" : "none",
@@ -114,22 +114,24 @@ const FloatingInput = ({
           top: active ? 6 : 18,
           fontSize: active ? 12 : 15,
           color: active ? "rgb(96, 109, 113)" : "rgb(11, 30, 37)",
-          transition: "top 550ms ease-in-out, font-size 550ms ease-in-out, color 300ms ease",
+          transition: "top 220ms ease-in-out, font-size 220ms ease-in-out, color 220ms ease",
         }}
       >
         {label}
       </label>
-      <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-        autoComplete="off"
-        className="w-full outline-none bg-transparent text-[15px]"
-        style={{ color: DARK }}
-      />
+      <div className="absolute inset-x-3 top-[22px] bottom-0 flex items-center">
+        <input
+          id={id}
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          autoComplete="off"
+          className="w-full h-full outline-none bg-transparent text-[15px] p-0 leading-none"
+          style={{ color: DARK }}
+        />
+      </div>
     </div>
   );
 };

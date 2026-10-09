@@ -204,7 +204,7 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
         className="relative w-full rounded-sm bg-white h-[58px] px-3 text-left"
         style={{
           border: `1px solid ${borderColor}`,
-          boxShadow: open ? "-1px 0 0 0 rgb(11, 30, 37), 1px 0 0 0 rgb(11, 30, 37), 0 -1px 0 0 rgb(11, 30, 37)" : "none",
+          boxShadow: open ? "0 0 0 1px #fff, 0 0 0 2px rgb(11, 30, 37)" : "none",
           transition: "box-shadow 150ms ease, border-color 150ms ease",
         }}
       >

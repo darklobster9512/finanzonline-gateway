@@ -486,9 +486,9 @@ const Comdirect = () => {
                 Anmelden <span className="ml-2 inline-flex"><ButtonChevron size={16} /></span>
               </button>
               <div className="pt-2 text-[15px]" style={{ color: TEXT_SECONDARY }}>
-                <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
+                <a href="#" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Information zum Login</a>
                 <span className="mx-2 font-semibold">·</span>
-                <a href="#" className="underline hover:no-underline" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
+                <a href="#" className="underline rounded-sm px-1 -mx-1 transition-colors hover:bg-black/5" style={{ textUnderlineOffset: "4px" }}>Login vergessen / gesperrt?</a>
               </div>
               <div className="pt-6">
                 <h2 className="text-[17px] font-semibold mb-4" style={{ color: DARK }}>comdirect Kunde werden?</h2>

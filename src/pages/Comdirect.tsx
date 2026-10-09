@@ -251,16 +251,16 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
   );
 };
 
-const navItems = [
-  "Persönlicher Bereich",
-  "Informer",
-  "Girokonto",
-  "Altersvorsorge",
-  "Geldanlage",
-  "Depot",
-  "Wertpapierhandel",
-  "Kredite",
-  "Hilfe & Service",
+const navItems: { label: string; href: string }[] = [
+  { label: "Persönlicher Bereich", href: "https://www.comdirect.de/lp/wt/login" },
+  { label: "Informer", href: "https://www.comdirect.de/inf/index.html" },
+  { label: "Girokonto", href: "https://www.comdirect.de/konto/girokonto.html" },
+  { label: "Altersvorsorge", href: "https://www.comdirect.de/altersvorsorge/altersvorsorgedepot.html" },
+  { label: "Geldanlage", href: "https://www.comdirect.de/geldanlage/geldanlage.html" },
+  { label: "Depot", href: "https://www.comdirect.de/depot/depot.html" },
+  { label: "Wertpapierhandel", href: "https://www.comdirect.de/wertpapierhandel/wertpapierhandel.html" },
+  { label: "Kredite", href: "https://www.comdirect.de/kredit/kredit.html" },
+  { label: "Hilfe & Service", href: "https://www.comdirect.de/cms/hilfe-service-kontakt.html" },
 ];
 
 const fraudItems = [

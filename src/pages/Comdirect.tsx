@@ -67,9 +67,13 @@ const SearchIcon = ({ color = DARK }: { color?: string }) => (
 );
 
 const WarningTriangle = () => (
-  <svg width="80" height="80" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M12 2 1 21h22L12 2Zm0 4.5L19.5 19h-15L12 6.5Z" fill="#DE0000" />
-    <rect x="11" y="10" width="2" height="5" fill="#DE0000" />
+  <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M10.9 3.3 1.4 19.5a1.3 1.3 0 0 0 1.1 1.9h19a1.3 1.3 0 0 0 1.1-1.9L13.1 3.3a1.3 1.3 0 0 0-2.2 0Zm1.1 3.2L19.5 19h-15L12 6.5Z"
+      fill="#DE0000"
+      strokeLinejoin="round"
+    />
+    <rect x="11" y="10" width="2" height="5" rx="0.5" fill="#DE0000" />
     <circle cx="12" cy="17" r="1" fill="#DE0000" />
   </svg>
 );

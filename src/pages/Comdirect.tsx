@@ -211,19 +211,22 @@ const DirektZuDropdown = ({ value, onChange }: { value: string; onChange: (v: st
         <span className="absolute left-3 right-10 top-[22px] bottom-0 flex items-center text-[15px] truncate" style={{ color: DARK }}>
           {selected?.label ?? ""}
         </span>
+        <span aria-hidden className="absolute pointer-events-none" style={{ right: 40, top: 0, bottom: 0, width: 1, backgroundColor: "rgb(133, 142, 146)" }} />
         <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-          <Chevron open={open} />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={DARK} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
         </span>
       </button>
       {open && (
         <div
-          className="absolute left-0 right-0 top-full mt-1 bg-white z-20"
+          className="dz-list absolute left-0 right-0 top-full bg-white z-20"
           style={{ border: "1px solid rgb(96, 109, 113)" }}
         >
           {DIREKT_ZU_ITEMS.map((item, idx) => {
             if ("separator" in item) {
               return (
-                <div key={`sep-${idx}`} className="flex justify-center" style={{ padding: "6px 0" }}>
+                <div key={`sep-${idx}`} style={{ padding: "6px 12px" }}>
                   <div style={{ width: 120, borderTop: "1px dashed rgb(96, 109, 113)" }} />
                 </div>
               );

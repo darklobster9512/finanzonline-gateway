@@ -414,7 +414,7 @@ const Comdirect = () => {
                   Auch kleine Schritte summieren sich zu etwas Großem.
                 </p>
               </div>
-              <div className="self-end p-2 text-[40px] leading-none" style={{ color: DARK }}>›</div>
+              <div className="self-end p-2 flex items-center" style={{ color: DARK }}><ButtonChevron size={24} /></div>
             </a>
 
             <div className="p-6 rounded-sm" style={{ backgroundColor: "rgb(243, 244, 244)" }}>

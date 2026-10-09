@@ -614,13 +614,13 @@ const Comdirect = () => {
           </div>
           {/* Zusatzzeile: Widerruf | Copyright | Social */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
-            <div className="flex justify-center">
+            <div className="flex justify-start">
               <a
                 href="#"
-                className="inline-flex items-center justify-center rounded-full px-5 h-10 text-[13px] font-semibold hover:bg-[#223843] transition-colors"
+                className="inline-flex items-center justify-center rounded-full px-4 h-8 text-[12px] font-semibold hover:bg-[#223843] transition-colors"
                 style={{ backgroundColor: "#1a2d34", color: "#e5e7e8" }}
               >
-                Vertrag widerrufen <span className="ml-2">›</span>
+                Vertrag widerrufen <span className="ml-2 inline-flex"><ButtonChevron size={12} /></span>
               </a>
             </div>
             <div className="md:col-span-2 flex justify-center">

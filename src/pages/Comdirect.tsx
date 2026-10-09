@@ -448,11 +448,11 @@ const Comdirect = () => {
                           style={{
                             width: 28,
                             height: 28,
-                            backgroundColor: open ? "rgb(209, 212, 214)" : "rgb(11, 30, 37)",
-                            color: open ? DARK : "#ffffff",
+                            backgroundColor: open ? "rgb(11, 30, 37)" : "rgb(209, 212, 214)",
+                            color: open ? "#ffffff" : DARK,
                           }}
                         >
-                          <Chevron open={open} color={open ? DARK : "#ffffff"} />
+                          <Chevron open={open} color={open ? "#ffffff" : DARK} />
                         </span>
                       </button>
                       {open && (

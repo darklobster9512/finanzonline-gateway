@@ -3,27 +3,26 @@
 ## Was geändert wird
 
 1. **Schatten unter dem Header**
-   - Der Header bekommt einen weichen Schatten (`box-shadow`), der nach unten in den Hero-Bereich (Login-Teaser mit Hintergrundbild) übergeht.
-   - Die bisherige feine Linie (`border-b`) wird durch den Schatten ersetzt, damit der Übergang weich wirkt.
+   - Der Header bekommt einen weichen Schatten (`box-shadow: 0 4px 12px rgba(0,0,0,0.08)`), der nach unten in den Hero-Bereich (Login-Teaser mit Hintergrundbild) übergeht.
+   - Die bisherige feine Linie (`border-b border-gray-100`) wird entfernt, damit nur der Schatten den Übergang bildet.
 
 2. **Hover-Effekt Navbar**
-   - Beim Überfahren der Navigationspunkte (Privatkunden, Wealth Management, Unternehmenskunden, Nachhaltigkeit, Über Uns, Services) färbt sich der Text schwarz.
-   - Die Hauptnavigation hat bereits `hover:text-black` – wird geprüft und vereinheitlicht; auch die 4 rechten Punkte (Suche, Hilfe, Filiale) bekommen denselben Schwarz-Hover.
+   - Beim Überfahren der Navigationspunkte färbt sich der Text schwarz.
+   - Die Hauptnavigation hat bereits `hover:text-black`; die 4 rechten Punkte (SUCHE, HILFE, FILIALE) bekommen denselben Schwarz-Hover für Text und Icon.
 
-3. **Icons der 4 Header-Punkte aktualisieren**
-   - SUCHE, HILFE, FILIALE und BANKING LOGIN erhalten Icons, die dem Original-HVB-Header entsprechen:
-     - Suche: Lupe
-     - Hilfe: Fragezeichen im Kreis
-     - Filiale: Standort-Pin
-     - Banking Login: Person/Schloss-Symbol auf rotem Button
-   - Umsetzung als inline SVGs im Stil der echten HVB-Seite (dünne Konturen, 24px).
-
-## Hinweis zur hochgeladenen CSS
-
-Die einzige hochgeladene CSS-Datei (`@charset_UTF-8_pasted.txt`) stammt von der Commerzbank und enthält keine HVB-Icons. Falls du eine andere CSS-Datei mit den HVB-Icon-Definitionen meintest, lade sie bitte nochmal hoch – ich passe die Icons dann exakt daran an. Bis dahin baue ich die Icons als SVGs nach dem Vorbild der echten HVB-Seite.
+3. **Icons der 4 Header-Punkte aus der hochgeladenen CSS**
+   - Die hochgeladenen Dateien (`webfonts.min.css`, `public.min.css`) enthalten die Original-Icon-Schrift **ucicons** (als Base64-WOFF2 eingebettet) und die Icon-Klassen:
+     - SUCHE: `icon_search-nav` → Zeichen `\ea2d`
+     - HILFE: `icon_help-nav` → Zeichen `\ea18`
+     - FILIALE: `icon_pin` → Zeichen `\ea26`
+     - BANKING LOGIN: `icon_login` → Zeichen `\ea1f`
+   - Umsetzung:
+     - Die ucicons-WOFF2 wird aus der Base64-Einbettung extrahiert und als CDN-Asset (`src/assets/ucicons.woff2.asset.json`) abgelegt.
+     - In `src/index.css` wird eine `@font-face`-Regel für `ucicons` ergänzt.
+     - In `src/pages/Hypovereinsbank.tsx` ersetzen die Original-Glyphen die bisherigen Lucide-Icons (Search, HelpCircle, MapPin, LogIn) – Desktop und Mobile.
 
 ## Technische Details
 
-- Alle Änderungen nur in `src/pages/Hypovereinsbank.tsx` (Header-Bereich, Zeilen ~98–145).
-- Schatten: z.B. `box-shadow: 0 4px 12px rgba(0,0,0,0.08)` am `<header>`.
-- Mobile Ansicht (nur roter BANKING-LOGIN-Button) bleibt unverändert, abgesehen vom Schatten.
+- Änderungen nur in `src/pages/Hypovereinsbank.tsx`, `src/index.css` und ein neues Asset unter `src/assets/`.
+- Glyphen werden per CSS-`content` (Pseudo-Element) oder per Unicode-Zeichen mit `font-family: ucicons` gerendert.
+- Mobile Ansicht (roter BANKING-LOGIN-Button) bekommt ebenfalls das Original-Login-Icon; sonst bleibt Mobile unverändert.

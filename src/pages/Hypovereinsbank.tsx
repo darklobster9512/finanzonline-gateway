@@ -328,7 +328,6 @@ const Hypovereinsbank = () => {
               </a>
             </div>
           </div>
-          </div>
         </header>
 
         {/* Login teaser */}

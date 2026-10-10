@@ -355,7 +355,7 @@ const Hypovereinsbank = () => {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       autoComplete="off"
-                      className="w-full h-10 px-3 text-[15px] bg-white outline-none"
+                      className="w-full h-10 px-3 text-[16px] bg-white outline-none"
                       style={{ border: `1px solid ${BORDER}` }}
                     />
                   </label>

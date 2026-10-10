@@ -182,7 +182,7 @@ const Hypovereinsbank = () => {
             minHeight: 620,
           }}
         >
-          <div className="max-w-[1360px] mx-auto px-4 lg:px-6 py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="max-w-[1360px] mx-auto px-4 lg:px-16 py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Login card */}
             <div className="lg:col-span-5">
               <div className="bg-white shadow-md p-7 lg:p-9 max-w-[460px]">

@@ -369,7 +369,7 @@ const Hypovereinsbank = () => {
             <div className="flex h-14 shrink-0 items-stretch border-b border-[#e8e8e8]">
               <button
                 type="button"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={closeMenu}
                 aria-label="Menü schließen"
                 className="flex w-14 shrink-0 items-center justify-center text-[#1a1a18]"
               >

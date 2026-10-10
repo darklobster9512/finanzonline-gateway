@@ -536,11 +536,16 @@ const Hypovereinsbank = () => {
               </div>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              {["Zugang online beantragen", "Kontaktieren Sie uns", "Filiale finden"].map((t) => (
+              {[
+                { t: "Zugang online beantragen", href: "https://www.hypovereinsbank.de/portal?view=/de/services/online-banking/erstregistrierung.jsp" },
+                { t: "Kontaktieren Sie uns", href: "https://www.hypovereinsbank.de/portal?view=/de/kontaktwege/kontakt-privatkunden.jsp" },
+                { t: "Filiale finden", href: "https://www.hypovereinsbank.de/portal?view=/de/kontaktwege/filiale.jsp" },
+              ].map(({ t, href }) => (
                 <a
                   key={t}
-                  href="#"
-                  onClick={noop}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hvb-contact-btn px-6 py-3 text-[15px] border-2 border-white"
                   style={{ color: "#fff" }}
                 >

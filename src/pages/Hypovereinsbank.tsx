@@ -182,9 +182,9 @@ const Hypovereinsbank = () => {
             minHeight: 620,
           }}
         >
-          <div className="max-w-[1360px] mx-auto px-4 lg:px-16 py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="max-w-[1360px] mx-auto px-4 lg:px-6 py-10 lg:py-14 grid grid-cols-1 gap-6 lg:grid-cols-[460px_minmax(0,500px)] lg:gap-[25px] lg:justify-center">
             {/* Login card */}
-            <div className="lg:col-span-5">
+            <div>
               <div className="bg-white shadow-md p-7 lg:p-9 max-w-[460px]">
                 <h1 className="text-[28px] leading-tight font-light mb-5" style={{ color: DARK }}>
                   Willkommen im HVB Online Banking
@@ -290,8 +290,8 @@ const Hypovereinsbank = () => {
             </div>
 
             {/* Right side help text (desktop only) */}
-            <div className="hidden lg:flex lg:col-span-7 items-end">
-              <div className="text-white max-w-[500px] mb-8 ml-auto mr-8">
+            <div className="hidden lg:flex items-end">
+              <div className="text-white max-w-[500px] mb-8">
                 <h2 className="text-[28px] font-light leading-snug mb-2">
                   Hilfe &amp; Services – 24/7 erreichbar!
                 </h2>

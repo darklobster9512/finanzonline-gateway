@@ -487,7 +487,7 @@ const Hypovereinsbank = () => {
                   <img
                     src={card.icon.url}
                     alt={card.alt}
-                    style={{ width: 80, height: 80, objectFit: "contain" }}
+                    style={{ width: 72, height: 72, objectFit: "contain" }}
                     className="mx-auto mb-6 block"
                   />
                   <h3 className="text-[19px] font-semibold mb-3" style={{ color: DARK }}>

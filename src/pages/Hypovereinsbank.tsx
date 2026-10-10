@@ -550,22 +550,24 @@ const Hypovereinsbank = () => {
         {/* Footer */}
         <footer style={{ backgroundColor: "#262626", color: "#CCCCCC" }} className="flex-1">
           <div>
-            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 pt-20 pb-10 flex flex-col lg:flex-row lg:items-center gap-4">
-              <p className="text-[15px] flex-1" style={{ color: "#CCCCCC" }}>
-                Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.
-              </p>
-              <a
-                href="#"
-                onClick={noop}
-                className="inline-flex items-center gap-2 px-5 py-3 text-[14px] font-semibold uppercase tracking-wider self-start lg:self-auto"
-                style={{ border: "1px solid #CCCCCC", color: "#CCCCCC" }}
-              >
-                Vertrag widerrufen <ChevronRight size={14} />
-              </a>
+            <div className="border-t border-b mt-10" style={{ borderColor: "#CCCCCC" }}>
+              <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-8 flex flex-col lg:flex-row lg:items-center gap-4">
+                <p className="text-[15px] flex-1" style={{ color: "#CCCCCC" }}>
+                  Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.
+                </p>
+                <a
+                  href="#"
+                  onClick={noop}
+                  className="inline-flex items-center gap-2 px-5 py-3 text-[14px] font-semibold uppercase tracking-wider self-start lg:self-auto"
+                  style={{ border: "1px solid #CCCCCC", color: "#CCCCCC" }}
+                >
+                  Vertrag widerrufen <ChevronRight size={14} />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-b" style={{ borderColor: "#CCCCCC" }}>
+          <div>
             <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center items-center gap-y-3 text-[15px]">
               {[
                 "Impressum",

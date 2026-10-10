@@ -549,8 +549,8 @@ const Hypovereinsbank = () => {
 
         {/* Footer */}
         <footer style={{ backgroundColor: "#262626", color: "#CCCCCC" }} className="flex-1">
-          <div className="border-t" style={{ borderColor: "#CCCCCC" }}>
-            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 pt-10 pb-6 flex flex-col lg:flex-row lg:items-center gap-4">
+          <div>
+            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 pt-20 pb-10 flex flex-col lg:flex-row lg:items-center gap-4">
               <p className="text-[15px] flex-1" style={{ color: "#CCCCCC" }}>
                 Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.
               </p>
@@ -565,8 +565,8 @@ const Hypovereinsbank = () => {
             </div>
           </div>
 
-          <div className="border-b" style={{ borderColor: "#CCCCCC" }}>
-            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center items-center gap-y-3 text-[14px]">
+          <div className="border-t border-b" style={{ borderColor: "#CCCCCC" }}>
+            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center items-center gap-y-3 text-[15px]">
               {[
                 "Impressum",
                 "Rechtliche Hinweise",
@@ -592,11 +592,11 @@ const Hypovereinsbank = () => {
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
             <div className="hidden lg:block" />
             <div className="flex flex-col items-center gap-3">
-              <p className="text-[14px]" style={{ color: "#CCCCCC" }}>© 2026 HypoVereinsbank</p>
-              <img src={unicreditAsset.url} alt="UniCredit" className="h-7 w-auto opacity-90" />
+              <p className="text-[15px]" style={{ color: "#CCCCCC" }}>© 2026 HypoVereinsbank</p>
+              <img src={unicreditAsset.url} alt="UniCredit" className="h-3.5 w-auto opacity-90" />
             </div>
             <div className="flex items-center justify-center lg:justify-end gap-6">
-              <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="h-9 w-auto" />
+              <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="h-[72px] w-auto" />
             </div>
           </div>
         </footer>

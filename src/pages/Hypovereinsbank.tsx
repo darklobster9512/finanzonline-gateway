@@ -415,7 +415,7 @@ const Hypovereinsbank = () => {
                   <div className="text-[15px]" style={{ color: DARK }}>
                     <div className="font-semibold mb-1">Sie haben noch kein Online Banking?</div>
                     <div>
-                      <a href="#" onClick={noop} className="underline" style={{ color: TEAL }}>
+                      <a href="https://www.hypovereinsbank.de/hvb/services/online-banking/erstregistrierung" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: TEAL }}>
                         Hier registrieren Sie sich
                       </a>{" "}
                       in wenigen Schritten.

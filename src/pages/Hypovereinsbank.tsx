@@ -105,6 +105,7 @@ const InfoHint = ({
             backgroundColor: HINT_BG,
             backgroundClip: "padding-box",
             color: HINT_FG,
+            fontFamily: "'UniCredit', Arial, Helvetica, sans-serif",
             border: `1px solid ${HINT_BORDER}`,
             borderRadius: 6,
             boxShadow: HINT_SHADOW,

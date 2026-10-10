@@ -44,7 +44,8 @@ const NAV_ITEMS = [
 const HINT_BG = "#bfebf3";
 const HINT_FG = "#262626";
 const HINT_X = "#007a91";
-const HINT_BORDER = "#999999";
+const HINT_BORDER = "#999";
+const HINT_SHADOW = "0 5px 10px rgba(0, 0, 0, .2)";
 
 const InfoHint = ({
   open,
@@ -93,19 +94,25 @@ const InfoHint = ({
       {open && (
         <span
           role="dialog"
-          className="absolute z-20 hidden lg:block"
+          className="absolute hidden lg:block"
           style={{
             left: "calc(100% + 14px)",
             top: "50%",
             transform: "translateY(-50%)",
-            width: 300,
+            zIndex: 1111,
+            width: 304,
+            maxWidth: 304,
             backgroundColor: HINT_BG,
-            color: HINT_BORDER,
+            backgroundClip: "padding-box",
+            color: HINT_FG,
             border: `1px solid ${HINT_BORDER}`,
             borderRadius: 6,
-            padding: "12px 34px 12px 20px",
-            fontSize: 17,
-            lineHeight: 1.55,
+            boxShadow: HINT_SHADOW,
+            padding: 1,
+            fontSize: 16,
+            lineHeight: 1.5,
+            textAlign: "left",
+            textTransform: "none",
           }}
         >
           {/* Arrow border */}
@@ -113,7 +120,7 @@ const InfoHint = ({
             aria-hidden="true"
             style={{
               position: "absolute",
-              left: -8,
+              left: -9,
               top: "50%",
               transform: "translateY(-50%)",
               width: 0,
@@ -128,14 +135,14 @@ const InfoHint = ({
             aria-hidden="true"
             style={{
               position: "absolute",
-              left: -7,
+              left: -8,
               top: "50%",
               transform: "translateY(-50%)",
               width: 0,
               height: 0,
-              borderTop: "7px solid transparent",
-              borderBottom: "7px solid transparent",
-              borderRight: `7px solid ${HINT_BG}`,
+              borderTop: "8px solid transparent",
+              borderBottom: "8px solid transparent",
+              borderRight: `8px solid ${HINT_BG}`,
             }}
           />
           <button
@@ -148,7 +155,7 @@ const InfoHint = ({
             className="absolute inline-flex items-center justify-center"
             style={{
               top: 6,
-              right: 10,
+              right: 8,
               width: 18,
               height: 18,
               color: HINT_X,
@@ -163,7 +170,12 @@ const InfoHint = ({
               <line x1="15" y1="3" x2="3" y2="15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
             </svg>
           </button>
-          {children}
+          <span
+            className="block"
+            style={{ padding: "8px 30px 8px 12px" }}
+          >
+            {children}
+          </span>
         </span>
       )}
     </span>

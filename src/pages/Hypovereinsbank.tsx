@@ -91,24 +91,26 @@ const Hypovereinsbank = () => {
           className="w-full relative z-20 bg-white"
           style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}
         >
-          <div className="max-w-[1360px] mx-auto flex items-stretch px-4 lg:px-6 h-[72px]">
-            <a href="#" onClick={noop} className="flex items-center pr-6 lg:pr-10">
-              <HVBLogo className="h-7 w-auto" />
-            </a>
-            <nav className="hidden lg:flex flex-1 items-center justify-center gap-6 text-[15px]">
-              {NAV_ITEMS.map((n) => (
-                <a
-                  key={n}
-                  href="#"
-                  onClick={noop}
-                  className="text-center leading-tight hover:text-black transition-colors"
-                  style={{ color: "#4a4a4a", maxWidth: 130 }}
-                >
-                  {n}
-                </a>
-              ))}
-            </nav>
-            <div className="hidden lg:flex items-center gap-2 pl-4">
+          <div className="flex items-stretch h-[72px] pl-4 lg:pl-6">
+            <div className="max-w-[1360px] w-full mx-auto flex items-stretch">
+              <a href="#" onClick={noop} className="flex items-center pr-6 lg:pr-10">
+                <HVBLogo className="h-7 w-auto" />
+              </a>
+              <nav className="hidden lg:flex flex-1 items-center justify-center gap-6 text-[15px]">
+                {NAV_ITEMS.map((n) => (
+                  <a
+                    key={n}
+                    href="#"
+                    onClick={noop}
+                    className="text-center leading-tight text-[#4a4a4a] hover:text-black transition-colors"
+                    style={{ maxWidth: 130 }}
+                  >
+                    {n}
+                  </a>
+                ))}
+              </nav>
+            </div>
+            <div className="hidden lg:flex items-center gap-2 ml-auto">
               {[
                 { glyph: "\uEA2D", label: "SUCHE" },
                 { glyph: "\uEA18", label: "HILFE" },
@@ -118,8 +120,7 @@ const Hypovereinsbank = () => {
                   key={it.label}
                   href="#"
                   onClick={noop}
-                  className="flex flex-col items-center justify-center px-3 py-2 text-[12px] hover:text-black transition-colors"
-                  style={{ color: "#4a4a4a" }}
+                  className="flex flex-col items-center justify-center px-3 py-2 text-[12px] text-[#4a4a4a] hover:text-black transition-colors"
                 >
                   <span
                     aria-hidden="true"

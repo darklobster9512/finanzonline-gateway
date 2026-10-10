@@ -610,7 +610,8 @@ const Hypovereinsbank = () => {
             </div>
           </div>
 
-          <div>
+          {/* Desktop footer links */}
+          <div className="hidden lg:block">
             <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-col items-center gap-y-3 text-[16px]" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
               {([
                 [
@@ -640,7 +641,7 @@ const Hypovereinsbank = () => {
                           {l}
                         </a>
                         {i < arr.length - 1 && (
-                          <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
+                          <span aria-hidden className="block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
                         )}
                       </span>
                     );
@@ -650,16 +651,56 @@ const Hypovereinsbank = () => {
             </div>
           </div>
 
+          {/* Mobile footer links (without Privatsphäre, each own row) */}
+          <div className="lg:hidden">
+            <div className="px-4 py-6 flex flex-col items-center gap-y-3 text-[16px] text-center" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+              {([
+                ["Impressum", "https://www.hypovereinsbank.de/portal?view=/de/footer/impressum.jsp"],
+                ["Rechtliche Hinweise", "https://www.hypovereinsbank.de/portal?view=/de/footer/rechtliche-hinweise.jsp"],
+                ["Datenschutz", "https://www.hypovereinsbank.de/portal?view=/de/footer/datenschutz.jsp"],
+                ["Barrierefreiheit", "https://www.hypovereinsbank.de/portal?view=/de/footer/barrierefreiheit.jsp"],
+                ["Geschäftsbedingungen & Konditionen", "https://www.hypovereinsbank.de/portal?view=/de/footer/geschaeftsbedingungen-konditionen.jsp"],
+                ["Lob & Kritik", "https://www.hypovereinsbank.de/portal?view=/de/footer/beschwerdebearbeitung.jsp"],
+                ["Whistleblowing & Meldungen i.S.d. LkSG", "https://www.hypovereinsbank.de/portal?view=/de/ueber-uns/das-unternehmen/compliance.jsp"],
+              ] as [string, string][]).map(([l, href]) => (
+                <a
+                  key={l}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                  style={{ color: "#CCCCCC" }}
+                >
+                  {l}
+                </a>
+              ))}
+            </div>
+          </div>
 
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
-            <div className="hidden lg:block" />
+          {/* Desktop bottom row */}
+          <div className="hidden lg:grid max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid-cols-3 items-center gap-4">
+            <div />
             <div className="flex flex-col items-center gap-3">
               <p className="text-[16px]" style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>© 2026 HypoVereinsbank</p>
               <img src={unicreditAsset.url} alt="UniCredit" className="w-[72px] h-[15px] opacity-90" />
             </div>
-            <div className="flex items-center justify-center lg:justify-end gap-6">
+            <div className="flex items-center justify-end gap-6">
               <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="w-[200px] h-[67px]" />
             </div>
+          </div>
+
+          {/* Mobile bottom block */}
+          <div className="lg:hidden px-4 pb-8 flex flex-col items-center gap-4 text-center">
+            <p className="text-[16px]" style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>© 2026 HypoVereinsbank</p>
+            <img src={unicreditAsset.url} alt="UniCredit" className="w-[72px] h-[15px] opacity-90" />
+            <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="w-[200px] h-[67px]" />
+            <a
+              href="javascript:UC.loadAndOpenCookieBanner();"
+              className="hover:underline text-[16px]"
+              style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
+            >
+              Privatsphäre-Einstellungen
+            </a>
           </div>
         </footer>
       </div>

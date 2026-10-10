@@ -237,7 +237,17 @@ const Hypovereinsbank = () => {
         >
           <div className="flex items-stretch h-[72px] pl-4 lg:pl-6">
             <div className="max-w-[1360px] w-full mx-auto flex items-stretch">
-              <a href="#" onClick={noop} className="flex items-center pr-12">
+              <button
+                type="button"
+                onClick={noop}
+                aria-label="Menü öffnen"
+                className="flex lg:hidden items-center justify-center pr-3 text-[#4a4a4a]"
+              >
+                <span aria-hidden="true" style={{ fontFamily: "ucicons", fontSize: 24, lineHeight: 1 }}>
+                  {"\uEA20"}
+                </span>
+              </button>
+              <a href="#" onClick={noop} className="flex items-center pr-4 lg:pr-12">
                 <HVBLogo className="h-7 w-auto" />
               </a>
               <nav className="hidden lg:flex flex-1 items-center justify-start gap-7 text-[15px]">
@@ -298,23 +308,23 @@ const Hypovereinsbank = () => {
                 <span className="-mt-0.5">LOGIN</span>
               </a>
             </div>
-            {/* Mobile: just login */}
-            <div className="flex lg:hidden items-center ml-auto">
+            {/* Mobile: just login icon */}
+            <div className="flex lg:hidden items-stretch ml-auto">
               <a
                 href="#"
                 onClick={noop}
-                className="flex flex-col items-center justify-center text-white px-3 h-full text-[11px] tracking-wide"
+                aria-label="Banking Login"
+                className="flex items-center justify-center text-white px-5 h-full"
                 style={{ backgroundColor: RED, minWidth: 72, transition: "background-color 120ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = RED_HOVER)}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = RED)}
               >
                 <span
                   aria-hidden="true"
-                  style={{ fontFamily: "ucicons", fontSize: 18, lineHeight: 1 }}
+                  style={{ fontFamily: "ucicons", fontSize: 30, lineHeight: 1 }}
                 >
                   {"\uEA1F"}
                 </span>
-                <span className="mt-0.5">BANKING LOGIN</span>
               </a>
             </div>
           </div>
@@ -391,19 +401,19 @@ const Hypovereinsbank = () => {
                     />
                   </label>
 
-                  <div className="flex items-center justify-between mb-5 gap-4">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-5 gap-4">
                     <a
                       href="https://www.hypovereinsbank.de/hvb/services/digitales-banking/hilfe/password-direct-banking-pin-aendern"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[15px] underline"
+                      className="text-[15px] underline order-1"
                       style={{ color: TEAL }}
                     >
                       Zugangsdaten vergessen/gesperrt?
                     </a>
                     <button
                       type="submit"
-                      className="text-white text-[15px] tracking-wider px-6 h-10"
+                      className="text-white text-[15px] tracking-wider px-6 h-10 w-full lg:w-auto order-2"
                       style={{ backgroundColor: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                       onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TEAL_DARK)}
                       onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TEAL)}
@@ -467,6 +477,28 @@ const Hypovereinsbank = () => {
           </div>
         </section>
 
+        {/* Mobile help teaser (below the login card) */}
+        <section className="lg:hidden w-full bg-white">
+          <div className="px-4 py-8" style={{ color: DARK }}>
+            <h2 className="text-[22px] font-light leading-snug mb-2">
+              Hilfe &amp; Services – 24/7 erreichbar!
+            </h2>
+            <p className="text-[15px] mb-3" style={{ color: "#4a4a4a", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+              PIN ändern? Adresse bearbeiten? Alle Lösungen für Ihren Servicebedarf finden Sie hier
+            </p>
+            <a
+              href="https://www.hypovereinsbank.de/portal?view=/de/services/digitales-banking/hilfe.jsp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[15px] uppercase tracking-wider underline"
+              style={{ color: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
+            >
+              Jetzt entdecken <ChevronRight size={14} />
+            </a>
+          </div>
+        </section>
+
+
         {/* Help cards */}
         <section className="w-full" style={{ backgroundColor: "#E5EFF2" }}>
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-16">
@@ -523,19 +555,19 @@ const Hypovereinsbank = () => {
         {/* Contact band */}
         <section className="w-full" style={{ backgroundColor: "#007a91", color: "#fff" }}>
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-8 text-center">
-            <h2 className="text-[28px] font-light mb-6">Sie haben eine Frage?</h2>
-            <div className="flex items-center justify-center gap-5 mb-8">
+            <h2 className="text-[22px] lg:text-[28px] font-light mb-6">Sie haben eine Frage?</h2>
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-5 mb-8">
               <Phone size={60} strokeWidth={1.25} />
-              <div className="text-left">
-                <a href="#" onClick={noop} className="text-[34px] leading-[1.1] font-light inline-flex items-center gap-2">
-                  +49 89 378 488 88 <ChevronRight size={34} strokeWidth={1.5} />
+              <div className="text-center lg:text-left">
+                <a href="#" onClick={noop} className="text-[26px] lg:text-[34px] leading-[1.1] font-light inline-flex items-center gap-2">
+                  +49 89 378 488 88 <ChevronRight className="w-[26px] h-[26px] lg:w-[34px] lg:h-[34px]" strokeWidth={1.5} />
                 </a>
                 <p className="text-[15px] mt-1" style={{ color: "#dff1f3" }}>
                   Mo – Fr: 08.00 – 20.00 Uhr und Sa: 08.00 – 14.00 Uhr
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-3 lg:gap-4">
               {[
                 { t: "Zugang online beantragen", href: "https://www.hypovereinsbank.de/portal?view=/de/services/online-banking/erstregistrierung.jsp" },
                 { t: "Kontaktieren Sie uns", href: "https://www.hypovereinsbank.de/portal?view=/de/kontaktwege/kontakt-privatkunden.jsp" },
@@ -546,7 +578,7 @@ const Hypovereinsbank = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hvb-contact-btn px-6 py-3 text-[15px] border-2 border-white"
+                  className="hvb-contact-btn w-full lg:w-auto text-center px-6 py-3 text-[15px] border-2 border-white"
                   style={{ color: "#fff" }}
                 >
                   {t}
@@ -577,7 +609,8 @@ const Hypovereinsbank = () => {
             </div>
           </div>
 
-          <div>
+          {/* Desktop footer links */}
+          <div className="hidden lg:block">
             <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-col items-center gap-y-3 text-[16px]" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
               {([
                 [
@@ -607,7 +640,7 @@ const Hypovereinsbank = () => {
                           {l}
                         </a>
                         {i < arr.length - 1 && (
-                          <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
+                          <span aria-hidden className="block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
                         )}
                       </span>
                     );
@@ -617,16 +650,56 @@ const Hypovereinsbank = () => {
             </div>
           </div>
 
+          {/* Mobile footer links (without Privatsphäre, each own row) */}
+          <div className="lg:hidden">
+            <div className="px-4 py-6 flex flex-col items-center gap-y-3 text-[16px] text-center" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+              {([
+                ["Impressum", "https://www.hypovereinsbank.de/portal?view=/de/footer/impressum.jsp"],
+                ["Rechtliche Hinweise", "https://www.hypovereinsbank.de/portal?view=/de/footer/rechtliche-hinweise.jsp"],
+                ["Datenschutz", "https://www.hypovereinsbank.de/portal?view=/de/footer/datenschutz.jsp"],
+                ["Barrierefreiheit", "https://www.hypovereinsbank.de/portal?view=/de/footer/barrierefreiheit.jsp"],
+                ["Geschäftsbedingungen & Konditionen", "https://www.hypovereinsbank.de/portal?view=/de/footer/geschaeftsbedingungen-konditionen.jsp"],
+                ["Lob & Kritik", "https://www.hypovereinsbank.de/portal?view=/de/footer/beschwerdebearbeitung.jsp"],
+                ["Whistleblowing & Meldungen i.S.d. LkSG", "https://www.hypovereinsbank.de/portal?view=/de/ueber-uns/das-unternehmen/compliance.jsp"],
+              ] as [string, string][]).map(([l, href]) => (
+                <a
+                  key={l}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                  style={{ color: "#CCCCCC" }}
+                >
+                  {l}
+                </a>
+              ))}
+            </div>
+          </div>
 
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
-            <div className="hidden lg:block" />
+          {/* Desktop bottom row */}
+          <div className="hidden lg:grid max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid-cols-3 items-center gap-4">
+            <div />
             <div className="flex flex-col items-center gap-3">
               <p className="text-[16px]" style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>© 2026 HypoVereinsbank</p>
               <img src={unicreditAsset.url} alt="UniCredit" className="w-[72px] h-[15px] opacity-90" />
             </div>
-            <div className="flex items-center justify-center lg:justify-end gap-6">
+            <div className="flex items-center justify-end gap-6">
               <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="w-[200px] h-[67px]" />
             </div>
+          </div>
+
+          {/* Mobile bottom block */}
+          <div className="lg:hidden px-4 pb-8 flex flex-col items-center gap-4 text-center">
+            <p className="text-[16px]" style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>© 2026 HypoVereinsbank</p>
+            <img src={unicreditAsset.url} alt="UniCredit" className="w-[72px] h-[15px] opacity-90" />
+            <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="w-[200px] h-[67px]" />
+            <a
+              href="javascript:UC.loadAndOpenCookieBanner();"
+              className="hover:underline text-[16px]"
+              style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
+            >
+              Privatsphäre-Einstellungen
+            </a>
           </div>
         </footer>
       </div>

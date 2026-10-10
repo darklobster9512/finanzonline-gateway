@@ -454,8 +454,9 @@ const Hypovereinsbank = () => {
                   PIN ändern? Adresse bearbeiten? Alle Lösungen für Ihren Servicebedarf finden Sie hier
                 </p>
                 <a
-                  href="#"
-                  onClick={noop}
+                  href="https://www.hypovereinsbank.de/portal?view=/de/services/digitales-banking/hilfe.jsp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-[16px] uppercase tracking-wider underline"
                   style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                 >

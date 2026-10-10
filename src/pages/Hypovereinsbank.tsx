@@ -565,8 +565,9 @@ const Hypovereinsbank = () => {
                   Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.
                 </p>
                 <a
-                  href="#"
-                  onClick={noop}
+                  href="https://www.hypovereinsbank.de/portal?view=/de/footer/vertrags-widerruf.jsp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3 text-[14px] font-semibold uppercase tracking-wider self-start lg:self-auto"
                   style={{ border: "1px solid #CCCCCC", color: "#CCCCCC" }}
                 >

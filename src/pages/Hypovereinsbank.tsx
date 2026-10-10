@@ -81,7 +81,7 @@ const InfoHint = ({
         style={{
           width: 16,
           height: 16,
-          backgroundColor: "#8a8a8a",
+          backgroundColor: "#262626",
           color: "#fff",
           fontSize: 11,
           fontWeight: 700,

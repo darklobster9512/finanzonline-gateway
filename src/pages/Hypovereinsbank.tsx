@@ -87,7 +87,10 @@ const Hypovereinsbank = () => {
         }}
       >
         {/* Header */}
-        <header className="w-full border-b border-gray-100">
+        <header
+          className="w-full relative z-20 bg-white"
+          style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}
+        >
           <div className="max-w-[1360px] mx-auto flex items-stretch px-4 lg:px-6 h-[72px]">
             <a href="#" onClick={noop} className="flex items-center pr-6 lg:pr-10">
               <HVBLogo className="h-7 w-auto" />
@@ -98,7 +101,7 @@ const Hypovereinsbank = () => {
                   key={n}
                   href="#"
                   onClick={noop}
-                  className="text-center leading-tight hover:text-black"
+                  className="text-center leading-tight hover:text-black transition-colors"
                   style={{ color: "#4a4a4a", maxWidth: 130 }}
                 >
                   {n}
@@ -107,18 +110,23 @@ const Hypovereinsbank = () => {
             </nav>
             <div className="hidden lg:flex items-center gap-2 pl-4">
               {[
-                { icon: Search, label: "SUCHE" },
-                { icon: HelpCircle, label: "HILFE" },
-                { icon: MapPin, label: "FILIALE" },
+                { glyph: "\uEA2D", label: "SUCHE" },
+                { glyph: "\uEA18", label: "HILFE" },
+                { glyph: "\uEA26", label: "FILIALE" },
               ].map((it) => (
                 <a
                   key={it.label}
                   href="#"
                   onClick={noop}
-                  className="flex flex-col items-center justify-center px-3 py-2 text-[12px]"
+                  className="flex flex-col items-center justify-center px-3 py-2 text-[12px] hover:text-black transition-colors"
                   style={{ color: "#4a4a4a" }}
                 >
-                  <it.icon size={18} strokeWidth={1.5} />
+                  <span
+                    aria-hidden="true"
+                    style={{ fontFamily: "ucicons", fontSize: 20, lineHeight: 1 }}
+                  >
+                    {it.glyph}
+                  </span>
                   <span className="mt-1 tracking-wide">{it.label}</span>
                 </a>
               ))}
@@ -128,7 +136,12 @@ const Hypovereinsbank = () => {
                 className="flex flex-col items-center justify-center text-white px-4 self-stretch text-[12px] tracking-wide"
                 style={{ backgroundColor: RED, minWidth: 88 }}
               >
-                <LogIn size={18} strokeWidth={1.75} />
+                <span
+                  aria-hidden="true"
+                  style={{ fontFamily: "ucicons", fontSize: 20, lineHeight: 1 }}
+                >
+                  {"\uEA1F"}
+                </span>
                 <span className="mt-1">BANKING</span>
                 <span className="-mt-0.5">LOGIN</span>
               </a>
@@ -141,7 +154,12 @@ const Hypovereinsbank = () => {
                 className="flex flex-col items-center justify-center text-white px-3 h-full text-[11px] tracking-wide"
                 style={{ backgroundColor: RED, minWidth: 72 }}
               >
-                <LogIn size={18} strokeWidth={1.75} />
+                <span
+                  aria-hidden="true"
+                  style={{ fontFamily: "ucicons", fontSize: 18, lineHeight: 1 }}
+                >
+                  {"\uEA1F"}
+                </span>
                 <span className="mt-0.5">BANKING LOGIN</span>
               </a>
             </div>

@@ -82,7 +82,7 @@ const Hypovereinsbank = () => {
       <div
         className="min-h-screen flex flex-col bg-white"
         style={{
-          fontFamily: "'UniCredit', 'UniCreditMedium', Arial, Helvetica, sans-serif",
+          fontFamily: "'UniCreditMedium', Arial, Helvetica, sans-serif",
           color: DARK,
         }}
       >

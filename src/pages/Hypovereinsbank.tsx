@@ -461,7 +461,7 @@ const Hypovereinsbank = () => {
         </section>
 
         {/* Help cards */}
-        <section className="w-full" style={{ backgroundColor: PANEL_BG }}>
+        <section className="w-full" style={{ backgroundColor: "#E5EFF2" }}>
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-16">
             <h2 className="text-[24px] lg:text-[28px] font-light text-center mb-10" style={{ color: DARK }}>
               Finden Sie hier Hilfestellungen für Ihr HVB Online Banking:

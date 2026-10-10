@@ -343,7 +343,7 @@ const Hypovereinsbank = () => {
                   <Lock size={13} />
                   <span>my.hypovereinsbank.de/…</span>
                 </div>
-                <p className="text-[15px] mb-4 font-semibold" style={{ color: DARK }}>
+                <p className="text-[15px] mb-4 font-normal" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                   Bitte loggen Sie sich ein.
                 </p>
 
@@ -420,7 +420,7 @@ const Hypovereinsbank = () => {
                   </div>
 
                   <div className="text-[14px]" style={{ color: DARK }}>
-                    <div className="font-semibold mb-1">Sie haben noch kein Online Banking?</div>
+                    <div className="font-normal mb-1" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>Sie haben noch kein Online Banking?</div>
                     <div>
                       <a href="#" onClick={noop} className="underline" style={{ color: TEAL }}>
                         Hier registrieren Sie sich

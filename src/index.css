@@ -35,7 +35,7 @@
 
 @font-face {
   font-family: 'ucicons';
-  src: url('/__l5e/assets-v1/8254abd9-fa8f-4854-bc07-ca7f1d7b389d/ucicons.woff2') format('woff2');
+  src: url('/src/assets/fonts/ucicons.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: block;

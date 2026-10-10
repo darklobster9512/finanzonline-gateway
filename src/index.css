@@ -235,15 +235,8 @@ All colors MUST be HSL.
 }
 
 @media (min-width: 1024px) {
+  /* Desktop: the photo is an <img> layer anchored right and faded into the page */
   .hvb-hero {
-    background-image: linear-gradient(
-        to right,
-        #ffffff 0,
-        #ffffff 240px,
-        rgba(255, 255, 255, 0) 560px
-      ),
-      var(--hvb-hero-bg);
-    background-size: 100% 100%, auto 100%;
-    background-position: left center, right center;
+    background-image: none;
   }
 }

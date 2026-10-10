@@ -17,6 +17,9 @@ const DARK = "#1A1A18";
 const PANEL_BG = "#EEF2F3";
 const WARN_BG = "#DCECEF";
 const BORDER = "#CFD8DC";
+// Desktop hero photo: its own left edge dissolves into the white page.
+const HERO_FADE =
+  "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 12%, rgba(0,0,0,1) 38%)";
 
 const HVBLogo = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 200 28" xmlns="http://www.w3.org/2000/svg" className={className} aria-label="HypoVereinsbank">
@@ -317,13 +320,20 @@ const Hypovereinsbank = () => {
 
         {/* Login teaser */}
         <section
-          className="relative w-full hvb-hero"
+          className="relative w-full hvb-hero overflow-hidden"
           style={{
             minHeight: 620,
             "--hvb-hero-bg": `url(${bgAsset.url})`,
           } as CSSProperties}
         >
-          <div className="max-w-[1360px] mx-auto px-4 lg:px-6 py-10 lg:py-14 grid grid-cols-1 gap-6 lg:grid-cols-[460px_minmax(0,500px)] lg:gap-[100px] lg:justify-center">
+          <img
+            src={bgAsset.url}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden h-full w-auto max-w-none lg:block"
+            style={{ maskImage: HERO_FADE, WebkitMaskImage: HERO_FADE }}
+          />
+          <div className="relative z-10 max-w-[1360px] mx-auto px-4 lg:px-6 py-10 lg:py-14 grid grid-cols-1 gap-6 lg:grid-cols-[460px_minmax(0,500px)] lg:gap-[100px] lg:justify-center">
             {/* Login card */}
             <div>
               <div className="bg-white shadow-md p-7 lg:p-9 max-w-[460px]">

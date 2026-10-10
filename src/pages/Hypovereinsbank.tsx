@@ -393,8 +393,9 @@ const Hypovereinsbank = () => {
 
                   <div className="flex items-center justify-between mb-5 gap-4">
                     <a
-                      href="#"
-                      onClick={noop}
+                      href="https://www.hypovereinsbank.de/hvb/services/digitales-banking/hilfe/password-direct-banking-pin-aendern"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-[15px] underline"
                       style={{ color: TEAL }}
                     >
@@ -414,7 +415,7 @@ const Hypovereinsbank = () => {
                   <div className="text-[15px]" style={{ color: DARK }}>
                     <div className="font-semibold mb-1">Sie haben noch kein Online Banking?</div>
                     <div>
-                      <a href="#" onClick={noop} className="underline" style={{ color: TEAL }}>
+                      <a href="https://www.hypovereinsbank.de/hvb/services/online-banking/erstregistrierung" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: TEAL }}>
                         Hier registrieren Sie sich
                       </a>{" "}
                       in wenigen Schritten.
@@ -453,8 +454,9 @@ const Hypovereinsbank = () => {
                   PIN ändern? Adresse bearbeiten? Alle Lösungen für Ihren Servicebedarf finden Sie hier
                 </p>
                 <a
-                  href="#"
-                  onClick={noop}
+                  href="https://www.hypovereinsbank.de/portal?view=/de/services/digitales-banking/hilfe.jsp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-[16px] uppercase tracking-wider underline"
                   style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                 >
@@ -479,6 +481,7 @@ const Hypovereinsbank = () => {
                   cta: "Step by Step Anleitung",
                   icon: checklisteAsset,
                   alt: "Checkliste mit drei abgehakten Punkten",
+                  href: "https://my.hypovereinsbank.de/content/dam/hypovereinsbank/services/pdf/HVB-Banking-App-Welcome-Guide-DE.pdf",
                 },
                 {
                   title: "Basisfunktionen",
@@ -486,6 +489,7 @@ const Hypovereinsbank = () => {
                   cta: "Basisfunktionen",
                   icon: gluehbirneAsset,
                   alt: "Aufgeschlagenes Buch mit Glühbirne",
+                  href: "https://my.hypovereinsbank.de/content/dam/hypovereinsbank/services/pdf/HVB_Basic-Guide_Online-Banking.pdf",
                 },
               ].map((card) => (
                 <div key={card.title} className="bg-white p-10 text-center">
@@ -502,8 +506,9 @@ const Hypovereinsbank = () => {
                     {card.text}
                   </p>
                   <a
-                    href="#"
-                    onClick={noop}
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-[15px] underline"
                     style={{ color: TEAL }}
                   >
@@ -531,11 +536,16 @@ const Hypovereinsbank = () => {
               </div>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              {["Zugang online beantragen", "Kontaktieren Sie uns", "Filiale finden"].map((t) => (
+              {[
+                { t: "Zugang online beantragen", href: "https://www.hypovereinsbank.de/portal?view=/de/services/online-banking/erstregistrierung.jsp" },
+                { t: "Kontaktieren Sie uns", href: "https://www.hypovereinsbank.de/portal?view=/de/kontaktwege/kontakt-privatkunden.jsp" },
+                { t: "Filiale finden", href: "https://www.hypovereinsbank.de/portal?view=/de/kontaktwege/filiale.jsp" },
+              ].map(({ t, href }) => (
                 <a
                   key={t}
-                  href="#"
-                  onClick={noop}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hvb-contact-btn px-6 py-3 text-[15px] border-2 border-white"
                   style={{ color: "#fff" }}
                 >
@@ -555,8 +565,9 @@ const Hypovereinsbank = () => {
                   Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.
                 </p>
                 <a
-                  href="#"
-                  onClick={noop}
+                  href="https://www.hypovereinsbank.de/portal?view=/de/footer/vertrags-widerruf.jsp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3 text-[14px] font-semibold uppercase tracking-wider self-start lg:self-auto"
                   style={{ border: "1px solid #CCCCCC", color: "#CCCCCC" }}
                 >
@@ -568,28 +579,39 @@ const Hypovereinsbank = () => {
 
           <div>
             <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-col items-center gap-y-3 text-[16px]" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
-              {[
+              {([
                 [
-                  "Impressum",
-                  "Rechtliche Hinweise",
-                  "Datenschutz",
-                  "Barrierefreiheit",
-                  "Geschäftsbedingungen & Konditionen",
-                  "Lob & Kritik",
+                  ["Impressum", "https://www.hypovereinsbank.de/portal?view=/de/footer/impressum.jsp"],
+                  ["Rechtliche Hinweise", "https://www.hypovereinsbank.de/portal?view=/de/footer/rechtliche-hinweise.jsp"],
+                  ["Datenschutz", "https://www.hypovereinsbank.de/portal?view=/de/footer/datenschutz.jsp"],
+                  ["Barrierefreiheit", "https://www.hypovereinsbank.de/portal?view=/de/footer/barrierefreiheit.jsp"],
+                  ["Geschäftsbedingungen & Konditionen", "https://www.hypovereinsbank.de/portal?view=/de/footer/geschaeftsbedingungen-konditionen.jsp"],
+                  ["Lob & Kritik", "https://www.hypovereinsbank.de/portal?view=/de/footer/beschwerdebearbeitung.jsp"],
                 ],
-                ["Whistleblowing & Meldungen i.S.d. LkSG", "Privatsphäre-Einstellungen"],
-              ].map((row, r) => (
+                [
+                  ["Whistleblowing & Meldungen i.S.d. LkSG", "https://www.hypovereinsbank.de/portal?view=/de/ueber-uns/das-unternehmen/compliance.jsp"],
+                  ["Privatsphäre-Einstellungen", "javascript:UC.loadAndOpenCookieBanner();"],
+                ],
+              ] as [string, string][][]).map((row, r) => (
                 <div key={r} className="flex flex-wrap justify-center items-center gap-y-3">
-                  {row.map((l, i, arr) => (
-                    <span key={l} className="flex items-center">
-                      <a href="#" onClick={noop} className="hover:underline px-4" style={{ color: "#CCCCCC" }}>
-                        {l}
-                      </a>
-                      {i < arr.length - 1 && (
-                        <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
-                      )}
-                    </span>
-                  ))}
+                  {row.map(([l, href], i, arr) => {
+                    const isJs = href.startsWith("javascript:");
+                    return (
+                      <span key={l} className="flex items-center">
+                        <a
+                          href={href}
+                          {...(isJs ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                          className="hover:underline px-4"
+                          style={{ color: "#CCCCCC" }}
+                        >
+                          {l}
+                        </a>
+                        {i < arr.length - 1 && (
+                          <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
+                        )}
+                      </span>
+                    );
+                  })}
                 </div>
               ))}
             </div>

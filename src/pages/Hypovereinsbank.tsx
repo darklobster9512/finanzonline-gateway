@@ -550,7 +550,7 @@ const Hypovereinsbank = () => {
         {/* Footer */}
         <footer style={{ backgroundColor: "#262626", color: "#CCCCCC" }} className="flex-1">
           <div>
-            <div className="border-t border-b mt-10" style={{ borderColor: "#CCCCCC" }}>
+            <div className="border-t border-b mt-20" style={{ borderColor: "#CCCCCC" }}>
               <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-8 flex flex-col lg:flex-row lg:items-center gap-4">
                 <p className="text-[15px] flex-1" style={{ color: "#CCCCCC" }}>
                   Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.

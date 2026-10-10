@@ -390,7 +390,7 @@ const Hypovereinsbank = () => {
                     <a
                       href="#"
                       onClick={noop}
-                      className="text-[14px] underline"
+                      className="text-[15px] underline"
                       style={{ color: TEAL }}
                     >
                       Zugangsdaten vergessen/gesperrt?

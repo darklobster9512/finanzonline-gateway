@@ -511,28 +511,30 @@ const Hypovereinsbank = () => {
         </section>
 
         {/* Contact band */}
-        <section className="w-full" style={{ backgroundColor: TEAL, color: "#fff" }}>
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-14 text-center">
+        <section className="w-full" style={{ backgroundColor: "#007a91", color: "#fff" }}>
+          <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-8 text-center">
             <h2 className="text-[28px] font-light mb-6">Sie haben eine Frage?</h2>
-            <div className="flex items-center justify-center gap-4 mb-2">
-              <Phone size={44} strokeWidth={1.25} />
-              <a href="#" onClick={noop} className="text-[34px] font-light inline-flex items-center gap-2">
-                +49 89 378 488 88 <ChevronRight size={24} />
-              </a>
+            <div className="flex items-center justify-center gap-5 mb-8">
+              <Phone size={60} strokeWidth={1.25} />
+              <div className="text-left">
+                <a href="#" onClick={noop} className="text-[34px] leading-[1.1] font-light inline-flex items-center gap-2">
+                  +49 89 378 488 88 <ChevronRight size={34} strokeWidth={1.5} />
+                </a>
+                <p className="text-[15px] mt-1" style={{ color: "#dff1f3" }}>
+                  Mo – Fr: 08.00 – 20.00 Uhr und Sa: 08.00 – 14.00 Uhr
+                </p>
+              </div>
             </div>
-            <p className="text-[15px] mb-8" style={{ color: "#dff1f3" }}>
-              Mo – Fr: 08.00 – 20.00 Uhr und Sa: 08.00 – 14.00 Uhr
-            </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               {["Zugang online beantragen", "Kontaktieren Sie uns", "Filiale finden"].map((t) => (
                 <a
                   key={t}
                   href="#"
                   onClick={noop}
-                  className="px-6 py-3 text-[15px] border border-white hover:bg-white"
+                  className="px-6 py-3 text-[15px] border-2 border-white hover:bg-white"
                   style={{ color: "#fff" }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.color = TEAL;
+                    e.currentTarget.style.color = "#007a91";
                   }}
                   onMouseOut={(e) => {
                     e.currentTarget.style.color = "#fff";

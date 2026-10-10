@@ -478,6 +478,28 @@ const Hypovereinsbank = () => {
           </div>
         </section>
 
+        {/* Mobile help teaser (below the login card) */}
+        <section className="lg:hidden w-full bg-white">
+          <div className="px-4 py-8" style={{ color: DARK }}>
+            <h2 className="text-[22px] font-light leading-snug mb-2">
+              Hilfe &amp; Services – 24/7 erreichbar!
+            </h2>
+            <p className="text-[15px] mb-3" style={{ color: "#4a4a4a", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+              PIN ändern? Adresse bearbeiten? Alle Lösungen für Ihren Servicebedarf finden Sie hier
+            </p>
+            <a
+              href="https://www.hypovereinsbank.de/portal?view=/de/services/digitales-banking/hilfe.jsp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[15px] uppercase tracking-wider underline"
+              style={{ color: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
+            >
+              Jetzt entdecken <ChevronRight size={14} />
+            </a>
+          </div>
+        </section>
+
+
         {/* Help cards */}
         <section className="w-full" style={{ backgroundColor: "#E5EFF2" }}>
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-16">

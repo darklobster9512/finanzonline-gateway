@@ -406,7 +406,7 @@ const Hypovereinsbank = () => {
                     </button>
                   </div>
 
-                  <div className="text-[14px]" style={{ color: DARK }}>
+                  <div className="text-[15px]" style={{ color: DARK }}>
                     <div className="font-semibold mb-1">Sie haben noch kein Online Banking?</div>
                     <div>
                       <a href="#" onClick={noop} className="underline" style={{ color: TEAL }}>

@@ -584,7 +584,7 @@ const Hypovereinsbank = () => {
                     {l}
                   </a>
                   {i < arr.length - 1 && (
-                    <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 12, backgroundColor: "#CCCCCC", transform: "translateY(-1px)" }} />
+                    <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
                   )}
                 </span>
               ))}

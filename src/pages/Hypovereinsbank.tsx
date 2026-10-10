@@ -433,7 +433,7 @@ const Hypovereinsbank = () => {
                     className="text-[14px] font-semibold uppercase tracking-wide flex items-center gap-2"
                     style={{ color: TEAL }}
                   >
-                    Warnung – Phishing E-Mails im Namen der HVB
+                    Warnung - Vorsicht vor (Krypto-)Anlagebetrug!
                     <ExternalLink size={13} />
                   </a>
                 </div>

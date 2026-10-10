@@ -120,8 +120,7 @@ const Hypovereinsbank = () => {
                   key={it.label}
                   href="#"
                   onClick={noop}
-                  className="flex flex-col items-center justify-center px-3 py-2 text-[12px] hover:text-black transition-colors"
-                  style={{ color: "#4a4a4a" }}
+                  className="flex flex-col items-center justify-center px-3 py-2 text-[12px] text-[#4a4a4a] hover:text-black transition-colors"
                 >
                   <span
                     aria-hidden="true"

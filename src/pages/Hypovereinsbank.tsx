@@ -361,7 +361,7 @@ const Hypovereinsbank = () => {
                   </label>
 
                   <label className="block mb-5">
-                    <span className="flex items-center gap-1.5 text-[15px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+                    <span className="flex items-center gap-1.5 text-[16px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                       Passwort
                       <InfoHint
                         open={openHint === "pw"}

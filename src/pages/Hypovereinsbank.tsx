@@ -366,7 +366,7 @@ const Hypovereinsbank = () => {
             mobileMenuOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
           } ${menuHidden ? "invisible" : ""}`}
         >
-            <div className="flex h-14 shrink-0 items-stretch border-b border-[#e8e8e8]">
+            <div className="flex h-[72px] shrink-0 items-stretch border-b border-[#e8e8e8]">
               <button
                 type="button"
                 onClick={closeMenu}

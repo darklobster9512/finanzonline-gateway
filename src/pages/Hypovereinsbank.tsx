@@ -601,7 +601,7 @@ const Hypovereinsbank = () => {
             <div className="hidden lg:block" />
             <div className="flex flex-col items-center gap-3">
               <p className="text-[16px]" style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>© 2026 HypoVereinsbank</p>
-              <img src={unicreditAsset.url} alt="UniCredit" className="w-[144px] h-[30px] opacity-90" />
+              <img src={unicreditAsset.url} alt="UniCredit" className="w-[72px] h-[15px] opacity-90" />
             </div>
             <div className="flex items-center justify-center lg:justify-end gap-6">
               <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="w-[200px] h-[67px]" />

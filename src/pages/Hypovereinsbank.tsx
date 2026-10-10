@@ -100,12 +100,12 @@ const InfoHint = ({
             transform: "translateY(-50%)",
             width: 300,
             backgroundColor: HINT_BG,
-            color: HINT_FG,
+            color: HINT_BORDER,
             border: `1px solid ${HINT_BORDER}`,
             borderRadius: 6,
-            padding: "12px 28px 12px 14px",
-            fontSize: 15,
-            lineHeight: 1.5,
+            padding: "12px 34px 12px 20px",
+            fontSize: 17,
+            lineHeight: 1.55,
           }}
         >
           {/* Arrow border */}
@@ -145,20 +145,23 @@ const InfoHint = ({
               onClose();
             }}
             aria-label="Schließen"
-            className="absolute"
+            className="absolute inline-flex items-center justify-center"
             style={{
-              top: 4,
-              right: 6,
+              top: 6,
+              right: 10,
+              width: 18,
+              height: 18,
               color: HINT_X,
-              fontSize: 18,
-              lineHeight: 1,
-              fontWeight: 700,
               background: "transparent",
               border: "none",
               cursor: "pointer",
+              padding: 0,
             }}
           >
-            ×
+            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="none">
+              <line x1="3" y1="3" x2="15" y2="15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              <line x1="15" y1="3" x2="3" y2="15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            </svg>
           </button>
           {children}
         </span>

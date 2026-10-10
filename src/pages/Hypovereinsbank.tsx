@@ -410,8 +410,8 @@ const Hypovereinsbank = () => {
                     </a>
                     <button
                       type="submit"
-                      className="text-white text-[14px] tracking-wider font-semibold px-6 h-10"
-                      style={{ backgroundColor: TEAL }}
+                      className="text-white text-[14px] tracking-wider px-6 h-10"
+                      style={{ backgroundColor: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                       onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TEAL_DARK)}
                       onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TEAL)}
                     >
@@ -457,13 +457,14 @@ const Hypovereinsbank = () => {
                 <h2 className="text-[28px] font-light leading-snug mb-2">
                   Hilfe &amp; Services – 24/7 erreichbar!
                 </h2>
-                <p className="text-[16px] mb-4" style={{ color: "#f1f1f1" }}>
+                <p className="text-[16px] mb-4" style={{ color: "#f1f1f1", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                   PIN ändern? Adresse bearbeiten? Alle Lösungen für Ihren Servicebedarf finden Sie hier
                 </p>
                 <a
                   href="#"
                   onClick={noop}
-                  className="inline-flex items-center gap-1 text-[14px] font-semibold uppercase tracking-wider underline"
+                  className="inline-flex items-center gap-1 text-[14px] uppercase tracking-wider underline"
+                  style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                 >
                   Jetzt entdecken <ChevronRight size={14} />
                 </a>

@@ -224,6 +224,16 @@ All colors MUST be HSL.
   background-color: rgb(255, 225, 0);
 }
 
+/* HVB contact band buttons: label stays white, only the fill lightens a touch. */
+.hvb-contact-btn {
+  background-color: transparent;
+  transition: background-color 150ms ease;
+}
+.hvb-contact-btn:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+
 /* HVB hero: the photo fills the full width of the section on all viewports. */
 .hvb-hero {
   background-size: cover;

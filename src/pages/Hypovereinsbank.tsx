@@ -531,14 +531,8 @@ const Hypovereinsbank = () => {
                   key={t}
                   href="#"
                   onClick={noop}
-                  className="px-6 py-3 text-[15px] border-2 border-white hover:bg-white"
+                  className="hvb-contact-btn px-6 py-3 text-[15px] border-2 border-white"
                   style={{ color: "#fff" }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.color = "#007a91";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.color = "#fff";
-                  }}
                 >
                   {t}
                 </a>

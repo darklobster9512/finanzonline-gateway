@@ -243,9 +243,11 @@ const Hypovereinsbank = () => {
                 aria-label="Menü öffnen"
                 className="flex lg:hidden items-center justify-center pr-3 text-[#4a4a4a]"
               >
-                <span aria-hidden="true" style={{ fontFamily: "ucicons", fontSize: 24, lineHeight: 1 }}>
-                  {"\uEA20"}
-                </span>
+                <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
               </button>
               <a href="#" onClick={noop} className="flex items-center pr-4 lg:pr-12">
                 <HVBLogo className="h-7 w-auto" />
@@ -406,14 +408,14 @@ const Hypovereinsbank = () => {
                       href="https://www.hypovereinsbank.de/hvb/services/digitales-banking/hilfe/password-direct-banking-pin-aendern"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[15px] underline order-1"
+                      className="text-[15px] underline order-1 self-start max-w-[200px] lg:max-w-none"
                       style={{ color: TEAL }}
                     >
                       Zugangsdaten vergessen/gesperrt?
                     </a>
                     <button
                       type="submit"
-                      className="text-white text-[15px] tracking-wider px-6 h-10 w-full lg:w-auto order-2"
+                      className="text-white text-[15px] tracking-wider px-6 h-10 self-start order-2"
                       style={{ backgroundColor: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                       onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TEAL_DARK)}
                       onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TEAL)}

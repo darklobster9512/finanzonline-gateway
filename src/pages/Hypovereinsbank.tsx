@@ -193,6 +193,17 @@ const Hypovereinsbank = () => {
   const [password, setPassword] = useState("");
   const [openHint, setOpenHint] = useState<null | "user" | "pw">(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuHidden, setMenuHidden] = useState(true);
+
+  const openMenu = () => {
+    setMenuHidden(false);
+    setMobileMenuOpen(true);
+  };
+
+  const closeMenu = () => {
+    setMobileMenuOpen(false);
+    window.setTimeout(() => setMenuHidden(true), 320);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -202,7 +213,7 @@ const Hypovereinsbank = () => {
     if (!mobileMenuOpen) return;
     const previousOverflow = document.body.style.overflow;
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMobileMenuOpen(false);
+      if (event.key === "Escape") closeMenu();
     };
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
@@ -254,7 +265,7 @@ const Hypovereinsbank = () => {
             <div className="max-w-[1360px] w-full mx-auto flex items-stretch">
               <button
                 type="button"
-                onClick={() => setMobileMenuOpen(true)}
+                onClick={openMenu}
                 aria-label="Menü öffnen"
                 aria-expanded={mobileMenuOpen}
                 className="flex lg:hidden items-center justify-center pr-3 text-[#4a4a4a]"
@@ -348,11 +359,13 @@ const Hypovereinsbank = () => {
           </div>
         </header>
 
-        {mobileMenuOpen && (
-          <aside
-            className="fixed inset-0 z-[100] flex flex-col bg-white lg:hidden"
-            aria-label="Hauptmenü"
-          >
+        <aside
+          aria-label="Hauptmenü"
+          aria-hidden={mobileMenuOpen ? undefined : true}
+          className={`fixed inset-0 z-[100] flex flex-col bg-white lg:hidden transition-transform duration-300 ease-out ${
+            mobileMenuOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
+          } ${menuHidden ? "invisible" : ""}`}
+        >
             <div className="flex h-14 shrink-0 items-stretch border-b border-[#e8e8e8]">
               <button
                 type="button"
@@ -404,17 +417,13 @@ const Hypovereinsbank = () => {
                   key={item}
                   href="#"
                   onClick={noop}
-                  className="flex min-h-[72px] items-center justify-between border-b border-[#ededed] px-5 text-[18px] text-[#4a4a4a]"
+                  className="flex min-h-[72px] items-center border-b border-[#ededed] px-5 text-[18px] text-[#4a4a4a]"
                 >
                   <span>{item}</span>
-                  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#52656d" strokeWidth="2.4" strokeLinecap="square" strokeLinejoin="miter">
-                    <path d="M4 6.5 9 11.5 14 6.5" />
-                  </svg>
                 </a>
               ))}
             </nav>
           </aside>
-        )}
 
         {/* Login teaser */}
         <section

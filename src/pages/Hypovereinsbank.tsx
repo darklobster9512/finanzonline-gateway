@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -317,13 +317,11 @@ const Hypovereinsbank = () => {
 
         {/* Login teaser */}
         <section
-          className="relative w-full"
+          className="relative w-full hvb-hero"
           style={{
-            backgroundImage: `url(${bgAsset.url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             minHeight: 620,
-          }}
+            "--hvb-hero-bg": `url(${bgAsset.url})`,
+          } as CSSProperties}
         >
           <div className="max-w-[1360px] mx-auto px-4 lg:px-6 py-10 lg:py-14 grid grid-cols-1 gap-6 lg:grid-cols-[460px_minmax(0,500px)] lg:gap-[100px] lg:justify-center">
             {/* Login card */}

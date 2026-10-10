@@ -450,7 +450,7 @@ const Hypovereinsbank = () => {
                 <a
                   href="#"
                   onClick={noop}
-                  className="inline-flex items-center gap-1 text-[14px] uppercase tracking-wider underline"
+                  className="inline-flex items-center gap-1 text-[16px] uppercase tracking-wider underline"
                   style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                 >
                   Jetzt entdecken <ChevronRight size={14} />

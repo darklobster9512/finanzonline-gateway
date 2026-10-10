@@ -48,6 +48,7 @@ const Hypovereinsbank = () => {
   const [showLoading, setShowLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [openHint, setOpenHint] = useState<null | "user" | "pw">(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);

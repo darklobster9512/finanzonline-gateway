@@ -549,9 +549,9 @@ const Hypovereinsbank = () => {
 
         {/* Footer */}
         <footer style={{ backgroundColor: "#1E1E1E", color: "#fff" }} className="flex-1">
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-6">
-            <div className="py-6 flex flex-col lg:flex-row lg:items-center gap-4 border-b border-white/10">
-              <p className="text-[15px] flex-1" style={{ color: "#e6e6e6" }}>
+          <div className="border-b" style={{ borderColor: "#2a2a2a" }}>
+            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-col lg:flex-row lg:items-center gap-4">
+              <p className="text-[15px] flex-1" style={{ color: "#8ec9d6" }}>
                 Möchten Sie einen Widerruf erklären? Diese Funktion ist nur für den Widerruf vorgesehen. Für Kündigungen nutzen Sie bitte die dafür vorgesehenen Wege.
               </p>
               <a
@@ -562,8 +562,10 @@ const Hypovereinsbank = () => {
                 Vertrag widerrufen <ChevronRight size={14} />
               </a>
             </div>
+          </div>
 
-            <div className="py-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
+          <div className="border-b" style={{ borderColor: "#2a2a2a" }}>
+            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center items-center gap-y-3 text-[14px]">
               {[
                 "Impressum",
                 "Rechtliche Hinweise",
@@ -573,19 +575,28 @@ const Hypovereinsbank = () => {
                 "Lob & Kritik",
                 "Whistleblowing & Meldungen i.S.d. LkSG",
                 "Privatsphäre-Einstellungen",
-              ].map((l) => (
-                <a key={l} href="#" onClick={noop} className="hover:underline" style={{ color: "#e6e6e6" }}>
-                  {l}
-                </a>
+              ].map((l, i, arr) => (
+                <span key={l} className="flex items-center">
+                  <a href="#" onClick={noop} className="hover:underline px-4" style={{ color: "#8ec9d6" }}>
+                    {l}
+                  </a>
+                  {i < arr.length - 1 && (
+                    <span aria-hidden className="hidden lg:inline" style={{ color: "#555", userSelect: "none" }}>|</span>
+                  )}
+                </span>
               ))}
             </div>
+          </div>
 
-            <div className="py-6 flex flex-col lg:flex-row lg:items-center gap-4 border-t border-white/10">
-              <p className="text-[14px] flex-1" style={{ color: "#bdbdbd" }}>© 2026 HypoVereinsbank</p>
-              <div className="flex items-center gap-6">
-                <img src={unicreditAsset.url} alt="UniCredit" className="h-6 w-auto" />
-                <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="h-9 w-auto" />
-              </div>
+          <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
+            <div className="hidden lg:block" />
+            <div className="flex flex-col items-center gap-3">
+              <p className="text-[14px]" style={{ color: "#bdbdbd" }}>© 2026 HypoVereinsbank</p>
+              <img src={unicreditAsset.url} alt="UniCredit" className="h-4 w-auto opacity-90" />
+            </div>
+            <div className="flex items-center justify-center lg:justify-end gap-6">
+              <img src={unicreditAsset.url} alt="UniCredit" className="h-6 w-auto" />
+              <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="h-9 w-auto" />
             </div>
           </div>
         </footer>

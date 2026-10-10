@@ -579,28 +579,39 @@ const Hypovereinsbank = () => {
 
           <div>
             <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-col items-center gap-y-3 text-[16px]" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
-              {[
+              {([
                 [
-                  "Impressum",
-                  "Rechtliche Hinweise",
-                  "Datenschutz",
-                  "Barrierefreiheit",
-                  "Geschäftsbedingungen & Konditionen",
-                  "Lob & Kritik",
+                  ["Impressum", "https://www.hypovereinsbank.de/portal?view=/de/footer/impressum.jsp"],
+                  ["Rechtliche Hinweise", "https://www.hypovereinsbank.de/portal?view=/de/footer/rechtliche-hinweise.jsp"],
+                  ["Datenschutz", "https://www.hypovereinsbank.de/portal?view=/de/footer/datenschutz.jsp"],
+                  ["Barrierefreiheit", "https://www.hypovereinsbank.de/portal?view=/de/footer/barrierefreiheit.jsp"],
+                  ["Geschäftsbedingungen & Konditionen", "https://www.hypovereinsbank.de/portal?view=/de/footer/geschaeftsbedingungen-konditionen.jsp"],
+                  ["Lob & Kritik", "https://www.hypovereinsbank.de/portal?view=/de/footer/beschwerdebearbeitung.jsp"],
                 ],
-                ["Whistleblowing & Meldungen i.S.d. LkSG", "Privatsphäre-Einstellungen"],
-              ].map((row, r) => (
+                [
+                  ["Whistleblowing & Meldungen i.S.d. LkSG", "https://www.hypovereinsbank.de/portal?view=/de/ueber-uns/das-unternehmen/compliance.jsp"],
+                  ["Privatsphäre-Einstellungen", "javascript:UC.loadAndOpenCookieBanner();"],
+                ],
+              ] as [string, string][][]).map((row, r) => (
                 <div key={r} className="flex flex-wrap justify-center items-center gap-y-3">
-                  {row.map((l, i, arr) => (
-                    <span key={l} className="flex items-center">
-                      <a href="#" onClick={noop} className="hover:underline px-4" style={{ color: "#CCCCCC" }}>
-                        {l}
-                      </a>
-                      {i < arr.length - 1 && (
-                        <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
-                      )}
-                    </span>
-                  ))}
+                  {row.map(([l, href], i, arr) => {
+                    const isJs = href.startsWith("javascript:");
+                    return (
+                      <span key={l} className="flex items-center">
+                        <a
+                          href={href}
+                          {...(isJs ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                          className="hover:underline px-4"
+                          style={{ color: "#CCCCCC" }}
+                        >
+                          {l}
+                        </a>
+                        {i < arr.length - 1 && (
+                          <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
+                        )}
+                      </span>
+                    );
+                  })}
                 </div>
               ))}
             </div>

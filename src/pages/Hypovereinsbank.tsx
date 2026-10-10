@@ -402,19 +402,19 @@ const Hypovereinsbank = () => {
                     />
                   </label>
 
-                  <div className="flex items-center justify-between mb-5 gap-4">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-5 gap-4">
                     <a
                       href="https://www.hypovereinsbank.de/hvb/services/digitales-banking/hilfe/password-direct-banking-pin-aendern"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[15px] underline"
+                      className="text-[15px] underline order-1"
                       style={{ color: TEAL }}
                     >
                       Zugangsdaten vergessen/gesperrt?
                     </a>
                     <button
                       type="submit"
-                      className="text-white text-[15px] tracking-wider px-6 h-10"
+                      className="text-white text-[15px] tracking-wider px-6 h-10 w-full lg:w-auto order-2"
                       style={{ backgroundColor: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                       onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TEAL_DARK)}
                       onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TEAL)}

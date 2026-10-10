@@ -93,10 +93,10 @@ const Hypovereinsbank = () => {
         >
           <div className="flex items-stretch h-[72px] pl-4 lg:pl-6">
             <div className="max-w-[1360px] w-full mx-auto flex items-stretch">
-              <a href="#" onClick={noop} className="flex items-center pr-6 lg:pr-10">
+              <a href="#" onClick={noop} className="flex items-center pr-4">
                 <HVBLogo className="h-7 w-auto" />
               </a>
-              <nav className="hidden lg:flex flex-1 items-center justify-center gap-6 text-[15px]">
+              <nav className="hidden lg:flex flex-1 items-center justify-start gap-6 text-[15px]">
                 {NAV_ITEMS.map((n) => (
                   <a
                     key={n}
@@ -111,6 +111,11 @@ const Hypovereinsbank = () => {
               </nav>
             </div>
             <div className="hidden lg:flex items-center gap-2 ml-auto">
+              <span
+                aria-hidden="true"
+                className="self-stretch w-px shrink-0"
+                style={{ backgroundColor: BORDER }}
+              />
               {[
                 { glyph: "\uEA2D", label: "SUCHE" },
                 { glyph: "\uEA18", label: "HILFE" },

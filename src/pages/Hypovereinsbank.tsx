@@ -330,7 +330,7 @@ const Hypovereinsbank = () => {
                 <h1 className="text-[28px] leading-tight font-light mb-5" style={{ color: DARK }}>
                   Willkommen im HVB Online Banking
                 </h1>
-                <p className="text-[15px] mb-4 font-semibold" style={{ color: DARK }}>
+                <p className="text-[16px] mb-4 font-semibold" style={{ color: DARK }}>
                   Bitte loggen Sie sich ein.
                 </p>
 

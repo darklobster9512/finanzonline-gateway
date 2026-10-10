@@ -224,19 +224,10 @@ All colors MUST be HSL.
   background-color: rgb(255, 225, 0);
 }
 
-/* HVB hero: mobile keeps the photo filling the area; desktop shows the whole
-   scene (fit by height, anchored right) fading softly into the white page. */
+/* HVB hero: the photo fills the full width of the section on all viewports. */
 .hvb-hero {
-  background-image: var(--hvb-hero-bg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #ffffff;
-}
-
-@media (min-width: 1024px) {
-  /* Desktop: the photo is an <img> layer anchored right and faded into the page */
-  .hvb-hero {
-    background-image: none;
-  }
 }

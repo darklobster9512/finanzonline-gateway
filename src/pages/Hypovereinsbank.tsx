@@ -44,6 +44,7 @@ const NAV_ITEMS = [
 const HINT_BG = "#bfebf3";
 const HINT_FG = "#262626";
 const HINT_X = "#007a91";
+const HINT_BORDER = "#999999";
 
 const InfoHint = ({
   open,
@@ -100,10 +101,11 @@ const InfoHint = ({
             width: 300,
             backgroundColor: HINT_BG,
             color: HINT_FG,
-            border: `1px solid ${HINT_FG}`,
+            border: `1px solid ${HINT_BORDER}`,
+            borderRadius: 6,
             padding: "12px 28px 12px 14px",
-            fontSize: 13,
-            lineHeight: 1.45,
+            fontSize: 15,
+            lineHeight: 1.5,
           }}
         >
           {/* Arrow border */}
@@ -118,7 +120,7 @@ const InfoHint = ({
               height: 0,
               borderTop: "8px solid transparent",
               borderBottom: "8px solid transparent",
-              borderRight: `8px solid ${HINT_FG}`,
+              borderRight: `8px solid ${HINT_BORDER}`,
             }}
           />
           {/* Arrow fill */}

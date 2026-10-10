@@ -568,28 +568,34 @@ const Hypovereinsbank = () => {
           </div>
 
           <div>
-            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center items-center gap-y-3 text-[16px]" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
+            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-col items-center gap-y-3 text-[16px]" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
               {[
-                "Impressum",
-                "Rechtliche Hinweise",
-                "Datenschutz",
-                "Barrierefreiheit",
-                "Geschäftsbedingungen & Konditionen",
-                "Lob & Kritik",
-                "Whistleblowing & Meldungen i.S.d. LkSG",
-                "Privatsphäre-Einstellungen",
-              ].map((l, i, arr) => (
-                <span key={l} className="flex items-center">
-                  <a href="#" onClick={noop} className="hover:underline px-4" style={{ color: "#CCCCCC" }}>
-                    {l}
-                  </a>
-                  {i < arr.length - 1 && (
-                    <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
-                  )}
-                </span>
+                [
+                  "Impressum",
+                  "Rechtliche Hinweise",
+                  "Datenschutz",
+                  "Barrierefreiheit",
+                  "Geschäftsbedingungen & Konditionen",
+                  "Lob & Kritik",
+                ],
+                ["Whistleblowing & Meldungen i.S.d. LkSG", "Privatsphäre-Einstellungen"],
+              ].map((row, r) => (
+                <div key={r} className="flex flex-wrap justify-center items-center gap-y-3">
+                  {row.map((l, i, arr) => (
+                    <span key={l} className="flex items-center">
+                      <a href="#" onClick={noop} className="hover:underline px-4" style={{ color: "#CCCCCC" }}>
+                        {l}
+                      </a>
+                      {i < arr.length - 1 && (
+                        <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 11, backgroundColor: "#CCCCCC", transform: "translateY(0.5px)" }} />
+                      )}
+                    </span>
+                  ))}
+                </div>
               ))}
             </div>
           </div>
+
 
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
             <div className="hidden lg:block" />

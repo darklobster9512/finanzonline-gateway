@@ -13,6 +13,7 @@ import gluehbirneAsset from "@/assets/hvb-gluehbirne-buch.webp.asset.json";
 const TEAL = "#007E8F";
 const TEAL_DARK = "#006674";
 const RED = "#E2001A";
+const RED_HOVER = "#C50017";
 const DARK = "#1A1A18";
 const PANEL_BG = "#EEF2F3";
 const WARN_BG = "#DCECEF";
@@ -283,7 +284,9 @@ const Hypovereinsbank = () => {
                 href="#"
                 onClick={noop}
                 className="flex flex-col items-center justify-center text-white px-4 self-stretch text-[12px] tracking-wide"
-                style={{ backgroundColor: RED, minWidth: 88 }}
+                style={{ backgroundColor: RED, minWidth: 88, transition: "background-color 120ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = RED_HOVER)}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = RED)}
               >
                 <span
                   aria-hidden="true"
@@ -301,7 +304,9 @@ const Hypovereinsbank = () => {
                 href="#"
                 onClick={noop}
                 className="flex flex-col items-center justify-center text-white px-3 h-full text-[11px] tracking-wide"
-                style={{ backgroundColor: RED, minWidth: 72 }}
+                style={{ backgroundColor: RED, minWidth: 72, transition: "background-color 120ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = RED_HOVER)}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = RED)}
               >
                 <span
                   aria-hidden="true"
@@ -428,7 +433,7 @@ const Hypovereinsbank = () => {
                   <a
                     href="#"
                     onClick={noop}
-                    className="text-[14px] font-semibold uppercase tracking-wide flex items-center gap-2"
+                    className="text-[14px] font-semibold uppercase tracking-wide flex items-center gap-2 underline"
                     style={{ color: TEAL }}
                   >
                     Warnung - Vorsicht vor (Krypto-)Anlagebetrug!

@@ -556,19 +556,19 @@ const Hypovereinsbank = () => {
         {/* Contact band */}
         <section className="w-full" style={{ backgroundColor: "#007a91", color: "#fff" }}>
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-8 text-center">
-            <h2 className="text-[28px] font-light mb-6">Sie haben eine Frage?</h2>
-            <div className="flex items-center justify-center gap-5 mb-8">
+            <h2 className="text-[22px] lg:text-[28px] font-light mb-6">Sie haben eine Frage?</h2>
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-5 mb-8">
               <Phone size={60} strokeWidth={1.25} />
-              <div className="text-left">
-                <a href="#" onClick={noop} className="text-[34px] leading-[1.1] font-light inline-flex items-center gap-2">
-                  +49 89 378 488 88 <ChevronRight size={34} strokeWidth={1.5} />
+              <div className="text-center lg:text-left">
+                <a href="#" onClick={noop} className="text-[26px] lg:text-[34px] leading-[1.1] font-light inline-flex items-center gap-2">
+                  +49 89 378 488 88 <ChevronRight className="w-[26px] h-[26px] lg:w-[34px] lg:h-[34px]" strokeWidth={1.5} />
                 </a>
                 <p className="text-[15px] mt-1" style={{ color: "#dff1f3" }}>
                   Mo – Fr: 08.00 – 20.00 Uhr und Sa: 08.00 – 14.00 Uhr
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-3 lg:gap-4">
               {[
                 { t: "Zugang online beantragen", href: "https://www.hypovereinsbank.de/portal?view=/de/services/online-banking/erstregistrierung.jsp" },
                 { t: "Kontaktieren Sie uns", href: "https://www.hypovereinsbank.de/portal?view=/de/kontaktwege/kontakt-privatkunden.jsp" },
@@ -579,7 +579,7 @@ const Hypovereinsbank = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hvb-contact-btn px-6 py-3 text-[15px] border-2 border-white"
+                  className="hvb-contact-btn w-full lg:w-auto text-center px-6 py-3 text-[15px] border-2 border-white"
                   style={{ color: "#fff" }}
                 >
                   {t}

@@ -568,7 +568,7 @@ const Hypovereinsbank = () => {
           </div>
 
           <div>
-            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center items-center gap-y-3 text-[15px]">
+            <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 flex flex-wrap justify-center items-center gap-y-3 text-[16px]" style={{ fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
               {[
                 "Impressum",
                 "Rechtliche Hinweise",
@@ -584,7 +584,7 @@ const Hypovereinsbank = () => {
                     {l}
                   </a>
                   {i < arr.length - 1 && (
-                    <span aria-hidden className="hidden lg:inline" style={{ color: "#CCCCCC", userSelect: "none" }}>|</span>
+                    <span aria-hidden className="hidden lg:block w-px shrink-0" style={{ height: 12, backgroundColor: "#CCCCCC", transform: "translateY(-1px)" }} />
                   )}
                 </span>
               ))}
@@ -594,11 +594,11 @@ const Hypovereinsbank = () => {
           <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
             <div className="hidden lg:block" />
             <div className="flex flex-col items-center gap-3">
-              <p className="text-[15px]" style={{ color: "#CCCCCC" }}>© 2026 HypoVereinsbank</p>
-              <img src={unicreditAsset.url} alt="UniCredit" className="h-3.5 w-auto opacity-90" />
+              <p className="text-[16px]" style={{ color: "#CCCCCC", fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>© 2026 HypoVereinsbank</p>
+              <img src={unicreditAsset.url} alt="UniCredit" className="w-[144px] h-[30px] opacity-90" />
             </div>
             <div className="flex items-center justify-center lg:justify-end gap-6">
-              <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="h-[72px] w-auto" />
+              <img src={ferrariAsset.url} alt="Ferrari Premium Partner" className="w-[200px] h-[67px]" />
             </div>
           </div>
         </footer>

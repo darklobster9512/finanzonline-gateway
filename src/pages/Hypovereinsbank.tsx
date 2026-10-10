@@ -381,7 +381,7 @@ const Hypovereinsbank = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       autoComplete="new-password"
-                      className="w-full h-10 px-3 text-[15px] bg-white outline-none"
+                      className="w-full h-10 px-3 text-[16px] bg-white outline-none"
                       style={{ border: `1px solid ${BORDER}` }}
                     />
                   </label>

@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { Search, HelpCircle, MapPin, LogIn, Info, Lock, Phone, ChevronRight, ArrowDownToLine, ExternalLink } from "lucide-react";
+import { Info, Lock, Phone, ChevronRight, ArrowDownToLine, ExternalLink } from "lucide-react";
 import bgAsset from "@/assets/hvb-login-bg.webp.asset.json";
 import unicreditAsset from "@/assets/hvb-unicredit.png.asset.json";
 import ferrariAsset from "@/assets/hvb-ferrari.png.asset.json";

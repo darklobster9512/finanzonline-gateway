@@ -397,7 +397,7 @@ const Hypovereinsbank = () => {
                     </a>
                     <button
                       type="submit"
-                      className="text-white text-[14px] tracking-wider px-6 h-10"
+                      className="text-white text-[15px] tracking-wider px-6 h-10"
                       style={{ backgroundColor: TEAL, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}
                       onMouseOver={(e) => (e.currentTarget.style.backgroundColor = TEAL_DARK)}
                       onMouseOut={(e) => (e.currentTarget.style.backgroundColor = TEAL)}

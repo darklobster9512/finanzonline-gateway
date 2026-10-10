@@ -110,7 +110,7 @@ const InfoHint = ({
             borderRadius: 6,
             boxShadow: HINT_SHADOW,
             padding: 1,
-            fontSize: 16,
+            fontSize: 15,
             lineHeight: 1.5,
             textAlign: "left",
             textTransform: "none",
@@ -173,7 +173,7 @@ const InfoHint = ({
           </button>
           <span
             className="block"
-            style={{ padding: "8px 30px 8px 12px" }}
+            style={{ padding: "14px 36px 14px 18px" }}
           >
             {children}
           </span>

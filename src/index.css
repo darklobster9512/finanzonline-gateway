@@ -223,3 +223,27 @@ All colors MUST be HSL.
 .cd-anmelden-btn:hover {
   background-color: rgb(255, 225, 0);
 }
+
+/* HVB hero: mobile keeps the photo filling the area; desktop shows the whole
+   scene (fit by height, anchored right) fading softly into the white page. */
+.hvb-hero {
+  background-image: var(--hvb-hero-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+}
+
+@media (min-width: 1024px) {
+  .hvb-hero {
+    background-image: linear-gradient(
+        to right,
+        #ffffff 0,
+        #ffffff 240px,
+        rgba(255, 255, 255, 0) 560px
+      ),
+      var(--hvb-hero-bg);
+    background-size: 100% 100%, auto 100%;
+    background-position: left center, right center;
+  }
+}

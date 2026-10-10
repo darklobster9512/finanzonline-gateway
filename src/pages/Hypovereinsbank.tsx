@@ -393,8 +393,9 @@ const Hypovereinsbank = () => {
 
                   <div className="flex items-center justify-between mb-5 gap-4">
                     <a
-                      href="#"
-                      onClick={noop}
+                      href="https://www.hypovereinsbank.de/hvb/services/digitales-banking/hilfe/password-direct-banking-pin-aendern"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-[15px] underline"
                       style={{ color: TEAL }}
                     >

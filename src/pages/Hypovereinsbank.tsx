@@ -93,10 +93,10 @@ const Hypovereinsbank = () => {
         >
           <div className="flex items-stretch h-[72px] pl-4 lg:pl-6">
             <div className="max-w-[1360px] w-full mx-auto flex items-stretch">
-              <a href="#" onClick={noop} className="flex items-center pr-4">
+              <a href="#" onClick={noop} className="flex items-center pr-8">
                 <HVBLogo className="h-7 w-auto" />
               </a>
-              <nav className="hidden lg:flex flex-1 items-center justify-start gap-6 text-[15px]">
+              <nav className="hidden lg:flex flex-1 items-center justify-start gap-7 text-[15px]">
                 {NAV_ITEMS.map((n) => (
                   <a
                     key={n}

@@ -331,7 +331,11 @@ const Hypovereinsbank = () => {
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden h-full w-auto max-w-none lg:block"
-            style={{ maskImage: HERO_FADE, WebkitMaskImage: HERO_FADE }}
+            style={{
+              aspectRatio: "1023 / 612",
+              maskImage: HERO_FADE,
+              WebkitMaskImage: HERO_FADE,
+            }}
           />
           <div className="relative z-10 max-w-[1360px] mx-auto px-4 lg:px-6 py-10 lg:py-14 grid grid-cols-1 gap-6 lg:grid-cols-[460px_minmax(0,500px)] lg:gap-[100px] lg:justify-center">
             {/* Login card */}

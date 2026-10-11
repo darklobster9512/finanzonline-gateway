@@ -213,7 +213,7 @@ const Postbank = () => {
   const loginCard = (
     <div className="p-6 lg:p-10" style={{ backgroundColor: YELLOW, minHeight: 440 }}>
       <div className="mb-6">
-        <img src={logoAsset.url} alt="Postbank" className="h-11 w-auto" />
+        <img src={logoAsset.url} alt="Postbank" className="h-12 w-auto" />
       </div>
 
       {step === 1 ? (

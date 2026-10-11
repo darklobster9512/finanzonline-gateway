@@ -74,7 +74,7 @@ const Direkt1822 = () => {
   const InfoDot = ({ text }: { text: string }) => {
     const [open, setOpen] = useState(false);
     return (
-      <span style={{ position: "relative", display: "inline-block", marginLeft: 6, verticalAlign: "middle" }}>
+      <span style={{ position: "relative", display: "inline-flex", alignItems: "center", marginLeft: 6, verticalAlign: "middle", lineHeight: 0 }}>
         <span
           tabIndex={0}
           onMouseEnter={() => setOpen(true)}

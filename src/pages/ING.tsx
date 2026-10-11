@@ -107,15 +107,16 @@ const ING = () => {
             <section
               style={{
                 backgroundColor: CARD_BG,
-                borderRadius: 4,
-                padding: "28px 28px 32px",
+                borderRadius: 12,
+                padding: "36px 36px 40px",
               }}
             >
               <h2
-                style={{ color: ORANGE, fontWeight: 400, fontSize: 22, marginBottom: 24 }}
+                style={{ color: ORANGE, fontWeight: 400, fontSize: 26, marginBottom: 24 }}
               >
                 Anmelden mit Zugangsdaten
               </h2>
+
               <form onSubmit={handleSubmit} noValidate autoComplete="off">
                 {/* Benutzername */}
                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-y-1 sm:gap-x-4 items-start mb-4">

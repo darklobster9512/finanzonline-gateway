@@ -294,7 +294,7 @@ const Postbank = () => {
               type="button"
               onClick={handleContinue}
               className="pb-primary-btn w-full lg:w-auto px-8 py-3.5 text-white font-bold text-[15px]"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", borderRadius: 4 }}
             >
               {t.continue}
             </button>

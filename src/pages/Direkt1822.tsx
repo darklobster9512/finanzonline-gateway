@@ -176,8 +176,8 @@ const Direkt1822 = () => {
 
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 48, marginBottom: 20 }}>
               <h2 style={{ color: NAVY, fontSize: 20, fontWeight: 700 }}>Anmeldung</h2>
-              <a href={URLS.help} target="_blank" rel="noopener noreferrer" className="d1822-link"
-                style={{ color: NAVY, fontSize: 15, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
+              <a href={URLS.help} target="_blank" rel="noopener noreferrer" className="d1822-link text-[13px] lg:text-[15px]"
+                style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
                 Benötigen Sie Hilfe?
               </a>
             </div>

@@ -119,7 +119,7 @@ const Direkt1822 = () => {
               </a>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40 }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40, alignItems: "start" }}>
               {/* Login card */}
               <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 2px 4px rgba(0,56,106,.04)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">

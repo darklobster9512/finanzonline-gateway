@@ -9,11 +9,14 @@ import logoAsset from "@/assets/norisbank-logo.svg.asset.json";
 import teaserAsset from "@/assets/norisbank-teaser.png.asset.json";
 
 const ORANGE = "#FF5000";
-const CARD_BG = "#2a3447";
-const PANEL_BG = "#2a3447";
+const FIELD_BORDER = "#ee7971";
+const FOCUS_RING = "#fd5000";
+const CARD_BG = "#1c2533";
+const PANEL_BG = "#1c2533";
+const FOOTER_BG = "#101921";
 const PAGE_BG = "#3a4558";
 const TEXT = "#ffffff";
-const MUTED = "#d7dbe3";
+const MUTED = "#ffffff";
 
 const URLS = {
   forgot: "https://meine.norisbank.de/",

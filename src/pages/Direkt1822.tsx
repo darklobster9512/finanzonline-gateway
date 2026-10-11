@@ -43,6 +43,10 @@ const Direkt1822 = () => {
   const [showPin, setShowPin] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [focusField, setFocusField] = useState<null | "k" | "p">(null);
+
+  const INPUT_BORDER = "#176BC0";
+  const FOCUS_RING = "0 0 0 2px #fff, 0 0 0 4px #e6ebf0";
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("1822direkt Online-Banking", logoAsset.url);

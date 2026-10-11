@@ -65,7 +65,7 @@ const COPY: Record<Lang, {
     requestId: "Jetzt Postbank ID einrichten",
     forgot: "Zugangsdaten vergessen?",
     continue: "Weiter",
-    login: "Anmelden",
+    login: "Einloggen",
     back: "Zurück",
     idError: "Bitte prüfen Sie Ihre Eingabe. Geben Sie Ihre Postbank ID ein.",
     teaserTitle: "Staatlich gefördert fürs Alter vorsorgen",

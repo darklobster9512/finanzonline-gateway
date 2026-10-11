@@ -401,8 +401,8 @@ const Norisbank = () => {
         </div>
 
         {/* DESKTOP */}
-        <div className="hidden lg:block relative flex-1 nb-hero-bg">
-          <div className="max-w-[1200px] mx-auto px-4 py-16 grid grid-cols-[minmax(0,560px)_minmax(0,396px)] gap-[256px]">
+        <div className="hidden lg:block relative flex-1 nb-hero-bg" style={{ minHeight: "100vh" }}>
+          <div className="max-w-[1200px] mx-auto px-4 py-16 grid grid-cols-[minmax(0,560px)_minmax(0,396px)] gap-[256px] items-center" style={{ minHeight: "100vh" }}>
             <div>
               {loginCard}
             </div>

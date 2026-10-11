@@ -289,8 +289,8 @@ const Norisbank = () => {
             <button
               type="button"
               onClick={handleLogin}
-              className="nb-primary-btn px-10 py-3 font-semibold text-[15px]"
-              style={{ color: "#fff", cursor: "pointer" }}
+              className="nb-primary-btn px-6 py-3 font-semibold text-[15px]"
+              style={{ color: "#1c2533", cursor: "pointer" }}
             >
               {t.login}
             </button>

@@ -99,6 +99,26 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Figtree';
+  src: url('/__l5e/assets-v1/d5ce73c0-2644-4cef-8fde-3526ccce24e7/figtree-light.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/__l5e/assets-v1/ef7ec3c6-5078-4b50-9ea5-a3dc6123bac2/figtree-regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/__l5e/assets-v1/1980acf6-8dde-421f-9807-ee0ca504e251/figtree-semibold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/__l5e/assets-v1/098e0b41-d9ab-42f0-b768-b5fc392230bf/figtree-bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
 
 /* Open Sans (400/600/700/800) is loaded via Google Fonts @import at the top of this file
    so bold weights actually render with the real bold face. */

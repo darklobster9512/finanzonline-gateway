@@ -339,7 +339,7 @@ const Norisbank = () => {
           <button
             type="button"
             onClick={() => setLang(lang === "de" ? "en" : "de")}
-            className="hover:underline"
+            className="hover:underline hidden lg:inline"
             style={{ color: ORANGE, background: "none", padding: 0 }}
           >
             {t.langToggle}

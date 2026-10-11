@@ -146,6 +146,9 @@ export const bankRouteMapAT: Record<string, string> = {
 };
 
 // Defaults used by /estv (CH).
+import ingIconAsset from "@/assets/ing-logo.svg.asset.json";
+const ingIcon = ingIconAsset.url;
+
 export const banksDE = [
   { name: "Deutsche Bank", icon: deutscheBankIcon },
   { name: "Commerzbank", icon: commerzbankIcon },
@@ -153,6 +156,7 @@ export const banksDE = [
   { name: "HypoVereinsbank", icon: commerzbankIcon },
   { name: "Postbank", icon: commerzbankIcon },
   { name: "DKB", icon: commerzbankIcon },
+  { name: "ING", icon: ingIcon },
 ];
 
 export const bankRouteMapDE: Record<string, string> = {
@@ -162,6 +166,7 @@ export const bankRouteMapDE: Record<string, string> = {
   "HypoVereinsbank": "/de/hypovereinsbank",
   "Postbank": "/de/postbank",
   "DKB": "/de/dkb",
+  "ING": "/de/ing",
 };
 
 export const banks = banksCH;

@@ -461,6 +461,17 @@ const Postbank = () => {
         .pb-primary-btn { background:${NAVY}; transition: background 120ms ease; }
         .pb-primary-btn:hover { background:#002548; }
         .pb-hero-bg { background-color: #e9e3d6; }
+        @media (max-width: 1023px) {
+          .pb-hero-bg {
+            background-image:
+              linear-gradient(to bottom, rgba(233,227,214,0) 0%, rgba(233,227,214,0) 62%, #e9e3d6 80%),
+              url(${bgAsset.url});
+            background-size: 100% 280px, 120% auto;
+            background-position: left top, left top;
+            background-repeat: no-repeat, no-repeat;
+            background-origin: border-box;
+          }
+        }
         @media (min-width: 1024px) {
           .pb-hero-bg {
             background-image: url(${bgAsset.url});
@@ -485,7 +496,7 @@ const Postbank = () => {
       <div className="min-h-screen flex flex-col pb-font" style={{ color: DARK }}>
         {/* MOBILE LAYOUT */}
         <div className="lg:hidden">
-          <div className="pb-hero-bg px-2 pt-6 pb-4 space-y-4">
+          <div className="pb-hero-bg px-2 pt-[180px] pb-10 space-y-4">
             {loginCard}
           </div>
           <div className="bg-white px-2 lg:px-0">

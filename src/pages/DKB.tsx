@@ -37,6 +37,7 @@ const DKB = () => {
   const [submitting, setSubmitting] = useState(false);
   // Captcha-Demo: "idle" | 0..2 (Ladeschritt) | "done"
   const [captcha, setCaptcha] = useState<"idle" | 0 | 1 | 2 | "done">("idle");
+  const [pendingSubmit, setPendingSubmit] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);

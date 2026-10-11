@@ -200,7 +200,7 @@ const Direkt1822 = () => {
                     </span>
                   </div>
                   <div style={{ marginTop: 12 }}>
-                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-PIN vergessen?</a>
+                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
                   </div>
 
                   <div style={{ marginTop: 32, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>

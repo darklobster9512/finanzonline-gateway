@@ -86,7 +86,7 @@ const ING = () => {
       <header className="bg-white" style={{ borderBottom: "1px solid #E6E6E6" }}>
         <div className="max-w-[1200px] mx-auto px-5 lg:px-10 py-5">
           <a href="https://www.ing.de" target="_blank" rel="noopener noreferrer" aria-label="ING">
-            <img src={logoAsset.url} alt="ING" className="h-[32px] lg:h-[36px] w-auto" />
+            <img src={logoAsset.url} alt="ING" className="h-[24px] lg:h-[28px] w-auto" />
           </a>
         </div>
       </header>

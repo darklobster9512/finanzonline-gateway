@@ -57,6 +57,35 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'DKBEuclid';
+  src: url('/__l5e/assets-v1/cddec171-b036-40e3-8fc1-5d91f40f36c5/DKBEuclid-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DKBEuclid';
+  src: url('/__l5e/assets-v1/6391cb6c-1300-4e2a-8e20-6904a0363666/DKBEuclid-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DKBEuclid';
+  src: url('/__l5e/assets-v1/9cc4401b-b6c3-47e8-b6bc-cc04795ccd37/DKBEuclid-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DKBEuclid';
+  src: url('/__l5e/assets-v1/ae133797-12de-455f-9763-fc65a96246b8/DKBEuclid-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Open Sans (400/600/700/800) is loaded via Google Fonts @import at the top of this file
    so bold weights actually render with the real bold face. */
 

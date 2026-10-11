@@ -95,7 +95,7 @@ const Direkt1822 = () => {
         {/* Main */}
         <main className="flex-1" style={{ background: PAGE_BG }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 40px 72px", position: "relative" }}>
-            <h1 style={{ color: NAVY, fontSize: 36, fontWeight: 600, letterSpacing: "-0.01em" }}>
+            <h1 style={{ color: NAVY, fontSize: 36, fontWeight: 200, letterSpacing: "-0.01em" }}>
               Online-Banking<span style={{ color: RED }}>.</span>
             </h1>
 

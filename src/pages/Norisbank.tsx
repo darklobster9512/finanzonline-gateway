@@ -221,7 +221,7 @@ const Norisbank = () => {
                   }}
                 />
                 {fs.isError && (
-                  <div className="mt-2 text-[13px]" style={{ color: ORANGE }}>
+                  <div className="mt-2 text-[13px]" style={{ color: FIELD_BORDER }}>
                     {t.idError}
                   </div>
                 )}

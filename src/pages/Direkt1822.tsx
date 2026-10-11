@@ -193,9 +193,9 @@ const Direkt1822 = () => {
                     autoComplete="off"
                     onFocus={() => setFocusField("k")} onBlur={() => setFocusField(null)}
                     style={{ width: "100%", background: INPUT_BG, border: `2px solid ${INPUT_BORDER}`, borderRadius: 2, padding: "13px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, boxShadow: focusField === "k" ? FOCUS_RING : "none" }} />
-                  <div style={{ marginTop: 12, display: "flex", gap: 24, flexWrap: "wrap" }}>
-                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-Kennung vergessen?</a>
-                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Neu im Online-Banking?</a>
+                  <div className="gap-2 lg:gap-6" style={{ marginTop: 12, display: "flex", flexWrap: "nowrap" }}>
+                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" className="d1822-link text-[12px] lg:text-[14px] whitespace-nowrap" style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-Kennung vergessen?</a>
+                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" className="d1822-link text-[12px] lg:text-[14px] whitespace-nowrap" style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Neu im Online-Banking?</a>
                   </div>
 
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>

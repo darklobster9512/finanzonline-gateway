@@ -418,7 +418,7 @@ const Postbank = () => {
         links={[{ label: t.procedures, href: URLS.secProcedures }]}
       />
 
-      <div className="px-3 py-7 lg:px-7 text-[13px]" style={{ backgroundColor: YELLOW, color: NAVY }}>
+      <div className="-mx-2 px-3 py-7 lg:mx-0 lg:px-7 text-[13px]" style={{ backgroundColor: YELLOW, color: NAVY }}>
         <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
           <button
             type="button"
@@ -444,7 +444,7 @@ const Postbank = () => {
         <a
           href={URLS.revoke}
           {...ext}
-          className="inline-block text-[13px] font-bold px-4 py-2 mb-3 no-underline"
+          className="block w-full text-center text-[13px] font-bold px-4 py-2 mb-3 no-underline lg:inline-block lg:w-auto"
           style={{ color: NAVY, border: `1px solid ${NAVY}`, backgroundColor: "transparent" }}
         >
           {t.revoke}

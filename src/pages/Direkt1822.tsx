@@ -131,8 +131,8 @@ const Direkt1822 = () => {
             <a href={URLS.home} target="_blank" rel="noopener noreferrer" aria-label="1822direkt">
               <img src={logoAsset.url} alt="1822direkt" style={{ height: 56, width: "auto", display: "block" }} />
             </a>
-            <a href={URLS.home} target="_blank" rel="noopener noreferrer"
-              style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3 }}>
+            <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link"
+              style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
               Zur Startseite
             </a>
           </div>

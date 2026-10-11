@@ -350,7 +350,9 @@ const DKB = () => {
       <footer style={{ backgroundColor: FOOTER_BG, color: FOOTER_LINK_COLOR }}>
         <div className="px-5 lg:px-10 py-4 flex flex-wrap items-center gap-x-8 gap-y-3 text-[14px]">
           <a
-            href="#"
+            href="https://www.dkb.de/dein-neues-banking"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               color: FOOTER_LINK_COLOR,
               fontWeight: 600,

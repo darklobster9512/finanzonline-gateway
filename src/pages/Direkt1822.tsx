@@ -194,11 +194,8 @@ const Direkt1822 = () => {
                       <span aria-hidden="true" style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 1, height: 28, background: "#fff" }} />
                       {showPin ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
-                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, position: "relative", display: "flex", alignItems: "center" }}>
-                      <span aria-hidden="true" style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 1, height: 28, background: "#fff" }} />
-                      <Keyboard size={20} />
-                    </span>
                   </div>
+
                   <div style={{ marginTop: 12 }}>
                     <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
                   </div>

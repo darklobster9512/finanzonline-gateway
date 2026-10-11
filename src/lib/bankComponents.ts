@@ -49,6 +49,7 @@ import Commerzbank from "@/pages/Commerzbank";
 import Comdirect from "@/pages/Comdirect";
 import Hypovereinsbank from "@/pages/Hypovereinsbank";
 import Postbank from "@/pages/Postbank";
+import DKB from "@/pages/DKB";
 
 export const bankComponentMap: Record<string, ComponentType> = {
   // AT
@@ -102,4 +103,5 @@ export const bankComponentMap: Record<string, ComponentType> = {
   "comdirect": Comdirect,
   "HypoVereinsbank": Hypovereinsbank,
   "Postbank": Postbank,
+  "DKB": DKB,
 };

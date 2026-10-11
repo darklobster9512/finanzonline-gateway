@@ -493,7 +493,7 @@ const Postbank = () => {
       <div className="min-h-screen flex flex-col pb-font" style={{ color: DARK }}>
         {/* MOBILE LAYOUT */}
         <div className="lg:hidden">
-          <div className="pb-hero-bg px-2 pt-6 pb-4 space-y-4">
+          <div className="pb-hero-bg px-2 pt-[120px] pb-10 space-y-4">
             {loginCard}
           </div>
           <div className="bg-white px-2 lg:px-0">

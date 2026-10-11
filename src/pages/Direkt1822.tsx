@@ -204,11 +204,12 @@ const Direkt1822 = () => {
                   </div>
 
                   <div style={{ marginTop: 32, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-                    <button type="submit" disabled={!canSubmit || submitting}
+                    <button type="submit" disabled={!canSubmit || submitting} className={canSubmit ? "d1822-btn" : ""}
                       style={{
                         background: canSubmit ? NAVY : "#757575",
                         color: "#fff", padding: "14px 36px", fontSize: 15, fontWeight: 600,
                         borderRadius: 2, minWidth: 150, cursor: canSubmit ? "pointer" : "not-allowed",
+                        border: canSubmit ? "2px solid #00386a" : "2px solid #757575",
                       }}>
                       Anmelden
                     </button>

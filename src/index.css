@@ -85,6 +85,20 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'ING Me';
+  src: url('/__l5e/assets-v1/928fbdac-7921-4a00-beb3-e7ce20fc9f2b/ing-me.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ING Me';
+  src: url('/__l5e/assets-v1/49fe79c9-5d64-465e-acfa-1ae2c5f343c1/ing-me-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Open Sans (400/600/700/800) is loaded via Google Fonts @import at the top of this file
    so bold weights actually render with the real bold face. */

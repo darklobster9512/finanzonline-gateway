@@ -25,7 +25,7 @@ Nur Mobil. Desktop bleibt über die `lg:`-Stufen unverändert.
 ## Prüfung
 
 - Playwright bei 393 px Breite (mit dem bekannten Telefon-User-Agent, sonst zeigt die Vorschau eine Fake-404): Footer muss bei x=0 und 393 px breit sein, der Widerruf-Button die volle Inhaltbreite des Footers haben. Screenshot zur Kontrolle.
--/desktop-Kontrolle bei 1440 px: Footer-Position und Buttonbreite unverändert wie jetzt.
+- Desktop-Kontrolle bei 1440 px: Footer-Position und Buttonbreite unverändert wie jetzt.
 - Build-Log prüfen, keine Fehler.
 
 ## Technische Details

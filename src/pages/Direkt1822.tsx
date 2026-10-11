@@ -150,13 +150,13 @@ const Direkt1822 = () => {
 
               {/* isa bubble - mobile inline */}
               <div aria-hidden="true" className="lg:hidden" style={{
-                width: 48, height: 48, borderRadius: "50%",
+                width: 36, height: 36, borderRadius: "50%",
                 background: "#51e5a7", display: "flex", alignItems: "center", justifyContent: "center",
-                color: NAVY, fontWeight: 700, fontSize: 14, flexShrink: 0,
+                color: NAVY, fontWeight: 700, fontSize: 11, flexShrink: 0,
               }}>
                 <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
                   <span>isa</span>
-                  <span style={{ fontSize: 9, marginTop: 2 }}>⌣</span>
+                  <span style={{ fontSize: 7, marginTop: 2 }}>⌣</span>
                 </span>
               </div>
             </div>

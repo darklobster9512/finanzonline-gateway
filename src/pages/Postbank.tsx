@@ -461,6 +461,14 @@ const Postbank = () => {
         .pb-primary-btn { background:${NAVY}; transition: background 120ms ease; }
         .pb-primary-btn:hover { background:#002548; }
         .pb-hero-bg { background-color: #e9e3d6; }
+        @media (max-width: 1023px) {
+          .pb-hero-bg {
+            background-image: url(${bgAsset.url});
+            background-size: 150% auto;
+            background-position: left 25%;
+            background-repeat: no-repeat;
+          }
+        }
         @media (min-width: 1024px) {
           .pb-hero-bg {
             background-image: url(${bgAsset.url});

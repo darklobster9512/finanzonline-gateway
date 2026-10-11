@@ -313,7 +313,7 @@ const DKB = () => {
               fontWeight: 600,
               textDecoration: "underline",
               textDecorationColor: FOOTER_TEXT,
-              textDecorationOffset: 4,
+              textUnderlineOffset: 4,
             }}
           >
             Infoseite
@@ -327,7 +327,7 @@ const DKB = () => {
                   color: FOOTER_LINK_COLOR,
                   textDecoration: "underline",
                   textDecorationColor: FOOTER_TEXT,
-                  textDecorationOffset: 4,
+                  textUnderlineOffset: 4,
                 }}
               >
                 {l.label}

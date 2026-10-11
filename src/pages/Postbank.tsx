@@ -517,11 +517,11 @@ const InfoBlock = ({
   links: { label: string; href: string }[];
 }) => (
   <div className="px-3 lg:px-7 py-6">
-    <div className="flex items-center gap-2 mb-2 font-bold text-[15px]" style={{ color: DARK }}>
+    <div className="flex items-center gap-2 mb-2 font-bold text-[14px]" style={{ color: DARK }}>
       {icon}
       {title}
     </div>
-    <p className="text-[14px] mb-3" style={{ color: "#333" }}>
+    <p className="text-[13px] mb-3" style={{ color: "#333" }}>
       {text}
     </p>
     <div className="space-y-1">
@@ -531,7 +531,7 @@ const InfoBlock = ({
           href={l.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="block text-[13px] underline font-bold"
+          className="block text-[12px] underline font-bold"
           style={{ color: LINK }}
         >
           {l.label}

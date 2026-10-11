@@ -21,13 +21,13 @@ const PLACEHOLDER = "#5D7486";
 const ERROR_COLOR = "#D6301A";
 
 const FOOTER_LINKS = [
-  { label: "DKB Verwalterplattform", href: "#" },
-  { label: "DKB Treuhänderplattform", href: "#" },
-  { label: "Impressum", href: "#" },
-  { label: "Datenschutz", href: "#" },
-  { label: "Cookie Einstellungen", href: "#" },
-  { label: "Preise & Bedingungen", href: "#" },
-  { label: "Hilfe", href: "#" },
+  { label: "DKB Verwalterplattform", href: "https://treuhand.dkb.de/thk/?referer=vwpf" },
+  { label: "DKB Treuhänderplattform", href: "https://treuhand.dkb.de/thk/?referer=thpf" },
+  { label: "Impressum", href: "https://www.dkb.de/ueber-uns/impressum/" },
+  { label: "Datenschutz", href: "https://www.dkb.de/ueber-uns/datenschutz" },
+  { label: "Cookie Einstellungen", href: "https://www.dkb.de/ueber-uns/datenschutz" },
+  { label: "Preise & Bedingungen", href: "https://www.dkb.de/ueber-uns/preise-bedingungen/" },
+  { label: "Hilfe", href: "https://www.dkb.de/fragen-antworten" },
 ];
 
 const DKB = () => {

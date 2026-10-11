@@ -125,7 +125,7 @@ const Direkt1822 = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40, alignItems: "start" }}>
               {/* Login card */}
-              <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 2px 4px rgba(0,56,106,.04)" }}>
+              <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                   <label htmlFor="k" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginBottom: 10 }}>
                     Online-Kennung<InfoDot title="Ihre persönliche Online-Kennung" />
@@ -180,7 +180,7 @@ const Direkt1822 = () => {
               </section>
 
               {/* Promo card */}
-              <section style={{ background: CARD, padding: 24, boxShadow: "0 2px 4px rgba(0,56,106,.04)", display: "flex", flexDirection: "column" }}>
+              <section style={{ background: CARD, padding: 24, boxShadow: "0 6px 18px rgba(0,56,106,.12)", display: "flex", flexDirection: "column" }}>
                 <img src={heroAsset.url} alt="30 Jahre 1822direkt" style={{ width: "100%", height: "auto", display: "block" }} />
                 <h3 style={{ color: NAVY, fontSize: 24, fontWeight: 700, marginTop: 24 }}>Wir feiern 30 Jahre. Du feierst mit.</h3>
                 <ul style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>

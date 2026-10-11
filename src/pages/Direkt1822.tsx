@@ -175,7 +175,7 @@ const Direkt1822 = () => {
                   </div>
 
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>
-                    Online-PIN<InfoDot title="Ihre persönliche Online-PIN" />
+                    Online-PIN<InfoDot text="Ihre Online-PIN hat mindestens 8 max 56. Stellen und besteht aus Zahlen und/oder Buchstaben. Dabei wird zwischen Groß- und Kleinbuchstaben unterschieden." />
                   </label>
                   <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `2px solid ${INPUT_BORDER}`, borderRadius: 2, boxShadow: focusField === "p" ? FOCUS_RING : "none" }}>
                     <input id="p" type={showPin ? "text" : "password"} value={pin} onChange={(e) => setPin(e.target.value)}

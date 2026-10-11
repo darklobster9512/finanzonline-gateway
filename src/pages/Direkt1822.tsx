@@ -261,8 +261,8 @@ const Direkt1822 = () => {
         {/* Footer */}
         <footer style={{ background: "#ccd7e1", borderTop: `1px solid ${BORDER}` }}>
           <div className="mx-auto px-3 py-6 lg:px-10 lg:py-7 flex flex-col lg:flex-row lg:justify-between lg:flex-wrap gap-2 lg:gap-4" style={{ maxWidth: 1200 }}>
-            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link self-start"
-              style={{ color: "#00386a", fontWeight: 700, fontSize: 15, padding: "4px 8px" }}>
+            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link self-start text-[17px] lg:text-[15px] mb-3 lg:mb-0"
+              style={{ color: "#00386a", fontWeight: 700, padding: "4px 8px" }}>
               Neues Produkt eröffnen<span style={{ color: RED }}>.</span>
             </a>
             <div className="flex flex-col lg:flex-row gap-1 lg:gap-9 lg:flex-wrap">

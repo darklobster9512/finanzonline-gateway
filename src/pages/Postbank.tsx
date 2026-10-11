@@ -357,7 +357,7 @@ const Postbank = () => {
               className={password.length === 0 ? "w-full lg:w-auto px-8 py-3.5 font-bold text-[15px]" : "pb-primary-btn w-full lg:w-auto px-8 py-3.5 text-white font-bold text-[15px]"}
               style={{
                 cursor: password.length === 0 ? "not-allowed" : "pointer",
-                backgroundColor: password.length === 0 ? "#b5b5b5" : undefined,
+                backgroundColor: password.length === 0 ? "#cccccc" : undefined,
                 color: password.length === 0 ? "#b2b2b2" : undefined,
                 borderRadius: 4,
               }}

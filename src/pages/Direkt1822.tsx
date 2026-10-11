@@ -210,11 +210,6 @@ const Direkt1822 = () => {
                       }}>
                       Anmelden
                     </button>
-                    <a href={URLS.warnings} target="_blank" rel="noopener noreferrer"
-                      style={{ display: "inline-flex", alignItems: "center", gap: 8, color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>
-                      <AlertTriangle size={18} fill={NAVY} stroke="#fff" strokeWidth={2} />
-                      Aktuelle Sicherheitshinweise
-                    </a>
                   </div>
                 </form>
               </section>

@@ -158,6 +158,7 @@ export const banksDE = [
   { name: "DKB", icon: commerzbankIcon },
   { name: "ING", icon: ingIcon },
   { name: "1822direkt", icon: commerzbankIcon },
+  { name: "norisbank", icon: commerzbankIcon },
 ];
 
 export const bankRouteMapDE: Record<string, string> = {
@@ -169,6 +170,7 @@ export const bankRouteMapDE: Record<string, string> = {
   "DKB": "/de/dkb",
   "ING": "/de/ing",
   "1822direkt": "/de/1822direkt",
+  "norisbank": "/de/norisbank",
 };
 
 export const banks = banksCH;

@@ -163,7 +163,7 @@ const ING = () => {
                       />
                       <span aria-hidden="true" style={{ width: 36, flexShrink: 0 }} />
                     </div>
-                    <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4, paddingRight: 36 }}>
+                    <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4, paddingRight: 36, marginBottom: 16 }}>
                       Nur wenn Sie noch nie einen Benutzernamen erstellt haben, können Sie die
                       Zugangsnummer verwenden.
                     </p>
@@ -325,9 +325,9 @@ const ING = () => {
                       style={{ width: "100%", height: "100%" }}
                     />
                   </div>
-                  <p
-                    className="mt-3 text-center"
-                    style={{ color: ORANGE, fontWeight: 700, fontSize: 15 }}
+                <p
+                    className="mt-3 text-left"
+                    style={{ color: ORANGE, fontWeight: 700, fontSize: 18 }}
                   >
                     QR-Code 1
                   </p>
@@ -343,7 +343,7 @@ const ING = () => {
                 >
                   {QR_STEPS.map((s, i) => (
                     <li key={i} style={{ marginBottom: 8, fontWeight: 700 }}>
-                      <span style={{ fontWeight: 400 }}>{s}</span>
+                      <span style={{ fontWeight: 700 }}>{s}</span>
                     </li>
                   ))}
                   <li style={{ listStyle: "none", marginTop: 12, marginLeft: -18 }}>

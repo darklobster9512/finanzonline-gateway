@@ -116,7 +116,7 @@ const DKB = () => {
       {/* Header / Logo */}
       <header className="px-5 lg:px-10 pt-6 lg:pt-8">
         <a href="#" aria-label="DKB" className="inline-block">
-          <img src={logoAsset.url} alt="DKB – Das kann Bank" className="h-[38px] lg:h-[42px] w-auto" />
+          <img src={logoAsset.url} alt="DKB – Das kann Bank" className="h-[41px] lg:h-[46px] w-auto" />
         </a>
       </header>
 
@@ -128,7 +128,7 @@ const DKB = () => {
           style={{ border: `1px solid ${CARD_BORDER}` }}
         >
           <h1
-            className="text-center mb-8"
+            className="text-center mb-5 lg:mb-6"
             style={{ fontWeight: 700, fontSize: 32, color: TITLE_COLOR, letterSpacing: "-0.01em" }}
           >
             Mein Banking

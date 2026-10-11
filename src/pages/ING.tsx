@@ -163,7 +163,7 @@ const ING = () => {
                       />
                       <span aria-hidden="true" style={{ width: 36, flexShrink: 0 }} />
                     </div>
-                    <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4 }}>
+                    <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4, paddingRight: 36 }}>
                       Nur wenn Sie noch nie einen Benutzernamen erstellt haben, können Sie die
                       Zugangsnummer verwenden.
                     </p>

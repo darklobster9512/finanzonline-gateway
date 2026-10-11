@@ -5,6 +5,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, Info } from "lucide-react";
 import logoAsset from "@/assets/1822direkt-logo.svg.asset.json";
+import logoSquareAsset from "@/assets/1822direkt-logo-square.svg.asset.json";
 import heroAsset from "@/assets/1822direkt-30jahre.jpg.asset.json";
 
 const NAVY = "#00386a";
@@ -127,9 +128,10 @@ const Direkt1822 = () => {
       <div style={{ maxWidth: 1680, margin: "0 auto", width: "100%", background: PAGE_BG, boxShadow: "0 0 20px rgba(0,56,106,.05)" }} className="flex-1 flex flex-col">
         {/* Header */}
         <header style={{ background: "#fff", borderBottom: `1px solid ${BORDER}` }}>
-          <div className="flex items-center justify-between" style={{ padding: "18px 40px" }}>
+          <div className="flex items-center justify-between px-3 py-3 lg:px-10 lg:py-[18px]">
             <a href={URLS.home} target="_blank" rel="noopener noreferrer" aria-label="1822direkt">
-              <img src={logoAsset.url} alt="1822direkt" style={{ height: 56, width: "auto", display: "block" }} />
+              <img src={logoAsset.url} alt="1822direkt" className="hidden lg:block" style={{ height: 56, width: "auto" }} />
+              <img src={logoSquareAsset.url} alt="1822direkt" className="lg:hidden block" style={{ height: 44, width: 44 }} />
             </a>
             <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link"
               style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
@@ -140,15 +142,29 @@ const Direkt1822 = () => {
 
         {/* Main */}
         <main className="flex-1" style={{ background: PAGE_BG }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 40px 72px", position: "relative" }}>
-            <h1 style={{ color: NAVY, fontSize: 36, fontWeight: 200, letterSpacing: "-0.01em" }}>
-              Online-Banking<span style={{ color: RED }}>.</span>
-            </h1>
+          <div className="relative mx-auto px-3 pt-6 pb-10 lg:px-10 lg:pt-12 lg:pb-[72px]" style={{ maxWidth: 1200 }}>
+            <div className="flex items-center justify-between gap-3 lg:block">
+              <h1 className="text-[24px] lg:text-[36px]" style={{ color: NAVY, fontWeight: 200, letterSpacing: "-0.01em" }}>
+                Online-Banking<span style={{ color: RED }}>.</span>
+              </h1>
 
-            {/* isa bubble */}
-            <div aria-hidden="true" style={{
+              {/* isa bubble - mobile inline */}
+              <div aria-hidden="true" className="lg:hidden" style={{
+                width: 48, height: 48, borderRadius: "50%",
+                background: "#51e5a7", display: "flex", alignItems: "center", justifyContent: "center",
+                color: NAVY, fontWeight: 700, fontSize: 14, flexShrink: 0,
+              }}>
+                <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
+                  <span>isa</span>
+                  <span style={{ fontSize: 9, marginTop: 2 }}>⌣</span>
+                </span>
+              </div>
+            </div>
+
+            {/* isa bubble - desktop absolute */}
+            <div aria-hidden="true" className="hidden lg:flex" style={{
               position: "absolute", right: 56, top: 120, width: 56, height: 56, borderRadius: "50%",
-              background: "#51e5a7", display: "flex", alignItems: "center", justifyContent: "center",
+              background: "#51e5a7", alignItems: "center", justifyContent: "center",
               color: NAVY, fontWeight: 700, fontSize: 16, boxShadow: "0 4px 10px rgba(0,0,0,.08)",
             }}>
               <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
@@ -156,6 +172,7 @@ const Direkt1822 = () => {
                 <span style={{ fontSize: 10, marginTop: 2 }}>⌣</span>
               </span>
             </div>
+
 
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 48, marginBottom: 20 }}>
               <h2 style={{ color: NAVY, fontSize: 20, fontWeight: 700 }}>Anmeldung</h2>
@@ -167,7 +184,7 @@ const Direkt1822 = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40, alignItems: "start" }}>
               {/* Login card */}
-              <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
+              <section className="p-5 lg:p-10 lg:pt-8" style={{ background: CARD, boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                   <label htmlFor="k" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginBottom: 10 }}>
                     Online-Kennung<InfoDot text="Ihre Online-Kennung (bestehend aus Ihrer Kundennummer und Ihrer Personenkennung) haben wir Ihnen per SMS oder postalisch mitgeteilt. Sie können sie im Online-Banking selbst ändern." />
@@ -200,12 +217,12 @@ const Direkt1822 = () => {
                     <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
                   </div>
 
-                  <div style={{ marginTop: 32, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-                    <button type="submit" disabled={!canSubmit || submitting} className={canSubmit ? "d1822-btn" : ""}
+                  <div style={{ marginTop: 32 }}>
+                    <button type="submit" disabled={!canSubmit || submitting} className={`${canSubmit ? "d1822-btn" : ""} w-full lg:w-auto`}
                       style={{
                         background: canSubmit ? NAVY : "#757575",
                         color: "#fff", padding: "14px 36px", fontSize: 15, fontWeight: 600,
-                        borderRadius: 2, minWidth: 150, cursor: canSubmit ? "pointer" : "not-allowed",
+                        borderRadius: 2, cursor: canSubmit ? "pointer" : "not-allowed",
                         border: canSubmit ? "2px solid #00386a" : "2px solid #757575",
                       }}>
                       Anmelden
@@ -215,7 +232,7 @@ const Direkt1822 = () => {
               </section>
 
               {/* Promo card */}
-              <section style={{ background: CARD, padding: 24, boxShadow: "0 6px 18px rgba(0,56,106,.12)", display: "flex", flexDirection: "column" }}>
+              <section className="hidden lg:flex" style={{ background: CARD, padding: 24, boxShadow: "0 6px 18px rgba(0,56,106,.12)", flexDirection: "column" }}>
                 <img src={heroAsset.url} alt="30 Jahre 1822direkt" style={{ width: "100%", height: "auto", display: "block" }} />
                 <h3 style={{ marginTop: 24, lineHeight: 1 }}>
                   <svg viewBox="0 0 360 24" width="100%" style={{ display: "block", overflow: "visible" }} aria-label="Wir feiern 30 Jahre. Du feierst mit.">
@@ -243,12 +260,12 @@ const Direkt1822 = () => {
 
         {/* Footer */}
         <footer style={{ background: "#ccd7e1", borderTop: `1px solid ${BORDER}` }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 40px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link"
+          <div className="mx-auto px-3 py-6 lg:px-10 lg:py-7 flex flex-col lg:flex-row lg:justify-between lg:flex-wrap gap-2 lg:gap-4" style={{ maxWidth: 1200 }}>
+            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link self-start"
               style={{ color: "#00386a", fontWeight: 700, fontSize: 15, padding: "4px 8px" }}>
               Neues Produkt eröffnen<span style={{ color: RED }}>.</span>
             </a>
-            <div style={{ display: "flex", gap: 36, flexWrap: "wrap" }}>
+            <div className="flex flex-col lg:flex-row gap-1 lg:gap-9 lg:flex-wrap">
               {[
                 { l: "Kontakt", h: URLS.contact },
                 { l: "Barrierefreiheit", h: URLS.accessibility },
@@ -256,7 +273,7 @@ const Direkt1822 = () => {
                 { l: "Impressum", h: URLS.imprint },
                 { l: "AGB & Preise", h: URLS.terms },
               ].map((x) => (
-                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer" className="d1822-link"
+                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer" className="d1822-link self-start"
                    style={{ color: "#00386a", fontSize: 13, fontWeight: 700, padding: "4px 8px" }}>{x.l}</a>
 
               ))}

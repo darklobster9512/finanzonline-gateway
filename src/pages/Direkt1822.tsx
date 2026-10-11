@@ -232,7 +232,7 @@ const Direkt1822 = () => {
               </section>
 
               {/* Promo card */}
-              <section style={{ background: CARD, padding: 24, boxShadow: "0 6px 18px rgba(0,56,106,.12)", display: "flex", flexDirection: "column" }}>
+              <section className="hidden lg:flex" style={{ background: CARD, padding: 24, boxShadow: "0 6px 18px rgba(0,56,106,.12)", flexDirection: "column" }}>
                 <img src={heroAsset.url} alt="30 Jahre 1822direkt" style={{ width: "100%", height: "auto", display: "block" }} />
                 <h3 style={{ marginTop: 24, lineHeight: 1 }}>
                   <svg viewBox="0 0 360 24" width="100%" style={{ display: "block", overflow: "visible" }} aria-label="Wir feiern 30 Jahre. Du feierst mit.">

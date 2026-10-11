@@ -26,6 +26,7 @@ const FOOTER_LINKS = [
 
 const DKB = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

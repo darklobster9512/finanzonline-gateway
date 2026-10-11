@@ -167,9 +167,9 @@ const Norisbank = () => {
   })();
 
   const loginCard = (
-    <div className="p-7 lg:p-10" style={{ backgroundColor: CARD_BG, color: TEXT, minHeight: 480 }}>
+    <div className="p-7 lg:p-10" style={{ backgroundColor: CARD_BG, color: TEXT, minHeight: 480, borderRadius: 16 }}>
       <div className="mb-7">
-        <img src={logoAsset.url} alt="norisbank" className="h-7 w-auto" />
+        <img src={logoAsset.url} alt="norisbank" className="h-5 w-auto" />
       </div>
 
       {step === 2 && (

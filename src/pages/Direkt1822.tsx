@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { Eye, EyeOff, Keyboard, Info, AlertTriangle } from "lucide-react";
+import { Eye, EyeOff, Info } from "lucide-react";
 import logoAsset from "@/assets/1822direkt-logo.svg.asset.json";
 import heroAsset from "@/assets/1822direkt-30jahre.jpg.asset.json";
 
@@ -194,11 +194,8 @@ const Direkt1822 = () => {
                       <span aria-hidden="true" style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 1, height: 28, background: "#fff" }} />
                       {showPin ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
-                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, position: "relative", display: "flex", alignItems: "center" }}>
-                      <span aria-hidden="true" style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 1, height: 28, background: "#fff" }} />
-                      <Keyboard size={20} />
-                    </span>
                   </div>
+
                   <div style={{ marginTop: 12 }}>
                     <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
                   </div>
@@ -213,11 +210,6 @@ const Direkt1822 = () => {
                       }}>
                       Anmelden
                     </button>
-                    <a href={URLS.warnings} target="_blank" rel="noopener noreferrer"
-                      style={{ display: "inline-flex", alignItems: "center", gap: 8, color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>
-                      <AlertTriangle size={18} fill={NAVY} stroke="#fff" strokeWidth={2} />
-                      Aktuelle Sicherheitshinweise
-                    </a>
                   </div>
                 </form>
               </section>
@@ -265,7 +257,8 @@ const Direkt1822 = () => {
                 { l: "AGB & Preise", h: URLS.terms },
               ].map((x) => (
                 <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer" className="d1822-link"
-                   style={{ color: "#00386a", fontSize: 14, fontWeight: 700, padding: "4px 8px" }}>{x.l}</a>
+                   style={{ color: "#00386a", fontSize: 13, fontWeight: 700, padding: "4px 8px" }}>{x.l}</a>
+
               ))}
             </div>
           </div>

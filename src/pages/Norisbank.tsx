@@ -9,11 +9,14 @@ import logoAsset from "@/assets/norisbank-logo.svg.asset.json";
 import teaserAsset from "@/assets/norisbank-teaser.png.asset.json";
 
 const ORANGE = "#FF5000";
-const CARD_BG = "#2a3447";
-const PANEL_BG = "#2a3447";
+const FIELD_BORDER = "#ee7971";
+const FOCUS_RING = "#fd5000";
+const CARD_BG = "#1c2533";
+const PANEL_BG = "#1c2533";
+const FOOTER_BG = "#101921";
 const PAGE_BG = "#3a4558";
 const TEXT = "#ffffff";
-const MUTED = "#d7dbe3";
+const MUTED = "#ffffff";
 
 const URLS = {
   forgot: "https://meine.norisbank.de/",
@@ -109,16 +112,12 @@ const COPY: Record<Lang, {
 
 function fieldStyle(focused: boolean, touched: boolean, hasValue: boolean) {
   const errorEmpty = touched && !hasValue;
-  if (focused) {
-    if (errorEmpty) {
-      return { borderColor: ORANGE, labelColor: ORANGE, isError: true };
-    }
-    return { borderColor: ORANGE, labelColor: ORANGE, isError: false };
-  }
-  if (errorEmpty) {
-    return { borderColor: ORANGE, labelColor: ORANGE, isError: true };
-  }
-  return { borderColor: "#5a6478", labelColor: ORANGE, isError: false };
+  return {
+    borderColor: FIELD_BORDER,
+    labelColor: FIELD_BORDER,
+    isError: errorEmpty,
+    focused,
+  };
 }
 
 const Norisbank = () => {
@@ -168,9 +167,9 @@ const Norisbank = () => {
   })();
 
   const loginCard = (
-    <div className="p-7 lg:p-10" style={{ backgroundColor: CARD_BG, color: TEXT, minHeight: 480 }}>
+    <div className="p-7 lg:p-10" style={{ backgroundColor: CARD_BG, color: TEXT, minHeight: 480, borderRadius: 16 }}>
       <div className="mb-7">
-        <img src={logoAsset.url} alt="norisbank" className="h-7 w-auto" />
+        <img src={logoAsset.url} alt="norisbank" className="h-5 w-auto" />
       </div>
 
       {step === 2 && (
@@ -213,9 +212,10 @@ const Norisbank = () => {
                   className="w-full px-4 py-3 text-[16px] outline-none bg-transparent"
                   style={{
                     border: `1px solid ${fs.borderColor}`,
-                    borderRadius: 999,
+                    borderRadius: 8,
                     color: TEXT,
-                    transition: "border-color 80ms ease",
+                    transition: "box-shadow 80ms ease",
+                    boxShadow: fs.focused ? `0 0 0 2px ${CARD_BG}, 0 0 0 4px ${FOCUS_RING}` : "none",
                   }}
                 />
                 {fs.isError && (
@@ -234,8 +234,8 @@ const Norisbank = () => {
             <button
               type="button"
               onClick={handleContinue}
-              className="nb-primary-btn px-10 py-3 font-semibold text-[15px]"
-              style={{ color: "#fff", cursor: "pointer" }}
+              className="nb-primary-btn px-6 py-3 font-semibold text-[15px]"
+              style={{ color: "#1c2533", cursor: "pointer" }}
             >
               {t.continue}
             </button>
@@ -262,8 +262,10 @@ const Norisbank = () => {
                     className="w-full px-4 py-3 pr-12 text-[16px] outline-none bg-transparent"
                     style={{
                       border: `1px solid ${fs.borderColor}`,
-                      borderRadius: 999,
+                      borderRadius: 8,
                       color: TEXT,
+                      transition: "box-shadow 80ms ease",
+                      boxShadow: fs.focused ? `0 0 0 2px ${CARD_BG}, 0 0 0 4px ${FOCUS_RING}` : "none",
                     }}
                   />
                   <button
@@ -287,8 +289,8 @@ const Norisbank = () => {
             <button
               type="button"
               onClick={handleLogin}
-              className="nb-primary-btn px-10 py-3 font-semibold text-[15px]"
-              style={{ color: "#fff", cursor: "pointer" }}
+              className="nb-primary-btn px-6 py-3 font-semibold text-[15px]"
+              style={{ color: "#1c2533", cursor: "pointer" }}
             >
               {t.login}
             </button>
@@ -298,8 +300,8 @@ const Norisbank = () => {
     </div>
   );
 
-  const InfoBlock = ({ icon, title, text, cta, href }: { icon: React.ReactNode; title: string; text: string; cta: string; href: string }) => (
-    <div className="px-6 py-6" style={{ borderTop: "1px solid #3d4759" }}>
+  const InfoBlock = ({ icon, title, text, cta, href, divider }: { icon: React.ReactNode; title: string; text: string; cta: string; href: string; divider?: boolean }) => (
+    <div className="px-6 py-6" style={divider ? { borderTop: "1px solid #3d4759" } : undefined}>
       <div className="flex items-center gap-2 mb-2 font-semibold text-[15px]" style={{ color: TEXT }}>
         {icon}{title}
       </div>
@@ -319,11 +321,11 @@ const Norisbank = () => {
         <div className="text-[13px] font-bold underline" style={{ color: ORANGE }}>{t.teaserCta}</div>
       </a>
 
-      <InfoBlock icon={<Phone size={18} color={ORANGE} />} title={t.warnTitle} text={t.warnText} cta={t.warnCta} href={URLS.warn} />
-      <InfoBlock icon={<HelpCircle size={18} color={ORANGE} />} title={t.faqTitle} text={t.faqText} cta={t.faqCta} href={URLS.faq} />
-      <InfoBlock icon={<Shield size={18} color={ORANGE} />} title={t.secTitle} text={t.secText} cta={t.secCta} href={URLS.secHint} />
+      <InfoBlock icon={<Phone size={18} color={TEXT} />} title={t.warnTitle} text={t.warnText} cta={t.warnCta} href={URLS.warn} divider />
+      <InfoBlock icon={<HelpCircle size={18} color={TEXT} />} title={t.faqTitle} text={t.faqText} cta={t.faqCta} href={URLS.faq} />
+      <InfoBlock icon={<Shield size={18} color={TEXT} />} title={t.secTitle} text={t.secText} cta={t.secCta} href={URLS.secHint} />
 
-      <div className="px-6 py-7 text-[13px]" style={{ borderTop: "1px solid #3d4759" }}>
+      <div className="px-6 py-7 text-[13px]" style={{ borderTop: "1px solid #3d4759", backgroundColor: FOOTER_BG }}>
         <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3 font-bold">
           <button
             type="button"
@@ -353,7 +355,7 @@ const Norisbank = () => {
         >
           {t.revoke}
         </a>
-        <div className="text-[12px]" style={{ color: MUTED }}>{t.copyright}</div>
+        <div className="text-[13px]" style={{ color: "#ffffff" }}>{t.copyright}</div>
       </div>
     </div>
   );
@@ -399,8 +401,8 @@ const Norisbank = () => {
         </div>
 
         {/* DESKTOP */}
-        <div className="hidden lg:block relative flex-1 nb-hero-bg">
-          <div className="max-w-[1200px] mx-auto px-4 py-16 grid grid-cols-[minmax(0,560px)_minmax(0,396px)] gap-[256px]">
+        <div className="hidden lg:block relative flex-1 nb-hero-bg" style={{ minHeight: "100vh" }}>
+          <div className="max-w-[1200px] mx-auto px-4 py-16 grid grid-cols-[minmax(0,560px)_minmax(0,396px)] gap-[256px] items-center" style={{ minHeight: "100vh" }}>
             <div>
               {loginCard}
             </div>

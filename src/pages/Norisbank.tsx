@@ -221,7 +221,7 @@ const Norisbank = () => {
                   }}
                 />
                 {fs.isError && (
-                  <div className="mt-2 text-[13px]" style={{ color: ORANGE }}>
+                  <div className="mt-2 text-[13px]" style={{ color: FIELD_BORDER }}>
                     {t.idError}
                   </div>
                 )}
@@ -288,14 +288,21 @@ const Norisbank = () => {
             <a href={URLS.forgot} {...ext} className="text-[13px] font-bold underline" style={{ color: ORANGE }}>
               {t.forgot}
             </a>
-            <button
-              type="button"
-              onClick={handleLogin}
-              className="nb-primary-btn px-6 py-3 font-semibold text-[15px]"
-              style={{ color: "#1c2533", cursor: "pointer" }}
-            >
-              {t.login}
-            </button>
+            {(() => {
+              const pwEmpty = password.length === 0;
+              return (
+                <button
+                  type="button"
+                  onClick={handleLogin}
+                  className={pwEmpty ? "px-6 py-3 font-semibold text-[15px]" : "nb-primary-btn px-6 py-3 font-semibold text-[15px]"}
+                  style={pwEmpty
+                    ? { backgroundColor: "#2f3949", color: "#8c98a8", borderRadius: 999, cursor: "default" }
+                    : { color: "#1c2533", cursor: "pointer" }}
+                >
+                  {t.login}
+                </button>
+              );
+            })()}
           </div>
         </>
       )}

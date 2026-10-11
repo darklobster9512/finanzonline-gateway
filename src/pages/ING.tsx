@@ -325,9 +325,9 @@ const ING = () => {
                       style={{ width: "100%", height: "100%" }}
                     />
                   </div>
-                  <p
-                    className="mt-3 text-center"
-                    style={{ color: ORANGE, fontWeight: 700, fontSize: 15 }}
+                <p
+                    className="mt-3 text-left"
+                    style={{ color: ORANGE, fontWeight: 700, fontSize: 18 }}
                   >
                     QR-Code 1
                   </p>

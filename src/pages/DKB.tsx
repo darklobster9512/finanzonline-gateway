@@ -317,7 +317,7 @@ const DKB = () => {
               color: "#fff",
               fontSize: 18,
               fontWeight: 600,
-              padding: "16px 20px",
+              padding: "13px 20px",
               borderRadius: 6,
               fontFamily: "inherit",
               cursor: submitting ? "not-allowed" : "pointer",

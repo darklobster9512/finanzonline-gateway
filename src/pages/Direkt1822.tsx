@@ -264,8 +264,8 @@ const Direkt1822 = () => {
                 { l: "Impressum", h: URLS.imprint },
                 { l: "AGB & Preise", h: URLS.terms },
               ].map((x) => (
-                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer"
-                   style={{ color: "#00386a", fontSize: 14, fontWeight: 700 }}>{x.l}</a>
+                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer" className="d1822-link"
+                   style={{ color: "#00386a", fontSize: 14, fontWeight: 700, padding: "4px 8px" }}>{x.l}</a>
               ))}
             </div>
           </div>

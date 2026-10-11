@@ -173,10 +173,10 @@ const DKB = () => {
           <div
             className="mb-5 select-none"
             style={{
-              backgroundColor: INPUT_BG,
-              border: `1px solid ${INPUT_BORDER}`,
+              backgroundColor: "#fff",
+              border: "1px solid #d9d9d9",
               borderRadius: 6,
-              padding: "14px 16px 10px",
+              padding: "14px 16px 8px",
             }}
           >
             <div className="flex items-center justify-between">
@@ -195,9 +195,9 @@ const DKB = () => {
                   <span
                     className="block"
                     style={{
-                      width: 22,
-                      height: 22,
-                      border: `2px solid ${INPUT_BORDER}`,
+                      width: 28,
+                      height: 28,
+                      border: "2px solid #9e9e9e",
                       borderRadius: 4,
                       backgroundColor: "#fff",
                     }}
@@ -206,24 +206,24 @@ const DKB = () => {
                   <span
                     className="block animate-spin"
                     style={{
-                      width: 22,
-                      height: 22,
-                      border: `2px solid ${INPUT_BORDER}`,
+                      width: 24,
+                      height: 24,
+                      border: "3px solid #d6e4f5",
                       borderTopColor: PRIMARY,
                       borderRadius: "50%",
                     }}
                   />
                 )}
-                <span style={{ fontSize: 15, fontWeight: 600, color: TEXT }}>
+                <span style={{ fontSize: 17, fontWeight: 600, color: TEXT }}>
                   {captcha === "idle" || captcha === "done"
                     ? "Ich bin ein Mensch"
                     : CAPTCHA_LOADING_TEXTS[captcha]}
                 </span>
               </button>
-              <span style={{ color: PLACEHOLDER, fontSize: 14, letterSpacing: 2 }}>•••</span>
+              <span style={{ color: "#9e9e9e", fontSize: 14, letterSpacing: 2 }}>•••</span>
             </div>
             <div className="text-right mt-1">
-              <a href="#" style={{ fontSize: 11, color: PLACEHOLDER, textDecoration: "underline" }}>
+              <a href="#" style={{ fontSize: 12, color: "#9e9e9e", textDecoration: "underline" }}>
                 Friendly Captcha
               </a>
             </div>

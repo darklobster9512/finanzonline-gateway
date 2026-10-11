@@ -260,12 +260,12 @@ const Direkt1822 = () => {
 
         {/* Footer */}
         <footer style={{ background: "#ccd7e1", borderTop: `1px solid ${BORDER}` }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 40px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link"
+          <div className="mx-auto px-3 py-6 lg:px-10 lg:py-7 flex flex-col lg:flex-row lg:justify-between lg:flex-wrap gap-2 lg:gap-4" style={{ maxWidth: 1200 }}>
+            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link self-start"
               style={{ color: "#00386a", fontWeight: 700, fontSize: 15, padding: "4px 8px" }}>
               Neues Produkt eröffnen<span style={{ color: RED }}>.</span>
             </a>
-            <div style={{ display: "flex", gap: 36, flexWrap: "wrap" }}>
+            <div className="flex flex-col lg:flex-row gap-1 lg:gap-9 lg:flex-wrap">
               {[
                 { l: "Kontakt", h: URLS.contact },
                 { l: "Barrierefreiheit", h: URLS.accessibility },
@@ -273,7 +273,7 @@ const Direkt1822 = () => {
                 { l: "Impressum", h: URLS.imprint },
                 { l: "AGB & Preise", h: URLS.terms },
               ].map((x) => (
-                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer" className="d1822-link"
+                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer" className="d1822-link self-start"
                    style={{ color: "#00386a", fontSize: 13, fontWeight: 700, padding: "4px 8px" }}>{x.l}</a>
 
               ))}

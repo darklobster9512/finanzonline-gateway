@@ -144,7 +144,7 @@ const DKB = () => {
             />
             <label
               htmlFor="dkb-username"
-              className="pointer-events-none absolute left-[18px] top-[19px] text-[17px] leading-none transition-all duration-200 peer-focus:top-[8px] peer-focus:text-[12px] peer-[&:not(:placeholder-shown)]:top-[8px] peer-[&:not(:placeholder-shown)]:text-[12px]"
+              className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
               style={{ color: PLACEHOLDER }}
             >
               Anmeldename
@@ -170,7 +170,7 @@ const DKB = () => {
             />
             <label
               htmlFor="dkb-password"
-              className="pointer-events-none absolute left-[18px] top-[19px] text-[17px] leading-none transition-all duration-200 peer-focus:top-[8px] peer-focus:text-[12px] peer-[&:not(:placeholder-shown)]:top-[8px] peer-[&:not(:placeholder-shown)]:text-[12px]"
+              className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
               style={{ color: PLACEHOLDER }}
             >
               Passwort

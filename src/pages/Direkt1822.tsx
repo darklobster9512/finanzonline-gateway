@@ -117,6 +117,13 @@ const Direkt1822 = () => {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: BACKDROP, color: TEXT, fontFamily: FONT }}>
+      <style>{`
+        .d1822-link { transition: background-color .12s; }
+        .d1822-link:hover { background-color: #51e5a7; text-decoration: none !important; }
+        .d1822-btn { transition: background-color .12s, color .12s, border-color .12s; border: 2px solid #00386a; }
+        .d1822-btn:hover:not(:disabled) { background-color: #51e5a7 !important; color: #00386a !important; border-color: #00386a !important; }
+      `}</style>
+
       <div style={{ maxWidth: 1680, margin: "0 auto", width: "100%", background: PAGE_BG, boxShadow: "0 0 20px rgba(0,56,106,.05)" }} className="flex-1 flex flex-col">
         {/* Header */}
         <header style={{ background: "#fff", borderBottom: `1px solid ${BORDER}` }}>

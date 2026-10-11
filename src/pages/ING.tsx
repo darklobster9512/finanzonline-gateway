@@ -256,7 +256,7 @@ const ING = () => {
                       fontSize: 16,
                       fontWeight: 700,
                       padding: "10px 28px",
-                      borderRadius: 24,
+                      borderRadius: 4,
                       fontFamily: "inherit",
                       cursor: submitting ? "not-allowed" : "pointer",
                       transition: "background-color .15s",

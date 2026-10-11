@@ -464,9 +464,10 @@ const Postbank = () => {
         @media (max-width: 1023px) {
           .pb-hero-bg {
             background-image: url(${bgAsset.url});
-            background-size: 150% auto;
-            background-position: left 25%;
+            background-size: 120% auto;
+            background-position: left top;
             background-repeat: no-repeat;
+            background-origin: border-box;
           }
         }
         @media (min-width: 1024px) {
@@ -493,7 +494,7 @@ const Postbank = () => {
       <div className="min-h-screen flex flex-col pb-font" style={{ color: DARK }}>
         {/* MOBILE LAYOUT */}
         <div className="lg:hidden">
-          <div className="pb-hero-bg px-2 pt-[120px] pb-10 space-y-4">
+          <div className="pb-hero-bg px-2 pt-[180px] pb-10 space-y-4">
             {loginCard}
           </div>
           <div className="bg-white px-2 lg:px-0">

@@ -43,6 +43,10 @@ const Direkt1822 = () => {
   const [showPin, setShowPin] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [focusField, setFocusField] = useState<null | "k" | "p">(null);
+
+  const INPUT_BORDER = "#176BC0";
+  const FOCUS_RING = "0 0 0 2px #fff, 0 0 0 4px #e6ebf0";
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("1822direkt Online-Banking", logoAsset.url);
@@ -121,42 +125,46 @@ const Direkt1822 = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40, alignItems: "start" }}>
               {/* Login card */}
-              <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 2px 4px rgba(0,56,106,.04)" }}>
+              <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                   <label htmlFor="k" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginBottom: 10 }}>
                     Online-Kennung<InfoDot title="Ihre persönliche Online-Kennung" />
                   </label>
                   <input id="k" type="text" value={kennung} onChange={(e) => setKennung(e.target.value)}
                     autoComplete="off"
-                    style={{ width: "100%", background: INPUT_BG, border: `1px solid ${NAVY}`, borderRadius: 2, padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT }} />
+                    onFocus={() => setFocusField("k")} onBlur={() => setFocusField(null)}
+                    style={{ width: "100%", background: INPUT_BG, border: `2px solid ${INPUT_BORDER}`, borderRadius: 2, padding: "13px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, boxShadow: focusField === "k" ? FOCUS_RING : "none" }} />
                   <div style={{ marginTop: 12, display: "flex", gap: 24, flexWrap: "wrap" }}>
-                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-Kennung vergessen?</a>
-                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>Neu im Online-Banking?</a>
+                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-Kennung vergessen?</a>
+                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>Neu im Online-Banking?</a>
                   </div>
 
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>
                     Online-PIN<InfoDot title="Ihre persönliche Online-PIN" />
                   </label>
-                  <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `1px solid ${NAVY}`, borderRadius: 2 }}>
+                  <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `2px solid ${INPUT_BORDER}`, borderRadius: 2, boxShadow: focusField === "p" ? FOCUS_RING : "none" }}>
                     <input id="p" type={showPin ? "text" : "password"} value={pin} onChange={(e) => setPin(e.target.value)}
                       autoComplete="off"
-                      style={{ flex: 1, background: "transparent", border: "none", padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, minWidth: 0 }} />
+                      onFocus={() => setFocusField("p")} onBlur={() => setFocusField(null)}
+                      style={{ flex: 1, background: "transparent", border: "none", padding: "13px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, minWidth: 0 }} />
                     <button type="button" aria-label={showPin ? "PIN verbergen" : "PIN anzeigen"} onClick={() => setShowPin((v) => !v)}
-                      style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${NAVY}`, display: "flex", alignItems: "center" }}>
+                      style={{ padding: "0 12px", color: NAVY, position: "relative", display: "flex", alignItems: "center" }}>
+                      <span aria-hidden="true" style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 1, height: 28, background: "#fff" }} />
                       {showPin ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
-                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${NAVY}`, display: "flex", alignItems: "center" }}>
+                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, position: "relative", display: "flex", alignItems: "center" }}>
+                      <span aria-hidden="true" style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 1, height: 28, background: "#fff" }} />
                       <Keyboard size={20} />
                     </span>
                   </div>
                   <div style={{ marginTop: 12 }}>
-                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-PIN vergessen?</a>
+                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-PIN vergessen?</a>
                   </div>
 
                   <div style={{ marginTop: 32, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
                     <button type="submit" disabled={!canSubmit || submitting}
                       style={{
-                        background: canSubmit ? NAVY : "#8a8a8a",
+                        background: canSubmit ? NAVY : "#757575",
                         color: "#fff", padding: "14px 36px", fontSize: 15, fontWeight: 600,
                         borderRadius: 2, minWidth: 150, cursor: canSubmit ? "pointer" : "not-allowed",
                       }}>
@@ -172,7 +180,7 @@ const Direkt1822 = () => {
               </section>
 
               {/* Promo card */}
-              <section style={{ background: CARD, padding: 24, boxShadow: "0 2px 4px rgba(0,56,106,.04)", display: "flex", flexDirection: "column" }}>
+              <section style={{ background: CARD, padding: 24, boxShadow: "0 6px 18px rgba(0,56,106,.12)", display: "flex", flexDirection: "column" }}>
                 <img src={heroAsset.url} alt="30 Jahre 1822direkt" style={{ width: "100%", height: "auto", display: "block" }} />
                 <h3 style={{ color: NAVY, fontSize: 24, fontWeight: 700, marginTop: 24 }}>Wir feiern 30 Jahre. Du feierst mit.</h3>
                 <ul style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>

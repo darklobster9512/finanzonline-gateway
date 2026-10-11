@@ -11,6 +11,7 @@ const FOOTER_TEXT = "#0C777D";
 const FOOTER_LINK_COLOR = "#FFFFFF";
 const PRIMARY = "#006AC7";
 const PRIMARY_HOVER = "#005BAE";
+const CHECK_COLOR = "#2979ff";
 const INPUT_BG = "#F2F9FF";
 const INPUT_BORDER = "#C0D4E4";
 const CARD_BORDER = "#CBD9E4";
@@ -264,7 +265,7 @@ const DKB = () => {
               style={{ fontFamily: "inherit" }}
             >
               {captcha === "done" ? (
-                <svg width="26" height="26" viewBox="0 0 79 68" fill={PRIMARY} aria-hidden="true">
+                <svg width="21" height="14.6" viewBox="0 9.5 79 55" fill={CHECK_COLOR} aria-hidden="true">
                   <path d="M78.049,19.015L29.458,67.606c-0.428,0.428-1.121,0.428-1.548,0L0.32,40.015c-0.427-0.426-0.427-1.119,0-1.547l6.704-6.704c0.428-0.427,1.121-0.427,1.548,0l20.113,20.112l41.113-41.113c0.429-0.427,1.12-0.427,1.548,0l6.703,6.704C78.477,17.894,78.477,18.586,78.049,19.015z" />
                 </svg>
               ) : captcha === "idle" ? (

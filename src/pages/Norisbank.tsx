@@ -300,8 +300,8 @@ const Norisbank = () => {
     </div>
   );
 
-  const InfoBlock = ({ icon, title, text, cta, href }: { icon: React.ReactNode; title: string; text: string; cta: string; href: string }) => (
-    <div className="px-6 py-6" style={{ borderTop: "1px solid #3d4759" }}>
+  const InfoBlock = ({ icon, title, text, cta, href, divider }: { icon: React.ReactNode; title: string; text: string; cta: string; href: string; divider?: boolean }) => (
+    <div className="px-6 py-6" style={divider ? { borderTop: "1px solid #3d4759" } : undefined}>
       <div className="flex items-center gap-2 mb-2 font-semibold text-[15px]" style={{ color: TEXT }}>
         {icon}{title}
       </div>

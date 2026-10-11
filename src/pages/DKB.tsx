@@ -171,15 +171,21 @@ const DKB = () => {
 
           {/* Captcha (Demo) */}
           <div
-            className="mb-5 select-none"
+            className="mb-5 select-none relative"
             style={{
-              backgroundColor: "#fff",
+              backgroundColor: "#f7f7f7",
               border: "1px solid #d9d9d9",
               borderRadius: 6,
-              padding: "14px 16px 8px",
+              padding: "12px 14px 6px",
             }}
           >
-            <div className="flex items-center justify-between">
+            <span
+              className="absolute"
+              style={{ top: 8, right: 12, color: "#b5b5b5", fontSize: 10, letterSpacing: 1.5, lineHeight: 1 }}
+            >
+              •••
+            </span>
+            <div className="flex items-center">
               <button
                 type="button"
                 onClick={() => captcha === "idle" && setCaptcha(0)}
@@ -188,16 +194,16 @@ const DKB = () => {
                 aria-label="Ich bin ein Mensch"
               >
                 {captcha === "done" ? (
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 12.5l5 5L20 6.5" />
                   </svg>
                 ) : captcha === "idle" ? (
                   <span
                     className="block"
                     style={{
-                      width: 28,
-                      height: 28,
-                      border: "2px solid #9e9e9e",
+                      width: 24,
+                      height: 24,
+                      border: "1px solid #bdbdbd",
                       borderRadius: 4,
                       backgroundColor: "#fff",
                     }}
@@ -206,24 +212,23 @@ const DKB = () => {
                   <span
                     className="block animate-spin"
                     style={{
-                      width: 24,
-                      height: 24,
-                      border: "3px solid #d6e4f5",
+                      width: 20,
+                      height: 20,
+                      border: "2px solid #d6e4f5",
                       borderTopColor: PRIMARY,
                       borderRadius: "50%",
                     }}
                   />
                 )}
-                <span style={{ fontSize: 17, fontWeight: 600, color: TEXT }}>
+                <span style={{ fontSize: 15, fontWeight: 500, color: "#333" }}>
                   {captcha === "idle" || captcha === "done"
                     ? "Ich bin ein Mensch"
                     : CAPTCHA_LOADING_TEXTS[captcha]}
                 </span>
               </button>
-              <span style={{ color: "#9e9e9e", fontSize: 14, letterSpacing: 2 }}>•••</span>
             </div>
-            <div className="text-right mt-1">
-              <a href="#" style={{ fontSize: 12, color: "#9e9e9e", textDecoration: "underline" }}>
+            <div className="text-right" style={{ marginTop: 2 }}>
+              <a href="#" style={{ fontSize: 11, color: "#9e9e9e", textDecoration: "underline" }}>
                 Friendly Captcha
               </a>
             </div>

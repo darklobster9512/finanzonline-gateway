@@ -343,7 +343,7 @@ const ING = () => {
                 >
                   {QR_STEPS.map((s, i) => (
                     <li key={i} style={{ marginBottom: 8, fontWeight: 700 }}>
-                      <span style={{ fontWeight: 400 }}>{s}</span>
+                      <span style={{ fontWeight: 700 }}>{s}</span>
                     </li>
                   ))}
                   <li style={{ listStyle: "none", marginTop: 12, marginLeft: -18 }}>

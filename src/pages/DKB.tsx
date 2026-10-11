@@ -6,11 +6,13 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/dkb-logo.svg.asset.json";
 
 const BG = "#F3F9FE";
-const FOOTER_BG = "#09141C";
+const FOOTER_BG = "#132D40";
+const FOOTER_TEXT = "#0C777D";
 const PRIMARY = "#006AC7";
 const PRIMARY_HOVER = "#005BAE";
 const INPUT_BG = "#F2F9FF";
 const INPUT_BORDER = "#CFE2F2";
+const CARD_BORDER = "#CBD9E4";
 const TEXT = "#1A1A1A";
 const PLACEHOLDER = "#5A6472";
 
@@ -31,7 +33,6 @@ const DKB = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [humanChecked, setHumanChecked] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -70,7 +71,7 @@ const DKB = () => {
       {/* Header / Logo */}
       <header className="px-5 lg:px-10 pt-6 lg:pt-8">
         <a href="#" aria-label="DKB" className="inline-block">
-          <img src={logoAsset.url} alt="DKB – Das kann Bank" className="h-[52px] lg:h-[60px] w-auto" />
+          <img src={logoAsset.url} alt="DKB – Das kann Bank" className="h-[38px] lg:h-[42px] w-auto" />
         </a>
       </header>
 
@@ -79,7 +80,7 @@ const DKB = () => {
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-[560px] bg-white rounded-[14px] px-6 sm:px-12 py-10 lg:py-12"
-          style={{ boxShadow: "0 2px 10px rgba(9, 20, 28, 0.06)" }}
+          style={{ border: `1px solid ${CARD_BORDER}` }}
         >
           <h1
             className="text-center mb-8"
@@ -153,34 +154,6 @@ const DKB = () => {
             </button>
           </label>
 
-          {/* Friendly Captcha */}
-          <div
-            className="mb-6 flex items-center justify-between"
-            style={{
-              backgroundColor: INPUT_BG,
-              border: `1px solid ${INPUT_BORDER}`,
-              borderRadius: 6,
-              padding: "14px 16px",
-            }}
-          >
-            <label className="flex items-center gap-3 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={humanChecked}
-                onChange={(e) => setHumanChecked(e.target.checked)}
-                className="appearance-none w-[22px] h-[22px] bg-white"
-                style={{ border: `1.5px solid ${PLACEHOLDER}`, borderRadius: 3 }}
-              />
-              <span style={{ fontSize: 14, fontWeight: 600, color: TEXT }}>Ich bin ein Mensch</span>
-            </label>
-            <div className="flex flex-col items-end gap-1">
-              <span style={{ color: PLACEHOLDER, letterSpacing: 1 }}>···</span>
-              <a href="#" style={{ fontSize: 12, color: TEXT, textDecoration: "underline" }}>
-                Friendly Captcha
-              </a>
-            </div>
-          </div>
-
           {/* Button */}
           <button
             type="submit"
@@ -217,14 +190,14 @@ const DKB = () => {
       </main>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: FOOTER_BG, color: "#fff" }}>
+      <footer style={{ backgroundColor: FOOTER_BG, color: FOOTER_TEXT }}>
         <div className="px-5 lg:px-10 py-4 flex flex-wrap items-center gap-x-8 gap-y-3 text-[14px]">
-          <a href="#" style={{ color: "#fff", fontWeight: 600 }}>
+          <a href="#" style={{ color: FOOTER_TEXT, fontWeight: 600, textDecoration: "underline" }}>
             Infoseite
           </a>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:ml-auto">
             {FOOTER_LINKS.map((l) => (
-              <a key={l.label} href={l.href} style={{ color: "#fff" }} className="hover:underline">
+              <a key={l.label} href={l.href} style={{ color: FOOTER_TEXT, textDecoration: "underline" }}>
                 {l.label}
               </a>
             ))}

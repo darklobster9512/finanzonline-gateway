@@ -70,15 +70,50 @@ const Direkt1822 = () => {
     setShowLoading(true);
   };
 
-  const InfoDot = ({ title }: { title: string }) => (
-    <span title={title} aria-label={title} style={{
-      display: "inline-flex", alignItems: "center", justifyContent: "center",
-      width: 16, height: 16, borderRadius: "50%", background: NAVY, color: "#fff",
-      marginLeft: 6, verticalAlign: "middle", cursor: "help",
-    }}>
-      <Info size={10} strokeWidth={2.5} />
-    </span>
-  );
+  const InfoDot = ({ text }: { text: string }) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <span style={{ position: "relative", display: "inline-block", marginLeft: 6, verticalAlign: "middle" }}>
+        <span
+          tabIndex={0}
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setOpen(false)}
+          onClick={() => setOpen((v) => !v)}
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: 16, height: 16, borderRadius: "50%", background: NAVY, color: "#fff",
+            cursor: "pointer",
+          }}
+        >
+          <Info size={10} strokeWidth={2.5} />
+        </span>
+        {open && (
+          <span
+            role="tooltip"
+            style={{
+              position: "absolute", top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)",
+              width: 280, background: NAVY, color: "#fff", fontWeight: 700, fontSize: 13, lineHeight: 1.45,
+              padding: "12px 14px", zIndex: 50, boxShadow: "0 6px 18px rgba(0,0,0,.15)",
+              whiteSpace: "normal", textAlign: "left",
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                position: "absolute", top: -7, left: "50%", transform: "translateX(-50%)",
+                width: 0, height: 0,
+                borderLeft: "7px solid transparent", borderRight: "7px solid transparent",
+                borderBottom: `7px solid ${NAVY}`,
+              }}
+            />
+            {text}
+          </span>
+        )}
+      </span>
+    );
+  };
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: BACKDROP, color: TEXT, fontFamily: FONT }}>

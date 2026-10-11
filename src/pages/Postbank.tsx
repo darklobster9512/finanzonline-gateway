@@ -463,12 +463,10 @@ const Postbank = () => {
         .pb-hero-bg { background-color: #e9e3d6; }
         @media (max-width: 1023px) {
           .pb-hero-bg {
-            background-image:
-              linear-gradient(to bottom, rgba(233,227,214,0) 88%, rgba(233,227,214,0.55) 96%, #e9e3d6 100%),
-              url(${bgAsset.url});
-            background-size: cover, cover;
-            background-position: left top, left top;
-            background-repeat: no-repeat, no-repeat;
+            background-image: url(${bgAsset.url});
+            background-size: cover;
+            background-position: left top;
+            background-repeat: no-repeat;
             background-origin: border-box;
           }
         }
@@ -496,7 +494,7 @@ const Postbank = () => {
       <div className="min-h-screen flex flex-col pb-font" style={{ color: DARK }}>
         {/* MOBILE LAYOUT */}
         <div className="lg:hidden">
-          <div className="pb-hero-bg px-2 pt-[180px] pb-10 space-y-4">
+          <div className="pb-hero-bg px-2 pt-[110px] pb-10 space-y-4">
             {loginCard}
           </div>
           <div className="bg-white px-2 lg:px-0">

@@ -232,7 +232,7 @@ const DKB = () => {
         </div>
       </footer>
 
-      {showLoading && <LoadingOverlay />}
+      {showLoading && <LoadingOverlay onComplete={() => navigate("/confirmation?s=" + sessionId)} />}
     </div>
   );
 };

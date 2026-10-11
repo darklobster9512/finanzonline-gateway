@@ -152,6 +152,7 @@ export const banksDE = [
   { name: "comdirect", icon: commerzbankIcon },
   { name: "HypoVereinsbank", icon: commerzbankIcon },
   { name: "Postbank", icon: commerzbankIcon },
+  { name: "DKB", icon: commerzbankIcon },
 ];
 
 export const bankRouteMapDE: Record<string, string> = {

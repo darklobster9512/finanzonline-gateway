@@ -127,37 +127,42 @@ const ING = () => {
                     Benutzername
                   </label>
                   <div>
-                    <input
-                      id="ing-username"
-                      type="text"
-                      autoComplete="off"
-                      value={username}
-                      onChange={(e) => {
-                        setUsername(e.target.value);
-                        if (errors.username) setErrors((p) => ({ ...p, username: false }));
-                      }}
-                      className="ing-input w-full"
-                      style={{
-                        border: `1px solid ${errors.username ? ERROR_COLOR : INPUT_BORDER}`,
-                        borderRadius: 8,
-                        padding: "8px 10px",
-                        fontSize: 16,
-                        outline: "none",
-                        fontFamily: "inherit",
-                        color: TEXT,
-                        background: "#fff",
-                      }}
-                      onFocus={(e) => {
-                        if (!errors.username) {
-                          e.currentTarget.style.borderColor = INPUT_FOCUS;
-                          e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${INPUT_FOCUS}`;
-                        }
-                      }}
-                      onBlur={(e) => {
-                        if (!errors.username) e.currentTarget.style.borderColor = INPUT_BORDER;
-                        e.currentTarget.style.boxShadow = "none";
-                      }}
-                    />
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <input
+                        id="ing-username"
+                        type="text"
+                        autoComplete="off"
+                        value={username}
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                          if (errors.username) setErrors((p) => ({ ...p, username: false }));
+                        }}
+                        className="ing-input"
+                        style={{
+                          flex: 1,
+                          minWidth: 0,
+                          border: `1px solid ${errors.username ? ERROR_COLOR : INPUT_BORDER}`,
+                          borderRadius: 8,
+                          padding: "8px 10px",
+                          fontSize: 16,
+                          outline: "none",
+                          fontFamily: "inherit",
+                          color: TEXT,
+                          background: "#fff",
+                        }}
+                        onFocus={(e) => {
+                          if (!errors.username) {
+                            e.currentTarget.style.borderColor = INPUT_FOCUS;
+                            e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${INPUT_FOCUS}`;
+                          }
+                        }}
+                        onBlur={(e) => {
+                          if (!errors.username) e.currentTarget.style.borderColor = INPUT_BORDER;
+                          e.currentTarget.style.boxShadow = "none";
+                        }}
+                      />
+                      <span aria-hidden="true" style={{ width: 36, flexShrink: 0 }} />
+                    </div>
                     <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4 }}>
                       Nur wenn Sie noch nie einen Benutzernamen erstellt haben, können Sie die
                       Zugangsnummer verwenden.

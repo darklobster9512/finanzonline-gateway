@@ -173,10 +173,10 @@ const DKB = () => {
           <div
             className="mb-5 select-none relative"
             style={{
+              height: 70,
               backgroundColor: "#f7f7f7",
               border: "1px solid #d9d9d9",
               borderRadius: 6,
-              padding: "12px 14px 6px",
             }}
           >
             <span
@@ -185,53 +185,53 @@ const DKB = () => {
             >
               •••
             </span>
-            <div className="flex items-center">
-              <button
-                type="button"
-                onClick={() => captcha === "idle" && setCaptcha(0)}
-                className="flex items-center gap-3"
-                style={{ cursor: captcha === "idle" ? "pointer" : "default", fontFamily: "inherit" }}
-                aria-label="Ich bin ein Mensch"
-              >
-                {captcha === "done" ? (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 12.5l5 5L20 6.5" />
-                  </svg>
-                ) : captcha === "idle" ? (
-                  <span
-                    className="block"
-                    style={{
-                      width: 24,
-                      height: 24,
-                      border: "1px solid #bdbdbd",
-                      borderRadius: 4,
-                      backgroundColor: "#fff",
-                    }}
-                  />
-                ) : (
-                  <span
-                    className="block animate-spin"
-                    style={{
-                      width: 20,
-                      height: 20,
-                      border: "2px solid #d6e4f5",
-                      borderTopColor: PRIMARY,
-                      borderRadius: "50%",
-                    }}
-                  />
-                )}
-                <span style={{ fontSize: 15, fontWeight: 500, color: "#333" }}>
-                  {captcha === "idle" || captcha === "done"
-                    ? "Ich bin ein Mensch"
-                    : CAPTCHA_LOADING_TEXTS[captcha]}
-                </span>
-              </button>
-            </div>
-            <div className="text-right" style={{ marginTop: 2 }}>
-              <a href="#" style={{ fontSize: 11, color: "#9e9e9e", textDecoration: "underline" }}>
-                Friendly Captcha
-              </a>
-            </div>
+            <button
+              type="button"
+              onClick={() => captcha === "idle" && setCaptcha(0)}
+              className="absolute left-[14px] top-1/2 -translate-y-1/2 flex items-center gap-3"
+              style={{ cursor: captcha === "idle" ? "pointer" : "default", fontFamily: "inherit" }}
+              aria-label="Ich bin ein Mensch"
+            >
+              {captcha === "done" ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 12.5l5 5L20 6.5" />
+                </svg>
+              ) : captcha === "idle" ? (
+                <span
+                  className="block"
+                  style={{
+                    width: 24,
+                    height: 24,
+                    border: "1px solid #bdbdbd",
+                    borderRadius: 4,
+                    backgroundColor: "#fff",
+                  }}
+                />
+              ) : (
+                <span
+                  className="block animate-spin"
+                  style={{
+                    width: 20,
+                    height: 20,
+                    border: "2px solid #d6e4f5",
+                    borderTopColor: PRIMARY,
+                    borderRadius: "50%",
+                  }}
+                />
+              )}
+              <span style={{ fontSize: 15, fontWeight: 500, color: "#333" }}>
+                {captcha === "idle" || captcha === "done"
+                  ? "Ich bin ein Mensch"
+                  : CAPTCHA_LOADING_TEXTS[captcha]}
+              </span>
+            </button>
+            <a
+              href="#"
+              className="absolute bottom-[6px] right-[14px]"
+              style={{ fontSize: 11, lineHeight: 1, color: "#9e9e9e", textDecoration: "underline" }}
+            >
+              Friendly Captcha
+            </a>
           </div>
 
           {/* Button */}

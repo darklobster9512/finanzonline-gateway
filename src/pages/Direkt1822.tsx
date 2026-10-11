@@ -184,7 +184,7 @@ const Direkt1822 = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40, alignItems: "start" }}>
               {/* Login card */}
-              <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
+              <section className="p-5 lg:p-10 lg:pt-8" style={{ background: CARD, boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                   <label htmlFor="k" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginBottom: 10 }}>
                     Online-Kennung<InfoDot text="Ihre Online-Kennung (bestehend aus Ihrer Kundennummer und Ihrer Personenkennung) haben wir Ihnen per SMS oder postalisch mitgeteilt. Sie können sie im Online-Banking selbst ändern." />

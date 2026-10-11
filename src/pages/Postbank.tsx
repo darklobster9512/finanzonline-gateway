@@ -213,7 +213,7 @@ const Postbank = () => {
   const loginCard = (
     <div className="p-6 lg:p-10" style={{ backgroundColor: YELLOW, minHeight: 440 }}>
       <div className="mb-6">
-        <img src={logoAsset.url} alt="Postbank" className="h-7 w-auto" />
+        <img src={logoAsset.url} alt="Postbank" className="h-11 w-auto" />
       </div>
 
       {step === 1 ? (
@@ -380,13 +380,13 @@ const Postbank = () => {
           className="w-full h-auto mb-4"
         />
         <div>
-          <div className="text-[16px] font-bold leading-snug" style={{ color: DARK }}>
+          <div className="text-[15px] font-bold leading-snug" style={{ color: DARK }}>
             {t.teaserTitle}
           </div>
-          <div className="text-[14px] mt-2" style={{ color: "#333" }}>
+          <div className="text-[13px] mt-2" style={{ color: "#333" }}>
             {t.teaserText}
           </div>
-          <div className="mt-3 text-[13px] underline font-bold" style={{ color: LINK }}>
+          <div className="mt-3 text-[12px] underline font-bold" style={{ color: LINK }}>
             {t.learnMore}
           </div>
         </div>
@@ -442,8 +442,8 @@ const Postbank = () => {
         <a
           href={URLS.revoke}
           {...ext}
-          className="inline-block text-[13px] font-bold px-4 py-2 mb-3 no-underline bg-white"
-          style={{ color: NAVY, border: `1px solid ${NAVY}` }}
+          className="inline-block text-[13px] font-bold px-4 py-2 mb-3 no-underline"
+          style={{ color: NAVY, border: `1px solid ${NAVY}`, backgroundColor: "transparent" }}
         >
           {t.revoke}
         </a>
@@ -467,7 +467,7 @@ const Postbank = () => {
           }
           .pb-right-panel {
             position: fixed; top: 0; bottom: 0;
-            left: max(788px, calc(50% + 188px));
+            left: max(772px, calc(50% + 142px));
             width: 396px; overflow-y: auto;
             scrollbar-width: none; -ms-overflow-style: none;
           }
@@ -493,7 +493,7 @@ const Postbank = () => {
 
         {/* DESKTOP LAYOUT */}
         <div className="hidden lg:block relative flex-1 pb-hero-bg">
-          <div className="max-w-[1200px] mx-auto px-4 py-24 grid grid-cols-[minmax(0,440px)_minmax(0,396px)] gap-[256px]">
+          <div className="max-w-[1260px] mx-auto px-4 py-24 grid grid-cols-[minmax(0,500px)_minmax(0,396px)] gap-[256px]">
             <div className="space-y-6 mt-32">
               {loginCard}
             </div>
@@ -517,11 +517,11 @@ const InfoBlock = ({
   links: { label: string; href: string }[];
 }) => (
   <div className="px-3 lg:px-7 py-6">
-    <div className="flex items-center gap-2 mb-2 font-bold text-[15px]" style={{ color: DARK }}>
+    <div className="flex items-center gap-2 mb-2 font-bold text-[14px]" style={{ color: DARK }}>
       {icon}
       {title}
     </div>
-    <p className="text-[14px] mb-3" style={{ color: "#333" }}>
+    <p className="text-[13px] mb-3" style={{ color: "#333" }}>
       {text}
     </p>
     <div className="space-y-1">
@@ -531,7 +531,7 @@ const InfoBlock = ({
           href={l.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="block text-[13px] underline font-bold"
+          className="block text-[12px] underline font-bold"
           style={{ color: LINK }}
         >
           {l.label}

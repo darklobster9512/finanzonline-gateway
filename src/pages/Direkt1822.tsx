@@ -128,9 +128,10 @@ const Direkt1822 = () => {
       <div style={{ maxWidth: 1680, margin: "0 auto", width: "100%", background: PAGE_BG, boxShadow: "0 0 20px rgba(0,56,106,.05)" }} className="flex-1 flex flex-col">
         {/* Header */}
         <header style={{ background: "#fff", borderBottom: `1px solid ${BORDER}` }}>
-          <div className="flex items-center justify-between" style={{ padding: "18px 40px" }}>
+          <div className="flex items-center justify-between px-3 py-3 lg:px-10 lg:py-[18px]">
             <a href={URLS.home} target="_blank" rel="noopener noreferrer" aria-label="1822direkt">
-              <img src={logoAsset.url} alt="1822direkt" style={{ height: 56, width: "auto", display: "block" }} />
+              <img src={logoAsset.url} alt="1822direkt" className="hidden lg:block" style={{ height: 56, width: "auto" }} />
+              <img src={logoSquareAsset.url} alt="1822direkt" className="lg:hidden block" style={{ height: 44, width: 44 }} />
             </a>
             <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link"
               style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>

@@ -211,7 +211,7 @@ const Postbank = () => {
   })();
 
   const loginCard = (
-    <div className="p-6 lg:p-10" style={{ backgroundColor: YELLOW, minHeight: 440 }}>
+    <div className="px-4 py-6 lg:p-10" style={{ backgroundColor: YELLOW, minHeight: 440 }}>
       <div className="mb-6">
         <img src={logoAsset.url} alt="Postbank" className="h-12 w-auto -ml-[14px]" />
       </div>
@@ -375,7 +375,7 @@ const Postbank = () => {
 
   const rightPanel = (
     <div className="pb-right-panel bg-white">
-      <a href={URLS.teaser} {...ext} className="block px-3 lg:px-7 pt-7 pb-6">
+      <a href={URLS.teaser} {...ext} className="block px-2 lg:px-7 pt-7 pb-6">
         <img
           src={teaserAsset.url}
           alt="Altersvorsorgedepot"
@@ -418,7 +418,7 @@ const Postbank = () => {
         links={[{ label: t.procedures, href: URLS.secProcedures }]}
       />
 
-      <div className="px-7 py-7 text-[13px]" style={{ backgroundColor: YELLOW, color: NAVY }}>
+      <div className="px-3 py-7 lg:px-7 text-[13px]" style={{ backgroundColor: YELLOW, color: NAVY }}>
         <div className="flex flex-wrap gap-x-5 gap-y-1 mb-2 font-bold text-[13px]">
           <button
             type="button"
@@ -485,7 +485,7 @@ const Postbank = () => {
       <div className="min-h-screen flex flex-col pb-font" style={{ color: DARK }}>
         {/* MOBILE LAYOUT */}
         <div className="lg:hidden">
-          <div className="pb-hero-bg px-4 pt-6 pb-4 space-y-4">
+          <div className="pb-hero-bg px-2 pt-6 pb-4 space-y-4">
             {loginCard}
           </div>
           <div className="bg-white px-2 lg:px-0">
@@ -518,7 +518,7 @@ const InfoBlock = ({
   text: string;
   links: { label: string; href: string }[];
 }) => (
-  <div className="px-3 lg:px-7 py-6">
+  <div className="px-2 lg:px-7 py-6">
     <div className="flex items-center gap-2 mb-2 font-bold text-[14px]" style={{ color: DARK }}>
       {icon}
       {title}

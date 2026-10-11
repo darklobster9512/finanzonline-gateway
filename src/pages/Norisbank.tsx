@@ -284,17 +284,14 @@ const Norisbank = () => {
             );
           })()}
 
-          <div className="flex items-center justify-between gap-3 mt-24">
-            <a href={URLS.forgot} {...ext} className="text-[13px] font-bold underline" style={{ color: ORANGE }}>
-              {t.forgot}
-            </a>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-3 mt-24">
             {(() => {
               const pwEmpty = password.length === 0;
               return (
                 <button
                   type="button"
                   onClick={handleLogin}
-                  className={pwEmpty ? "px-6 py-3 font-semibold text-[15px]" : "nb-primary-btn px-6 py-3 font-semibold text-[15px]"}
+                  className={(pwEmpty ? "px-6 py-3 font-semibold text-[15px]" : "nb-primary-btn px-6 py-3 font-semibold text-[15px]") + " w-full lg:w-auto order-1 lg:order-2"}
                   style={pwEmpty
                     ? { backgroundColor: "#2f3949", color: "#8c98a8", borderRadius: 999, cursor: "default" }
                     : { color: "#1c2533", cursor: "pointer" }}
@@ -303,6 +300,9 @@ const Norisbank = () => {
                 </button>
               );
             })()}
+            <a href={URLS.forgot} {...ext} className="text-[13px] font-bold underline order-2 lg:order-1" style={{ color: ORANGE }}>
+              {t.forgot}
+            </a>
           </div>
         </>
       )}

@@ -84,10 +84,10 @@ const Direkt1822 = () => {
           style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             width: 16, height: 16, borderRadius: "50%", background: NAVY, color: "#fff",
-            cursor: "pointer",
+            cursor: "pointer", fontFamily: "Georgia, serif", fontSize: 12, fontWeight: 700, lineHeight: 1,
           }}
         >
-          <Info size={10} strokeWidth={2.5} />
+          i
         </span>
         {open && (
           <span

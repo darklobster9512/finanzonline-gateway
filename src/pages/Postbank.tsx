@@ -463,10 +463,12 @@ const Postbank = () => {
         .pb-hero-bg { background-color: #e9e3d6; }
         @media (max-width: 1023px) {
           .pb-hero-bg {
-            background-image: url(${bgAsset.url});
-            background-size: 120% auto;
-            background-position: left top;
-            background-repeat: no-repeat;
+            background-image:
+              linear-gradient(to bottom, rgba(233,227,214,0) 0%, rgba(233,227,214,0) 45%, #e9e3d6 100%),
+              url(${bgAsset.url});
+            background-size: 100% 240px, 120% auto;
+            background-position: left top, left top;
+            background-repeat: no-repeat, no-repeat;
             background-origin: border-box;
           }
         }

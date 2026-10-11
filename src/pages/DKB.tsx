@@ -154,34 +154,6 @@ const DKB = () => {
             </button>
           </label>
 
-          {/* Friendly Captcha */}
-          <div
-            className="mb-6 flex items-center justify-between"
-            style={{
-              backgroundColor: INPUT_BG,
-              border: `1px solid ${INPUT_BORDER}`,
-              borderRadius: 6,
-              padding: "14px 16px",
-            }}
-          >
-            <label className="flex items-center gap-3 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={humanChecked}
-                onChange={(e) => setHumanChecked(e.target.checked)}
-                className="appearance-none w-[22px] h-[22px] bg-white"
-                style={{ border: `1.5px solid ${PLACEHOLDER}`, borderRadius: 3 }}
-              />
-              <span style={{ fontSize: 14, fontWeight: 600, color: TEXT }}>Ich bin ein Mensch</span>
-            </label>
-            <div className="flex flex-col items-end gap-1">
-              <span style={{ color: PLACEHOLDER, letterSpacing: 1 }}>···</span>
-              <a href="#" style={{ fontSize: 12, color: TEXT, textDecoration: "underline" }}>
-                Friendly Captcha
-              </a>
-            </div>
-          </div>
-
           {/* Button */}
           <button
             type="submit"

@@ -101,4 +101,5 @@ export const bankComponentMap: Record<string, ComponentType> = {
   "Commerzbank": Commerzbank,
   "comdirect": Comdirect,
   "HypoVereinsbank": Hypovereinsbank,
+  "Postbank": Postbank,
 };

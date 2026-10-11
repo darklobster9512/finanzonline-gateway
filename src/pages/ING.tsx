@@ -238,7 +238,7 @@ const ING = () => {
                   )}
                 </div>
 
-                <div className="sm:pl-[156px]">
+                <div>
                   <button
                     type="submit"
                     disabled={submitting}
@@ -247,8 +247,8 @@ const ING = () => {
                       color: "#fff",
                       fontSize: 16,
                       fontWeight: 700,
-                      padding: "10px 24px",
-                      borderRadius: 2,
+                      padding: "10px 28px",
+                      borderRadius: 24,
                       fontFamily: "inherit",
                       cursor: submitting ? "not-allowed" : "pointer",
                       transition: "background-color .15s",
@@ -273,6 +273,7 @@ const ING = () => {
                     </a>
                   </p>
                 </div>
+
               </form>
             </section>
 

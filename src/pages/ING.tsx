@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/ing-logo.svg.asset.json";
-import qrAsset from "@/assets/ing-qr.svg.asset.json";
+import QRCode from "react-qr-code";
 import youtubeAsset from "@/assets/youtube.svg.asset.json";
 
 const ORANGE = "#FF6200";

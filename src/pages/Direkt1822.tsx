@@ -137,17 +137,15 @@ const Direkt1822 = () => {
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>
                     Online-PIN<InfoDot title="Ihre persönliche Online-PIN" />
                   </label>
-                  <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `1px solid ${BORDER}`, borderRadius: 2 }}
-                    onFocus={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = NAVY; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = BORDER; }}>
+                  <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `1px solid ${NAVY}`, borderRadius: 2 }}>
                     <input id="p" type={showPin ? "text" : "password"} value={pin} onChange={(e) => setPin(e.target.value)}
                       autoComplete="off"
                       style={{ flex: 1, background: "transparent", border: "none", padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, minWidth: 0 }} />
                     <button type="button" aria-label={showPin ? "PIN verbergen" : "PIN anzeigen"} onClick={() => setShowPin((v) => !v)}
-                      style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${BORDER}`, display: "flex", alignItems: "center" }}>
+                      style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${NAVY}`, display: "flex", alignItems: "center" }}>
                       {showPin ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
-                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${BORDER}`, display: "flex", alignItems: "center" }}>
+                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${NAVY}`, display: "flex", alignItems: "center" }}>
                       <Keyboard size={20} />
                     </span>
                   </div>

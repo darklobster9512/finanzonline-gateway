@@ -467,7 +467,7 @@ const Postbank = () => {
           }
           .pb-right-panel {
             position: fixed; top: 0; bottom: 0;
-            left: max(788px, calc(50% + 188px));
+            left: max(772px, calc(50% + 142px));
             width: 396px; overflow-y: auto;
             scrollbar-width: none; -ms-overflow-style: none;
           }

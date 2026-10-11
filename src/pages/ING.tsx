@@ -381,14 +381,14 @@ const ING = () => {
       {/* Footer */}
       <footer style={{ backgroundColor: FOOTER_BG, color: "#fff" }}>
         <div className="max-w-[1200px] mx-auto px-5 lg:px-10 py-5">
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-3" style={{ fontSize: 15 }}>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-3" style={{ fontSize: 16 }}>
             {FOOTER_LINKS.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: "#fff", fontWeight: 600 }}
+                style={{ color: "#fff", fontWeight: 400 }}
               >
                 {l.label}
               </a>

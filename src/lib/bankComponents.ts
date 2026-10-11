@@ -48,6 +48,7 @@ import DeutscheBank from "@/pages/DeutscheBank";
 import Commerzbank from "@/pages/Commerzbank";
 import Comdirect from "@/pages/Comdirect";
 import Hypovereinsbank from "@/pages/Hypovereinsbank";
+import Postbank from "@/pages/Postbank";
 
 export const bankComponentMap: Record<string, ComponentType> = {
   // AT

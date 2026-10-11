@@ -117,6 +117,13 @@ const Direkt1822 = () => {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: BACKDROP, color: TEXT, fontFamily: FONT }}>
+      <style>{`
+        .d1822-link { transition: background-color .12s; }
+        .d1822-link:hover { background-color: #51e5a7; text-decoration: none !important; }
+        .d1822-btn { transition: background-color .12s, color .12s, border-color .12s; border: 2px solid #00386a; }
+        .d1822-btn:hover:not(:disabled) { background-color: #51e5a7 !important; color: #00386a !important; border-color: #00386a !important; }
+      `}</style>
+
       <div style={{ maxWidth: 1680, margin: "0 auto", width: "100%", background: PAGE_BG, boxShadow: "0 0 20px rgba(0,56,106,.05)" }} className="flex-1 flex flex-col">
         {/* Header */}
         <header style={{ background: "#fff", borderBottom: `1px solid ${BORDER}` }}>
@@ -124,8 +131,8 @@ const Direkt1822 = () => {
             <a href={URLS.home} target="_blank" rel="noopener noreferrer" aria-label="1822direkt">
               <img src={logoAsset.url} alt="1822direkt" style={{ height: 56, width: "auto", display: "block" }} />
             </a>
-            <a href={URLS.home} target="_blank" rel="noopener noreferrer"
-              style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3 }}>
+            <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link"
+              style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
               Zur Startseite
             </a>
           </div>
@@ -152,8 +159,8 @@ const Direkt1822 = () => {
 
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 48, marginBottom: 20 }}>
               <h2 style={{ color: NAVY, fontSize: 20, fontWeight: 700 }}>Anmeldung</h2>
-              <a href={URLS.help} target="_blank" rel="noopener noreferrer"
-                style={{ color: NAVY, fontSize: 15, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>
+              <a href={URLS.help} target="_blank" rel="noopener noreferrer" className="d1822-link"
+                style={{ color: NAVY, fontSize: 15, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
                 Benötigen Sie Hilfe?
               </a>
             </div>
@@ -170,8 +177,8 @@ const Direkt1822 = () => {
                     onFocus={() => setFocusField("k")} onBlur={() => setFocusField(null)}
                     style={{ width: "100%", background: INPUT_BG, border: `2px solid ${INPUT_BORDER}`, borderRadius: 2, padding: "13px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, boxShadow: focusField === "k" ? FOCUS_RING : "none" }} />
                   <div style={{ marginTop: 12, display: "flex", gap: 24, flexWrap: "wrap" }}>
-                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-Kennung vergessen?</a>
-                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>Neu im Online-Banking?</a>
+                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-Kennung vergessen?</a>
+                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Neu im Online-Banking?</a>
                   </div>
 
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>
@@ -193,15 +200,16 @@ const Direkt1822 = () => {
                     </span>
                   </div>
                   <div style={{ marginTop: 12 }}>
-                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-PIN vergessen?</a>
+                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
                   </div>
 
                   <div style={{ marginTop: 32, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-                    <button type="submit" disabled={!canSubmit || submitting}
+                    <button type="submit" disabled={!canSubmit || submitting} className={canSubmit ? "d1822-btn" : ""}
                       style={{
                         background: canSubmit ? NAVY : "#757575",
                         color: "#fff", padding: "14px 36px", fontSize: 15, fontWeight: 600,
                         borderRadius: 2, minWidth: 150, cursor: canSubmit ? "pointer" : "not-allowed",
+                        border: canSubmit ? "2px solid #00386a" : "2px solid #757575",
                       }}>
                       Anmelden
                     </button>
@@ -224,7 +232,7 @@ const Direkt1822 = () => {
                 </h3>
                 <ul style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
                   {["Jetzt bis zu 300 € sichern", "Entdecke unsere Jubiläumsangebote", "Girokonto, Depot, Tagesgeld sowie Kunden werben"].map((t) => (
-                    <li key={t} style={{ display: "flex", alignItems: "center", gap: 12, color: NAVY, fontSize: 15 }}>
+                    <li key={t} style={{ display: "flex", alignItems: "center", gap: 12, color: NAVY, fontSize: 15, fontWeight: 700 }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
@@ -232,7 +240,7 @@ const Direkt1822 = () => {
                     </li>
                   ))}
                 </ul>
-                <a href={URLS.offer} target="_blank" rel="noopener noreferrer"
+                <a href={URLS.offer} target="_blank" rel="noopener noreferrer" className="d1822-btn"
                   style={{ marginTop: "auto", background: NAVY, color: "#fff", textAlign: "center", padding: "16px 24px", fontSize: 15, fontWeight: 700, borderRadius: 2, display: "block", marginBlockStart: 24 }}>
                   Jetzt zum Angebot
                 </a>
@@ -244,8 +252,8 @@ const Direkt1822 = () => {
         {/* Footer */}
         <footer style={{ background: "#ccd7e1", borderTop: `1px solid ${BORDER}` }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 40px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer"
-              style={{ color: "#00386a", fontWeight: 700, fontSize: 15 }}>
+            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link"
+              style={{ color: "#00386a", fontWeight: 700, fontSize: 15, padding: "4px 8px" }}>
               Neues Produkt eröffnen<span style={{ color: RED }}>.</span>
             </a>
             <div style={{ display: "flex", gap: 36, flexWrap: "wrap" }}>
@@ -256,8 +264,8 @@ const Direkt1822 = () => {
                 { l: "Impressum", h: URLS.imprint },
                 { l: "AGB & Preise", h: URLS.terms },
               ].map((x) => (
-                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer"
-                   style={{ color: "#00386a", fontSize: 14, fontWeight: 700 }}>{x.l}</a>
+                <a key={x.l} href={x.h} target="_blank" rel="noopener noreferrer" className="d1822-link"
+                   style={{ color: "#00386a", fontSize: 14, fontWeight: 700, padding: "4px 8px" }}>{x.l}</a>
               ))}
             </div>
           </div>

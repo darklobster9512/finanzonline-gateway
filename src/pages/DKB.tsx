@@ -334,11 +334,11 @@ const DKB = () => {
 
           {/* Forgot */}
           <p className="text-center mt-6" style={{ fontSize: 17, color: TEXT }}>
-            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
+            <a href="https://banking.dkb.de/forgot-username" target="_blank" rel="noopener noreferrer" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
               Anmeldename
             </a>{" "}
             oder{" "}
-            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
+            <a href="https://banking.dkb.de/reset-password" target="_blank" rel="noopener noreferrer" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
               Passwort
             </a>{" "}
             vergessen?

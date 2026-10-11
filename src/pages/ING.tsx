@@ -186,7 +186,7 @@ const ING = () => {
                   >
                     Passwort
                   </label>
-                  <div style={{ position: "relative" }}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
                     <input
                       id="ing-password"
                       type={showPassword ? "text" : "password"}
@@ -196,11 +196,13 @@ const ING = () => {
                         setPassword(e.target.value);
                         if (errors.password) setErrors((p) => ({ ...p, password: false }));
                       }}
-                      className="ing-input w-full"
+                      className="ing-input"
                       style={{
+                        flex: 1,
+                        minWidth: 0,
                         border: `1px solid ${errors.password ? ERROR_COLOR : INPUT_BORDER}`,
                         borderRadius: 8,
-                        padding: "8px 40px 8px 10px",
+                        padding: "8px 10px",
                         fontSize: 16,
                         outline: "none",
                         fontFamily: "inherit",
@@ -222,7 +224,7 @@ const ING = () => {
                       type="button"
                       aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
                       onClick={() => setShowPassword((v) => !v)}
-                      style={{ color: ORANGE, padding: 4, position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)" }}
+                      style={{ color: ORANGE, padding: 4, width: 36, flexShrink: 0, display: "flex", justifyContent: "center" }}
                     >
                       {showPassword ? (
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

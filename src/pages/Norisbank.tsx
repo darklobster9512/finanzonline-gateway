@@ -258,7 +258,7 @@ const Norisbank = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setPwFocused(true)}
-                    onBlur={() => { setPwFocused(false); setPwTouched(true); }}
+                    onBlur={() => setPwFocused(false)}
                     onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                     autoFocus
                     className="w-full px-4 py-3 pr-12 text-[16px] outline-none bg-transparent"

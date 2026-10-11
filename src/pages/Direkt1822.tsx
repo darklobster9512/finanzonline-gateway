@@ -133,7 +133,7 @@ const Direkt1822 = () => {
               <img src={logoAsset.url} alt="1822direkt" className="hidden lg:block" style={{ height: 56, width: "auto" }} />
               <img src={logoSquareAsset.url} alt="1822direkt" className="lg:hidden block" style={{ height: 44, width: 44 }} />
             </a>
-            <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link"
+            <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link hidden lg:inline-block"
               style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
               Zur Startseite
             </a>

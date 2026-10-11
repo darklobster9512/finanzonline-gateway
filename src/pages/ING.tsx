@@ -122,7 +122,7 @@ const ING = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-y-1 sm:gap-x-4 items-start mb-4">
                   <label
                     htmlFor="ing-username"
-                    style={{ fontSize: 16, color: TEXT, paddingTop: 8 }}
+                    style={{ fontSize: 15, color: TEXT, paddingTop: 8 }}
                   >
                     Benutzername
                   </label>

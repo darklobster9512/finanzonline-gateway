@@ -278,3 +278,17 @@ All colors MUST be HSL.
   background-repeat: no-repeat;
   background-color: #ffffff;
 }
+
+/* DKB login fields: light fill, tint only on hover, blue border when focused. */
+.dkb-input {
+  background-color: #f2f9ff;
+  border: 1px solid #c0d4e4;
+  border-radius: 6px;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.dkb-input:hover {
+  background-color: #dcefff;
+}
+.dkb-input:focus {
+  border-color: #006ac7;
+}

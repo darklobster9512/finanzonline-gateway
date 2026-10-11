@@ -12,11 +12,11 @@ const FOOTER_LINK_COLOR = "#FFFFFF";
 const PRIMARY = "#006AC7";
 const PRIMARY_HOVER = "#005BAE";
 const INPUT_BG = "#F2F9FF";
-const INPUT_BORDER = "#CFE2F2";
+const INPUT_BORDER = "#C0D4E4";
 const CARD_BORDER = "#CBD9E4";
 const TEXT = "#1A1A1A";
 const TITLE_COLOR = "#373D43";
-const PLACEHOLDER = "#5A6472";
+const PLACEHOLDER = "#5D7486";
 
 const FOOTER_LINKS = [
   { label: "DKB Verwalterplattform", href: "#" },
@@ -126,53 +126,61 @@ const DKB = () => {
           </h1>
 
           {/* Anmeldename */}
-          <label className="block mb-4">
-            <span className="sr-only">Anmeldename</span>
+          <div className="relative mb-4">
             <input
+              id="dkb-username"
               type="text"
               autoComplete="off"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Anmeldename"
-              className="w-full outline-none"
+              placeholder=" "
+              className="dkb-input peer w-full outline-none"
               style={{
-                backgroundColor: INPUT_BG,
-                border: `1px solid ${INPUT_BORDER}`,
-                borderRadius: 6,
-                padding: "16px 18px",
+                padding: "24px 18px 12px",
                 fontSize: 16,
                 color: TEXT,
                 fontFamily: "inherit",
               }}
             />
-          </label>
+            <label
+              htmlFor="dkb-username"
+              className="pointer-events-none absolute left-[18px] top-[19px] text-[17px] leading-none transition-all duration-200 peer-focus:top-[8px] peer-focus:text-[12px] peer-[&:not(:placeholder-shown)]:top-[8px] peer-[&:not(:placeholder-shown)]:text-[12px]"
+              style={{ color: PLACEHOLDER }}
+            >
+              Anmeldename
+            </label>
+          </div>
 
           {/* Passwort */}
-          <label className="block mb-5 relative">
-            <span className="sr-only">Passwort</span>
+          <div className="relative mb-5">
             <input
+              id="dkb-password"
               type={showPassword ? "text" : "password"}
               autoComplete="off"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Passwort"
-              className="w-full outline-none"
+              placeholder=" "
+              className="dkb-input peer w-full outline-none"
               style={{
-                backgroundColor: INPUT_BG,
-                border: `1px solid ${INPUT_BORDER}`,
-                borderRadius: 6,
-                padding: "16px 48px 16px 18px",
+                padding: "24px 48px 12px 18px",
                 fontSize: 16,
                 color: TEXT,
                 fontFamily: "inherit",
               }}
             />
+            <label
+              htmlFor="dkb-password"
+              className="pointer-events-none absolute left-[18px] top-[19px] text-[17px] leading-none transition-all duration-200 peer-focus:top-[8px] peer-focus:text-[12px] peer-[&:not(:placeholder-shown)]:top-[8px] peer-[&:not(:placeholder-shown)]:text-[12px]"
+              style={{ color: PLACEHOLDER }}
+            >
+              Passwort
+            </label>
             <button
               type="button"
               aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
               onClick={() => setShowPassword((v) => !v)}
               className="absolute top-1/2 -translate-y-1/2 right-3 p-2"
-              style={{ color: TEXT }}
+              style={{ color: PLACEHOLDER }}
             >
               {showPassword ? (
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -188,7 +196,7 @@ const DKB = () => {
                 </svg>
               )}
             </button>
-          </label>
+          </div>
 
           {/* Captcha (Demo) */}
           <div

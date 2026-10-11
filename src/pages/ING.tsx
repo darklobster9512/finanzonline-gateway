@@ -139,7 +139,8 @@ const ING = () => {
                       className="ing-input w-full"
                       style={{
                         border: `1px solid ${errors.username ? ERROR_COLOR : INPUT_BORDER}`,
-                        borderRadius: 2,
+                        borderRadius: 8,
+
                         padding: "8px 10px",
                         fontSize: 16,
                         outline: "none",

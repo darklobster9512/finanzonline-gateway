@@ -493,7 +493,7 @@ const Postbank = () => {
 
         {/* DESKTOP LAYOUT */}
         <div className="hidden lg:block relative flex-1 pb-hero-bg">
-          <div className="max-w-[1200px] mx-auto px-4 py-24 grid grid-cols-[minmax(0,440px)_minmax(0,396px)] gap-[256px]">
+          <div className="max-w-[1260px] mx-auto px-4 py-24 grid grid-cols-[minmax(0,500px)_minmax(0,396px)] gap-[256px]">
             <div className="space-y-6 mt-32">
               {loginCard}
             </div>

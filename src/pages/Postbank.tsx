@@ -464,7 +464,7 @@ const Postbank = () => {
         @media (max-width: 1023px) {
           .pb-hero-bg {
             background-image:
-              linear-gradient(to bottom, rgba(233,227,214,0) 0%, rgba(233,227,214,0) 70%, #e9e3d6 92%),
+              linear-gradient(to bottom, rgba(233,227,214,0) 0%, rgba(233,227,214,0) 62%, #e9e3d6 80%),
               url(${bgAsset.url});
             background-size: 100% 280px, 120% auto;
             background-position: left top, left top;

@@ -368,6 +368,8 @@ const DKB = () => {
               <a
                 key={l.label}
                 href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   color: FOOTER_LINK_COLOR,
                   textDecoration: "underline",

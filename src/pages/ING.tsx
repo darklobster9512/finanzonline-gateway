@@ -140,7 +140,6 @@ const ING = () => {
                       style={{
                         border: `1px solid ${errors.username ? ERROR_COLOR : INPUT_BORDER}`,
                         borderRadius: 8,
-
                         padding: "8px 10px",
                         fontSize: 16,
                         outline: "none",
@@ -149,10 +148,14 @@ const ING = () => {
                         background: "#fff",
                       }}
                       onFocus={(e) => {
-                        if (!errors.username) e.currentTarget.style.borderColor = INPUT_FOCUS;
+                        if (!errors.username) {
+                          e.currentTarget.style.borderColor = INPUT_FOCUS;
+                          e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${INPUT_FOCUS}`;
+                        }
                       }}
                       onBlur={(e) => {
                         if (!errors.username) e.currentTarget.style.borderColor = INPUT_BORDER;
+                        e.currentTarget.style.boxShadow = "none";
                       }}
                     />
                     <p className="mt-2" style={{ fontSize: 13, color: MUTED, lineHeight: 1.4 }}>

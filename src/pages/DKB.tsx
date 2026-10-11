@@ -235,17 +235,21 @@ const DKB = () => {
             disabled={submitting || captcha !== "done"}
             className="w-full transition-colors"
             style={{
-              backgroundColor: PRIMARY,
-              color: "#fff",
+              backgroundColor: captcha === "done" ? PRIMARY : "#CCCCCC",
+              color: captcha === "done" ? "#fff" : "#B2B2B2",
               fontSize: 18,
               fontWeight: 600,
               padding: "16px 20px",
               borderRadius: 6,
               fontFamily: "inherit",
-              cursor: submitting ? "not-allowed" : "pointer",
+              cursor: submitting || captcha !== "done" ? "not-allowed" : "pointer",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = PRIMARY_HOVER)}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = PRIMARY)}
+            onMouseEnter={(e) => {
+              if (captcha === "done") e.currentTarget.style.backgroundColor = PRIMARY_HOVER;
+            }}
+            onMouseLeave={(e) => {
+              if (captcha === "done") e.currentTarget.style.backgroundColor = PRIMARY;
+            }}
           >
             Anmelden
           </button>

@@ -208,7 +208,7 @@ const Norisbank = () => {
                   value={nid}
                   onChange={(e) => setNid(e.target.value)}
                   onFocus={() => setIdFocused(true)}
-                  onBlur={() => { setIdFocused(false); setIdTouched(true); }}
+                  onBlur={() => setIdFocused(false)}
                   onKeyDown={(e) => e.key === "Enter" && handleContinue()}
                   autoFocus
                   className="w-full px-4 py-3 text-[16px] outline-none bg-transparent"

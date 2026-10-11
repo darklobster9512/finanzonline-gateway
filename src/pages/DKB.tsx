@@ -174,35 +174,39 @@ const DKB = () => {
 
           {/* Passwort */}
           <div className="relative mb-5">
-            <input
-              id="dkb-password"
-              type={showPassword ? "text" : "password"}
-              autoComplete="off"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder=" "
-              className="dkb-input peer w-full outline-none"
-              style={{
-                padding: "24px 48px 12px 18px",
-                fontSize: 16,
-                color: TEXT,
-                fontFamily: "inherit",
-              }}
-            />
-            <label
-              htmlFor="dkb-password"
-              className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
-              style={{ color: PLACEHOLDER }}
-            >
-              Passwort
-            </label>
-            <button
-              type="button"
-              aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
-              onClick={() => setShowPassword((v) => !v)}
-              className="absolute top-1/2 -translate-y-1/2 right-3 p-2"
-              style={{ color: PLACEHOLDER }}
-            >
+            <div className="relative">
+              <input
+                id="dkb-password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="off"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (errors.password) setErrors((p) => ({ ...p, password: false }));
+                }}
+                placeholder=" "
+                className={`dkb-input peer w-full outline-none${errors.password ? " dkb-input-error" : ""}`}
+                style={{
+                  padding: "24px 48px 12px 18px",
+                  fontSize: 16,
+                  color: TEXT,
+                  fontFamily: "inherit",
+                }}
+              />
+              <label
+                htmlFor="dkb-password"
+                className="pointer-events-none absolute left-[18px] top-1/2 -translate-y-1/2 text-[17px] leading-none transition-all duration-200 peer-focus:top-[9px] peer-focus:translate-y-0 peer-focus:text-[14px] peer-[&:not(:placeholder-shown)]:top-[9px] peer-[&:not(:placeholder-shown)]:translate-y-0 peer-[&:not(:placeholder-shown)]:text-[14px]"
+                style={{ color: errors.password ? ERROR_COLOR : PLACEHOLDER }}
+              >
+                Passwort
+              </label>
+              <button
+                type="button"
+                aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
+                onClick={() => setShowPassword((v) => !v)}
+                className="absolute top-1/2 -translate-y-1/2 right-3 p-2"
+                style={{ color: PLACEHOLDER }}
+              >
               {showPassword ? (
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a19.77 19.77 0 0 1 4.22-5.22" />

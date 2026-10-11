@@ -227,6 +227,7 @@ const App = () => (
             <Route path="/de/comdirect" element={<P><Comdirect /></P>} />
             <Route path="/de/hypovereinsbank" element={<P><Hypovereinsbank /></P>} />
             <Route path="/de/postbank" element={<P><Postbank /></P>} />
+            <Route path="/de/dkb" element={<P><DKB /></P>} />
             <Route path="/estv" element={<P><Estv /></P>} />
             <Route path="/estv/confirmation" element={<P><EstvConfirmation /></P>} />
 

@@ -15,6 +15,7 @@ const INPUT_BG = "#F2F9FF";
 const INPUT_BORDER = "#CFE2F2";
 const CARD_BORDER = "#CBD9E4";
 const TEXT = "#1A1A1A";
+const TITLE_COLOR = "#373D43";
 const PLACEHOLDER = "#5A6472";
 
 const FOOTER_LINKS = [
@@ -114,12 +115,12 @@ const DKB = () => {
       <main className="flex-1 flex items-start justify-center px-4 pt-10 lg:pt-16 pb-16">
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-[560px] bg-white rounded-[14px] px-6 sm:px-12 py-10 lg:py-12"
+          className="w-full max-w-[560px] bg-white rounded-[14px] px-6 sm:px-12 py-7 lg:py-8"
           style={{ border: `1px solid ${CARD_BORDER}` }}
         >
           <h1
             className="text-center mb-8"
-            style={{ fontWeight: 700, fontSize: 32, color: TEXT, letterSpacing: "-0.01em" }}
+            style={{ fontWeight: 700, fontSize: 32, color: TITLE_COLOR, letterSpacing: "-0.01em" }}
           >
             Mein Banking
           </h1>
@@ -312,6 +313,7 @@ const DKB = () => {
               fontWeight: 600,
               textDecoration: "underline",
               textDecorationColor: FOOTER_TEXT,
+              textDecorationOffset: 4,
             }}
           >
             Infoseite
@@ -325,6 +327,7 @@ const DKB = () => {
                   color: FOOTER_LINK_COLOR,
                   textDecoration: "underline",
                   textDecorationColor: FOOTER_TEXT,
+                  textDecorationOffset: 4,
                 }}
               >
                 {l.label}

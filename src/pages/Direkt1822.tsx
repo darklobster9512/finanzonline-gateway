@@ -240,7 +240,7 @@ const Direkt1822 = () => {
                     </li>
                   ))}
                 </ul>
-                <a href={URLS.offer} target="_blank" rel="noopener noreferrer"
+                <a href={URLS.offer} target="_blank" rel="noopener noreferrer" className="d1822-btn"
                   style={{ marginTop: "auto", background: NAVY, color: "#fff", textAlign: "center", padding: "16px 24px", fontSize: 15, fontWeight: 700, borderRadius: 2, display: "block", marginBlockStart: 24 }}>
                   Jetzt zum Angebot
                 </a>

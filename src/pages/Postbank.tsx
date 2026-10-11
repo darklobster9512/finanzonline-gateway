@@ -380,13 +380,13 @@ const Postbank = () => {
           className="w-full h-auto mb-4"
         />
         <div>
-          <div className="text-[16px] font-bold leading-snug" style={{ color: DARK }}>
+          <div className="text-[15px] font-bold leading-snug" style={{ color: DARK }}>
             {t.teaserTitle}
           </div>
-          <div className="text-[14px] mt-2" style={{ color: "#333" }}>
+          <div className="text-[13px] mt-2" style={{ color: "#333" }}>
             {t.teaserText}
           </div>
-          <div className="mt-3 text-[13px] underline font-bold" style={{ color: LINK }}>
+          <div className="mt-3 text-[12px] underline font-bold" style={{ color: LINK }}>
             {t.learnMore}
           </div>
         </div>

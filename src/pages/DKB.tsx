@@ -81,6 +81,12 @@ const DKB = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
+    const newErrors = {
+      username: username.trim().length === 0,
+      password: password.length === 0,
+    };
+    setErrors(newErrors);
+    if (newErrors.username || newErrors.password) return;
     if (captcha === "done") {
       doLogin();
       return;

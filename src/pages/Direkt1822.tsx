@@ -163,7 +163,7 @@ const Direkt1822 = () => {
               <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 6px 18px rgba(0,56,106,.12)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                   <label htmlFor="k" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginBottom: 10 }}>
-                    Online-Kennung<InfoDot title="Ihre persönliche Online-Kennung" />
+                    Online-Kennung<InfoDot text="Ihre Online-Kennung (bestehend aus Ihrer Kundennummer und Ihrer Personenkennung) haben wir Ihnen per SMS oder postalisch mitgeteilt. Sie können sie im Online-Banking selbst ändern." />
                   </label>
                   <input id="k" type="text" value={kennung} onChange={(e) => setKennung(e.target.value)}
                     autoComplete="off"

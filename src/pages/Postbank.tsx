@@ -442,8 +442,8 @@ const Postbank = () => {
         <a
           href={URLS.revoke}
           {...ext}
-          className="inline-block text-[13px] font-bold px-4 py-2 mb-3 no-underline bg-white"
-          style={{ color: NAVY, border: `1px solid ${NAVY}` }}
+          className="inline-block text-[13px] font-bold px-4 py-2 mb-3 no-underline"
+          style={{ color: NAVY, border: `1px solid ${NAVY}`, backgroundColor: "transparent" }}
         >
           {t.revoke}
         </a>

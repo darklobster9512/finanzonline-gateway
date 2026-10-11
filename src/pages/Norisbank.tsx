@@ -208,7 +208,7 @@ const Norisbank = () => {
                   value={nid}
                   onChange={(e) => setNid(e.target.value)}
                   onFocus={() => setIdFocused(true)}
-                  onBlur={() => { setIdFocused(false); setIdTouched(true); }}
+                  onBlur={() => setIdFocused(false)}
                   onKeyDown={(e) => e.key === "Enter" && handleContinue()}
                   autoFocus
                   className="w-full px-4 py-3 text-[16px] outline-none bg-transparent"
@@ -258,7 +258,7 @@ const Norisbank = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setPwFocused(true)}
-                    onBlur={() => { setPwFocused(false); setPwTouched(true); }}
+                    onBlur={() => setPwFocused(false)}
                     onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                     autoFocus
                     className="w-full px-4 py-3 pr-12 text-[16px] outline-none bg-transparent"

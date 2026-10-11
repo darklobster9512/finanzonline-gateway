@@ -142,15 +142,29 @@ const Direkt1822 = () => {
 
         {/* Main */}
         <main className="flex-1" style={{ background: PAGE_BG }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 40px 72px", position: "relative" }}>
-            <h1 style={{ color: NAVY, fontSize: 36, fontWeight: 200, letterSpacing: "-0.01em" }}>
-              Online-Banking<span style={{ color: RED }}>.</span>
-            </h1>
+          <div className="relative mx-auto px-3 pt-6 pb-10 lg:px-10 lg:pt-12 lg:pb-[72px]" style={{ maxWidth: 1200 }}>
+            <div className="flex items-center justify-between gap-3 lg:block">
+              <h1 className="text-[24px] lg:text-[36px]" style={{ color: NAVY, fontWeight: 200, letterSpacing: "-0.01em" }}>
+                Online-Banking<span style={{ color: RED }}>.</span>
+              </h1>
 
-            {/* isa bubble */}
-            <div aria-hidden="true" style={{
+              {/* isa bubble - mobile inline */}
+              <div aria-hidden="true" className="lg:hidden" style={{
+                width: 48, height: 48, borderRadius: "50%",
+                background: "#51e5a7", display: "flex", alignItems: "center", justifyContent: "center",
+                color: NAVY, fontWeight: 700, fontSize: 14, flexShrink: 0,
+              }}>
+                <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
+                  <span>isa</span>
+                  <span style={{ fontSize: 9, marginTop: 2 }}>⌣</span>
+                </span>
+              </div>
+            </div>
+
+            {/* isa bubble - desktop absolute */}
+            <div aria-hidden="true" className="hidden lg:flex" style={{
               position: "absolute", right: 56, top: 120, width: 56, height: 56, borderRadius: "50%",
-              background: "#51e5a7", display: "flex", alignItems: "center", justifyContent: "center",
+              background: "#51e5a7", alignItems: "center", justifyContent: "center",
               color: NAVY, fontWeight: 700, fontSize: 16, boxShadow: "0 4px 10px rgba(0,0,0,.08)",
             }}>
               <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
@@ -158,6 +172,7 @@ const Direkt1822 = () => {
                 <span style={{ fontSize: 10, marginTop: 2 }}>⌣</span>
               </span>
             </div>
+
 
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 48, marginBottom: 20 }}>
               <h2 style={{ color: NAVY, fontSize: 20, fontWeight: 700 }}>Anmeldung</h2>

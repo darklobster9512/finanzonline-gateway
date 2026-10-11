@@ -321,11 +321,11 @@ const Norisbank = () => {
         <div className="text-[13px] font-bold underline" style={{ color: ORANGE }}>{t.teaserCta}</div>
       </a>
 
-      <InfoBlock icon={<Phone size={18} color={ORANGE} />} title={t.warnTitle} text={t.warnText} cta={t.warnCta} href={URLS.warn} />
-      <InfoBlock icon={<HelpCircle size={18} color={ORANGE} />} title={t.faqTitle} text={t.faqText} cta={t.faqCta} href={URLS.faq} />
-      <InfoBlock icon={<Shield size={18} color={ORANGE} />} title={t.secTitle} text={t.secText} cta={t.secCta} href={URLS.secHint} />
+      <InfoBlock icon={<Phone size={18} color={TEXT} />} title={t.warnTitle} text={t.warnText} cta={t.warnCta} href={URLS.warn} divider />
+      <InfoBlock icon={<HelpCircle size={18} color={TEXT} />} title={t.faqTitle} text={t.faqText} cta={t.faqCta} href={URLS.faq} />
+      <InfoBlock icon={<Shield size={18} color={TEXT} />} title={t.secTitle} text={t.secText} cta={t.secCta} href={URLS.secHint} />
 
-      <div className="px-6 py-7 text-[13px]" style={{ borderTop: "1px solid #3d4759" }}>
+      <div className="px-6 py-7 text-[13px]" style={{ borderTop: "1px solid #3d4759", backgroundColor: FOOTER_BG }}>
         <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3 font-bold">
           <button
             type="button"
@@ -355,7 +355,7 @@ const Norisbank = () => {
         >
           {t.revoke}
         </a>
-        <div className="text-[12px]" style={{ color: MUTED }}>{t.copyright}</div>
+        <div className="text-[13px]" style={{ color: "#ffffff" }}>{t.copyright}</div>
       </div>
     </div>
   );

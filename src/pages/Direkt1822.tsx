@@ -133,7 +133,7 @@ const Direkt1822 = () => {
               <img src={logoAsset.url} alt="1822direkt" className="hidden lg:block" style={{ height: 56, width: "auto" }} />
               <img src={logoSquareAsset.url} alt="1822direkt" className="lg:hidden block" style={{ height: 44, width: 44 }} />
             </a>
-            <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link"
+            <a href={URLS.home} target="_blank" rel="noopener noreferrer" className="d1822-link hidden lg:inline-block"
               style={{ color: NAVY, fontWeight: 600, fontSize: 15, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
               Zur Startseite
             </a>
@@ -150,13 +150,13 @@ const Direkt1822 = () => {
 
               {/* isa bubble - mobile inline */}
               <div aria-hidden="true" className="lg:hidden" style={{
-                width: 48, height: 48, borderRadius: "50%",
+                width: 36, height: 36, borderRadius: "50%",
                 background: "#51e5a7", display: "flex", alignItems: "center", justifyContent: "center",
-                color: NAVY, fontWeight: 700, fontSize: 14, flexShrink: 0,
+                color: NAVY, fontWeight: 700, fontSize: 11, flexShrink: 0,
               }}>
                 <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", lineHeight: 1 }}>
                   <span>isa</span>
-                  <span style={{ fontSize: 9, marginTop: 2 }}>⌣</span>
+                  <span style={{ fontSize: 7, marginTop: 2 }}>⌣</span>
                 </span>
               </div>
             </div>
@@ -176,8 +176,8 @@ const Direkt1822 = () => {
 
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 48, marginBottom: 20 }}>
               <h2 style={{ color: NAVY, fontSize: 20, fontWeight: 700 }}>Anmeldung</h2>
-              <a href={URLS.help} target="_blank" rel="noopener noreferrer" className="d1822-link"
-                style={{ color: NAVY, fontSize: 15, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
+              <a href={URLS.help} target="_blank" rel="noopener noreferrer" className="d1822-link text-[13px] lg:text-[15px]"
+                style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>
                 Benötigen Sie Hilfe?
               </a>
             </div>
@@ -193,9 +193,9 @@ const Direkt1822 = () => {
                     autoComplete="off"
                     onFocus={() => setFocusField("k")} onBlur={() => setFocusField(null)}
                     style={{ width: "100%", background: INPUT_BG, border: `2px solid ${INPUT_BORDER}`, borderRadius: 2, padding: "13px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT, boxShadow: focusField === "k" ? FOCUS_RING : "none" }} />
-                  <div style={{ marginTop: 12, display: "flex", gap: 24, flexWrap: "wrap" }}>
-                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-Kennung vergessen?</a>
-                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Neu im Online-Banking?</a>
+                  <div className="gap-2 lg:gap-6" style={{ marginTop: 12, display: "flex", flexWrap: "nowrap" }}>
+                    <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" className="d1822-link text-[12px] lg:text-[14px] whitespace-nowrap" style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-Kennung vergessen?</a>
+                    <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" className="d1822-link text-[12px] lg:text-[14px] whitespace-nowrap" style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Neu im Online-Banking?</a>
                   </div>
 
                   <label htmlFor="p" style={{ display: "block", color: NAVY, fontWeight: 700, fontSize: 15, marginTop: 28, marginBottom: 10 }}>
@@ -214,7 +214,7 @@ const Direkt1822 = () => {
                   </div>
 
                   <div style={{ marginTop: 12 }}>
-                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
+                    <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link text-[12px] lg:text-[14px]" style={{ color: NAVY, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
                   </div>
 
                   <div style={{ marginTop: 32 }}>
@@ -261,8 +261,8 @@ const Direkt1822 = () => {
         {/* Footer */}
         <footer style={{ background: "#ccd7e1", borderTop: `1px solid ${BORDER}` }}>
           <div className="mx-auto px-3 py-6 lg:px-10 lg:py-7 flex flex-col lg:flex-row lg:justify-between lg:flex-wrap gap-2 lg:gap-4" style={{ maxWidth: 1200 }}>
-            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link self-start"
-              style={{ color: "#00386a", fontWeight: 700, fontSize: 15, padding: "4px 8px" }}>
+            <a href={URLS.openProduct} target="_blank" rel="noopener noreferrer" className="d1822-link self-start text-[17px] lg:text-[15px] mb-3 lg:mb-0"
+              style={{ color: "#00386a", fontWeight: 700, padding: "4px 8px" }}>
               Neues Produkt eröffnen<span style={{ color: RED }}>.</span>
             </a>
             <div className="flex flex-col lg:flex-row gap-1 lg:gap-9 lg:flex-wrap">

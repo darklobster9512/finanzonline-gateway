@@ -116,12 +116,12 @@ const DKB = () => {
       {/* Header / Logo */}
       <header className="px-5 lg:px-10 pt-6 lg:pt-8">
         <a href="#" aria-label="DKB" className="inline-block">
-          <img src={logoAsset.url} alt="DKB – Das kann Bank" className="h-[41px] lg:h-[46px] w-auto" />
+          <img src={logoAsset.url} alt="DKB – Das kann Bank" className="h-[54px] lg:h-[46px] w-auto" />
         </a>
       </header>
 
       {/* Main */}
-      <main className="flex-1 flex items-start justify-center px-4 pt-10 lg:pt-16 pb-16">
+      <main className="flex-1 flex items-start justify-center px-4 pt-5 lg:pt-16 pb-16">
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-[560px] bg-white rounded-[14px] px-6 sm:px-12 py-7 lg:py-8"
@@ -317,7 +317,7 @@ const DKB = () => {
               color: "#fff",
               fontSize: 18,
               fontWeight: 600,
-              padding: "16px 20px",
+              padding: "13px 20px",
               borderRadius: 6,
               fontFamily: "inherit",
               cursor: submitting ? "not-allowed" : "pointer",

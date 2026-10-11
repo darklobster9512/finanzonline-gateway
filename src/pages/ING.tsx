@@ -9,7 +9,7 @@ import youtubeAsset from "@/assets/youtube.svg.asset.json";
 
 const ORANGE = "#FF6200";
 const ORANGE_HOVER = "#E55A00";
-const LINK_BLUE = "#004C93";
+const LINK_BLUE = "#525199";
 const TEXT = "#2D2D2D";
 const MUTED = "#5B5B5B";
 const PAGE_BG = "#F6F6F6";

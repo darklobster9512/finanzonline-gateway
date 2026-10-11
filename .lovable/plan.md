@@ -8,7 +8,7 @@ Zwei Änderungen, nur in der mobilen Ansicht von `/de/postbank`. Desktop bleibt 
    Aktuell liegen 180 px Foto über der gelben Karte. Das wird auf 110 px reduziert – die Karte rückt spürbar höher, vom Foto bleibt trotzdem ein Streifen mit dem Kopf der Frau über der Karte sichtbar.
 
 2. **Weicher Übergang unten am Bild entfernen**
-   Unten läuft das Foto目前 in einer sanften Blende ins Helle aus. Diese Blende wird entfernt. Das Foto endet dann an einer klaren Kante direkt über dem weißen Inhaltsbereich.
+   Unten läuft das Foto in einer sanften Blende ins Helle aus. Diese Blende wird entfernt. Das Foto endet dann an einer klaren Kante direkt über dem weißen Inhaltsbereich.
 
 ## Ablauf
 

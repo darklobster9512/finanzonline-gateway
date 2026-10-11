@@ -21,13 +21,13 @@ const PLACEHOLDER = "#5D7486";
 const ERROR_COLOR = "#D6301A";
 
 const FOOTER_LINKS = [
-  { label: "DKB Verwalterplattform", href: "#" },
-  { label: "DKB Treuhänderplattform", href: "#" },
-  { label: "Impressum", href: "#" },
-  { label: "Datenschutz", href: "#" },
-  { label: "Cookie Einstellungen", href: "#" },
-  { label: "Preise & Bedingungen", href: "#" },
-  { label: "Hilfe", href: "#" },
+  { label: "DKB Verwalterplattform", href: "https://treuhand.dkb.de/thk/?referer=vwpf" },
+  { label: "DKB Treuhänderplattform", href: "https://treuhand.dkb.de/thk/?referer=thpf" },
+  { label: "Impressum", href: "https://www.dkb.de/ueber-uns/impressum/" },
+  { label: "Datenschutz", href: "https://www.dkb.de/ueber-uns/datenschutz" },
+  { label: "Cookie Einstellungen", href: "https://www.dkb.de/ueber-uns/datenschutz" },
+  { label: "Preise & Bedingungen", href: "https://www.dkb.de/ueber-uns/preise-bedingungen/" },
+  { label: "Hilfe", href: "https://www.dkb.de/fragen-antworten" },
 ];
 
 const DKB = () => {
@@ -334,11 +334,11 @@ const DKB = () => {
 
           {/* Forgot */}
           <p className="text-center mt-6" style={{ fontSize: 17, color: TEXT }}>
-            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
+            <a href="https://banking.dkb.de/forgot-username" target="_blank" rel="noopener noreferrer" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
               Anmeldename
             </a>{" "}
             oder{" "}
-            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
+            <a href="https://banking.dkb.de/reset-password" target="_blank" rel="noopener noreferrer" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
               Passwort
             </a>{" "}
             vergessen?
@@ -350,7 +350,9 @@ const DKB = () => {
       <footer style={{ backgroundColor: FOOTER_BG, color: FOOTER_LINK_COLOR }}>
         <div className="px-5 lg:px-10 py-4 flex flex-wrap items-center gap-x-8 gap-y-3 text-[14px]">
           <a
-            href="#"
+            href="https://www.dkb.de/dein-neues-banking"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               color: FOOTER_LINK_COLOR,
               fontWeight: 600,
@@ -366,6 +368,8 @@ const DKB = () => {
               <a
                 key={l.label}
                 href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   color: FOOTER_LINK_COLOR,
                   textDecoration: "underline",

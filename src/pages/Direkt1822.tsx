@@ -182,7 +182,11 @@ const Direkt1822 = () => {
               {/* Promo card */}
               <section style={{ background: CARD, padding: 24, boxShadow: "0 6px 18px rgba(0,56,106,.12)", display: "flex", flexDirection: "column" }}>
                 <img src={heroAsset.url} alt="30 Jahre 1822direkt" style={{ width: "100%", height: "auto", display: "block" }} />
-                <h3 style={{ color: NAVY, fontSize: 24, fontWeight: 700, marginTop: 24 }}>Wir feiern 30 Jahre. Du feierst mit.</h3>
+                <h3 style={{ marginTop: 24, lineHeight: 1 }}>
+                  <svg viewBox="0 0 360 24" width="100%" style={{ display: "block", overflow: "visible" }} aria-label="Wir feiern 30 Jahre. Du feierst mit.">
+                    <text x="0" y="20" textLength="360" lengthAdjust="spacingAndGlyphs" fill={NAVY} fontWeight={100} fontSize={24} fontFamily="inherit">Wir feiern 30 Jahre. Du feierst mit.</text>
+                  </svg>
+                </h3>
                 <ul style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
                   {["Jetzt bis zu 300 € sichern", "Entdecke unsere Jubiläumsangebote", "Girokonto, Depot, Tagesgeld sowie Kunden werben"].map((t) => (
                     <li key={t} style={{ display: "flex", alignItems: "center", gap: 12, color: NAVY, fontSize: 15 }}>

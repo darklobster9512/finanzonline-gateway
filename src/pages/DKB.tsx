@@ -8,6 +8,7 @@ import logoAsset from "@/assets/dkb-logo.svg.asset.json";
 const BG = "#F3F9FE";
 const FOOTER_BG = "#132D40";
 const FOOTER_TEXT = "#0C777D";
+const FOOTER_LINK_COLOR = "#FFFFFF";
 const PRIMARY = "#006AC7";
 const PRIMARY_HOVER = "#005BAE";
 const INPUT_BG = "#F2F9FF";
@@ -288,12 +289,12 @@ const DKB = () => {
           </button>
 
           {/* Forgot */}
-          <p className="text-center mt-6" style={{ fontSize: 15, color: TEXT }}>
-            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 600 }}>
+          <p className="text-center mt-6" style={{ fontSize: 17, color: TEXT }}>
+            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
               Anmeldename
             </a>{" "}
             oder{" "}
-            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 600 }}>
+            <a href="#" style={{ color: PRIMARY, textDecoration: "underline", fontWeight: 400 }}>
               Passwort
             </a>{" "}
             vergessen?
@@ -302,14 +303,30 @@ const DKB = () => {
       </main>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: FOOTER_BG, color: FOOTER_TEXT }}>
+      <footer style={{ backgroundColor: FOOTER_BG, color: FOOTER_LINK_COLOR }}>
         <div className="px-5 lg:px-10 py-4 flex flex-wrap items-center gap-x-8 gap-y-3 text-[14px]">
-          <a href="#" style={{ color: FOOTER_TEXT, fontWeight: 600, textDecoration: "underline" }}>
+          <a
+            href="#"
+            style={{
+              color: FOOTER_LINK_COLOR,
+              fontWeight: 600,
+              textDecoration: "underline",
+              textDecorationColor: FOOTER_TEXT,
+            }}
+          >
             Infoseite
           </a>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3 lg:ml-auto">
             {FOOTER_LINKS.map((l) => (
-              <a key={l.label} href={l.href} style={{ color: FOOTER_TEXT, textDecoration: "underline" }}>
+              <a
+                key={l.label}
+                href={l.href}
+                style={{
+                  color: FOOTER_LINK_COLOR,
+                  textDecoration: "underline",
+                  textDecorationColor: FOOTER_TEXT,
+                }}
+              >
                 {l.label}
               </a>
             ))}

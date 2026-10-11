@@ -174,7 +174,7 @@ const DKB = () => {
             className="mb-5 select-none relative"
             style={{
               height: 70,
-              backgroundColor: "#f7f7f7",
+              backgroundColor: "#fafafa",
               border: "1px solid #d9d9d9",
               borderRadius: 6,
             }}
@@ -193,15 +193,15 @@ const DKB = () => {
               aria-label="Ich bin ein Mensch"
             >
               {captcha === "done" ? (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 12.5l5 5L20 6.5" />
                 </svg>
               ) : captcha === "idle" ? (
                 <span
                   className="block"
                   style={{
-                    width: 24,
-                    height: 24,
+                    width: 28,
+                    height: 28,
                     border: "1px solid #bdbdbd",
                     borderRadius: 4,
                     backgroundColor: "#fff",
@@ -211,15 +211,15 @@ const DKB = () => {
                 <span
                   className="block animate-spin"
                   style={{
-                    width: 20,
-                    height: 20,
+                    width: 24,
+                    height: 24,
                     border: "2px solid #d6e4f5",
                     borderTopColor: PRIMARY,
                     borderRadius: "50%",
                   }}
                 />
               )}
-              <span style={{ fontSize: 15, fontWeight: 500, color: "#333" }}>
+              <span style={{ fontSize: 13, fontWeight: 400, color: "#333" }}>
                 {captcha === "idle" || captcha === "done"
                   ? "Ich bin ein Mensch"
                   : CAPTCHA_LOADING_TEXTS[captcha]}
@@ -228,7 +228,7 @@ const DKB = () => {
             <a
               href="#"
               className="absolute bottom-[6px] right-[14px]"
-              style={{ fontSize: 11, lineHeight: 1, color: "#9e9e9e", textDecoration: "underline" }}
+              style={{ fontSize: 10, fontWeight: 700, lineHeight: 1, color: "#9e9e9e", textDecoration: "underline" }}
             >
               Friendly Captcha
             </a>

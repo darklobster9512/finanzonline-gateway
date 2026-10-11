@@ -280,15 +280,16 @@ const ING = () => {
             <section
               style={{
                 backgroundColor: CARD_BG,
-                borderRadius: 4,
-                padding: "28px 28px 32px",
+                borderRadius: 12,
+                padding: "36px 36px 40px",
               }}
             >
               <h2
-                style={{ color: ORANGE, fontWeight: 400, fontSize: 22, marginBottom: 24 }}
+                style={{ color: ORANGE, fontWeight: 400, fontSize: 26, marginBottom: 24 }}
               >
                 Anmelden mit App und QR-Code
               </h2>
+
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex-shrink-0">
                   <div

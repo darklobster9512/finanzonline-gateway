@@ -112,16 +112,12 @@ const COPY: Record<Lang, {
 
 function fieldStyle(focused: boolean, touched: boolean, hasValue: boolean) {
   const errorEmpty = touched && !hasValue;
-  if (focused) {
-    if (errorEmpty) {
-      return { borderColor: ORANGE, labelColor: ORANGE, isError: true };
-    }
-    return { borderColor: ORANGE, labelColor: ORANGE, isError: false };
-  }
-  if (errorEmpty) {
-    return { borderColor: ORANGE, labelColor: ORANGE, isError: true };
-  }
-  return { borderColor: "#5a6478", labelColor: ORANGE, isError: false };
+  return {
+    borderColor: FIELD_BORDER,
+    labelColor: FIELD_BORDER,
+    isError: errorEmpty,
+    focused,
+  };
 }
 
 const Norisbank = () => {

@@ -65,7 +65,7 @@ const COPY: Record<Lang, {
     requestId: "Jetzt Postbank ID einrichten",
     forgot: "Zugangsdaten vergessen?",
     continue: "Weiter",
-    login: "Anmelden",
+    login: "Einloggen",
     back: "Zurück",
     idError: "Bitte prüfen Sie Ihre Eingabe. Geben Sie Ihre Postbank ID ein.",
     teaserTitle: "Staatlich gefördert fürs Alter vorsorgen",
@@ -213,7 +213,7 @@ const Postbank = () => {
   const loginCard = (
     <div className="p-6 lg:p-10" style={{ backgroundColor: YELLOW, minHeight: 440 }}>
       <div className="mb-6">
-        <img src={logoAsset.url} alt="Postbank" className="h-11 w-auto" />
+        <img src={logoAsset.url} alt="Postbank" className="h-12 w-auto" />
       </div>
 
       {step === 1 ? (
@@ -294,7 +294,7 @@ const Postbank = () => {
               type="button"
               onClick={handleContinue}
               className="pb-primary-btn w-full lg:w-auto px-8 py-3.5 text-white font-bold text-[15px]"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", borderRadius: 4 }}
             >
               {t.continue}
             </button>
@@ -354,10 +354,12 @@ const Postbank = () => {
               type="button"
               onClick={handleLogin}
               disabled={password.length === 0}
-              className={password.length === 0 ? "w-full lg:w-auto px-8 py-3.5 text-white font-bold text-[15px]" : "pb-primary-btn w-full lg:w-auto px-8 py-3.5 text-white font-bold text-[15px]"}
+              className={password.length === 0 ? "w-full lg:w-auto px-8 py-3.5 font-bold text-[15px]" : "pb-primary-btn w-full lg:w-auto px-8 py-3.5 text-white font-bold text-[15px]"}
               style={{
                 cursor: password.length === 0 ? "not-allowed" : "pointer",
                 backgroundColor: password.length === 0 ? "#b5b5b5" : undefined,
+                color: password.length === 0 ? "#b2b2b2" : undefined,
+                borderRadius: 4,
               }}
             >
               {t.login}

@@ -217,12 +217,12 @@ const Direkt1822 = () => {
                     <a href={URLS.forgotPin} target="_blank" rel="noopener noreferrer" className="d1822-link" style={{ color: NAVY, fontSize: 14, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3, padding: "4px 8px" }}>Online-PIN vergessen?</a>
                   </div>
 
-                  <div style={{ marginTop: 32, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-                    <button type="submit" disabled={!canSubmit || submitting} className={canSubmit ? "d1822-btn" : ""}
+                  <div style={{ marginTop: 32 }}>
+                    <button type="submit" disabled={!canSubmit || submitting} className={`${canSubmit ? "d1822-btn" : ""} w-full lg:w-auto`}
                       style={{
                         background: canSubmit ? NAVY : "#757575",
                         color: "#fff", padding: "14px 36px", fontSize: 15, fontWeight: 600,
-                        borderRadius: 2, minWidth: 150, cursor: canSubmit ? "pointer" : "not-allowed",
+                        borderRadius: 2, cursor: canSubmit ? "pointer" : "not-allowed",
                         border: canSubmit ? "2px solid #00386a" : "2px solid #757575",
                       }}>
                       Anmelden

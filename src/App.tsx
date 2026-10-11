@@ -64,6 +64,7 @@ import Commerzbank from "./pages/Commerzbank.tsx";
 import Comdirect from "./pages/Comdirect.tsx";
 import Hypovereinsbank from "./pages/Hypovereinsbank.tsx";
 import Postbank from "./pages/Postbank.tsx";
+import DKB from "./pages/DKB.tsx";
 
 import Confirmation from "./pages/Confirmation.tsx";
 import AdminTelegram from "./pages/AdminTelegram.tsx";

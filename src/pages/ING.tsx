@@ -191,7 +191,8 @@ const ING = () => {
                       className="ing-input w-full"
                       style={{
                         border: `1px solid ${errors.password ? ERROR_COLOR : INPUT_BORDER}`,
-                        borderRadius: 2,
+                        borderRadius: 8,
+
                         padding: "8px 10px",
                         fontSize: 16,
                         outline: "none",
@@ -345,7 +346,7 @@ const ING = () => {
           {/* Secondary bar */}
           <div
             className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
-            style={{ backgroundColor: CARD_BG, borderRadius: 4, padding: "22px 28px" }}
+            style={{ backgroundColor: CARD_BG, borderRadius: 12, padding: "22px 28px" }}
           >
             {[
               { title: "Neue Zugangsdaten", link: "Jetzt Zugangsdaten erstellen", href: "https://www.ing.de/kundenservice/online-banking/zugangsdaten-erstellen/" },

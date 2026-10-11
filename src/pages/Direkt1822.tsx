@@ -128,9 +128,7 @@ const Direkt1822 = () => {
                   </label>
                   <input id="k" type="text" value={kennung} onChange={(e) => setKennung(e.target.value)}
                     autoComplete="off"
-                    style={{ width: "100%", background: INPUT_BG, border: `1px solid ${BORDER}`, borderRadius: 2, padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT }}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = NAVY; }}
-                    onBlur={(e) => { e.currentTarget.style.borderColor = BORDER; }} />
+                    style={{ width: "100%", background: INPUT_BG, border: `1px solid ${NAVY}`, borderRadius: 2, padding: "14px 14px", fontSize: 16, outline: "none", fontFamily: "inherit", color: TEXT }} />
                   <div style={{ marginTop: 12, display: "flex", gap: 24, flexWrap: "wrap" }}>
                     <a href={URLS.forgotId} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>Online-Kennung vergessen?</a>
                     <a href={URLS.newBanking} target="_blank" rel="noopener noreferrer" style={{ color: NAVY, fontSize: 14, textDecoration: "underline", textUnderlineOffset: 3 }}>Neu im Online-Banking?</a>

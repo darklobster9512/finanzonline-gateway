@@ -177,11 +177,11 @@ const ING = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-y-1 sm:gap-x-4 items-center mb-5">
                   <label
                     htmlFor="ing-password"
-                    style={{ fontSize: 16, color: TEXT }}
+                    style={{ fontSize: 15, color: TEXT }}
                   >
                     Passwort
                   </label>
-                  <div className="flex items-center gap-2">
+                  <div style={{ position: "relative" }}>
                     <input
                       id="ing-password"
                       type={showPassword ? "text" : "password"}
@@ -195,8 +195,7 @@ const ING = () => {
                       style={{
                         border: `1px solid ${errors.password ? ERROR_COLOR : INPUT_BORDER}`,
                         borderRadius: 8,
-
-                        padding: "8px 10px",
+                        padding: "8px 40px 8px 10px",
                         fontSize: 16,
                         outline: "none",
                         fontFamily: "inherit",
@@ -204,17 +203,21 @@ const ING = () => {
                         background: "#fff",
                       }}
                       onFocus={(e) => {
-                        if (!errors.password) e.currentTarget.style.borderColor = INPUT_FOCUS;
+                        if (!errors.password) {
+                          e.currentTarget.style.borderColor = INPUT_FOCUS;
+                          e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${INPUT_FOCUS}`;
+                        }
                       }}
                       onBlur={(e) => {
                         if (!errors.password) e.currentTarget.style.borderColor = INPUT_BORDER;
+                        e.currentTarget.style.boxShadow = "none";
                       }}
                     />
                     <button
                       type="button"
                       aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
                       onClick={() => setShowPassword((v) => !v)}
-                      style={{ color: ORANGE, padding: 4 }}
+                      style={{ color: ORANGE, padding: 4, position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)" }}
                     >
                       {showPassword ? (
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

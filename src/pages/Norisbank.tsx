@@ -262,8 +262,10 @@ const Norisbank = () => {
                     className="w-full px-4 py-3 pr-12 text-[16px] outline-none bg-transparent"
                     style={{
                       border: `1px solid ${fs.borderColor}`,
-                      borderRadius: 999,
+                      borderRadius: 8,
                       color: TEXT,
+                      transition: "box-shadow 80ms ease",
+                      boxShadow: fs.focused ? `0 0 0 2px ${CARD_BG}, 0 0 0 4px ${FOCUS_RING}` : "none",
                     }}
                   />
                   <button

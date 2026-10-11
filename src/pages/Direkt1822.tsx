@@ -232,7 +232,7 @@ const Direkt1822 = () => {
                 </h3>
                 <ul style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
                   {["Jetzt bis zu 300 € sichern", "Entdecke unsere Jubiläumsangebote", "Girokonto, Depot, Tagesgeld sowie Kunden werben"].map((t) => (
-                    <li key={t} style={{ display: "flex", alignItems: "center", gap: 12, color: NAVY, fontSize: 15 }}>
+                    <li key={t} style={{ display: "flex", alignItems: "center", gap: 12, color: NAVY, fontSize: 15, fontWeight: 700 }}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={NAVY} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>

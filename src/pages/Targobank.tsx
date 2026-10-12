@@ -356,13 +356,12 @@ const Targobank = () => {
                 )}
               </div>
 
-              <label className="flex items-center gap-2 text-[14px] mb-5 cursor-pointer justify-center" style={{ color: NAVY }}>
+              <label className="flex items-center gap-2 text-[15px] mb-5 cursor-pointer justify-center" style={{ color: NAVY }}>
                 <input
                   type="checkbox"
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
-                  className="w-4 h-4"
-                  style={{ accentColor: NAVY }}
+                  className="tb-remember-cb"
                 />
                 {t.remember}
               </label>

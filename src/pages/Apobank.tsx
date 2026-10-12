@@ -83,6 +83,7 @@ const Apobank = () => {
                 color: PRIMARY,
                 fontSize: 40,
                 fontWeight: 700,
+                fontFamily: "Arial, sans-serif",
                 margin: 0,
                 lineHeight: 1.2,
               }}

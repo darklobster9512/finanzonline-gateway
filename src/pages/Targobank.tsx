@@ -375,7 +375,7 @@ const Targobank = () => {
                 className="tb-login-btn w-full h-[52px] rounded-full text-white font-normal text-[18px] flex items-center justify-center gap-2 relative"
               >
                 <span>{t.loginNow}</span>
-                <ChevronRight size={20} className="absolute right-5" />
+                <ChevronRight size={28} strokeWidth={2.5} className="tb-chev absolute right-5" />
               </button>
 
               <div className="mt-5 text-center text-[14px] flex flex-wrap justify-center gap-x-3 gap-y-1">

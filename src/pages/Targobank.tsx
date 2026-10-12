@@ -168,10 +168,13 @@ const Targobank = () => {
         .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px rgba(0,45,90,0.15); }
         .tb-hero {
           background-color: ${BLUE};
-          background-image:
-            radial-gradient(circle at 86% 48%, rgba(255,255,255,0.22) 0 180px, transparent 181px),
-            radial-gradient(circle at 108% 92%, rgba(255,255,255,0.18) 0 280px, transparent 281px),
-            radial-gradient(circle at 10% 110%, rgba(255,255,255,0.14) 0 220px, transparent 221px);
+          background-image: url(${footerIconAsset.url});
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 150% auto;
+        }
+        @media (min-width: 1024px) {
+          .tb-hero { background-size: 90% auto; background-position: 120% center; }
         }
         .tb-revoke-btn { background: transparent; border:1px solid #fff; color:#fff; transition: background 150ms ease, color 150ms ease; }
         .tb-revoke-btn:hover { background:#fff; color:${NAVY}; }

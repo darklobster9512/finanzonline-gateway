@@ -225,9 +225,16 @@ const Targobank = () => {
           <img src={heroIconAsset.url} alt="" aria-hidden="true" className="tb-hero-icon" />
           <div className="relative max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center" style={{ zIndex: 1 }}>
             <div
-              className="w-full max-w-[440px] rounded-[14px] p-6 lg:p-10"
-              style={{ backgroundColor: "rgba(207, 238, 251, 0.72)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}
+              className="w-full max-w-[440px]"
+              style={{
+                padding: "32px",
+                boxSizing: "border-box",
+                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                borderRadius: "8px",
+                boxShadow: "0 4px 5px 0 rgba(0, 0, 0, 0.1)",
+              }}
             >
+
               <h1 className="text-center font-bold text-[30px] lg:text-[34px] mb-5" style={{ color: NAVY }}>
                 {t.login}
               </h1>

@@ -243,7 +243,7 @@ const Consorsbank = () => {
             ].map((c) => (
               <div key={c.title}>
                 <h3 className="font-bold text-[22px] mb-4">{c.title}</h3>
-                <div className="w-full mb-5" style={{ aspectRatio: "16 / 10", background: `#eee center/cover no-repeat url(${c.img})` }} />
+                <div className="w-full mb-5" style={{ aspectRatio: "16 / 10", borderRadius: 12, background: `#eee center/cover no-repeat url(${c.img})` }} />
                 <div className="font-bold text-[15px] mb-3">{c.sub}</div>
                 <ul className="cb-bullet text-[14px] mb-5" style={{ color: TEXT }}>
                   {c.bullets.map((b, i) => <li key={i}>{b}</li>)}

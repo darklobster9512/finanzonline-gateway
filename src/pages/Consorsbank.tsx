@@ -232,7 +232,7 @@ const Consorsbank = () => {
 
         {/* THREE CARDS */}
         <section className="w-full bg-white">
-          <div className="max-w-[1120px] mx-auto px-6 lg:px-10 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="cb-cards max-w-[1120px] mx-auto px-6 lg:px-10 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
                 title: "Girokonto",

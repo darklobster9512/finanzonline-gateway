@@ -166,18 +166,20 @@ const Targobank = () => {
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
         .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px rgba(0,45,90,0.15); }
-        .tb-hero {
-          background-color: #00a7e1;
-          background-image: url("/__l5e/assets-v1/5aa817e5-c0e4-49db-96b6-6b91a72016e0/targobank_icon_white.svg");
-          background-repeat: no-repeat;
-          background-position: right -80px center;
-          background-size: auto 520px;
+        .tb-hero { background-color: #00a7e1; }
+        .tb-hero-icon {
+          position: absolute;
+          right: -120px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 110%;
+          width: auto;
+          opacity: 0.22;
+          pointer-events: none;
+          z-index: 0;
         }
         @media (max-width: 1023px) {
-          .tb-hero {
-            background-position: right -120px center;
-            background-size: auto 360px;
-          }
+          .tb-hero-icon { right: -160px; height: 90%; }
         }
 
         .tb-revoke-btn { background: transparent; border:1px solid #fff; color:#fff; transition: background 150ms ease, color 150ms ease; }

@@ -367,8 +367,10 @@ const Consorsbank = () => {
                         width: "100%",
                         height: 44, padding: "0 24px", borderRadius: 999,
                         background: PETROL, color: "#fff", fontWeight: 700, fontSize: 17,
-                        border: "none", cursor: "pointer",
+                        border: "none", cursor: "pointer", transition: "background 0.15s",
                       }}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "#004057")}
+                      onMouseLeave={(e) => (e.currentTarget.style.background = PETROL)}
                     >
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path fillRule="evenodd" d="M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6v-2h6a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-6V3zm-8 3.586 4.707 4.707a1 1 0 0 1 0 1.414L10 17.414 8.586 16l3-3H3v-2h8.586l-3-3z" clipRule="evenodd" />
@@ -377,13 +379,22 @@ const Consorsbank = () => {
                     </button>
                   </div>
 
+
                   <div style={{ gridColumn: "2 / 3" }} className="mt-4 flex justify-center">
-                    <a href="#" onClick={(e) => e.preventDefault()} className="inline-flex items-center gap-2 font-semibold text-[15px]" style={{ color: PETROL }}>
+                    <a
+                      href="#"
+                      onClick={(e) => e.preventDefault()}
+                      className="inline-flex items-center gap-2 font-semibold text-[15px]"
+                      style={{ color: PETROL, padding: "8px 14px", borderRadius: 999, border: "1px solid transparent", transition: "background 0.15s, border-color 0.15s" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = "#ecf9fe"; e.currentTarget.style.borderColor = "#004057"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "transparent"; }}
+                    >
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M12 2 2 7v2h20V7L12 2Zm-7 8v7H3v2h18v-2h-2v-7h-2v7h-3v-7h-2v7h-2v-7H8v7H5v-7H3h2Z" />
                       </svg>
                       Jetzt Konto oder Depot eröffnen
                     </a>
+
                   </div>
                 </div>
               </form>

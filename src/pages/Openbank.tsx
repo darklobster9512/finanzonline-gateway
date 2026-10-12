@@ -40,8 +40,8 @@ const Openbank = () => {
     setShowLoading(true);
   };
 
-  const MehrLink = () => (
-    <a href="#" className="ob-link-info inline-flex items-center gap-1.5 font-bold">
+  const MehrLink = ({ href }: { href: string }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="ob-link-info inline-flex items-center gap-1.5 font-bold">
       Mehr <ExternalLink size={13} strokeWidth={2} />
     </a>
   );

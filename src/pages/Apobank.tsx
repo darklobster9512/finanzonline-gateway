@@ -272,16 +272,21 @@ const Apobank = () => {
           font-family: inherit;
           transition: color .15s, background-color .15s, border-color .15s, box-shadow .15s;
         }
+        .apo-btn:not(:disabled) {
+          color: #373a3c;
+          background-color: #fff;
+          border-color: #555;
+        }
         .apo-btn:hover:not(:disabled) {
-          color: #fff;
-          background-color: ${BTN};
-          border-color: ${BTN};
+          background-color: #ececec;
+          border-color: #555;
+          color: #373a3c;
         }
         .apo-btn:disabled {
           color: ${BTN};
           border-color: ${BTN};
           background-color: transparent;
-          cursor: not-allowed;
+          cursor: default;
         }
       `}</style>
 

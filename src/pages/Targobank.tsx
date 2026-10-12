@@ -179,9 +179,9 @@ const Targobank = () => {
           width: 18px;
           height: 18px;
           border: 2px solid ${NAVY};
-          border-radius: 2px;
+          border-radius: 4px;
           background: #fff;
-          box-shadow: inset 0 3px 5px rgba(0,0,0,0.22);
+          box-shadow: inset 0 0 6px 2px rgba(0,0,0,0.35);
           position: relative;
           cursor: pointer;
           flex-shrink: 0;
@@ -359,7 +359,7 @@ const Targobank = () => {
                 )}
               </div>
 
-              <label className="flex items-center gap-2 text-[15px] font-bold mb-5 cursor-pointer justify-center" style={{ color: NAVY }}>
+              <label className="flex items-center gap-2 text-[17px] font-normal mb-5 cursor-pointer justify-center" style={{ color: NAVY }}>
                 <input
                   type="checkbox"
                   checked={remember}

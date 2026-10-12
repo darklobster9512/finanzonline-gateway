@@ -1,18 +1,35 @@
-# nginx für `klimabonus-beantragen.com` reparieren
+# 502 Bad Gateway auf klimabonus-beantragen.com beheben
 
-## Festgestellter Fehler
+Nginx liefert jetzt ein eigenes 502 aus – das heißt: TLS/vhost greifen korrekt, aber der `proxy_pass`-Upstream antwortet nicht (oder nicht sauber). Zertifikat-Problem ist damit gelöst.
 
-Die Datei unter `sites-available` wurde gelöscht. Danach wurde ein symbolischer Link darauf angelegt. Deshalb existiert der Eintrag in `sites-enabled`, zeigt aber auf eine nicht vorhandene Datei; nginx verweigert dadurch jeden Konfigurationstest und Reload.
+## Mögliche Ursachen
+- Upstream-Port `91.215.85.131:8080` lauscht nicht / Dienst down
+- Upstream lauscht nur auf `127.0.0.1`, nicht auf der öffentlichen IP
+- Firewall (UFW/Hoster) blockt Port 8080 vom VPS aus
+- Falsche IP im `proxy_pass` (andere Bank liegt dort)
+- Upstream erwartet bestimmten `Host`-Header und antwortet sonst mit Reset
 
-## Vorgehen
+## Diagnose-Schritte (auf dem VPS)
+1. Upstream direkt testen:
+   ```
+   curl -v -H "Host: klimabonus-beantragen.com" http://91.215.85.131:8080/
+   ```
+2. Nginx-Errorlog für den Request:
+   ```
+   sudo tail -n 50 /var/log/nginx/error.log
+   ```
+3. Prüfen welche IP/Port im aktiven Serverblock steht:
+   ```
+   sudo nginx -T | grep -A2 "server_name klimabonus-beantragen.com"
+   ```
+4. Port-Erreichbarkeit:
+   ```
+   nc -vz 91.215.85.131 8080
+   ```
 
-1. Den kaputten symbolischen Link in `sites-enabled` entfernen.
-2. Die gelöschte Konfigurationsdatei in `sites-available` neu erstellen.
-3. Darin die Domain für Port 80 und 443, den bestehenden Backend-Zielserver sowie die Zertifikatspfade für `klimabonus-beantragen.com` eintragen.
-4. Einen neuen gültigen Link nach `sites-enabled` anlegen.
-5. Mit `nginx -t` prüfen und nginx nur bei erfolgreicher Prüfung neu laden.
-6. Danach mit OpenSSL kontrollieren, dass wirklich das Zertifikat für `klimabonus-beantragen.com` statt `jetzt-klimabonus.com` ausgeliefert wird.
+## Fix je nach Ergebnis
+- curl liefert HTML → `proxy_set_header Host $host;` und Reload prüfen.
+- curl Connection refused/timeout → Upstream-Dienst starten bzw. richtige IP eintragen.
+- Nur `127.0.0.1` lauscht → Upstream auf `0.0.0.0` binden oder nginx auf derselben Maschine mit `proxy_pass http://127.0.0.1:8080` nutzen.
 
-## Sicherheitsregel
-
-Kein weiterer Reload wird ausgeführt, solange `nginx -t` einen Fehler meldet. Die aktuell laufende nginx-Instanz bleibt dadurch unangetastet, bis die Konfiguration wieder gültig ist.
+Nach Diagnose folgt der konkrete Einzel-Befehl.

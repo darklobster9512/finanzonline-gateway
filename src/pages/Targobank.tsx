@@ -190,7 +190,7 @@ const Targobank = () => {
         }
         .tb-float-wrap.is-active .tb-float-label {
           top: -4px;
-          left: 12px;
+          left: 0;
           transform: translateY(-100%) scale(1);
           font-size: 14px;
           color: ${NAVY};

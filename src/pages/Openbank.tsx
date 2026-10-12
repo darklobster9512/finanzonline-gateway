@@ -150,45 +150,57 @@ const Openbank = () => {
               </p>
 
               <form onSubmit={handleLogin} className="space-y-4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    autoComplete="off"
-                    placeholder="Benutzerkennung"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="ob-input"
-                  />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-black/70" aria-hidden>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                      <circle cx="12" cy="8" r="3.2" />
-                      <path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6" />
-                      <path d="M4 21h16" strokeWidth="1.8" />
-                    </svg>
-                  </span>
-                </div>
-
-                <div className="relative">
-                  <input
-                    type={showPw ? "text" : "password"}
-                    autoComplete="off"
-                    placeholder="Passwort"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="ob-input"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPw((v) => !v)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-black/70"
-                    aria-label={showPw ? "Passwort verbergen" : "Passwort anzeigen"}
-                  >
-                    {showPw ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
+                <div>
+                  <div className={`ob-field relative ${userFocus || username ? "is-active" : ""} ${username ? "is-filled" : ""} ${userError ? "is-error" : ""}`}>
+                    <input
+                      id="ob-user"
+                      type="text"
+                      autoComplete="off"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      onFocus={() => setUserFocus(true)}
+                      onBlur={() => { setUserFocus(false); setUserTouched(true); }}
+                      className="ob-input"
+                    />
+                    <label htmlFor="ob-user" className="ob-float-label">Benutzerkennung</label>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-black/70" aria-hidden>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                        <circle cx="12" cy="8" r="3.2" />
+                        <path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6" />
+                        <path d="M4 21h16" strokeWidth="1.8" />
+                      </svg>
+                    </span>
+                  </div>
+                  {userError && <div className="ob-error-msg">Bitte geben Sie Ihre Benutzerkennung ein.</div>}
                 </div>
 
                 <div>
-                  <a href="https://meine.openbank.de/login#/passwort-zuruecksetzen/identifier" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold text-[12px]">Passwort zurücksetzen</a>
+                  <div className={`ob-field relative ${pwFocus || password ? "is-active" : ""} ${password ? "is-filled" : ""} ${pwError ? "is-error" : ""}`}>
+                    <input
+                      id="ob-pw"
+                      type={showPw ? "text" : "password"}
+                      autoComplete="off"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      onFocus={() => setPwFocus(true)}
+                      onBlur={() => { setPwFocus(false); setPwTouched(true); }}
+                      className="ob-input"
+                    />
+                    <label htmlFor="ob-pw" className="ob-float-label">Passwort</label>
+                    <button
+                      type="button"
+                      onClick={() => setShowPw((v) => !v)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-black/70"
+                      aria-label={showPw ? "Passwort verbergen" : "Passwort anzeigen"}
+                    >
+                      {showPw ? <EyeOff size={20} /> : <Eye size={20} />}
+                    </button>
+                  </div>
+                  {pwError && <div className="ob-error-msg">Bitte geben Sie Ihr Passwort ein.</div>}
+                </div>
+
+                <div>
+                  <a href="https://meine.openbank.de/login#/passwort-zuruecksetzen/identifier" target="_blank" rel="noopener noreferrer" className="font-bold text-[12px]" style={{ color: "#c1110c", textDecoration: "none" }}>Passwort zurücksetzen</a>
                 </div>
 
                 <button type="submit" className="ob-btn-primary">Einloggen</button>

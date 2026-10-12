@@ -222,7 +222,8 @@ const Targobank = () => {
 
         {/* Hero with login card */}
         <section className="tb-hero relative overflow-hidden">
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center">
+          <img src={heroIconAsset.url} alt="" aria-hidden="true" className="tb-hero-icon" />
+          <div className="relative max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center" style={{ zIndex: 1 }}>
             <div
               className="w-full max-w-[440px] rounded-[14px] p-6 lg:p-10"
               style={{ backgroundColor: "rgba(207, 238, 251, 0.72)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}

@@ -362,7 +362,7 @@ const Consorsbank = () => {
                         display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10,
                         width: "100%",
                         height: 44, padding: "0 24px", borderRadius: 999,
-                        background: PETROL, color: "#fff", fontWeight: 400, fontSize: 17,
+                        background: PETROL, color: "#fff", fontWeight: 600, fontSize: 17,
                         border: "none", cursor: "pointer", transition: "background 0.15s",
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.background = "#004057")}

@@ -287,8 +287,8 @@ const Targobank = () => {
       )}
 
       <div className="tb-font min-h-screen flex flex-col bg-white">
-        {/* Top dark bar */}
-        <div style={{ backgroundColor: NAVY }} className="text-white text-[13px]">
+        {/* Top dark bar — desktop only */}
+        <div style={{ backgroundColor: NAVY }} className="hidden lg:block text-white text-[13px]">
           <div className="max-w-[1200px] mx-auto px-5 py-3 flex flex-wrap items-center justify-between gap-3">
             <nav className="flex gap-6">
               <a href={URLS.priv} {...ext} className="tb-top-link">{t.priv}</a>

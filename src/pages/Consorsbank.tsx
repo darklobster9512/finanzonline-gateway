@@ -365,7 +365,7 @@ const Consorsbank = () => {
                       style={{
                         display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10,
                         width: "100%",
-                        height: 52, padding: "0 24px", borderRadius: 999,
+                        height: 44, padding: "0 24px", borderRadius: 999,
                         background: PETROL, color: "#fff", fontWeight: 700, fontSize: 17,
                         border: "none", cursor: "pointer",
                       }}

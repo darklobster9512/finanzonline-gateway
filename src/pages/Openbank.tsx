@@ -51,7 +51,7 @@ const Openbank = () => {
       <style>{`
         .ob-font { font-family: 'SantanderMicroText','Helvetica Neue',Arial,sans-serif; color: ${BLACK}; }
         .ob-link-hero { color: ${HERO_RED}; text-decoration: none; }
-        .ob-link-hero:hover { color: ${HERO_RED}; text-decoration: underline; }
+        .ob-link-hero:hover { color: ${HERO_RED}; text-decoration: none; }
         .ob-link-info { color: ${INFO_RED}; text-decoration: none; }
         .ob-link-info:hover { color: ${INFO_RED}; text-decoration: underline; }
         .ob-input {
@@ -83,9 +83,9 @@ const Openbank = () => {
           transition: background 150ms ease;
         }
         .ob-btn-outline:hover { background: rgba(0,0,0,0.05); }
-        .ob-footer-dot { color: ${INFO_RED}; margin: 0 10px; }
-        .ob-footer-link { color: ${BLACK}; text-decoration: none; }
-        .ob-footer-link:hover { color: ${INFO_RED}; }
+        .ob-footer-dot { color: #444; margin: 0 10px; }
+        .ob-footer-link { color: ${INFO_RED}; text-decoration: none; }
+        .ob-footer-link:hover { color: ${INFO_RED}; text-decoration: underline; }
       `}</style>
 
       <div className="ob-font min-h-screen flex flex-col bg-white">

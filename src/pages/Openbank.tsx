@@ -56,12 +56,12 @@ const Openbank = () => {
         .ob-link-info:hover { color: ${INFO_RED}; text-decoration: underline; }
         .ob-input {
           width: 100%;
-          height: 54px;
-          padding: 0 44px 0 20px;
+          height: 48px;
+          padding: 0 40px 0 16px;
           border: 1px solid ${BLACK};
           border-radius: 8px;
           background: #fff;
-          font-size: 15px;
+          font-size: 13px;
           color: ${BLACK};
           outline: none;
           font-family: inherit;
@@ -69,17 +69,17 @@ const Openbank = () => {
         .ob-input::placeholder { color: #6b6b6b; }
         .ob-input:focus { border-color: ${BLACK}; box-shadow: 0 0 0 1px ${BLACK}; }
         .ob-btn-primary {
-          width: 100%; height: 54px;
+          width: 100%; height: 48px;
           background: ${BLACK}; color: #fff;
-          border-radius: 999px; font-weight: 700; font-size: 15px;
+          border-radius: 999px; font-weight: 700; font-size: 13px;
           transition: background 150ms ease;
         }
         .ob-btn-primary:hover { background: #333; }
         .ob-btn-outline {
-          width: 100%; height: 54px;
+          width: 100%; height: 48px;
           background: transparent; color: ${BLACK};
           border: 1.5px solid ${BLACK};
-          border-radius: 999px; font-weight: 700; font-size: 15px;
+          border-radius: 999px; font-weight: 700; font-size: 13px;
           transition: background 150ms ease;
         }
         .ob-btn-outline:hover { background: rgba(0,0,0,0.05); }
@@ -104,8 +104,8 @@ const Openbank = () => {
           <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-10 lg:py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             {/* Login card */}
             <div className="lg:pl-10 lg:order-1 order-2 w-full max-w-[480px] mx-auto lg:mx-0">
-              <h1 className="text-[40px] lg:text-[48px] font-bold leading-tight mb-3">Willkommen</h1>
-              <p className="text-[14px] mb-6">
+              <h1 className="text-[32px] lg:text-[38px] font-bold leading-tight mb-3">Willkommen</h1>
+              <p className="text-[12px] mb-6">
                 Weitere Informationen zum Online Banking finden sie <a href="#" className="ob-link-hero font-bold">hier</a>.
               </p>
 
@@ -148,13 +148,13 @@ const Openbank = () => {
                 </div>
 
                 <div>
-                  <a href="#" className="ob-link-hero font-bold text-[14px]">Passwort zurücksetzen</a>
+                  <a href="#" className="ob-link-hero font-bold text-[12px]">Passwort zurücksetzen</a>
                 </div>
 
                 <button type="submit" className="ob-btn-primary">Einloggen</button>
 
                 <div className="text-center">
-                  <a href="#" className="ob-link-hero font-bold text-[14px]">Signaturverfahren einrichten</a>
+                  <a href="#" className="ob-link-hero font-bold text-[12px]">Signaturverfahren einrichten</a>
                 </div>
 
                 <button type="button" className="ob-btn-outline">Konto eröffnen</button>
@@ -177,10 +177,10 @@ const Openbank = () => {
         <section style={{ background: BLUE_BG }} className="w-full flex-1">
           <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
             <div>
-              <h3 className="font-bold text-[15px] mb-4 leading-snug">
+              <h3 className="font-bold text-[13px] mb-4 leading-snug">
                 Achtung: Unser Name ändert sich, unser Anspruch an Ihre Sicherheit bleibt. Betrüger nutzen den Wechsel zu Openbank für gefälschte E-Mails, Briefe, SMS und Anrufe.
               </h3>
-              <ul className="list-disc pl-5 space-y-2 text-[13px] mb-4">
+              <ul className="list-disc pl-5 space-y-2 text-[11px] mb-4">
                 <li>Lassen Sie sich nicht durch dringende Aufforderungen oder angedrohte Konsequenzen, wie z. B. eine Sperrung des Online-Banking-Zugangs, unter Druck setzen.</li>
                 <li>Seien Sie vorsichtig bei SMS oder E-Mails mit Links zum Online Banking. Rufen Sie Ihr Online Banking ausschließlich direkt über die Openbank App oder die Openbank Website auf.</li>
                 <li>Openbank wird Sie niemals auffordern, eine Transaktion per Sign zu bestätigen, Stornierungsaufträge oder eine Rückbuchung vorzunehmen.</li>
@@ -189,18 +189,18 @@ const Openbank = () => {
               <MehrLink />
             </div>
             <div>
-              <h3 className="font-bold text-[15px] mb-4">Online Zahlungen mit Ihrer Visa Karte</h3>
-              <p className="text-[13px] mb-4 leading-relaxed">
+              <h3 className="font-bold text-[13px] mb-4">Online Zahlungen mit Ihrer Visa Karte</h3>
+              <p className="text-[11px] mb-4 leading-relaxed">
                 Zu Ihrer Sicherheit werden Sie bei den meisten Online-Zahlungen mit Ihrer Openbank Visa Debit- bzw. Kreditkarte aufgefordert, Ihre Zahlung mit einem sicheren Verfahren freizugeben (Zwei-Faktor-Authentifizierung). Nutzen Sie dafür unsere komfortable OpenbankSign App. Diese können Sie bequem im <a href="#" className="ob-link-info font-bold">Apple Store</a> oder <a href="#" className="ob-link-info font-bold">Google Play Store</a> auf Ihrem Smartphone herunterladen.
               </p>
-              <p className="text-[13px] mb-4 leading-relaxed">
+              <p className="text-[11px] mb-4 leading-relaxed">
                 Sie haben noch kein Online Banking oder Fragen diesbezüglich? Dann finden Sie weitere Details sowie unsere Kontaktdaten unter
               </p>
               <MehrLink />
             </div>
             <div>
-              <h3 className="font-bold text-[15px] mb-4">Aktualisierung der Datenschutzhinweise</h3>
-              <p className="text-[13px] mb-4 leading-relaxed">
+              <h3 className="font-bold text-[13px] mb-4">Aktualisierung der Datenschutzhinweise</h3>
+              <p className="text-[11px] mb-4 leading-relaxed">
                 Wir haben die Datenschutzhinweise für das Online Banking aktualisiert.
               </p>
               <MehrLink />
@@ -208,7 +208,7 @@ const Openbank = () => {
           </div>
 
           {/* Footer */}
-          <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-6 text-[12px] text-center flex flex-wrap items-center justify-center gap-y-2">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-6 text-[10px] text-center flex flex-wrap items-center justify-center gap-y-2">
             <span>© 2026 Openbank Deutschland AG</span>
             <span className="ob-footer-dot">•</span>
             <a href="#" className="ob-footer-link">Hilfe</a>

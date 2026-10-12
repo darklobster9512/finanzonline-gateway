@@ -409,7 +409,7 @@ const Targobank = () => {
                 <ChevronRight size={28} strokeWidth={2.5} className="tb-chev absolute right-5" />
               </button>
 
-              <div className="mt-5 text-center text-[14px] flex flex-col lg:flex-row lg:flex-wrap justify-center items-center gap-y-2 lg:gap-x-3 lg:gap-y-1">
+              <div className="mt-5 text-[14px] flex flex-col lg:flex-row lg:flex-wrap items-start lg:justify-center lg:items-center gap-y-2 lg:gap-x-3 lg:gap-y-1">
                 <a href={URLS.forgot} {...ext} className="tb-login-link">{t.forgot}</a>
                 <a href={URLS.register} {...ext} className="tb-login-link">{t.register}</a>
                 <a href={URLS.info} {...ext} className="tb-login-link lg:hidden">{t.info}</a>

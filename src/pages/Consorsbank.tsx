@@ -31,6 +31,12 @@ const Consorsbank = () => {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    if (!showLogin) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [showLogin]);
   usePageMeta("Consorsbank – Zukunft selbstgemacht", logoAsset.url);
 
   const openLogin = (e?: React.MouseEvent) => { e?.preventDefault(); setShowLogin(true); };
@@ -289,10 +295,10 @@ const Consorsbank = () => {
 
         {/* LOGIN OVERLAY */}
         {showLogin && (
-          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.5)" }} onClick={() => setShowLogin(false)}>
+          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.72)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }} onClick={() => setShowLogin(false)}>
             <div
-              className="bg-white w-full max-w-[580px] mx-4 my-8 rounded-lg shadow-xl relative"
-              style={{ padding: "24px 28px 32px" }}
+              className="bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
+              style={{ padding: "24px 28px 32px", borderRadius: 14 }}
               onClick={(e) => e.stopPropagation()}
             >
               <button onClick={() => setShowLogin(false)} aria-label="Schließen" className="absolute top-4 right-4 text-gray-500 hover:text-black">
@@ -311,7 +317,7 @@ const Consorsbank = () => {
                     autoComplete="off"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    style={{ height: 40, border: `1px solid #707175`, borderRadius: 4, padding: "0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
+                    style={{ height: 40, border: `1px solid #707175`, borderRadius: 7, padding: "0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
                     onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = "#707175"; e.currentTarget.style.boxShadow = "none"; }}
                   />
@@ -323,7 +329,7 @@ const Consorsbank = () => {
                       autoComplete="off"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      style={{ height: 40, width: "100%", border: `1px solid #707175`, borderRadius: 4, padding: "0 40px 0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
+                      style={{ height: 40, width: "100%", border: `1px solid #707175`, borderRadius: 7, padding: "0 40px 0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
                       onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = "#707175"; e.currentTarget.style.boxShadow = "none"; }}
                     />
@@ -348,7 +354,7 @@ const Consorsbank = () => {
                     )}
                   </div>
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-3 flex flex-col gap-2">
+                  <div style={{ gridColumn: "2 / 3" }} className="mt-3 flex flex-col gap-3">
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
                   </div>
@@ -359,7 +365,7 @@ const Consorsbank = () => {
                       style={{
                         display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10,
                         width: "100%",
-                        height: 52, padding: "0 24px", borderRadius: 999,
+                        height: 44, padding: "0 24px", borderRadius: 999,
                         background: PETROL, color: "#fff", fontWeight: 700, fontSize: 17,
                         border: "none", cursor: "pointer",
                       }}

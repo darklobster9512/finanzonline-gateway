@@ -211,19 +211,19 @@ const Openbank = () => {
           <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-6 text-[10px] text-center flex flex-wrap items-center justify-center gap-y-2">
             <span>© 2026 Openbank Deutschland AG</span>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Hilfe</a>
+            <a href="https://www.openbank.de/hilfe" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Hilfe</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Kontakt</a>
+            <a href="https://www.openbank.de/hotlines" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Kontakt</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Filialfinder</a>
+            <a href="https://www.openbank.de/standortsuche" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Filialfinder</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Sicherheitshinweise</a>
+            <a href="https://www.openbank.de/sicherheit" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Sicherheitshinweise</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Datenschutz</a>
+            <a href="https://meine.openbank.de/datenschutz" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Datenschutz</a>
             <span className="ob-footer-dot">•</span>
             <a href="#" className="ob-footer-link">Cookie Einstellungen</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Impressum</a>
+            <a href="https://www.openbank.de/impressum" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Impressum</a>
           </div>
         </section>
       </div>

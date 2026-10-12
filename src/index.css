@@ -156,6 +156,17 @@
   font-weight: 900; font-style: normal; font-display: swap;
 }
 
+@font-face {
+  font-family: 'SantanderMicroText';
+  src: url('/__l5e/assets-v1/dbcc6a27-a737-4321-8b77-b86a7c84cccf/SantanderMicroText-Regular.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'SantanderMicroText';
+  src: url('/__l5e/assets-v1/9b7983bf-d932-4729-b554-6b3f0b8dea89/SantanderMicroText-Bold.woff') format('woff');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
 /* Open Sans (400/600/700/800) is loaded via Google Fonts @import at the top of this file
    so bold weights actually render with the real bold face. */
 

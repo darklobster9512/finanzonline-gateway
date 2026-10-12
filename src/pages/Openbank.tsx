@@ -92,7 +92,7 @@ const Openbank = () => {
         {/* YELLOW HERO */}
         <section style={{ background: YELLOW }} className="w-full">
           {/* Header */}
-          <header className="max-w-[1200px] mx-auto px-6 lg:px-10 pt-6 pb-4 flex items-center gap-5">
+          <header className="pl-4 lg:pl-6 pr-6 pt-6 pb-4 flex items-center gap-5">
             <a href="#" className="flex-shrink-0">
               <img src={logoAsset.url} alt="Openbank" className="h-10 w-auto" />
             </a>

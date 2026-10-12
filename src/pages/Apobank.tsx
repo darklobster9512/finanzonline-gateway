@@ -263,9 +263,9 @@ const Apobank = () => {
           font-size: 1rem;
           font-weight: 400;
           line-height: 1.5;
-          color: ${PRIMARY};
+          color: ${BTN};
           background-color: transparent;
-          border: 1px solid ${PRIMARY};
+          border: 1px solid ${BTN};
           border-radius: .25rem;
           cursor: pointer;
           font-family: inherit;
@@ -273,7 +273,8 @@ const Apobank = () => {
         }
         .apo-btn:hover:not(:disabled) {
           color: #fff;
-          background-color: ${PRIMARY};
+          background-color: ${BTN};
+          border-color: ${BTN};
         }
         .apo-btn:disabled {
           color: #6c757d;

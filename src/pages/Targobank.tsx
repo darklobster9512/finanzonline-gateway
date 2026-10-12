@@ -198,11 +198,38 @@ const Targobank = () => {
           transform: rotate(45deg);
         }
 
-        .tb-footer-link { color: #b2c0cf; }
-        .tb-footer-link:hover { text-decoration: underline; }
+        .tb-footer-link { color: #b2c0cf; transition: color 150ms ease; }
+        .tb-footer-link:hover { color: #fff; text-decoration: none; }
         .tb-footer-sep { color: #b2c0cf; opacity: 0.6; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
+        .tb-login-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
+        .tb-login-link:hover { color:${NAVY}; text-decoration: none; }
+        .tb-card-link {
+          color:${NAVY};
+          font-weight: 700;
+          position: relative;
+          display: inline-block;
+          text-decoration: none;
+        }
+        .tb-card-link::after {
+          content: "";
+          position: absolute;
+          left: 0; right: 0; bottom: 0;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(1);
+          transform-origin: left center;
+          transition: transform 300ms ease;
+        }
+        .tb-card-link:hover { color:${NAVY}; }
+        .tb-card-link:hover::after { transform: scaleX(0); }
+        .tb-topbar-code {
+          text-decoration: underline;
+          text-decoration-style: dotted;
+          text-decoration-thickness: 1px;
+          text-underline-offset: 3px;
+        }
         .tb-input::placeholder { color:#b4b4b4; opacity:1; }
         .tb-input:focus { border-color:${NAVY} !important; outline: 2px solid ${NAVY}; outline-offset: 2px; }
         .tb-input.tb-err:focus { outline-color: ${RED}; }
@@ -248,8 +275,8 @@ const Targobank = () => {
           .tb-hero-icon { right: -160px; height: 90%; }
         }
 
-        .tb-revoke-btn { background: #fff; border:2px solid ${NAVY}; color:${NAVY}; transition: background 150ms ease, color 150ms ease; }
-        .tb-revoke-btn:hover { background:${NAVY}; color:#fff; }
+        .tb-revoke-btn { background: #fff; border:2px solid ${NAVY}; color:${NAVY}; transition: color 150ms ease; }
+        .tb-revoke-btn:hover { color: #001a33; }
       `}</style>
 
       {showLoading && (
@@ -269,9 +296,9 @@ const Targobank = () => {
               <a href={URLS.firm} {...ext} className="tb-top-link">{t.firm}</a>
             </nav>
             <div className="flex items-center gap-4">
-              <span><span className="underline">BLZ:</span> 300 209 00</span>
-              <span className="opacity-50">|</span>
-              <span><span className="underline">BIC:</span> CMCIDEDD</span>
+              <span><span className="tb-topbar-code">BLZ:</span> 300 209 00</span>
+              <span style={{ color: "#fff" }}>|</span>
+              <span><span className="tb-topbar-code">BIC:</span> CMCIDEDD</span>
             </div>
           </div>
         </div>
@@ -379,11 +406,11 @@ const Targobank = () => {
               </button>
 
               <div className="mt-5 text-center text-[14px] flex flex-wrap justify-center gap-x-3 gap-y-1">
-                <a href={URLS.forgot} {...ext} className="tb-link">{t.forgot}</a>
-                <a href={URLS.register} {...ext} className="tb-link">{t.register}</a>
+                <a href={URLS.forgot} {...ext} className="tb-login-link">{t.forgot}</a>
+                <a href={URLS.register} {...ext} className="tb-login-link">{t.register}</a>
               </div>
               <div className="mt-2 text-center text-[14px]">
-                <a href={URLS.info} {...ext} className="tb-link">{t.info}</a>
+                <a href={URLS.info} {...ext} className="tb-login-link">{t.info}</a>
               </div>
             </div>
           </div>
@@ -426,7 +453,7 @@ const Targobank = () => {
                   <img src={c.img} alt={c.title} className="w-full aspect-[656/410] object-cover rounded-sm" />
                   <div className="text-[13px] mt-4" style={{ color: NAVY }}>{c.cat}</div>
                   <div className="font-bold text-[20px] mt-1 leading-snug" style={{ color: NAVY }}>{c.title}</div>
-                  <div className="mt-3 text-[15px] tb-link inline-block">{c.link}</div>
+                  <span className="mt-3 text-[15px] tb-card-link">{c.link}</span>
                 </a>
               ))}
             </div>
@@ -438,17 +465,17 @@ const Targobank = () => {
           <div className="max-w-[1200px] mx-auto px-5 py-8 flex flex-col lg:flex-row lg:items-center gap-6">
             <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[12px] flex-1">
-              <a href={URLS.imprint} {...ext} className="tb-footer-link hover:underline">{t.imprint}</a>
+              <a href={URLS.imprint} {...ext} className="tb-footer-link">{t.imprint}</a>
               <span className="tb-footer-sep">|</span>
-              <a href={URLS.privacy} {...ext} className="tb-footer-link hover:underline">{t.privacy}</a>
+              <a href={URLS.privacy} {...ext} className="tb-footer-link">{t.privacy}</a>
               <span className="tb-footer-sep">|</span>
-              <a href={URLS.agb} {...ext} className="tb-footer-link hover:underline">{t.agb}</a>
+              <a href={URLS.agb} {...ext} className="tb-footer-link">{t.agb}</a>
               <span className="tb-footer-sep">|</span>
-              <a href={URLS.prices} {...ext} className="tb-footer-link hover:underline">{t.prices}</a>
+              <a href={URLS.prices} {...ext} className="tb-footer-link">{t.prices}</a>
               <span className="tb-footer-sep">|</span>
-              <a href={URLS.security} {...ext} className="tb-footer-link hover:underline">{t.security}</a>
+              <a href={URLS.security} {...ext} className="tb-footer-link">{t.security}</a>
               <span className="tb-footer-sep">|</span>
-              <a href={URLS.credit} {...ext} className="tb-footer-link hover:underline">{t.credit}</a>
+              <a href={URLS.credit} {...ext} className="tb-footer-link">{t.credit}</a>
             </div>
             <a
               href={URLS.revoke}

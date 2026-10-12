@@ -296,9 +296,9 @@ const Targobank = () => {
               <a href={URLS.firm} {...ext} className="tb-top-link">{t.firm}</a>
             </nav>
             <div className="flex items-center gap-4">
-              <span><span className="underline">BLZ:</span> 300 209 00</span>
-              <span className="opacity-50">|</span>
-              <span><span className="underline">BIC:</span> CMCIDEDD</span>
+              <span><span className="tb-topbar-code">BLZ:</span> 300 209 00</span>
+              <span style={{ color: "#fff" }}>|</span>
+              <span><span className="tb-topbar-code">BIC:</span> CMCIDEDD</span>
             </div>
           </div>
         </div>

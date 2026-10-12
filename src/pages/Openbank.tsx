@@ -208,7 +208,7 @@ const Openbank = () => {
           </div>
 
           {/* Footer */}
-          <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-6 text-[12px] text-center flex flex-wrap items-center justify-center gap-y-2">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-6 text-[10px] text-center flex flex-wrap items-center justify-center gap-y-2">
             <span>© 2026 Openbank Deutschland AG</span>
             <span className="ob-footer-dot">•</span>
             <a href="#" className="ob-footer-link">Hilfe</a>

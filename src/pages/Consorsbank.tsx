@@ -159,7 +159,7 @@ const Consorsbank = () => {
           .cb-login-modal { max-width: calc(100vw - 24px) !important; margin: 16px 12px !important; padding: 28px 18px 24px !important; }
           .cb-login-grid { grid-template-columns: 1fr !important; row-gap: 10px !important; }
           .cb-login-title { font-size: 24px !important; white-space: normal !important; }
-          .cb-login-label { text-align: left !important; font-size: 14px !important; margin-bottom: -4px; font-weight: 700 !important; }
+          .cb-login-label { text-align: left !important; font-size: 15px !important; margin-bottom: -4px; font-weight: 400 !important; }
           .cb-login-spacer { display: none !important; }
           .cb-login-col2 { grid-column: 1 / 2 !important; }
           .cb-login-links { flex-direction: row !important; justify-content: space-between !important; align-items: center !important; gap: 12px !important; }

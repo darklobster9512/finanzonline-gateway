@@ -70,25 +70,25 @@ const Consorsbank = () => {
 
         .cb-btn-pill {
           display: inline-flex; align-items: center; justify-content: center;
-          height: 40px; padding: 0 20px; border-radius: 999px;
+          height: 36px; padding: 0 12px; border-radius: 999px;
           font-weight: 600; font-size: 14px; line-height: 1;
           transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
         }
         .cb-btn-primary { background: ${PETROL}; color: #fff; border: 1px solid ${PETROL}; }
         .cb-btn-primary:hover { background: ${PETROL_DARK}; border-color: ${PETROL_DARK}; }
-        .cb-btn-outline { background: #fff; color: ${TEXT}; border: 1px solid ${BORDER}; }
+        .cb-btn-outline { background: #fff; color: ${TEXT}; border: 1px solid ${NAV_BORDER}; }
         .cb-btn-outline:hover { border-color: ${TEXT}; }
 
         .cb-btn-hero {
           display: inline-flex; align-items: center; justify-content: center;
-          height: 52px; padding: 0 32px; border-radius: 999px;
+          height: 48px; padding: 0 20px; border-radius: 999px;
           background: ${PETROL}; color: #fff; font-weight: 600; font-size: 16px;
         }
         .cb-btn-hero:hover { background: ${PETROL_DARK}; }
 
         .cb-nav-link {
           position: relative;
-          padding: 14px 18px;
+          padding: 8px 14px;
           font-size: 15px;
           font-weight: 500;
           color: ${TEXT};
@@ -111,8 +111,8 @@ const Consorsbank = () => {
         }
         .cb-card-link:hover { text-decoration: underline; }
 
-        .cb-bullet { padding-left: 1.25rem; }
-        .cb-bullet li { position: relative; padding-left: 4px; margin-bottom: 10px; line-height: 1.5; }
+        .cb-bullet { padding-left: 1.25rem; list-style: disc outside; }
+        .cb-bullet li { position: relative; padding-left: 4px; margin-bottom: 10px; line-height: 1.5; display: list-item; }
         .cb-bullet li::marker { color: ${TEXT}; }
 
         /* Login input */
@@ -180,7 +180,7 @@ const Consorsbank = () => {
 
           {/* HEADER overlays hero */}
           <header className="absolute top-0 left-0 right-0 w-full z-10">
-            <div className="max-w-[1400px] mx-auto px-4 lg:px-10 flex items-center gap-6 py-3">
+            <div className="max-w-[1400px] mx-auto px-6 lg:px-20 flex items-center gap-6 py-3">
               <a href="#" className="flex-shrink-0" aria-label="Consorsbank Startseite">
                 <div style={{ width: 72, height: 86 }} className="relative">
                   <img src={logoAsset.url} alt="Consorsbank by BNP Paribas" className="w-full h-full object-contain" />

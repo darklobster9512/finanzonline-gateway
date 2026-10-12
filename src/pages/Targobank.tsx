@@ -125,6 +125,8 @@ const Targobank = () => {
   const [remember, setRemember] = useState(false);
   const [userErr, setUserErr] = useState(false);
   const [pwErr, setPwErr] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
+  const [pwFocus, setPwFocus] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -151,7 +153,7 @@ const Targobank = () => {
   };
 
   const fieldCls = (err: boolean) =>
-    "tb-input w-full text-[15px] bg-white outline-none rounded-[6px] transition-colors";
+    `tb-input w-full text-[16px] bg-white outline-none rounded-[6px] transition-colors${err ? " tb-err" : ""}`;
   const fieldStyle = (err: boolean): React.CSSProperties => ({
     border: `2px solid ${err ? RED : "#002f5f"}`,
     padding: "7px 10px",
@@ -168,7 +170,33 @@ const Targobank = () => {
         .tb-login-btn:hover { background:${RED_HOVER}; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
-        .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px rgba(0,45,90,0.15); }
+        .tb-input::placeholder { color:#b4b4b4; opacity:1; }
+        .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px #fff, 0 0 0 4px ${NAVY}; }
+        .tb-input.tb-err:focus { box-shadow: 0 0 0 2px #fff, 0 0 0 4px ${RED}; }
+        .tb-float-wrap { position: relative; }
+        .tb-float-label {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 16px;
+          color: #b4b4b4;
+          pointer-events: none;
+          transition: transform 150ms ease, font-size 150ms ease, color 150ms ease, padding 150ms ease, background-color 150ms ease;
+          padding: 0 4px;
+          background: transparent;
+          z-index: 2;
+          line-height: 1;
+        }
+        .tb-float-wrap.is-active .tb-float-label {
+          top: 0;
+          transform: translateY(-50%) scale(1);
+          font-size: 12px;
+          color: ${NAVY};
+          background: #fff;
+        }
+        .tb-float-wrap.is-error .tb-float-label { color: ${RED}; }
+        .tb-float-wrap.is-error.is-active .tb-float-label { color: ${RED}; }
         .tb-hero { background-color: #00a7e1; }
         .tb-hero-icon {
           position: absolute;
@@ -245,23 +273,20 @@ const Targobank = () => {
               </div>
 
               <div className="mb-5">
-                <div className="relative">
+                <div className={`tb-float-wrap${userFocus || username.length > 0 ? " is-active" : ""}${userErr ? " is-error" : ""}`}>
                   <input
-                    className={`tb-input ${fieldCls(userErr)}`}
+                    className={fieldCls(userErr)}
                     style={fieldStyle(userErr)}
                     value={username}
                     onChange={(e) => { setUsername(e.target.value); if (userErr) setUserErr(false); }}
+                    onFocus={() => setUserFocus(true)}
+                    onBlur={() => setUserFocus(false)}
                     onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                     aria-label={t.username}
                   />
-                  {username.length === 0 && (
-                    <div
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-[15px] pointer-events-none"
-                      style={{ color: "#6a7f94" }}
-                    >
-                      {t.username} <span style={{ color: RED }}>*</span>
-                    </div>
-                  )}
+                  <label className="tb-float-label">
+                    {t.username} <span style={{ color: RED }}>*</span>
+                  </label>
                 </div>
                 {userErr && (
                   <div className="mt-1 text-[13px]" style={{ color: RED }}>{t.usernameError}</div>
@@ -269,29 +294,26 @@ const Targobank = () => {
               </div>
 
               <div className="mb-5">
-                <div className="relative">
+                <div className={`tb-float-wrap${pwFocus || password.length > 0 ? " is-active" : ""}${pwErr ? " is-error" : ""}`}>
                   <input
                     type={showPw ? "text" : "password"}
-                    className={`tb-input ${fieldCls(pwErr)} pr-12`}
+                    className={`${fieldCls(pwErr)} pr-12`}
                     style={fieldStyle(pwErr)}
                     value={password}
                     onChange={(e) => { setPassword(e.target.value); if (pwErr) setPwErr(false); }}
+                    onFocus={() => setPwFocus(true)}
+                    onBlur={() => setPwFocus(false)}
                     onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                     aria-label={t.password}
                   />
-                  {password.length === 0 && (
-                    <div
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-[15px] pointer-events-none"
-                      style={{ color: "#6a7f94" }}
-                    >
-                      {t.password} <span style={{ color: RED }}>*</span>
-                    </div>
-                  )}
+                  <label className="tb-float-label">
+                    {t.password} <span style={{ color: RED }}>*</span>
+                  </label>
                   <button
                     type="button"
                     onClick={() => setShowPw((v) => !v)}
                     className="absolute right-3 top-1/2 -translate-y-1/2"
-                    style={{ color: NAVY }}
+                    style={{ color: NAVY, zIndex: 3 }}
                     aria-label={showPw ? "Hide password" : "Show password"}
                   >
                     {showPw ? <EyeOff size={20} /> : <Eye size={20} />}

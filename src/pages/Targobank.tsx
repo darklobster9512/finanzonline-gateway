@@ -245,8 +245,8 @@ const Targobank = () => {
           .tb-hero-icon { right: -160px; height: 90%; }
         }
 
-        .tb-revoke-btn { background: transparent; border:1px solid #fff; color:#fff; transition: background 150ms ease, color 150ms ease; }
-        .tb-revoke-btn:hover { background:#fff; color:${NAVY}; }
+        .tb-revoke-btn { background: #fff; border:2px solid ${NAVY}; color:${NAVY}; transition: background 150ms ease, color 150ms ease; }
+        .tb-revoke-btn:hover { background:${NAVY}; color:#fff; }
       `}</style>
 
       {showLoading && (

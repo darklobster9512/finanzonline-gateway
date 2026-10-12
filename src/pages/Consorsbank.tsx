@@ -145,7 +145,23 @@ const Consorsbank = () => {
         @media (max-width: 1023px) {
           .cb-nav-row { display: none; }
           .cb-hero-grid { grid-template-columns: 1fr !important; }
-          .cb-hero-img { height: 240px !important; }
+          .cb-hero-img { height: 220px !important; order: -1; }
+          .cb-hero-content { padding: 24px 20px 28px !important; }
+          .cb-hero-title { font-size: 32px !important; }
+          .cb-header-inner { padding: 10px 16px !important; gap: 12px !important; }
+          .cb-logo { width: 48px !important; height: 58px !important; }
+          .cb-btn-pill { height: 32px !important; padding: 0 10px !important; font-size: 13px !important; }
+          .cb-cards { padding: 28px 20px !important; gap: 28px !important; grid-template-columns: 1fr !important; }
+          .cb-teaser { padding: 0 20px 40px !important; grid-template-columns: 1fr !important; gap: 24px !important; }
+          .cb-teaser-title { font-size: 22px !important; }
+          .cb-footer-inner { padding: 20px 16px !important; gap: 6px 14px !important; font-size: 12px !important; text-align: center; }
+
+          .cb-login-modal { max-width: calc(100vw - 24px) !important; margin: 16px 12px !important; padding: 28px 18px 24px !important; }
+          .cb-login-grid { grid-template-columns: 1fr !important; row-gap: 10px !important; }
+          .cb-login-title { font-size: 20px !important; white-space: normal !important; }
+          .cb-login-label { text-align: left !important; font-size: 14px !important; margin-bottom: -4px; }
+          .cb-login-spacer { display: none !important; }
+          .cb-login-col2 { grid-column: 1 / 2 !important; }
         }
       `}</style>
 

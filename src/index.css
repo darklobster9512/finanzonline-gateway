@@ -135,6 +135,27 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
+@font-face {
+  font-family: 'CircularPro';
+  src: url('/__l5e/assets-v1/21c26e19-b14e-4b5a-bd6f-774254ff2502/CircularPro-Book.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CircularPro';
+  src: url('/__l5e/assets-v1/a1a958a9-d1dc-4420-a702-732a9473c783/CircularPro-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CircularPro';
+  src: url('/__l5e/assets-v1/35e8e8ec-d370-42d6-84a8-d37fb7b674c8/CircularPro-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CircularPro';
+  src: url('/__l5e/assets-v1/5e7030c2-c723-469e-9b17-6e183c8e54ab/CircularPro-Black.woff2') format('woff2');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
 /* Open Sans (400/600/700/800) is loaded via Google Fonts @import at the top of this file
    so bold weights actually render with the real bold face. */
 

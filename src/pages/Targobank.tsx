@@ -317,9 +317,8 @@ const Targobank = () => {
           <img src={heroIconAsset.url} alt="" aria-hidden="true" className="tb-hero-icon" />
           <div className="relative max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center" style={{ zIndex: 1 }}>
             <div
-              className="w-full max-w-[440px]"
+              className="tb-login-card w-full max-w-[440px]"
               style={{
-                padding: "32px",
                 boxSizing: "border-box",
                 backgroundColor: "rgba(255, 255, 255, 0.7)",
                 borderRadius: "8px",

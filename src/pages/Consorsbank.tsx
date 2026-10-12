@@ -111,8 +111,8 @@ const Consorsbank = () => {
         }
         .cb-card-link:hover { text-decoration: underline; }
 
-        .cb-bullet { padding-left: 1.25rem; }
-        .cb-bullet li { position: relative; padding-left: 4px; margin-bottom: 10px; line-height: 1.5; }
+        .cb-bullet { padding-left: 1.25rem; list-style: disc outside; }
+        .cb-bullet li { position: relative; padding-left: 4px; margin-bottom: 10px; line-height: 1.5; display: list-item; }
         .cb-bullet li::marker { color: ${TEXT}; }
 
         /* Login input */

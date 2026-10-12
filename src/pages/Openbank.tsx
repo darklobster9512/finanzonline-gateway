@@ -88,7 +88,7 @@ const Openbank = () => {
           left: 14px;
           top: 50%;
           transform: translateY(-50%);
-          font-size: 13px;
+          font-size: 14px;
           color: #6b6b6b;
           pointer-events: none;
           transition: top 120ms ease, font-size 120ms ease, transform 120ms ease;

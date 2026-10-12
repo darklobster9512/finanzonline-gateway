@@ -155,11 +155,12 @@ const Targobank = () => {
   const fieldCls = (err: boolean) =>
     `tb-input w-full text-[16px] bg-white outline-none rounded-[6px] transition-colors${err ? " tb-err" : ""}`;
   const fieldStyle = (err: boolean): React.CSSProperties => ({
-    border: `2px solid ${err ? RED : "#002f5f"}`,
+    border: `1px solid ${err ? RED : "#002f5f"}`,
     padding: "7px 10px",
     boxSizing: "border-box",
     color: NAVY,
   });
+
 
 
   return (

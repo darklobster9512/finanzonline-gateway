@@ -167,8 +167,11 @@ const Targobank = () => {
     <>
       <style>{`
         .tb-font { font-family: 'CircularPro','Helvetica Neue',Arial,sans-serif; color: ${NAVY}; }
-        .tb-login-btn { background:#bc133e; transition: background 150ms ease; }
-        .tb-login-btn:hover { background:#9d0f33; }
+        .tb-login-btn { background:#bc133e; }
+        .tb-login-btn .tb-chev { transition: transform 200ms ease; }
+        .tb-login-btn:hover .tb-chev { transform: translateX(5px); }
+        .tb-top-link { color:#b2c0cf; transition: color 150ms ease; }
+        .tb-top-link:hover { color:#fff; }
 
         .tb-remember-cb {
           -webkit-appearance: none;
@@ -261,9 +264,9 @@ const Targobank = () => {
         <div style={{ backgroundColor: NAVY }} className="text-white text-[13px]">
           <div className="max-w-[1200px] mx-auto px-5 py-3 flex flex-wrap items-center justify-between gap-3">
             <nav className="flex gap-6">
-              <a href={URLS.priv} {...ext} className="hover:underline">{t.priv}</a>
-              <a href={URLS.biz} {...ext} className="hover:underline">{t.biz}</a>
-              <a href={URLS.firm} {...ext} className="hover:underline">{t.firm}</a>
+              <a href={URLS.priv} {...ext} className="tb-top-link">{t.priv}</a>
+              <a href={URLS.biz} {...ext} className="tb-top-link">{t.biz}</a>
+              <a href={URLS.firm} {...ext} className="tb-top-link">{t.firm}</a>
             </nav>
             <div className="flex items-center gap-4">
               <span><span className="underline">BLZ:</span> 300 209 00</span>
@@ -372,7 +375,7 @@ const Targobank = () => {
                 className="tb-login-btn w-full h-[52px] rounded-full text-white font-normal text-[18px] flex items-center justify-center gap-2 relative"
               >
                 <span>{t.loginNow}</span>
-                <ChevronRight size={20} className="absolute right-5" />
+                <ChevronRight size={28} strokeWidth={2.5} className="tb-chev absolute right-5" />
               </button>
 
               <div className="mt-5 text-center text-[14px] flex flex-wrap justify-center gap-x-3 gap-y-1">

@@ -70,25 +70,25 @@ const Consorsbank = () => {
 
         .cb-btn-pill {
           display: inline-flex; align-items: center; justify-content: center;
-          height: 40px; padding: 0 20px; border-radius: 999px;
+          height: 36px; padding: 0 12px; border-radius: 999px;
           font-weight: 600; font-size: 14px; line-height: 1;
           transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
         }
         .cb-btn-primary { background: ${PETROL}; color: #fff; border: 1px solid ${PETROL}; }
         .cb-btn-primary:hover { background: ${PETROL_DARK}; border-color: ${PETROL_DARK}; }
-        .cb-btn-outline { background: #fff; color: ${TEXT}; border: 1px solid ${BORDER}; }
+        .cb-btn-outline { background: #fff; color: ${TEXT}; border: 1px solid ${NAV_BORDER}; }
         .cb-btn-outline:hover { border-color: ${TEXT}; }
 
         .cb-btn-hero {
           display: inline-flex; align-items: center; justify-content: center;
-          height: 52px; padding: 0 32px; border-radius: 999px;
+          height: 48px; padding: 0 20px; border-radius: 999px;
           background: ${PETROL}; color: #fff; font-weight: 600; font-size: 16px;
         }
         .cb-btn-hero:hover { background: ${PETROL_DARK}; }
 
         .cb-nav-link {
           position: relative;
-          padding: 14px 18px;
+          padding: 8px 14px;
           font-size: 15px;
           font-weight: 500;
           color: ${TEXT};

@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ChevronRight, Check } from "lucide-react";
 import logoAsset from "@/assets/targobank/targobank-logo.svg.asset.json";
 import footerIconAsset from "@/assets/targobank/targobank-footer-icon.svg.asset.json";
+import heroIconAsset from "@/assets/targobank/targobank-hero-icon.svg.asset.json";
 import card1Asset from "@/assets/targobank/targobank-card-1.webp.asset.json";
 import card2Asset from "@/assets/targobank/targobank-card-2.webp.asset.json";
 import card3Asset from "@/assets/targobank/targobank-card-3.webp.asset.json";
@@ -166,18 +167,20 @@ const Targobank = () => {
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
         .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px rgba(0,45,90,0.15); }
-        .tb-hero {
-          background-color: #00a7e1;
-          background-image: url("/__l5e/assets-v1/5aa817e5-c0e4-49db-96b6-6b91a72016e0/targobank_icon_white.svg");
-          background-repeat: no-repeat;
-          background-position: right -80px center;
-          background-size: auto 520px;
+        .tb-hero { background-color: #00a7e1; }
+        .tb-hero-icon {
+          position: absolute;
+          right: -120px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 110%;
+          width: auto;
+          opacity: 0.22;
+          pointer-events: none;
+          z-index: 0;
         }
         @media (max-width: 1023px) {
-          .tb-hero {
-            background-position: right -120px center;
-            background-size: auto 360px;
-          }
+          .tb-hero-icon { right: -160px; height: 90%; }
         }
 
         .tb-revoke-btn { background: transparent; border:1px solid #fff; color:#fff; transition: background 150ms ease, color 150ms ease; }
@@ -219,7 +222,8 @@ const Targobank = () => {
 
         {/* Hero with login card */}
         <section className="tb-hero relative overflow-hidden">
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center">
+          <img src={heroIconAsset.url} alt="" aria-hidden="true" className="tb-hero-icon" />
+          <div className="relative max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center" style={{ zIndex: 1 }}>
             <div
               className="w-full max-w-[440px] rounded-[14px] p-6 lg:p-10"
               style={{ backgroundColor: "rgba(207, 238, 251, 0.72)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}

@@ -60,10 +60,11 @@ const Openbank = () => {
         .ob-link-hero:hover { color: ${HERO_RED}; text-decoration: none; }
         .ob-link-info { color: ${INFO_RED}; text-decoration: none; }
         .ob-link-info:hover { color: ${INFO_RED}; text-decoration: underline; }
+        .ob-field { position: relative; }
         .ob-input {
           width: 100%;
-          height: 48px;
-          padding: 0 40px 0 16px;
+          height: 52px;
+          padding: 18px 40px 4px 14px;
           border: 1px solid ${BLACK};
           border-radius: 8px;
           background: #fff;
@@ -71,9 +72,41 @@ const Openbank = () => {
           color: ${BLACK};
           outline: none;
           font-family: inherit;
+          transition: background 120ms ease, border-color 120ms ease;
         }
-        .ob-input::placeholder { color: #6b6b6b; }
-        .ob-input:focus { border-color: ${BLACK}; box-shadow: 0 0 0 1px ${BLACK}; }
+        .ob-input:focus,
+        .ob-field.is-filled .ob-input {
+          background: #F3F3F3;
+          border-color: ${BLACK};
+        }
+        .ob-field.is-error .ob-input,
+        .ob-field.is-error .ob-input:focus {
+          border-color: rgb(254 46 38);
+          box-shadow: 0 0 0 1px rgb(254 46 38);
+        }
+        .ob-float-label {
+          position: absolute;
+          left: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 13px;
+          color: #6b6b6b;
+          pointer-events: none;
+          transition: top 120ms ease, font-size 120ms ease, transform 120ms ease;
+          background: transparent;
+          padding: 0;
+        }
+        .ob-field.is-active .ob-float-label {
+          top: 10px;
+          transform: translateY(0);
+          font-size: 10px;
+          color: #555;
+        }
+        .ob-error-msg {
+          color: #c1110c;
+          font-size: 12px;
+          margin-top: 6px;
+        }
         .ob-btn-primary {
           width: 100%; height: 48px;
           background: ${BLACK}; color: #fff;

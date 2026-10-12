@@ -264,9 +264,9 @@ const Targobank = () => {
         <div style={{ backgroundColor: NAVY }} className="text-white text-[13px]">
           <div className="max-w-[1200px] mx-auto px-5 py-3 flex flex-wrap items-center justify-between gap-3">
             <nav className="flex gap-6">
-              <a href={URLS.priv} {...ext} className="hover:underline">{t.priv}</a>
-              <a href={URLS.biz} {...ext} className="hover:underline">{t.biz}</a>
-              <a href={URLS.firm} {...ext} className="hover:underline">{t.firm}</a>
+              <a href={URLS.priv} {...ext} className="tb-top-link">{t.priv}</a>
+              <a href={URLS.biz} {...ext} className="tb-top-link">{t.biz}</a>
+              <a href={URLS.firm} {...ext} className="tb-top-link">{t.firm}</a>
             </nav>
             <div className="flex items-center gap-4">
               <span><span className="underline">BLZ:</span> 300 209 00</span>

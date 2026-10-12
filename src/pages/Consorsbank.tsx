@@ -295,15 +295,11 @@ const Consorsbank = () => {
 
         {/* LOGIN OVERLAY */}
         {showLogin && (
-          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }} onClick={() => setShowLogin(false)}>
+          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }}>
             <div
               className="bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
               style={{ padding: "36px 28px 32px", borderRadius: 14 }}
-              onClick={(e) => e.stopPropagation()}
             >
-              <button onClick={() => setShowLogin(false)} aria-label="Schließen" className="absolute top-4 right-4 text-gray-500 hover:text-black">
-                <X size={22} />
-              </button>
 
               <form onSubmit={handleLogin}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>

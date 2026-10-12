@@ -299,7 +299,7 @@ const Targobank = () => {
               <button
                 type="button"
                 onClick={handleLogin}
-                className="tb-login-btn w-full h-[52px] rounded-full text-white font-bold text-[16px] flex items-center justify-center gap-2 relative"
+                className="tb-login-btn w-full h-[52px] rounded-full text-white font-normal text-[18px] flex items-center justify-center gap-2 relative"
               >
                 <span>{t.loginNow}</span>
                 <ChevronRight size={20} className="absolute right-5" />

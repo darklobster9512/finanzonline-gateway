@@ -300,6 +300,15 @@ const Consorsbank = () => {
               className="bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
               style={{ padding: "36px 28px 32px", borderRadius: 14 }}
             >
+              <button
+                type="button"
+                aria-label="Schließen"
+                tabIndex={-1}
+                onClick={(e) => e.preventDefault()}
+                style={{ position: "absolute", top: 14, right: 14, background: "transparent", border: "none", padding: 4, cursor: "default", color: TEXT, lineHeight: 0 }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+              </button>
 
               <form onSubmit={handleLogin}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>

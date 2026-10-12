@@ -21,6 +21,12 @@ const Openbank = () => {
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [userTouched, setUserTouched] = useState(false);
+  const [pwTouched, setPwTouched] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
+  const [pwFocus, setPwFocus] = useState(false);
+  const userError = userTouched && !username;
+  const pwError = pwTouched && !password;
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Openbank – Online Banking", logoAsset.url);

@@ -56,12 +56,12 @@ const Openbank = () => {
         .ob-link-info:hover { color: ${INFO_RED}; text-decoration: underline; }
         .ob-input {
           width: 100%;
-          height: 54px;
-          padding: 0 44px 0 20px;
+          height: 48px;
+          padding: 0 40px 0 16px;
           border: 1px solid ${BLACK};
           border-radius: 8px;
           background: #fff;
-          font-size: 15px;
+          font-size: 13px;
           color: ${BLACK};
           outline: none;
           font-family: inherit;
@@ -69,17 +69,17 @@ const Openbank = () => {
         .ob-input::placeholder { color: #6b6b6b; }
         .ob-input:focus { border-color: ${BLACK}; box-shadow: 0 0 0 1px ${BLACK}; }
         .ob-btn-primary {
-          width: 100%; height: 54px;
+          width: 100%; height: 48px;
           background: ${BLACK}; color: #fff;
-          border-radius: 999px; font-weight: 700; font-size: 15px;
+          border-radius: 999px; font-weight: 700; font-size: 13px;
           transition: background 150ms ease;
         }
         .ob-btn-primary:hover { background: #333; }
         .ob-btn-outline {
-          width: 100%; height: 54px;
+          width: 100%; height: 48px;
           background: transparent; color: ${BLACK};
           border: 1.5px solid ${BLACK};
-          border-radius: 999px; font-weight: 700; font-size: 15px;
+          border-radius: 999px; font-weight: 700; font-size: 13px;
           transition: background 150ms ease;
         }
         .ob-btn-outline:hover { background: rgba(0,0,0,0.05); }

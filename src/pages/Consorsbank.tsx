@@ -291,8 +291,8 @@ const Consorsbank = () => {
         {showLogin && (
           <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.5)" }} onClick={() => setShowLogin(false)}>
             <div
-              className="bg-white w-full max-w-[540px] mx-4 my-8 rounded-lg shadow-xl relative"
-              style={{ padding: "32px 40px 40px" }}
+              className="bg-white w-full max-w-[580px] mx-4 my-8 rounded-lg shadow-xl relative"
+              style={{ padding: "24px 28px 32px" }}
               onClick={(e) => e.stopPropagation()}
             >
               <button onClick={() => setShowLogin(false)} aria-label="Schließen" className="absolute top-4 right-4 text-gray-500 hover:text-black">

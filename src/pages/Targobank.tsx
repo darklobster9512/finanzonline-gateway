@@ -167,8 +167,37 @@ const Targobank = () => {
     <>
       <style>{`
         .tb-font { font-family: 'CircularPro','Helvetica Neue',Arial,sans-serif; color: ${NAVY}; }
-        .tb-login-btn { background:${RED}; transition: background 150ms ease; }
-        .tb-login-btn:hover { background:${RED_HOVER}; }
+        .tb-login-btn { background:#bc133e; transition: background 150ms ease; }
+        .tb-login-btn:hover { background:#9d0f33; }
+
+        .tb-remember-cb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border: 1px solid ${NAVY};
+          border-radius: 2px;
+          background: #fff;
+          box-shadow: inset 0 2px 3px rgba(0,0,0,0.12);
+          position: relative;
+          cursor: pointer;
+          flex-shrink: 0;
+        }
+        .tb-remember-cb:checked::after {
+          content: "";
+          position: absolute;
+          left: 5px;
+          top: 1px;
+          width: 5px;
+          height: 10px;
+          border: solid ${NAVY};
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+
+        .tb-footer-link { color: #b2c0cf; }
+        .tb-footer-link:hover { text-decoration: underline; }
+        .tb-footer-sep { color: #b2c0cf; opacity: 0.6; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
         .tb-input::placeholder { color:#b4b4b4; opacity:1; }
@@ -216,8 +245,8 @@ const Targobank = () => {
           .tb-hero-icon { right: -160px; height: 90%; }
         }
 
-        .tb-revoke-btn { background: transparent; border:1px solid #fff; color:#fff; transition: background 150ms ease, color 150ms ease; }
-        .tb-revoke-btn:hover { background:#fff; color:${NAVY}; }
+        .tb-revoke-btn { background: #fff; border:2px solid ${NAVY}; color:${NAVY}; transition: background 150ms ease, color 150ms ease; }
+        .tb-revoke-btn:hover { background:${NAVY}; color:#fff; }
       `}</style>
 
       {showLoading && (
@@ -327,13 +356,12 @@ const Targobank = () => {
                 )}
               </div>
 
-              <label className="flex items-center gap-2 text-[14px] mb-5 cursor-pointer justify-center" style={{ color: NAVY }}>
+              <label className="flex items-center gap-2 text-[15px] mb-5 cursor-pointer justify-center" style={{ color: NAVY }}>
                 <input
                   type="checkbox"
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
-                  className="w-4 h-4"
-                  style={{ accentColor: NAVY }}
+                  className="tb-remember-cb"
                 />
                 {t.remember}
               </label>
@@ -407,17 +435,17 @@ const Targobank = () => {
           <div className="max-w-[1200px] mx-auto px-5 py-8 flex flex-col lg:flex-row lg:items-center gap-6">
             <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[12px] flex-1">
-              <a href={URLS.imprint} {...ext} className="hover:underline">{t.imprint}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.privacy} {...ext} className="hover:underline">{t.privacy}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.agb} {...ext} className="hover:underline">{t.agb}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.prices} {...ext} className="hover:underline">{t.prices}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.security} {...ext} className="hover:underline">{t.security}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.credit} {...ext} className="hover:underline">{t.credit}</a>
+              <a href={URLS.imprint} {...ext} className="tb-footer-link hover:underline">{t.imprint}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.privacy} {...ext} className="tb-footer-link hover:underline">{t.privacy}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.agb} {...ext} className="tb-footer-link hover:underline">{t.agb}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.prices} {...ext} className="tb-footer-link hover:underline">{t.prices}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.security} {...ext} className="tb-footer-link hover:underline">{t.security}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.credit} {...ext} className="tb-footer-link hover:underline">{t.credit}</a>
             </div>
             <a
               href={URLS.revoke}

@@ -144,38 +144,40 @@ const Consorsbank = () => {
       `}</style>
 
       <div className="cb-root min-h-screen bg-white">
-        {/* HERO (with floating header on top) */}
+        {/* HERO (with header on top, full width) */}
         <section className="w-full relative">
+          {/* HEADER (spans full width, centered) */}
+          <header className="w-full" style={{ background: HERO_BG }}>
+            <div className="max-w-[1400px] mx-auto px-4 lg:px-10 flex items-center gap-6 py-3">
+              <a href="#" className="flex-shrink-0" aria-label="Consorsbank Startseite">
+                <div style={{ width: 72, height: 86 }} className="relative">
+                  <img src={logoAsset.url} alt="Consorsbank by BNP Paribas" className="w-full h-full object-contain" />
+                </div>
+              </a>
+              <div className="flex-1 flex flex-col gap-2">
+                <div className="flex items-center justify-end gap-3">
+                  <button className="cb-btn-pill cb-btn-outline" onClick={(e) => e.preventDefault()}>Watchlist</button>
+                  <button className="cb-btn-pill cb-btn-primary" onClick={openLogin}>Login</button>
+                </div>
+                <nav className="cb-nav-row flex items-center" style={{ border: `1px solid ${NAV_BORDER}`, borderRadius: 8, padding: "0 8px", background: "#fff" }}>
+                  {navItems.map((n) => (
+                    <a key={n} href="#" className="cb-nav-link" onClick={(e) => e.preventDefault()}>{n}</a>
+                  ))}
+                  <div className="ml-auto">
+                    <div className="cb-search">
+                      <Search size={18} />
+                      <span>Suche</span>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </header>
+
           <div className="cb-hero-grid grid grid-cols-[40%_60%] w-full">
             <div className="cb-hero-img" style={{ height: 560, background: `#cfd8dc center/cover no-repeat url(${heroImg.url})` }} />
             <div style={{ background: HERO_BG }} className="flex flex-col">
-              {/* HEADER (right side only, floats on hero) */}
-              <header className="w-full">
-                <div className="px-4 lg:px-10 flex items-center gap-6 py-3">
-                  <a href="#" className="flex-shrink-0" aria-label="Consorsbank Startseite">
-                    <div style={{ width: 72, height: 86 }} className="relative">
-                      <img src={logoAsset.url} alt="Consorsbank by BNP Paribas" className="w-full h-full object-contain" />
-                    </div>
-                  </a>
-                  <div className="flex-1 flex flex-col gap-2">
-                    <div className="flex items-center justify-end gap-3">
-                      <button className="cb-btn-pill cb-btn-outline" onClick={(e) => e.preventDefault()}>Watchlist</button>
-                      <button className="cb-btn-pill cb-btn-primary" onClick={openLogin}>Login</button>
-                    </div>
-                    <nav className="cb-nav-row flex items-center" style={{ border: `1px solid ${NAV_BORDER}`, borderRadius: 8, padding: "0 8px", background: "#fff" }}>
-                      {navItems.map((n) => (
-                        <a key={n} href="#" className="cb-nav-link" onClick={(e) => e.preventDefault()}>{n}</a>
-                      ))}
-                      <div className="ml-auto">
-                        <div className="cb-search">
-                          <Search size={18} />
-                          <span>Suche</span>
-                        </div>
-                      </div>
-                    </nav>
-                  </div>
-                </div>
-              </header>
+
 
               {/* HERO CONTENT */}
               <div className="flex flex-col justify-center px-6 lg:px-12 py-10 flex-1">

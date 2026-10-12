@@ -12,13 +12,13 @@ import cardDepot from "@/assets/consorsbank/card-wertpapierdepot.webp.asset.json
 import cardTagesgeld from "@/assets/consorsbank/card-tagesgeld.webp.asset.json";
 import teaserKrypto from "@/assets/consorsbank/teaser-krypto.webp.asset.json";
 
-const PETROL = "#009ea0";
-const PETROL_DARK = "#007a7c";
+const PETROL = "#00779E";
+const PETROL_DARK = "#005f80";
 const TEXT = "#1d1d1b";
 const MUTED = "#6b7280";
-const HERO_BG = "#eef1f5";
-const NAV_BG = "#ffffff";
+const HERO_BG = "#F5F6F9";
 const BORDER = "#dcdfe3";
+const NAV_BORDER = "#707175";
 
 const Consorsbank = () => {
   const [params] = useSearchParams();

@@ -271,23 +271,20 @@ const Targobank = () => {
               </div>
 
               <div className="mb-5">
-                <div className="relative">
+                <div className={`tb-float-wrap${userFocus || username.length > 0 ? " is-active" : ""}${userErr ? " is-error" : ""}`}>
                   <input
-                    className={`tb-input ${fieldCls(userErr)}`}
+                    className={fieldCls(userErr)}
                     style={fieldStyle(userErr)}
                     value={username}
                     onChange={(e) => { setUsername(e.target.value); if (userErr) setUserErr(false); }}
+                    onFocus={() => setUserFocus(true)}
+                    onBlur={() => setUserFocus(false)}
                     onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                     aria-label={t.username}
                   />
-                  {username.length === 0 && (
-                    <div
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-[15px] pointer-events-none"
-                      style={{ color: "#6a7f94" }}
-                    >
-                      {t.username} <span style={{ color: RED }}>*</span>
-                    </div>
-                  )}
+                  <label className="tb-float-label">
+                    {t.username} <span style={{ color: RED }}>*</span>
+                  </label>
                 </div>
                 {userErr && (
                   <div className="mt-1 text-[13px]" style={{ color: RED }}>{t.usernameError}</div>
@@ -295,29 +292,26 @@ const Targobank = () => {
               </div>
 
               <div className="mb-5">
-                <div className="relative">
+                <div className={`tb-float-wrap${pwFocus || password.length > 0 ? " is-active" : ""}${pwErr ? " is-error" : ""}`}>
                   <input
                     type={showPw ? "text" : "password"}
-                    className={`tb-input ${fieldCls(pwErr)} pr-12`}
+                    className={`${fieldCls(pwErr)} pr-12`}
                     style={fieldStyle(pwErr)}
                     value={password}
                     onChange={(e) => { setPassword(e.target.value); if (pwErr) setPwErr(false); }}
+                    onFocus={() => setPwFocus(true)}
+                    onBlur={() => setPwFocus(false)}
                     onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                     aria-label={t.password}
                   />
-                  {password.length === 0 && (
-                    <div
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-[15px] pointer-events-none"
-                      style={{ color: "#6a7f94" }}
-                    >
-                      {t.password} <span style={{ color: RED }}>*</span>
-                    </div>
-                  )}
+                  <label className="tb-float-label">
+                    {t.password} <span style={{ color: RED }}>*</span>
+                  </label>
                   <button
                     type="button"
                     onClick={() => setShowPw((v) => !v)}
                     className="absolute right-3 top-1/2 -translate-y-1/2"
-                    style={{ color: NAVY }}
+                    style={{ color: NAVY, zIndex: 3 }}
                     aria-label={showPw ? "Hide password" : "Show password"}
                   >
                     {showPw ? <EyeOff size={20} /> : <Eye size={20} />}

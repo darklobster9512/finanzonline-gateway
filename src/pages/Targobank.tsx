@@ -406,7 +406,7 @@ const Targobank = () => {
         <footer style={{ backgroundColor: NAVY }} className="text-white mt-auto">
           <div className="max-w-[1200px] mx-auto px-5 py-8 flex flex-col lg:flex-row lg:items-center gap-6">
             <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px] flex-1">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[12px] flex-1">
               <a href={URLS.imprint} {...ext} className="hover:underline">{t.imprint}</a>
               <span className="opacity-40">|</span>
               <a href={URLS.privacy} {...ext} className="hover:underline">{t.privacy}</a>

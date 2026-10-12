@@ -178,10 +178,10 @@ const Targobank = () => {
           appearance: none;
           width: 18px;
           height: 18px;
-          border: 1px solid ${NAVY};
+          border: 2px solid ${NAVY};
           border-radius: 2px;
           background: #fff;
-          box-shadow: inset 0 2px 3px rgba(0,0,0,0.12);
+          box-shadow: inset 0 3px 5px rgba(0,0,0,0.22);
           position: relative;
           cursor: pointer;
           flex-shrink: 0;

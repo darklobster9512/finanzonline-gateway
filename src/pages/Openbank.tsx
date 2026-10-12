@@ -148,13 +148,13 @@ const Openbank = () => {
                 </div>
 
                 <div>
-                  <a href="#" className="ob-link-hero font-bold text-[14px]">Passwort zurücksetzen</a>
+                  <a href="#" className="ob-link-hero font-bold text-[12px]">Passwort zurücksetzen</a>
                 </div>
 
                 <button type="submit" className="ob-btn-primary">Einloggen</button>
 
                 <div className="text-center">
-                  <a href="#" className="ob-link-hero font-bold text-[14px]">Signaturverfahren einrichten</a>
+                  <a href="#" className="ob-link-hero font-bold text-[12px]">Signaturverfahren einrichten</a>
                 </div>
 
                 <button type="button" className="ob-btn-outline">Konto eröffnen</button>

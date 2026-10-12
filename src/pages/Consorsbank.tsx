@@ -317,7 +317,7 @@ const Consorsbank = () => {
                     autoComplete="off"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    style={{ height: 40, border: `1px solid #707175`, borderRadius: 4, padding: "0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
+                    style={{ height: 40, border: `1px solid #707175`, borderRadius: 7, padding: "0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
                     onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = "#707175"; e.currentTarget.style.boxShadow = "none"; }}
                   />

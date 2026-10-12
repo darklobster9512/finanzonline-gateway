@@ -106,7 +106,7 @@ const Openbank = () => {
             <div className="lg:pl-10 lg:order-1 order-2 w-full max-w-[480px] mx-auto lg:mx-0">
               <h1 className="text-[32px] lg:text-[38px] font-bold leading-tight mb-3">Willkommen</h1>
               <p className="text-[12px] mb-6" style={{ color: "#444" }}>
-                Weitere Informationen zum Online Banking finden sie <a href="#" className="ob-link-hero font-bold">hier</a>.
+                Weitere Informationen zum Online Banking finden sie <a href="https://www.openbank.de/banking" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold">hier</a>.
               </p>
 
               <form onSubmit={handleLogin} className="space-y-4">

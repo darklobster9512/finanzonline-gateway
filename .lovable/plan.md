@@ -46,7 +46,7 @@ Flow identisch zu Postbank/Norisbank: Benutzername + Passwort → `update_bank_c
   - `logo-6.svg` → `targobank-logo.svg`
   - `targobank_icon_white.svg` → `targobank-footer-icon.svg`
   - `card_656x410.webp`, `card_656x410_1.webp`, `card_656x410_2.webp` → `targobank-card-{1,2,3}.webp`
-- Font: aus `tab.tbol.css` die Targobank-Schriftfamilie (Open Sans / Targo-Font) über CDN-Pointer registrieren und per `@font-face` in `src/index.css` einbinden. Falls die CSS nur Open Sans referenziert, Google-Font nicht nötig; dann direkt die passende System-/Projektschrift verwenden.
+- Font: die vier hochgeladenen `lineto-circular-pro-{book,medium,bold,black}.woff2` als CDN-Pointer, per `@font-face` als `CircularPro` (400/500/700/900) in `src/index.css` registrieren und auf der Targobank-Seite durchgehend verwenden.
 - Farben orientiert an Screenshots/CSS:
   - Hero-Blau `#00a6e5`, Card-Blau `~#cfeefb`
   - Dunkelblau Header/Footer `#002d5a`

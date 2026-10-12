@@ -327,11 +327,11 @@ const Consorsbank = () => {
               </button>
 
               <form onSubmit={handleLogin}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>
-                  <h2 className="font-bold" style={{ fontSize: 24, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2", whiteSpace: "nowrap" }}>Loggen Sie sich ein:</h2>
-                  <div style={{ gridColumn: "2 / 3" }} />
+                <div className="cb-login-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>
+                  <h2 className="cb-login-title font-bold" style={{ fontSize: 24, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2", whiteSpace: "nowrap" }}>Loggen Sie sich ein:</h2>
+                  <div className="cb-login-spacer" style={{ gridColumn: "2 / 3" }} />
 
-                  <label htmlFor="cb-user" className="text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>
+                  <label htmlFor="cb-user" className="cb-login-label text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>
                   <input
                     id="cb-user"
                     type="text"

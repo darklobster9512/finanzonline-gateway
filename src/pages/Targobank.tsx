@@ -167,8 +167,37 @@ const Targobank = () => {
     <>
       <style>{`
         .tb-font { font-family: 'CircularPro','Helvetica Neue',Arial,sans-serif; color: ${NAVY}; }
-        .tb-login-btn { background:${RED}; transition: background 150ms ease; }
-        .tb-login-btn:hover { background:${RED_HOVER}; }
+        .tb-login-btn { background:#bc133e; transition: background 150ms ease; }
+        .tb-login-btn:hover { background:#9d0f33; }
+
+        .tb-remember-cb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border: 1px solid ${NAVY};
+          border-radius: 2px;
+          background: #fff;
+          box-shadow: inset 0 2px 3px rgba(0,0,0,0.12);
+          position: relative;
+          cursor: pointer;
+          flex-shrink: 0;
+        }
+        .tb-remember-cb:checked::after {
+          content: "";
+          position: absolute;
+          left: 5px;
+          top: 1px;
+          width: 5px;
+          height: 10px;
+          border: solid ${NAVY};
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+
+        .tb-footer-link { color: #b2c0cf; }
+        .tb-footer-link:hover { text-decoration: underline; }
+        .tb-footer-sep { color: #b2c0cf; opacity: 0.6; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
         .tb-input::placeholder { color:#b4b4b4; opacity:1; }

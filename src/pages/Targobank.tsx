@@ -273,7 +273,7 @@ const Targobank = () => {
                 <span style={{ color: RED }}>*</span> {t.required}
               </div>
 
-              <div className="mb-5">
+              <div className="mb-7">
                 <div className={`tb-float-wrap${userFocus || username.length > 0 ? " is-active" : ""}${userErr ? " is-error" : ""}`}>
                   <input
                     className={fieldCls(userErr)}

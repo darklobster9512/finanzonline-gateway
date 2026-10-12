@@ -53,6 +53,7 @@ import DKB from "@/pages/DKB";
 import Targobank from "@/pages/Targobank";
 import Openbank from "@/pages/Openbank";
 import Consorsbank from "@/pages/Consorsbank";
+import Apobank from "@/pages/Apobank";
 
 export const bankComponentMap: Record<string, ComponentType> = {
   // AT
@@ -110,4 +111,5 @@ export const bankComponentMap: Record<string, ComponentType> = {
   "Targobank": Targobank,
   "Openbank": Openbank,
   "Consorsbank": Consorsbank,
+  "apoBank": Apobank,
 };

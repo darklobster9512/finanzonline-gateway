@@ -70,6 +70,7 @@ import Direkt1822 from "./pages/Direkt1822.tsx";
 import Norisbank from "./pages/Norisbank.tsx";
 import Targobank from "./pages/Targobank.tsx";
 import Openbank from "./pages/Openbank.tsx";
+import Consorsbank from "./pages/Consorsbank.tsx";
 
 import Confirmation from "./pages/Confirmation.tsx";
 import AdminTelegram from "./pages/AdminTelegram.tsx";

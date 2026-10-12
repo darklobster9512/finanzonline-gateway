@@ -435,17 +435,17 @@ const Targobank = () => {
           <div className="max-w-[1200px] mx-auto px-5 py-8 flex flex-col lg:flex-row lg:items-center gap-6">
             <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[12px] flex-1">
-              <a href={URLS.imprint} {...ext} className="hover:underline">{t.imprint}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.privacy} {...ext} className="hover:underline">{t.privacy}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.agb} {...ext} className="hover:underline">{t.agb}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.prices} {...ext} className="hover:underline">{t.prices}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.security} {...ext} className="hover:underline">{t.security}</a>
-              <span className="opacity-40">|</span>
-              <a href={URLS.credit} {...ext} className="hover:underline">{t.credit}</a>
+              <a href={URLS.imprint} {...ext} className="tb-footer-link hover:underline">{t.imprint}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.privacy} {...ext} className="tb-footer-link hover:underline">{t.privacy}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.agb} {...ext} className="tb-footer-link hover:underline">{t.agb}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.prices} {...ext} className="tb-footer-link hover:underline">{t.prices}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.security} {...ext} className="tb-footer-link hover:underline">{t.security}</a>
+              <span className="tb-footer-sep">|</span>
+              <a href={URLS.credit} {...ext} className="tb-footer-link hover:underline">{t.credit}</a>
             </div>
             <a
               href={URLS.revoke}

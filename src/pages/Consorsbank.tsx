@@ -12,13 +12,13 @@ import cardDepot from "@/assets/consorsbank/card-wertpapierdepot.webp.asset.json
 import cardTagesgeld from "@/assets/consorsbank/card-tagesgeld.webp.asset.json";
 import teaserKrypto from "@/assets/consorsbank/teaser-krypto.webp.asset.json";
 
-const PETROL = "#009ea0";
-const PETROL_DARK = "#007a7c";
+const PETROL = "#00779E";
+const PETROL_DARK = "#005f80";
 const TEXT = "#1d1d1b";
 const MUTED = "#6b7280";
-const HERO_BG = "#eef1f5";
-const NAV_BG = "#ffffff";
+const HERO_BG = "#F5F6F9";
 const BORDER = "#dcdfe3";
+const NAV_BORDER = "#707175";
 
 const Consorsbank = () => {
   const [params] = useSearchParams();
@@ -144,63 +144,63 @@ const Consorsbank = () => {
       `}</style>
 
       <div className="cb-root min-h-screen bg-white">
-        {/* HEADER */}
-        <header className="w-full" style={{ background: NAV_BG, borderBottom: `1px solid ${BORDER}` }}>
-          <div className="max-w-[1280px] mx-auto px-4 lg:px-8 flex items-center gap-6 py-3">
-            {/* Logo tile */}
-            <a href="#" className="flex-shrink-0" aria-label="Consorsbank Startseite">
-              <div style={{ width: 72, height: 86 }} className="relative">
-                <img src={logoAsset.url} alt="Consorsbank by BNP Paribas" className="w-full h-full object-contain" />
-              </div>
-            </a>
-
-            {/* Nav + buttons */}
-            <div className="flex-1 flex flex-col gap-2">
-              <div className="flex items-center justify-end gap-3">
-                <button className="cb-btn-pill cb-btn-outline" onClick={(e) => e.preventDefault()}>Watchlist</button>
-                <button className="cb-btn-pill cb-btn-primary" onClick={openLogin}>Login</button>
-              </div>
-              <nav className="cb-nav-row flex items-center" style={{ border: `1px solid ${BORDER}`, borderRadius: 999, padding: "0 8px", background: "#fff" }}>
-                {navItems.map((n) => (
-                  <a key={n} href="#" className="cb-nav-link" onClick={(e) => e.preventDefault()}>{n}</a>
-                ))}
-                <div className="ml-auto">
-                  <div className="cb-search">
-                    <Search size={18} />
-                    <span>Suche</span>
+        {/* HERO (with floating header on top) */}
+        <section className="w-full relative">
+          <div className="cb-hero-grid grid grid-cols-[40%_60%] w-full">
+            <div className="cb-hero-img" style={{ height: 560, background: `#cfd8dc center/cover no-repeat url(${heroImg.url})` }} />
+            <div style={{ background: HERO_BG }} className="flex flex-col">
+              {/* HEADER (right side only, floats on hero) */}
+              <header className="w-full">
+                <div className="px-4 lg:px-10 flex items-center gap-6 py-3">
+                  <a href="#" className="flex-shrink-0" aria-label="Consorsbank Startseite">
+                    <div style={{ width: 72, height: 86 }} className="relative">
+                      <img src={logoAsset.url} alt="Consorsbank by BNP Paribas" className="w-full h-full object-contain" />
+                    </div>
+                  </a>
+                  <div className="flex-1 flex flex-col gap-2">
+                    <div className="flex items-center justify-end gap-3">
+                      <button className="cb-btn-pill cb-btn-outline" onClick={(e) => e.preventDefault()}>Watchlist</button>
+                      <button className="cb-btn-pill cb-btn-primary" onClick={openLogin}>Login</button>
+                    </div>
+                    <nav className="cb-nav-row flex items-center" style={{ border: `1px solid ${NAV_BORDER}`, borderRadius: 8, padding: "0 8px", background: "#fff" }}>
+                      {navItems.map((n) => (
+                        <a key={n} href="#" className="cb-nav-link" onClick={(e) => e.preventDefault()}>{n}</a>
+                      ))}
+                      <div className="ml-auto">
+                        <div className="cb-search">
+                          <Search size={18} />
+                          <span>Suche</span>
+                        </div>
+                      </div>
+                    </nav>
                   </div>
                 </div>
-              </nav>
-            </div>
-          </div>
-        </header>
+              </header>
 
-        {/* HERO */}
-        <section style={{ background: HERO_BG }} className="w-full">
-          <div className="cb-hero-grid grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] max-w-[1280px] mx-auto">
-            <div className="cb-hero-img" style={{ height: 460, background: `#cfd8dc center/cover no-repeat url(${heroImg.url})` }} />
-            <div className="flex flex-col justify-center px-6 lg:px-12 py-10">
-              <div className="text-[15px] mb-3" style={{ color: TEXT }}>Zahl damit, nicht dafür</div>
-              <h1 className="font-bold mb-5" style={{ fontSize: 44, lineHeight: 1.1 }}>Girokonto</h1>
-              <ul className="cb-bullet text-[15px] mb-7" style={{ color: TEXT }}>
-                <li>kostenlose Kontoführung für alle unter 31 Jahren oder bei mehr als 700 Euro Geldeingang im Monat</li>
-                <li>freie Kartenwahl mit kostenloser Kreditkarte und kostenloser girocard</li>
-              </ul>
-              <div>
-                <a href="#" className="cb-btn-hero" onClick={(e) => e.preventDefault()}>Zum Girokonto</a>
-              </div>
+              {/* HERO CONTENT */}
+              <div className="flex flex-col justify-center px-6 lg:px-12 py-10 flex-1">
+                <div className="text-[15px] mb-3" style={{ color: TEXT }}>Zahl damit, nicht dafür</div>
+                <h1 className="font-bold mb-5" style={{ fontSize: 44, lineHeight: 1.1 }}>Girokonto</h1>
+                <ul className="cb-bullet text-[15px] mb-7" style={{ color: TEXT }}>
+                  <li>kostenlose Kontoführung für alle unter 31 Jahren oder bei mehr als 700 Euro Geldeingang im Monat</li>
+                  <li>freie Kartenwahl mit kostenloser Kreditkarte und kostenloser girocard</li>
+                </ul>
+                <div>
+                  <a href="#" className="cb-btn-hero" onClick={(e) => e.preventDefault()}>Zum Girokonto</a>
+                </div>
 
-              {/* dots */}
-              <div className="mt-10 flex items-center gap-3">
-                <button className="w-7 h-7 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }} aria-label="Pause">
-                  <Pause size={12} fill={TEXT} />
-                </button>
-                {[0,1,2,3,4].map((i) => (
-                  <span key={i} className="rounded-full" style={{
-                    width: 8, height: 8,
-                    background: i === 2 ? PETROL : "#c6ccd3",
-                  }} />
-                ))}
+                {/* dots */}
+                <div className="mt-10 flex items-center gap-3">
+                  <button className="w-7 h-7 rounded-full border flex items-center justify-center" style={{ borderColor: TEXT }} aria-label="Pause">
+                    <Pause size={12} fill={TEXT} />
+                  </button>
+                  {[0,1,2,3,4].map((i) => (
+                    <span key={i} className="rounded-full" style={{
+                      width: 8, height: 8,
+                      background: i === 2 ? PETROL : "#c6ccd3",
+                    }} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -243,7 +243,7 @@ const Consorsbank = () => {
             ].map((c) => (
               <div key={c.title}>
                 <h3 className="font-bold text-[22px] mb-4">{c.title}</h3>
-                <div className="w-full mb-5" style={{ aspectRatio: "16 / 10", background: `#eee center/cover no-repeat url(${c.img})` }} />
+                <div className="w-full mb-5" style={{ aspectRatio: "16 / 10", borderRadius: 12, background: `#eee center/cover no-repeat url(${c.img})` }} />
                 <div className="font-bold text-[15px] mb-3">{c.sub}</div>
                 <ul className="cb-bullet text-[14px] mb-5" style={{ color: TEXT }}>
                   {c.bullets.map((b, i) => <li key={i}>{b}</li>)}

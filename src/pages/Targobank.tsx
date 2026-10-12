@@ -505,17 +505,17 @@ const Targobank = () => {
 
           {/* Mobile footer: 20/80 layout */}
           <div className="lg:hidden px-5 py-8">
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <div className="w-1/5 flex-shrink-0">
-                <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
+                <img src={footerIconAsset.url} alt="" className="h-16 w-auto" />
               </div>
               <div className="w-4/5 flex flex-col gap-3 text-[13px]">
-                <a href={URLS.imprint} {...ext} className="tb-footer-link">{t.imprint}</a>
-                <a href={URLS.privacy} {...ext} className="tb-footer-link">{t.privacy}</a>
-                <a href={URLS.agb} {...ext} className="tb-footer-link">{t.agb}</a>
-                <a href={URLS.prices} {...ext} className="tb-footer-link">{t.prices}</a>
-                <a href={URLS.security} {...ext} className="tb-footer-link">{t.security}</a>
-                <a href={URLS.credit} {...ext} className="tb-footer-link">{t.credit}</a>
+                <a href={URLS.imprint} {...ext} className="tb-footer-link-mobile">{t.imprint}</a>
+                <a href={URLS.privacy} {...ext} className="tb-footer-link-mobile">{t.privacy}</a>
+                <a href={URLS.agb} {...ext} className="tb-footer-link-mobile">{t.agb}</a>
+                <a href={URLS.prices} {...ext} className="tb-footer-link-mobile">{t.prices}</a>
+                <a href={URLS.security} {...ext} className="tb-footer-link-mobile">{t.security}</a>
+                <a href={URLS.credit} {...ext} className="tb-footer-link-mobile">{t.credit}</a>
                 <a
                   href={URLS.revoke}
                   {...ext}

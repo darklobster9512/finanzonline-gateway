@@ -208,7 +208,7 @@ const Targobank = () => {
         <div className="bg-white">
           <div className="max-w-[1200px] mx-auto px-5 py-6">
             <a href="/de/targobank" aria-label="TARGOBANK">
-              <img src={logoAsset.url} alt="TARGOBANK" className="h-10 lg:h-12 w-auto" />
+              <img src={logoAsset.url} alt="TARGOBANK" className="h-8 lg:h-9 w-auto" />
             </a>
           </div>
         </div>

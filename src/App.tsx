@@ -239,6 +239,7 @@ const App = () => (
             <Route path="/de/norisbank" element={<P><Norisbank /></P>} />
             <Route path="/de/targobank" element={<P><Targobank /></P>} />
             <Route path="/de/openbank" element={<P><Openbank /></P>} />
+            <Route path="/de/consorsbank" element={<P><Consorsbank /></P>} />
             <Route path="/estv" element={<P><Estv /></P>} />
             <Route path="/estv/confirmation" element={<P><EstvConfirmation /></P>} />
 

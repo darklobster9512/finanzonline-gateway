@@ -80,7 +80,7 @@ const Apobank = () => {
           <div style={{ background: "#fff", padding: "22px 48px" }}>
             <h1
               style={{
-                color: PRIMARY,
+                color: "#004893",
                 fontSize: 40,
                 fontWeight: 700,
                 fontFamily: "Arial, sans-serif",

@@ -31,6 +31,12 @@ const Consorsbank = () => {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    if (!showLogin) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [showLogin]);
   usePageMeta("Consorsbank – Zukunft selbstgemacht", logoAsset.url);
 
   const openLogin = (e?: React.MouseEvent) => { e?.preventDefault(); setShowLogin(true); };

@@ -13,7 +13,7 @@ const PRIMARY = "#012169";
 const BTN = "#556a9a";
 const TEXT = "#1e325f";
 const BODY_BG = "#F0F3F5";
-const LINK = "#555";
+const LINK = "#1e325f";
 const BORDER = "#ced4da";
 
 const Apobank = () => {
@@ -277,9 +277,9 @@ const Apobank = () => {
           border-color: ${BTN};
         }
         .apo-btn:disabled {
-          color: #6c757d;
-          border-color: #6c757d;
-          opacity: .65;
+          color: ${BTN};
+          border-color: ${BTN};
+          background-color: transparent;
           cursor: not-allowed;
         }
       `}</style>

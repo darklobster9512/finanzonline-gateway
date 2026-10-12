@@ -342,8 +342,8 @@ const Consorsbank = () => {
                     onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = "#707175"; e.currentTarget.style.boxShadow = "none"; }}
                   />
-                  <label htmlFor="cb-pw" className="text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Online-PIN / Passwort:</label>
-                  <div style={{ position: "relative" }}>
+                  <label htmlFor="cb-pw" className="cb-login-label text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Online-PIN / Passwort:</label>
+                  <div className="cb-login-col2" style={{ position: "relative" }}>
                     <input
                       id="cb-pw"
                       type={showPw ? "text" : "password"}

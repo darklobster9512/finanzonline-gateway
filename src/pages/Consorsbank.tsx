@@ -202,9 +202,9 @@ const Consorsbank = () => {
 
           {/* HEADER overlays hero */}
           <header className="absolute top-0 left-0 right-0 w-full z-10">
-            <div className="max-w-[1120px] mx-auto px-6 lg:px-10 flex items-center gap-6 py-3">
+            <div className="cb-header-inner max-w-[1120px] mx-auto px-6 lg:px-10 flex items-center gap-6 py-3">
               <a href="#" className="flex-shrink-0" aria-label="Consorsbank Startseite">
-                <div style={{ width: 72, height: 86 }} className="relative">
+                <div className="cb-logo" style={{ width: 72, height: 86 }}>
                   <img src={logoAsset.url} alt="Consorsbank by BNP Paribas" className="w-full h-full object-contain" />
                 </div>
               </a>

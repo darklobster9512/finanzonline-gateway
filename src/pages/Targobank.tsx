@@ -200,6 +200,8 @@ const Targobank = () => {
 
         .tb-footer-link { color: #b2c0cf; transition: color 150ms ease; }
         .tb-footer-link:hover { color: #fff; text-decoration: none; }
+        .tb-footer-link-mobile { color: #fff; transition: opacity 150ms ease; }
+        .tb-footer-link-mobile:hover { opacity: 0.8; text-decoration: none; }
         .tb-footer-sep { color: #b2c0cf; opacity: 0.6; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }

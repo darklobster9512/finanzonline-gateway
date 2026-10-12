@@ -155,11 +155,12 @@ const Targobank = () => {
   const fieldCls = (err: boolean) =>
     `tb-input w-full text-[16px] bg-white outline-none rounded-[6px] transition-colors${err ? " tb-err" : ""}`;
   const fieldStyle = (err: boolean): React.CSSProperties => ({
-    border: `2px solid ${err ? RED : "#002f5f"}`,
+    border: `1px solid ${err ? RED : "#002f5f"}`,
     padding: "7px 10px",
     boxSizing: "border-box",
     color: NAVY,
   });
+
 
 
   return (
@@ -171,8 +172,9 @@ const Targobank = () => {
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
         .tb-input::placeholder { color:#b4b4b4; opacity:1; }
-        .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px transparent, 0 0 0 4px ${NAVY}; }
-        .tb-input.tb-err:focus { box-shadow: 0 0 0 2px transparent, 0 0 0 4px ${RED}; }
+        .tb-input:focus { border-color:${NAVY} !important; outline: 2px solid ${NAVY}; outline-offset: 2px; }
+        .tb-input.tb-err:focus { outline-color: ${RED}; }
+
         .tb-float-wrap { position: relative; }
         .tb-float-label {
           position: absolute;

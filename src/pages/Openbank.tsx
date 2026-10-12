@@ -92,19 +92,20 @@ const Openbank = () => {
         {/* YELLOW HERO */}
         <section style={{ background: YELLOW }} className="w-full">
           {/* Header */}
-          <header className="pl-4 lg:pl-6 pr-6 pt-6 pb-4 flex items-center gap-5">
+          <header className="pl-4 lg:pl-6 pr-6 pt-6 pb-4 flex items-center justify-center lg:justify-start gap-5">
             <a href="#" className="flex-shrink-0">
-              <img src={logoAsset.url} alt="Openbank" className="h-10 w-auto" />
+              <img src={logoAsset.url} alt="Openbank" className="h-8 lg:h-10 w-auto" />
             </a>
-            <div className="h-8 w-px bg-black/30" />
-            <span className="text-[20px] font-bold" style={{ color: "#333" }}>Online Banking</span>
+            <div className="hidden lg:block h-8 w-px bg-black/30" />
+            <span className="hidden lg:inline text-[20px] font-bold" style={{ color: "#333" }}>Online Banking</span>
           </header>
 
           {/* Hero content */}
-          <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-10 lg:py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="max-w-[1200px] mx-auto px-8 lg:px-10 py-10 lg:py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             {/* Login card */}
             <div className="lg:pl-10 lg:order-1 order-2 w-full max-w-[480px] mx-auto lg:mx-0">
-              <h1 className="text-[32px] lg:text-[38px] font-bold leading-tight mb-3">Willkommen</h1>
+              <h1 className="text-[26px] lg:text-[38px] font-bold leading-tight mb-3">Willkommen</h1>
+
               <p className="text-[12px] mb-6" style={{ color: "#444" }}>
                 Weitere Informationen zum Online Banking finden sie <a href="https://www.openbank.de/banking" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold">hier</a>.
               </p>

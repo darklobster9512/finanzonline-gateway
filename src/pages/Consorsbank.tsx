@@ -380,16 +380,16 @@ const Consorsbank = () => {
                   </div>
 
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-4 flex justify-center">
+                  <div style={{ gridColumn: "2 / 3" }} className="mt-1 flex justify-center">
                     <a
                       href="#"
                       onClick={(e) => e.preventDefault()}
-                      className="inline-flex items-center gap-2 font-semibold text-[15px]"
+                      className="inline-flex items-center gap-2 font-semibold text-[13px] whitespace-nowrap"
                       style={{ color: PETROL, padding: "8px 14px", borderRadius: 999, border: "1px solid transparent", transition: "background 0.15s, border-color 0.15s" }}
                       onMouseEnter={(e) => { e.currentTarget.style.background = "#ecf9fe"; e.currentTarget.style.borderColor = "#004057"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "transparent"; }}
                     >
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M12 2 2 7v2h20V7L12 2Zm-7 8v7H3v2h18v-2h-2v-7h-2v7h-3v-7h-2v7h-2v-7H8v7H5v-7H3h2Z" />
                       </svg>
                       Jetzt Konto oder Depot eröffnen

@@ -145,7 +145,23 @@ const Consorsbank = () => {
         @media (max-width: 1023px) {
           .cb-nav-row { display: none; }
           .cb-hero-grid { grid-template-columns: 1fr !important; }
-          .cb-hero-img { height: 240px !important; }
+          .cb-hero-img { height: 220px !important; order: -1; }
+          .cb-hero-content { padding: 24px 20px 28px !important; }
+          .cb-hero-title { font-size: 32px !important; }
+          .cb-header-inner { padding: 10px 16px !important; gap: 12px !important; }
+          .cb-logo { width: 48px !important; height: 58px !important; }
+          .cb-btn-pill { height: 32px !important; padding: 0 10px !important; font-size: 13px !important; }
+          .cb-cards { padding: 28px 20px !important; gap: 28px !important; grid-template-columns: 1fr !important; }
+          .cb-teaser { padding: 0 20px 40px !important; grid-template-columns: 1fr !important; gap: 24px !important; }
+          .cb-teaser-title { font-size: 22px !important; }
+          .cb-footer-inner { padding: 20px 16px !important; gap: 6px 14px !important; font-size: 12px !important; text-align: center; }
+
+          .cb-login-modal { max-width: calc(100vw - 24px) !important; margin: 16px 12px !important; padding: 28px 18px 24px !important; }
+          .cb-login-grid { grid-template-columns: 1fr !important; row-gap: 10px !important; }
+          .cb-login-title { font-size: 20px !important; white-space: normal !important; }
+          .cb-login-label { text-align: left !important; font-size: 14px !important; margin-bottom: -4px; }
+          .cb-login-spacer { display: none !important; }
+          .cb-login-col2 { grid-column: 1 / 2 !important; }
         }
       `}</style>
 
@@ -157,9 +173,9 @@ const Consorsbank = () => {
             <div style={{ background: HERO_BG }} className="flex flex-col">
 
               {/* HERO CONTENT */}
-              <div className="flex flex-col justify-center px-6 lg:px-12 pt-32 pb-10 flex-1">
+              <div className="cb-hero-content flex flex-col justify-center px-6 lg:px-12 pt-32 pb-10 flex-1">
                 <div className="text-[15px] mb-3" style={{ color: TEXT }}>Zahl damit, nicht dafür</div>
-                <h1 className="font-bold mb-5" style={{ fontSize: 44, lineHeight: 1.1 }}>Girokonto</h1>
+                <h1 className="cb-hero-title font-bold mb-5" style={{ fontSize: 44, lineHeight: 1.1 }}>Girokonto</h1>
                 <ul className="cb-bullet text-[15px] mb-7" style={{ color: TEXT }}>
                   <li>kostenlose Kontoführung für alle unter 31 Jahren oder bei mehr als 700 Euro Geldeingang im Monat</li>
                   <li>freie Kartenwahl mit kostenloser Kreditkarte und kostenloser girocard</li>
@@ -186,9 +202,9 @@ const Consorsbank = () => {
 
           {/* HEADER overlays hero */}
           <header className="absolute top-0 left-0 right-0 w-full z-10">
-            <div className="max-w-[1120px] mx-auto px-6 lg:px-10 flex items-center gap-6 py-3">
+            <div className="cb-header-inner max-w-[1120px] mx-auto px-6 lg:px-10 flex items-center gap-6 py-3">
               <a href="#" className="flex-shrink-0" aria-label="Consorsbank Startseite">
-                <div style={{ width: 72, height: 86 }} className="relative">
+                <div className="cb-logo" style={{ width: 72, height: 86 }}>
                   <img src={logoAsset.url} alt="Consorsbank by BNP Paribas" className="w-full h-full object-contain" />
                 </div>
               </a>
@@ -216,7 +232,7 @@ const Consorsbank = () => {
 
         {/* THREE CARDS */}
         <section className="w-full bg-white">
-          <div className="max-w-[1120px] mx-auto px-6 lg:px-10 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="cb-cards max-w-[1120px] mx-auto px-6 lg:px-10 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
                 title: "Girokonto",
@@ -266,9 +282,9 @@ const Consorsbank = () => {
 
         {/* TEASER */}
         <section className="w-full bg-white">
-          <div className="max-w-[1120px] mx-auto px-6 lg:px-10 pb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          <div className="cb-teaser max-w-[1120px] mx-auto px-6 lg:px-10 pb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="font-bold mb-5" style={{ fontSize: 28, lineHeight: 1.2 }}>
+              <h2 className="cb-teaser-title font-bold mb-5" style={{ fontSize: 28, lineHeight: 1.2 }}>
                 ETNs mit Krypto-Basiswert: an der Entwicklung digitaler Währungen teilhaben
               </h2>
               <p className="text-[15px] leading-relaxed mb-5" style={{ color: TEXT }}>
@@ -284,7 +300,7 @@ const Consorsbank = () => {
 
         {/* FOOTER */}
         <footer className="w-full" style={{ background: "#f5f6f8", borderTop: `1px solid ${BORDER}` }}>
-          <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-8 text-[13px] flex flex-wrap items-center justify-center gap-x-6 gap-y-2" style={{ color: MUTED }}>
+          <div className="cb-footer-inner max-w-[1280px] mx-auto px-6 lg:px-10 py-8 text-[13px] flex flex-wrap items-center justify-center gap-x-6 gap-y-2" style={{ color: MUTED }}>
             <span>© Consorsbank – eine Niederlassung der BNP Paribas S.A.</span>
             <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>Impressum</a>
             <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>Datenschutz</a>
@@ -297,7 +313,7 @@ const Consorsbank = () => {
         {showLogin && (
           <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }}>
             <div
-              className="bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
+              className="cb-login-modal bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
               style={{ padding: "36px 28px 32px", borderRadius: 14 }}
             >
               <button
@@ -311,11 +327,11 @@ const Consorsbank = () => {
               </button>
 
               <form onSubmit={handleLogin}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>
-                  <h2 className="font-bold" style={{ fontSize: 24, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2", whiteSpace: "nowrap" }}>Loggen Sie sich ein:</h2>
-                  <div style={{ gridColumn: "2 / 3" }} />
+                <div className="cb-login-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>
+                  <h2 className="cb-login-title font-bold" style={{ fontSize: 24, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2", whiteSpace: "nowrap" }}>Loggen Sie sich ein:</h2>
+                  <div className="cb-login-spacer" style={{ gridColumn: "2 / 3" }} />
 
-                  <label htmlFor="cb-user" className="text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>
+                  <label htmlFor="cb-user" className="cb-login-label text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>
                   <input
                     id="cb-user"
                     type="text"
@@ -326,8 +342,8 @@ const Consorsbank = () => {
                     onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = "#707175"; e.currentTarget.style.boxShadow = "none"; }}
                   />
-                  <label htmlFor="cb-pw" className="text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Online-PIN / Passwort:</label>
-                  <div style={{ position: "relative" }}>
+                  <label htmlFor="cb-pw" className="cb-login-label text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Online-PIN / Passwort:</label>
+                  <div className="cb-login-col2" style={{ position: "relative" }}>
                     <input
                       id="cb-pw"
                       type={showPw ? "text" : "password"}
@@ -359,12 +375,12 @@ const Consorsbank = () => {
                     )}
                   </div>
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-3 flex flex-col gap-3">
+                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 mt-3 flex flex-col gap-3">
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
                   </div>
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-4">
+                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 mt-4">
                     <button
                       type="submit"
                       style={{
@@ -385,7 +401,7 @@ const Consorsbank = () => {
                   </div>
 
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-1 flex justify-center">
+                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 mt-1 flex justify-center">
                     <a
                       href="#"
                       onClick={(e) => e.preventDefault()}

@@ -277,6 +277,9 @@ const Targobank = () => {
 
         .tb-revoke-btn { background: #fff; border:2px solid ${NAVY}; color:${NAVY}; transition: color 150ms ease; }
         .tb-revoke-btn:hover { color: #001a33; }
+
+        .tb-login-card { padding: 32px; }
+        @media (max-width: 1023px) { .tb-login-card { padding: 20px; } }
       `}</style>
 
       {showLoading && (
@@ -287,8 +290,8 @@ const Targobank = () => {
       )}
 
       <div className="tb-font min-h-screen flex flex-col bg-white">
-        {/* Top dark bar */}
-        <div style={{ backgroundColor: NAVY }} className="text-white text-[13px]">
+        {/* Top dark bar — desktop only */}
+        <div style={{ backgroundColor: NAVY }} className="hidden lg:block text-white text-[13px]">
           <div className="max-w-[1200px] mx-auto px-5 py-3 flex flex-wrap items-center justify-between gap-3">
             <nav className="flex gap-6">
               <a href={URLS.priv} {...ext} className="tb-top-link">{t.priv}</a>
@@ -315,11 +318,10 @@ const Targobank = () => {
         {/* Hero with login card */}
         <section className="tb-hero relative overflow-hidden">
           <img src={heroIconAsset.url} alt="" aria-hidden="true" className="tb-hero-icon" />
-          <div className="relative max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center" style={{ zIndex: 1 }}>
+          <div className="relative max-w-[1200px] mx-auto px-2 lg:px-5 py-10 lg:py-16 flex justify-center" style={{ zIndex: 1 }}>
             <div
-              className="w-full max-w-[440px]"
+              className="tb-login-card w-full max-w-[440px]"
               style={{
-                padding: "32px",
                 boxSizing: "border-box",
                 backgroundColor: "rgba(255, 255, 255, 0.7)",
                 borderRadius: "8px",
@@ -462,7 +464,8 @@ const Targobank = () => {
 
         {/* Footer */}
         <footer style={{ backgroundColor: NAVY }} className="text-white mt-auto">
-          <div className="max-w-[1200px] mx-auto px-5 py-8 flex flex-col lg:flex-row lg:items-center gap-6">
+          {/* Desktop footer */}
+          <div className="hidden lg:flex max-w-[1200px] mx-auto px-5 py-8 flex-row items-center gap-6">
             <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[12px] flex-1">
               <a href={URLS.imprint} {...ext} className="tb-footer-link">{t.imprint}</a>
@@ -480,11 +483,48 @@ const Targobank = () => {
             <a
               href={URLS.revoke}
               {...ext}
-              className="tb-revoke-btn w-full lg:w-auto text-center text-[14px] px-6 py-2.5 rounded-full font-medium"
+              className="tb-revoke-btn text-center text-[14px] px-6 py-2.5 rounded-full font-medium"
             >
               {t.revoke}
             </a>
             <div className="flex items-center gap-3 text-[14px]">
+              <button
+                type="button"
+                onClick={() => setLang("de")}
+                className={lang === "de" ? "font-bold underline" : "opacity-80 hover:underline"}
+              >DE</button>
+              <span className="opacity-40">|</span>
+              <button
+                type="button"
+                onClick={() => setLang("en")}
+                className={lang === "en" ? "font-bold underline" : "opacity-80 hover:underline"}
+              >EN</button>
+            </div>
+          </div>
+
+          {/* Mobile footer: 20/80 layout */}
+          <div className="lg:hidden px-5 py-8">
+            <div className="flex gap-4">
+              <div className="w-1/5 flex-shrink-0">
+                <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
+              </div>
+              <div className="w-4/5 flex flex-col gap-3 text-[13px]">
+                <a href={URLS.imprint} {...ext} className="tb-footer-link">{t.imprint}</a>
+                <a href={URLS.privacy} {...ext} className="tb-footer-link">{t.privacy}</a>
+                <a href={URLS.agb} {...ext} className="tb-footer-link">{t.agb}</a>
+                <a href={URLS.prices} {...ext} className="tb-footer-link">{t.prices}</a>
+                <a href={URLS.security} {...ext} className="tb-footer-link">{t.security}</a>
+                <a href={URLS.credit} {...ext} className="tb-footer-link">{t.credit}</a>
+                <a
+                  href={URLS.revoke}
+                  {...ext}
+                  className="tb-revoke-btn inline-block w-max text-center text-[14px] px-6 py-2.5 rounded-full font-medium mt-1"
+                >
+                  {t.revoke}
+                </a>
+              </div>
+            </div>
+            <div className="flex justify-end items-center gap-3 text-[14px] mt-6">
               <button
                 type="button"
                 onClick={() => setLang("de")}

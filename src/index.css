@@ -5,21 +5,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'SantanderMicroText';
-  src: url('/__l5e/assets-v1/0f7bfb12-a117-42da-91be-30e88f059da4/SantanderMicroTextW05-Rg.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'SantanderMicroText';
-  src: url('/__l5e/assets-v1/1876de4d-269a-4743-8dcc-e378aa82b3a9/SantanderMicroTextW05-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'UniCredit';
   src: url('/src/assets/fonts/unicredit-regular.ttf') format('truetype');
   font-weight: normal;

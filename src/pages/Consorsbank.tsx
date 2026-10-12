@@ -291,60 +291,85 @@ const Consorsbank = () => {
         {showLogin && (
           <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.5)" }} onClick={() => setShowLogin(false)}>
             <div
-              className="bg-white w-full max-w-[460px] mx-4 my-8 rounded-lg shadow-xl p-8"
+              className="bg-white w-full max-w-[520px] mx-4 my-8 rounded-lg shadow-xl"
+              style={{ padding: "32px 40px 40px" }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-6">
-                <img src={logoAsset.url} alt="Consorsbank" style={{ height: 56 }} />
-                <button onClick={() => setShowLogin(false)} aria-label="Schließen" className="text-gray-500 hover:text-black">
+              <div className="flex items-start justify-between mb-6">
+                <h2 className="font-bold" style={{ fontSize: 26, lineHeight: 1.2 }}>Loggen Sie sich ein:</h2>
+                <button onClick={() => setShowLogin(false)} aria-label="Schließen" className="text-gray-500 hover:text-black mt-1">
                   <X size={22} />
                 </button>
               </div>
-              <h2 className="font-bold text-[22px] mb-5">Login</h2>
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div className={`cb-input-wrap ${username ? "is-filled" : ""}`}>
+
+              <form onSubmit={handleLogin}>
+                <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", rowGap: 14, columnGap: 12, alignItems: "center" }}>
+                  <label htmlFor="cb-user" className="text-[15px]" style={{ color: TEXT }}>Kontonummer / UserID:</label>
                   <input
                     id="cb-user"
                     type="text"
                     autoComplete="off"
-                    className="cb-input"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    style={{ height: 40, border: `1px solid ${BORDER}`, borderRadius: 4, padding: "0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
+                    onBlur={(e) => { e.currentTarget.style.borderColor = BORDER; e.currentTarget.style.boxShadow = "none"; }}
                   />
-                  <label htmlFor="cb-user" className="cb-input-label">Depotnummer / Benutzername</label>
+                  <label htmlFor="cb-pw" className="text-[15px]" style={{ color: TEXT }}>Online-PIN / Passwort:</label>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      id="cb-pw"
+                      type={showPw ? "text" : "password"}
+                      autoComplete="off"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      style={{ height: 40, width: "100%", border: `1px solid ${BORDER}`, borderRadius: 4, padding: "0 40px 0 12px", fontSize: 15, fontFamily: "inherit", outline: "none", color: TEXT }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = BORDER; e.currentTarget.style.boxShadow = "none"; }}
+                    />
+                    <button
+                      type="button"
+                      aria-label={showPw ? "PIN verbergen" : "PIN anzeigen"}
+                      onClick={() => setShowPw((v) => !v)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+                    >
+                      {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
-                <div className={`cb-input-wrap ${password ? "is-filled" : ""}`}>
-                  <input
-                    id="cb-pw"
-                    type={showPw ? "text" : "password"}
-                    autoComplete="off"
-                    className="cb-input"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <label htmlFor="cb-pw" className="cb-input-label">PIN</label>
+
+                <div className="mt-5 flex flex-col gap-2" style={{ paddingLeft: 192 }}>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
+                </div>
+
+                <div className="mt-7 flex justify-center">
                   <button
-                    type="button"
-                    aria-label={showPw ? "PIN verbergen" : "PIN anzeigen"}
-                    onClick={() => setShowPw((v) => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+                    type="submit"
+                    disabled={!username || !password}
+                    style={{
+                      display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10,
+                      height: 52, padding: "0 36px", borderRadius: 999,
+                      background: PETROL, color: "#fff", fontWeight: 700, fontSize: 17,
+                      opacity: !username || !password ? 0.5 : 1,
+                      border: "none", cursor: !username || !password ? "not-allowed" : "pointer",
+                    }}
                   >
-                    {showPw ? <EyeOff size={20} /> : <Eye size={20} />}
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path fillRule="evenodd" d="M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6v-2h6a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-6V3zm-8 3.586 4.707 4.707a1 1 0 0 1 0 1.414L10 17.414 8.586 16l3-3H3v-2h8.586l-3-3z" clipRule="evenodd" />
+                    </svg>
+                    Einloggen
                   </button>
                 </div>
 
-                <div className="flex items-center justify-between pt-1">
-                  <a href="#" className="text-[13px] font-semibold" style={{ color: PETROL }} onClick={(e) => e.preventDefault()}>Zugangsdaten vergessen?</a>
+                <div className="mt-6 flex justify-center">
+                  <a href="#" onClick={(e) => e.preventDefault()} className="inline-flex items-center gap-2 font-semibold text-[15px]" style={{ color: PETROL }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 2 2 7v2h20V7L12 2Zm-7 8v7H3v2h18v-2h-2v-7h-2v7h-3v-7h-2v7h-2v-7H8v7H5v-7H3h2Z" />
+                    </svg>
+                    Jetzt Konto oder Depot eröffnen
+                  </a>
                 </div>
-
-                <button
-                  type="submit"
-                  disabled={!username || !password}
-                  className="cb-btn-pill cb-btn-primary w-full"
-                  style={{ height: 48, opacity: !username || !password ? 0.5 : 1 }}
-                >
-                  Anmelden
-                </button>
               </form>
             </div>
           </div>

@@ -148,16 +148,16 @@ const Openbank = () => {
                 </div>
 
                 <div>
-                  <a href="#" className="ob-link-hero font-bold text-[12px]">Passwort zurücksetzen</a>
+                  <a href="https://meine.openbank.de/login#/passwort-zuruecksetzen/identifier" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold text-[12px]">Passwort zurücksetzen</a>
                 </div>
 
                 <button type="submit" className="ob-btn-primary">Einloggen</button>
 
                 <div className="text-center">
-                  <a href="#" className="ob-link-hero font-bold text-[12px]">Signaturverfahren einrichten</a>
+                  <a href="https://meine.openbank.de/nosignature" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold text-[12px]">Signaturverfahren einrichten</a>
                 </div>
 
-                <button type="button" className="ob-btn-outline">Konto eröffnen</button>
+                <a href="https://www.openbank.de/produkte/konten-und-karten/konten/kostenloses-girokonto/" target="_blank" rel="noopener noreferrer" className="ob-btn-outline inline-flex items-center justify-center">Konto eröffnen</a>
               </form>
             </div>
 

@@ -171,7 +171,7 @@ const Apobank = () => {
 
               <p style={{ marginTop: 4, marginBottom: 16 }}>
                 Mit dem Absenden Ihrer Anmeldedaten erkennen Sie die{" "}
-                <a href="#" target="_blank" rel="noopener noreferrer" style={{ color: LINK }}>
+                <a href="#" target="_blank" rel="noopener noreferrer" style={{ color: LINK, textDecoration: "underline" }}>
                   Sicherheitshinweise
                 </a>{" "}
                 an.
@@ -183,16 +183,16 @@ const Apobank = () => {
             </p>
 
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-              <IconLock />
+              <img src={iconDatenschutz.url} alt="" width={28} height={28} />
               <span>1. Wir fragen niemals nach Ihren Zugangsdaten.</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
-              <IconMail />
+              <img src={iconEmail.url} alt="" width={28} height={28} />
               <span>2. Bei zweifelhaften E-Mails gilt: Keine Links oder Anhänge öffnen.</span>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
-              <IconPhone />
+              <img src={iconPhone.url} alt="" width={24} height={24} />
               <strong>+49 211 5998 8000</strong>
             </div>
             <a
@@ -211,8 +211,8 @@ const Apobank = () => {
           </div>
         </div>
 
-        <footer style={{ padding: "32px 0", textAlign: "center" }}>
-          <img src={logoAsset.url} alt="apoBank Logo" style={{ height: 56, width: "auto" }} />
+        <footer style={{ padding: "32px 0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <img src={logoAsset.url} alt="apoBank Logo" style={{ height: 56, width: "auto", display: "block" }} />
         </footer>
       </main>
 

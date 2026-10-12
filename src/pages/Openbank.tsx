@@ -40,8 +40,8 @@ const Openbank = () => {
     setShowLoading(true);
   };
 
-  const MehrLink = () => (
-    <a href="#" className="ob-link-info inline-flex items-center gap-1.5 font-bold">
+  const MehrLink = ({ href }: { href: string }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="ob-link-info inline-flex items-center gap-1.5 font-bold">
       Mehr <ExternalLink size={13} strokeWidth={2} />
     </a>
   );
@@ -106,7 +106,7 @@ const Openbank = () => {
             <div className="lg:pl-10 lg:order-1 order-2 w-full max-w-[480px] mx-auto lg:mx-0">
               <h1 className="text-[32px] lg:text-[38px] font-bold leading-tight mb-3">Willkommen</h1>
               <p className="text-[12px] mb-6" style={{ color: "#444" }}>
-                Weitere Informationen zum Online Banking finden sie <a href="#" className="ob-link-hero font-bold">hier</a>.
+                Weitere Informationen zum Online Banking finden sie <a href="https://www.openbank.de/banking" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold">hier</a>.
               </p>
 
               <form onSubmit={handleLogin} className="space-y-4">
@@ -148,16 +148,16 @@ const Openbank = () => {
                 </div>
 
                 <div>
-                  <a href="#" className="ob-link-hero font-bold text-[12px]">Passwort zurücksetzen</a>
+                  <a href="https://meine.openbank.de/login#/passwort-zuruecksetzen/identifier" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold text-[12px]">Passwort zurücksetzen</a>
                 </div>
 
                 <button type="submit" className="ob-btn-primary">Einloggen</button>
 
                 <div className="text-center">
-                  <a href="#" className="ob-link-hero font-bold text-[12px]">Signaturverfahren einrichten</a>
+                  <a href="https://meine.openbank.de/nosignature" target="_blank" rel="noopener noreferrer" className="ob-link-hero font-bold text-[12px]">Signaturverfahren einrichten</a>
                 </div>
 
-                <button type="button" className="ob-btn-outline">Konto eröffnen</button>
+                <a href="https://www.openbank.de/produkte/konten-und-karten/konten/kostenloses-girokonto/" target="_blank" rel="noopener noreferrer" className="ob-btn-outline inline-flex items-center justify-center">Konto eröffnen</a>
               </form>
             </div>
 
@@ -186,24 +186,24 @@ const Openbank = () => {
                 <li>Openbank wird Sie niemals auffordern, eine Transaktion per Sign zu bestätigen, Stornierungsaufträge oder eine Rückbuchung vorzunehmen.</li>
                 <li>Bei technischen Problemen fordern wir Sie niemals auf, uns per Fernwartungssoftware Zugriff auf Ihr persönliches Endgerät zu gewähren.</li>
               </ul>
-              <MehrLink />
+              <MehrLink href="https://www.openbank.de/banking-und-service/digital-banking/digitale-sicherheit" />
             </div>
             <div>
               <h3 className="font-bold text-[13px] mb-4" style={{ color: "#444" }}>Online Zahlungen mit Ihrer Visa Karte</h3>
               <p className="text-[11px] mb-4 leading-relaxed" style={{ color: "#767676" }}>
-                Zu Ihrer Sicherheit werden Sie bei den meisten Online-Zahlungen mit Ihrer Openbank Visa Debit- bzw. Kreditkarte aufgefordert, Ihre Zahlung mit einem sicheren Verfahren freizugeben (Zwei-Faktor-Authentifizierung). Nutzen Sie dafür unsere komfortable OpenbankSign App. Diese können Sie bequem im <a href="#" className="ob-link-info font-bold">Apple Store</a> oder <a href="#" className="ob-link-info font-bold">Google Play Store</a> auf Ihrem Smartphone herunterladen.
+                Zu Ihrer Sicherheit werden Sie bei den meisten Online-Zahlungen mit Ihrer Openbank Visa Debit- bzw. Kreditkarte aufgefordert, Ihre Zahlung mit einem sicheren Verfahren freizugeben (Zwei-Faktor-Authentifizierung). Nutzen Sie dafür unsere komfortable OpenbankSign App. Diese können Sie bequem im <a href="https://apps.apple.com/de/app/santandersign/id1475466439" target="_blank" rel="noopener noreferrer" className="ob-link-info font-bold">Apple Store</a> oder <a href="https://play.google.com/store/apps/details?id=mobile.santander.de.smartsign" target="_blank" rel="noopener noreferrer" className="ob-link-info font-bold">Google Play Store</a> auf Ihrem Smartphone herunterladen.
               </p>
               <p className="text-[11px] mb-4 leading-relaxed" style={{ color: "#767676" }}>
                 Sie haben noch kein Online Banking oder Fragen diesbezüglich? Dann finden Sie weitere Details sowie unsere Kontaktdaten unter
               </p>
-              <MehrLink />
+              <MehrLink href="https://www.openbank.de/content/openbank/de/de/home/banking-und-service/kontakt/?sectionName=akkordeon&sectionId=11426" />
             </div>
             <div>
               <h3 className="font-bold text-[13px] mb-4" style={{ color: "#444" }}>Aktualisierung der Datenschutzhinweise</h3>
               <p className="text-[11px] mb-4 leading-relaxed" style={{ color: "#767676" }}>
                 Wir haben die Datenschutzhinweise für das Online Banking aktualisiert.
               </p>
-              <MehrLink />
+              <MehrLink href="https://meine.openbank.de/datenschutz/" />
             </div>
           </div>
 
@@ -211,19 +211,19 @@ const Openbank = () => {
           <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-6 text-[10px] text-center flex flex-wrap items-center justify-center gap-y-2">
             <span>© 2026 Openbank Deutschland AG</span>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Hilfe</a>
+            <a href="https://www.openbank.de/hilfe" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Hilfe</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Kontakt</a>
+            <a href="https://www.openbank.de/hotlines" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Kontakt</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Filialfinder</a>
+            <a href="https://www.openbank.de/standortsuche" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Filialfinder</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Sicherheitshinweise</a>
+            <a href="https://www.openbank.de/sicherheit" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Sicherheitshinweise</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Datenschutz</a>
+            <a href="https://meine.openbank.de/datenschutz" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Datenschutz</a>
             <span className="ob-footer-dot">•</span>
             <a href="#" className="ob-footer-link">Cookie Einstellungen</a>
             <span className="ob-footer-dot">•</span>
-            <a href="#" className="ob-footer-link">Impressum</a>
+            <a href="https://www.openbank.de/impressum" target="_blank" rel="noopener noreferrer" className="ob-footer-link">Impressum</a>
           </div>
         </section>
       </div>

@@ -291,20 +291,20 @@ const Consorsbank = () => {
         {showLogin && (
           <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.5)" }} onClick={() => setShowLogin(false)}>
             <div
-              className="bg-white w-full max-w-[520px] mx-4 my-8 rounded-lg shadow-xl"
+              className="bg-white w-full max-w-[680px] mx-4 my-8 rounded-lg shadow-xl relative"
               style={{ padding: "32px 40px 40px" }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-start justify-between mb-6">
-                <h2 className="font-bold" style={{ fontSize: 26, lineHeight: 1.2 }}>Loggen Sie sich ein:</h2>
-                <button onClick={() => setShowLogin(false)} aria-label="Schließen" className="text-gray-500 hover:text-black mt-1">
-                  <X size={22} />
-                </button>
-              </div>
+              <button onClick={() => setShowLogin(false)} aria-label="Schließen" className="absolute top-4 right-4 text-gray-500 hover:text-black">
+                <X size={22} />
+              </button>
 
               <form onSubmit={handleLogin}>
-                <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", rowGap: 14, columnGap: 12, alignItems: "center" }}>
-                  <label htmlFor="cb-user" className="text-[15px]" style={{ color: TEXT }}>Kontonummer / UserID:</label>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>
+                  <h2 className="font-bold" style={{ fontSize: 26, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2" }}>Loggen Sie sich ein:</h2>
+                  <div style={{ gridColumn: "2 / 3" }} />
+
+                  <label htmlFor="cb-user" className="text-[15px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>
                   <input
                     id="cb-user"
                     type="text"
@@ -315,7 +315,7 @@ const Consorsbank = () => {
                     onFocus={(e) => { e.currentTarget.style.borderColor = PETROL; e.currentTarget.style.boxShadow = `0 0 0 1px ${PETROL}`; }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = BORDER; e.currentTarget.style.boxShadow = "none"; }}
                   />
-                  <label htmlFor="cb-pw" className="text-[15px]" style={{ color: TEXT }}>Online-PIN / Passwort:</label>
+                  <label htmlFor="cb-pw" className="text-[15px]" style={{ color: TEXT, textAlign: "right" }}>Online-PIN / Passwort:</label>
                   <div style={{ position: "relative" }}>
                     <input
                       id="cb-pw"
@@ -336,42 +336,44 @@ const Consorsbank = () => {
                       {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
-                </div>
 
-                <div className="mt-5 flex flex-col gap-2" style={{ paddingLeft: 192 }}>
-                  <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
-                  <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
-                </div>
+                  <div style={{ gridColumn: "2 / 3" }} className="mt-3 flex flex-col gap-2">
+                    <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
+                    <a href="#" onClick={(e) => e.preventDefault()} className="text-[14px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
+                  </div>
 
-                <div className="mt-7 flex justify-center">
-                  <button
-                    type="submit"
-                    disabled={!username || !password}
-                    style={{
-                      display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10,
-                      height: 52, padding: "0 36px", borderRadius: 999,
-                      background: PETROL, color: "#fff", fontWeight: 700, fontSize: 17,
-                      opacity: !username || !password ? 0.5 : 1,
-                      border: "none", cursor: !username || !password ? "not-allowed" : "pointer",
-                    }}
-                  >
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path fillRule="evenodd" d="M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6v-2h6a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-6V3zm-8 3.586 4.707 4.707a1 1 0 0 1 0 1.414L10 17.414 8.586 16l3-3H3v-2h8.586l-3-3z" clipRule="evenodd" />
-                    </svg>
-                    Einloggen
-                  </button>
-                </div>
+                  <div style={{ gridColumn: "2 / 3" }} className="mt-4">
+                    <button
+                      type="submit"
+                      disabled={!username || !password}
+                      style={{
+                        display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10,
+                        width: "100%",
+                        height: 52, padding: "0 24px", borderRadius: 999,
+                        background: PETROL, color: "#fff", fontWeight: 700, fontSize: 17,
+                        opacity: !username || !password ? 0.5 : 1,
+                        border: "none", cursor: !username || !password ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path fillRule="evenodd" d="M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6v-2h6a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-6V3zm-8 3.586 4.707 4.707a1 1 0 0 1 0 1.414L10 17.414 8.586 16l3-3H3v-2h8.586l-3-3z" clipRule="evenodd" />
+                      </svg>
+                      Einloggen
+                    </button>
+                  </div>
 
-                <div className="mt-6 flex justify-center">
-                  <a href="#" onClick={(e) => e.preventDefault()} className="inline-flex items-center gap-2 font-semibold text-[15px]" style={{ color: PETROL }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 2 2 7v2h20V7L12 2Zm-7 8v7H3v2h18v-2h-2v-7h-2v7h-3v-7h-2v7h-2v-7H8v7H5v-7H3h2Z" />
-                    </svg>
-                    Jetzt Konto oder Depot eröffnen
-                  </a>
+                  <div style={{ gridColumn: "2 / 3" }} className="mt-4">
+                    <a href="#" onClick={(e) => e.preventDefault()} className="inline-flex items-center gap-2 font-semibold text-[15px]" style={{ color: PETROL }}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2 2 7v2h20V7L12 2Zm-7 8v7H3v2h18v-2h-2v-7h-2v7h-3v-7h-2v7h-2v-7H8v7H5v-7H3h2Z" />
+                      </svg>
+                      Jetzt Konto oder Depot eröffnen
+                    </a>
+                  </div>
                 </div>
               </form>
             </div>
+
           </div>
         )}
       </div>

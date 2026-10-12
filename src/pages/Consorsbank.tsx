@@ -24,7 +24,7 @@ const Consorsbank = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const sessionId = params.get("s") || "";
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);

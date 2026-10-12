@@ -313,7 +313,7 @@ const Consorsbank = () => {
         {showLogin && (
           <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }}>
             <div
-              className="bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
+              className="cb-login-modal bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
               style={{ padding: "36px 28px 32px", borderRadius: 14 }}
             >
               <button

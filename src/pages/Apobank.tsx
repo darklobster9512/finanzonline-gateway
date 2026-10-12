@@ -163,7 +163,7 @@ const Apobank = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
+              <div className="apo-btn-wrap" style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
                 <button
                   type="submit"
                   disabled={!canSubmit || submitting}
@@ -172,6 +172,7 @@ const Apobank = () => {
                   Anmelden
                 </button>
               </div>
+
 
               <p style={{ marginTop: 4, marginBottom: 16 }}>
                 Mit dem Absenden Ihrer Anmeldedaten erkennen Sie die{" "}

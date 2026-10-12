@@ -377,7 +377,7 @@ const Consorsbank = () => {
                     )}
                   </div>
 
-                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 mt-3 flex flex-col gap-3">
+                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 cb-login-links mt-3 flex flex-col gap-3">
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Online-PIN vergessen</a>
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
                   </div>

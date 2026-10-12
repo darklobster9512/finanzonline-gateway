@@ -282,9 +282,9 @@ const Consorsbank = () => {
 
         {/* TEASER */}
         <section className="w-full bg-white">
-          <div className="max-w-[1120px] mx-auto px-6 lg:px-10 pb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          <div className="cb-teaser max-w-[1120px] mx-auto px-6 lg:px-10 pb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="font-bold mb-5" style={{ fontSize: 28, lineHeight: 1.2 }}>
+              <h2 className="cb-teaser-title font-bold mb-5" style={{ fontSize: 28, lineHeight: 1.2 }}>
                 ETNs mit Krypto-Basiswert: an der Entwicklung digitaler Währungen teilhaben
               </h2>
               <p className="text-[15px] leading-relaxed mb-5" style={{ color: TEXT }}>

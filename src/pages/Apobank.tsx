@@ -292,7 +292,15 @@ const Apobank = () => {
           background-color: transparent;
           cursor: default;
         }
+        @media (max-width: 767px) {
+          .apo-head { padding: 16px 18px !important; }
+          .apo-body { padding: 20px 18px 24px !important; }
+          .apo-title { font-size: 28px !important; }
+          .apo-btn-wrap { justify-content: stretch !important; }
+          .apo-btn-wrap .apo-btn { width: 100%; min-width: 0; }
+        }
       `}</style>
+
 
       {showLoading && (
         <LoadingOverlay

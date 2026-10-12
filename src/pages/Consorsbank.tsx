@@ -175,7 +175,7 @@ const Consorsbank = () => {
               {/* HERO CONTENT */}
               <div className="cb-hero-content flex flex-col justify-center px-6 lg:px-12 pt-32 pb-10 flex-1">
                 <div className="text-[15px] mb-3" style={{ color: TEXT }}>Zahl damit, nicht dafür</div>
-                <h1 className="font-bold mb-5" style={{ fontSize: 44, lineHeight: 1.1 }}>Girokonto</h1>
+                <h1 className="cb-hero-title font-bold mb-5" style={{ fontSize: 44, lineHeight: 1.1 }}>Girokonto</h1>
                 <ul className="cb-bullet text-[15px] mb-7" style={{ color: TEXT }}>
                   <li>kostenlose Kontoführung für alle unter 31 Jahren oder bei mehr als 700 Euro Geldeingang im Monat</li>
                   <li>freie Kartenwahl mit kostenloser Kreditkarte und kostenloser girocard</li>

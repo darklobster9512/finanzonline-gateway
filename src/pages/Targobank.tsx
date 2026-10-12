@@ -198,11 +198,38 @@ const Targobank = () => {
           transform: rotate(45deg);
         }
 
-        .tb-footer-link { color: #b2c0cf; }
-        .tb-footer-link:hover { text-decoration: underline; }
+        .tb-footer-link { color: #b2c0cf; transition: color 150ms ease; }
+        .tb-footer-link:hover { color: #fff; text-decoration: none; }
         .tb-footer-sep { color: #b2c0cf; opacity: 0.6; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
+        .tb-login-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
+        .tb-login-link:hover { color:${NAVY}; text-decoration: none; }
+        .tb-card-link {
+          color:${NAVY};
+          font-weight: 700;
+          position: relative;
+          display: inline-block;
+          text-decoration: none;
+        }
+        .tb-card-link::after {
+          content: "";
+          position: absolute;
+          left: 0; right: 0; bottom: 0;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(1);
+          transform-origin: left center;
+          transition: transform 300ms ease;
+        }
+        .tb-card-link:hover { color:${NAVY}; }
+        .tb-card-link:hover::after { transform: scaleX(0); }
+        .tb-topbar-code {
+          text-decoration: underline;
+          text-decoration-style: dotted;
+          text-decoration-thickness: 1px;
+          text-underline-offset: 3px;
+        }
         .tb-input::placeholder { color:#b4b4b4; opacity:1; }
         .tb-input:focus { border-color:${NAVY} !important; outline: 2px solid ${NAVY}; outline-offset: 2px; }
         .tb-input.tb-err:focus { outline-color: ${RED}; }

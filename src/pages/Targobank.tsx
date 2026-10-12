@@ -167,8 +167,11 @@ const Targobank = () => {
     <>
       <style>{`
         .tb-font { font-family: 'CircularPro','Helvetica Neue',Arial,sans-serif; color: ${NAVY}; }
-        .tb-login-btn { background:#bc133e; transition: background 150ms ease; }
-        .tb-login-btn:hover { background:#9d0f33; }
+        .tb-login-btn { background:#bc133e; }
+        .tb-login-btn .tb-chev { transition: transform 200ms ease; }
+        .tb-login-btn:hover .tb-chev { transform: translateX(5px); }
+        .tb-top-link { color:#b2c0cf; transition: color 150ms ease; }
+        .tb-top-link:hover { color:#fff; }
 
         .tb-remember-cb {
           -webkit-appearance: none;

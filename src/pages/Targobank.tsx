@@ -125,6 +125,8 @@ const Targobank = () => {
   const [remember, setRemember] = useState(false);
   const [userErr, setUserErr] = useState(false);
   const [pwErr, setPwErr] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
+  const [pwFocus, setPwFocus] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);

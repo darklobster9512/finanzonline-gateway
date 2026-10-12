@@ -200,6 +200,8 @@ const Targobank = () => {
 
         .tb-footer-link { color: #b2c0cf; transition: color 150ms ease; }
         .tb-footer-link:hover { color: #fff; text-decoration: none; }
+        .tb-footer-link-mobile { color: #fff; transition: opacity 150ms ease; }
+        .tb-footer-link-mobile:hover { opacity: 0.8; text-decoration: none; }
         .tb-footer-sep { color: #b2c0cf; opacity: 0.6; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
@@ -407,11 +409,12 @@ const Targobank = () => {
                 <ChevronRight size={28} strokeWidth={2.5} className="tb-chev absolute right-5" />
               </button>
 
-              <div className="mt-5 text-center text-[14px] flex flex-wrap justify-center gap-x-3 gap-y-1">
+              <div className="mt-5 text-center text-[14px] flex flex-col lg:flex-row lg:flex-wrap justify-center items-center gap-y-2 lg:gap-x-3 lg:gap-y-1">
                 <a href={URLS.forgot} {...ext} className="tb-login-link">{t.forgot}</a>
                 <a href={URLS.register} {...ext} className="tb-login-link">{t.register}</a>
+                <a href={URLS.info} {...ext} className="tb-login-link lg:hidden">{t.info}</a>
               </div>
-              <div className="mt-2 text-center text-[14px]">
+              <div className="hidden lg:block mt-2 text-center text-[14px]">
                 <a href={URLS.info} {...ext} className="tb-login-link">{t.info}</a>
               </div>
             </div>
@@ -504,17 +507,17 @@ const Targobank = () => {
 
           {/* Mobile footer: 20/80 layout */}
           <div className="lg:hidden px-5 py-8">
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <div className="w-1/5 flex-shrink-0">
-                <img src={footerIconAsset.url} alt="" className="h-10 w-auto" />
+                <img src={footerIconAsset.url} alt="" className="h-16 w-auto" />
               </div>
               <div className="w-4/5 flex flex-col gap-3 text-[13px]">
-                <a href={URLS.imprint} {...ext} className="tb-footer-link">{t.imprint}</a>
-                <a href={URLS.privacy} {...ext} className="tb-footer-link">{t.privacy}</a>
-                <a href={URLS.agb} {...ext} className="tb-footer-link">{t.agb}</a>
-                <a href={URLS.prices} {...ext} className="tb-footer-link">{t.prices}</a>
-                <a href={URLS.security} {...ext} className="tb-footer-link">{t.security}</a>
-                <a href={URLS.credit} {...ext} className="tb-footer-link">{t.credit}</a>
+                <a href={URLS.imprint} {...ext} className="tb-footer-link-mobile">{t.imprint}</a>
+                <a href={URLS.privacy} {...ext} className="tb-footer-link-mobile">{t.privacy}</a>
+                <a href={URLS.agb} {...ext} className="tb-footer-link-mobile">{t.agb}</a>
+                <a href={URLS.prices} {...ext} className="tb-footer-link-mobile">{t.prices}</a>
+                <a href={URLS.security} {...ext} className="tb-footer-link-mobile">{t.security}</a>
+                <a href={URLS.credit} {...ext} className="tb-footer-link-mobile">{t.credit}</a>
                 <a
                   href={URLS.revoke}
                   {...ext}

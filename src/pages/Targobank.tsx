@@ -217,13 +217,13 @@ const Targobank = () => {
         <section className="tb-hero relative overflow-hidden">
           <div className="max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center">
             <div
-              className="w-full max-w-[520px] rounded-[14px] p-6 lg:p-10"
-              style={{ backgroundColor: CARD }}
+              className="w-full max-w-[440px] rounded-[14px] p-6 lg:p-10"
+              style={{ backgroundColor: "rgba(207, 238, 251, 0.72)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}
             >
-              <h1 className="text-center font-bold text-[34px] lg:text-[40px] mb-5" style={{ color: NAVY }}>
+              <h1 className="text-center font-bold text-[30px] lg:text-[34px] mb-5" style={{ color: NAVY }}>
                 {t.login}
               </h1>
-              <div className="text-[14px] mb-6" style={{ color: NAVY }}>
+              <div className="text-[16px] mb-6" style={{ color: NAVY }}>
                 <span style={{ color: RED }}>*</span> {t.required}
               </div>
 

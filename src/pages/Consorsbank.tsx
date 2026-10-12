@@ -300,7 +300,7 @@ const Consorsbank = () => {
 
         {/* FOOTER */}
         <footer className="w-full" style={{ background: "#f5f6f8", borderTop: `1px solid ${BORDER}` }}>
-          <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-8 text-[13px] flex flex-wrap items-center justify-center gap-x-6 gap-y-2" style={{ color: MUTED }}>
+          <div className="cb-footer-inner max-w-[1280px] mx-auto px-6 lg:px-10 py-8 text-[13px] flex flex-wrap items-center justify-center gap-x-6 gap-y-2" style={{ color: MUTED }}>
             <span>© Consorsbank – eine Niederlassung der BNP Paribas S.A.</span>
             <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>Impressum</a>
             <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>Datenschutz</a>

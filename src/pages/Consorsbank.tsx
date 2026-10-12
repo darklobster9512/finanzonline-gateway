@@ -380,7 +380,7 @@ const Consorsbank = () => {
                     <a href="#" onClick={(e) => e.preventDefault()} className="text-[12px] font-semibold underline" style={{ color: TEXT, textDecorationColor: TEXT }}>Fragen zum TAN-Verfahren?</a>
                   </div>
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-4">
+                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 mt-4">
                     <button
                       type="submit"
                       style={{

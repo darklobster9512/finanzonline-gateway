@@ -176,7 +176,7 @@ const Targobank = () => {
         .tb-float-wrap { position: relative; }
         .tb-float-label {
           position: absolute;
-          left: 10px;
+          left: 12px;
           top: 50%;
           transform: translateY(-50%);
           font-size: 16px;
@@ -190,8 +190,9 @@ const Targobank = () => {
         }
         .tb-float-wrap.is-active .tb-float-label {
           top: -4px;
+          left: 12px;
           transform: translateY(-100%) scale(1);
-          font-size: 12px;
+          font-size: 14px;
           color: ${NAVY};
           background: transparent;
         }
@@ -272,7 +273,7 @@ const Targobank = () => {
                 <span style={{ color: RED }}>*</span> {t.required}
               </div>
 
-              <div className="mb-5">
+              <div className="mb-7">
                 <div className={`tb-float-wrap${userFocus || username.length > 0 ? " is-active" : ""}${userErr ? " is-error" : ""}`}>
                   <input
                     className={fieldCls(userErr)}

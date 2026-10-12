@@ -295,7 +295,7 @@ const Consorsbank = () => {
 
         {/* LOGIN OVERLAY */}
         {showLogin && (
-          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }} onClick={() => setShowLogin(false)}>
+          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto" style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)" }} onClick={() => setShowLogin(false)}>
             <div
               className="bg-white w-full max-w-[580px] mx-4 my-8 shadow-xl relative"
               style={{ padding: "36px 28px 32px", borderRadius: 14 }}
@@ -307,7 +307,7 @@ const Consorsbank = () => {
 
               <form onSubmit={handleLogin}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: 14, columnGap: 20, alignItems: "center" }}>
-                  <h2 className="font-bold" style={{ fontSize: 22, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2", whiteSpace: "nowrap" }}>Loggen Sie sich ein:</h2>
+                  <h2 className="font-bold" style={{ fontSize: 24, lineHeight: 1.2, textAlign: "left", gridColumn: "1 / 2", whiteSpace: "nowrap" }}>Loggen Sie sich ein:</h2>
                   <div style={{ gridColumn: "2 / 3" }} />
 
                   <label htmlFor="cb-user" className="text-[16px]" style={{ color: TEXT, textAlign: "right" }}>Kontonummer / UserID:</label>

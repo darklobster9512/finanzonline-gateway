@@ -277,9 +277,9 @@ const Apobank = () => {
           border-color: ${BTN};
         }
         .apo-btn:disabled {
-          color: #6c757d;
-          border-color: #6c757d;
-          opacity: .65;
+          color: ${BTN};
+          border-color: ${BTN};
+          background-color: transparent;
           cursor: not-allowed;
         }
       `}</style>

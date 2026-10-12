@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ChevronRight, Check } from "lucide-react";
 import logoAsset from "@/assets/targobank/targobank-logo.svg.asset.json";
 import footerIconAsset from "@/assets/targobank/targobank-footer-icon.svg.asset.json";
+import heroIconAsset from "@/assets/targobank/targobank-hero-icon.svg.asset.json";
 import card1Asset from "@/assets/targobank/targobank-card-1.webp.asset.json";
 import card2Asset from "@/assets/targobank/targobank-card-2.webp.asset.json";
 import card3Asset from "@/assets/targobank/targobank-card-3.webp.asset.json";

@@ -74,8 +74,7 @@ const Openbank = () => {
           font-family: inherit;
           transition: background 120ms ease, border-color 120ms ease;
         }
-        .ob-input:focus,
-        .ob-field.is-filled .ob-input {
+        .ob-input:focus {
           background: #F3F3F3;
           border-color: ${BLACK};
         }
@@ -97,9 +96,9 @@ const Openbank = () => {
           padding: 0;
         }
         .ob-field.is-active .ob-float-label {
-          top: 10px;
+          top: 6px;
           transform: translateY(0);
-          font-size: 10px;
+          font-size: 11px;
           color: #555;
         }
         .ob-error-msg {

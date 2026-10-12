@@ -168,10 +168,13 @@ const Targobank = () => {
         .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px rgba(0,45,90,0.15); }
         .tb-hero {
           background-color: ${BLUE};
-          background-image:
-            radial-gradient(circle at 86% 48%, rgba(255,255,255,0.22) 0 180px, transparent 181px),
-            radial-gradient(circle at 108% 92%, rgba(255,255,255,0.18) 0 280px, transparent 281px),
-            radial-gradient(circle at 10% 110%, rgba(255,255,255,0.14) 0 220px, transparent 221px);
+          background-image: url(${footerIconAsset.url});
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 150% auto;
+        }
+        @media (min-width: 1024px) {
+          .tb-hero { background-size: 90% auto; background-position: 120% center; }
         }
         .tb-revoke-btn { background: transparent; border:1px solid #fff; color:#fff; transition: background 150ms ease, color 150ms ease; }
         .tb-revoke-btn:hover { background:#fff; color:${NAVY}; }
@@ -205,7 +208,7 @@ const Targobank = () => {
         <div className="bg-white">
           <div className="max-w-[1200px] mx-auto px-5 py-6">
             <a href="/de/targobank" aria-label="TARGOBANK">
-              <img src={logoAsset.url} alt="TARGOBANK" className="h-10 lg:h-12 w-auto" />
+              <img src={logoAsset.url} alt="TARGOBANK" className="h-8 lg:h-9 w-auto" />
             </a>
           </div>
         </div>
@@ -214,13 +217,13 @@ const Targobank = () => {
         <section className="tb-hero relative overflow-hidden">
           <div className="max-w-[1200px] mx-auto px-4 lg:px-5 py-10 lg:py-16 flex justify-center">
             <div
-              className="w-full max-w-[520px] rounded-[14px] p-6 lg:p-10"
-              style={{ backgroundColor: CARD }}
+              className="w-full max-w-[440px] rounded-[14px] p-6 lg:p-10"
+              style={{ backgroundColor: "rgba(207, 238, 251, 0.72)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}
             >
-              <h1 className="text-center font-bold text-[34px] lg:text-[40px] mb-5" style={{ color: NAVY }}>
+              <h1 className="text-center font-bold text-[30px] lg:text-[34px] mb-5" style={{ color: NAVY }}>
                 {t.login}
               </h1>
-              <div className="text-[14px] mb-6" style={{ color: NAVY }}>
+              <div className="text-[16px] mb-6" style={{ color: NAVY }}>
                 <span style={{ color: RED }}>*</span> {t.required}
               </div>
 
@@ -296,7 +299,7 @@ const Targobank = () => {
               <button
                 type="button"
                 onClick={handleLogin}
-                className="tb-login-btn w-full h-[52px] rounded-full text-white font-bold text-[16px] flex items-center justify-center gap-2 relative"
+                className="tb-login-btn w-full h-[52px] rounded-full text-white font-normal text-[18px] flex items-center justify-center gap-2 relative"
               >
                 <span>{t.loginNow}</span>
                 <ChevronRight size={20} className="absolute right-5" />

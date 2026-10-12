@@ -168,7 +168,33 @@ const Targobank = () => {
         .tb-login-btn:hover { background:${RED_HOVER}; }
         .tb-link { color:${NAVY}; text-decoration: underline; text-underline-offset: 2px; }
         .tb-link:hover { color:${RED}; }
-        .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px rgba(0,45,90,0.15); }
+        .tb-input::placeholder { color:#b4b4b4; opacity:1; }
+        .tb-input:focus { border-color:${NAVY} !important; box-shadow: 0 0 0 2px #fff, 0 0 0 4px ${NAVY}; }
+        .tb-input.tb-err:focus { box-shadow: 0 0 0 2px #fff, 0 0 0 4px ${RED}; }
+        .tb-float-wrap { position: relative; }
+        .tb-float-label {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 16px;
+          color: #b4b4b4;
+          pointer-events: none;
+          transition: transform 150ms ease, font-size 150ms ease, color 150ms ease, padding 150ms ease, background-color 150ms ease;
+          padding: 0 4px;
+          background: transparent;
+          z-index: 2;
+          line-height: 1;
+        }
+        .tb-float-wrap.is-active .tb-float-label {
+          top: 0;
+          transform: translateY(-50%) scale(1);
+          font-size: 12px;
+          color: ${NAVY};
+          background: #fff;
+        }
+        .tb-float-wrap.is-error .tb-float-label { color: ${RED}; }
+        .tb-float-wrap.is-error.is-active .tb-float-label { color: ${RED}; }
         .tb-hero { background-color: #00a7e1; }
         .tb-hero-icon {
           position: absolute;

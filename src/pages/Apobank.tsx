@@ -4,11 +4,15 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/apobank-logo.svg.asset.json";
+import iconDatenschutz from "@/assets/apobank-icon-datenschutz.png.asset.json";
+import iconEmail from "@/assets/apobank-icon-email.png.asset.json";
+import iconPhone from "@/assets/apobank-icon-phone.png.asset.json";
 
 const FONT = "'TypoPRO Source Sans Pro', sans-serif";
 const PRIMARY = "#012169";
+const BTN = "#556a9a";
 const TEXT = "#1e325f";
-const BODY_BG = "#f8f9fa";
+const BODY_BG = "#F0F3F5";
 const LINK = "#555";
 const BORDER = "#ced4da";
 

@@ -401,7 +401,7 @@ const Consorsbank = () => {
                   </div>
 
 
-                  <div style={{ gridColumn: "2 / 3" }} className="mt-1 flex justify-center">
+                  <div style={{ gridColumn: "2 / 3" }} className="cb-login-col2 mt-1 flex justify-center">
                     <a
                       href="#"
                       onClick={(e) => e.preventDefault()}

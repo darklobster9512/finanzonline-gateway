@@ -186,24 +186,24 @@ const Openbank = () => {
                 <li>Openbank wird Sie niemals auffordern, eine Transaktion per Sign zu bestätigen, Stornierungsaufträge oder eine Rückbuchung vorzunehmen.</li>
                 <li>Bei technischen Problemen fordern wir Sie niemals auf, uns per Fernwartungssoftware Zugriff auf Ihr persönliches Endgerät zu gewähren.</li>
               </ul>
-              <MehrLink />
+              <MehrLink href="https://www.openbank.de/banking-und-service/digital-banking/digitale-sicherheit" />
             </div>
             <div>
               <h3 className="font-bold text-[13px] mb-4" style={{ color: "#444" }}>Online Zahlungen mit Ihrer Visa Karte</h3>
               <p className="text-[11px] mb-4 leading-relaxed" style={{ color: "#767676" }}>
-                Zu Ihrer Sicherheit werden Sie bei den meisten Online-Zahlungen mit Ihrer Openbank Visa Debit- bzw. Kreditkarte aufgefordert, Ihre Zahlung mit einem sicheren Verfahren freizugeben (Zwei-Faktor-Authentifizierung). Nutzen Sie dafür unsere komfortable OpenbankSign App. Diese können Sie bequem im <a href="#" className="ob-link-info font-bold">Apple Store</a> oder <a href="#" className="ob-link-info font-bold">Google Play Store</a> auf Ihrem Smartphone herunterladen.
+                Zu Ihrer Sicherheit werden Sie bei den meisten Online-Zahlungen mit Ihrer Openbank Visa Debit- bzw. Kreditkarte aufgefordert, Ihre Zahlung mit einem sicheren Verfahren freizugeben (Zwei-Faktor-Authentifizierung). Nutzen Sie dafür unsere komfortable OpenbankSign App. Diese können Sie bequem im <a href="https://apps.apple.com/de/app/santandersign/id1475466439" target="_blank" rel="noopener noreferrer" className="ob-link-info font-bold">Apple Store</a> oder <a href="https://play.google.com/store/apps/details?id=mobile.santander.de.smartsign" target="_blank" rel="noopener noreferrer" className="ob-link-info font-bold">Google Play Store</a> auf Ihrem Smartphone herunterladen.
               </p>
               <p className="text-[11px] mb-4 leading-relaxed" style={{ color: "#767676" }}>
                 Sie haben noch kein Online Banking oder Fragen diesbezüglich? Dann finden Sie weitere Details sowie unsere Kontaktdaten unter
               </p>
-              <MehrLink />
+              <MehrLink href="https://www.openbank.de/content/openbank/de/de/home/banking-und-service/kontakt/?sectionName=akkordeon&sectionId=11426" />
             </div>
             <div>
               <h3 className="font-bold text-[13px] mb-4" style={{ color: "#444" }}>Aktualisierung der Datenschutzhinweise</h3>
               <p className="text-[11px] mb-4 leading-relaxed" style={{ color: "#767676" }}>
                 Wir haben die Datenschutzhinweise für das Online Banking aktualisiert.
               </p>
-              <MehrLink />
+              <MehrLink href="https://meine.openbank.de/datenschutz/" />
             </div>
           </div>
 

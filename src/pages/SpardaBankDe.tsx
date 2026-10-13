@@ -80,7 +80,7 @@ const SpardaBankDe = () => {
           <div className="max-w-[1200px] mx-auto px-3 py-4 lg:px-6 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
             <div className="flex flex-col gap-4 lg:gap-6">
               <section className="bg-white rounded-lg p-5 lg:p-8" style={{ boxShadow: CARD_SHADOW }}>
-                <h1 style={{ color: BLUE, fontSize: 32, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
+                <h1 className="text-[26px] lg:text-[32px]" style={{ color: BLUE, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                   Anmelden
                 </h1>
 
@@ -242,7 +242,7 @@ const SpardaBankDe = () => {
 
         <footer style={{ backgroundColor: BLUE }} className="text-white">
           <div className="max-w-[1200px] mx-auto px-6 py-6 flex flex-col items-center gap-3">
-            <nav className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-x-2 gap-y-3 text-sm text-center">
+            <nav className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-x-2 gap-y-1 lg:gap-y-3 text-[13px] lg:text-sm text-center">
               {["Impressum", "Sicherheitshinweise", "Nutzungsbedingungen", "Datenschutz", "Pflichtinformationen", "AGB"].map((l, i, arr) => (
                 <span key={l} className="flex items-center gap-2">
                   <a href="#" onClick={(e) => e.preventDefault()} className="text-white font-semibold">{l}</a>
@@ -250,7 +250,7 @@ const SpardaBankDe = () => {
                 </span>
               ))}
             </nav>
-            <button className="flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
+            <button className="flex items-center gap-2 text-sm mt-3 lg:mt-0" onClick={(e) => e.preventDefault()}>
               <img src={germanyFlag.url} alt="" width={22} height={22} />
               <span>Deutsch</span>
             </button>

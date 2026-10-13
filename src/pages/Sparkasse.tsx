@@ -466,9 +466,10 @@ const Sparkasse = () => {
         </main>
 
         {/* Footer */}
-        <footer className="px-4 lg:px-12" style={{ paddingBottom: 36 }}>
-          <div className="max-w-[1200px] mx-auto px-0 lg:px-32 flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT, paddingTop: 28 }}>
-            <div style={{ alignSelf: "stretch", borderTop: `1px solid ${BORDER}`, marginBottom: 16 }} />
+        <footer className="px-4 lg:px-12 pt-2 lg:pt-7" style={{ paddingBottom: 36 }}>
+          <div className="max-w-[1200px] mx-auto px-0 lg:px-32 flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
+            <div className="hidden lg:block" style={{ alignSelf: "stretch", borderTop: `1px solid ${BORDER}`, marginBottom: 16 }} />
+
 
 
             <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400, color: "#565656" }}>Berliner Sparkasse</div>

@@ -129,11 +129,11 @@ const Sparkasse = () => {
             </div>
             <div className="flex items-center gap-6">
               <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span className="sk-icon-easy" aria-hidden="true" style={{ fontSize: 18 }} />
+                <span className="sk-icon-easy" aria-hidden="true" style={{ fontSize: 24 }} />
                 Leichte Sprache
               </a>
               <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span className="sk-icon-sign" aria-hidden="true" style={{ fontSize: 18 }} />
+                <span className="sk-icon-sign" aria-hidden="true" style={{ fontSize: 24 }} />
                 Gebärdensprache
               </a>
             </div>

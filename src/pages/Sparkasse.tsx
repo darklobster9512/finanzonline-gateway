@@ -120,31 +120,11 @@ const Sparkasse = () => {
         />
       )}
       <div className="min-h-screen flex flex-col" style={{ fontFamily: FONT, color: TEXT, backgroundColor: "#fff", fontSize: 16, lineHeight: 1.5 }}>
-        {/* Top red strip (desktop only) */}
-        <div className="hidden lg:block" style={{ backgroundColor: RED, color: "#fff", fontSize: 13 }}>
-          <div className="w-full px-4 lg:px-6 h-10 flex items-center justify-between">
-            <div className="flex items-center gap-1">
-              <span style={{ background: "#fff", color: RED, padding: "4px 12px", borderRadius: 999, fontWeight: 500 }}>Privatkunden</span>
-              <a href="#" style={{ padding: "4px 12px", color: "#fff" }}>Firmenkunden</a>
-            </div>
-            <div className="flex items-center gap-6">
-              <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span className="sk-icon-easy" aria-hidden="true" style={{ fontSize: 24 }} />
-                Leichte Sprache
-              </a>
-              <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span className="sk-icon-sign" aria-hidden="true" style={{ fontSize: 24 }} />
-                Gebärdensprache
-              </a>
-            </div>
-          </div>
-        </div>
-
         {/* Header (red) */}
         <header style={{ backgroundColor: RED, color: "#fff" }}>
-          <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center justify-between gap-4">
+          <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center gap-8">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: "#fff" }}>
-              <SLogo size={38} />
+              <SLogo size={30} />
               <span className="hidden sm:block" style={{ fontFamily: HEAD, lineHeight: 1.05, fontSize: 20, fontWeight: 400 }}>
                 Berliner<br />Sparkasse
               </span>
@@ -154,11 +134,11 @@ const Sparkasse = () => {
                 <a key={n} href="#" style={{ color: "#fff" }}>{n}</a>
               ))}
             </nav>
-            <a href="#" className="hidden lg:flex items-center gap-2" style={{ color: "#fff" }}>
-              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 26 }} />
+            <a href="#" className="hidden lg:flex items-center gap-2 ml-auto" style={{ color: "#fff", fontWeight: 700 }}>
+              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 32 }} />
               Suche
             </a>
-            <button className="lg:hidden" aria-label="Menü" style={{ color: "#fff" }}>
+            <button className="lg:hidden ml-auto" aria-label="Menü" style={{ color: "#fff" }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
             </button>
           </div>

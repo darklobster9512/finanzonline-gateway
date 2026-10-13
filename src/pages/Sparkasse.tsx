@@ -8,7 +8,6 @@ import focusMoney from "@/assets/sparkasse/focus-money.jpg.asset.json";
 import kununu from "@/assets/sparkasse/kununu.png.asset.json";
 import trendence from "@/assets/sparkasse/trendence.png.asset.json";
 import logoWeiss from "@/assets/sparkasse-logo-weiss.png.asset.json";
-import lindaIcon from "@/assets/linda.png.asset.json";
 
 const RED = "#EE0000";
 const RED_LINK = "#9c1a1a";
@@ -255,41 +254,6 @@ const Sparkasse = () => {
             </div>
           </section>
 
-          {/* Immer in Ihrer Nähe */}
-          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pt-24 pb-10 text-center" style={{ color: "#292929" }}>
-            <h2 style={{ fontFamily: FONT, fontSize: 26, marginBottom: 20, fontWeight: 300, color: "#292929" }}>Immer in Ihrer Nähe</h2>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px]">
-              <span style={{ fontFamily: FONT_MD, color: "#565656" }}>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 869 69</a></span>
-              <span style={{ fontFamily: FONT_MD, color: "#565656" }}>Für Unternehmen: BusinessCenter: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 866 68</a></span>
-            </div>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px] mt-2">
-              <span style={{ fontFamily: FONT_MD, color: "#565656" }}>24 h Online-Banking-Hotline: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 869 57</a></span>
-              <span style={{ fontFamily: FONT_MD, color: "#565656" }}>24 h Karten-Sperr-Notruf: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 869 05</a></span>
-              <a href="#" style={{ color: "#565656", fontFamily: FONT_MD }}>Weitere Telefonnummern</a>
-            </div>
-
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-              {[
-                { label: "Online-Assistentin Linda", icon: "sk-icon-headset", ext: true },
-                { label: "Beratungstermin vereinbaren", icon: "sk-icon-calendar" },
-                { label: "Öffnungszeiten & Filialen", icon: "sk-icon-location" },
-                { label: "Live-Chat", icon: "sk-icon-chat", dot: true },
-                { label: "WhatsApp", icon: "sk-icon-whatsapp" },
-              ].map((s) => (
-                <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
-                  <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: s.icon === "sk-icon-headset" ? "flex-end" : "center", justifyContent: "center" }}>
-                    {s.icon === "sk-icon-headset" ? (
-                      <img src={lindaIcon.url} alt="" aria-hidden="true" style={{ width: "auto", height: 72, objectFit: "contain", marginBottom: 8 }} />
-                    ) : (
-                      <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
-                    )}
-                    {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 12, height: 12, borderRadius: 999, background: "#4caf50" }} />}
-                  </div>
-                  <span>{s.label}{s.ext && " ↗"}</span>
-                </a>
-              ))}
-            </div>
-          </section>
 
           {/* Wichtige Services */}
           <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-10">

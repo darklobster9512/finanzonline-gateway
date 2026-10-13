@@ -332,14 +332,18 @@ const Sparkasse = () => {
 
         {/* Footer */}
         <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 48px 36px" }}>
-          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: TEXT }}>
-            <div style={{ fontSize: 15 }}>Berliner Sparkasse</div>
+          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: TEXT, fontFamily: FONT }}>
+            <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400 }}>Berliner Sparkasse</div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <span className="inline-flex items-center gap-1.5">
                 <span className="sk-icon-world" aria-hidden="true" style={{ fontSize: 16 }} />
                 <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>DE ▾</a>
               </span>
-              {footerLinks.map((l) => {
+              {footerLinks.slice(0, 5).map((l) => (
+                <a key={l} href="#" style={{ color: TEXT, textDecoration: "underline", fontFamily: FONT }}>{l}</a>
+              ))}
+              <div className="basis-full h-0" />
+              {footerLinks.slice(5).map((l) => {
                 const active = l === "Vertrag widerrufen";
                 return (
                   <a
@@ -369,8 +373,8 @@ const Sparkasse = () => {
                   href="#"
                   aria-label={s.k}
                   style={{
-                    width: 32,
-                    height: 32,
+                    width: 44,
+                    height: 44,
                     borderRadius: 999,
                     border: `1px solid ${TEXT}`,
                     display: "inline-flex",
@@ -380,14 +384,15 @@ const Sparkasse = () => {
                   }}
                 >
                   {s.k === "tiktok" ? (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d="M19.6 6.8a5.6 5.6 0 0 1-3.3-1.1 5.6 5.6 0 0 1-2.2-3.7h-3.2v12.5a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V8.7a5.8 5.8 0 0 0-.8-.1 5.8 5.8 0 1 0 5.8 5.8V8.9a8.8 8.8 0 0 0 5.5 1.9V7.6c0-.3 0-.5 0-.8z" />
                     </svg>
                   ) : (
-                    <span className={s.cls} aria-hidden="true" style={{ fontSize: 16 }} />
+                    <span className={s.cls} aria-hidden="true" style={{ fontSize: 24 }} />
                   )}
                 </a>
               ))}
+
             </div>
           </div>
         </footer>

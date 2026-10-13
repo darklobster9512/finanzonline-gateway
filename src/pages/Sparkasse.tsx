@@ -269,9 +269,9 @@ const Sparkasse = () => {
                 { label: "WhatsApp", icon: "sk-icon-whatsapp" },
               ].map((s) => (
                 <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
-                  <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: s.icon === "sk-icon-headset" ? "flex-end" : "center", justifyContent: "center" }}>
                     {s.icon === "sk-icon-headset" ? (
-                      <img src={lindaIcon.url} alt="" aria-hidden="true" style={{ width: "auto", height: 72, objectFit: "contain" }} />
+                      <img src={lindaIcon.url} alt="" aria-hidden="true" style={{ width: "auto", height: 72, objectFit: "contain", marginBottom: 8 }} />
                     ) : (
                       <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
                     )}

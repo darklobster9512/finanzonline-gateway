@@ -451,3 +451,10 @@ All colors MUST be HSL.
   font-size: 11px;
   color: #0000009E;
 }
+.sp-card:hover {
+  box-shadow: 0 10px 28px rgba(0,0,0,0.2) !important;
+}
+.sp-card:hover .sp-card-body {
+  background-color: #e9eff5;
+}
+

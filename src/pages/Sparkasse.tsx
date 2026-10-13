@@ -122,7 +122,7 @@ const Sparkasse = () => {
       <div className="min-h-screen flex flex-col" style={{ fontFamily: FONT, color: TEXT, backgroundColor: "#fff", fontSize: 16, lineHeight: 1.5 }}>
         {/* Top red strip (desktop only) */}
         <div className="hidden lg:block" style={{ backgroundColor: RED, color: "#fff", fontSize: 13 }}>
-          <div className="max-w-[1200px] mx-auto px-0 h-10 flex items-center justify-between">
+          <div className="w-full px-4 lg:px-6 h-10 flex items-center justify-between">
             <div className="flex items-center gap-1">
               <span style={{ background: "#fff", color: RED, padding: "4px 12px", borderRadius: 999, fontWeight: 500 }}>Privatkunden</span>
               <a href="#" style={{ padding: "4px 12px", color: "#fff" }}>Firmenkunden</a>

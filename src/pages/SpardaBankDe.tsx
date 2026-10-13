@@ -220,7 +220,7 @@ const SpardaBankDe = () => {
                 className="sp-card group block bg-white rounded-lg overflow-hidden"
                 style={{ boxShadow: CARD_SHADOW, transition: "box-shadow 200ms ease" }}
               >
-                <img src={teaserAsset.url} alt="Geldanlage" className="w-full h-[420px] object-cover" />
+                <img src={teaserAsset.url} alt="Geldanlage" className="w-full h-[220px] lg:h-[420px] object-cover" />
                 <div className="sp-card-body p-6" style={{ transition: "background-color 200ms ease" }}>
                   <h2 style={{ color: TEXT, fontSize: 22, fontWeight: 700, marginBottom: 10, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                     Finden Sie die Geldanlage, die zu Ihnen passt!

@@ -225,8 +225,8 @@ const Sparkasse = () => {
                       <div style={{ fontSize: 12, color: "#565656", lineHeight: 1.2 }}>Anmeldename</div>
                       <div style={{ fontSize: 16, color: TEXT, marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{username}</div>
                     </div>
-                    <button type="button" onClick={editUsername} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", color: TEXT, fontFamily: FONT, fontSize: 15, cursor: "pointer", padding: 4, flexShrink: 0 }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                    <button type="button" onClick={editUsername} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", color: "#565656", fontFamily: FONT, fontSize: 14, cursor: "pointer", padding: 4, flexShrink: 0 }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
                       <span style={{ textDecoration: "underline" }}>Ändern</span>
                     </button>
                   </div>

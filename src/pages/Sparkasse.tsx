@@ -237,7 +237,7 @@ const Sparkasse = () => {
               <a href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Zugangsdaten vergessen</a>
             </div>
 
-            <div style={{ marginTop: 48 }}>
+            <div style={{ marginTop: 48, paddingLeft: 24, paddingRight: 24 }}>
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingBottom: 16, borderBottom: `1px solid ${BORDER}`, color: "#565656" }}>
                 <span>Sie haben noch kein Online-Banking?</span>
                 <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>

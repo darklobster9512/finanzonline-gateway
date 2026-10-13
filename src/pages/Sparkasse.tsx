@@ -166,13 +166,9 @@ const Sparkasse = () => {
 
         {/* Floating service column (desktop) */}
         <div className="hidden lg:flex fixed right-4 top-[180px] flex-col gap-2 z-40">
-          {[
-            <svg key="p" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M22 16.9v2.6c0 1-.8 1.8-1.8 1.8C9.6 21.3 2.7 14.4 2.7 3.8 2.7 2.8 3.5 2 4.5 2h2.6c.9 0 1.6.6 1.8 1.5.2 1 .4 2 .8 3 .2.6.1 1.3-.4 1.7L8 9.5a16 16 0 0 0 6.5 6.5l1.3-1.3c.4-.4 1-.6 1.7-.4 1 .3 2 .6 3 .8.9.2 1.5.9 1.5 1.8z" /></svg>,
-            <svg key="c" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" /></svg>,
-            <svg key="m" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm0 2v.2l8 5 8-5V8H4z" /></svg>,
-          ].map((icon, i) => (
-            <a key={i} href="#" style={{ background: RED, width: 44, height: 44, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-              {icon}
+          {["sk-icon-phone", "sk-icon-chat", "sk-icon-mail"].map((cls, i) => (
+            <a key={cls} href="#" style={{ background: RED, width: 44, height: 44, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
+              <span className={cls} aria-hidden="true" style={{ fontSize: 22 }} />
               {i === 1 && <span style={{ position: "absolute", top: 6, right: 8, width: 8, height: 8, borderRadius: 999, background: "#4caf50" }} />}
             </a>
           ))}

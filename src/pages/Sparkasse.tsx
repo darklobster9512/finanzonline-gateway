@@ -411,7 +411,7 @@ const Sparkasse = () => {
 
           {/* Wichtige Services */}
           <section className="max-w-[1200px] mx-auto px-4 lg:px-32 pb-10">
-            <h3 className="text-center lg:text-left" style={{ fontSize: 13, fontWeight: 400, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 }}>Wichtige Services</h3>
+            <h3 className="text-center lg:text-left text-[12px] lg:text-[13px]" style={{ fontWeight: 400, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 }}>Wichtige Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
                 <a key={s.label} href="#" className="flex items-center gap-3 py-3" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}`, fontSize: 13 }}>
@@ -441,15 +441,19 @@ const Sparkasse = () => {
           </section>
 
           {/* Awards */}
-          <section className="max-w-[1200px] mx-auto px-4 lg:px-32 pb-14">
+          <section className="max-w-[1200px] mx-auto px-4 lg:px-32 pb-6 lg:pb-14">
             <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4 lg:border-t lg:pt-10" style={{ borderColor: BORDER }}>
               {[
                 { img: trendence.url, title: "Attraktivste Arbeitgeber 2025", sub: "1. Platz: Schüler", scale: 1 },
                 { img: handelsblatt.url, title: "Bestes Mobile Banking 2026", sub: "App Sparkasse", scale: 1 },
                 { img: kununu.url, title: "Kununu", sub: "Top Company 2026", scale: 1 },
                 { img: focusMoney.url, title: "Private Banking Beratung und Service", sub: "FOCUS MONEY Januar 2026", scale: 0.6 },
-              ].map((a) => (
-                <div key={a.title} className="grid text-center" style={{ gridTemplateRows: "100px auto auto", rowGap: 2, justifyItems: "center" }}>
+              ].map((a, i) => (
+                <div
+                  key={a.title}
+                  className={`grid text-center ${i === 3 ? "col-span-3 lg:col-span-1 justify-self-center lg:justify-self-stretch" : ""}`}
+                  style={{ gridTemplateRows: "100px auto auto", rowGap: 2, justifyItems: "center" }}
+                >
                   <div style={{ height: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={a.img} alt={a.title} style={{ height: 100 * a.scale, width: "auto", objectFit: "contain" }} />
                   </div>
@@ -462,9 +466,10 @@ const Sparkasse = () => {
         </main>
 
         {/* Footer */}
-        <footer className="px-4 lg:px-12" style={{ paddingBottom: 36 }}>
-          <div className="max-w-[1200px] mx-auto px-0 lg:px-32 flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT, paddingTop: 28 }}>
-            <div style={{ alignSelf: "stretch", borderTop: `1px solid ${BORDER}`, marginBottom: 16 }} />
+        <footer className="px-4 lg:px-12 pt-2 lg:pt-7" style={{ paddingBottom: 36 }}>
+          <div className="max-w-[1200px] mx-auto px-0 lg:px-32 flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
+            <div className="hidden lg:block" style={{ alignSelf: "stretch", borderTop: `1px solid ${BORDER}`, marginBottom: 16 }} />
+
 
 
             <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400, color: "#565656" }}>Berliner Sparkasse</div>

@@ -15,6 +15,7 @@ const RED_DARK = "#c80000";
 const TEXT = "#000000";
 const BORDER = "#e5e5e5";
 const FONT = "'SparkasseWeb', Arial, sans-serif";
+const FONT_MD = "'SparkasseWebMd', 'SparkasseWeb', Arial, sans-serif";
 const HEAD = "'SparkasseHead', 'SparkasseWeb', Arial, sans-serif";
 
 const navItems = [
@@ -214,9 +215,9 @@ const Sparkasse = () => {
             </form>
 
             <div style={{ textAlign: "center", marginTop: 20, fontSize: 15 }}>
-              <a href="#" style={{ color: "#292929", textDecoration: "underline", fontWeight: 500 }}>Sicherheitshinweise</a>
+              <a href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Sicherheitshinweise</a>
               <span style={{ margin: "0 10px", color: "#999" }}>·</span>
-              <a href="#" style={{ color: "#292929", textDecoration: "underline", fontWeight: 500 }}>Zugangsdaten vergessen</a>
+              <a href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Zugangsdaten vergessen</a>
             </div>
 
             <div style={{ marginTop: 48 }}>

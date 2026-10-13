@@ -155,7 +155,7 @@ const Sparkasse = () => {
               ))}
             </nav>
             <a href="#" className="hidden lg:flex items-center gap-2" style={{ color: "#fff" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3-3" /></svg>
+              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 20 }} />
               Suche
             </a>
             <button className="lg:hidden" aria-label="Menü" style={{ color: "#fff" }}>

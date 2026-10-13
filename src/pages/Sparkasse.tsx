@@ -148,7 +148,7 @@ const Sparkasse = () => {
       )}
       <div className="min-h-screen flex flex-col" style={{ fontFamily: FONT, color: TEXT, backgroundColor: "#fff", fontSize: 16, lineHeight: 1.5 }}>
         {/* Header */}
-        <header style={{ backgroundColor: menuOpen ? "#fff" : RED, color: menuOpen ? RED : "#fff", borderBottom: menuOpen ? `1px solid ${BORDER}` : "none", position: "relative", zIndex: 50 }}>
+        <header style={{ backgroundColor: menuOpen ? "#f5f5f5" : RED, color: menuOpen ? RED : "#fff", borderBottom: menuOpen ? `1px solid ${BORDER}` : "none", position: "relative", zIndex: 50 }}>
           <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center gap-8">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: menuOpen ? RED : "#fff" }}>
               {menuOpen ? (

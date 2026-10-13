@@ -129,11 +129,11 @@ const Sparkasse = () => {
             </div>
             <div className="flex items-center gap-6">
               <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span aria-hidden="true" style={{ width: 18, height: 18, border: "1.5px solid #fff", borderRadius: 2, display: "inline-block" }} />
+                <span className="sk-icon-easy" aria-hidden="true" style={{ fontSize: 18 }} />
                 Leichte Sprache
               </a>
               <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span aria-hidden="true" style={{ width: 18, height: 18, border: "1.5px solid #fff", borderRadius: 999, display: "inline-block" }} />
+                <span className="sk-icon-sign" aria-hidden="true" style={{ fontSize: 18 }} />
                 Gebärdensprache
               </a>
             </div>
@@ -155,7 +155,7 @@ const Sparkasse = () => {
               ))}
             </nav>
             <a href="#" className="hidden lg:flex items-center gap-2" style={{ color: "#fff" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3-3" /></svg>
+              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 20 }} />
               Suche
             </a>
             <button className="lg:hidden" aria-label="Menü" style={{ color: "#fff" }}>
@@ -166,13 +166,9 @@ const Sparkasse = () => {
 
         {/* Floating service column (desktop) */}
         <div className="hidden lg:flex fixed right-4 top-[180px] flex-col gap-2 z-40">
-          {[
-            <svg key="p" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M22 16.9v2.6c0 1-.8 1.8-1.8 1.8C9.6 21.3 2.7 14.4 2.7 3.8 2.7 2.8 3.5 2 4.5 2h2.6c.9 0 1.6.6 1.8 1.5.2 1 .4 2 .8 3 .2.6.1 1.3-.4 1.7L8 9.5a16 16 0 0 0 6.5 6.5l1.3-1.3c.4-.4 1-.6 1.7-.4 1 .3 2 .6 3 .8.9.2 1.5.9 1.5 1.8z" /></svg>,
-            <svg key="c" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" /></svg>,
-            <svg key="m" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm0 2v.2l8 5 8-5V8H4z" /></svg>,
-          ].map((icon, i) => (
-            <a key={i} href="#" style={{ background: RED, width: 44, height: 44, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-              {icon}
+          {["sk-icon-phone", "sk-icon-chat", "sk-icon-mail"].map((cls, i) => (
+            <a key={cls} href="#" style={{ background: RED, width: 44, height: 44, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
+              <span className={cls} aria-hidden="true" style={{ fontSize: 22 }} />
               {i === 1 && <span style={{ position: "absolute", top: 6, right: 8, width: 8, height: 8, borderRadius: 999, background: "#4caf50" }} />}
             </a>
           ))}
@@ -267,16 +263,16 @@ const Sparkasse = () => {
 
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
               {[
-                { label: "Online-Assistentin Linda", ext: true },
-                { label: "Beratungstermin vereinbaren" },
-                { label: "Öffnungszeiten & Filialen" },
-                { label: "Live-Chat", dot: true },
-                { label: "WhatsApp" },
+                { label: "Online-Assistentin Linda", icon: "sk-icon-headset", ext: true },
+                { label: "Beratungstermin vereinbaren", icon: "sk-icon-calendar" },
+                { label: "Öffnungszeiten & Filialen", icon: "sk-icon-location" },
+                { label: "Live-Chat", icon: "sk-icon-chat", dot: true },
+                { label: "WhatsApp", icon: "sk-icon-whatsapp" },
               ].map((s) => (
                 <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: TEXT }}>
                   <div style={{ position: "relative", width: 64, height: 64, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={TEXT} strokeWidth="2"><rect x="8" y="8" width="32" height="32" rx="2" /></svg>
-                    {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 10, height: 10, borderRadius: 999, background: "#4caf50" }} />}
+                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 48, color: RED }} />
+                    {s.dot && <span style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderRadius: 999, background: "#4caf50" }} />}
                   </div>
                   <span>{s.label}{s.ext && " ↗"}</span>
                 </a>
@@ -290,7 +286,7 @@ const Sparkasse = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
                 <a key={s} href="#" className="flex items-center gap-3 py-3" style={{ color: TEXT, borderTop: `1px solid ${BORDER}` }}>
-                  <span style={{ width: 20, height: 20, display: "inline-block", background: "#000", opacity: 0.1, borderRadius: 2 }} />
+                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 18, color: RED }} />
                   <span>{s}</span>
                 </a>
               ))}
@@ -335,7 +331,7 @@ const Sparkasse = () => {
           <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
             <div style={{ fontWeight: 500 }}>Berliner Sparkasse</div>
             <div className="flex items-center gap-2 text-[14px]">
-              <span aria-hidden="true" style={{ width: 16, height: 16, borderRadius: 999, border: "1.5px solid #000", display: "inline-block" }} />
+              <span className="sk-icon-world" aria-hidden="true" style={{ fontSize: 16 }} />
               <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>DE ▾</a>
             </div>
             <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px]">
@@ -343,9 +339,17 @@ const Sparkasse = () => {
                 <a key={l} href="#" style={{ color: TEXT, textDecoration: "underline" }}>{l}</a>
               ))}
             </div>
-            <div className="flex items-center gap-5 mt-2" aria-hidden="true">
-              {["f", "ig", "tt", "yt", "in"].map((k) => (
-                <a key={k} href="#" style={{ width: 32, height: 32, borderRadius: 999, border: `1.5px solid ${TEXT}`, display: "inline-flex", alignItems: "center", justifyContent: "center", color: TEXT, fontSize: 12, fontWeight: 700 }}>{k}</a>
+            <div className="flex items-center gap-5 mt-2">
+              {[
+                { k: "facebook", cls: "sk-icon-facebook" },
+                { k: "instagram", cls: "sk-icon-instagram" },
+                { k: "twitter", cls: "sk-icon-twitter" },
+                { k: "youtube", cls: "sk-icon-youtube" },
+                { k: "linkedin", cls: "sk-icon-linkedin" },
+              ].map((s) => (
+                <a key={s.k} href="#" aria-label={s.k} style={{ width: 36, height: 36, borderRadius: 999, border: `1.5px solid ${TEXT}`, display: "inline-flex", alignItems: "center", justifyContent: "center", color: TEXT }}>
+                  <span className={s.cls} aria-hidden="true" style={{ fontSize: 18 }} />
+                </a>
               ))}
             </div>
           </div>

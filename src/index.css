@@ -466,3 +466,34 @@ All colors MUST be HSL.
 @font-face { font-family: "SparkasseWeb"; font-style: normal; font-weight: 700; src: url("/__l5e/assets-v1/9127d0d9-01c9-4349-96bb-fa72d5ca719d/Sparkasse_web_Bd.woff") format("woff"); font-display: swap; }
 @font-face { font-family: "SparkasseHead"; font-style: normal; font-weight: 400; src: url("/__l5e/assets-v1/392921d5-2869-4633-824b-5939ed39a078/SparkasseHead_web_Rg.woff") format("woff"); font-display: swap; }
 @font-face { font-family: "pictos-if"; font-style: normal; font-weight: 400; src: url("/__l5e/assets-v1/a61b5ea7-0261-4a01-ba04-140df61f4a89/pictos-if.woff") format("woff"); font-display: swap; }
+
+/* Sparkassen pictos-if icon classes (subset) */
+[class^="sk-icon-"], [class*=" sk-icon-"] {
+  font-family: "pictos-if" !important;
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.sk-icon-phone:before    { content: "\f870"; }
+.sk-icon-chat:before     { content: "\f86c"; }
+.sk-icon-mail:before     { content: "\f872"; }
+.sk-icon-search:before   { content: "\f20d"; }
+.sk-icon-info:before     { content: "\f630"; }
+.sk-icon-world:before    { content: "\f719"; }
+.sk-icon-calendar:before { content: "\f70d"; }
+.sk-icon-location:before { content: "\f763"; }
+.sk-icon-whatsapp:before { content: "\f7b4"; }
+.sk-icon-facebook:before { content: "\f86e"; }
+.sk-icon-instagram:before{ content: "\f7b8"; }
+.sk-icon-twitter:before  { content: "\f874"; }
+.sk-icon-youtube:before  { content: "\f876"; }
+.sk-icon-linkedin:before { content: "\f7ee"; }
+.sk-icon-headset:before  { content: "\f87e"; }
+.sk-icon-arrow:before    { content: "\f7b2"; }
+.sk-icon-easy:before     { content: "\f877"; }
+.sk-icon-sign:before     { content: "\f878"; }

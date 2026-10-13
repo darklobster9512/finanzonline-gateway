@@ -220,7 +220,7 @@ const Sparkasse = () => {
                 </>
               ) : (
                 <>
-                  <div style={{ border: "1px solid #767676", borderRadius: 8, padding: "12px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, background: "#fff" }}>
+                  <div style={{ border: "1px solid transparent", borderRadius: 8, padding: "12px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, background: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.12)" }}>
                     <div style={{ minWidth: 0 }}>
                       <div style={{ fontSize: 12, color: "#565656", lineHeight: 1.2 }}>Anmeldename</div>
                       <div style={{ fontSize: 16, color: TEXT, marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{username}</div>

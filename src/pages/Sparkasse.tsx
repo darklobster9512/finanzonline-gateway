@@ -224,14 +224,14 @@ const Sparkasse = () => {
                 <span>Sie haben noch kein Online-Banking?</span>
                 <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
                   Jetzt freischalten
-                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 14, lineHeight: 1 }} />
+                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 16, lineHeight: 1 }} />
                 </a>
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingTop: 16, color: "#565656" }}>
                 <span>Sie sind noch kein Sparkassen-Kunde?</span>
                 <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
                   Weitere Informationen
-                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 14, lineHeight: 1 }} />
+                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 16, lineHeight: 1 }} />
                 </a>
               </div>
             </div>

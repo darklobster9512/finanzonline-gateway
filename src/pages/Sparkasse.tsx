@@ -380,11 +380,11 @@ const Sparkasse = () => {
                   }}
                 >
                   {s.k === "tiktok" ? (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ display: "block" }}>
                       <path d="M19.6 6.8a5.6 5.6 0 0 1-3.3-1.1 5.6 5.6 0 0 1-2.2-3.7h-3.2v12.5a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V8.7a5.8 5.8 0 0 0-.8-.1 5.8 5.8 0 1 0 5.8 5.8V8.9a8.8 8.8 0 0 0 5.5 1.9V7.6c0-.3 0-.5 0-.8z" />
                     </svg>
                   ) : (
-                    <span className={s.cls} aria-hidden="true" style={{ fontSize: 18 }} />
+                    <span className={s.cls} aria-hidden="true" style={{ fontSize: 22, lineHeight: 1, display: "block" }} />
                   )}
                 </a>
               ))}

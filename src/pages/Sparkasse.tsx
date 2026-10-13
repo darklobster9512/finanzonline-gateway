@@ -259,7 +259,7 @@ const Sparkasse = () => {
                 { label: "Live-Chat", icon: "sk-icon-chat", dot: true },
                 { label: "WhatsApp", icon: "sk-icon-whatsapp" },
               ].map((s) => (
-                <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: TEXT }}>
+                <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
                   <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
                     {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 12, height: 12, borderRadius: 999, background: "#4caf50" }} />}

@@ -287,7 +287,7 @@ const Sparkasse = () => {
           <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
             {columns.map((c) => (
               <div key={c.title}>
-                <h4 style={{ fontFamily: FONT_MD, color: "#292929", marginBottom: 12, fontSize: 13 }}>{c.title}</h4>
+                <h4 style={{ fontFamily: FONT_MD, color: "#000000", marginBottom: 12, fontSize: 13 }}>{c.title}</h4>
                 <ul className="flex flex-col gap-2">
                   {c.links.map((l) => (
                     <li key={l}><a href="#" style={{ color: "#565656", fontFamily: FONT, fontSize: 13 }}>{l}</a></li>

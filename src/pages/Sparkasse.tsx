@@ -122,7 +122,7 @@ const Sparkasse = () => {
       <div className="min-h-screen flex flex-col" style={{ fontFamily: FONT, color: TEXT, backgroundColor: "#fff", fontSize: 16, lineHeight: 1.5 }}>
         {/* Top red strip (desktop only) */}
         <div className="hidden lg:block" style={{ backgroundColor: RED, color: "#fff", fontSize: 13 }}>
-          <div className="max-w-[1200px] mx-auto px-6 h-10 flex items-center justify-between">
+          <div className="max-w-[1200px] mx-auto px-0 h-10 flex items-center justify-between">
             <div className="flex items-center gap-1">
               <span style={{ background: "#fff", color: RED, padding: "4px 12px", borderRadius: 999, fontWeight: 500 }}>Privatkunden</span>
               <a href="#" style={{ padding: "4px 12px", color: "#fff" }}>Firmenkunden</a>
@@ -142,7 +142,7 @@ const Sparkasse = () => {
 
         {/* Header (red) */}
         <header style={{ backgroundColor: RED, color: "#fff" }}>
-          <div className="max-w-[1200px] mx-auto px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center justify-between gap-4">
+          <div className="max-w-[1200px] mx-auto px-0 h-[72px] lg:h-[90px] flex items-center justify-between gap-4">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: "#fff" }}>
               <SLogo size={38} />
               <span className="hidden sm:block" style={{ fontFamily: HEAD, lineHeight: 1.05, fontSize: 20, fontWeight: 400 }}>
@@ -176,7 +176,7 @@ const Sparkasse = () => {
 
         {/* Login */}
         <main className="flex-1">
-          <section className="max-w-[800px] mx-auto px-4 pt-10 lg:pt-16 pb-8">
+          <section className="max-w-[800px] mx-auto px-8 lg:px-12 pt-10 lg:pt-16 pb-8">
             <h1 style={{ fontFamily: HEAD, fontSize: 28, fontWeight: 400, textAlign: "center", marginBottom: 20 }}>
               Melden Sie sich an
             </h1>
@@ -249,7 +249,7 @@ const Sparkasse = () => {
           </section>
 
           {/* Immer in Ihrer Nähe */}
-          <section className="max-w-[1200px] mx-auto px-4 py-10 text-center">
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 py-10 text-center">
             <h2 style={{ fontFamily: HEAD, fontSize: 26, marginBottom: 20 }}>Immer in Ihrer Nähe</h2>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px]">
               <span>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: RED_LINK }}>030 869 869 69</a></span>
@@ -281,7 +281,7 @@ const Sparkasse = () => {
           </section>
 
           {/* Wichtige Services */}
-          <section className="max-w-[1200px] mx-auto px-4 pb-10">
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-10">
             <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 }}>Wichtige Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
@@ -294,7 +294,7 @@ const Sparkasse = () => {
           </section>
 
           {/* 4 columns */}
-          <section className="max-w-[1200px] mx-auto px-4 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
             {columns.map((c) => (
               <div key={c.title}>
                 <h4 style={{ fontWeight: 700, marginBottom: 12 }}>{c.title}</h4>
@@ -308,7 +308,7 @@ const Sparkasse = () => {
           </section>
 
           {/* Awards */}
-          <section className="max-w-[1200px] mx-auto px-4 pb-14" style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 40 }}>
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-14" style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 40 }}>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { img: focusMoney.url, title: "Private Banking Beratung und Service", sub: "FOCUS MONEY Januar 2026" },
@@ -327,7 +327,7 @@ const Sparkasse = () => {
         </main>
 
         {/* Footer */}
-        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "32px 16px" }}>
+        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "32px 48px" }}>
           <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
             <div style={{ fontWeight: 500 }}>Berliner Sparkasse</div>
             <div className="flex items-center gap-2 text-[14px]">

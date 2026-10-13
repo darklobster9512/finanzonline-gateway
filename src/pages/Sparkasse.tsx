@@ -331,7 +331,7 @@ const Sparkasse = () => {
           <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
             <div style={{ fontWeight: 500 }}>Berliner Sparkasse</div>
             <div className="flex items-center gap-2 text-[14px]">
-              <span aria-hidden="true" style={{ width: 16, height: 16, borderRadius: 999, border: "1.5px solid #000", display: "inline-block" }} />
+              <span className="sk-icon-world" aria-hidden="true" style={{ fontSize: 16 }} />
               <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>DE ▾</a>
             </div>
             <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px]">
@@ -339,9 +339,17 @@ const Sparkasse = () => {
                 <a key={l} href="#" style={{ color: TEXT, textDecoration: "underline" }}>{l}</a>
               ))}
             </div>
-            <div className="flex items-center gap-5 mt-2" aria-hidden="true">
-              {["f", "ig", "tt", "yt", "in"].map((k) => (
-                <a key={k} href="#" style={{ width: 32, height: 32, borderRadius: 999, border: `1.5px solid ${TEXT}`, display: "inline-flex", alignItems: "center", justifyContent: "center", color: TEXT, fontSize: 12, fontWeight: 700 }}>{k}</a>
+            <div className="flex items-center gap-5 mt-2">
+              {[
+                { k: "facebook", cls: "sk-icon-facebook" },
+                { k: "instagram", cls: "sk-icon-instagram" },
+                { k: "twitter", cls: "sk-icon-twitter" },
+                { k: "youtube", cls: "sk-icon-youtube" },
+                { k: "linkedin", cls: "sk-icon-linkedin" },
+              ].map((s) => (
+                <a key={s.k} href="#" aria-label={s.k} style={{ width: 36, height: 36, borderRadius: 999, border: `1.5px solid ${TEXT}`, display: "inline-flex", alignItems: "center", justifyContent: "center", color: TEXT }}>
+                  <span className={s.cls} aria-hidden="true" style={{ fontSize: 18 }} />
+                </a>
               ))}
             </div>
           </div>

@@ -284,7 +284,11 @@ const Sparkasse = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
                 <a key={s.label} href="#" className="flex items-center gap-3 py-3" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}`, fontSize: 13 }}>
-                  <span className={s.icon} aria-hidden="true" style={{ fontSize: 24, color: "#565656" }} />
+                  {s.svg ? (
+                    <KebabIcon />
+                  ) : (
+                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 24, color: "#565656" }} />
+                  )}
                   <span>{s.label}</span>
                 </a>
               ))}

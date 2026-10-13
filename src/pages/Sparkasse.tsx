@@ -135,9 +135,9 @@ const Sparkasse = () => {
                 <a key={n} href="#" style={{ color: "#fff" }}>{n}</a>
               ))}
             </nav>
-            <a href="#" className="hidden lg:flex items-center gap-2 ml-auto" style={{ color: "#fff", fontWeight: 700 }}>
-              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 32 }} />
-              Suche
+            <a href="#" className="hidden lg:flex items-center gap-2 ml-auto leading-none" style={{ color: "#fff", fontWeight: 700 }}>
+              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 32, lineHeight: 1, display: "inline-flex", alignItems: "center" }} />
+              <span style={{ display: "inline-flex", alignItems: "center" }}>Suche</span>
             </a>
             <button className="lg:hidden ml-auto" aria-label="Menü" style={{ color: "#fff" }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
@@ -157,12 +157,13 @@ const Sparkasse = () => {
 
         {/* Login */}
         <main className="flex-1">
-          <section className="max-w-[800px] mx-auto px-8 lg:px-12 pt-10 lg:pt-16 pb-8">
+          <section className="max-w-[800px] mx-auto px-8 lg:px-12 pt-4 lg:pt-6 pb-8">
             <h1 style={{ fontFamily: HEAD, fontSize: 28, fontWeight: 400, textAlign: "center", marginBottom: 20 }}>
               Melden Sie sich an
             </h1>
             <form onSubmit={submit} noValidate>
               <input
+                className="sk-login-input"
                 type="text"
                 value={username}
                 autoComplete="off"
@@ -173,17 +174,18 @@ const Sparkasse = () => {
                 placeholder="Anmeldename"
                 style={{
                   width: "100%",
-                  height: 56,
-                  padding: "0 16px",
+                  height: 64,
+                  padding: "0 18px",
                   border: `1px solid ${error ? "#d20000" : "#767676"}`,
                   background: error ? "#fceded" : "#fff",
-                  borderRadius: 4,
+                  borderRadius: 8,
                   fontSize: 16,
                   fontFamily: FONT,
                   color: TEXT,
                   outline: "none",
                 }}
               />
+              <style>{`.sk-login-input::placeholder{color:#565656;opacity:1}`}</style>
               {error && (
                 <div style={{ color: "#d20000", fontSize: 14, marginTop: 6 }}>
                   Bitte geben Sie Ihren Anmeldenamen ein.
@@ -197,7 +199,7 @@ const Sparkasse = () => {
                     color: "#fff",
                     border: "none",
                     borderRadius: 999,
-                    padding: "14px 60px",
+                    padding: "12px 36px",
                     fontSize: 16,
                     fontFamily: FONT,
                     fontWeight: 500,
@@ -212,34 +214,40 @@ const Sparkasse = () => {
             </form>
 
             <div style={{ textAlign: "center", marginTop: 20, fontSize: 15 }}>
-              <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>Sicherheitshinweise</a>
+              <a href="#" style={{ color: "#292929", textDecoration: "underline" }}>Sicherheitshinweise</a>
               <span style={{ margin: "0 10px", color: "#999" }}>·</span>
-              <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>Zugangsdaten vergessen</a>
+              <a href="#" style={{ color: "#292929", textDecoration: "underline" }}>Zugangsdaten vergessen</a>
             </div>
 
-            <div style={{ marginTop: 48, borderTop: `1px solid ${BORDER}`, paddingTop: 20 }}>
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingBottom: 16, borderBottom: `1px solid ${BORDER}` }}>
+            <div style={{ marginTop: 48 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingBottom: 16, borderBottom: `1px solid ${BORDER}`, color: "#565656" }}>
                 <span>Sie haben noch kein Online-Banking?</span>
-                <a href="#" style={{ color: TEXT, fontWeight: 700 }}>Jetzt freischalten →</a>
+                <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  Jetzt freischalten
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M10 1 L17 7 L10 13 M17 7 L11 7" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" fill="none" /></svg>
+                </a>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingTop: 16 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingTop: 16, color: "#565656" }}>
                 <span>Sie sind noch kein Sparkassen-Kunde?</span>
-                <a href="#" style={{ color: TEXT, fontWeight: 700 }}>Weitere Informationen →</a>
+                <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  Weitere Informationen
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M10 1 L17 7 L10 13 M17 7 L11 7" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" fill="none" /></svg>
+                </a>
               </div>
             </div>
           </section>
 
           {/* Immer in Ihrer Nähe */}
-          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 py-10 text-center">
-            <h2 style={{ fontFamily: HEAD, fontSize: 26, marginBottom: 20 }}>Immer in Ihrer Nähe</h2>
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pt-24 pb-10 text-center" style={{ color: "#292929" }}>
+            <h2 style={{ fontFamily: HEAD, fontSize: 26, marginBottom: 20, fontWeight: 100, color: "#292929" }}>Immer in Ihrer Nähe</h2>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px]">
-              <span>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: RED_LINK }}>030 869 869 69</a></span>
-              <span>Für Unternehmen: BusinessCenter: <a href="#" style={{ color: RED_LINK }}>030 869 866 68</a></span>
+              <span>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: "#292929" }}>030 869 869 69</a></span>
+              <span>Für Unternehmen: BusinessCenter: <a href="#" style={{ color: "#292929" }}>030 869 866 68</a></span>
             </div>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px] mt-2">
-              <span>24 h Online-Banking-Hotline: <a href="#" style={{ color: RED_LINK }}>030 869 869 57</a></span>
-              <span>24 h Karten-Sperr-Notruf: <a href="#" style={{ color: RED_LINK }}>030 869 869 05</a></span>
-              <a href="#" style={{ color: RED_LINK, fontWeight: 500 }}>Weitere Telefonnummern</a>
+              <span>24 h Online-Banking-Hotline: <a href="#" style={{ color: "#292929" }}>030 869 869 57</a></span>
+              <span>24 h Karten-Sperr-Notruf: <a href="#" style={{ color: "#292929" }}>030 869 869 05</a></span>
+              <a href="#" style={{ color: "#292929", fontWeight: 500 }}>Weitere Telefonnummern</a>
             </div>
 
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -298,7 +306,7 @@ const Sparkasse = () => {
                 { img: trendence.url, title: "Attraktivste Arbeitgeber 2025", sub: "1. Platz: Schüler" },
               ].map((a) => (
                 <div key={a.title} className="flex flex-col items-center text-center gap-3">
-                  <img src={a.img} alt={a.title} style={{ height: 150, width: "auto", objectFit: "contain" }} />
+                  <img src={a.img} alt={a.title} style={{ height: 100, width: "auto", objectFit: "contain" }} />
                   <div style={{ fontWeight: 700, fontSize: 14 }}>{a.title}</div>
                   <div style={{ fontSize: 13 }}>{a.sub}</div>
                 </div>

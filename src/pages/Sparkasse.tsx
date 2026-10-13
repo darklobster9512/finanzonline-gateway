@@ -294,7 +294,7 @@ const Sparkasse = () => {
           </section>
 
           {/* 4 columns */}
-          <section className="max-w-[1200px] mx-auto px-4 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
             {columns.map((c) => (
               <div key={c.title}>
                 <h4 style={{ fontWeight: 700, marginBottom: 12 }}>{c.title}</h4>

@@ -25,15 +25,15 @@ const navItems = [
   "Ihre Sparkasse",
 ];
 
-const services = [
-  "IBAN und BIC berechnen",
-  "Kartenverlust melden",
-  "Online-Kunde werden",
-  "Lösungsfinder",
-  "Adresse ändern",
-  "Dispositionskredit einrichten oder ändern",
-  "Gutscheine kaufen",
-  "Alle Serviceleistungen im Überblick",
+const services: { label: string; icon: string }[] = [
+  { label: "IBAN und BIC berechnen", icon: "sk-icon-calculator" },
+  { label: "Kartenverlust melden", icon: "sk-icon-card" },
+  { label: "Online-Kunde werden", icon: "sk-icon-user-add" },
+  { label: "Lösungsfinder", icon: "sk-icon-bulb" },
+  { label: "Adresse ändern", icon: "sk-icon-home" },
+  { label: "Dispositionskredit einrichten oder ändern", icon: "sk-icon-moneybag" },
+  { label: "Gutscheine kaufen", icon: "sk-icon-gift" },
+  { label: "Alle Serviceleistungen im Überblick", icon: "sk-icon-grid" },
 ];
 
 const columns: { title: string; links: string[] }[] = [

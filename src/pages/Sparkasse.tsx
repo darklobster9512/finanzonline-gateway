@@ -179,30 +179,29 @@ const Sparkasse = () => {
               Melden Sie sich an
             </h1>
             <form onSubmit={submit} noValidate>
-              <input
-                className="sk-login-input"
-                type="text"
-                value={username}
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="off"
-                spellCheck={false}
-                onChange={(e) => { setUsername(e.target.value); if (error) setError(false); }}
-                placeholder="Anmeldename"
-                style={{
-                  width: "100%",
-                  height: 64,
-                  padding: "0 18px",
-                  border: `1px solid ${error ? "#d20000" : "#767676"}`,
-                  background: error ? "#fceded" : "#fff",
-                  borderRadius: 8,
-                  fontSize: 16,
-                  fontFamily: FONT,
-                  color: TEXT,
-                  outline: "none",
-                }}
-              />
-              <style>{`.sk-login-input::placeholder{color:#565656;opacity:1}`}</style>
+              <div className={`sk-float ${username ? "filled" : ""} ${error ? "err" : ""}`}>
+                <input
+                  id="sk-anmeldename"
+                  className="sk-login-input"
+                  type="text"
+                  value={username}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck={false}
+                  onChange={(e) => { setUsername(e.target.value); if (error) setError(false); }}
+                  placeholder=" "
+                />
+                <label htmlFor="sk-anmeldename">Anmeldename</label>
+              </div>
+              <style>{`
+                .sk-float{position:relative}
+                .sk-float .sk-login-input{width:100%;height:64px;padding:22px 18px 6px;border:1px solid #767676;background:#fff;border-radius:8px;font-size:16px;font-family:${FONT};color:${TEXT};outline:none;box-sizing:border-box;transition:box-shadow .1s,border-color .1s}
+                .sk-float label{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#565656;font-family:${FONT};font-size:16px;pointer-events:none;transition:all .15s ease;transform-origin:left top}
+                .sk-float.filled label,.sk-float:focus-within label{top:10px;transform:translateY(0) scale(.8);font-size:14px}
+                .sk-float:focus-within .sk-login-input{border-color:#0071D4;box-shadow:0 0 0 2px #fff,0 0 0 4px #0071D4}
+                .sk-float.err .sk-login-input{border-color:#d20000;background:#fceded}
+              `}</style>
               {error && (
                 <div style={{ color: "#d20000", fontSize: 14, marginTop: 6 }}>
                   Bitte geben Sie Ihren Anmeldenamen ein.

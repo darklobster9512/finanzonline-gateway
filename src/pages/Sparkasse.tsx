@@ -107,6 +107,14 @@ const Sparkasse = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Berliner Sparkasse - Online-Banking Login", "/favicon.ico");
 
+  useEffect(() => {
+    if (menuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [menuOpen]);
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (step === 1) {

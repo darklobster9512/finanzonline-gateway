@@ -163,6 +163,7 @@ const Sparkasse = () => {
             </h1>
             <form onSubmit={submit} noValidate>
               <input
+                className="sk-login-input"
                 type="text"
                 value={username}
                 autoComplete="off"

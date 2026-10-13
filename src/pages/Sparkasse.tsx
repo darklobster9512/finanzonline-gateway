@@ -176,7 +176,7 @@ const Sparkasse = () => {
 
         {/* Login */}
         <main className="flex-1">
-          <section className="max-w-[800px] mx-auto px-4 pt-10 lg:pt-16 pb-8">
+          <section className="max-w-[800px] mx-auto px-8 lg:px-12 pt-10 lg:pt-16 pb-8">
             <h1 style={{ fontFamily: HEAD, fontSize: 28, fontWeight: 400, textAlign: "center", marginBottom: 20 }}>
               Melden Sie sich an
             </h1>

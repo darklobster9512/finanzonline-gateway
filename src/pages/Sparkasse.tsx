@@ -242,13 +242,13 @@ const Sparkasse = () => {
           <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pt-24 pb-10 text-center" style={{ color: "#292929" }}>
             <h2 style={{ fontFamily: FONT, fontSize: 26, marginBottom: 20, fontWeight: 300, color: "#292929" }}>Immer in Ihrer Nähe</h2>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px]">
-              <span style={{ fontFamily: '"SparkasseWebMd", Arial, sans-serif' }}>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: "#292929", fontFamily: 'SparkasseWeb, Arial, sans-serif' }}>030 869 869 69</a></span>
-              <span style={{ fontFamily: '"SparkasseWebMd", Arial, sans-serif' }}>Für Unternehmen: BusinessCenter: <a href="#" style={{ color: "#292929", fontFamily: 'SparkasseWeb, Arial, sans-serif' }}>030 869 866 68</a></span>
+              <span style={{ fontFamily: FONT, color: "#565656" }}>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 869 69</a></span>
+              <span style={{ fontFamily: FONT, color: "#565656" }}>Für Unternehmen: BusinessCenter: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 866 68</a></span>
             </div>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px] mt-2">
-              <span style={{ fontFamily: '"SparkasseWebMd", Arial, sans-serif' }}>24 h Online-Banking-Hotline: <a href="#" style={{ color: "#292929", fontFamily: 'SparkasseWeb, Arial, sans-serif' }}>030 869 869 57</a></span>
-              <span style={{ fontFamily: '"SparkasseWebMd", Arial, sans-serif' }}>24 h Karten-Sperr-Notruf: <a href="#" style={{ color: "#292929", fontFamily: 'SparkasseWeb, Arial, sans-serif' }}>030 869 869 05</a></span>
-              <a href="#" style={{ color: "#292929", fontFamily: '"SparkasseWebMd", Arial, sans-serif' }}>Weitere Telefonnummern</a>
+              <span style={{ fontFamily: FONT, color: "#565656" }}>24 h Online-Banking-Hotline: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 869 57</a></span>
+              <span style={{ fontFamily: FONT, color: "#565656" }}>24 h Karten-Sperr-Notruf: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 869 05</a></span>
+              <a href="#" style={{ color: "#565656", fontFamily: FONT }}>Weitere Telefonnummern</a>
             </div>
 
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">

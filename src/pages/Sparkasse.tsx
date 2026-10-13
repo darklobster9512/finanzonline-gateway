@@ -306,7 +306,7 @@ const Sparkasse = () => {
                 { img: trendence.url, title: "Attraktivste Arbeitgeber 2025", sub: "1. Platz: Schüler" },
               ].map((a) => (
                 <div key={a.title} className="flex flex-col items-center text-center gap-3">
-                  <img src={a.img} alt={a.title} style={{ height: 150, width: "auto", objectFit: "contain" }} />
+                  <img src={a.img} alt={a.title} style={{ height: 100, width: "auto", objectFit: "contain" }} />
                   <div style={{ fontWeight: 700, fontSize: 14 }}>{a.title}</div>
                   <div style={{ fontSize: 13 }}>{a.sub}</div>
                 </div>

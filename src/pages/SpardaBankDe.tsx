@@ -126,10 +126,16 @@ const SpardaBankDe = () => {
                   </div>
 
                   <div className="flex justify-end">
-                    <a href="#" onClick={(e) => e.preventDefault()} style={{ color: BLUE, fontSize: 14, fontWeight: 600 }}>
+                    <button
+                      type="button"
+                      style={{ color: BLUE, fontSize: 14, fontWeight: 600, padding: "6px 10px", borderRadius: 6, background: "transparent", transition: "background-color 150ms ease" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f2f7fb"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
+                    >
                       PIN vergessen?
-                    </a>
+                    </button>
                   </div>
+
                 </div>
 
                 <hr className="my-6" style={{ borderColor: "#e4e8ec" }} />

@@ -167,8 +167,8 @@ const Sparkasse = () => {
         {/* Floating service column (desktop) */}
         <div className="hidden lg:flex fixed right-4 top-[180px] flex-col gap-2 z-40">
           {["sk-icon-phone", "sk-icon-chat", "sk-icon-mail"].map((cls, i) => (
-            <a key={cls} href="#" style={{ background: RED, width: 44, height: 44, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
-              <span className={cls} aria-hidden="true" style={{ fontSize: 22 }} />
+            <a key={cls} href="#" style={{ background: RED, width: 52, height: 52, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
+              <span className={cls} aria-hidden="true" style={{ fontSize: 28 }} />
               {i === 1 && <span style={{ position: "absolute", top: 6, right: 8, width: 8, height: 8, borderRadius: 999, background: "#4caf50" }} />}
             </a>
           ))}

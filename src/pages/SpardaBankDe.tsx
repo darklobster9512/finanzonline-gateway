@@ -216,7 +216,7 @@ const SpardaBankDe = () => {
             <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
               {["Impressum", "Sicherheitshinweise", "Nutzungsbedingungen", "Datenschutz", "Pflichtinformationen", "AGB"].map((l, i, arr) => (
                 <span key={l} className="flex items-center gap-2">
-                  <a href="#" onClick={(e) => e.preventDefault()} className="text-white hover:underline font-semibold">{l}</a>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="text-white font-semibold">{l}</a>
                   {i < arr.length - 1 && <span className="opacity-60">·</span>}
                 </span>
               ))}

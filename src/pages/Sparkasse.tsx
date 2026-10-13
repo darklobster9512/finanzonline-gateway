@@ -142,7 +142,7 @@ const Sparkasse = () => {
 
         {/* Header (red) */}
         <header style={{ backgroundColor: RED, color: "#fff" }}>
-          <div className="max-w-[1200px] mx-auto px-0 h-[72px] lg:h-[90px] flex items-center justify-between gap-4">
+          <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center justify-between gap-4">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: "#fff" }}>
               <SLogo size={38} />
               <span className="hidden sm:block" style={{ fontFamily: HEAD, lineHeight: 1.05, fontSize: 20, fontWeight: 400 }}>

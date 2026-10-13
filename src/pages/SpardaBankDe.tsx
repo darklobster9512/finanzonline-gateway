@@ -77,14 +77,14 @@ const SpardaBankDe = () => {
         </header>
 
         <main className="flex-1">
-          <div className="max-w-[1200px] mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="flex flex-col gap-6">
-              <section className="bg-white rounded-lg p-8" style={{ boxShadow: CARD_SHADOW }}>
+          <div className="max-w-[1200px] mx-auto px-3 py-4 lg:px-6 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
+            <div className="flex flex-col gap-4 lg:gap-6">
+              <section className="bg-white rounded-lg p-5 lg:p-8" style={{ boxShadow: CARD_SHADOW }}>
                 <h1 style={{ color: BLUE, fontSize: 32, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                   Anmelden
                 </h1>
 
-                <div style={{ borderBottom: "1px solid #e4e8ec", marginBottom: 24 }}>
+                <div className="hidden lg:block" style={{ borderBottom: "1px solid #e4e8ec", marginBottom: 24 }}>
                   <button
                     type="button"
                     style={{

@@ -156,7 +156,7 @@ const Sparkasse = () => {
       )}
       <div className="min-h-screen flex flex-col" style={{ fontFamily: FONT, color: TEXT, backgroundColor: "#fff", fontSize: 16, lineHeight: 1.5 }}>
         {/* Header */}
-        <header style={{ backgroundColor: menuOpen ? "#f5f5f5" : RED, color: menuOpen ? RED : "#fff", borderBottom: menuOpen ? `1px solid ${BORDER}` : "none", position: "relative", zIndex: 50 }}>
+        <header className={menuOpen ? "fixed lg:static top-0 left-0 right-0" : ""} style={{ backgroundColor: menuOpen ? "#f5f5f5" : RED, color: menuOpen ? RED : "#fff", borderBottom: menuOpen ? `1px solid ${BORDER}` : "none", position: menuOpen ? "fixed" : "relative", top: menuOpen ? 0 : undefined, left: menuOpen ? 0 : undefined, right: menuOpen ? 0 : undefined, zIndex: 50 }}>
           <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center gap-8">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: menuOpen ? RED : "#fff" }}>
               {menuOpen ? (
@@ -197,19 +197,25 @@ const Sparkasse = () => {
           </div>
         </header>
 
-        {/* Mobile Sidebar (slide-down) */}
+        {/* Mobile Sidebar (fullscreen overlay) */}
         <div
-          className="lg:hidden overflow-hidden"
+          className="lg:hidden"
           style={{
+            position: "fixed",
+            top: 72,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflow: "hidden",
             height: menuOpen ? "calc(100vh - 72px)" : 0,
             width: "100%",
             transition: "height 350ms ease",
             background: "#f5f5f5",
-            position: "relative",
             zIndex: 49,
+            visibility: menuOpen ? "visible" : "hidden",
           }}
         >
-          <nav style={{ padding: "16px 20px 32px", color: "#000", fontFamily: FONT, fontSize: 16, overflowY: "auto", height: "100%" }}>
+          <nav style={{ padding: "16px 20px 32px", color: "#000", fontFamily: FONT, fontSize: 16, overflowY: "auto", height: "100%", WebkitOverflowScrolling: "touch" }}>
             <div style={{ fontSize: 12, letterSpacing: 1, color: "#565656", fontWeight: 700, padding: "8px 0 12px" }}>ALLE THEMEN</div>
             {[
               { label: "Girokonto eröffnen" },

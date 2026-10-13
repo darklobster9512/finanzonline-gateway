@@ -7,6 +7,7 @@ import handelsblatt from "@/assets/sparkasse/handelsblatt.png.asset.json";
 import focusMoney from "@/assets/sparkasse/focus-money.jpg.asset.json";
 import kununu from "@/assets/sparkasse/kununu.png.asset.json";
 import trendence from "@/assets/sparkasse/trendence.png.asset.json";
+import logoWeiss from "@/assets/sparkasse-logo-weiss.png.asset.json";
 
 const RED = "#EE0000";
 const RED_LINK = "#9c1a1a";
@@ -124,8 +125,8 @@ const Sparkasse = () => {
         <header style={{ backgroundColor: RED, color: "#fff" }}>
           <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center gap-8">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: "#fff" }}>
-              <SLogo size={22} />
-              <span className="hidden sm:block" style={{ fontFamily: HEAD, lineHeight: 1.05, fontSize: 20, fontWeight: 200 }}>
+              <img src={logoWeiss.url} alt="Sparkasse" style={{ height: 32, width: "auto" }} />
+              <span className="hidden sm:block" style={{ fontFamily: FONT, lineHeight: 1.05, fontSize: 20, fontWeight: 300 }}>
                 Berliner<br />Sparkasse
               </span>
             </a>

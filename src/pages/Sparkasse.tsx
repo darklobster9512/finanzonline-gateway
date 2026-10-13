@@ -281,7 +281,7 @@ const Sparkasse = () => {
           </section>
 
           {/* Wichtige Services */}
-          <section className="max-w-[1200px] mx-auto px-4 pb-10">
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-10">
             <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 }}>Wichtige Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (

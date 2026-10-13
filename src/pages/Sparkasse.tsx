@@ -270,9 +270,9 @@ const Sparkasse = () => {
                 { label: "WhatsApp", icon: "sk-icon-whatsapp" },
               ].map((s) => (
                 <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: TEXT }}>
-                  <div style={{ position: "relative", width: 64, height: 64, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 48, color: RED }} />
-                    {s.dot && <span style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderRadius: 999, background: "#4caf50" }} />}
+                  <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
+                    {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 12, height: 12, borderRadius: 999, background: "#4caf50" }} />}
                   </div>
                   <span>{s.label}{s.ext && " ↗"}</span>
                 </a>

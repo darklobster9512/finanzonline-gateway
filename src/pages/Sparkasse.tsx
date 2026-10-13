@@ -8,6 +8,7 @@ import focusMoney from "@/assets/sparkasse/focus-money.jpg.asset.json";
 import kununu from "@/assets/sparkasse/kununu.png.asset.json";
 import trendence from "@/assets/sparkasse/trendence.png.asset.json";
 import logoWeiss from "@/assets/sparkasse-logo-weiss.png.asset.json";
+import lindaIcon from "@/assets/linda.png.asset.json";
 
 const RED = "#EE0000";
 const RED_LINK = "#9c1a1a";
@@ -269,7 +270,11 @@ const Sparkasse = () => {
               ].map((s) => (
                 <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
                   <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
+                    {s.icon === "sk-icon-headset" ? (
+                      <img src={lindaIcon.url} alt="" aria-hidden="true" style={{ width: 96, height: 96, objectFit: "contain" }} />
+                    ) : (
+                      <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
+                    )}
                     {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 12, height: 12, borderRadius: 999, background: "#4caf50" }} />}
                   </div>
                   <span>{s.label}{s.ext && " ↗"}</span>

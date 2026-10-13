@@ -82,7 +82,7 @@ const VolksbankDe = () => {
                   Anmelden
                 </h1>
 
-                <p style={{ color: WELCOME_COLOR, fontSize: 15, lineHeight: 1.5, marginBottom: 20 }}>
+                <p style={{ color: WELCOME_COLOR, fontSize: 15, lineHeight: 1.5, marginBottom: 20, fontWeight: 700 }}>
                   Willkommen im OnlineBanking der Berliner Volksbank
                 </p>
 

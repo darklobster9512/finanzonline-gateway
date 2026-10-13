@@ -331,28 +331,61 @@ const Sparkasse = () => {
         </main>
 
         {/* Footer */}
-        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "32px 48px" }}>
-          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
-            <div style={{ fontWeight: 500 }}>Berliner Sparkasse</div>
-            <div className="flex items-center gap-2 text-[14px]">
-              <span className="sk-icon-world" aria-hidden="true" style={{ fontSize: 16 }} />
-              <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>DE ▾</a>
+        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 48px 36px" }}>
+          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: TEXT }}>
+            <div style={{ fontSize: 15 }}>Berliner Sparkasse</div>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="sk-icon-world" aria-hidden="true" style={{ fontSize: 16 }} />
+                <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>DE ▾</a>
+              </span>
+              {footerLinks.map((l) => {
+                const active = l === "Vertrag widerrufen";
+                return (
+                  <a
+                    key={l}
+                    href="#"
+                    style={{
+                      color: TEXT,
+                      textDecoration: active ? "none" : "underline",
+                      fontFamily: active ? "SparkasseWebMd, " + FONT : FONT,
+                    }}
+                  >
+                    {l}
+                  </a>
+                );
+              })}
             </div>
-            <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[14px]">
-              {footerLinks.map((l) => (
-                <a key={l} href="#" style={{ color: TEXT, textDecoration: "underline" }}>{l}</a>
-              ))}
-            </div>
-            <div className="flex items-center gap-5 mt-2">
+            <div className="flex items-center gap-4 mt-2">
               {[
                 { k: "facebook", cls: "sk-icon-facebook" },
                 { k: "instagram", cls: "sk-icon-instagram" },
-                { k: "twitter", cls: "sk-icon-twitter" },
+                { k: "tiktok", cls: "" },
                 { k: "youtube", cls: "sk-icon-youtube" },
                 { k: "linkedin", cls: "sk-icon-linkedin" },
               ].map((s) => (
-                <a key={s.k} href="#" aria-label={s.k} style={{ width: 36, height: 36, borderRadius: 999, border: `1.5px solid ${TEXT}`, display: "inline-flex", alignItems: "center", justifyContent: "center", color: TEXT }}>
-                  <span className={s.cls} aria-hidden="true" style={{ fontSize: 18 }} />
+                <a
+                  key={s.k}
+                  href="#"
+                  aria-label={s.k}
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: 999,
+                    border: `1px solid ${TEXT}`,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: TEXT,
+                  }}
+                >
+                  {s.k === "tiktok" ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M19.6 6.8a5.6 5.6 0 0 1-3.3-1.1 5.6 5.6 0 0 1-2.2-3.7h-3.2v12.5a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V8.7a5.8 5.8 0 0 0-.8-.1 5.8 5.8 0 1 0 5.8 5.8V8.9a8.8 8.8 0 0 0 5.5 1.9V7.6c0-.3 0-.5 0-.8z" />
+                    </svg>
+                  ) : (
+                    <span className={s.cls} aria-hidden="true" style={{ fontSize: 16 }} />
+                  )}
                 </a>
               ))}
             </div>

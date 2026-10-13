@@ -318,11 +318,11 @@ const Sparkasse = () => {
                 { img: kununu.url, title: "Kununu", sub: "Top Company 2026", scale: 1 },
                 { img: focusMoney.url, title: "Private Banking Beratung und Service", sub: "FOCUS MONEY Januar 2026", scale: 0.6 },
               ].map((a) => (
-                <div key={a.title} className="grid text-center" style={{ gridTemplateRows: "100px auto auto", rowGap: 12, justifyItems: "center" }}>
+                <div key={a.title} className="grid text-center" style={{ gridTemplateRows: "100px auto auto", rowGap: 2, justifyItems: "center" }}>
                   <div style={{ height: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={a.img} alt={a.title} style={{ height: 100 * a.scale, width: "auto", objectFit: "contain" }} />
                   </div>
-                  <div style={{ fontFamily: FONT_MD, color: "#000000", fontSize: 14 }}>{a.title}</div>
+                  <div style={{ fontFamily: FONT_MD, color: "#000000", fontSize: 14, marginTop: 8 }}>{a.title}</div>
                   <div style={{ color: "#565656", fontSize: 13 }}>{a.sub}</div>
                 </div>
               ))}
@@ -331,8 +331,8 @@ const Sparkasse = () => {
         </main>
 
         {/* Footer */}
-        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 48px 36px" }}>
-          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
+        <footer style={{ padding: "0 48px 36px" }}>
+          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}`, paddingTop: 28 }}>
             <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400, color: "#565656" }}>Berliner Sparkasse</div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               {footerLinks.slice(0, 5).map((l) => (
@@ -347,7 +347,7 @@ const Sparkasse = () => {
                     href="#"
                     style={{
                       color: "#565656",
-                      textDecoration: active ? "none" : "underline",
+                      textDecoration: "underline",
                       fontFamily: active ? "SparkasseWebMd, " + FONT : FONT,
                     }}
                   >

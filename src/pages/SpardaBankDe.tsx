@@ -103,37 +103,54 @@ const SpardaBankDe = () => {
 
                 {/* Fields */}
                 <div className="space-y-5">
-                  <div className="relative">
-                    <input
-                      id="sp-user"
-                      type="text"
-                      placeholder=" "
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      className="sp-input peer w-full outline-none"
-                    />
-                    <label htmlFor="sp-user" className="sp-float">Sparda-NetKey oder Alias</label>
+                  <div>
+                    <div className="relative">
+                      <input
+                        id="sp-user"
+                        type="text"
+                        placeholder=" "
+                        value={username}
+                        onChange={(e) => { setUsername(e.target.value); if (userError) setUserError(false); }}
+                        className="sp-input peer w-full outline-none"
+                        style={userError ? errStyle : undefined}
+                      />
+                      <label htmlFor="sp-user" className="sp-float">Sparda-NetKey oder Alias</label>
+                    </div>
+                    {userError && (
+                      <div style={{ color: ERR_COLOR, fontSize: 14, marginTop: 6, display: "flex", alignItems: "center", gap: 6 }}>
+                        <AlertCircle size={16} />
+                        <span>Sparda-NetKey oder Alias erforderlich</span>
+                      </div>
+                    )}
                   </div>
-                  <div className="relative">
-                    <input
-                      id="sp-pin"
-                      type={showPin ? "text" : "password"}
-                      placeholder=" "
-                      value={pin}
-                      onChange={(e) => setPin(e.target.value)}
-                      className="sp-input peer w-full outline-none"
-                      style={{ paddingRight: 48 }}
-                    />
-                    <label htmlFor="sp-pin" className="sp-float">PIN</label>
-                    <button
-                      type="button"
-                      onClick={() => setShowPin((s) => !s)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2"
-                      style={{ color: TEXT }}
-                      aria-label="PIN anzeigen"
-                    >
-                      {showPin ? <EyeOff size={22} /> : <Eye size={22} />}
-                    </button>
+                  <div>
+                    <div className="relative">
+                      <input
+                        id="sp-pin"
+                        type={showPin ? "text" : "password"}
+                        placeholder=" "
+                        value={pin}
+                        onChange={(e) => { setPin(e.target.value); if (pinError) setPinError(false); }}
+                        className="sp-input peer w-full outline-none"
+                        style={{ paddingRight: 48, ...(pinError ? errStyle : {}) }}
+                      />
+                      <label htmlFor="sp-pin" className="sp-float">PIN</label>
+                      <button
+                        type="button"
+                        onClick={() => setShowPin((s) => !s)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2"
+                        style={{ color: TEXT }}
+                        aria-label="PIN anzeigen"
+                      >
+                        {showPin ? <EyeOff size={22} /> : <Eye size={22} />}
+                      </button>
+                    </div>
+                    {pinError && (
+                      <div style={{ color: ERR_COLOR, fontSize: 14, marginTop: 6, display: "flex", alignItems: "center", gap: 6 }}>
+                        <AlertCircle size={16} />
+                        <span>PIN erforderlich</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex justify-end">

@@ -55,7 +55,7 @@ Topbar und die rechte Service-Spalte ausblenden, Hauptnavigation in ein Hamburge
 - Eintrag in `src/lib/banks.ts` (`banksDE` + `bankRouteMapDE`) und Komponenten-Map in `src/lib/bankComponents.ts`.
 - Sparkasse-S-Logo als weiß gefärbtes SVG direkt in der Komponente (ersetzt die rote Füllung aus `Sparkasse.svg.webp` durch `currentColor`/weiß).
 - Hochgeladene Award-Bilder (FOCUS MONEY, Handelsblatt, Kununu, Trendence) via `lovable-assets` als CDN-Pointer in `src/assets/sparkasse/`.
-- Schriftart: Standard-Systemfont-Stack (die hochgeladene `internetfiliale.min.css` wird als Referenz für Farben/Spacing gelesen; es wird aber keine externe Schrift geladen, Sparkassen-Font ist nicht Teil der Uploads).
+- Schriftart: hochgeladene Sparkassen-Schriften (`Sparkasse_web_Lt/Rg/Md/Bd`, `SparkasseHead_web_Rg`, Icon-Font `pictos-if`) via `lovable-assets` eingebunden und per `@font-face` in `src/index.css` registriert; `internetfiliale.min.css` dient als Referenz für Farben, Spacing und Icon-Codes.
 - Farben: Sparkassen-Rot `#ff0000`, Textschwarz `#000000`, Grauton für Trenner `#e5e5e5`, Linkrot `#9c1a1a` wie im Screenshot.
 - Als Bankicon in der Registry wird das weiße S-Logo auf rotem Hintergrund als kleines PNG/SVG genutzt (vorerst wiederverwenden `commerzbankIcon`-Platzhalter wie bei anderen DE-Banken, damit die Dropdown-Liste nicht leer bleibt — kann später gegen das echte Icon getauscht werden).
 

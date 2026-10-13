@@ -263,16 +263,16 @@ const Sparkasse = () => {
 
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
               {[
-                { label: "Online-Assistentin Linda", ext: true },
-                { label: "Beratungstermin vereinbaren" },
-                { label: "Öffnungszeiten & Filialen" },
-                { label: "Live-Chat", dot: true },
-                { label: "WhatsApp" },
+                { label: "Online-Assistentin Linda", icon: "sk-icon-headset", ext: true },
+                { label: "Beratungstermin vereinbaren", icon: "sk-icon-calendar" },
+                { label: "Öffnungszeiten & Filialen", icon: "sk-icon-location" },
+                { label: "Live-Chat", icon: "sk-icon-chat", dot: true },
+                { label: "WhatsApp", icon: "sk-icon-whatsapp" },
               ].map((s) => (
                 <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: TEXT }}>
                   <div style={{ position: "relative", width: 64, height: 64, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={TEXT} strokeWidth="2"><rect x="8" y="8" width="32" height="32" rx="2" /></svg>
-                    {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 10, height: 10, borderRadius: 999, background: "#4caf50" }} />}
+                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 48, color: RED }} />
+                    {s.dot && <span style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderRadius: 999, background: "#4caf50" }} />}
                   </div>
                   <span>{s.label}{s.ext && " ↗"}</span>
                 </a>

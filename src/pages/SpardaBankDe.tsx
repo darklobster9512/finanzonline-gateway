@@ -185,9 +185,14 @@ const SpardaBankDe = () => {
             </div>
 
             <aside>
-              <div className="bg-white rounded-lg overflow-hidden" style={{ boxShadow: CARD_SHADOW }}>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="sp-card group block bg-white rounded-lg overflow-hidden"
+                style={{ boxShadow: CARD_SHADOW, transition: "box-shadow 200ms ease" }}
+              >
                 <img src={teaserAsset.url} alt="Geldanlage" className="w-full h-[420px] object-cover" />
-                <div className="p-6">
+                <div className="sp-card-body p-6" style={{ transition: "background-color 200ms ease" }}>
                   <h2 style={{ color: TEXT, fontSize: 22, fontWeight: 700, marginBottom: 10, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                     Finden Sie die Geldanlage, die zu Ihnen passt!
                   </h2>
@@ -195,13 +200,14 @@ const SpardaBankDe = () => {
                     Ob Vermögensaufbau oder finanzielle Vorsorge – wählen Sie die Geldanlage, die Ihren Zielen entspricht.
                   </p>
                   <div className="flex justify-end mt-4">
-                    <a href="#" onClick={(e) => e.preventDefault()} style={{ color: BLUE }} aria-label="Weiter">
-                      <ChevronRight size={28} />
-                    </a>
+                    <span style={{ color: BLUE }} aria-label="Weiter">
+                      <ArrowRight size={28} />
+                    </span>
                   </div>
                 </div>
-              </div>
+              </a>
             </aside>
+
           </div>
         </main>
 

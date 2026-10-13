@@ -25,15 +25,15 @@ const navItems = [
   "Ihre Sparkasse",
 ];
 
-const services = [
-  "IBAN und BIC berechnen",
-  "Kartenverlust melden",
-  "Online-Kunde werden",
-  "Lösungsfinder",
-  "Adresse ändern",
-  "Dispositionskredit einrichten oder ändern",
-  "Gutscheine kaufen",
-  "Alle Serviceleistungen im Überblick",
+const services: { label: string; icon: string }[] = [
+  { label: "IBAN und BIC berechnen", icon: "sk-icon-calculator" },
+  { label: "Kartenverlust melden", icon: "sk-icon-card" },
+  { label: "Online-Kunde werden", icon: "sk-icon-user-add" },
+  { label: "Lösungsfinder", icon: "sk-icon-bulb" },
+  { label: "Adresse ändern", icon: "sk-icon-home" },
+  { label: "Dispositionskredit einrichten oder ändern", icon: "sk-icon-moneybag" },
+  { label: "Gutscheine kaufen", icon: "sk-icon-gift" },
+  { label: "Alle Serviceleistungen im Überblick", icon: "sk-icon-grid" },
 ];
 
 const columns: { title: string; links: string[] }[] = [
@@ -129,11 +129,11 @@ const Sparkasse = () => {
             </div>
             <div className="flex items-center gap-6">
               <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span className="sk-icon-easy" aria-hidden="true" style={{ fontSize: 18 }} />
+                <span className="sk-icon-easy" aria-hidden="true" style={{ fontSize: 24 }} />
                 Leichte Sprache
               </a>
               <a href="#" className="flex items-center gap-2" style={{ color: "#fff" }}>
-                <span className="sk-icon-sign" aria-hidden="true" style={{ fontSize: 18 }} />
+                <span className="sk-icon-sign" aria-hidden="true" style={{ fontSize: 24 }} />
                 Gebärdensprache
               </a>
             </div>
@@ -155,7 +155,7 @@ const Sparkasse = () => {
               ))}
             </nav>
             <a href="#" className="hidden lg:flex items-center gap-2" style={{ color: "#fff" }}>
-              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 20 }} />
+              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 26 }} />
               Suche
             </a>
             <button className="lg:hidden" aria-label="Menü" style={{ color: "#fff" }}>
@@ -167,8 +167,8 @@ const Sparkasse = () => {
         {/* Floating service column (desktop) */}
         <div className="hidden lg:flex fixed right-4 top-[180px] flex-col gap-2 z-40">
           {["sk-icon-phone", "sk-icon-chat", "sk-icon-mail"].map((cls, i) => (
-            <a key={cls} href="#" style={{ background: RED, width: 44, height: 44, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
-              <span className={cls} aria-hidden="true" style={{ fontSize: 22 }} />
+            <a key={cls} href="#" style={{ background: RED, width: 52, height: 52, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
+              <span className={cls} aria-hidden="true" style={{ fontSize: 28 }} />
               {i === 1 && <span style={{ position: "absolute", top: 6, right: 8, width: 8, height: 8, borderRadius: 999, background: "#4caf50" }} />}
             </a>
           ))}
@@ -270,9 +270,9 @@ const Sparkasse = () => {
                 { label: "WhatsApp", icon: "sk-icon-whatsapp" },
               ].map((s) => (
                 <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: TEXT }}>
-                  <div style={{ position: "relative", width: 64, height: 64, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 48, color: RED }} />
-                    {s.dot && <span style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderRadius: 999, background: "#4caf50" }} />}
+                  <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
+                    {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 12, height: 12, borderRadius: 999, background: "#4caf50" }} />}
                   </div>
                   <span>{s.label}{s.ext && " ↗"}</span>
                 </a>
@@ -285,9 +285,9 @@ const Sparkasse = () => {
             <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 }}>Wichtige Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
-                <a key={s} href="#" className="flex items-center gap-3 py-3" style={{ color: TEXT, borderTop: `1px solid ${BORDER}` }}>
-                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 18, color: RED }} />
-                  <span>{s}</span>
+                <a key={s.label} href="#" className="flex items-center gap-3 py-3" style={{ color: TEXT, borderTop: `1px solid ${BORDER}` }}>
+                  <span className={s.icon} aria-hidden="true" style={{ fontSize: 24, color: "#565656" }} />
+                  <span>{s.label}</span>
                 </a>
               ))}
             </div>

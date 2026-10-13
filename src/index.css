@@ -497,3 +497,11 @@ All colors MUST be HSL.
 .sk-icon-arrow:before    { content: "\f7b2"; }
 .sk-icon-easy:before     { content: "\f877"; }
 .sk-icon-sign:before     { content: "\f878"; }
+.sk-icon-calculator:before { content: "\f613"; }
+.sk-icon-card:before     { content: "\f23b"; }
+.sk-icon-user-add:before { content: "\f21c"; }
+.sk-icon-bulb:before     { content: "\f734"; }
+.sk-icon-home:before     { content: "\f722"; }
+.sk-icon-moneybag:before { content: "\f243"; }
+.sk-icon-gift:before     { content: "\f241"; }
+.sk-icon-grid:before     { content: "\f693"; }

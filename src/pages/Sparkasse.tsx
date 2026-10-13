@@ -151,7 +151,7 @@ const Sparkasse = () => {
           <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center gap-8">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: "#fff" }}>
               <img src={logoWeiss.url} alt="Sparkasse" style={{ height: 32, width: "auto" }} />
-              <span className="hidden sm:block" style={{ fontFamily: FONT, lineHeight: 1.05, fontSize: 20, fontWeight: 300 }}>
+              <span style={{ fontFamily: FONT, lineHeight: 1.05, fontSize: 20, fontWeight: 300 }}>
                 Berliner<br />Sparkasse
               </span>
             </a>
@@ -190,8 +190,8 @@ const Sparkasse = () => {
 
         {/* Login */}
         <main className="flex-1">
-          <section className="max-w-[800px] mx-auto px-8 lg:px-12 pt-4 lg:pt-6 pb-8">
-            <h1 style={{ fontFamily: HEAD, fontSize: 28, fontWeight: 400, textAlign: "center", marginBottom: 20 }}>
+          <section className="max-w-[800px] mx-auto px-3 lg:px-12 pt-4 lg:pt-6 pb-8">
+            <h1 className="text-[22px] lg:text-[28px]" style={{ fontFamily: HEAD, fontWeight: 400, textAlign: "center", marginBottom: 20 }}>
               Melden Sie sich an
             </h1>
             <form onSubmit={submit} noValidate>
@@ -294,8 +294,9 @@ const Sparkasse = () => {
 
             <div style={{ textAlign: "center", marginTop: 20, fontSize: 15 }}>
               <a href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Sicherheitshinweise</a>
-              <span style={{ margin: "0 10px", color: "#999" }}>·</span>
-              <a href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Zugangsdaten vergessen</a>
+              <span className="hidden lg:inline" style={{ margin: "0 10px", color: "#999" }}>·</span>
+              <br className="lg:hidden" />
+              <a href="#" className="inline-block mt-2 lg:mt-0" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Zugangsdaten vergessen</a>
             </div>
 
             <div style={{ marginTop: 48, paddingLeft: 24, paddingRight: 24 }}>
@@ -335,7 +336,7 @@ const Sparkasse = () => {
           </section>
 
           {/* 4 columns */}
-          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-14 hidden lg:grid grid-cols-2 lg:grid-cols-4 gap-8">
             {columns.map((c) => (
               <div key={c.title}>
                 <h4 style={{ fontFamily: FONT_MD, color: "#000000", marginBottom: 12, fontSize: 13 }}>{c.title}</h4>
@@ -349,8 +350,8 @@ const Sparkasse = () => {
           </section>
 
           {/* Awards */}
-          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-14">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4" style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 40 }}>
+          <section className="max-w-[1200px] mx-auto px-4 lg:px-32 pb-14">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:border-t lg:pt-10" style={{ borderColor: BORDER }}>
               {[
                 { img: trendence.url, title: "Attraktivste Arbeitgeber 2025", sub: "1. Platz: Schüler", scale: 1 },
                 { img: handelsblatt.url, title: "Bestes Mobile Banking 2026", sub: "App Sparkasse", scale: 1 },
@@ -361,8 +362,8 @@ const Sparkasse = () => {
                   <div style={{ height: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={a.img} alt={a.title} style={{ height: 100 * a.scale, width: "auto", objectFit: "contain" }} />
                   </div>
-                  <div style={{ fontFamily: FONT_MD, color: "#000000", fontSize: 14, marginTop: 8 }}>{a.title}</div>
-                  <div style={{ color: "#565656", fontSize: 13 }}>{a.sub}</div>
+                  <div className="hidden lg:block" style={{ fontFamily: FONT_MD, color: "#000000", fontSize: 14, marginTop: 8 }}>{a.title}</div>
+                  <div className="hidden lg:block" style={{ color: "#565656", fontSize: 13 }}>{a.sub}</div>
                 </div>
               ))}
             </div>
@@ -377,11 +378,7 @@ const Sparkasse = () => {
 
             <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400, color: "#565656" }}>Berliner Sparkasse</div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {footerLinks.slice(0, 5).map((l) => (
-                <a key={l} href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT }}>{l}</a>
-              ))}
-              <div className="basis-full h-0" />
-              {footerLinks.slice(5).map((l) => {
+              {footerLinks.map((l) => {
                 const active = l === "Vertrag widerrufen";
                 return (
                   <a

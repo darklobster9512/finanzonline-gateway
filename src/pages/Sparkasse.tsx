@@ -286,7 +286,7 @@ const Sparkasse = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
                 <a key={s} href="#" className="flex items-center gap-3 py-3" style={{ color: TEXT, borderTop: `1px solid ${BORDER}` }}>
-                  <span style={{ width: 20, height: 20, display: "inline-block", background: "#000", opacity: 0.1, borderRadius: 2 }} />
+                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 18, color: RED }} />
                   <span>{s}</span>
                 </a>
               ))}

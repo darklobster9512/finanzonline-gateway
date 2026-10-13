@@ -156,14 +156,22 @@ const Sparkasse = () => {
         </header>
 
         {/* Floating service column (desktop) */}
-        <div className="hidden lg:flex fixed right-4 top-[180px] flex-col gap-2 z-40">
-          {["sk-icon-phone", "sk-icon-chat", "sk-icon-mail"].map((cls, i) => (
-            <a key={cls} href="#" style={{ background: RED, width: 52, height: 52, borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
-              <span className={cls} aria-hidden="true" style={{ fontSize: 28 }} />
-              {i === 1 && <span style={{ position: "absolute", top: 6, right: 8, width: 8, height: 8, borderRadius: 999, background: "#4caf50" }} />}
+        <div className="hidden lg:flex fixed right-4 top-[180px] flex-col z-40" style={{ background: RED, borderRadius: 6, width: 44, overflow: "hidden" }}>
+          {[
+            // Phone (outline, handset oriented bottom-left to top-right)
+            <svg key="p" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 4.5c0-.8.7-1.5 1.5-1.5h2.2c.7 0 1.3.5 1.5 1.2l.9 3.3c.1.6-.1 1.2-.6 1.6L9 10.3c1.1 2.3 3 4.2 5.3 5.3l1.2-1.5c.4-.5 1-.7 1.6-.6l3.3.9c.7.2 1.2.8 1.2 1.5v2.2c0 .8-.7 1.5-1.5 1.5C10.6 19.6 4.4 13.4 5 4.5z"/></svg>,
+            // Chat bubble (outline)
+            <svg key="c" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v10a1.5 1.5 0 0 1-1.5 1.5H10l-4 3.5v-3.5H5.5A1.5 1.5 0 0 1 4 15.5v-10z"/></svg>,
+            // Mail (outline)
+            <svg key="m" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="M4 7l8 6 8-6"/></svg>,
+          ].map((icon, i) => (
+            <a key={i} href="#" style={{ height: 52, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", color: "#fff" }}>
+              {icon}
+              {i === 1 && <span style={{ position: "absolute", top: 10, right: 10, width: 8, height: 8, borderRadius: 999, background: "#4caf50", border: "1.5px solid #fff" }} />}
             </a>
           ))}
         </div>
+
 
         {/* Login */}
         <main className="flex-1">

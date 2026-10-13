@@ -327,7 +327,7 @@ const Sparkasse = () => {
         </main>
 
         {/* Footer */}
-        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "32px 16px" }}>
+        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "32px 48px" }}>
           <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
             <div style={{ fontWeight: 500 }}>Berliner Sparkasse</div>
             <div className="flex items-center gap-2 text-[14px]">

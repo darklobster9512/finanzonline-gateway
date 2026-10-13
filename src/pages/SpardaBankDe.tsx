@@ -68,9 +68,27 @@ const SpardaBankDe = () => {
           <div className="max-w-[1200px] mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="flex flex-col gap-6">
               <section className="bg-white rounded-lg p-8" style={{ boxShadow: CARD_SHADOW }}>
-                <h1 style={{ color: BLUE, fontSize: 32, fontWeight: 700, marginBottom: 24, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
+                <h1 style={{ color: BLUE, fontSize: 32, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                   Anmelden
                 </h1>
+
+                <div style={{ borderBottom: "1px solid #e4e8ec", marginBottom: 24 }}>
+                  <button
+                    type="button"
+                    style={{
+                      padding: "10px 4px",
+                      marginBottom: -1,
+                      borderBottom: `3px solid ${BLUE}`,
+                      color: BLUE,
+                      fontWeight: 700,
+                      fontSize: 15,
+                      fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif",
+                    }}
+                  >
+                    Mit Zugangsdaten anmelden
+                  </button>
+                </div>
+
 
                 {/* Fields */}
                 <div className="space-y-5">

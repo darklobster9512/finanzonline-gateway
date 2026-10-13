@@ -146,12 +146,16 @@ const Sparkasse = () => {
         />
       )}
       <div className="min-h-screen flex flex-col" style={{ fontFamily: FONT, color: TEXT, backgroundColor: "#fff", fontSize: 16, lineHeight: 1.5 }}>
-        {/* Header (red) */}
-        <header style={{ backgroundColor: RED, color: "#fff" }}>
+        {/* Header */}
+        <header style={{ backgroundColor: menuOpen ? "#fff" : RED, color: menuOpen ? RED : "#fff", borderBottom: menuOpen ? `1px solid ${BORDER}` : "none", position: "relative", zIndex: 50 }}>
           <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center gap-8">
-            <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: "#fff" }}>
-              <img src={logoWeiss.url} alt="Sparkasse" style={{ height: 32, width: "auto" }} />
-              <span style={{ fontFamily: FONT, lineHeight: 1.05, fontSize: 20, fontWeight: 300 }}>
+            <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: menuOpen ? RED : "#fff" }}>
+              {menuOpen ? (
+                <span aria-hidden="true" style={{ display: "inline-block", height: 32, width: 32, backgroundColor: RED, WebkitMaskImage: `url(${logoWeiss.url})`, maskImage: `url(${logoWeiss.url})`, WebkitMaskSize: "contain", maskSize: "contain", WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center", maskPosition: "center" }} />
+              ) : (
+                <img src={logoWeiss.url} alt="Sparkasse" style={{ height: 32, width: "auto" }} />
+              )}
+              <span style={{ fontFamily: FONT, lineHeight: 1.05, fontSize: 20, fontWeight: 300, color: menuOpen ? RED : "#fff" }}>
                 Berliner<br />Sparkasse
               </span>
             </a>
@@ -164,11 +168,97 @@ const Sparkasse = () => {
               <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 32, lineHeight: 1, display: "inline-flex", alignItems: "center" }} />
               <span style={{ display: "inline-flex", alignItems: "center" }}>Suche</span>
             </a>
-            <button className="lg:hidden ml-auto" aria-label="Menü" style={{ color: "#fff" }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
-            </button>
+            <div className="lg:hidden ml-auto flex items-center gap-3" style={{ color: menuOpen ? RED : "#fff" }}>
+              {menuOpen && (
+                <>
+                  <a href="#" aria-label="Suche" style={{ color: RED, display: "inline-flex" }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                  </a>
+                  <span style={{ width: 1, height: 22, background: "#d9d9d9" }} />
+                </>
+              )}
+              <button aria-label={menuOpen ? "Menü schließen" : "Menü"} onClick={() => setMenuOpen((o) => !o)} style={{ color: menuOpen ? RED : "#fff" }}>
+                {menuOpen ? (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                ) : (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+                )}
+              </button>
+            </div>
           </div>
         </header>
+
+        {/* Mobile Sidebar (slide-down) */}
+        <div
+          className="lg:hidden overflow-hidden"
+          style={{
+            maxHeight: menuOpen ? "calc(100vh - 72px)" : 0,
+            transition: "max-height 350ms ease",
+            background: "#f2f2f2",
+            borderBottom: menuOpen ? `1px solid ${BORDER}` : "none",
+            position: "relative",
+            zIndex: 49,
+          }}
+        >
+          <nav style={{ padding: "16px 20px 32px", color: "#000", fontFamily: FONT, fontSize: 16, overflowY: "auto", maxHeight: "calc(100vh - 72px)" }}>
+            <div style={{ fontSize: 12, letterSpacing: 1, color: "#565656", fontWeight: 700, padding: "8px 0 12px" }}>ALLE THEMEN</div>
+            {[
+              { label: "Girokonto eröffnen" },
+              { label: "Produkte", chev: true },
+              { label: "Beratung" },
+              { label: "Service-Center" },
+              { label: "Ratgeber", chev: true },
+              { label: "Ihre Sparkasse", chev: true },
+            ].map((item) => (
+              <a key={item.label} href="#" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 0", borderBottom: `1px solid #e0e0e0`, color: "#000" }}>
+                <span>{item.label}</span>
+                {item.chev && (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#565656" }}><path d="m9 6 6 6-6 6"/></svg>
+                )}
+              </a>
+            ))}
+            <div style={{ height: 16 }} />
+            {[
+              {
+                label: "Leichte Sprache",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/><path d="M4 5c0-1 1-2 3-2s4 1 4 2M13 5c0-1 1-2 3-2s4 1 4 2"/></svg>
+                ),
+              },
+              {
+                label: "Gebärdensprache",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 2.5a1 1 0 0 1 1 1V10h1V2.8a1 1 0 1 1 2 0V10h1V3.5a1 1 0 1 1 2 0V11h1V5.5a1 1 0 1 1 2 0v8.3c0 3.4-2.7 6.2-6 6.2-2.2 0-3.9-1-5.3-2.8L4.3 13c-.5-.6-.4-1.5.2-2s1.5-.4 2 .2L8 13.3V3.5a1 1 0 0 1 1-1z"/></svg>
+                ),
+              },
+            ].map((it) => (
+              <a key={it.label} href="#" style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", color: "#000" }}>
+                <span style={{ color: "#000", display: "inline-flex", width: 24, justifyContent: "center" }}>{it.icon}</span>
+                <span>{it.label}</span>
+              </a>
+            ))}
+            <div style={{ borderTop: `1px solid #e0e0e0`, marginTop: 8 }} />
+            {[
+              {
+                label: "Hilfe und Kontakt",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 5a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H5l-2 2V8a3 3 0 0 1 3-3z"/><path d="M11 9h6a3 3 0 0 1 3 3v8l-2-2h-5a3 3 0 0 1-3-3"/></svg>
+                ),
+              },
+              {
+                label: "zu Firmenkunden wechseln",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7h11l-3-3M3 7l3 3M21 17H10l3 3M21 17l-3-3"/></svg>
+                ),
+              },
+            ].map((it) => (
+              <a key={it.label} href="#" style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", color: "#000" }}>
+                <span style={{ color: "#000", display: "inline-flex", width: 24, justifyContent: "center" }}>{it.icon}</span>
+                <span>{it.label}</span>
+              </a>
+            ))}
+          </nav>
+        </div>
 
         {/* Floating service column (desktop) */}
         <div className="hidden lg:flex fixed right-0 top-[180px] flex-col z-40" style={{ background: RED, borderTopLeftRadius: 6, borderBottomLeftRadius: 6, width: 48, overflow: "hidden" }}>

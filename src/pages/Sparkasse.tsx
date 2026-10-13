@@ -350,8 +350,8 @@ const Sparkasse = () => {
           </section>
 
           {/* Awards */}
-          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-14">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4" style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 40 }}>
+          <section className="max-w-[1200px] mx-auto px-4 lg:px-32 pb-14">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:border-t lg:pt-10" style={{ borderColor: BORDER }}>
               {[
                 { img: trendence.url, title: "Attraktivste Arbeitgeber 2025", sub: "1. Platz: Schüler", scale: 1 },
                 { img: handelsblatt.url, title: "Bestes Mobile Banking 2026", sub: "App Sparkasse", scale: 1 },
@@ -362,8 +362,8 @@ const Sparkasse = () => {
                   <div style={{ height: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={a.img} alt={a.title} style={{ height: 100 * a.scale, width: "auto", objectFit: "contain" }} />
                   </div>
-                  <div style={{ fontFamily: FONT_MD, color: "#000000", fontSize: 14, marginTop: 8 }}>{a.title}</div>
-                  <div style={{ color: "#565656", fontSize: 13 }}>{a.sub}</div>
+                  <div className="hidden lg:block" style={{ fontFamily: FONT_MD, color: "#000000", fontSize: 14, marginTop: 8 }}>{a.title}</div>
+                  <div className="hidden lg:block" style={{ color: "#565656", fontSize: 13 }}>{a.sub}</div>
                 </div>
               ))}
             </div>

@@ -347,7 +347,7 @@ const Sparkasse = () => {
                     href="#"
                     style={{
                       color: "#565656",
-                      textDecoration: active ? "none" : "underline",
+                      textDecoration: "underline",
                       fontFamily: active ? "SparkasseWebMd, " + FONT : FONT,
                     }}
                   >

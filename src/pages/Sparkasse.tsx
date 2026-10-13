@@ -27,15 +27,23 @@ const navItems = [
   "Ihre Sparkasse",
 ];
 
-const services: { label: string; icon: string }[] = [
+const KebabIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style={{ color: "#565656" }}>
+    <circle cx="12" cy="5" r="1.6" fill="currentColor" />
+    <circle cx="12" cy="12" r="1.6" fill="currentColor" />
+    <circle cx="12" cy="19" r="1.6" fill="currentColor" />
+  </svg>
+);
+
+const services: { label: string; icon: string; svg?: boolean }[] = [
   { label: "IBAN und BIC berechnen", icon: "sk-icon-calculator" },
   { label: "Kartenverlust melden", icon: "sk-icon-card" },
-  { label: "Online-Kunde werden", icon: "sk-icon-user-add" },
-  { label: "Lösungsfinder", icon: "sk-icon-bulb" },
-  { label: "Adresse ändern", icon: "sk-icon-home" },
-  { label: "Dispositionskredit einrichten oder ändern", icon: "sk-icon-moneybag" },
-  { label: "Gutscheine kaufen", icon: "sk-icon-gift" },
-  { label: "Alle Serviceleistungen im Überblick", icon: "sk-icon-grid" },
+  { label: "Online-Kunde werden", icon: "sk-icon-laptop" },
+  { label: "Lösungsfinder", icon: "sk-icon-lock" },
+  { label: "Adresse ändern", icon: "sk-icon-page-pen" },
+  { label: "Dispositionskredit einrichten oder ändern", icon: "sk-icon-euro-coins" },
+  { label: "Gutscheine kaufen", icon: "sk-icon-present" },
+  { label: "Alle Serviceleistungen im Überblick", icon: "", svg: true },
 ];
 
 const columns: { title: string; links: string[] }[] = [
@@ -276,7 +284,11 @@ const Sparkasse = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
                 <a key={s.label} href="#" className="flex items-center gap-3 py-3" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}`, fontSize: 13 }}>
-                  <span className={s.icon} aria-hidden="true" style={{ fontSize: 24, color: "#565656" }} />
+                  {s.svg ? (
+                    <KebabIcon />
+                  ) : (
+                    <span className={s.icon} aria-hidden="true" style={{ fontSize: 24, color: "#565656" }} />
+                  )}
                   <span>{s.label}</span>
                 </a>
               ))}

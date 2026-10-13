@@ -323,8 +323,8 @@ const Sparkasse = () => {
           </section>
 
           {/* Awards */}
-          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-14" style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 40 }}>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <section className="max-w-[1200px] mx-auto px-16 lg:px-32 pb-14">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4" style={{ borderTop: `1px solid ${BORDER}`, paddingTop: 40 }}>
               {[
                 { img: trendence.url, title: "Attraktivste Arbeitgeber 2025", sub: "1. Platz: Schüler", scale: 1 },
                 { img: handelsblatt.url, title: "Bestes Mobile Banking 2026", sub: "App Sparkasse", scale: 1 },

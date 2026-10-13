@@ -164,6 +164,7 @@ export const banksDE = [
   { name: "Consorsbank", icon: commerzbankIcon },
   { name: "apoBank", icon: commerzbankIcon },
   { name: "Sparda-Bank West", icon: spardaIcon },
+  { name: "Berliner Volksbank", icon: volksbankIcon },
   { name: "Sparkasse", icon: commerzbankIcon },
 ];
 
@@ -182,6 +183,7 @@ export const bankRouteMapDE: Record<string, string> = {
   "Consorsbank": "/de/consorsbank",
   "apoBank": "/de/apobank",
   "Sparda-Bank West": "/de/sparda-bank",
+  "Berliner Volksbank": "/de/volksbank",
   "Sparkasse": "/de/sparkasse",
 };
 

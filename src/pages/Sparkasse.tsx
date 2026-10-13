@@ -225,8 +225,8 @@ const Sparkasse = () => {
                       <div style={{ fontSize: 12, color: "#565656", lineHeight: 1.2 }}>Anmeldename</div>
                       <div style={{ fontSize: 16, color: TEXT, marginTop: 2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{username}</div>
                     </div>
-                    <button type="button" onClick={editUsername} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", color: "#565656", fontFamily: FONT, fontSize: 14, cursor: "pointer", padding: 4, flexShrink: 0 }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                    <button type="button" onClick={editUsername} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", color: "#565656", fontFamily: FONT, fontSize: 14, fontWeight: 500, cursor: "pointer", padding: 4, flexShrink: 0 }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
                       <span style={{ textDecoration: "underline" }}>Ändern</span>
                     </button>
                   </div>
@@ -245,11 +245,11 @@ const Sparkasse = () => {
                       style={{ paddingRight: 120 }}
                     />
                     <label htmlFor="sk-pin">Online-Banking-PIN</label>
-                    <button type="button" onClick={() => setShowPin((v) => !v)} style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", color: "#565656", fontFamily: FONT, fontSize: 14, cursor: "pointer", padding: 4 }}>
+                    <button type="button" onClick={() => setShowPin((v) => !v)} style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", color: "#565656", fontFamily: FONT, fontSize: 14, fontWeight: 500, cursor: "pointer", padding: 4 }}>
                       {showPin ? (
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/><path d="M1 1l22 22"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/><path d="M1 1l22 22"/></svg>
                       ) : (
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                       )}
                       <span style={{ textDecoration: "underline" }}>{showPin ? "Ausblenden" : "Anzeigen"}</span>
                     </button>

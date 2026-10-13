@@ -308,8 +308,8 @@ const Sparkasse = () => {
               ].map((a) => (
                 <div key={a.title} className="flex flex-col items-center text-center gap-3">
                   <img src={a.img} alt={a.title} style={{ height: 100, width: "auto", objectFit: "contain" }} />
-                  <div style={{ fontWeight: 700, fontSize: 14 }}>{a.title}</div>
-                  <div style={{ fontSize: 13 }}>{a.sub}</div>
+                  <div style={{ fontFamily: FONT_MD, color: "#565656", fontSize: 14 }}>{a.title}</div>
+                  <div style={{ color: "#565656", fontSize: 13 }}>{a.sub}</div>
                 </div>
               ))}
             </div>

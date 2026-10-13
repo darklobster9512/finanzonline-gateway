@@ -65,12 +65,12 @@ const SpardaBankDe = () => {
         className="min-h-screen flex flex-col"
         style={{ fontFamily: "'GenosGFG', Arial, sans-serif", color: TEXT, backgroundColor: "#f3f5f7" }}
       >
-        <div style={{ backgroundColor: BLUE, height: 48 }} />
+        <div className="hidden lg:block" style={{ backgroundColor: BLUE, height: 48 }} />
 
         <header className="bg-white border-b border-gray-200">
-          <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center gap-5">
-            <img src={logoAsset.url} alt="Sparda-Bank" className="h-12 w-auto" />
-            <span style={{ color: BLUE, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif", fontWeight: 700, fontSize: 20 }}>
+          <div className="max-w-[1200px] mx-auto px-3 lg:px-6 py-3 lg:py-4 flex items-center gap-2 lg:gap-5">
+            <img src={logoAsset.url} alt="Sparda-Bank" className="h-8 lg:h-12 w-auto" />
+            <span className="text-[15px] lg:text-[20px] whitespace-nowrap" style={{ color: BLUE, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif", fontWeight: 700 }}>
               Sparda-Bank West eG
             </span>
           </div>

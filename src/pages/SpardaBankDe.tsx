@@ -78,10 +78,10 @@ const SpardaBankDe = () => {
                     style={{
                       padding: "10px 4px",
                       marginBottom: -1,
-                      borderBottom: `3px solid ${BLUE}`,
+                      borderBottom: `2px solid ${BLUE}`,
                       color: BLUE,
                       fontWeight: 700,
-                      fontSize: 15,
+                      fontSize: 12,
                       fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif",
                     }}
                   >

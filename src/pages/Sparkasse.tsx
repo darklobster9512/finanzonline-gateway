@@ -331,8 +331,8 @@ const Sparkasse = () => {
         </main>
 
         {/* Footer */}
-        <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 48px 36px" }}>
-          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
+        <footer style={{ padding: "0 48px 36px" }}>
+          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3 text-[14px]" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}`, paddingTop: 28 }}>
             <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400, color: "#565656" }}>Berliner Sparkasse</div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               {footerLinks.slice(0, 5).map((l) => (

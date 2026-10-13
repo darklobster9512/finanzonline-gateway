@@ -65,26 +65,26 @@ const SpardaBankDe = () => {
         className="min-h-screen flex flex-col"
         style={{ fontFamily: "'GenosGFG', Arial, sans-serif", color: TEXT, backgroundColor: "#f3f5f7" }}
       >
-        <div style={{ backgroundColor: BLUE, height: 48 }} />
+        <div className="hidden lg:block" style={{ backgroundColor: BLUE, height: 48 }} />
 
         <header className="bg-white border-b border-gray-200">
-          <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center gap-5">
-            <img src={logoAsset.url} alt="Sparda-Bank" className="h-12 w-auto" />
-            <span style={{ color: BLUE, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif", fontWeight: 700, fontSize: 20 }}>
+          <div className="max-w-[1200px] mx-auto px-3 lg:px-6 py-3 lg:py-4 flex items-center gap-2 lg:gap-5">
+            <img src={logoAsset.url} alt="Sparda-Bank" className="h-8 lg:h-12 w-auto" />
+            <span className="text-[15px] lg:text-[20px] whitespace-nowrap" style={{ color: BLUE, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif", fontWeight: 700 }}>
               Sparda-Bank West eG
             </span>
           </div>
         </header>
 
         <main className="flex-1">
-          <div className="max-w-[1200px] mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="flex flex-col gap-6">
-              <section className="bg-white rounded-lg p-8" style={{ boxShadow: CARD_SHADOW }}>
+          <div className="max-w-[1200px] mx-auto px-3 py-4 lg:px-6 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
+            <div className="flex flex-col gap-4 lg:gap-6">
+              <section className="bg-white rounded-lg p-5 lg:p-8" style={{ boxShadow: CARD_SHADOW }}>
                 <h1 style={{ color: BLUE, fontSize: 32, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                   Anmelden
                 </h1>
 
-                <div style={{ borderBottom: "1px solid #e4e8ec", marginBottom: 24 }}>
+                <div className="hidden lg:block" style={{ borderBottom: "1px solid #e4e8ec", marginBottom: 24 }}>
                   <button
                     type="button"
                     style={{
@@ -154,7 +154,7 @@ const SpardaBankDe = () => {
                     )}
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex justify-center lg:justify-end">
                     <button
                       type="button"
                       style={{ color: BLUE, fontSize: 14, fontWeight: 600, padding: "6px 10px", borderRadius: 6, background: "transparent", transition: "background-color 150ms ease" }}
@@ -167,12 +167,12 @@ const SpardaBankDe = () => {
 
                 </div>
 
-                <hr className="my-6" style={{ borderColor: "#e4e8ec" }} />
+                <hr className="my-6 -mx-5 lg:mx-0" style={{ borderColor: "#e4e8ec" }} />
 
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col-reverse lg:flex-row items-stretch lg:items-center lg:justify-between gap-3 lg:gap-4">
                   <button
                     onClick={() => { setUsername(""); setPin(""); }}
-                    className="font-semibold transition-colors"
+                    className="font-semibold transition-colors w-full lg:w-auto"
                     style={{
                       color: BLUE,
                       backgroundColor: "#fff",
@@ -189,7 +189,7 @@ const SpardaBankDe = () => {
                   </button>
                   <button
                     onClick={submit}
-                    className="font-semibold text-white transition-colors"
+                    className="font-semibold text-white transition-colors w-full lg:w-auto"
                     style={{
                       backgroundColor: BLUE,
                       border: `2px solid ${BLUE}`,
@@ -220,7 +220,7 @@ const SpardaBankDe = () => {
                 className="sp-card group block bg-white rounded-lg overflow-hidden"
                 style={{ boxShadow: CARD_SHADOW, transition: "box-shadow 200ms ease" }}
               >
-                <img src={teaserAsset.url} alt="Geldanlage" className="w-full h-[420px] object-cover" />
+                <img src={teaserAsset.url} alt="Geldanlage" className="w-full h-[220px] lg:h-[420px] object-cover" />
                 <div className="sp-card-body p-6" style={{ transition: "background-color 200ms ease" }}>
                   <h2 style={{ color: TEXT, fontSize: 22, fontWeight: 700, marginBottom: 10, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                     Finden Sie die Geldanlage, die zu Ihnen passt!
@@ -242,11 +242,11 @@ const SpardaBankDe = () => {
 
         <footer style={{ backgroundColor: BLUE }} className="text-white">
           <div className="max-w-[1200px] mx-auto px-6 py-6 flex flex-col items-center gap-3">
-            <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
+            <nav className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-x-2 gap-y-3 text-sm text-center">
               {["Impressum", "Sicherheitshinweise", "Nutzungsbedingungen", "Datenschutz", "Pflichtinformationen", "AGB"].map((l, i, arr) => (
                 <span key={l} className="flex items-center gap-2">
                   <a href="#" onClick={(e) => e.preventDefault()} className="text-white font-semibold">{l}</a>
-                  {i < arr.length - 1 && <span className="opacity-60">·</span>}
+                  {i < arr.length - 1 && <span className="opacity-60 hidden lg:inline">·</span>}
                 </span>
               ))}
             </nav>
@@ -257,7 +257,7 @@ const SpardaBankDe = () => {
           </div>
         </footer>
 
-        <div className="text-center text-sm py-5" style={{ color: "#6b7684" }}>
+        <div className="text-center text-sm py-5 bg-white" style={{ color: "#6b7684" }}>
           Gemeinsam neue Wege gehen!
         </div>
       </div>

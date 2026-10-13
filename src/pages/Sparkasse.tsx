@@ -151,7 +151,7 @@ const Sparkasse = () => {
           <div className="w-full px-4 lg:px-6 h-[72px] lg:h-[90px] flex items-center gap-8">
             <a href="#" className="flex items-center gap-3 shrink-0" style={{ color: "#fff" }}>
               <img src={logoWeiss.url} alt="Sparkasse" style={{ height: 32, width: "auto" }} />
-              <span className="hidden sm:block" style={{ fontFamily: FONT, lineHeight: 1.05, fontSize: 20, fontWeight: 300 }}>
+              <span style={{ fontFamily: FONT, lineHeight: 1.05, fontSize: 20, fontWeight: 300 }}>
                 Berliner<br />Sparkasse
               </span>
             </a>

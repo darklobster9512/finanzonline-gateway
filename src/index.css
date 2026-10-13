@@ -458,3 +458,6 @@ All colors MUST be HSL.
   background-color: #e9eff5;
 }
 
+
+/* Sparkasse fonts */
+@font-face { font-family: "SparkasseWeb"; font-style: normal; font-weight: 300; src: url("/__l5e/assets-v1/placeholder-lt") format("woff"); }

@@ -183,6 +183,22 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
+@font-face {
+  font-family: 'GenosGFG';
+  src: url('/__l5e/assets-v1/f497703a-9adf-48aa-8fd9-db914959f1a3/GenosGFG-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'GenosGFG';
+  src: url('/__l5e/assets-v1/1ce32108-8f08-422e-8696-16c1a43457c1/GenosGFG-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FrutigerVR';
+  src: url('/__l5e/assets-v1/a439e513-e8d7-41df-b4d4-dc6e60f6d7de/FrutigerVR-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
 /* Open Sans (400/600/700/800) is loaded via Google Fonts @import at the top of this file
    so bold weights actually render with the real bold face. */
 

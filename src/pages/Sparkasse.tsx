@@ -224,7 +224,7 @@ const Sparkasse = () => {
                 <span>Sie haben noch kein Online-Banking?</span>
                 <a href="#" style={{ color: "#292929", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
                   Jetzt freischalten
-                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M10 1 L17 7 L10 13 M17 7 L11 7" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" fill="none" /></svg>
+                  <span className="sk-icon-arrow" aria-hidden="true" style={{ fontSize: 14, lineHeight: 1 }} />
                 </a>
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 12, paddingTop: 16, color: "#565656" }}>

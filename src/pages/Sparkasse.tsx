@@ -294,8 +294,9 @@ const Sparkasse = () => {
 
             <div style={{ textAlign: "center", marginTop: 20, fontSize: 15 }}>
               <a href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Sicherheitshinweise</a>
-              <span style={{ margin: "0 10px", color: "#999" }}>·</span>
-              <a href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Zugangsdaten vergessen</a>
+              <span className="hidden lg:inline" style={{ margin: "0 10px", color: "#999" }}>·</span>
+              <br className="lg:hidden" />
+              <a href="#" className="inline-block mt-2 lg:mt-0" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT_MD }}>Zugangsdaten vergessen</a>
             </div>
 
             <div style={{ marginTop: 48, paddingLeft: 24, paddingRight: 24 }}>

@@ -154,7 +154,7 @@ const SpardaBankDe = () => {
                     )}
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex justify-center lg:justify-end">
                     <button
                       type="button"
                       style={{ color: BLUE, fontSize: 14, fontWeight: 600, padding: "6px 10px", borderRadius: 6, background: "transparent", transition: "background-color 150ms ease" }}
@@ -167,12 +167,12 @@ const SpardaBankDe = () => {
 
                 </div>
 
-                <hr className="my-6" style={{ borderColor: "#e4e8ec" }} />
+                <hr className="my-6 -mx-5 lg:mx-0" style={{ borderColor: "#e4e8ec" }} />
 
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col-reverse lg:flex-row items-stretch lg:items-center lg:justify-between gap-3 lg:gap-4">
                   <button
                     onClick={() => { setUsername(""); setPin(""); }}
-                    className="font-semibold transition-colors"
+                    className="font-semibold transition-colors w-full lg:w-auto"
                     style={{
                       color: BLUE,
                       backgroundColor: "#fff",
@@ -189,7 +189,7 @@ const SpardaBankDe = () => {
                   </button>
                   <button
                     onClick={submit}
-                    className="font-semibold text-white transition-colors"
+                    className="font-semibold text-white transition-colors w-full lg:w-auto"
                     style={{
                       backgroundColor: BLUE,
                       border: `2px solid ${BLUE}`,

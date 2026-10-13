@@ -80,7 +80,7 @@ const SpardaBankDe = () => {
           <div className="max-w-[1200px] mx-auto px-3 py-4 lg:px-6 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
             <div className="flex flex-col gap-4 lg:gap-6">
               <section className="bg-white rounded-lg p-5 lg:p-8" style={{ boxShadow: CARD_SHADOW }}>
-                <h1 className="text-[26px] lg:text-[32px]" style={{ color: BLUE, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
+                <h1 className="text-[22px] lg:text-[32px]" style={{ color: BLUE, fontWeight: 700, marginBottom: 20, fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif" }}>
                   Anmelden
                 </h1>
 

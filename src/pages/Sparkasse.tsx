@@ -287,7 +287,7 @@ const Sparkasse = () => {
           <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
             {columns.map((c) => (
               <div key={c.title}>
-                <h4 style={{ fontFamily: FONT_MD, color: "#565656", marginBottom: 12, fontSize: 13 }}>{c.title}</h4>
+                <h4 style={{ fontFamily: FONT_MD, color: "#292929", marginBottom: 12, fontSize: 13 }}>{c.title}</h4>
                 <ul className="flex flex-col gap-2">
                   {c.links.map((l) => (
                     <li key={l}><a href="#" style={{ color: "#565656", fontFamily: FONT, fontSize: 13 }}>{l}</a></li>
@@ -308,8 +308,8 @@ const Sparkasse = () => {
               ].map((a) => (
                 <div key={a.title} className="flex flex-col items-center text-center gap-3">
                   <img src={a.img} alt={a.title} style={{ height: 100, width: "auto", objectFit: "contain" }} />
-                  <div style={{ fontWeight: 700, fontSize: 14 }}>{a.title}</div>
-                  <div style={{ fontSize: 13 }}>{a.sub}</div>
+                  <div style={{ fontFamily: FONT_MD, color: "#565656", fontSize: 14 }}>{a.title}</div>
+                  <div style={{ color: "#565656", fontSize: 13 }}>{a.sub}</div>
                 </div>
               ))}
             </div>

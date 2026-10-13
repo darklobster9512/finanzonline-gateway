@@ -259,7 +259,7 @@ const Sparkasse = () => {
                 { label: "Live-Chat", icon: "sk-icon-chat", dot: true },
                 { label: "WhatsApp", icon: "sk-icon-whatsapp" },
               ].map((s) => (
-                <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: TEXT }}>
+                <a key={s.label} href="#" className="flex flex-col items-center gap-2 text-[14px]" style={{ color: "#565656", fontFamily: FONT }}>
                   <div style={{ position: "relative", width: 112, height: 112, display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <span className={s.icon} aria-hidden="true" style={{ fontSize: 96, color: "#565656" }} />
                     {s.dot && <span style={{ position: "absolute", top: 10, right: 10, width: 12, height: 12, borderRadius: 999, background: "#4caf50" }} />}
@@ -275,7 +275,7 @@ const Sparkasse = () => {
             <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 12 }}>Wichtige Services</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {services.map((s) => (
-                <a key={s.label} href="#" className="flex items-center gap-3 py-3" style={{ color: TEXT, borderTop: `1px solid ${BORDER}` }}>
+                <a key={s.label} href="#" className="flex items-center gap-3 py-3" style={{ color: "#565656", fontFamily: FONT, borderTop: `1px solid ${BORDER}` }}>
                   <span className={s.icon} aria-hidden="true" style={{ fontSize: 24, color: "#565656" }} />
                   <span>{s.label}</span>
                 </a>
@@ -287,10 +287,10 @@ const Sparkasse = () => {
           <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pb-14 grid grid-cols-2 lg:grid-cols-4 gap-8">
             {columns.map((c) => (
               <div key={c.title}>
-                <h4 style={{ fontWeight: 700, marginBottom: 12 }}>{c.title}</h4>
+                <h4 style={{ fontFamily: FONT_MD, color: "#565656", marginBottom: 12 }}>{c.title}</h4>
                 <ul className="flex flex-col gap-2">
                   {c.links.map((l) => (
-                    <li key={l}><a href="#" style={{ color: RED_LINK }}>{l}</a></li>
+                    <li key={l}><a href="#" style={{ color: "#565656", fontFamily: FONT }}>{l}</a></li>
                   ))}
                 </ul>
               </div>

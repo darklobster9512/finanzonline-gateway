@@ -135,9 +135,9 @@ const Sparkasse = () => {
                 <a key={n} href="#" style={{ color: "#fff" }}>{n}</a>
               ))}
             </nav>
-            <a href="#" className="hidden lg:flex items-center gap-2 ml-auto" style={{ color: "#fff", fontWeight: 700 }}>
-              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 32 }} />
-              Suche
+            <a href="#" className="hidden lg:flex items-center gap-2 ml-auto leading-none" style={{ color: "#fff", fontWeight: 700 }}>
+              <span className="sk-icon-search" aria-hidden="true" style={{ fontSize: 32, lineHeight: 1, display: "inline-flex", alignItems: "center" }} />
+              <span style={{ display: "inline-flex", alignItems: "center" }}>Suche</span>
             </a>
             <button className="lg:hidden ml-auto" aria-label="Menü" style={{ color: "#fff" }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M3 12h18M3 18h18" /></svg>

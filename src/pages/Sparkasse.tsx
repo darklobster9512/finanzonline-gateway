@@ -8,9 +8,9 @@ import focusMoney from "@/assets/sparkasse/focus-money.jpg.asset.json";
 import kununu from "@/assets/sparkasse/kununu.png.asset.json";
 import trendence from "@/assets/sparkasse/trendence.png.asset.json";
 
-const RED = "#ff0000";
+const RED = "#EE0000";
 const RED_LINK = "#9c1a1a";
-const RED_DARK = "#d10a0a";
+const RED_DARK = "#c80000";
 const TEXT = "#000000";
 const BORDER = "#e5e5e5";
 const FONT = "'SparkasseWeb', Arial, sans-serif";

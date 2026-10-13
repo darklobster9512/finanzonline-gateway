@@ -238,16 +238,16 @@ const Sparkasse = () => {
           </section>
 
           {/* Immer in Ihrer Nähe */}
-          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 py-10 text-center">
-            <h2 style={{ fontFamily: HEAD, fontSize: 26, marginBottom: 20 }}>Immer in Ihrer Nähe</h2>
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 pt-24 pb-10 text-center" style={{ color: "#292929" }}>
+            <h2 style={{ fontFamily: HEAD, fontSize: 26, marginBottom: 20, fontWeight: 100, color: "#292929" }}>Immer in Ihrer Nähe</h2>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px]">
-              <span>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: RED_LINK }}>030 869 869 69</a></span>
-              <span>Für Unternehmen: BusinessCenter: <a href="#" style={{ color: RED_LINK }}>030 869 866 68</a></span>
+              <span>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: "#292929" }}>030 869 869 69</a></span>
+              <span>Für Unternehmen: BusinessCenter: <a href="#" style={{ color: "#292929" }}>030 869 866 68</a></span>
             </div>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px] mt-2">
-              <span>24 h Online-Banking-Hotline: <a href="#" style={{ color: RED_LINK }}>030 869 869 57</a></span>
-              <span>24 h Karten-Sperr-Notruf: <a href="#" style={{ color: RED_LINK }}>030 869 869 05</a></span>
-              <a href="#" style={{ color: RED_LINK, fontWeight: 500 }}>Weitere Telefonnummern</a>
+              <span>24 h Online-Banking-Hotline: <a href="#" style={{ color: "#292929" }}>030 869 869 57</a></span>
+              <span>24 h Karten-Sperr-Notruf: <a href="#" style={{ color: "#292929" }}>030 869 869 05</a></span>
+              <a href="#" style={{ color: "#292929", fontWeight: 500 }}>Weitere Telefonnummern</a>
             </div>
 
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">

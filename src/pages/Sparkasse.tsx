@@ -265,7 +265,7 @@ const Sparkasse = () => {
                 .sk-float{position:relative}
                 .sk-float .sk-login-input{width:100%;height:64px;padding:22px 18px 6px;border:1px solid #767676;background:#fff;border-radius:8px;font-size:16px;font-family:${FONT};color:${TEXT};outline:none;box-sizing:border-box;transition:box-shadow .1s,border-color .1s}
                 .sk-float label{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#565656;font-family:${FONT};font-size:16px;pointer-events:none;transition:all .15s ease;transform-origin:left top}
-                .sk-float.filled label,.sk-float:focus-within label{top:10px;transform:translateY(0) scale(.8);font-size:14px}
+                .sk-float.filled label,.sk-float:focus-within label{top:10px;transform:translateY(0);font-size:13px}
                 .sk-float:focus-within .sk-login-input{border-color:#0071D4;box-shadow:0 0 0 2px #fff,0 0 0 4px #0071D4}
                 .sk-float.err .sk-login-input{border-color:#d20000;background:#fceded}
               `}</style>

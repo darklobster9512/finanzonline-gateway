@@ -249,7 +249,7 @@ const Sparkasse = () => {
           </section>
 
           {/* Immer in Ihrer Nähe */}
-          <section className="max-w-[1200px] mx-auto px-4 py-10 text-center">
+          <section className="max-w-[1200px] mx-auto px-8 lg:px-12 py-10 text-center">
             <h2 style={{ fontFamily: HEAD, fontSize: 26, marginBottom: 20 }}>Immer in Ihrer Nähe</h2>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px]">
               <span>24 h Privatkunden Service &amp; Beratung: <a href="#" style={{ color: RED_LINK }}>030 869 869 69</a></span>

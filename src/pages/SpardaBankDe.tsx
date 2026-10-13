@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import { Eye, EyeOff, ChevronRight, ChevronDown } from "lucide-react";
+import { Eye, EyeOff, ArrowRight, ChevronDown } from "lucide-react";
 import logoAsset from "@/assets/sparda-logo.avif.asset.json";
 import teaserAsset from "@/assets/sparda-teaser.avif.asset.json";
 

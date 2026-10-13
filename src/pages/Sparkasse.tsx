@@ -378,11 +378,7 @@ const Sparkasse = () => {
 
             <div style={{ fontSize: 15, fontFamily: FONT, fontWeight: 400, color: "#565656" }}>Berliner Sparkasse</div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {footerLinks.slice(0, 5).map((l) => (
-                <a key={l} href="#" style={{ color: "#565656", textDecoration: "underline", fontFamily: FONT }}>{l}</a>
-              ))}
-              <div className="basis-full h-0" />
-              {footerLinks.slice(5).map((l) => {
+              {footerLinks.map((l) => {
                 const active = l === "Vertrag widerrufen";
                 return (
                   <a

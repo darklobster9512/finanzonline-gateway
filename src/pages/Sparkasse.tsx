@@ -193,15 +193,15 @@ const Sparkasse = () => {
         <div
           className="lg:hidden overflow-hidden"
           style={{
-            maxHeight: menuOpen ? "calc(100vh - 72px)" : 0,
-            transition: "max-height 350ms ease",
-            background: "#f2f2f2",
-            borderBottom: menuOpen ? `1px solid ${BORDER}` : "none",
+            height: menuOpen ? "calc(100vh - 72px)" : 0,
+            width: "100%",
+            transition: "height 350ms ease",
+            background: "#f5f5f5",
             position: "relative",
             zIndex: 49,
           }}
         >
-          <nav style={{ padding: "16px 20px 32px", color: "#000", fontFamily: FONT, fontSize: 16, overflowY: "auto", maxHeight: "calc(100vh - 72px)" }}>
+          <nav style={{ padding: "16px 20px 32px", color: "#000", fontFamily: FONT, fontSize: 16, overflowY: "auto", height: "100%" }}>
             <div style={{ fontSize: 12, letterSpacing: 1, color: "#565656", fontWeight: 700, padding: "8px 0 12px" }}>ALLE THEMEN</div>
             {[
               { label: "Girokonto eröffnen" },
@@ -211,7 +211,7 @@ const Sparkasse = () => {
               { label: "Ratgeber", chev: true },
               { label: "Ihre Sparkasse", chev: true },
             ].map((item) => (
-              <a key={item.label} href="#" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 0", borderBottom: `1px solid #e0e0e0`, color: "#000" }}>
+              <a key={item.label} href="#" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 0", color: "#000" }}>
                 <span>{item.label}</span>
                 {item.chev && (
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#565656" }}><path d="m9 6 6 6-6 6"/></svg>

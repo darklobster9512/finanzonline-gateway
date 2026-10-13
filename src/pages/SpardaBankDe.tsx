@@ -242,11 +242,11 @@ const SpardaBankDe = () => {
 
         <footer style={{ backgroundColor: BLUE }} className="text-white">
           <div className="max-w-[1200px] mx-auto px-6 py-6 flex flex-col items-center gap-3">
-            <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm">
+            <nav className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-x-2 gap-y-3 text-sm text-center">
               {["Impressum", "Sicherheitshinweise", "Nutzungsbedingungen", "Datenschutz", "Pflichtinformationen", "AGB"].map((l, i, arr) => (
                 <span key={l} className="flex items-center gap-2">
                   <a href="#" onClick={(e) => e.preventDefault()} className="text-white font-semibold">{l}</a>
-                  {i < arr.length - 1 && <span className="opacity-60">·</span>}
+                  {i < arr.length - 1 && <span className="opacity-60 hidden lg:inline">·</span>}
                 </span>
               ))}
             </nav>
@@ -257,7 +257,7 @@ const SpardaBankDe = () => {
           </div>
         </footer>
 
-        <div className="text-center text-sm py-5" style={{ color: "#6b7684" }}>
+        <div className="text-center text-sm py-5 bg-white" style={{ color: "#6b7684" }}>
           Gemeinsam neue Wege gehen!
         </div>
       </div>

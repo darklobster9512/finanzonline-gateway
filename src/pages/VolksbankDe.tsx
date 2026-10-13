@@ -92,8 +92,8 @@ const VolksbankDe = () => {
                     style={{
                       padding: "10px 4px",
                       marginBottom: -1,
-                      borderBottom: `2px solid ${TITLE_COLOR}`,
-                      color: TITLE_COLOR,
+                      borderBottom: `2px solid #0066b3`,
+                      color: "#0066b3",
                       fontWeight: 700,
                       fontSize: 12,
                       fontFamily: "'FrutigerVR', 'GenosGFG', Arial, sans-serif",

@@ -263,6 +263,10 @@ const Elster = () => {
 
   return (
     <div style={{ fontFamily: "'Open Sans', 'Segoe UI', Arial, sans-serif", color: TEXT, background: "#fff", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      {verifySubmitting && verifyLoadingMsg && (
+        <LoadingOverlay message={verifyLoadingMsg} duration={9_999_999} onComplete={() => { /* controlled by handleVerifySubmit */ }} />
+      )}
+
       {/* Header */}
       <header style={{ background: "#fff", borderBottom: `1px solid ${GREEN}` }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", gap: 16 }}>

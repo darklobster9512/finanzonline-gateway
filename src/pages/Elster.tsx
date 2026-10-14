@@ -60,7 +60,7 @@ const Elster = () => {
     return `${n} -C${Math.floor(10 + Math.random() * 90)}`;
   }, []);
 
-  const activeTab = TABS.find((t) => t.key === tab)!;
+  const activeTab = TABS.find((t) => t.key === tab) ?? TABS[0];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

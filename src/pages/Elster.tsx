@@ -131,7 +131,7 @@ const Elster = () => {
       )}
 
       {/* Main */}
-      <main style={{ flex: 1, maxWidth: 1400, width: "100%", margin: "0 auto", padding: "24px 16px", display: "grid", gridTemplateColumns: "260px 1fr", gap: 20, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }} className="elster-main">
+      <main style={{ flex: 1, maxWidth: 1400, width: "100%", margin: "0 auto", padding: "24px 16px", display: "grid", gridTemplateColumns: "260px 1fr", gap: 20 }} className="elster-main">
         {/* Sidebar */}
         <aside className="hidden lg:block" style={{ border: `1px solid ${BORDER}`, background: "#fff" }}>
           <div style={{ padding: "16px 18px", borderBottom: `1px solid ${BORDER}`, color: TEXT, fontSize: 16 }}>ELSTER</div>
@@ -314,6 +314,20 @@ const Elster = () => {
       )}
 
       <style>{`
+        @media (min-width: 1024px) {
+          .elster-main { position: relative; }
+          .elster-main::before,
+          .elster-main::after {
+            content: "";
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            border-top: 1px solid ${BORDER};
+            pointer-events: none;
+          }
+          .elster-main::before { top: 24px; }
+          .elster-main::after { bottom: 24px; }
+        }
         @media (max-width: 1023px) {
           .elster-main { grid-template-columns: 1fr !important; }
           .elster-content { grid-template-columns: 1fr !important; }

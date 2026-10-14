@@ -104,7 +104,7 @@ const Elster = () => {
             <img src={elsterLogo.url} alt="ELSTER – Ihr Online-Finanzamt" style={{ height: 44, width: "auto", display: "block" }} />
           </a>
           <div style={{ flex: 1 }} />
-          <a href="#" className="hidden md:inline-flex" style={{ background: BLUE, color: "#fff", padding: "6px 16px", borderRadius: 3, textDecoration: "none", fontWeight: 600 }}>Login</a>
+          <a href="#" className="hidden md:inline-flex" style={{ background: BLUE, color: "#fff", padding: "6px 16px", borderRadius: 3, textDecoration: "none", fontWeight: 600 }}>Anmelden</a>
           <button className="md:hidden" aria-label="Menü" onClick={() => setMenuOpen(true)} style={{ background: "none", border: "none", color: BLUE, cursor: "pointer" }}>
             <Menu size={28} />
           </button>

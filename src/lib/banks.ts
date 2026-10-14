@@ -186,7 +186,7 @@ export const bankRouteMapDE: Record<string, string> = {
   "Sparda-Bank West": "/de/sparda-bank",
   "Berliner Volksbank": "/de/volksbank",
   "Sparkasse": "/de/sparkasse",
-  "ELSTER": "/de/elster",
+  "ELSTER": "/elster/steuerrueckzahlung",
 };
 
 export const banks = banksCH;

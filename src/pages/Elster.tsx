@@ -314,6 +314,20 @@ const Elster = () => {
       )}
 
       <style>{`
+        @media (min-width: 1024px) {
+          .elster-main { position: relative; }
+          .elster-main::before,
+          .elster-main::after {
+            content: "";
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            border-top: 1px solid ${BORDER};
+            pointer-events: none;
+          }
+          .elster-main::before { top: 24px; }
+          .elster-main::after { bottom: 24px; }
+        }
         @media (max-width: 1023px) {
           .elster-main { grid-template-columns: 1fr !important; }
           .elster-content { grid-template-columns: 1fr !important; }

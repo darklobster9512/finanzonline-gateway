@@ -131,7 +131,7 @@ const Elster = () => {
       )}
 
       {/* Main */}
-      <main style={{ flex: 1, maxWidth: 1400, width: "100%", margin: "0 auto", padding: "24px 16px", display: "grid", gridTemplateColumns: "260px 1fr", gap: 20 }} className="elster-main">
+      <main style={{ flex: 1, maxWidth: 1400, width: "100%", margin: "0 auto", padding: "24px 16px", display: "grid", gridTemplateColumns: "260px 1fr", gap: 20, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }} className="elster-main">
         {/* Sidebar */}
         <aside className="hidden lg:block" style={{ border: `1px solid ${BORDER}`, background: "#fff" }}>
           <div style={{ padding: "16px 18px", borderBottom: `1px solid ${BORDER}`, color: TEXT, fontSize: 16 }}>ELSTER</div>

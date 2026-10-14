@@ -205,7 +205,7 @@ const Elster = () => {
                   </div>
                   {pwError && <div style={{ color: "#c00", fontSize: 13, marginBottom: 14 }}>{pwError}</div>}
 
-                  <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "10px 28px", fontSize: 15, cursor: "pointer" }}>Login</button>
+                  <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Login</button>
 
                   <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 8 }}>
                     <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Zertifikatsdatei verloren oder Zertifikat abgelaufen?</a>

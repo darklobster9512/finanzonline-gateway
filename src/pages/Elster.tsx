@@ -37,8 +37,8 @@ const BG = "#f5f5f5";
 type TabKey = "zertifikat" | "steuernummer" | "ausweis" | "stick" | "signatur";
 
 const TABS: { key: TabKey; label: string; Icon: typeof FileBadge }[] = [
-  { key: "zertifikat", label: "E-Mail Login", Icon: FileBadge },
-  { key: "steuernummer", label: "Steuernummer", Icon: Hash },
+  { key: "zertifikat", label: "E-Mail Login", Icon: IdCard },
+  { key: "steuernummer", label: "Steuernummer", Icon: FileBadge },
   { key: "ausweis", label: "Personalausweis", Icon: IdCard },
   { key: "stick", label: "Sicherheitsstick", Icon: Usb },
   { key: "signatur", label: "Signaturkarte", Icon: CreditCard },

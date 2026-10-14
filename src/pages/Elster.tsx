@@ -265,7 +265,7 @@ const Elster = () => {
               <img src={sternAsset.url} alt="" style={{ height: 28, width: "auto" }} />
               <span style={{ fontSize: 24 }}>ELSTER</span>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px", paddingLeft: 38 }}>
               {[
                 "Aktuelles", "Presse und Medien",
                 "Rechtliches", "Systemanforderungen",

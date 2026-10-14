@@ -162,7 +162,7 @@ const Elster = () => {
                     width: "100%", textAlign: "left", display: "flex", alignItems: "center", gap: 12,
                     padding: "16px 16px", border: "none", background: active ? "#fff" : "#f8f8f8", cursor: "pointer",
                     borderLeft: `4px solid ${active ? TAB_GREEN : "transparent"}`,
-                    borderRight: active ? "none" : `1px solid ${BORDER}`,
+                    borderRight: active ? "1px solid #fff" : "none", marginRight: active ? -1 : 0,
                     color: active ? TAB_GREEN : BLUE, fontSize: 15,
                     borderBottom: `1px solid ${BORDER}`,
                   }}>

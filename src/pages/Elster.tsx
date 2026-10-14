@@ -151,7 +151,7 @@ const Elster = () => {
         <section>
           <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 20px" }}>Login-Optionen</h1>
 
-          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", gap: 0, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }} className="elster-content">
+          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", gap: 0 }} className="elster-content">
             {/* Tabs */}
             <div style={{ borderLeft: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}`, background: "#f8f8f8" }}>
               {TABS.map((t) => {
@@ -173,7 +173,7 @@ const Elster = () => {
             </div>
 
             {/* Form panel */}
-            <div style={{ background: "#fff", padding: "20px 24px" }}>
+            <div style={{ background: "#fff", padding: "20px 24px", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}` }}>
               <h2 style={{ fontSize: 22, fontWeight: 400, margin: "0 0 16px" }}>{activeTab.label}</h2>
 
               {tab === "zertifikat" && (

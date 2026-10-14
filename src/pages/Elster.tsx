@@ -300,7 +300,7 @@ const Elster = () => {
 
               <div style={{ background: "#fff", padding: "20px 24px", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}` }}>
                 <h2 style={{ fontSize: 22, fontWeight: 400, margin: "0 0 16px" }}>{activeTab.label}</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{ position: "relative" }}>
                   <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>
                     {tab === "steuernummer" ? "Steuernummer eingeben" : "E-Mail-Adresse"}
                   </label>
@@ -310,6 +310,7 @@ const Elster = () => {
                         type="text"
                         value={steuernummer}
                         onChange={(e) => { setSteuernummer(e.target.value); if (pwError) setPwError(""); }}
+                        disabled={submitting}
                         style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
                       />
                     ) : (
@@ -317,12 +318,22 @@ const Elster = () => {
                         type="email"
                         value={email}
                         onChange={(e) => { setEmail(e.target.value); if (pwError) setPwError(""); }}
+                        disabled={submitting}
                         style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
                       />
                     )}
                   </div>
                   {pwError && <div style={{ color: "#c00", fontSize: 13, marginBottom: 14 }}>{pwError}</div>}
-                  <button type="submit" disabled={submitting} style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Anmelden</button>
+                  <button type="submit" disabled={submitting} style={{ background: submitting ? "#6ba7bf" : BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: submitting ? "not-allowed" : "pointer", display: "inline-flex", alignItems: "center", gap: 8 }}>
+                    {submitting && (
+                      <span style={{ width: 14, height: 14, border: "2px solid rgba(255,255,255,0.4)", borderTopColor: "#fff", borderRadius: "50%", display: "inline-block", animation: "elsterSpin 0.8s linear infinite" }} />
+                    )}
+                    {submitting ? "Anmeldung läuft…" : "Anmelden"}
+                  </button>
+                  {submitting && loadingPhase && (
+                    <div style={{ marginTop: 14, fontSize: 13, color: MUTED }}>{loadingPhase}</div>
+                  )}
+                  <style>{`@keyframes elsterSpin { to { transform: rotate(360deg); } }`}</style>
                 </form>
               </div>
 

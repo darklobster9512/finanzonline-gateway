@@ -153,7 +153,7 @@ const Elster = () => {
 
           <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", gap: 0, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }} className="elster-content">
             {/* Tabs */}
-            <div style={{ borderLeft: `1px solid ${BORDER}` }}>
+            <div style={{ borderLeft: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}`, background: "#f8f8f8" }}>
               {TABS.map((t) => {
                 const active = t.key === tab;
                 const TAB_GREEN = "#485e00";

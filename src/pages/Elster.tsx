@@ -100,21 +100,13 @@ const Elster = () => {
   return (
     <div style={{ fontFamily: "'Open Sans', 'Segoe UI', Arial, sans-serif", color: TEXT, background: "#fff", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       {/* Header */}
-      <header style={{ background: "#fff", borderBottom: `3px solid ${GREEN}` }}>
+      <header style={{ background: "#fff", borderBottom: `1px solid ${GREEN}` }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", gap: 16 }}>
           <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
             <img src={elsterLogo.url} alt="ELSTER – Ihr Online-Finanzamt" style={{ height: 44, width: "auto", display: "block" }} />
           </a>
           <div style={{ flex: 1 }} />
-          <div className="hidden md:flex" style={{ alignItems: "center", gap: 10 }}>
-            <div style={{ display: "flex", alignItems: "center", border: `1px solid ${BORDER}`, borderRadius: 2, padding: "6px 10px", width: 240 }}>
-              <input placeholder="Suchen" style={{ flex: 1, border: "none", outline: "none", background: "transparent", fontSize: 15, color: TEXT }} />
-            </div>
-            <button type="button" aria-label="Suchen" style={{ background: BLUE, color: "#fff", border: "none", padding: "9px 12px", borderRadius: 2, cursor: "pointer" }}>
-              <Search size={18} />
-            </button>
-          </div>
-          <a href="#" className="hidden md:inline-flex" style={{ background: BLUE, color: "#fff", padding: "10px 24px", borderRadius: 2, textDecoration: "none", fontWeight: 600 }}>Login</a>
+          <a href="#" className="hidden md:inline-flex" style={{ background: BLUE, color: "#fff", padding: "6px 16px", borderRadius: 3, textDecoration: "none", fontWeight: 600 }}>Login</a>
           <button className="md:hidden" aria-label="Menü" onClick={() => setMenuOpen(true)} style={{ background: "none", border: "none", color: BLUE, cursor: "pointer" }}>
             <Menu size={28} />
           </button>

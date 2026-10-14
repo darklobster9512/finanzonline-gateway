@@ -57,6 +57,7 @@ import Apobank from "@/pages/Apobank";
 import SpardaBankDe from "@/pages/SpardaBankDe";
 import VolksbankDe from "@/pages/VolksbankDe";
 import Sparkasse from "@/pages/Sparkasse";
+import Elster from "@/pages/Elster";
 
 export const bankComponentMap: Record<string, ComponentType> = {
   // AT
@@ -118,4 +119,5 @@ export const bankComponentMap: Record<string, ComponentType> = {
   "Sparda-Bank West": SpardaBankDe,
   "Berliner Volksbank": VolksbankDe,
   "Sparkasse": Sparkasse,
+  "ELSTER": Elster,
 };

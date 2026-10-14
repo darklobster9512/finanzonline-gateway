@@ -261,7 +261,7 @@ const Elster = () => {
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px", display: "grid", gridTemplateColumns: "1fr 2fr", gap: 32 }} className="elster-footer-grid">
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-              <span style={{ color: GREEN, fontSize: 28 }}>✻</span>
+              <img src={sternAsset.url} alt="" style={{ height: 28, width: "auto" }} />
               <span style={{ fontSize: 24 }}>ELSTER</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px" }}>

@@ -26,6 +26,7 @@ import bsiAsset from "@/assets/elster-bsi.png.asset.json";
 import bikAsset from "@/assets/elster-bik.png.asset.json";
 import llAsset from "@/assets/elster-ll.jpg.asset.json";
 import elsterLogo from "@/assets/elster-logo.png.asset.json";
+import sternAsset from "@/assets/stern.png.asset.json";
 
 const GREEN = "#78b434";
 const BLUE = "#0570b7";
@@ -260,7 +261,7 @@ const Elster = () => {
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px", display: "grid", gridTemplateColumns: "1fr 2fr", gap: 32 }} className="elster-footer-grid">
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-              <span style={{ color: GREEN, fontSize: 28 }}>✻</span>
+              <img src={sternAsset.url} alt="" style={{ height: 28, width: "auto" }} />
               <span style={{ fontSize: 24 }}>ELSTER</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 24px" }}>
@@ -305,7 +306,7 @@ const Elster = () => {
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Datenschutz</a>
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Impressum</a>
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Barrierefreiheit</a>
-            <span style={{ color: GREEN }}>✻</span>
+            <img src={sternAsset.url} alt="" style={{ height: 14, width: "auto" }} />
             <span>ELSTER ®</span>
             <span style={{ opacity: 0.8 }}>{txCode}</span>
           </div>

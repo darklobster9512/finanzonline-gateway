@@ -131,7 +131,8 @@ const Elster = () => {
       )}
 
       {/* Main */}
-      <main style={{ flex: 1, maxWidth: 1400, width: "100%", margin: "0 auto", padding: "24px 16px", display: "grid", gridTemplateColumns: "260px 1fr", gap: 20 }} className="elster-main">
+      <main style={{ flex: 1, maxWidth: 1400, width: "100%", margin: "0 auto", padding: "24px 16px", display: "grid", gridTemplateColumns: "260px 1fr", gap: 20, position: "relative" }} className="elster-main">
+        <div className="elster-vrule hidden lg:block" style={{ position: "absolute", right: 16, top: 24, bottom: 24, width: 1, background: BORDER, pointerEvents: "none" }} />
         {/* Sidebar */}
         <aside className="hidden lg:block" style={{ border: `1px solid ${BORDER}`, background: "#fff" }}>
           <div style={{ padding: "16px 18px", borderBottom: `1px solid ${BORDER}`, color: TEXT, fontSize: 16 }}>ELSTER</div>
@@ -151,7 +152,7 @@ const Elster = () => {
         <section>
           <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 20px" }}>Login-Optionen</h1>
 
-          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", columnGap: 0, borderRight: `1px solid ${BORDER}`, paddingRight: 16 }} className="elster-content">
+          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", columnGap: 0, paddingRight: 16 }} className="elster-content">
             {/* Tabs */}
             <div style={{ borderLeft: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}`, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, background: "#f8f8f8" }}>
               {TABS.map((t) => {
@@ -279,10 +280,12 @@ const Elster = () => {
                 { img: bikAsset.url, text: "Vom BIK geprüfter Webauftritt" },
                 { img: llAsset.url, text: "Von capito geprüfte Leichte Sprache" },
               ].map((c) => (
-                <div key={c.text} style={{ background: "#fff", color: TEXT, padding: 14, display: "flex", alignItems: "center", gap: 12 }}>
-                  <img src={c.img} alt="" style={{ height: 56, width: "auto", flex: "0 0 auto" }} />
-                  <div style={{ fontSize: 13, lineHeight: 1.3 }}>
-                    {c.text} <ExternalLink size={12} style={{ display: "inline", color: BLUE, verticalAlign: "middle" }} />
+                <div key={c.text} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "stretch", color: "#006d97" }}>
+                  <div style={{ background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", padding: 14 }}>
+                    <img src={c.img} alt="" style={{ height: 56, width: "auto", maxWidth: "100%" }} />
+                  </div>
+                  <div style={{ background: "#f2f2f2", display: "flex", alignItems: "center", padding: 14, fontSize: 13, lineHeight: 1.3 }}>
+                    <span>{c.text} <ExternalLink size={12} style={{ display: "inline", color: "#006d97", verticalAlign: "middle" }} /></span>
                   </div>
                 </div>
               ))}

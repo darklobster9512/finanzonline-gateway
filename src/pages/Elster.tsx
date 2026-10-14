@@ -306,7 +306,7 @@ const Elster = () => {
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Datenschutz</a>
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Impressum</a>
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Barrierefreiheit</a>
-            <span style={{ color: GREEN }}>✻</span>
+            <img src={logoAsset.url} alt="" style={{ height: 18, width: "auto", filter: "brightness(0) invert(1)" }} />
             <span>ELSTER ®</span>
             <span style={{ opacity: 0.8 }}>{txCode}</span>
           </div>

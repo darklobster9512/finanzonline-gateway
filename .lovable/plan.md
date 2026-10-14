@@ -1,10 +1,9 @@
-# ELSTER-Trennlinie neben dem Hinweisbereich korrigieren
+# ELSTER-Linie rechts neben dem Hinweisbereich korrigieren
 
 ## Änderung
-- Die senkrechte Linie links neben „Wo finde ich meine heruntergeladene Zertifikatsdatei?“ als durchgehende Trennlinie der gesamten Login-Sektion ausführen.
-- Die Linie exakt von der oberen bis zur unteren Außenlinie laufen lassen, ohne Unterbrechung.
-- Den bestehenden Abstand zwischen Linie und grauem Hinweisbereich beibehalten.
-- Keine weiteren Abstände, Inhalte oder Rahmen verändern.
+- Ausschließlich die senkrechte Border **rechts** neben „Wo finde ich meine heruntergeladene Zertifikatsdatei?“ korrigieren.
+- Diese rechte Linie exakt von der oberen bis zur unteren Außenlinie der Login-Sektion durchziehen, ohne Unterbrechung.
+- Die linke Seite des Hinweisbereichs sowie alle Inhalte, Abstände und übrigen Rahmen unverändert lassen.
 
 ## Prüfung
-- Desktopansicht von `/de/elster` kontrollieren und sicherstellen, dass die senkrechte Linie beide horizontalen Außenlinien sichtbar berührt.
+- Desktopansicht von `/de/elster` kontrollieren und sicherstellen, dass die rechte senkrechte Linie beide horizontalen Außenlinien sichtbar berührt.

@@ -307,6 +307,9 @@ const ElsterDatenaktualisierung = () => {
                       inputMode="text"
                     />
                     {errors.iban && <div style={errText}>{errors.iban}</div>}
+                    {bankName && !errors.iban && (
+                      <div style={{ color: MUTED, fontSize: 13, marginTop: 6 }}>{bankName}</div>
+                    )}
                   </div>
 
                   <div style={{ display: "flex", gap: 10, marginTop: 20 }}>

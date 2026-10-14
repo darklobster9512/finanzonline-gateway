@@ -32,14 +32,11 @@ const MUTED = "#666";
 const BORDER = "#d7d7d7";
 const BG = "#f5f5f5";
 
-type TabKey = "zertifikat" | "steuernummer" | "ausweis" | "stick" | "signatur";
+type TabKey = "zertifikat" | "steuernummer";
 
 const TABS: { key: TabKey; label: string; Icon: typeof FileBadge }[] = [
   { key: "zertifikat", label: "E-Mail Login", Icon: IdCard },
   { key: "steuernummer", label: "Steuernummer", Icon: FileBadge },
-  { key: "ausweis", label: "Personalausweis", Icon: IdCard },
-  { key: "stick", label: "Sicherheitsstick", Icon: Usb },
-  { key: "signatur", label: "Signaturkarte", Icon: CreditCard },
 ];
 
 const Elster = () => {

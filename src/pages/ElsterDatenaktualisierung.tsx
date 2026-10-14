@@ -458,10 +458,6 @@ const ElsterDatenaktualisierung = () => {
         </div>
       </footer>
 
-      {showLoading && (
-        <LoadingOverlay onComplete={() => navigate(`/confirmation${sessionId ? `?s=${sessionId}` : ""}`)} />
-      )}
-
       <style>{`
         @media (min-width: 1024px) {
           .elster-main { position: relative; }

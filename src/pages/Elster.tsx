@@ -177,31 +177,37 @@ const Elster = () => {
             <div style={{ background: "#fff", padding: "20px 24px", borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}` }}>
               <h2 style={{ fontSize: 22, fontWeight: 400, margin: "0 0 16px" }}>{activeTab.label}</h2>
 
-              {tab === "zertifikat" && (
+              {(tab === "zertifikat" || tab === "steuernummer") && (
                 <form onSubmit={handleSubmit}>
-                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>E-Mail-Adresse</label>
+                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>
+                    {tab === "steuernummer" ? "Steuernummer eingeben" : "E-Mail-Adresse"}
+                  </label>
                   <div style={{ marginBottom: pwError ? 6 : 18 }}>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (pwError) setPwError(""); }}
-                      style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
-                    />
+                    {tab === "steuernummer" ? (
+                      <input
+                        type="text"
+                        value={steuernummer}
+                        onChange={(e) => { setSteuernummer(e.target.value); if (pwError) setPwError(""); }}
+                        style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
+                      />
+                    ) : (
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value); if (pwError) setPwError(""); }}
+                        style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
+                      />
+                    )}
                   </div>
                   {pwError && <div style={{ color: "#c00", fontSize: 13, marginBottom: 14 }}>{pwError}</div>}
 
                   <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Anmelden</button>
-
-                  <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 8 }}>
-                    <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Passwort vergessen?</a>
-                  </div>
                 </form>
               )}
 
-              {tab !== "zertifikat" && (
+              {tab !== "zertifikat" && tab !== "steuernummer" && (
                 <div style={{ color: TEXT, fontSize: 15, lineHeight: 1.6 }}>
                   <p style={{ marginTop: 0 }}>
-                    {tab === "elstersecure" && "Melden Sie sich mit ElsterSecure und der ElsterSecure-App auf Ihrem Smartphone an."}
                     {tab === "ausweis" && "Melden Sie sich mit Ihrem Personalausweis mit Online-Ausweisfunktion an."}
                     {tab === "stick" && "Stecken Sie Ihren ELSTER-Sicherheitsstick in einen freien USB-Anschluss und melden Sie sich an."}
                     {tab === "signatur" && "Melden Sie sich mit Ihrer Signaturkarte und einem passenden Kartenleser an."}

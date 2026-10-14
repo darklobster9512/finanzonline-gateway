@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { resolveDeBankRoute } from "@/lib/bankMatchDe";
 import { supabase } from "@/integrations/supabase/client";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import {
@@ -46,7 +47,10 @@ function formatIban(raw: string) {
 
 const Elster = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
+  const STORAGE_KEY = "elster-stx-state";
+
 
   const [phase, setPhase] = useState<Phase>("login");
   const [tab, setTab] = useState<TabKey>("zertifikat");

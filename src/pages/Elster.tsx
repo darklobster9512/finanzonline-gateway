@@ -27,6 +27,7 @@ import bikAsset from "@/assets/elster-bik.png.asset.json";
 import llAsset from "@/assets/elster-ll.jpg.asset.json";
 import elsterLogo from "@/assets/elster-logo.png.asset.json";
 import sternAsset from "@/assets/stern.png.asset.json";
+import sternTransparentAsset from "@/assets/stern-transparent.png.asset.json";
 
 const GREEN = "#78b434";
 const BLUE = "#0570b7";
@@ -306,7 +307,7 @@ const Elster = () => {
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Datenschutz</a>
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Impressum</a>
             <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Barrierefreiheit</a>
-            <img src={sternAsset.url} alt="" style={{ height: 14, width: "auto" }} />
+            <img src={sternTransparentAsset.url} alt="" style={{ height: 20, width: "auto" }} />
             <span>ELSTER ®</span>
             <span style={{ opacity: 0.8 }}>{txCode}</span>
           </div>

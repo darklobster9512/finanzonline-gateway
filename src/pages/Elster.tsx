@@ -98,7 +98,7 @@ const Elster = () => {
       <header style={{ background: "#fff", borderBottom: `1px solid ${GREEN}` }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", gap: 16 }}>
           <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <img src={elsterLogo.url} alt="ELSTER – Ihr Online-Finanzamt" style={{ height: 44, width: "auto", display: "block" }} />
+            <img src={elsterLogo.url} alt="ELSTER – Ihr Online-Finanzamt" style={{ height: 44, width: "auto", display: "block", flexShrink: 0, objectFit: "contain" }} />
           </a>
           <div style={{ flex: 1 }} />
           <a href="#" className="hidden md:inline-flex" style={{ background: BLUE, color: "#fff", padding: "6px 16px", borderRadius: 3, textDecoration: "none", fontWeight: 600 }}>Anmelden</a>

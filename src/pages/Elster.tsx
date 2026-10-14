@@ -25,6 +25,7 @@ import {
 import bsiAsset from "@/assets/elster-bsi.png.asset.json";
 import bikAsset from "@/assets/elster-bik.png.asset.json";
 import llAsset from "@/assets/elster-ll.jpg.asset.json";
+import elsterLogo from "@/assets/elster-logo.svg.asset.json";
 
 const GREEN = "#78b434";
 const BLUE = "#0570b7";
@@ -99,9 +100,8 @@ const Elster = () => {
       {/* Header */}
       <header style={{ background: "#fff", borderBottom: `3px solid ${GREEN}` }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", gap: 16 }}>
-          <a href="#" style={{ display: "flex", alignItems: "baseline", gap: 10, textDecoration: "none" }}>
-            <span style={{ color: GREEN, fontWeight: 800, fontSize: 34, letterSpacing: 1 }}>ELSTER</span>
-            <span className="hidden sm:inline" style={{ color: MUTED, fontSize: 15 }}>Ihr Online-Finanzamt</span>
+          <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+            <img src={elsterLogo.url} alt="ELSTER – Ihr Online-Finanzamt" style={{ height: 44, width: "auto", display: "block" }} />
           </a>
           <div style={{ flex: 1 }} />
           <div className="hidden md:flex" style={{ alignItems: "center", gap: 10 }}>
@@ -123,7 +123,7 @@ const Elster = () => {
       {menuOpen && (
         <div className="md:hidden" style={{ position: "fixed", inset: 0, background: "#fff", zIndex: 50, display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 20px", borderBottom: `3px solid ${GREEN}` }}>
-            <span style={{ color: GREEN, fontWeight: 800, fontSize: 28 }}>ELSTER</span>
+            <img src={elsterLogo.url} alt="ELSTER" style={{ height: 36, width: "auto", display: "block" }} />
             <button aria-label="Schließen" onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: TEXT }}><X size={28} /></button>
           </div>
           <nav style={{ padding: 16, display: "flex", flexDirection: "column", gap: 2 }}>

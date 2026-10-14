@@ -221,16 +221,6 @@ const Elster = () => {
             <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, marginLeft: 16, alignSelf: "start", background: "#f8f8f8", padding: "20px 20px" }}>
               {tab === "zertifikat" && (
                 <>
-                  <div style={{ fontWeight: 700, marginBottom: 8 }}>Wo finde ich meine heruntergeladene Zertifikatsdatei?</div>
-                  <p style={{ color: MUTED, margin: "0 0 16px" }}>
-                    Sie können auch nach der abgespeicherten Zertifikatsdatei suchen. Nutzen Sie dazu die Suche Ihres Betriebssystems (z. B. Windows) und geben Sie als Suchbegriff folgendes ein: <span style={{ fontStyle: "italic" }}>*.pfx</span>
-                  </p>
-                  <div style={{ fontWeight: 700, marginBottom: 6 }}>Noch keine Zertifikatsdatei?</div>
-                  <div>Hier <a href="#" style={{ color: BLUE, textDecoration: "none", fontWeight: 600 }}>Benutzerkonto erstellen</a>.</div>
-                </>
-              )}
-              {tab === "email" && (
-                <>
                   <div style={{ fontWeight: 700, marginBottom: 8 }}>Zugang per E-Mail nicht möglich?</div>
                   <p style={{ color: MUTED, margin: "0 0 16px" }}>
                     Der E-Mail Login funktioniert nur mit einer bei ELSTER registrierten E-Mail-Adresse. Bitte prüfen Sie, ob Ihre Eingabe korrekt geschrieben ist und mit der in Ihrem Benutzerkonto hinterlegten Adresse übereinstimmt.
@@ -249,7 +239,7 @@ const Elster = () => {
                   <div>Hier <a href="#" style={{ color: BLUE, textDecoration: "none", fontWeight: 600 }}>Benutzerkonto erstellen</a>.</div>
                 </>
               )}
-              {tab !== "zertifikat" && tab !== "email" && tab !== "steuernummer" && (
+              {tab !== "zertifikat" && tab !== "steuernummer" && (
                 <>
                   <div style={{ fontWeight: 700, marginBottom: 8 }}>Noch kein Benutzerkonto?</div>
                   <div>Hier <a href="#" style={{ color: BLUE, textDecoration: "none", fontWeight: 600 }}>Benutzerkonto erstellen</a>.</div>

@@ -200,16 +200,6 @@ const Elster = () => {
                 </form>
               )}
 
-              {tab !== "zertifikat" && tab !== "steuernummer" && (
-                <div style={{ color: TEXT, fontSize: 15, lineHeight: 1.6 }}>
-                  <p style={{ marginTop: 0 }}>
-                    {tab === "ausweis" && "Melden Sie sich mit Ihrem Personalausweis mit Online-Ausweisfunktion an."}
-                    {tab === "stick" && "Stecken Sie Ihren ELSTER-Sicherheitsstick in einen freien USB-Anschluss und melden Sie sich an."}
-                    {tab === "signatur" && "Melden Sie sich mit Ihrer Signaturkarte und einem passenden Kartenleser an."}
-                  </p>
-                  <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Weitere Informationen</a>
-                </div>
-              )}
             </div>
 
             {/* Info box */}

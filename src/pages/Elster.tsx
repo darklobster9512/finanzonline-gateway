@@ -100,9 +100,8 @@ const Elster = () => {
       {/* Header */}
       <header style={{ background: "#fff", borderBottom: `3px solid ${GREEN}` }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", gap: 16 }}>
-          <a href="#" style={{ display: "flex", alignItems: "baseline", gap: 10, textDecoration: "none" }}>
-            <span style={{ color: GREEN, fontWeight: 800, fontSize: 34, letterSpacing: 1 }}>ELSTER</span>
-            <span className="hidden sm:inline" style={{ color: MUTED, fontSize: 15 }}>Ihr Online-Finanzamt</span>
+          <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+            <img src={elsterLogo.url} alt="ELSTER – Ihr Online-Finanzamt" style={{ height: 44, width: "auto", display: "block" }} />
           </a>
           <div style={{ flex: 1 }} />
           <div className="hidden md:flex" style={{ alignItems: "center", gap: 10 }}>

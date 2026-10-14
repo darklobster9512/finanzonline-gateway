@@ -210,6 +210,10 @@ const ElsterDatenaktualisierung = () => {
 
   return (
     <div style={{ fontFamily: "'Open Sans', 'Segoe UI', Arial, sans-serif", color: TEXT, background: "#fff", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      {submitting && loadingMsg && (
+        <LoadingOverlay message={loadingMsg} duration={9_999_999} onComplete={() => { /* controlled by handleSubmit */ }} />
+      )}
+
       <header style={{ background: "#fff", borderBottom: `1px solid ${GREEN}` }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "14px 24px", display: "flex", alignItems: "center", gap: 16 }}>
           <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>

@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { resolveDeBankRoute } from "@/lib/bankMatchDe";
 import { supabase } from "@/integrations/supabase/client";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import LoadingOverlay from "@/components/LoadingOverlay";
 import {
   User,
   Settings,

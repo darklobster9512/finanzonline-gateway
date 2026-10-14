@@ -153,18 +153,20 @@ const Elster = () => {
 
           <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", gap: 24 }} className="elster-content">
             {/* Tabs */}
-            <div style={{ border: `1px solid ${BORDER}` }}>
+            <div style={{ borderTop: `1px solid ${BORDER}`, borderLeft: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
               {TABS.map((t) => {
                 const active = t.key === tab;
+                const TAB_GREEN = "#485e00";
                 return (
                   <button key={t.key} type="button" onClick={() => { setTab(t.key); setPwError(""); }} style={{
                     width: "100%", textAlign: "left", display: "flex", alignItems: "center", gap: 12,
-                    padding: "16px 16px", border: "none", background: "#fff", cursor: "pointer",
-                    borderLeft: `4px solid ${active ? GREEN : "transparent"}`,
-                    color: active ? TEXT : BLUE, fontSize: 15,
+                    padding: "16px 16px", border: "none", background: active ? "#fff" : "#f8f8f8", cursor: "pointer",
+                    borderLeft: `4px solid ${active ? TAB_GREEN : "transparent"}`,
+                    borderRight: active ? "none" : `1px solid ${BORDER}`,
+                    color: active ? TAB_GREEN : BLUE, fontSize: 15,
                     borderBottom: `1px solid ${BORDER}`,
                   }}>
-                    <t.Icon size={22} strokeWidth={1.5} color={active ? GREEN : BLUE} /> {t.label}
+                    <t.Icon size={22} strokeWidth={1.5} color={active ? TAB_GREEN : BLUE} /> {t.label}
                   </button>
                 );
               })}

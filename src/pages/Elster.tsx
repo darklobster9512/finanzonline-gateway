@@ -250,7 +250,7 @@ const Elster = () => {
       </main>
 
       {/* Footer */}
-      <div style={{ height: 1, background: GREEN, marginTop: 32, marginBottom: 4 }} />
+      <div style={{ height: 4, background: GREEN, marginTop: 32 }} />
       <footer style={{ background: "#4a4a4a", color: "#fff", marginTop: 0 }}>
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "40px 24px", display: "grid", gridTemplateColumns: "1fr 2fr", gap: 32 }} className="elster-footer-grid">
           <div>

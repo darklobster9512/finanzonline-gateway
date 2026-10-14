@@ -124,7 +124,7 @@ const Elster = () => {
       {menuOpen && (
         <div className="md:hidden" style={{ position: "fixed", inset: 0, background: "#fff", zIndex: 50, display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 20px", borderBottom: `3px solid ${GREEN}` }}>
-            <span style={{ color: GREEN, fontWeight: 800, fontSize: 28 }}>ELSTER</span>
+            <img src={logoAsset.url} alt="ELSTER" style={{ height: 36, width: "auto" }} />
             <button aria-label="Schließen" onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: TEXT }}><X size={28} /></button>
           </div>
           <nav style={{ padding: 16, display: "flex", flexDirection: "column", gap: 2 }}>

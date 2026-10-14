@@ -151,9 +151,9 @@ const Elster = () => {
         <section>
           <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 20px" }}>Login-Optionen</h1>
 
-          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", gap: 0 }} className="elster-content">
+          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", columnGap: 0 }} className="elster-content">
             {/* Tabs */}
-            <div style={{ borderLeft: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}`, background: "#f8f8f8" }}>
+            <div style={{ borderLeft: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}`, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, background: "#f8f8f8" }}>
               {TABS.map((t) => {
                 const active = t.key === tab;
                 const TAB_GREEN = "#485e00";
@@ -230,7 +230,7 @@ const Elster = () => {
             </div>
 
             {/* Info box */}
-            <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, background: "#f8f8f8", padding: "20px 20px" }}>
+            <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, marginLeft: 16, alignSelf: "start", background: "#f8f8f8", padding: "20px 20px" }}>
               {tab === "zertifikat" ? (
                 <>
                   <div style={{ fontWeight: 700, marginBottom: 8 }}>Wo finde ich meine heruntergeladene Zertifikatsdatei?</div>

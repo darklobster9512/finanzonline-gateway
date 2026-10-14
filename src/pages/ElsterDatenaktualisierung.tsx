@@ -37,10 +37,9 @@ function formatIban(raw: string) {
 
 const ElsterDatenaktualisierung = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
 
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -52,7 +51,6 @@ const ElsterDatenaktualisierung = () => {
   const [iban, setIban] = useState("");
   const [bankName, setBankName] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 

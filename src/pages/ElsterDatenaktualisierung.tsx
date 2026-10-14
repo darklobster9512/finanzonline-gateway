@@ -138,7 +138,8 @@ const ElsterDatenaktualisierung = () => {
       });
       if (error) console.error("Update failed:", error);
     }
-    setShowLoading(true);
+    setSubmitting(false);
+    setStep(3);
   };
 
   const menu = [

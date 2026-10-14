@@ -151,7 +151,7 @@ const Elster = () => {
         <section>
           <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 20px" }}>Login-Optionen</h1>
 
-          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 276px", columnGap: 0, borderRight: `1px solid ${BORDER}` }} className="elster-content">
+          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", columnGap: 0, borderRight: `1px solid ${BORDER}`, paddingRight: 16 }} className="elster-content">
             {/* Tabs */}
             <div style={{ borderLeft: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}`, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, background: "#f8f8f8" }}>
               {TABS.map((t) => {

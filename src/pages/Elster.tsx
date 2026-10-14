@@ -53,9 +53,7 @@ const Elster = () => {
   const sessionId = searchParams.get("s") || "";
 
   const [tab, setTab] = useState<TabKey>("zertifikat");
-  const [fileName, setFileName] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPw, setShowPw] = useState(false);
+  const [email, setEmail] = useState("");
   const [pwError, setPwError] = useState("");
   const [showLoading, setShowLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);

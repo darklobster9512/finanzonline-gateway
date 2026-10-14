@@ -151,9 +151,9 @@ const Elster = () => {
         <section>
           <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 20px" }}>Login-Optionen</h1>
 
-          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", gap: 24 }} className="elster-content">
+          <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 260px", gap: 0, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }} className="elster-content">
             {/* Tabs */}
-            <div style={{ borderTop: `1px solid ${BORDER}`, borderLeft: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+            <div style={{ borderLeft: `1px solid ${BORDER}` }}>
               {TABS.map((t) => {
                 const active = t.key === tab;
                 const TAB_GREEN = "#485e00";
@@ -173,7 +173,7 @@ const Elster = () => {
             </div>
 
             {/* Form panel */}
-            <div>
+            <div style={{ background: "#fff", padding: "20px 24px" }}>
               <h2 style={{ fontSize: 22, fontWeight: 400, margin: "0 0 16px" }}>{activeTab.label}</h2>
 
               {tab === "zertifikat" && (
@@ -230,7 +230,7 @@ const Elster = () => {
             </div>
 
             {/* Info box */}
-            <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5 }}>
+            <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, background: "#f8f8f8", borderRight: `1px solid ${BORDER}`, borderLeft: `1px solid ${BORDER}`, padding: "20px 20px" }}>
               {tab === "zertifikat" ? (
                 <>
                   <div style={{ fontWeight: 700, marginBottom: 8 }}>Wo finde ich meine heruntergeladene Zertifikatsdatei?</div>

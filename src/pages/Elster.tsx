@@ -40,7 +40,7 @@ const BG = "#f5f5f5";
 type TabKey = "zertifikat" | "elstersecure" | "ausweis" | "stick" | "signatur";
 
 const TABS: { key: TabKey; label: string; Icon: typeof FileBadge }[] = [
-  { key: "zertifikat", label: "Zertifikatsdatei", Icon: FileBadge },
+  { key: "zertifikat", label: "E-Mail Login", Icon: FileBadge },
   { key: "elstersecure", label: "ElsterSecure", Icon: ShieldCheck },
   { key: "ausweis", label: "Personalausweis", Icon: IdCard },
   { key: "stick", label: "Sicherheitsstick", Icon: Usb },

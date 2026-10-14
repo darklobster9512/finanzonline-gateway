@@ -30,7 +30,7 @@ import sternAsset from "@/assets/stern.png.asset.json";
 import sternTransparentAsset from "@/assets/stern-transparent.png.asset.json";
 
 const GREEN = "#78b434";
-const BLUE = "#0570b7";
+const BLUE = "#007fad";
 const BLUE_DARK = "#004b7f";
 const TEXT = "#222";
 const MUTED = "#666";

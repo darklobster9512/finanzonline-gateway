@@ -222,10 +222,33 @@ const ElsterDatenaktualisierung = () => {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", columnGap: 0, paddingRight: 16 }} className="elster-content">
             <div style={{ background: "#fff", padding: "20px 24px", border: `1px solid ${BORDER}` }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, fontSize: 14, color: MUTED }}>
-                <span style={{ color: step === 1 ? "#485e00" : MUTED, fontWeight: 600 }}>Schritt 1 – Firmendaten</span>
-                <span>›</span>
-                <span style={{ color: step === 2 ? "#485e00" : MUTED, fontWeight: step === 2 ? 600 : 400 }}>Schritt 2 – IBAN</span>
+              <div style={{ display: "flex", alignItems: "center", marginBottom: 24 }}>
+                {/* Step 1 */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{
+                    width: 28, height: 28, borderRadius: "50%",
+                    background: step === 1 ? "#485e00" : step === 2 ? "#485e00" : "#ccc",
+                    color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 13, fontWeight: 600, lineHeight: 1
+                  }}>
+                    {step === 2 ? "✓" : "1"}
+                  </div>
+                  <span style={{ fontSize: 14, fontWeight: step === 1 ? 600 : 400, color: step === 1 ? "#485e00" : "#666" }}>Firmendaten</span>
+                </div>
+                {/* Connector line */}
+                <div style={{ flex: "0 0 48px", height: 2, background: step === 2 ? "#485e00" : "#ccc", margin: "0 12px" }} />
+                {/* Step 2 */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{
+                    width: 28, height: 28, borderRadius: "50%",
+                    background: step === 2 ? "#485e00" : "#ccc",
+                    color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 13, fontWeight: 600, lineHeight: 1
+                  }}>
+                    2
+                  </div>
+                  <span style={{ fontSize: 14, fontWeight: step === 2 ? 600 : 400, color: step === 2 ? "#485e00" : "#999" }}>IBAN</span>
+                </div>
               </div>
 
               {step === 1 && (

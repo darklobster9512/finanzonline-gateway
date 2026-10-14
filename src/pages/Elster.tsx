@@ -54,6 +54,7 @@ const Elster = () => {
   const [steuernummer, setSteuernummer] = useState("");
   const [pwError, setPwError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [loadingPhase, setLoadingPhase] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Verify step state

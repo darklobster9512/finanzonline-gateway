@@ -13,8 +13,6 @@ import {
   FileBadge,
   Hash,
   IdCard,
-  Usb,
-  CreditCard,
   Menu,
   X,
   ExternalLink,

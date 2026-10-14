@@ -27,6 +27,7 @@ import bikAsset from "@/assets/elster-bik.png.asset.json";
 import llAsset from "@/assets/elster-ll.jpg.asset.json";
 import elsterLogo from "@/assets/elster-logo.png.asset.json";
 import sternAsset from "@/assets/stern.png.asset.json";
+import sternTransparentAsset from "@/assets/stern-transparent.png.asset.json";
 
 const GREEN = "#78b434";
 const BLUE = "#0570b7";

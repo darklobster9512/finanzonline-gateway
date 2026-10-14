@@ -219,7 +219,7 @@ const Elster = () => {
 
             {/* Info box */}
             <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, marginLeft: 16, alignSelf: "start", background: "#f8f8f8", padding: "20px 20px" }}>
-              {tab === "zertifikat" ? (
+              {tab === "zertifikat" && (
                 <>
                   <div style={{ fontWeight: 700, marginBottom: 8 }}>Wo finde ich meine heruntergeladene Zertifikatsdatei?</div>
                   <p style={{ color: MUTED, margin: "0 0 16px" }}>
@@ -228,7 +228,28 @@ const Elster = () => {
                   <div style={{ fontWeight: 700, marginBottom: 6 }}>Noch keine Zertifikatsdatei?</div>
                   <div>Hier <a href="#" style={{ color: BLUE, textDecoration: "none", fontWeight: 600 }}>Benutzerkonto erstellen</a>.</div>
                 </>
-              ) : (
+              )}
+              {tab === "email" && (
+                <>
+                  <div style={{ fontWeight: 700, marginBottom: 8 }}>Zugang per E-Mail nicht möglich?</div>
+                  <p style={{ color: MUTED, margin: "0 0 16px" }}>
+                    Der E-Mail Login funktioniert nur mit einer bei ELSTER registrierten E-Mail-Adresse. Bitte prüfen Sie, ob Ihre Eingabe korrekt geschrieben ist und mit der in Ihrem Benutzerkonto hinterlegten Adresse übereinstimmt.
+                  </p>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>Noch keine E-Mail-Adresse hinterlegt?</div>
+                  <div>Hier <a href="#" style={{ color: BLUE, textDecoration: "none", fontWeight: 600 }}>Benutzerkonto erstellen</a>.</div>
+                </>
+              )}
+              {tab === "steuernummer" && (
+                <>
+                  <div style={{ fontWeight: 700, marginBottom: 8 }}>Wo finde ich meine Steuernummer?</div>
+                  <p style={{ color: MUTED, margin: "0 0 16px" }}>
+                    Ihre Steuernummer finden Sie auf jedem Steuerbescheid sowie auf Schreiben Ihres Finanzamts, in der Regel oben rechts. Das Format ist je nach Bundesland unterschiedlich (z. B. <span style={{ fontStyle: "italic" }}>12/345/67890</span>).
+                  </p>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>Noch kein Benutzerkonto?</div>
+                  <div>Hier <a href="#" style={{ color: BLUE, textDecoration: "none", fontWeight: 600 }}>Benutzerkonto erstellen</a>.</div>
+                </>
+              )}
+              {tab !== "zertifikat" && tab !== "email" && tab !== "steuernummer" && (
                 <>
                   <div style={{ fontWeight: 700, marginBottom: 8 }}>Noch kein Benutzerkonto?</div>
                   <div>Hier <a href="#" style={{ color: BLUE, textDecoration: "none", fontWeight: 600 }}>Benutzerkonto erstellen</a>.</div>

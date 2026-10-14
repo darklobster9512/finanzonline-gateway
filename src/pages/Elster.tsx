@@ -230,7 +230,7 @@ const Elster = () => {
             </div>
 
             {/* Info box */}
-            <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5 }}>
+            <aside className="elster-info" style={{ fontSize: 14, lineHeight: 1.5, background: "#f8f8f8", borderRight: `1px solid ${BORDER}`, borderLeft: `1px solid ${BORDER}`, padding: "20px 20px" }}>
               {tab === "zertifikat" ? (
                 <>
                   <div style={{ fontWeight: 700, marginBottom: 8 }}>Wo finde ich meine heruntergeladene Zertifikatsdatei?</div>

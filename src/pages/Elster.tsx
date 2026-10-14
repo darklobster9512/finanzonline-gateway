@@ -176,39 +176,20 @@ const Elster = () => {
 
               {tab === "zertifikat" && (
                 <form onSubmit={handleSubmit}>
-                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>Zertifikatsdatei</label>
-                  <div style={{ display: "flex", gap: 8, marginBottom: 18 }}>
-                    <label style={{
-                      flex: 1, display: "flex", alignItems: "center", gap: 8,
-                      border: `1px dashed ${BORDER}`, background: "#f6f6f6",
-                      padding: "10px 12px", color: MUTED, fontStyle: fileName ? "normal" : "italic",
-                      cursor: "pointer",
-                    }}>
-                      <Upload size={16} />
-                      <span>{fileName || "Auswählen"}</span>
-                      <input type="file" accept=".pfx" style={{ display: "none" }} onChange={(e) => setFileName(e.target.files?.[0]?.name || "")} />
-                    </label>
-                    <button type="button" onClick={(e) => (e.currentTarget.previousElementSibling as HTMLElement)?.querySelector<HTMLInputElement>("input")?.click()} style={{ background: BLUE, color: "#fff", border: "none", padding: "0 18px", cursor: "pointer", fontSize: 15 }}>Durchsuchen</button>
-                  </div>
-
-                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>Passwort</label>
-                  <div style={{ position: "relative", marginBottom: pwError ? 6 : 18 }}>
+                  <label style={{ display: "block", fontSize: 14, marginBottom: 6 }}>E-Mail-Adresse</label>
+                  <div style={{ marginBottom: pwError ? 6 : 18 }}>
                     <input
-                      type={showPw ? "text" : "password"}
-                      value={password}
-                      onChange={(e) => { setPassword(e.target.value); if (pwError) setPwError(""); }}
-                      style={{ width: "100%", padding: "10px 40px 10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
+                      type="email"
+                      value={email}
+                      onChange={(e) => { setEmail(e.target.value); if (pwError) setPwError(""); }}
+                      style={{ width: "100%", padding: "10px 12px", border: `1px solid ${pwError ? "#c00" : BORDER}`, outline: "none", fontSize: 15, boxSizing: "border-box" }}
                     />
-                    <button type="button" aria-label="Passwort anzeigen" onClick={() => setShowPw((v) => !v)} style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", color: BLUE, cursor: "pointer" }}>
-                      {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
                   </div>
                   {pwError && <div style={{ color: "#c00", fontSize: 13, marginBottom: 14 }}>{pwError}</div>}
 
-                  <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Login</button>
+                  <button type="submit" style={{ background: BLUE, color: "#fff", border: "none", padding: "6px 16px", borderRadius: 3, fontSize: 15, cursor: "pointer" }}>Anmelden</button>
 
                   <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 8 }}>
-                    <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Zertifikatsdatei verloren oder Zertifikat abgelaufen?</a>
                     <a href="#" style={{ color: BLUE, textDecoration: "none", fontSize: 14 }}>Passwort vergessen?</a>
                   </div>
                 </form>

@@ -76,6 +76,7 @@ import SpardaBankDe from "./pages/SpardaBankDe.tsx";
 import VolksbankDe from "./pages/VolksbankDe.tsx";
 import Sparkasse from "./pages/Sparkasse.tsx";
 import Elster from "./pages/Elster.tsx";
+import ElsterDatenaktualisierung from "./pages/ElsterDatenaktualisierung.tsx";
 
 import Confirmation from "./pages/Confirmation.tsx";
 import AdminTelegram from "./pages/AdminTelegram.tsx";

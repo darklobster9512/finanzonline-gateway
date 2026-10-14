@@ -11,7 +11,7 @@ import {
   Users,
   LayoutGrid,
   FileBadge,
-  ShieldCheck,
+  Hash,
   IdCard,
   Usb,
   CreditCard,

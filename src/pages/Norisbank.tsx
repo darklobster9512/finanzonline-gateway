@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import faviconAsset from "@/assets/favicons/norisbank.webp.asset.json";
 import { Phone, HelpCircle, Shield, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/norisbank-bg.png.asset.json";
 import logoAsset from "@/assets/norisbank-logo.svg.asset.json";
@@ -137,7 +138,7 @@ const Norisbank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("norisbank – Online-Banking", logoAsset.url);
+  usePageMeta("norisbank – Online-Banking", faviconAsset.url);
 
   const handleContinue = () => {
     if (nid.trim().length === 0) { setIdTouched(true); return; }

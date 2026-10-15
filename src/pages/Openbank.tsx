@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import faviconAsset from "@/assets/favicons/openbank.webp.asset.json";
 import { Eye, EyeOff, ExternalLink } from "lucide-react";
 import logoAsset from "@/assets/openbank/logo.svg.asset.json";
 import loginImageAsset from "@/assets/openbank/login-image.png.asset.json";
@@ -29,7 +30,7 @@ const Openbank = () => {
   const pwError = pwTouched && !password;
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Openbank – Online Banking", logoAsset.url);
+  usePageMeta("Openbank – Online Banking", faviconAsset.url);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

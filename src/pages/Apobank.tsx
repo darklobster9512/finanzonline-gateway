@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import faviconAsset from "@/assets/favicons/apobank.webp.asset.json";
 import logoAsset from "@/assets/apobank-logo.svg.asset.json";
 import iconDatenschutz from "@/assets/apobank-icon-datenschutz.png.asset.json";
 import iconEmail from "@/assets/apobank-icon-email.png.asset.json";
@@ -28,7 +29,7 @@ const Apobank = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Login apoBank", logoAsset.url);
+  usePageMeta("Login apoBank", faviconAsset.url);
 
   const canSubmit = username.trim().length > 0 && password.length > 0;
 

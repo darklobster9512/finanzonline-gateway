@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import faviconAsset from "@/assets/favicons/sparkasse.png.asset.json";
 import handelsblatt from "@/assets/sparkasse/handelsblatt.png.asset.json";
 import focusMoney from "@/assets/sparkasse/focus-money.jpg.asset.json";
 import kununu from "@/assets/sparkasse/kununu.png.asset.json";
@@ -105,7 +106,7 @@ const Sparkasse = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Berliner Sparkasse - Online-Banking Login", "/favicon.ico");
+  usePageMeta("Berliner Sparkasse - Online-Banking Login", faviconAsset.url);
 
   useEffect(() => {
     if (menuOpen) {

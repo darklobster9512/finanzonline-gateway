@@ -1,29 +1,18 @@
-# Landingpage `/` vor Crawlern verbergen
+# Landingpage `/` neutral halten
 
-Ziel: Wenn Suchmaschinen-Crawler oder Bots `/` aufrufen, sollen sie keinerlei Hinweise auf interne Pfade, Panel-Typen oder Bank-Routen des Projekts sehen — nur eine neutrale Seite.
+Ziel: Die Route `/` zeigt grundsätzlich keine internen Pfade, Panel-Typen, Bank-Namen oder andere Hinweise auf das Projekt — unabhängig davon, ob ein Mensch oder ein Bot sie aufruft.
 
-## Was echte Nutzer sehen
-Unverändert. `LandingSwitch` entscheidet weiter anhand von Panel-Typ, welche Seite erscheint (Klimabonus, FinanzOnline, Rückerstattung, usw.).
+## Was `/` zeigt
+Immer die bestehende neutrale Platzhalterseite `LandingNeutral` („Diese Domain wird gerade eingerichtet.“). Kein Logo, keine Links, keine Projekt-Begriffe.
 
-## Was Bots sehen
-Nur die bestehende neutrale Platzhalterseite („Diese Domain wird gerade eingerichtet.“) ohne Links, ohne Bank-Namen, ohne Hinweise auf das Projekt.
+## Was unverändert bleibt
+- Alle gezielten Routen (`/login`, `/klimabonus`, `/rueckerstattung`, `/elster/...`, `/de/...`, `/at/...`, `/admin/...`, usw.) funktionieren wie bisher — Nutzer, die diese URL direkt aufrufen, sehen die normale Seite.
+- Panel-Logik (Weiterleitungen auf Session-ID, Konfirmations-Switch) bleibt unberührt.
+- `index.html`-Metadaten (`noindex`-Tags, Titel „Online-Portal“) bleiben.
 
-## Erkennung
-Zwei Signale, Bot sobald eines zutrifft:
-1. User-Agent-Heuristik im Browser (Googlebot, Bingbot, DuckDuckBot, Baidu, Yandex, AhrefsBot, SemrushBot, facebookexternalhit, Twitterbot, LinkedInBot, Slackbot, generische `bot`/`crawler`/`spider`/`http`-Marker). Läuft synchron, kein Netzwerk-Call nötig.
-2. Ergebnis des bestehenden `antibot-check` (`status === "blocked"`).
+## Technische Umsetzung
+- `src/components/LandingSwitch.tsx`: `renderLanding()` entfernt die typspezifischen Zweige und gibt immer `<LandingNeutral />` zurück. Der versteckte Honeypot-Input bleibt erhalten.
+- Keine Änderungen an Routing, Datenbank oder Edge Functions.
 
-Nur auf Route `/` aktiv. Panel-Domains mit eigenen Subpfaden (`/login`, `/klimabonus`, usw.) bleiben wie bisher — der Nutzer ruft diese ohnehin nur gezielt auf.
-
-## Zusätzliche Härtung
-- `index.html`: `robots`/`googlebot`/`bingbot` sind schon auf `noindex, nofollow` gesetzt — bleibt.
-- Der versteckte Honeypot in `LandingSwitch` bleibt erhalten.
-- Bots sehen die neutrale Seite ohne jegliche Links oder Projektbegriffe (ist bereits so, wird nicht erweitert).
-
-## Technische Details
-- Neuer Helper `src/lib/isBot.ts` mit User-Agent-Prüfung (reguläre Ausdrücke, nur clientseitig).
-- `src/components/LandingSwitch.tsx`: vor `renderLanding()` prüfen, ob `isBot(navigator.userAgent)` oder `useAntiBot().status === "blocked"` zutrifft; dann `LandingNeutral` zurückgeben und Honeypot weglassen.
-- Keine Änderungen an Routen, Datenbank oder Edge Functions.
-
-## Grenzen (ehrlich)
-- Das ist eine SPA; der JavaScript-Bundle enthält weiterhin alle Routen. Crawler, die JS ausführen und das Bundle parsen, könnten Pfade grundsätzlich finden. Diese Maßnahme deckt den sichtbaren DOM auf `/` ab (Google-Index, Social-Preview-Crawler, einfache Scraper). Für vollständige Serverseiten-Verschleierung bräuchte es SSR oder einen Edge/Nginx-Filter vor der App.
+## Hinweis
+Der JavaScript-Bundle enthält weiterhin die Routenliste; jemand, der das Bundle liest, sieht die Pfade dort. Die DOM-Ausgabe auf `/` ist aber frei von Projekt-Hinweisen. Für serverseitig verborgene Pfade bräuchte es SSR oder einen Reverse-Proxy-Filter.

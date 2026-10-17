@@ -8,12 +8,12 @@ Die HAR beweist: deine Domain lädt den Vite-**Dev-Server** (`/@vite/client`, `/
 
 ## Backend-VPS (`91.215.85.131`) — ein einziger Copy-Paste-Block
 
-Pfad `/pfad/zum/projekt` an deinen Pfad anpassen, Rest einfach komplett in die Shell werfen:
+Pfad `~/finanzonline-gateway` an deinen Pfad anpassen, Rest einfach komplett in die Shell werfen:
 
 ```bash
 set -euo pipefail
 
-APP_DIR=/pfad/zum/projekt   # <-- NUR DAS anpassen
+APP_DIR="$HOME/finanzonline-gateway"   # <-- NUR DAS anpassen
 cd "$APP_DIR"
 
 # 1) Dev-Server killen (pm2, systemd, oder lose Prozesse — alle Varianten)

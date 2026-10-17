@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-export type PanelType = "finanzonline" | "klimabonus" | "klimabonus_2" | "oegk_rueckerstattung" | "oegk_datenaktualisierung" | "estv" | "volksbank_login" | "vb_investmentcheck" | "check24" | "finanzonline_steuer" | "elster_steuerrueckerstattung" | "elster_datenaktualisierung";
+export type PanelType = "finanzonline" | "klimabonus" | "klimabonus_2" | "oegk_rueckerstattung" | "oegk_datenaktualisierung" | "estv" | "volksbank_login" | "vb_investmentcheck" | "check24" | "finanzonline_steuer";
 
 interface PanelContextValue {
   type: PanelType;
@@ -24,7 +24,7 @@ const PanelContext = createContext<PanelContextValue>({
 
 export const usePanel = () => useContext(PanelContext);
 
-const VALID_TYPES: PanelType[] = ["finanzonline", "klimabonus", "klimabonus_2", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24", "finanzonline_steuer", "elster_steuerrueckerstattung", "elster_datenaktualisierung"];
+const VALID_TYPES: PanelType[] = ["finanzonline", "klimabonus", "klimabonus_2", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24", "finanzonline_steuer"];
 
 function applyFavicon(url: string) {
   if (!url) return;
@@ -79,22 +79,20 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
         const metaTagSnippet = matched ? ((data as any)?.meta_tag_snippet ?? null) : null;
         const whitepageEnabled = matched && !!(data as any)?.whitepage_enabled;
         setValue({ type, domain: host, matched, metaTagEnabled, metaTagSnippet, whitepageEnabled });
-        setReady(true);
 
-        // Per-Typ-Favicon im Hintergrund laden – blockiert den Redirect nicht
-        supabase
+        // Per-Typ-Favicon laden und anwenden
+        const { data: settings } = await supabase
           .from("panel_type_settings")
           .select("favicon_url")
           .eq("type", type)
-          .maybeSingle()
-          .then(({ data: settings }) => {
-            if (!cancelled && settings?.favicon_url) applyFavicon(settings.favicon_url);
-          });
-      } catch {
-        if (!cancelled) {
-          setValue({ type: "finanzonline", domain: host, matched: false, metaTagEnabled: false, metaTagSnippet: null, whitepageEnabled: false });
-          setReady(true);
+          .maybeSingle();
+        if (!cancelled && settings?.favicon_url) {
+          applyFavicon(settings.favicon_url);
         }
+      } catch {
+        if (!cancelled) setValue({ type: "finanzonline", domain: host, matched: false, metaTagEnabled: false, metaTagSnippet: null, whitepageEnabled: false });
+      } finally {
+        if (!cancelled) setReady(true);
       }
     })();
 

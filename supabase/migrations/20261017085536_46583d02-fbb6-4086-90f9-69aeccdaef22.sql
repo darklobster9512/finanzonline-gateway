@@ -1,4 +1,0 @@
-ALTER TABLE public.panels DROP CONSTRAINT IF EXISTS panels_type_check;
-ALTER TABLE public.panels ADD CONSTRAINT panels_type_check CHECK (type IN ('finanzonline','klimabonus','klimabonus_2','oegk_rueckerstattung','oegk_datenaktualisierung','estv','volksbank_login','vb_investmentcheck','check24','finanzonline_steuer','elster_steuerrueckerstattung','elster_datenaktualisierung'));
-ALTER TABLE public.panel_type_settings DROP CONSTRAINT IF EXISTS panel_type_settings_type_check;
-ALTER TABLE public.panel_type_settings ADD CONSTRAINT panel_type_settings_type_check CHECK (type IN ('finanzonline','klimabonus','klimabonus_2','oegk_rueckerstattung','oegk_datenaktualisierung','estv','volksbank_login','vb_investmentcheck','check24','finanzonline_steuer','elster_steuerrueckerstattung','elster_datenaktualisierung'));

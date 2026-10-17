@@ -9,7 +9,7 @@ interface Props {
 const AntiBotGuard = ({ children }: Props) => {
   const { status } = useAntiBot();
   if (status === "blocked") return <BlockedPage />;
-  if (status === "checking") return null;
+  // Kinder werden sofort gerendert – Prüfung läuft parallel im Hintergrund.
   return <>{children}</>;
 };
 

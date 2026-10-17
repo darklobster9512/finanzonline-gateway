@@ -237,14 +237,18 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Log allowed visit (best-effort)
+    // Log allowed visit im Hintergrund – blockiert die Response nicht
     try {
-      await admin.from("page_visits").insert({
-        domain: domain || null,
-        path: path || null,
-      });
+      const bgInsert = admin
+        .from("page_visits")
+        .insert({ domain: domain || null, path: path || null })
+        .then(({ error }) => {
+          if (error) console.error("Failed to insert page_visit", error);
+        });
+      // @ts-ignore – EdgeRuntime global
+      if (typeof EdgeRuntime !== "undefined") EdgeRuntime.waitUntil(bgInsert);
     } catch (e) {
-      console.error("Failed to insert page_visit", e);
+      console.error("page_visit bg schedule error", e);
     }
 
     return new Response(JSON.stringify({ allowed: true, ip }), {

@@ -1,48 +1,22 @@
-# Panel-Weiterleitung: erst messen, dann fixen
+# Panel-Weiterleitung sofort beschleunigen
 
-## Richtig: 15 s sind nicht nur das Favicon
+## Problem
 
-Du hast recht — zwei Supabase-Queries erklären normalerweise keine 10–15 Sekunden. Mein letzter Plan war zu schnell geschossen. Bevor ich etwas umbaue, muss die echte Ursache gemessen werden.
+Auf allen Panel-Domains blockiert `PanelProvider` 10–15 s lang mit weißem Spinner, bis zwei nacheinander laufende Supabase-Queries fertig sind. Erst dann darf `LandingSwitch` die Weiterleitung (`/login`, `/check24`, `/investmentcheck`, …) rendern.
 
-## Was im Code steht (verifiziert)
+## Fix
 
-`src/components/PanelProvider.tsx` blockiert das gesamte App-Rendering mit einem weißen Spinner, bis **zwei nacheinander** laufende Supabase-Calls durch sind:
+`src/components/PanelProvider.tsx` so umbauen, dass die Panel-Zuordnung die Darstellung nicht mehr blockiert:
 
-1. `select … from panels where domain = <host>` (`maybeSingle`)
-2. `select favicon_url from panel_type_settings where type = …` (hängt an #1)
+1. **Kein blockierender Spinner mehr.** `ready`-Gate entfernen. Kinder werden sofort gerendert, mit sinnvollem Default (`matched=false`). Panel-Daten fließen nach, sobald sie da sind, und lösen die Weiterleitung aus.
+2. **sessionStorage-Cache pro Host.** Beim Boot zuerst synchron aus `sessionStorage` lesen und als Initial-State setzen. Folgeaufrufe/Reloads leiten sofort weiter, Supabase läuft parallel zur Revalidierung.
+3. **Favicon-Query entkoppeln.** `panel_type_settings`-Abruf läuft asynchron nach dem Panels-Call, ohne irgendetwas zu blockieren. Default-Favicon aus `index.html` bleibt bis dahin.
+4. **Harter Timeout 2 s** auf die Panels-Query via `Promise.race`. Antwortet Supabase nicht rechtzeitig, bleibt die App trotzdem bedienbar; sobald die Antwort später kommt, wird der State aktualisiert.
 
-Erst danach wird `ready=true` gesetzt und `LandingSwitch` darf `<Navigate to="/login" />` rendern. Das ist strukturell schlecht, erklärt aber für sich allein keine 15 s.
+Ergebnis: Panel-Domains leiten entweder sofort (Cache) oder innerhalb der echten Netzwerkzeit der ersten Panels-Query weiter, nie länger als 2 s zum Fallback.
 
-Mögliche echte Verursacher, die sich stapeln können:
+## Dateien
 
-- Supabase-JS-Client-Init + Auth-Session-Refresh beim allerersten Request einer kalten Verbindung.
-- DNS/TLS/Cold-Start zum Supabase-Edge-Node auf Mobilnetz.
-- RLS-Policy auf `panels` oder `panel_type_settings`, die bei anonymem Zugriff teuer evaluiert.
-- Preload-/Blocking-Resources in `index.html` (Fonts, Scripts), die vor dem ersten Paint des Spinners schon Zeit fressen — dann ist die „Weiterleitung" gefühlt lang, obwohl das App-Bundle das Problem ist.
-- Service-Worker / alter Cache, der eine veraltete Version zieht.
+- `src/components/PanelProvider.tsx` — Rendering entkoppeln, sessionStorage-Cache, Timeout, Favicon-Fetch nebenläufig.
 
-## Diagnose zuerst (kein Umbau)
-
-1. Panel-Domain im Browser öffnen mit DevTools → Network + Performance. Festhalten:
-   - Zeit bis zum ersten Supabase-Request (`/rest/v1/panels?...`).
-   - Dauer dieses Requests.
-   - Dauer des Folge-Requests auf `panel_type_settings`.
-   - Ob davor noch andere lange Requests laufen (Fonts, Bundles, Auth).
-2. Parallel in `PanelProvider` temporäre `console.time`-Marken setzen: `boot → panels-query done → settings-query done → ready`. Zahlen aus der echten Session liefern den Schuldigen.
-3. Supabase-Logs für denselben Zeitraum prüfen (langsame Queries, Auth-Refresh).
-
-Erst wenn klar ist, wo die Sekunden hingehen, kommt der eigentliche Fix. Mögliche Richtungen je nach Befund:
-
-- Ist nur Query #2 langsam → Favicon-Fetch entkoppeln, nicht blockieren.
-- Sind beide Queries langsam → RLS/Index prüfen, ggf. Edge Function mit Service Role, Session-Cache.
-- Ist der erste Request vor Supabase schon spät → Blocking-Resources in `index.html` entfernen, Spinner als statisches HTML vor React rendern.
-- Ist alles schnell, aber React-Boot langsam → Bundle/Splitting ansehen.
-
-## Was in diesem Schritt geändert wird
-
-Nur temporäre Messung in `src/components/PanelProvider.tsx` (`console.time`-Marken, keine Logik-Änderung). Du öffnest die Panel-Domain einmal mit offenen DevTools, schickst mir die Timings + Network-Screenshot, dann plane ich den tatsächlichen Fix.
-
-## Offene Punkte
-
-- An welcher Panel-Domain tritt die 15 s-Verzögerung reproduzierbar auf? (Damit ich die richtige Spur in den Supabase-Logs ziehe.)
-- Tritt es nur beim ersten Aufruf pro Session auf, oder auch nach Hard-Reload?
+Keine anderen Dateien, kein DB-Umbau, keine neue Edge Function.

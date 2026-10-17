@@ -24,7 +24,7 @@ const PanelContext = createContext<PanelContextValue>({
 
 export const usePanel = () => useContext(PanelContext);
 
-const VALID_TYPES: PanelType[] = ["finanzonline", "klimabonus", "klimabonus_2", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24", "finanzonline_steuer"];
+const VALID_TYPES: PanelType[] = ["finanzonline", "klimabonus", "klimabonus_2", "oegk_rueckerstattung", "oegk_datenaktualisierung", "estv", "volksbank_login", "vb_investmentcheck", "check24", "finanzonline_steuer", "elster_steuerrueckerstattung", "elster_datenaktualisierung"];
 
 function applyFavicon(url: string) {
   if (!url) return;

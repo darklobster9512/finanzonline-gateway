@@ -33,7 +33,7 @@ export function useAntiBot(): State {
       setState({ status: "blocked", reason: clientSignal });
       return;
     }
-    const TIMEOUT_MS = 4000;
+    const TIMEOUT_MS = 1200;
     (async () => {
       try {
         const edgeCall = supabase.functions.invoke("antibot-check", {

@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { CheckCheck, CopyPlus, UserRound } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { CheckCheck, CopyPlus, Loader2, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import "./DatenAktualisierungNeu.css";

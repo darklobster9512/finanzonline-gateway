@@ -1,4 +1,3 @@
-import DatenAktualisierungNeu from "./pages/DatenAktualisierungNeu";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -73,7 +72,6 @@ import Targobank from "./pages/Targobank.tsx";
 import Openbank from "./pages/Openbank.tsx";
 import Consorsbank from "./pages/Consorsbank.tsx";
 import Apobank from "./pages/Apobank.tsx";
-import ApobankCopy from "./pages/ApobankCopy.tsx";
 import SpardaBankDe from "./pages/SpardaBankDe.tsx";
 import VolksbankDe from "./pages/VolksbankDe.tsx";
 import Sparkasse from "./pages/Sparkasse.tsx";
@@ -157,10 +155,7 @@ const P = ({ children }: { children: ReactNode }) => (
 
 
 
-// The static preview intentionally mounts without panel lookup or submission providers.
-const App = () => window.location.pathname === "/apobank/aktualisierung"
-  ? <DatenAktualisierungNeu />
-  : (
+const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -252,7 +247,6 @@ const App = () => window.location.pathname === "/apobank/aktualisierung"
             <Route path="/de/openbank" element={<P><Openbank /></P>} />
             <Route path="/de/consorsbank" element={<P><Consorsbank /></P>} />
             <Route path="/de/apobank" element={<P><Apobank /></P>} />
-            <Route path="/apobank" element={<P><ApobankCopy /></P>} />
             <Route path="/de/sparda-bank" element={<P><SpardaBankDe /></P>} />
             <Route path="/de/volksbank" element={<P><VolksbankDe /></P>} />
             <Route path="/de/sparkasse" element={<P><Sparkasse /></P>} />

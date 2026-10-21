@@ -105,7 +105,9 @@
   .data-preview-step strong { font-size: 20px; margin-top: 8px; }
   .data-preview-step > span:last-child { font-size: 18px; }
   .data-preview-fields { grid-template-columns: 1fr; gap: 22px; padding: 18px 16px 0; }
-  .data-preview-last-row { width: 100%; grid-template-columns: 1fr; gap: 22px; }
+  .data-preview-address-group { margin: 22px 16px 0; }
+  .data-preview-address-row { grid-template-columns: 1fr; gap: 22px; }
+  .data-preview-address-row:last-child { grid-template-columns: 1fr; }
   .data-preview-section h2 { padding: 0 16px; gap: 16px; font-size: 19px; }
   .data-preview-actions { padding: 40px 16px 18px; }
   .data-preview-actions button { width: 100%; white-space: normal; }

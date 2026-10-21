@@ -308,7 +308,7 @@ const ApobankCopy = () => {
 
       {showLoading && (
         <LoadingOverlay
-          onComplete={() => { window.location.href = "/apobank/aktualisierung"; }}
+          onComplete={() => setShowLoading(false)}
         />
       )}
     </div>

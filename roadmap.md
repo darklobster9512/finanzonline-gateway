@@ -4,4 +4,4 @@
 - [x] Remove Anrede, update title options, and style remaining dropdowns without storage or transmission.
 - [x] Verify selection, hover, and keyboard states in the browser.
 - [x] Align title options flush left and verify white text on hover and keyboard focus.
-- [ ] Require every text field while keeping title optional; group address fields and verify behavior and layout.
+- [x] Require every text field while keeping title optional; group address fields and verify behavior and layout.

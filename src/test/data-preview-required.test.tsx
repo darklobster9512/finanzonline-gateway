@@ -27,4 +27,32 @@ describe("data preview required fields", () => {
     render(<DatenAktualisierungNeu />);
     expect(screen.getByRole("combobox", { name: "Titel (falls zutreffend)" })).not.toBeRequired();
   });
+
+  it("shows the confirm button labelled 'Bestätigen'", () => {
+    render(<DatenAktualisierungNeu />);
+    const btn = screen.getByRole("button", { name: "Bestätigen" });
+    expect(btn).toBeInTheDocument();
+    expect(btn).not.toBeDisabled();
+  });
+
+  it("shows confirmation view after clicking Bestätigen with all required fields filled", () => {
+    render(<DatenAktualisierungNeu />);
+    // Fill all required fields
+    const fields = [
+      "Alle Vornamen gemäß Ausweis",
+      "Alle Nachnamen gemäß Ausweis",
+      "Telefonnummer",
+      "Straße",
+      "Hausnummer",
+      "PLZ",
+      "Stadt",
+    ];
+    fields.forEach((label) => {
+      fireEvent.change(screen.getByRole("textbox", { name: label }), { target: { value: "Test" } });
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "E-Mail Adresse" }), { target: { value: "a@b.de" } });
+
+    fireEvent.click(screen.getByRole("button", { name: "Bestätigen" }));
+    expect(screen.getByText("Ihre Eingaben wurden bestätigt.")).toBeInTheDocument();
+  });
 });

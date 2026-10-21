@@ -21,16 +21,18 @@ function PreviewField({ label, required, value = "", dropdown, options = [], ext
       </div>
       <div className="data-preview-value">
         {dropdown ? (
-          <select
-            className="data-preview-input data-preview-select"
-            aria-label={label}
-            defaultValue=""
-          >
-            <option value="" disabled>Bitte wählen</option>
-            {options.map((option) => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
+          <Select>
+            <SelectTrigger className="data-preview-select" aria-label={label}>
+              <SelectValue placeholder="Bitte wählen" />
+            </SelectTrigger>
+            <SelectContent className="data-preview-dropdown" position="popper">
+              {options.map((option) => (
+                <SelectItem className="data-preview-option" key={option} value={option}>
+                  {option}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         ) : (
           <input
             type="text"

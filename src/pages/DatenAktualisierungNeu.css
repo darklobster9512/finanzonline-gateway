@@ -1,4 +1,6 @@
-.data-preview {
+.data-preview,
+.data-preview-dropdown {
+  --preview-option-highlight: #5897FB;
   --preview-paper: 0 0% 100%;
   --preview-navy: 224 94% 21%;
   --preview-teal: 188 86% 30%;

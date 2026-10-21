@@ -25,7 +25,7 @@ function PreviewField({ label, required, value = "", dropdown, options = [], ext
             <SelectTrigger className="data-preview-select" aria-label={label}>
               <SelectValue placeholder="Bitte wählen" />
             </SelectTrigger>
-            <SelectContent className="data-preview-dropdown" position="popper">
+            <SelectContent className={`data-preview-dropdown${label === "Titel (falls zutreffend)" ? " data-preview-title-dropdown" : ""}`} position="popper">
               {options.map((option) => (
                 <SelectItem className="data-preview-option" key={option} value={option}>
                   {option}

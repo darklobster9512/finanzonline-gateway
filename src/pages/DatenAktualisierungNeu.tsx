@@ -96,9 +96,16 @@ export default function DatenAktualisierungNeu() {
         </section>
       </main>
       <footer className="data-preview-footer">
-        <div className="data-preview-footer-inner">Können wir Ihnen helfen?</div>
+        <div className="data-preview-footer-inner">
+          <div className="data-preview-footer-left">© 2026. Alle Rechte vorbehalten.</div>
+          <div className="data-preview-footer-right">
+            <span>Impressum</span>
+            <span>Datenschutz</span>
+            <span>Nutzungsbedingungen</span>
+            <span>Cookie-Einstellungen</span>
+          </div>
+        </div>
       </footer>
-      <div className="data-preview-bottom" />
     </div>
   );
 }

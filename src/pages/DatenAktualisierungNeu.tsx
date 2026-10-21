@@ -41,6 +41,7 @@ function PreviewField({ label, required, value = "", type = "text", dropdown, op
             aria-label={label}
             defaultValue=""
             placeholder={value || "\u00a0"}
+            required={required}
           />
         )}
       </div>
@@ -71,13 +72,24 @@ export default function DatenAktualisierungNeu() {
             <PreviewField label="Titel (falls zutreffend)" dropdown options={["Dr.", "Dr. Dr.", "Dr. Dr. Dr.", "MUDr."]} extra />
             <PreviewField label="Alle Vornamen gemäß Ausweis" required />
             <PreviewField label="Alle Nachnamen gemäß Ausweis" required />
-            <PreviewField label="Telefonnummer" type="tel" />
-            <PreviewField label="E-Mail Adresse" type="email" />
-            <PreviewField label="Straße" />
-            <PreviewField label="Hausnummer" />
-            <PreviewField label="PLZ" />
-            <PreviewField label="Stadt" />
+            <PreviewField label="Telefonnummer" type="tel" required />
+            <PreviewField label="E-Mail Adresse" type="email" required />
           </div>
+
+          <fieldset className="data-preview-address-group" aria-label="Adresse">
+            <legend className="data-preview-address-legend">Adresse</legend>
+            <div className="data-preview-address-fields">
+              <div className="data-preview-address-row">
+                <PreviewField label="Straße" required />
+                <PreviewField label="Hausnummer" required />
+              </div>
+              <div className="data-preview-address-row">
+                <PreviewField label="PLZ" required />
+                <PreviewField label="Stadt" required />
+              </div>
+            </div>
+          </fieldset>
+
           <div className="data-preview-actions">
             <Button type="button" disabled>Weiter zur Anstellung</Button>
           </div>

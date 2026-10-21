@@ -1,5 +1,5 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { cleanup, fireEvent, render, screen, act } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import DatenAktualisierungNeu from "@/pages/DatenAktualisierungNeu";
 
 const requiredFields = [
@@ -15,8 +15,13 @@ function fillFields(email = "demo@example.test") {
   });
 }
 
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+
 afterEach(() => {
   cleanup();
+  vi.useRealTimers();
   vi.restoreAllMocks();
 });
 
@@ -51,11 +56,31 @@ describe("data preview validation and confirmation", () => {
     expect(screen.getAllByRole("textbox")).toHaveLength(8);
   });
 
+  it("shows loading for 4 seconds before confirmation", () => {
+    vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    render(<DatenAktualisierungNeu />);
+    fillFields();
+    fireEvent.click(screen.getByRole("button", { name: "Bestätigen" }));
+    // Should be loading, not yet confirmed
+    expect(screen.getByText("Bitte warten …")).toBeInTheDocument();
+    expect(screen.getAllByRole("textbox")).toHaveLength(8);
+
+    // After 3 seconds, still loading
+    act(() => { vi.advanceTimersByTime(3000); });
+    expect(screen.getByText("Bitte warten …")).toBeInTheDocument();
+
+    // After 4 seconds total, confirmed
+    act(() => { vi.advanceTimersByTime(1000); });
+    expect(screen.queryAllByRole("textbox")).toHaveLength(0);
+    expect(screen.getByText("Alle Pflichtfelder sind ausgefüllt")).toBeInTheDocument();
+  });
+
   it("advances to confirmation with valid fields and no title", () => {
     vi.spyOn(window, "scrollTo").mockImplementation(() => {});
     render(<DatenAktualisierungNeu />);
     fillFields();
     fireEvent.click(screen.getByRole("button", { name: "Bestätigen" }));
+    act(() => { vi.advanceTimersByTime(4000); });
     expect(screen.queryAllByRole("textbox")).toHaveLength(0);
     expect(screen.getByLabelText("Fortschritt").querySelector('[aria-current="step"]')).toContainElement(
       screen.getByText("Bestätigung", { selector: "span" }),

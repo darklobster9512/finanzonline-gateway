@@ -69,7 +69,7 @@ export default function DatenAktualisierungNeu() {
         <h1>Aktualisieren Sie Ihre Daten</h1>
         <div className="data-preview-rule" />
         <div className="data-preview-steps" aria-label="Fortschritt">
-          <div className={`data-preview-step${!confirmed ? "" : ""}`} aria-current={!confirmed ? "step" : undefined}>
+          <div className="data-preview-step" aria-current={!confirmed ? "step" : undefined}>
             <div className="data-preview-person"><UserRound aria-hidden="true" /></div>
             <strong>Datenaktualisierung</strong>
           </div>

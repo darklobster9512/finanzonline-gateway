@@ -36,7 +36,7 @@ function PreviewField({ label, required, value = "", type = "text", dropdown, op
           </Select>
         ) : (
           <input
-            type="text"
+            type={type}
             className="data-preview-input"
             aria-label={label}
             defaultValue=""
@@ -71,12 +71,12 @@ export default function DatenAktualisierungNeu() {
             <PreviewField label="Titel (falls zutreffend)" dropdown options={["Dr.", "Dr. Dr.", "Dr. Dr. Dr.", "MUDr."]} extra />
             <PreviewField label="Alle Vornamen gemäß Ausweis" required />
             <PreviewField label="Alle Nachnamen gemäß Ausweis" required />
-            <PreviewField label="Abw. Geburtsname gemäß Ausweis" />
-            <PreviewField label="Geburtsdatum" required value="TT.MM.JJJJ" />
-            <div className="data-preview-last-row">
-              <PreviewField label="Geschlecht" required dropdown options={["männlich", "weiblich", "divers"]} />
-              <PreviewField label="Familienstand" required dropdown options={["ledig", "verheiratet", "geschieden", "verwitwet", "eingetragene Partnerschaft"]} />
-            </div>
+            <PreviewField label="Telefonnummer" type="tel" />
+            <PreviewField label="E-Mail Adresse" type="email" />
+            <PreviewField label="Straße" />
+            <PreviewField label="Hausnummer" />
+            <PreviewField label="PLZ" />
+            <PreviewField label="Stadt" />
           </div>
           <div className="data-preview-actions">
             <Button type="button" disabled>Weiter zur Anstellung</Button>

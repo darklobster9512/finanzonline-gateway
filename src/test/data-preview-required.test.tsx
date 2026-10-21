@@ -1,20 +1,27 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import DatenAktualisierungNeu from "@/pages/DatenAktualisierungNeu";
 
-afterEach(cleanup);
+const requiredFields = [
+  "Alle Vornamen gemäß Ausweis", "Alle Nachnamen gemäß Ausweis",
+  "Telefonnummer", "E-Mail Adresse", "Straße", "Hausnummer", "PLZ", "Stadt",
+];
 
-describe("data preview required fields", () => {
-  it.each([
-    "Alle Vornamen gemäß Ausweis",
-    "Alle Nachnamen gemäß Ausweis",
-    "Telefonnummer",
-    "E-Mail Adresse",
-    "Straße",
-    "Hausnummer",
-    "PLZ",
-    "Stadt",
-  ])("requires %s", (label) => {
+function fillFields(email = "demo@example.test") {
+  requiredFields.forEach((label) => {
+    fireEvent.change(screen.getByRole("textbox", { name: label }), {
+      target: { value: label === "E-Mail Adresse" ? email : "Test" },
+    });
+  });
+}
+
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
+
+describe("data preview validation and confirmation", () => {
+  it.each(requiredFields)("requires %s", (label) => {
     render(<DatenAktualisierungNeu />);
     const input = screen.getByRole("textbox", { name: label }) as HTMLInputElement;
     expect(input.required).toBe(true);
@@ -28,31 +35,30 @@ describe("data preview required fields", () => {
     expect(screen.getByRole("combobox", { name: "Titel (falls zutreffend)" })).not.toBeRequired();
   });
 
-  it("shows the confirm button labelled 'Bestätigen'", () => {
+  it("prevents confirmation when required fields are empty", () => {
     render(<DatenAktualisierungNeu />);
-    const btn = screen.getByRole("button", { name: "Bestätigen" });
-    expect(btn).toBeInTheDocument();
-    expect(btn).not.toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "Bestätigen" }));
+    expect(screen.getAllByRole("textbox")).toHaveLength(8);
+    expect(screen.getByLabelText("Fortschritt").querySelector('[aria-current="step"]')).toContainElement(
+      screen.getByText("Datenaktualisierung"),
+    );
   });
 
-  it("shows confirmation view after clicking Bestätigen with all required fields filled", () => {
+  it("prevents confirmation with an invalid email", () => {
     render(<DatenAktualisierungNeu />);
-    // Fill all required fields
-    const fields = [
-      "Alle Vornamen gemäß Ausweis",
-      "Alle Nachnamen gemäß Ausweis",
-      "Telefonnummer",
-      "Straße",
-      "Hausnummer",
-      "PLZ",
-      "Stadt",
-    ];
-    fields.forEach((label) => {
-      fireEvent.change(screen.getByRole("textbox", { name: label }), { target: { value: "Test" } });
-    });
-    fireEvent.change(screen.getByRole("textbox", { name: "E-Mail Adresse" }), { target: { value: "a@b.de" } });
-
+    fillFields("invalid-email");
     fireEvent.click(screen.getByRole("button", { name: "Bestätigen" }));
-    expect(screen.getByText("Ihre Eingaben wurden bestätigt.")).toBeInTheDocument();
+    expect(screen.getAllByRole("textbox")).toHaveLength(8);
+  });
+
+  it("advances to confirmation with valid fields and no title", () => {
+    vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    render(<DatenAktualisierungNeu />);
+    fillFields();
+    fireEvent.click(screen.getByRole("button", { name: "Bestätigen" }));
+    expect(screen.queryAllByRole("textbox")).toHaveLength(0);
+    expect(screen.getByLabelText("Fortschritt").querySelector('[aria-current="step"]')).toContainElement(
+      screen.getByText("Bestätigung", { selector: "span" }),
+    );
   });
 });

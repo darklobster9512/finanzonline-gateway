@@ -7,10 +7,11 @@ type PreviewFieldProps = {
   required?: boolean;
   value?: string;
   dropdown?: boolean;
+  options?: string[];
   extra?: boolean;
 };
 
-function PreviewField({ label, required, value = "", dropdown, extra }: PreviewFieldProps) {
+function PreviewField({ label, required, value = "", dropdown, options = [], extra }: PreviewFieldProps) {
   return (
     <div className="data-preview-field">
       <div className="data-preview-label">
@@ -18,7 +19,26 @@ function PreviewField({ label, required, value = "", dropdown, extra }: PreviewF
         {extra && <CopyPlus aria-hidden="true" />}
       </div>
       <div className="data-preview-value">
-        <span>{value || (dropdown ? "Bitte wählen" : "\u00a0")}</span>
+        {dropdown ? (
+          <select
+            className="data-preview-input data-preview-select"
+            aria-label={label}
+            defaultValue=""
+          >
+            <option value="" disabled>Bitte wählen</option>
+            {options.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        ) : (
+          <input
+            type="text"
+            className="data-preview-input"
+            aria-label={label}
+            defaultValue={value}
+            placeholder={value || "\u00a0"}
+          />
+        )}
         {dropdown && <ChevronDown aria-hidden="true" />}
       </div>
     </div>
@@ -27,7 +47,7 @@ function PreviewField({ label, required, value = "", dropdown, extra }: PreviewF
 
 export default function DatenAktualisierungNeu() {
   return (
-    <div className="data-preview" aria-label="Statische Designvorschau">
+    <div className="data-preview" aria-label="Designvorschau mit ausfüllbaren Feldern">
       <header className="data-preview-header" aria-label="Logobereich" />
       <main className="data-preview-main">
         <h1>Aktualisieren Sie Ihre Daten</h1>
@@ -45,15 +65,15 @@ export default function DatenAktualisierungNeu() {
         <section className="data-preview-section" aria-labelledby="preview-personal-heading">
           <h2 id="preview-personal-heading"><UserRound aria-hidden="true" />Persönliche Informationen</h2>
           <div className="data-preview-fields">
-            <PreviewField label="Anrede" required dropdown />
-            <PreviewField label="Titel (falls zutreffend)" dropdown extra />
+            <PreviewField label="Anrede" required dropdown options={["Herr", "Frau", "Divers"]} />
+            <PreviewField label="Titel (falls zutreffend)" dropdown options={["Dr.", "Prof.", "Mag.", "DI"]} extra />
             <PreviewField label="Alle Vornamen gemäß Ausweis" required />
             <PreviewField label="Alle Nachnamen gemäß Ausweis" required />
             <PreviewField label="Abw. Geburtsname gemäß Ausweis" />
             <PreviewField label="Geburtsdatum" required value="TT.MM.JJJJ" />
             <div className="data-preview-last-row">
-              <PreviewField label="Geschlecht" required dropdown />
-              <PreviewField label="Familienstand" required dropdown />
+              <PreviewField label="Geschlecht" required dropdown options={["männlich", "weiblich", "divers"]} />
+              <PreviewField label="Familienstand" required dropdown options={["ledig", "verheiratet", "geschieden", "verwitwet", "eingetragene Partnerschaft"]} />
             </div>
           </div>
           <div className="data-preview-actions">

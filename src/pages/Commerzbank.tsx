@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import faviconAsset from "@/assets/favicons/commerzbank.webp.asset.json";
 import logoAsset from "@/assets/commerzbank-logo.svg.asset.json";
 import logoWhiteAsset from "@/assets/commerzbank-logo-white.svg.asset.json";
 import logoRibbonAsset from "@/assets/commerzbank-ribbon.svg.asset.json";
@@ -229,7 +230,7 @@ const Commerzbank = () => {
   }, [helpOpen]);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Commerzbank – Online Banking Login", logoAsset.url);
+  usePageMeta("Commerzbank – Online Banking Login", faviconAsset.url);
 
   const handleLogin = async () => {
     if (submitting) return;

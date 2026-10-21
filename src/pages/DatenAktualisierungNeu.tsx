@@ -114,7 +114,9 @@ export default function DatenAktualisierungNeu() {
               </fieldset>
 
               <div className="data-preview-actions">
-                <Button type="button" onClick={handleConfirm}>Bestätigen</Button>
+                <Button type="button" onClick={handleConfirm} disabled={loading}>
+                  {loading ? <><Loader2 className="data-preview-spinner" aria-hidden="true" />Bitte warten …</> : "Bestätigen"}
+                </Button>
               </div>
             </section>
           </form>

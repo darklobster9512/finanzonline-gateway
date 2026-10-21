@@ -1,5 +1,6 @@
-import { CheckCheck, ChevronDown, CopyPlus, UserRound } from "lucide-react";
+import { CheckCheck, CopyPlus, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import "./DatenAktualisierungNeu.css";
 
 type PreviewFieldProps = {

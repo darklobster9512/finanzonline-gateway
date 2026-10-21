@@ -88,9 +88,10 @@
 .data-preview-actions { padding: 72px 18px 18px; display: flex; justify-content: flex-end; }
 .data-preview-actions button { border-radius: 1px; height: 48px; font-size: 18px; font-weight: 600; padding: 0 22px; }
 .data-preview-actions button:disabled { opacity: 1; }
-.data-preview-footer { min-height: 200px; background: hsl(var(--preview-soft)); }
-.data-preview-footer-inner { max-width: 864px; margin: 0 auto; padding: 26px 0; color: hsl(var(--preview-navy)); font-size: 20px; }
-.data-preview-bottom { height: 41px; background: hsl(var(--preview-navy)); }
+.data-preview-footer { background: hsl(var(--preview-navy)); }
+.data-preview-footer-inner { max-width: 864px; margin: 0 auto; padding: 32px 0; display: flex; color: hsl(var(--preview-paper)); font-size: 16px; }
+.data-preview-footer-left { flex: 0 0 70%; min-width: 0; padding-right: 16px; overflow-wrap: anywhere; }
+.data-preview-footer-right { flex: 0 0 30%; min-width: 0; display: flex; flex-direction: column; gap: 8px; overflow-wrap: anywhere; }
 @media (min-width: 1024px) {
   .data-preview-fields > .data-preview-field:nth-child(2) { grid-column: 1; }
 }
@@ -111,5 +112,5 @@
   .data-preview-section h2 { padding: 0 16px; gap: 16px; font-size: 19px; }
   .data-preview-actions { padding: 40px 16px 18px; }
   .data-preview-actions button { width: 100%; white-space: normal; }
-  .data-preview-footer-inner { padding: 26px 20px; }
+  .data-preview-footer-inner { margin: 0 20px; padding: 26px 0; }
 }

@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { CheckCheck, CopyPlus, UserRound } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { CheckCheck, CopyPlus, Loader2, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import "./DatenAktualisierungNeu.css";
@@ -52,15 +52,23 @@ function PreviewField({ label, required, value = "", type = "text", dropdown, op
 
 export default function DatenAktualisierungNeu() {
   const [confirmed, setConfirmed] = useState(false);
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleConfirm = () => {
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+
+  const handleConfirm = useCallback(() => {
+    if (loading) return;
     if (!formRef.current) return;
-    // trigger native validation UI
     if (!formRef.current.reportValidity()) return;
-    setConfirmed(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    setLoading(true);
+    timerRef.current = setTimeout(() => {
+      setLoading(false);
+      setConfirmed(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 4000);
+  }, [loading]);
 
   return (
     <div className="data-preview" aria-label="Designvorschau mit ausfüllbaren Feldern">
@@ -106,7 +114,9 @@ export default function DatenAktualisierungNeu() {
               </fieldset>
 
               <div className="data-preview-actions">
-                <Button type="button" onClick={handleConfirm}>Bestätigen</Button>
+                <Button type="button" onClick={handleConfirm} disabled={loading}>
+                  {loading ? <><Loader2 className="data-preview-spinner" aria-hidden="true" />Bitte warten …</> : "Bestätigen"}
+                </Button>
               </div>
             </section>
           </form>

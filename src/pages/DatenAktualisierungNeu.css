@@ -25,13 +25,15 @@
 .data-preview-main { max-width: 864px; margin: 0 auto; padding: 12px 0 36px; }
 .data-preview h1 { font-size: 36px; line-height: 1.4; font-weight: 400; color: hsl(var(--preview-navy)); margin: 0; }
 .data-preview-rule { width: 376px; max-width: 100%; height: 3px; background: hsl(var(--preview-teal)); margin-top: 4px; }
-.data-preview-steps { display: grid; grid-template-columns: 58% 42%; position: relative; margin: 27px 0 25px; height: 102px; }
-.data-preview-steps::before { content: ''; position: absolute; top: 46px; height: 3px; width: 100%; background: hsl(var(--preview-navy)); }
+.data-preview-steps { display: grid; grid-template-columns: 58% 42%; position: relative; margin: 27px 0 25px; }
+.data-preview-steps::before { content: ''; position: absolute; top: 36px; height: 3px; width: 100%; background: hsl(var(--preview-navy)); }
 .data-preview-step { position: relative; display: flex; align-items: center; flex-direction: column; color: hsl(var(--preview-navy)); }
+.data-preview-step > :first-child { width: 72px; height: 72px; flex-shrink: 0; }
 .data-preview-person { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: hsl(var(--preview-teal)); color: hsl(var(--preview-paper)); }
 .data-preview-person svg { width: 48px; height: 48px; stroke-width: 1.3; }
+.data-preview-step strong, .data-preview-step > span:last-child { margin-top: 8px; }
 .data-preview-step strong { font-size: 28px; line-height: 1.1; }
-.data-preview-check { margin-top: 22px; width: 52px; height: 40px; background: hsl(var(--preview-paper)); display: grid; place-items: center; }
+.data-preview-check { width: 72px; height: 72px; background: hsl(var(--preview-paper)); display: grid; place-items: center; }
 .data-preview-check svg { width: 40px; height: 36px; stroke-width: 1.4; }
 .data-preview-step > span:last-child { font-size: 22px; color: hsl(var(--preview-ink)); }
 .data-preview-section { border: 1px solid hsl(var(--preview-border)); }
@@ -89,9 +91,14 @@
 .data-preview-actions button { border-radius: 1px; height: 48px; font-size: 18px; font-weight: 600; padding: 0 22px; }
 
 /* Stepper active-step highlight */
-.data-preview-step[aria-current="step"] .data-preview-check { background: hsl(var(--preview-teal)); color: hsl(var(--preview-paper)); border-radius: 50%; width: 72px; height: 72px; }
+.data-preview-step[aria-current="step"] .data-preview-check { background: hsl(var(--preview-teal)); color: hsl(var(--preview-paper)); border-radius: 50%; }
 .data-preview-step[aria-current="step"] .data-preview-check svg { width: 48px; height: 48px; stroke-width: 1.3; }
 .data-preview-step[aria-current="step"] > span:last-child { font-weight: 700; font-size: 28px; line-height: 1.1; }
+
+/* Loading spinner */
+.data-preview-spinner { width: 20px; height: 20px; margin-right: 8px; animation: data-preview-spin 1s linear infinite; }
+@keyframes data-preview-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .data-preview-spinner { animation: none; } }
 
 /* Completed first step */
 .data-preview-step-done .data-preview-person { background: hsl(var(--preview-navy)); }
@@ -115,11 +122,13 @@
   .data-preview-main { margin: 0 20px; padding-top: 22px; }
   .data-preview h1 { font-size: 28px; line-height: 1.2; }
   .data-preview-steps { grid-template-columns: 60% 40%; margin-top: 28px; }
+  .data-preview-step > :first-child { width: 60px; height: 60px; }
   .data-preview-person { width: 60px; height: 60px; }
   .data-preview-person svg { width: 40px; height: 40px; }
-  .data-preview-steps::before { top: 36px; }
-  .data-preview-check { margin-top: 13px; }
-  .data-preview-step strong { font-size: 20px; margin-top: 8px; }
+  .data-preview-steps::before { top: 30px; }
+  .data-preview-check { width: 60px; height: 60px; }
+  .data-preview-step[aria-current="step"] .data-preview-check svg { width: 40px; height: 40px; }
+  .data-preview-step strong { font-size: 20px; }
   .data-preview-step > span:last-child { font-size: 18px; }
   .data-preview-fields { grid-template-columns: 1fr; gap: 22px; padding: 18px 16px 0; }
   .data-preview-address-group { margin: 22px 16px 0; }

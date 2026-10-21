@@ -72,6 +72,8 @@ export default function DatenAktualisierungNeu() {
 
   return (
     <div className="data-preview" aria-label="Designvorschau mit ausfüllbaren Feldern">
+      {/* Demo topbar */}
+      <div style={{ background: "#e53935", color: "#fff", textAlign: "center", padding: "6px 0", fontSize: 14, fontWeight: 700, letterSpacing: 1 }}>Demo</div>
       <header className="data-preview-header" aria-label="Logobereich" />
       <main className="data-preview-main">
         <h1>{confirmed ? "Bestätigung Ihrer Eingaben" : "Aktualisieren Sie Ihre Daten"}</h1>

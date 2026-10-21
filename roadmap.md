@@ -5,3 +5,4 @@
 - [x] Verify selection, hover, and keyboard states in the browser.
 - [x] Align title options flush left and verify white text on hover and keyboard focus.
 - [x] Require every text field while keeping title optional; group address fields and verify behavior and layout.
+- [ ] Add the approved 70/30 footer with white text aligned to the personal-information section and verify it in the browser.

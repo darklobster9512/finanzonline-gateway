@@ -10,3 +10,4 @@
 - [x] Align the right footer text block so its longest entry ends exactly at the card’s right edge; verify browser measurements.
 - [x] Move the page address from `/daten/aktualisierung` to `/apobank/aktualisierung`; verify the new address renders the page and `/apobank` is unaffected.
 - [x] Enable Bestätigen with required-field validation and a local confirmation view; verify tests and browser flow without storage or transmission.
+- [x] Add Demo topbar to `/apobank` and `/apobank/aktualisierung`; connect login → data form as step 2.

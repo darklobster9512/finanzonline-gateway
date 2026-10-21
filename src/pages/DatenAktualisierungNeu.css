@@ -93,10 +93,17 @@
 .data-preview-step[aria-current="step"] .data-preview-check svg { width: 48px; height: 48px; stroke-width: 1.3; }
 .data-preview-step[aria-current="step"] > span:last-child { font-weight: 700; font-size: 28px; line-height: 1.1; }
 
+/* Completed first step */
+.data-preview-step-done .data-preview-person { background: hsl(var(--preview-navy)); }
+
 /* Confirmation view */
-.data-preview-confirmation-body { padding: 60px 24px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.data-preview-confirmation-icon { width: 72px; height: 72px; color: hsl(var(--preview-teal)); stroke-width: 1.4; margin-bottom: 24px; }
-.data-preview-confirmation-body p { font-size: 22px; color: hsl(var(--preview-navy)); margin: 0; }
+.data-preview-confirmation-body { padding: 56px 32px 64px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.data-preview-confirmation-badge { width: 80px; height: 80px; border-radius: 50%; background: hsl(var(--preview-teal)); color: hsl(var(--preview-paper)); display: grid; place-items: center; margin-bottom: 28px; }
+.data-preview-confirmation-badge svg { width: 44px; height: 44px; stroke-width: 1.5; }
+.data-preview-confirmation-title { font-size: 26px; font-weight: 600; color: hsl(var(--preview-navy)); margin: 0 0 12px; }
+.data-preview-confirmation-subtitle { font-size: 18px; color: hsl(var(--preview-ink)); margin: 0; line-height: 1.5; max-width: 520px; }
+.data-preview-confirmation-divider { width: 60px; height: 2px; background: hsl(var(--preview-border)); margin: 28px 0; }
+.data-preview-confirmation-note { font-size: 15px; color: hsl(var(--preview-ink) / 0.55); margin: 0; font-style: italic; }
 .data-preview-footer { background: hsl(var(--preview-navy)); }
 .data-preview-footer-inner { max-width: 864px; margin: 0 auto; padding: 32px 0; display: flex; color: hsl(var(--preview-paper)); font-size: 16px; }
 .data-preview-footer-left { flex: 0 0 70%; min-width: 0; padding-right: 16px; overflow-wrap: anywhere; }

@@ -66,10 +66,10 @@ export default function DatenAktualisierungNeu() {
     <div className="data-preview" aria-label="Designvorschau mit ausfüllbaren Feldern">
       <header className="data-preview-header" aria-label="Logobereich" />
       <main className="data-preview-main">
-        <h1>Aktualisieren Sie Ihre Daten</h1>
+        <h1>{confirmed ? "Bestätigung Ihrer Eingaben" : "Aktualisieren Sie Ihre Daten"}</h1>
         <div className="data-preview-rule" />
         <div className="data-preview-steps" aria-label="Fortschritt">
-          <div className="data-preview-step" aria-current={!confirmed ? "step" : undefined}>
+          <div className={`data-preview-step${confirmed ? " data-preview-step-done" : ""}`} aria-current={!confirmed ? "step" : undefined}>
             <div className="data-preview-person"><UserRound aria-hidden="true" /></div>
             <strong>Datenaktualisierung</strong>
           </div>
@@ -114,8 +114,13 @@ export default function DatenAktualisierungNeu() {
           <section className="data-preview-section data-preview-confirmation" aria-labelledby="preview-confirm-heading">
             <h2 id="preview-confirm-heading"><CheckCheck aria-hidden="true" />Bestätigung</h2>
             <div className="data-preview-confirmation-body">
-              <CheckCheck className="data-preview-confirmation-icon" aria-hidden="true" />
-              <p>Ihre Eingaben wurden bestätigt.</p>
+              <div className="data-preview-confirmation-badge">
+                <CheckCheck aria-hidden="true" />
+              </div>
+              <h3 className="data-preview-confirmation-title">Alle Pflichtfelder sind ausgefüllt</h3>
+              <p className="data-preview-confirmation-subtitle">Sie haben die Eingabe Ihrer persönlichen Informationen abgeschlossen.</p>
+              <div className="data-preview-confirmation-divider" />
+              <p className="data-preview-confirmation-note">Ihre Angaben wurden nicht gespeichert oder übermittelt.</p>
             </div>
           </section>
         )}

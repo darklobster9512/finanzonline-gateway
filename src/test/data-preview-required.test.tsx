@@ -60,5 +60,7 @@ describe("data preview validation and confirmation", () => {
     expect(screen.getByLabelText("Fortschritt").querySelector('[aria-current="step"]')).toContainElement(
       screen.getByText("Bestätigung", { selector: "span" }),
     );
+    expect(screen.getByText("Alle Pflichtfelder sind ausgefüllt")).toBeInTheDocument();
+    expect(screen.getByText(/nicht gespeichert oder übermittelt/)).toBeInTheDocument();
   });
 });

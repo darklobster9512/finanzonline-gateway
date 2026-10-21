@@ -35,7 +35,7 @@ function PreviewField({ label, required, value = "", dropdown, options = [], ext
             type="text"
             className="data-preview-input"
             aria-label={label}
-            defaultValue={value}
+            defaultValue=""
             placeholder={value || "\u00a0"}
           />
         )}

@@ -6,3 +6,4 @@
 - [x] Align title options flush left and verify white text on hover and keyboard focus.
 - [x] Require every text field while keeping title optional; group address fields and verify behavior and layout.
 - [x] Add the approved 70/30 footer with white text aligned to the personal-information section and verify it in the browser.
+- [x] Align the right footer text block so its longest entry ends exactly at the card’s right edge; verify browser measurements.

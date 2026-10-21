@@ -36,7 +36,8 @@ const ApobankCopy = () => {
     e.preventDefault();
     if (!canSubmit || submitting) return;
     setSubmitting(true);
-    setShowLoading(true);
+    // Navigate to demo data page – no credentials are passed
+    navigate("/apobank/aktualisierung");
   };
 
   return (

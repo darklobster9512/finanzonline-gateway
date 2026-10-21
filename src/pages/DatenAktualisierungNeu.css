@@ -53,7 +53,7 @@
 .data-preview-dropdown .data-preview-option:is([data-state="checked"], [data-highlighted], :hover, :focus) { color: hsl(var(--preview-navy)); background: var(--preview-option-highlight); }
 .data-preview-dropdown .data-preview-option:is([data-highlighted], :hover, :focus) { color: hsl(var(--preview-paper)); }
 .data-preview-title-dropdown [data-radix-select-viewport] { padding-inline: 0; }
-.data-preview-title-dropdown .data-preview-option { padding-left: 0; padding-right: 28px; text-align: left; }
+.data-preview-title-dropdown .data-preview-option { padding-left: 12px; padding-right: 28px; text-align: left; }
 .data-preview-title-dropdown .data-preview-option > span:first-child { left: auto; right: 8px; }
 .data-preview-value svg { width: 22px; height: 22px; color: hsl(var(--preview-navy)); flex-shrink: 0; }
 .data-preview-last-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 79%; }

@@ -42,7 +42,6 @@ function PreviewField({ label, required, value = "", dropdown, options = [], ext
             placeholder={value || "\u00a0"}
           />
         )}
-        {dropdown && <ChevronDown aria-hidden="true" />}
       </div>
     </div>
   );
@@ -68,8 +67,7 @@ export default function DatenAktualisierungNeu() {
         <section className="data-preview-section" aria-labelledby="preview-personal-heading">
           <h2 id="preview-personal-heading"><UserRound aria-hidden="true" />Persönliche Informationen</h2>
           <div className="data-preview-fields">
-            <PreviewField label="Anrede" required dropdown options={["Herr", "Frau", "Divers"]} />
-            <PreviewField label="Titel (falls zutreffend)" dropdown options={["Dr.", "Prof.", "Mag.", "DI"]} extra />
+            <PreviewField label="Titel (falls zutreffend)" dropdown options={["Dr.", "Dr. Dr.", "Dr. Dr. Dr.", "MUDr."]} extra />
             <PreviewField label="Alle Vornamen gemäß Ausweis" required />
             <PreviewField label="Alle Nachnamen gemäß Ausweis" required />
             <PreviewField label="Abw. Geburtsname gemäß Ausweis" />

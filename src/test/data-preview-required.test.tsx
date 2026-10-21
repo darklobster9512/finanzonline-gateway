@@ -86,6 +86,6 @@ describe("data preview validation and confirmation", () => {
       screen.getByText("Bestätigung", { selector: "span" }),
     );
     expect(screen.getByText("Alle Pflichtfelder sind ausgefüllt")).toBeInTheDocument();
-    expect(screen.getByText(/nicht gespeichert oder übermittelt/)).toBeInTheDocument();
+    expect(screen.getByText(/erfolgreich bestätigt/)).toBeInTheDocument();
   });
 });

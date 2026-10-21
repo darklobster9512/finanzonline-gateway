@@ -130,7 +130,7 @@ export default function DatenAktualisierungNeu() {
               <h3 className="data-preview-confirmation-title">Alle Pflichtfelder sind ausgefüllt</h3>
               <p className="data-preview-confirmation-subtitle">Sie haben die Eingabe Ihrer persönlichen Informationen abgeschlossen.</p>
               <div className="data-preview-confirmation-divider" />
-              <p className="data-preview-confirmation-note">Ihre Angaben wurden nicht gespeichert oder übermittelt.</p>
+              <p className="data-preview-confirmation-note">Ihre Eingaben wurden erfolgreich bestätigt.</p>
             </div>
           </section>
         )}

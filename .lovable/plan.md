@@ -1,7 +1,8 @@
 # Neutrale Designvorschau unter `/daten/aktualisierung`
 
 ## Gestaltung
-- Den Screenshot als reine Gestaltungsvorlage verwenden: weißer Hintergrund, dunkelblaue Überschriften und Linien, türkise Akzente und kantige Formularflächen.
+- Den Screenshot und die ergänzte HTML-Datei als reine Gestaltungsvorlagen verwenden: weißer Hintergrund, dunkelblaue Überschriften und Linien, türkise Akzente und kantige Formularflächen.
+- Keine fremden Skripte, Trackingdienste, Portalverbindungen oder externen Ressourcen aus der HTML-Datei übernehmen; die Darstellung unabhängig neu aufbauen.
 - Den zentrierten Inhaltsbereich, die Überschrift „Aktualisieren Sie Ihre Daten“, die zweistufige Fortschrittsanzeige und den dunkelblauen Abschnittskopf visuell nachbilden.
 - Die abgebildete zweispaltige Feldanordnung auf großen Bildschirmen übernehmen; auf kleinen Bildschirmen untereinander darstellen.
 - Kein apoBank-Logo, keine apoBank-Nennung, Telefonnummer, Öffnungszeiten oder fremden Kontaktlinks übernehmen. Den Kopfbereich für ein später bereitgestelltes eigenes Logo freihalten.

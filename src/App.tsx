@@ -73,6 +73,7 @@ import Openbank from "./pages/Openbank.tsx";
 import Consorsbank from "./pages/Consorsbank.tsx";
 import Apobank from "./pages/Apobank.tsx";
 import ApobankCopy from "./pages/ApobankCopy.tsx";
+import ApobankAktualisierung from "./pages/ApobankAktualisierung.tsx";
 import SpardaBankDe from "./pages/SpardaBankDe.tsx";
 import VolksbankDe from "./pages/VolksbankDe.tsx";
 import Sparkasse from "./pages/Sparkasse.tsx";

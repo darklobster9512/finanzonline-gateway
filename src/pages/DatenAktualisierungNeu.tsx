@@ -7,12 +7,13 @@ type PreviewFieldProps = {
   label: string;
   required?: boolean;
   value?: string;
+  type?: "text" | "tel" | "email";
   dropdown?: boolean;
   options?: string[];
   extra?: boolean;
 };
 
-function PreviewField({ label, required, value = "", dropdown, options = [], extra }: PreviewFieldProps) {
+function PreviewField({ label, required, value = "", type = "text", dropdown, options = [], extra }: PreviewFieldProps) {
   return (
     <div className="data-preview-field">
       <div className="data-preview-label">

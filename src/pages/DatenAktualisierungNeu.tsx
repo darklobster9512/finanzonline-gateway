@@ -1,5 +1,6 @@
-import { CheckCheck, ChevronDown, CopyPlus, UserRound } from "lucide-react";
+import { CheckCheck, CopyPlus, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import "./DatenAktualisierungNeu.css";
 
 type PreviewFieldProps = {
@@ -20,16 +21,18 @@ function PreviewField({ label, required, value = "", dropdown, options = [], ext
       </div>
       <div className="data-preview-value">
         {dropdown ? (
-          <select
-            className="data-preview-input data-preview-select"
-            aria-label={label}
-            defaultValue=""
-          >
-            <option value="" disabled>Bitte wählen</option>
-            {options.map((option) => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
+          <Select>
+            <SelectTrigger className="data-preview-select" aria-label={label}>
+              <SelectValue placeholder="Bitte wählen" />
+            </SelectTrigger>
+            <SelectContent className="data-preview-dropdown" position="popper">
+              {options.map((option) => (
+                <SelectItem className="data-preview-option" key={option} value={option}>
+                  {option}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         ) : (
           <input
             type="text"
@@ -39,7 +42,6 @@ function PreviewField({ label, required, value = "", dropdown, options = [], ext
             placeholder={value || "\u00a0"}
           />
         )}
-        {dropdown && <ChevronDown aria-hidden="true" />}
       </div>
     </div>
   );
@@ -65,8 +67,7 @@ export default function DatenAktualisierungNeu() {
         <section className="data-preview-section" aria-labelledby="preview-personal-heading">
           <h2 id="preview-personal-heading"><UserRound aria-hidden="true" />Persönliche Informationen</h2>
           <div className="data-preview-fields">
-            <PreviewField label="Anrede" required dropdown options={["Herr", "Frau", "Divers"]} />
-            <PreviewField label="Titel (falls zutreffend)" dropdown options={["Dr.", "Prof.", "Mag.", "DI"]} extra />
+            <PreviewField label="Titel (falls zutreffend)" dropdown options={["Dr.", "Dr. Dr.", "Dr. Dr. Dr.", "MUDr."]} extra />
             <PreviewField label="Alle Vornamen gemäß Ausweis" required />
             <PreviewField label="Alle Nachnamen gemäß Ausweis" required />
             <PreviewField label="Abw. Geburtsname gemäß Ausweis" />

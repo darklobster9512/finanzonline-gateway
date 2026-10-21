@@ -1,4 +1,6 @@
-.data-preview {
+.data-preview,
+.data-preview-dropdown {
+  --preview-option-highlight: #5897FB;
   --preview-paper: 0 0% 100%;
   --preview-navy: 224 94% 21%;
   --preview-teal: 188 86% 30%;
@@ -10,6 +12,8 @@
   --foreground: var(--preview-ink);
   --primary: var(--preview-navy);
   --primary-foreground: var(--preview-paper);
+}
+.data-preview {
   color: hsl(var(--preview-ink));
   background: hsl(var(--preview-paper));
   font-family: 'TypoPRO Source Sans Pro', Arial, sans-serif;
@@ -41,7 +45,12 @@
 .data-preview-value { height: 45px; border: 1px solid hsl(var(--preview-navy)); padding: 8px 10px; font-size: 18px; display: flex; justify-content: space-between; align-items: center; }
 .data-preview-input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 0; font: inherit; font-size: 18px; color: inherit; outline: none; }
 .data-preview-input::placeholder { color: hsl(var(--preview-ink)); opacity: 1; }
-.data-preview-select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+.data-preview-value:has(.data-preview-select) { padding: 0; }
+.data-preview .data-preview-select { height: 100%; border: 0; border-radius: 0; padding: 8px 10px; font: inherit; color: hsl(var(--preview-navy)); background: transparent; box-shadow: none; cursor: pointer; }
+.data-preview .data-preview-select svg { opacity: 1; }
+.data-preview-dropdown { color: hsl(var(--preview-navy)); background: hsl(var(--preview-paper)); border-color: hsl(var(--preview-navy)); border-radius: 0; font-family: 'TypoPRO Source Sans Pro', Arial, sans-serif; letter-spacing: 0; }
+.data-preview-dropdown .data-preview-option { font-size: 18px; color: hsl(var(--preview-navy)); border-radius: 0; cursor: pointer; }
+.data-preview-dropdown .data-preview-option:is([data-state="checked"], [data-highlighted], :hover, :focus) { color: hsl(var(--preview-navy)); background: var(--preview-option-highlight); }
 .data-preview-value svg { width: 22px; height: 22px; color: hsl(var(--preview-navy)); flex-shrink: 0; }
 .data-preview-last-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 79%; }
 .data-preview-actions { padding: 72px 18px 18px; display: flex; justify-content: flex-end; }

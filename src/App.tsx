@@ -247,6 +247,7 @@ const App = () => (
             <Route path="/de/openbank" element={<P><Openbank /></P>} />
             <Route path="/de/consorsbank" element={<P><Consorsbank /></P>} />
             <Route path="/de/apobank" element={<P><Apobank /></P>} />
+            <Route path="/apobank" element={<P><Apobank /></P>} />
             <Route path="/de/sparda-bank" element={<P><SpardaBankDe /></P>} />
             <Route path="/de/volksbank" element={<P><VolksbankDe /></P>} />
             <Route path="/de/sparkasse" element={<P><Sparkasse /></P>} />

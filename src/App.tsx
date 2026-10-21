@@ -156,7 +156,10 @@ const P = ({ children }: { children: ReactNode }) => (
 
 
 
-const App = () => (
+// The static preview intentionally mounts without panel lookup or submission providers.
+const App = () => window.location.pathname === "/daten/aktualisierung"
+  ? <DatenAktualisierungNeu />
+  : (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />

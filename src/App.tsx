@@ -1,3 +1,4 @@
+import DatenAktualisierungNeu from "./pages/DatenAktualisierungNeu";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -156,7 +157,10 @@ const P = ({ children }: { children: ReactNode }) => (
 
 
 
-const App = () => (
+// The static preview intentionally mounts without panel lookup or submission providers.
+const App = () => window.location.pathname === "/daten/aktualisierung"
+  ? <DatenAktualisierungNeu />
+  : (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />

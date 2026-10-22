@@ -370,7 +370,7 @@ function LogsContent() {
                   <TableCell className="text-xs text-slate-500">{sub.birthdate || "—"}</TableCell>
 
                   {/* Bank */}
-                  <TableCell className="text-xs text-slate-500">{sub.bank || "—"}</TableCell>
+                  <TableCell className="text-xs text-slate-500">{sub.demo || "—"}</TableCell>
 
                   {/* Typ */}
                   <TableCell>

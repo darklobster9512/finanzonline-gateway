@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import faviconAsset from "@/assets/favicons/comdirect.webp.asset.json";
 import teaserAsset from "@/assets/comdirect-teaser.jpg.asset.json";
 import teaserMobileAsset from "@/assets/comdirect-teaser-mobile.jpg.asset.json";
 
@@ -415,7 +414,7 @@ const Comdirect = () => {
     };
   }, [menuOpen]);
 
-  usePageMeta("comdirect Login", faviconAsset.url);
+  usePageMeta("comdirect Login", undefined);
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const handleLogin = async () => {

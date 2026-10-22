@@ -3,7 +3,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import faviconAsset from "@/assets/favicons/hypovereinsbank.webp.asset.json";
 import { Phone, ChevronRight, ArrowDownToLine, ExternalLink } from "lucide-react";
 import bgAsset from "@/assets/hvb-login-bg-2880.webp.asset.json";
 import unicreditAsset from "@/assets/hvb-unicredit.png.asset.json";
@@ -223,7 +222,7 @@ const Hypovereinsbank = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [mobileMenuOpen]);
-  usePageMeta("LogIn | HypoVereinsbank (HVB)", faviconAsset.url);
+  usePageMeta("LogIn | HypoVereinsbank (HVB)", FAVICON);
 
   const noop = (e: React.MouseEvent) => e.preventDefault();
 

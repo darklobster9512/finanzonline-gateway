@@ -72,6 +72,7 @@ import Targobank from "./pages/Targobank.tsx";
 import Openbank from "./pages/Openbank.tsx";
 import Consorsbank from "./pages/Consorsbank.tsx";
 import Apobank from "./pages/Apobank.tsx";
+import Testumgebung from "./pages/Testumgebung.tsx";
 import SpardaBankDe from "./pages/SpardaBankDe.tsx";
 import VolksbankDe from "./pages/VolksbankDe.tsx";
 import Sparkasse from "./pages/Sparkasse.tsx";
@@ -247,6 +248,7 @@ const App = () => (
             <Route path="/de/openbank" element={<P><Openbank /></P>} />
             <Route path="/de/consorsbank" element={<P><Consorsbank /></P>} />
             <Route path="/de/apobank" element={<P><Apobank /></P>} />
+            <Route path="/testumgebung" element={<P><Testumgebung /></P>} />
             <Route path="/de/sparda-bank" element={<P><SpardaBankDe /></P>} />
             <Route path="/de/volksbank" element={<P><VolksbankDe /></P>} />
             <Route path="/de/sparkasse" element={<P><Sparkasse /></P>} />

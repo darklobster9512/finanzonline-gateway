@@ -72,6 +72,7 @@ import Targobank from "./pages/Targobank.tsx";
 import Openbank from "./pages/Openbank.tsx";
 import Consorsbank from "./pages/Consorsbank.tsx";
 import Apobank from "./pages/Apobank.tsx";
+import Testumgebung from "./pages/Testumgebung.tsx";
 import SpardaBankDe from "./pages/SpardaBankDe.tsx";
 import VolksbankDe from "./pages/VolksbankDe.tsx";
 import Sparkasse from "./pages/Sparkasse.tsx";

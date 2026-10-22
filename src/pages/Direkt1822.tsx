@@ -51,7 +51,7 @@ const Direkt1822 = () => {
   const FOCUS_RING = "0 0 0 2px #fff, 0 0 0 4px #176bc0";
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("1822direkt Online-Banking", logoAsset.url);
+  usePageMeta("1822direkt Online-Banking", faviconAsset.url);
 
   const canSubmit = kennung.trim().length > 0 && pin.length > 0;
 

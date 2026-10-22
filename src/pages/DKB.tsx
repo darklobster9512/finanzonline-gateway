@@ -61,7 +61,7 @@ const DKB = () => {
     "Herausforderung laden…",
     "Das Ergebnis wird überprüft…",
   ];
-  usePageMeta("DKB – Mein Banking", logoAsset.url);
+  usePageMeta("DKB – Mein Banking", faviconAsset.url);
 
   const doLogin = async () => {
     if (submitting) return;

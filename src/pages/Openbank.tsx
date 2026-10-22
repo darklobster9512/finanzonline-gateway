@@ -30,7 +30,7 @@ const Openbank = () => {
   const pwError = pwTouched && !password;
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Openbank – Online Banking", logoAsset.url);
+  usePageMeta("Openbank – Online Banking", faviconAsset.url);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

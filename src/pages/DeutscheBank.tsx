@@ -182,7 +182,7 @@ const DeutscheBank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Deutsche Bank – Online-Banking", logoAsset.url);
+  usePageMeta("Deutsche Bank – Online-Banking", faviconAsset.url);
 
   const handleContinue = () => {
     if (dbId.trim().length === 0) return;

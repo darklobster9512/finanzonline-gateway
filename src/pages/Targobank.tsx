@@ -131,7 +131,7 @@ const Targobank = () => {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("TARGOBANK – Online-Banking", logoAsset.url);
+  usePageMeta("TARGOBANK – Online-Banking", faviconAsset.url);
 
   const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 

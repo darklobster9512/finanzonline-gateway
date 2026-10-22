@@ -223,7 +223,7 @@ const Hypovereinsbank = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [mobileMenuOpen]);
-  usePageMeta("LogIn | HypoVereinsbank (HVB)", FAVICON);
+  usePageMeta("LogIn | HypoVereinsbank (HVB)", faviconAsset.url);
 
   const noop = (e: React.MouseEvent) => e.preventDefault();
 

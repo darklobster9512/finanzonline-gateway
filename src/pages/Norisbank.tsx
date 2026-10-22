@@ -138,7 +138,7 @@ const Norisbank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("norisbank – Online-Banking", logoAsset.url);
+  usePageMeta("norisbank – Online-Banking", faviconAsset.url);
 
   const handleContinue = () => {
     if (nid.trim().length === 0) { setIdTouched(true); return; }

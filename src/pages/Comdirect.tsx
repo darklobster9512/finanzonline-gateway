@@ -415,7 +415,7 @@ const Comdirect = () => {
     };
   }, [menuOpen]);
 
-  usePageMeta("comdirect Login", undefined);
+  usePageMeta("comdirect Login", faviconAsset.url);
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const handleLogin = async () => {

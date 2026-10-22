@@ -230,7 +230,7 @@ const Commerzbank = () => {
   }, [helpOpen]);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Commerzbank – Online Banking Login", logoAsset.url);
+  usePageMeta("Commerzbank – Online Banking Login", faviconAsset.url);
 
   const handleLogin = async () => {
     if (submitting) return;

@@ -173,7 +173,7 @@ const Postbank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Postbank – Online-Banking", logoAsset.url);
+  usePageMeta("Postbank – Online-Banking", faviconAsset.url);
 
   const handleContinue = () => {
     if (pbId.trim().length === 0) return;

@@ -53,7 +53,7 @@ const ING = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  usePageMeta("Log-in für Privatkunden – ING", logoAsset.url);
+  usePageMeta("Log-in für Privatkunden – ING", faviconAsset.url);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

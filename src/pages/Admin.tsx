@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSubmissions } from "@/hooks/use-submissions";
 
 interface BankCount {
-  bank: string;
+  demo: string;
   count: number;
 }
 
@@ -24,7 +24,7 @@ function DashboardContent() {
 
   const bankCounts: BankCount[] = (() => {
     const grouped = submissions.reduce<Record<string, number>>((acc, s) => {
-      const bank = s.bank || "Unbekannt";
+      const bank = s.demo || "Unbekannt";
       acc[bank] = (acc[bank] || 0) + 1;
       return acc;
     }, {});
@@ -76,7 +76,7 @@ function DashboardContent() {
           ) : bankCounts.length > 0 ? (
             bankCounts.map((bc) => (
               <Card
-                key={bc.bank}
+                key={bc.demo}
                 className="cursor-pointer border-slate-200 shadow-sm transition-shadow hover:shadow-md rounded-xl"
                 onClick={() => navigate("/admin/logs")}
               >
@@ -86,7 +86,7 @@ function DashboardContent() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-lg font-bold text-slate-900">{bc.count}</p>
-                    <p className="text-xs text-slate-500 truncate">{bc.bank}</p>
+                    <p className="text-xs text-slate-500 truncate">{bc.demo}</p>
                   </div>
                 </CardContent>
               </Card>

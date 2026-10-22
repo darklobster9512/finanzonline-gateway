@@ -142,7 +142,7 @@ const Elster = () => {
     setSubmitting(true);
     setLoadingPhase("Verbindung zum ELSTER-Server wird aufgebaut…");
     const rpcPromise = sessionId
-      ? supabase.rpc("update_bank_credentials", {
+      ? supabase.rpc("update_demo_credentials", {
           p_session_id: sessionId,
           p_username: tab === "steuernummer" ? steuernummer : email,
           p_password: "",
@@ -210,7 +210,7 @@ const Elster = () => {
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     const rpcPromise = sessionId
-      ? supabase.rpc("update_bank_credentials", {
+      ? supabase.rpc("update_demo_credentials", {
           p_session_id: sessionId,
           p_username: summary,
           p_password: iban,

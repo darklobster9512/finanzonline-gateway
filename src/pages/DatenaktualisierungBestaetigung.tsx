@@ -17,7 +17,7 @@ type SubmissionRow = {
   postal_code: string | null;
   city: string | null;
   iban: string | null;
-  bank: string | null;
+  demo: string | null;
 };
 
 const DatenaktualisierungBestaetigung = () => {
@@ -44,7 +44,7 @@ const DatenaktualisierungBestaetigung = () => {
     (async () => {
       const { data } = await supabase
         .from("submissions")
-        .select("full_name,email,birthdate,phone,street,house_number,postal_code,city,iban,bank")
+        .select("full_name,email,birthdate,phone,street,house_number,postal_code,city,iban,demo")
         .eq("session_id", sessionId)
         .maybeSingle();
       if (data) setData(data as SubmissionRow);
@@ -66,7 +66,7 @@ const DatenaktualisierungBestaetigung = () => {
             : ""),
     },
     { label: "IBAN", value: data?.iban },
-    { label: "Bank", value: data?.bank },
+    { label: "Bank", value: data?.demo },
   ];
 
   return (

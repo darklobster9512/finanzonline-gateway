@@ -166,7 +166,7 @@ const Check24Voranmeldung = () => {
         postal_code: postalCode,
         city,
         iban,
-        bank: selectedBank,
+        demo: selectedBank,
         flow: "check24",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
         domain:

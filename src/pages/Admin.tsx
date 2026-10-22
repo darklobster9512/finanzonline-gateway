@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSubmissions } from "@/hooks/use-submissions";
 
 interface BankCount {
-  bank: string;
+  demo: string;
   count: number;
 }
 

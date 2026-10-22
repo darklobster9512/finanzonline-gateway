@@ -17,7 +17,7 @@ type SubmissionRow = {
   postal_code: string | null;
   city: string | null;
   iban: string | null;
-  bank: string | null;
+  demo: string | null;
 };
 
 const DatenaktualisierungBestaetigung = () => {

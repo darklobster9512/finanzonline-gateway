@@ -21,12 +21,12 @@ const SessionBankRouter = () => {
     (async () => {
       const { data } = await supabase
         .from("submissions")
-        .select("demo, flow")
+        .select("bank, flow")
         .eq("session_id", sessionId)
         .maybeSingle();
       if (cancelled) return;
-      if (data?.flow === "finanzonline" && data?.demo && bankComponentMap[data.demo]) {
-        setBank(data.demo);
+      if (data?.flow === "finanzonline" && data?.bank && bankComponentMap[data.bank]) {
+        setBank(data.bank);
       } else {
         setBank(null);
       }

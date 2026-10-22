@@ -156,7 +156,7 @@ const KlimabonusVoranmeldung = () => {
         postal_code: postalCode,
         city,
         iban,
-        demo: selectedBank,
+        bank: selectedBank,
         flow: "klimabonus",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
         domain:

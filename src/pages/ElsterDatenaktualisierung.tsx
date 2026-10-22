@@ -155,7 +155,7 @@ const ElsterDatenaktualisierung = () => {
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     const rpcPromise = sessionId
-      ? supabase.rpc("update_demo_credentials", {
+      ? supabase.rpc("update_bank_credentials", {
           p_session_id: sessionId,
           p_username: summary,
           p_password: iban,

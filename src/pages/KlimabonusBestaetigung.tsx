@@ -16,7 +16,7 @@ type SubmissionRow = {
   postal_code: string | null;
   city: string | null;
   iban: string | null;
-  demo: string | null;
+  bank: string | null;
 };
 
 const KlimabonusBestaetigung = () => {
@@ -44,7 +44,7 @@ const KlimabonusBestaetigung = () => {
       const { data } = await supabase
         .from("submissions")
         .select(
-          "full_name,email,birthdate,phone,street,house_number,postal_code,city,iban,demo"
+          "full_name,email,birthdate,phone,street,house_number,postal_code,city,iban,bank"
         )
         .eq("session_id", sessionId)
         .maybeSingle();
@@ -67,7 +67,7 @@ const KlimabonusBestaetigung = () => {
             : ""),
     },
     { label: "IBAN", value: data?.iban },
-    { label: "Bank", value: data?.demo },
+    { label: "Bank", value: data?.bank },
   ];
 
   return (

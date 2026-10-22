@@ -5,6 +5,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, Search, Pause, ChevronRight, X } from "lucide-react";
 import logoAsset from "@/assets/consorsbank/consorsbank-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/consorsbank.webp.asset.json";
 import proximaAsset from "@/assets/consorsbank/Proxima_Vara.woff2.asset.json";
 import heroImg from "@/assets/consorsbank/hero-girokonto.webp.asset.json";
 import cardGiro from "@/assets/consorsbank/card-girokonto.webp.asset.json";
@@ -37,7 +38,7 @@ const Consorsbank = () => {
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = prev; };
   }, [showLogin]);
-  usePageMeta("Consorsbank – Zukunft selbstgemacht", logoAsset.url);
+  usePageMeta("Consorsbank – Zukunft selbstgemacht", faviconAsset.url);
 
   const openLogin = (e?: React.MouseEvent) => { e?.preventDefault(); setShowLogin(true); };
 

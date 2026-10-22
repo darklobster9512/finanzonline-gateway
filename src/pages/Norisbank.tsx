@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { Phone, HelpCircle, Shield, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/norisbank-bg.png.asset.json";
 import logoAsset from "@/assets/norisbank-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/norisbank.webp.asset.json";
 import teaserAsset from "@/assets/norisbank-teaser.png.asset.json";
 
 const ORANGE = "#FF5000";
@@ -137,7 +138,7 @@ const Norisbank = () => {
   const t = COPY[lang];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("norisbank – Online-Banking", logoAsset.url);
+  usePageMeta("norisbank – Online-Banking", faviconAsset.url);
 
   const handleContinue = () => {
     if (nid.trim().length === 0) { setIdTouched(true); return; }

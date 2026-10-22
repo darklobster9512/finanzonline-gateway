@@ -5,6 +5,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ChevronRight, Check } from "lucide-react";
 import logoAsset from "@/assets/targobank/targobank-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/targobank.webp.asset.json";
 import footerIconAsset from "@/assets/targobank/targobank-footer-icon.svg.asset.json";
 import heroIconAsset from "@/assets/targobank/targobank-hero-icon.svg.asset.json";
 import card1Asset from "@/assets/targobank/targobank-card-1.webp.asset.json";
@@ -130,7 +131,7 @@ const Targobank = () => {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  usePageMeta("TARGOBANK – Online-Banking", logoAsset.url);
+  usePageMeta("TARGOBANK – Online-Banking", faviconAsset.url);
 
   const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 

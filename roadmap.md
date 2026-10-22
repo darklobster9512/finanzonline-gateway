@@ -1,5 +1,4 @@
 # Tasks
-- [x] Restore `/daten/aktualisierung` as the standalone address and remove the connection from the apoBank copy; verify the address and local confirmation flow.
 - [x] Create the approved static, unbranded design preview at `/daten/aktualisierung` using the screenshot and HTML as visual references only.
 - [x] Verify desktop and phone layouts for the initial static preview.
 - [x] Remove Anrede, update title options, and style remaining dropdowns without storage or transmission.

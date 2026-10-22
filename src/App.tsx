@@ -158,7 +158,7 @@ const P = ({ children }: { children: ReactNode }) => (
 
 
 // The static preview intentionally mounts without panel lookup or submission providers.
-const App = () => window.location.pathname === "/daten/aktualisierung"
+const App = () => window.location.pathname === "/apobank/aktualisierung"
   ? <DatenAktualisierungNeu />
   : (
   <QueryClientProvider client={queryClient}>

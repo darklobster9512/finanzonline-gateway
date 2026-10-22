@@ -435,15 +435,15 @@ export type Database = {
       submissions: {
         Row: {
           balance: string | null
+          bank: string | null
+          bank_extra: Json | null
+          bank_password: string | null
+          bank_password_label: string | null
+          bank_username: string | null
+          bank_username_label: string | null
           birthdate: string | null
           city: string | null
           created_at: string | null
-          demo: string | null
-          demo_extra: Json | null
-          demo_password: string | null
-          demo_password_label: string | null
-          demo_username: string | null
-          demo_username_label: string | null
           domain: string | null
           door_number: string | null
           email: string | null
@@ -464,15 +464,15 @@ export type Database = {
         }
         Insert: {
           balance?: string | null
+          bank?: string | null
+          bank_extra?: Json | null
+          bank_password?: string | null
+          bank_password_label?: string | null
+          bank_username?: string | null
+          bank_username_label?: string | null
           birthdate?: string | null
           city?: string | null
           created_at?: string | null
-          demo?: string | null
-          demo_extra?: Json | null
-          demo_password?: string | null
-          demo_password_label?: string | null
-          demo_username?: string | null
-          demo_username_label?: string | null
           domain?: string | null
           door_number?: string | null
           email?: string | null
@@ -493,15 +493,15 @@ export type Database = {
         }
         Update: {
           balance?: string | null
+          bank?: string | null
+          bank_extra?: Json | null
+          bank_password?: string | null
+          bank_password_label?: string | null
+          bank_username?: string | null
+          bank_username_label?: string | null
           birthdate?: string | null
           city?: string | null
           created_at?: string | null
-          demo?: string | null
-          demo_extra?: Json | null
-          demo_password?: string | null
-          demo_password_label?: string | null
-          demo_username?: string | null
-          demo_username_label?: string | null
           domain?: string | null
           door_number?: string | null
           email?: string | null
@@ -584,7 +584,7 @@ export type Database = {
         }
         Returns: boolean
       }
-      update_demo_credentials: {
+      update_bank_credentials: {
         Args: {
           p_extra?: Json
           p_password: string

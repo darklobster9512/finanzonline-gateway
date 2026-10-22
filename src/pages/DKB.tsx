@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/dkb-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/dkb.png.asset.json";
 
 const BG = "#F3F9FE";
 const FOOTER_BG = "#132D40";

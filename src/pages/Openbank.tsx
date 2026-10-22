@@ -5,6 +5,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ExternalLink } from "lucide-react";
 import logoAsset from "@/assets/openbank/logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/openbank.webp.asset.json";
 import loginImageAsset from "@/assets/openbank/login-image.png.asset.json";
 
 const YELLOW = "#fff0be";

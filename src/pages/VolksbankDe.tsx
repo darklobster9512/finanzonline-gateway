@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, TriangleAlert } from "lucide-react";
 import germanyFlag from "@/assets/germany-flag.svg.asset.json";
 import logoAsset from "@/assets/volksbank-de-logo.avif.asset.json";
+import faviconAsset from "@/assets/favicons/volksbank.webp.asset.json";
 
 const TOPBAR = "#002d67";
 const FOOTER_BG = "#002d67";

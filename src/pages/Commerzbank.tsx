@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/commerzbank-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/commerzbank.webp.asset.json";
 import logoWhiteAsset from "@/assets/commerzbank-logo-white.svg.asset.json";
 import logoRibbonAsset from "@/assets/commerzbank-ribbon.svg.asset.json";
 

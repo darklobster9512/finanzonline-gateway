@@ -6,6 +6,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import { AlertTriangle, Monitor, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import bgAsset from "@/assets/postbank-hero.jpg.asset.json";
 import logoAsset from "@/assets/postbank-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/postbank.webp.asset.json";
 import teaserAsset from "@/assets/postbank-altersvorsorge.jpg.asset.json";
 
 const YELLOW = "#FFCC00";

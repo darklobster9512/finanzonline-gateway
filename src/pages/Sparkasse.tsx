@@ -8,6 +8,7 @@ import focusMoney from "@/assets/sparkasse/focus-money.jpg.asset.json";
 import kununu from "@/assets/sparkasse/kununu.png.asset.json";
 import trendence from "@/assets/sparkasse/trendence.png.asset.json";
 import logoWeiss from "@/assets/sparkasse-logo-weiss.png.asset.json";
+import faviconAsset from "@/assets/favicons/sparkasse.png.asset.json";
 
 const RED = "#EE0000";
 const RED_LINK = "#9c1a1a";

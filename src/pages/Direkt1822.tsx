@@ -5,6 +5,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Eye, EyeOff, Info } from "lucide-react";
 import logoAsset from "@/assets/1822direkt-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/1822direkt.webp.asset.json";
 import logoSquareAsset from "@/assets/1822direkt-logo-square.svg.asset.json";
 import heroAsset from "@/assets/1822direkt-30jahre.jpg.asset.json";
 

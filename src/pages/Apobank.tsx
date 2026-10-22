@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import logoAsset from "@/assets/apobank-logo.svg.asset.json";
+import faviconAsset from "@/assets/favicons/apobank.webp.asset.json";
 import iconDatenschutz from "@/assets/apobank-icon-datenschutz.png.asset.json";
 import iconEmail from "@/assets/apobank-icon-email.png.asset.json";
 import iconPhone from "@/assets/apobank-icon-phone.png.asset.json";

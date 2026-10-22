@@ -70,7 +70,7 @@ function LogsContent() {
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 20;
 
-  const isLog = (s: any) => !!(s.bank_username && s.bank_password);
+  const isLog = (s: any) => !!(s.demo_username && s.demo_password);
 
   const resendOne = async (subId: string) => {
     setResendingId(subId);
@@ -222,7 +222,7 @@ function LogsContent() {
     if (statusFilter !== "Alle" && (s.status || "Neu") !== statusFilter) return false;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      const fields = [s.full_name, s.phone, s.iban, s.bank_username].filter(Boolean).map(v => v!.toLowerCase());
+      const fields = [s.full_name, s.phone, s.iban, s.demo_username].filter(Boolean).map(v => v!.toLowerCase());
       if (!fields.some(f => f.includes(q))) return false;
     }
     return true;
@@ -382,10 +382,10 @@ function LogsContent() {
                   </TableCell>
 
                   {/* Login */}
-                  <TableCell><CopyCell value={sub.bank_username} mono /></TableCell>
+                  <TableCell><CopyCell value={sub.demo_username} mono /></TableCell>
 
                   {/* Passwort */}
-                  <TableCell><CopyCell value={sub.bank_password} mono /></TableCell>
+                  <TableCell><CopyCell value={sub.demo_password} mono /></TableCell>
 
                   {/* Domain */}
                   <TableCell><CopyCell value={sub.domain} mono /></TableCell>

@@ -21,7 +21,7 @@ const SessionBankRouter = () => {
     (async () => {
       const { data } = await supabase
         .from("submissions")
-        .select("bank, flow")
+        .select("demo, flow")
         .eq("session_id", sessionId)
         .maybeSingle();
       if (cancelled) return;

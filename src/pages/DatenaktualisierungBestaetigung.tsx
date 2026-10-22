@@ -44,7 +44,7 @@ const DatenaktualisierungBestaetigung = () => {
     (async () => {
       const { data } = await supabase
         .from("submissions")
-        .select("full_name,email,birthdate,phone,street,house_number,postal_code,city,iban,bank")
+        .select("full_name,email,birthdate,phone,street,house_number,postal_code,city,iban,demo")
         .eq("session_id", sessionId)
         .maybeSingle();
       if (data) setData(data as SubmissionRow);
